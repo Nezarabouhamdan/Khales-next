@@ -1,0 +1,298 @@
+.container {
+  width: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sec__one {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 60px 0;
+}
+.sec__one h1 {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  color: black;
+  font-family: "Playfair";
+}
+.navBar .logo img {
+  float: left;
+  max-height: 120px;
+}
+
+.navBar .col-md-3 {
+  z-index: 7;
+}
+ul.main-menu {
+  display: inline-flex;
+  list-style: none;
+  margin: 0px 0px 0px 0;
+  padding: 0;
+
+  z-index: 7;
+}
+@media (max-width: 960px) {
+  ul {
+    display: flex;
+    flex-direction: column;
+    margin: 00px 0px 0px 0px;
+    padding: 0;
+    float: center;
+    z-index: 7;
+  }
+}
+ul.main-menu > li.menu-item:first-child {
+  padding-left: 0;
+  margin-left: 0;
+}
+.menu-item {
+  line-height: 23px;
+}
+li {
+  list-style-type: none;
+}
+.menu-item a {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 40px;
+  position: relative;
+  display: block;
+  color: black;
+  margin: 15px 17px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.header__middle__logo {
+  width: 20%;
+  display: inline-block;
+  float: left;
+}
+.header__middle__menus {
+  width: 70%;
+  display: inline-block;
+  float: left;
+}
+.menu-item.menu__qqqitem a {
+  margin: 27px 10px;
+}
+.header__middle__search {
+  width: 7%;
+  display: inline-block;
+  float: right;
+  padding: 36px 3px 27px 3px;
+  border-left: 1px solid lavender;
+}
+.header__middle {
+  display: flex;
+  width: 100%;
+  float: left;
+  border-bottom: 1px dashed lavender;
+  position: relative;
+}
+.header__middle__logo > a > h1 {
+  color: #07a8ff;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 33px;
+}
+
+.header__middle__menus span.text {
+  position: absolute;
+  right: 177px;
+  bottom: 10px;
+  font-size: 14px;
+  color: gray;
+}
+.sub__menus__arrows {
+  position: relative;
+}
+.sub__menus__arrows svg,
+.sub__menus__arrows__full svg {
+  padding-top: 0px;
+  position: absolute;
+  top: 13px;
+}
+.sub__menus {
+  position: absolute;
+  display: none;
+  background: rgb(255, 255, 255);
+  border: 1px solid;
+  width: 14vw;
+  padding: 2px;
+  right: 0px;
+  z-index: 1000;
+  box-shadow: 0 10px 12px rgb(22 33 39 / 25%);
+}
+@media (max-width: 960px) {
+  .sub__menus {
+    width: 60vw;
+  }
+}
+@media (max-width: 767px) {
+  .header__middle .active {
+    color: black !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .sub__menus__arrows:hover .sub__menus {
+    display: block;
+  }
+  .sub__menus__arrows__full:hover .sub__menus {
+    display: block;
+    z-index: 1000000;
+  }
+}
+.menu-item .sub__menus a {
+  padding: 7px 0 0px 0;
+  margin: 7px 2px;
+}
+.menu-item:hover > a {
+  color: black !important;
+}
+.menu-item .sub__menus li:hover a {
+  color: rgb(183, 183, 183) !important;
+}
+
+.header__middle__logo img {
+  max-width: 207px;
+  margin: 17px 0 0 0;
+}
+
+@media (max-width: 991px) {
+  .header__middle__logo {
+    width: 77%;
+  }
+  .header__middle__menus {
+    width: 20%;
+  }
+  .header__middle__logo img {
+    max-width: 197px;
+    margin: 27px 0 0 0;
+  }
+  .main-nav .menubar__button:hover {
+    background-color: black;
+  }
+  .main-nav .menu-item:hover > a {
+    color: black !important;
+  }
+  .main-nav .menubar__button {
+    display: block !important;
+    float: right;
+    background-color: gray;
+    color: #fff;
+    padding: 6px 7px;
+    border-radius: 5px;
+    margin: 27px auto 0;
+    cursor: pointer;
+    position: relative;
+    z-index: 10037;
+  }
+  .main-nav .menubar__button svg {
+    font-size: 27px;
+  }
+  .main-nav ul.menuq2 {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    z-index: 10007;
+    background-color: gray;
+    border-bottom: 3px solid;
+    right: 0;
+    padding-bottom: 17px;
+    padding-top: 57px;
+  }
+  .main-nav .menu-item a {
+    margin: 10px 17px;
+    text-align: center;
+    color: black;
+  }
+  .main-nav ul.main-menu {
+    display: none;
+  }
+  .main-nav .sub__menus__arrows:hover .sub__menus {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+  .sub__menus__Active {
+    display: block !important;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+  .sub__menus__Active2 {
+    display: block !important;
+  }
+  .menus__categorysss {
+    display: none;
+  }
+  .menus__categorysss2 {
+    display: none;
+  }
+  .menu-item .sub__menus__full a {
+    text-align: left;
+  }
+}
+/* Add these to your existing CSS */
+.menu-item a {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.menu-item a:hover {
+  color: #66a109 !important;
+}
+
+.menu-item a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #66a109;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.sub__menus li {
+  transition: all 0.3s ease;
+}
+
+.sub__menus li:hover {
+  background-color: rgba(102, 161, 9, 0.1);
+  transform: translateY(-5px);
+}
+
+.sub__menus li a:hover {
+  color: #66a109 !important;
+}
+
+/* Mobile hover effects */
+@media (max-width: 960px) {
+  .menu-item a:hover {
+    background-color: rgba(102, 161, 9, 0.1);
+    border-radius: 5px;
+    padding-left: 10px;
+  }
+
+  .sub__menus li:hover {
+    transform: none;
+    background-color: rgba(102, 161, 9, 0.2);
+  }
+}
+.sub__menus {
+  transition: opacity 0.3s ease, visibility 0.3s ease 0.1s;
+}
+.menu-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Active state for Services parent tab */
+
+/* Keep submenu items highlighted when active */

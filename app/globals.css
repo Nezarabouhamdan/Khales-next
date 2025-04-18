@@ -1,0 +1,98 @@
+/* app css */
+.App {
+  font-family: "Playfair";
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+/* @font-face {
+  font-family: "Red Thinker";
+  src: local("Red Thinker Regular"), local("Red-Thinker-Regular"),
+    url("RedThinker-Light.ttf") format("truetype");
+
+  font-weight: 1000;
+  font-style: normal;
+} */
+.increment {
+  font-size: 35px;
+  color: #ffffff;
+
+  font-family: "Inter";
+}
+@media screen and (max-width: 968px) {
+  .increment {
+    font-family: "Inter";
+    font-size: 35px;
+  }
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: rgb(102, 161, 9);
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+}
+
+.my-float {
+  margin-top: 16px;
+}
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* index.css */
+@font-face {
+  font-family: "Playfair";
+  src: local("Playfair Meduim"), local("Playfair-Meduim"),
+    url("/src/fonts/Playfair_144pt-Medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+*{
+  font-family: "Playfair";
+}
+
+body {
+  margin: 0;
+  font-family: "Playfair";
+}
+
+code {
+  font-family: "Playfair";
+}

@@ -1,0 +1,37 @@
+/* @font-face {
+  font-family: "Red Thinker";
+  src: local("Red Thinker Regular"), local("Red-Thinker-Regular"),
+    url("RedThinker.woff2") format("woff2"),
+    url("RedThinker.woff") format("woff"),
+    url("RedThinker.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+} */
+@font-face {
+  font-family: "Bebas Neue";
+  src: local("Bebas Neue Regular"), local("Bebas-Neue-Regular"),
+    url("BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mulish";
+  src: local("Mulish Regular"), local("Mulish-Regular"),
+    url("Mulish-VariableFont_wght.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Playfair";
+  src: local("Playfair Meduim"), local("Inter-Meduim"),
+    url("Merriweather_120pt-SemiBold.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Inter ExtraLight";
+  src: local("Inter ExtraLight"), local("Inter-ExtraLight"),
+    url("Playfair_144pt-Regular.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}

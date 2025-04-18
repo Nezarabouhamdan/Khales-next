@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>http://localhost:3000/AboutsusPage</loc><lastmod>2025-04-18T10:12:32.694Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/BlogsPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/BookingPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/BuildingContractingPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/ContactPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/DevelopmentplanningPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/EngineeringConsultancyPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/HomeConent</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/InteriorDesignPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/LandscapingDesignPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/ProjectManagementPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/Projectspage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/Projectstudy</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/RealEstatePage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/ServicesPage</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/LandscapingDesign</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/ProjectManagement</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/Projectfeasability</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/ABOUTUS</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/Blogs</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/Contact</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/PROJECTS</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/booking</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/service</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/Developmentplanning</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/EngineeringConsultancy</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/InteriorDesign</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000/Investing</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://localhost:3000</loc><lastmod>2025-04-18T10:12:32.696Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>

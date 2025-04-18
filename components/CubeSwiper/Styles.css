@@ -1,0 +1,22 @@
+.swipercube {
+  width: 400px;
+
+  height: 400px;
+  position: relative;
+  @media (max-width: 991px) {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.swipercube-slide {
+  background-position: center;
+  background-size: fill;
+}
+
+.swipercube-slide img {
+  border-radius: 5px;
+
+  height: 100%;
+  object-fit: fill;
+}

@@ -1,0 +1,13 @@
+.swiperscroll {
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.swiperscroll-slide {
+  font-size: 18px;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 30px;
+}

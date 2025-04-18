@@ -1,0 +1,33 @@
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.service-item {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #fff;
+}
+
+.service-title {
+  z-index: 1;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.service-image {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+}
