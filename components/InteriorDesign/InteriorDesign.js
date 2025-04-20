@@ -33,13 +33,6 @@ const InteriorDesign = ({ data }) => {
         </Title>
         <Description>{data[0].description1}</Description>
         <Description>{data[0].description2}</Description>
-        <StartProjectButton
-          onClick={() => console.log("Start Project clicked")}
-          role="button"
-          tabIndex={0}
-        >
-          {language === "ar" ? "ابدأ المشروع" : "Start Project"}
-        </StartProjectButton>
       </ContentSection>
       <ImageSection images={data[0].images} />
     </MainContainer>
@@ -49,7 +42,7 @@ const InteriorDesign = ({ data }) => {
 const ContentSection = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  gap: 0rem;
   align-items: ${(props) => (props.$rtl ? "flex-end" : "flex-start")};
   text-align: ${(props) => (props.$rtl ? "right" : "left")};
   @media (max-width: 991px) {

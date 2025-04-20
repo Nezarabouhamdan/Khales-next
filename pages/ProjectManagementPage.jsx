@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import InteriorDesign from "../components/InteriorDesign/InteriorDesign";
 import OurProcessWork from "../components/OurProcessWork/OurProcessWork";
@@ -11,13 +11,13 @@ import ProjectHighlight from "../components/Projecthighlights/ProjectHighlight";
 import { useLanguage } from "../Context/Languagecontext"; // Import the language context
 import dynamic from "next/dynamic";
 import banner from "@/public/assets/banner/project.jpeg";
-const HeroSlider = dynamic(() => import('@/components/Slider/Slider'));
+const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 
 export const slides = {
   eng: [
     {
       id: 1,
-      image: banner,
+      image: "https://i.ibb.co/W4CfS4wX/project.jpg",
       title: "Efficient Project Management for Success",
       content: "Delivering seamless projects from concept to completion",
       button: "Let’s Get Started",
@@ -26,7 +26,7 @@ export const slides = {
   ar: [
     {
       id: 1,
-      image: banner,
+      image: "https://i.ibb.co/W4CfS4wX/project.jpg",
       title: "إدارة مشاريع فعالة لتحقيق النجاح",
       content: "تنفيذ مشاريع متكاملة من الفكرة إلى الإنجاز",
       button: "لنبدأ الآن",
@@ -251,7 +251,7 @@ const ProjectManagementPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { language } = useLanguage(); // Assuming you have a language context
   const [isClient, setIsClient] = useState(false);
-  
+
   useEffect(() => {
     setIsClient(true);
     return () => setIsClient(false); // Cleanup
@@ -259,7 +259,9 @@ const ProjectManagementPage = () => {
 
   // change metadata from client side
   useEffect(() => {
-    document.title = `${language === "ar" ? "خدمات إدارة المشاريع" : "Project mangment"}`;
+    document.title = `${
+      language === "ar" ? "خدمات إدارة المشاريع" : "Project mangment"
+    }`;
   }, [language]);
 
   useEffect(() => {
@@ -303,7 +305,7 @@ const ProjectManagementPage = () => {
       </Column>
       <CTASection />
     </>
-  )
-}
+  );
+};
 
-export default ProjectManagementPage
+export default ProjectManagementPage;

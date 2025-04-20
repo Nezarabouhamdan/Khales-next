@@ -33,9 +33,7 @@ const ProjectHighlight = ({ data }) => {
         />
         <HeroSection img={data[0].mainimage} />
         <ContentSection data={data[0].description} />
-        <StyledButton href={'#'} style={{ width: "300px", marginTop: "40px" }}>
-          {data[0].button}
-        </StyledButton>
+
         {/* <ImageGallery images={data[0].images} /> */}
       </ProjectHighlightContainer>
     </>

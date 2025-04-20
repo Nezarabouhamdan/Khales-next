@@ -103,6 +103,7 @@ const BackgroundImage = styled(Image)`
   left: 30px;
   width: 117px;
   height: 117px;
+  object-fit:cover:
   border-radius: 10px;
   object-fit: fill;
   z-index: 1;

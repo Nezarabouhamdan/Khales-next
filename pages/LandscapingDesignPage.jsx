@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import InteriorDesign from "../components/InteriorDesign/InteriorDesign";
 import OurProcessWork from "../components/OurProcessWork/OurProcessWork";
@@ -8,15 +8,14 @@ import CTASection from "../components/Homecontact/CTASection";
 import ProjectHighlight from "../components/Projecthighlights/ProjectHighlight";
 import { useLanguage } from "../Context/Languagecontext"; // Import the language context
 import dynamic from "next/dynamic";
-import banner from "@/public/assets/banner/project.jpeg"
-const HeroSlider = dynamic(() => import('@/components/Slider/Slider'));
+import banner from "@/public/assets/banner/project.jpeg";
+const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 
 export const slides = {
   eng: [
     {
       id: 1,
-      image:
-        banner,
+      image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
       title: "Breathtaking Landscapes That Inspire",
       content: "Transform your outdoor space into a natural masterpiece",
       button: "Book Your Design",
@@ -25,8 +24,7 @@ export const slides = {
   ar: [
     {
       id: 1,
-      image:
-        banner,
+      image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
       title: "مناظر طبيعية خلابة تُلهم",
       content: "حوّل مساحتك الخارجية إلى لوحة فنية طبيعية",
       button: " احجز تصميمك الآن",
@@ -227,31 +225,33 @@ const ProjectHighlightdata = {
 };
 
 const LandscapingDesignPage = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const { language } = useLanguage(); // Assuming you have a language context
-    const [isClient, setIsClient] = useState(false);
-    
-    useEffect(() => {
-      setIsClient(true);
-      return () => setIsClient(false); // Cleanup
-    }, []);
-  
-    // change metadata from client side
-    useEffect(() => {
-      document.title = `${language === "ar"
+  const [isLoading, setIsLoading] = useState(true);
+  const { language } = useLanguage(); // Assuming you have a language context
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    return () => setIsClient(false); // Cleanup
+  }, []);
+
+  // change metadata from client side
+  useEffect(() => {
+    document.title = `${
+      language === "ar"
         ? "تصميم المناظر الطبيعية وتنسيق الحدائق"
-        : "Landscaping"}`;
-    }, [language]);
-  
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 1000); // Simulate loading
-      return () => clearTimeout(timer);
-    }, []);
-  
-    // Don't render anything during SSR
-    if (!isClient) return null;
+        : "Landscaping"
+    }`;
+  }, [language]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Simulate loading
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Don't render anything during SSR
+  if (!isClient) return null;
   return (
     <>
       <section id="hero" aria-label="hero">
@@ -281,9 +281,9 @@ const LandscapingDesignPage = () => {
 
         <OurProcessWork panels={Faq[language]} />
       </Column>
-      <CTASection /> 
+      <CTASection />
     </>
-  )
-}
+  );
+};
 
-export default LandscapingDesignPage
+export default LandscapingDesignPage;

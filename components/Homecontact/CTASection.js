@@ -52,7 +52,7 @@ const Heading = styled.h2`
   margin-top: 200px;
   text-align: ${(props) =>
     props.$language === "ar" ? "right" : "left"}; // RTL support
- @media (max-width: 991px) {
+  @media (max-width: 991px) {
     width: 100%;
     max-width: 100%;
     font-size: 25px;
@@ -106,13 +106,19 @@ export default function CTASection() {
   };
 
   return (
-    <Section id="consultation-call-to-action" aria-label="Consultation Call to Action">
+    <Section
+      id="consultation-call-to-action"
+      aria-label="Consultation Call to Action"
+    >
       <ContentWrapper>
-        <BackgroundImage loading="lazy" src={img} aria-hidden="true" alt="Consultation Call to Action" />
+        <BackgroundImage
+          loading="lazy"
+          src={img}
+          aria-hidden="true"
+          alt="Consultation Call to Action"
+        />
         <Heading $language={language}>{content[language].heading}</Heading>
-        <Description $language={language}>
-          {content[language].description}
-        </Description>
+
         <CTAButton>{content[language].buttonText}</CTAButton>
       </ContentWrapper>
     </Section>

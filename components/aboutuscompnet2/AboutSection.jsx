@@ -224,7 +224,7 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-
+  margin-bottom: 150px;
   @media (max-width: 991px) {
     width: 100%;
   }

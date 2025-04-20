@@ -23,7 +23,8 @@ import {
   StyledSlider,
   TextContianer,
   Title,
-} from "./SliderStyles"
+} from "./SliderStyles";
+import Link from "next/link";
 
 // HeroSlider Component
 const HeroSlider = ({ slides, language, isLoading, rtl }) => {
@@ -73,7 +74,9 @@ const HeroSlider = ({ slides, language, isLoading, rtl }) => {
                       </TextContianer>
                     </Column>
                     <ContentColumn>
-                      <Button2>{slide.button}</Button2>
+                      <Link href={"/booking"}>
+                        <Button2>{slide.button}</Button2>
+                      </Link>
                     </ContentColumn>
                   </Row>
                 </SlideContent>

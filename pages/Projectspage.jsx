@@ -5,14 +5,13 @@ import { GreenText, Title } from "../components/Whoweare/TextContent";
 import { Portfolio } from "@/components/Portfolio/Portfolio";
 import CTASection from "@/components/Homecontact/CTASection";
 import dynamic from "next/dynamic";
-const HeroSlider = dynamic(() => import('@/components/Slider/Slider'));
+const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 
 export const slides = {
   eng: [
     {
       id: 1,
-      image:
-        "https://i.ibb.co/DPKhyq7k/khales-ae-real-photograph-of-a-super-luxury-modern-mansion-fr-c2c57d33-5a47-4ccb-b054-498b16745d23-3.png",
+      image: "https://i.ibb.co/ccDBbrn2/portfolio.jpg",
       title: "Shape Your Vision with Smart Planning",
       content: "",
       button: "GET IN TOUCH",
@@ -21,8 +20,7 @@ export const slides = {
   ar: [
     {
       id: 1,
-      image:
-        "https://i.ibb.co/DPKhyq7k/khales-ae-real-photograph-of-a-super-luxury-modern-mansion-fr-c2c57d33-5a47-4ccb-b054-498b16745d23-3.png",
+      image: "https://i.ibb.co/ccDBbrn2/portfolio.jpg",
       title: "شكّل رؤيتك بتخطيط ذكي",
       content: "نُمكّن مشاريعك بحلول تخطيط مبتكرة ومستدامة.",
       button: " تواصل معنا",

@@ -467,7 +467,7 @@ const FeaturedProjects = () => {
             ))}
           </NavPills>
           <div>
-            <Link href="/">
+            <Link href="/PROJECTS">
               <AllProjectsLink>
                 <span style={{ fontFamily: "Inter" }}>
                   {language === "ar"

@@ -92,7 +92,9 @@ const Column = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
 `;
 
 const BranchItem = styled.div`

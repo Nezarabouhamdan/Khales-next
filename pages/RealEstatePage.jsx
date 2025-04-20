@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import InteriorDesign from "../components/InteriorDesign/InteriorDesign";
 import OurProcessWork from "../components/OurProcessWork/OurProcessWork";
@@ -8,15 +8,14 @@ import CTASection from "../components/Homecontact/CTASection";
 import ProjectHighlight from "../components/Projecthighlights/ProjectHighlight";
 import { useLanguage } from "../Context/Languagecontext"; // Import the language context
 import dynamic from "next/dynamic";
-import banner from "@/public/assets/banner/project.jpeg"
-const HeroSlider = dynamic(() => import('@/components/Slider/Slider'));
+import banner from "@/public/assets/banner/project.jpeg";
+const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 
 export const slides = {
   eng: [
     {
       id: 1,
-      image:
-        banner,
+      image: "https://i.ibb.co/fVqLKY3r/investing.jpg",
       title: "Your Gateway to Smart Real Estate",
       content:
         "Unlock the full potential of your investment with strategic real estate insights",
@@ -26,8 +25,7 @@ export const slides = {
   ar: [
     {
       id: 1,
-      image:
-        banner,
+      image: "https://i.ibb.co/fVqLKY3r/investing.jpg",
       title: "بوابتك نحو العقارات الذكية",
       content: "اكتشف إمكانيات استثمارك بالكامل مع استراتيجيات عقارية ذكية.",
       button: "اعرف المزيد",
@@ -303,7 +301,7 @@ const RealEstatePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { language } = useLanguage(); // Assuming you have a language context
   const [isClient, setIsClient] = useState(false);
-  
+
   useEffect(() => {
     setIsClient(true);
     return () => setIsClient(false); // Cleanup
@@ -311,7 +309,9 @@ const RealEstatePage = () => {
 
   // change metadata from client side
   useEffect(() => {
-    document.title = `${language === "ar" ? "خدمات إدارة المشاريع" : "Project mangment"}`;
+    document.title = `${
+      language === "ar" ? "خدمات إدارة المشاريع" : "Project mangment"
+    }`;
   }, [language]);
 
   useEffect(() => {
@@ -353,9 +353,9 @@ const RealEstatePage = () => {
 
         <OurProcessWork panels={Faq[language]} />
       </Column>
-      <CTASection /> 
+      <CTASection />
     </>
-  )
-}
+  );
+};
 
-export default RealEstatePage
+export default RealEstatePage;

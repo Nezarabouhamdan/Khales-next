@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import InteriorDesign from "../components/InteriorDesign/InteriorDesign";
 import OurProcessWork from "../components/OurProcessWork/OurProcessWork";
@@ -7,15 +7,15 @@ import { GreenText, Title as Title2 } from "../components/Whoweare/TextContent";
 import CTASection from "../components/Homecontact/CTASection";
 import ProjectHighlight from "../components/Projecthighlights/ProjectHighlight";
 import dynamic from "next/dynamic";
-const HeroSlider = dynamic(() => import('@/components/Slider/Slider'));
+const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 import { useLanguage } from "../Context/Languagecontext"; // Import the language context
-import banner from "@/public/assets/banner/project.jpeg"
+import banner from "@/public/assets/banner/project.jpeg";
 
 export const slides = {
   eng: [
     {
       id: 1,
-      image: banner,
+      image: "https://i.ibb.co/1f92NM3V/eng.jpg",
       title: "Engineering Excellence That Inspires",
       content: "Innovative engineering solutions tailored to your vision.",
       button: "Talk to an Expert",
@@ -24,7 +24,7 @@ export const slides = {
   ar: [
     {
       id: 1,
-      image: banner,
+      image: "https://i.ibb.co/1f92NM3V/eng.jpg",
       title: "هندسة بإتقان تلهم",
       content: "حلول هندسية مبتكرة تتماشى مع رؤيتك.",
       button: "تواصل مع خبير",
@@ -276,31 +276,31 @@ const ProjectHighlightdata = {
 };
 
 const EngineeringConsultancyPage = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const { language } = useLanguage(); // Assuming you have a language context
-    const [isClient, setIsClient] = useState(false);
-    
-    useEffect(() => {
-      setIsClient(true);
-      return () => setIsClient(false); // Cleanup
-    }, []);
-  
-    // change metadata from client side
-    useEffect(() => {
-      document.title = `${language === "ar"
-        ? "الاستشارات الهندسية"
-        : "Engineering Consultancy"}`;
-    }, [language]);
-  
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 1000); // Simulate loading
-      return () => clearTimeout(timer);
-    }, []);
-  
-    // Don't render anything during SSR
-    if (!isClient) return null;
+  const [isLoading, setIsLoading] = useState(true);
+  const { language } = useLanguage(); // Assuming you have a language context
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    return () => setIsClient(false); // Cleanup
+  }, []);
+
+  // change metadata from client side
+  useEffect(() => {
+    document.title = `${
+      language === "ar" ? "الاستشارات الهندسية" : "Engineering Consultancy"
+    }`;
+  }, [language]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Simulate loading
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Don't render anything during SSR
+  if (!isClient) return null;
   return (
     <>
       <section id="hero" aria-label="hero">
@@ -332,7 +332,7 @@ const EngineeringConsultancyPage = () => {
       </Column>
       <CTASection />
     </>
-  )
-}
+  );
+};
 
-export default EngineeringConsultancyPage
+export default EngineeringConsultancyPage;

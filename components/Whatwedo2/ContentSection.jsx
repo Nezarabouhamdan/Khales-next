@@ -34,7 +34,7 @@ const StyledArticle = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: ${(props) => (props.$rtl ? "flext-end" : "flex-end")};
+  align-items: ${(props) => (props.$rtl ? "flext-end" : "flex-start")};
   margin-bottom: 6%;
   width: 32%;
   gap: 2rem;

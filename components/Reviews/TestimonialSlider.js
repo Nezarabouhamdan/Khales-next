@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -47,7 +47,7 @@ const TestimonialSlider = () => {
         text: "Secure storage - 235% Growth",
       },
       {
-        logo:9,
+        logo: 9,
         text: "Secure storage - 235% Growth",
       },
       {
@@ -103,44 +103,44 @@ const TestimonialSlider = () => {
     eng: [
       {
         text: "Working with Khales was a masterclass in professionalism. Their landscaping transformed our Dubai villa into a lush, serene retreat. Every detail—from layout to plant selection—was perfectly executed. It's an outdoor space we now truly enjoy every day.",
-        name: "James W. – British Expat, Dubai",
+        name: "James W. , Dubai",
         service: "Landscaping",
       },
       {
         text: "Khales brought our vision to life with incredible precision. Their interior design team curated our Abu Dhabi home with refined elegance and functional comfort. From the furniture layout to the lighting, everything reflects thoughtful design.",
-        name: "Emily R. – American Expat, Abu Dhabi",
+        name: "Emily R. , Abu Dhabi",
         service: "Interior Design",
       },
       {
         text: "From the very first consultation, Khales impressed me with their professionalism and depth of architectural knowledge. Our Ras Al Khaimah retreat now stands as a statement of contemporary elegance and balance—exactly what we dreamed of.",
-        name: "Ivan K. – Russian Expat, Ras Al Khaimah",
+        name: "Ivan K. , Ras Al Khaimah",
         service: "Architectural Design",
       },
       {
         text: "As an Emirati, I was looking for a firm that could manage every aspect of my home's development—from planning to final handover. Khales exceeded every expectation. Their team ensured smooth coordination, clear communication, and timely delivery. Truly a full-service experience.",
-        name: "Ahmed Al Mansoori – Emirati Client, Al Ain",
+        name: "Ahmed Al Mansoori , Al Ain",
         service: "Full Project Management",
       },
     ],
     ar: [
       {
         text: "العمل مع خالص كان مثالاً للاحترافية. لقد حوّل فريق تنسيق الحدائق فيلتنا في دبي إلى ملاذ هادئ ومورق. كل تفصيلة، من التخطيط إلى اختيار النباتات، تم تنفيذها بإتقان. إنها مساحة خارجية نتمتع بها كل يوم.",
-        name: "جيمس و. – مقيم بريطاني، دبي",
+        name: "جيمس و. ، دبي",
         service: "تنسيق حدائق",
       },
       {
         text: "خالص حولوا رؤيتنا إلى واقع بدقة مذهلة. فريق التصميم الداخلي صمم منزلنا في أبوظبي بأناقة راقية وراحة وظيفية. من توزيع الأثاث إلى الإضاءة، كل شيء يعكس تفكيراً وتصميماً مدروساً.",
-        name: "إيميلي ر. – مقيمة أمريكية، أبوظبي",
+        name: "إيميلي ر.، أبوظبي",
         service: "تصميم داخلي",
       },
       {
         text: "منذ أول استشارة، أبهرني خالص باحترافيتهم وعمق معرفتهم المعمارية. أصبح منزلنا في رأس الخيمة اليوم تحفة من الأناقة المعاصرة والتوازن، تمامًا كما حلمنا.",
-        name: "إيفان ك. – مقيم روسي، رأس الخيمة",
+        name: "إيفان ك. ، رأس الخيمة",
         service: "تصميم معماري",
       },
       {
         text: "بصفتي إماراتيًا، كنت أبحث عن شركة تدير كل جانب من جوانب بناء منزلي، من التخطيط حتى التسليم. خالص تجاوزوا كل التوقعات. فريقهم ضمن التنسيق السلس، التواصل الواضح، والتسليم في الوقت المحدد. تجربة متكاملة بحق.",
-        name: "أحمد المنصوري – عميل إماراتي، العين",
+        name: "أحمد المنصوري، العين",
         service: "إدارة مشاريع متكاملة",
       },
     ],
