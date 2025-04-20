@@ -12,7 +12,7 @@ export default function StepOne({ formData, updateFormData, isRTL }) {
   // Multilingual options
   const serviceOptions = {
     eng: [
-      "Project Management",
+      "Projects Management",
       "Interior Design",
       "Landscaping",
       "Development Planning",

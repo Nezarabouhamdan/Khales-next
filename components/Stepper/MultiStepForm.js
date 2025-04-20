@@ -184,8 +184,10 @@ export default function MultiStepForm() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            // Remove any unnecessary headers
           },
           body: JSON.stringify(formData),
+          credentials: "omit", // Explicitly state no credentials
         }
       );
 
@@ -204,7 +206,11 @@ export default function MultiStepForm() {
 
   return (
     <FormContainer $rtl={isRTL}>
-      <Stepper steps={content.steps} currentStep={currentStep} isRTL={!!isRTL} />
+      <Stepper
+        steps={content.steps}
+        currentStep={currentStep}
+        isRTL={!!isRTL}
+      />
 
       {globalError && <GlobalErrorMessage>{globalError}</GlobalErrorMessage>}
 
