@@ -224,47 +224,45 @@ const Faq = {
 const ProjectHighlightdata = {
   eng: [
     {
-      Title: " Case Studies",
-      button: " Get in touch with us",
-
-      Subtitle: "Al Wasl Dubai",
-      Subheader: "A Turnkey Success Story",
+      Title: "Case Studies",
+      button: "Get in touch with us",
+      Subtitle: "Saadiyat Island Villa, Abu Dhabi",
+      Subheader: "Architectural Design",
       description: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis id purus ut magna tincidunt luctus. Curabitur euismod, turpis ac eleifend congue, nunc justo sollicitudin est, ac fermentum lorem odio eget elit. Nulla facilisi. Phasellus aliquet, felis a consectetur volutpat, nisl magna malesuada dolor, ut scelerisque nisl nulla sit amet ligula. Fusce eget metus nec nunc eleifend facilisis ut nec justo. Integer bibendum, augue eu fermentum sodales, turpis leo pharetra ex, eget dictum sapien turpis eget nunc.",
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In ut sapien quis velit vestibulum accumsan vel at lectus. Ut ut nunc at turpis molestie dignissim eget in nunc. Morbi sodales, sapien non facilisis scelerisque, velit lacus eleifend risus, eu eleifend elit elit nec ligula. Mauris sagittis orci nec nisl lacinia, id sodales arcu aliquet. Suspendisse ac ligula ex. Vestibulum in metus non erat imperdiet convallis. Nulla sed libero a metus bibendum sagittis. Fusce vehicula orci id lacus feugiat, ut ultricies nulla lacinia.",
-        "Nam venenatis, libero vel fermentum hendrerit, sapien mauris luctus tortor, id laoreet purus nisi non elit. Phasellus cursus, quam eget iaculis ultricies, lorem erat euismod orci, a ultrices justo enim eu dui. Etiam tincidunt felis id odio suscipit, nec aliquet nisl pharetra. Ut in scelerisque eros. Donec eget nisi congue, facilisis arcu eget, ullamcorper odio. Nunc vel nulla a neque elementum volutpat. Duis at velit eget libero interdum ultrices.",
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In ut sapien quis velit vestibulum accumsan vel at lectus. Ut ut nunc at turpis molestie dignissim eget in nunc. Morbi sodales, sapien non facilisis scelerisque, velit lacus eleifend risus, eu eleifend elit elit nec ligula. Mauris sagittis orci nec nisl lacinia, id sodales arcu aliquet. Suspendisse ac ligula ex. Vestibulum in metus non erat imperdiet convallis. Nulla sed libero a metus bibendum sagittis. Fusce vehicula orci id lacus feugiat, ut ultricies nulla lacinia.",
+        "The client owned a plot on Saadiyat Island and was looking for an architectural design that balanced modern simplicity with a strong connection to the natural seafront views. He wanted something distinctive yet in harmony with the surroundings, with wide openings to invite light and airflow.",
+        "The challenge was designing a contemporary villa with a unique identity while maintaining privacy and adhering to local building regulations. The land had a natural slope that required thoughtful site planning and stepped massing.",
+        "We began with a full site analysis, studying sun paths and prevailing winds. The design featured tiered levels that followed the natural terrain, creating a balanced visual flow. Natural stone, exposed concrete, and reflective glass were used to ensure sustainability, privacy, and elegance.",
+        "After design approval, we coordinated with structural engineers and local authorities to complete all approvals smoothly. The final outcome received praise from the client and clearance from all regulatory bodies. The architectural service included concept development, design documentation, approval coordination, and execution drawings, all tailored to deliver both beauty and function.",
       ],
-      mainimage: "https://placehold.co/400x300/eeeeee/eeeeee",
+      mainimage: "https://placehold.co/400x300/bbbbbb/bbbbbb",
       images: [
-        "https://placehold.co/400x300/eeeeee/eeeeee",
-        "https://placehold.co/400x300/ffffff/ffffff",
-        "https://placehold.co/400x300/8b4513/8b4513",
+        "https://placehold.co/400x300/bbbbbb/bbbbbb",
+        "https://placehold.co/400x300/cccccc/cccccc",
+        "https://placehold.co/400x300/dddddd/dddddd",
       ],
     },
   ],
   ar: [
     {
-      Title: " دراسة المشروع",
+      Title: "دراسة المشروع",
       button: "تواصل معنا",
-      Subtitle: "الوصل دبي",
-      Subheader: "قصة نجاح مفتاح في اليد",
+      Subtitle: "فيلا في السعديات، أبوظبي",
+      Subheader: "التصميم المعماري",
       description: [
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
+        "ان العميل يمتلك أرضًا في جزيرة السعديات، وكان يبحث عن تصميم معماري يجمع بين الحداثة والبساطة ويستفيد من الإطلالة الطبيعية على البحر. أراد أن تكون الفيلا مميزة في شكلها ولكن متناغمة مع البيئة المحيطة، وبنوافذ واسعة تسمح بدخول الإضاءة والهواء الطبيعي.",
+        "تمثل التحدي في تصميم فيلا عصرية ذات هوية خاصة، تدمج بين الانفتاح والخصوصية، وتأخذ بعين الاعتبار اشتراطات البناء الخاصة بالمنطقة. كما أن الميل الطبيعي للأرض استلزم معالجة دقيقة في التأسيس والكتل المعمارية.",
+        "بدأنا بتحليل الموقع واتجاه الشمس والرياح، وصممنا كتلًا متدرجة على مستويات مختلفة لتواكب ميل الأرض وتخلق توازنًا بصريًا. تم استخدام الحجر الطبيعي والخرسانة المكشوفة والزجاج العاكس لتوفير الاستدامة والخصوصية دون التضحية بجمالية التصميم.",
+        "بعد اعتماد المخططات، تم التنسيق مع المهندسين الإنشائيين والجهات الرسمية لاعتماد كافة الرسومات. لاقى التصميم النهائي إعجاب العميل وحظي بموافقة الجهات المعنية دون أية ملاحظات. شملت خدمة التصميم المعماري التي قدمناها: المفهوم، التطوير، وثائق التنفيذ، وتنسيق الاعتمادات، وذلك ضمن نهج يوازن بين الجمالية والوظيفة والخصوصية.",
       ],
-      mainimage: "https://placehold.co/400x300/eeeeee/eeeeee",
+      mainimage: "https://placehold.co/400x300/bbbbbb/bbbbbb",
       images: [
-        "https://placehold.co/400x300/eeeeee/eeeeee",
-        "https://placehold.co/400x300/ffffff/ffffff",
-        "https://placehold.co/400x300/8b4513/8b4513",
+        "https://placehold.co/400x300/bbbbbb/bbbbbb",
+        "https://placehold.co/400x300/cccccc/cccccc",
+        "https://placehold.co/400x300/dddddd/dddddd",
       ],
     },
   ],
 };
-
 const InteriorDesignPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { language } = useLanguage(); // Assuming you have a language context

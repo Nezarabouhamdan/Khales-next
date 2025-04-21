@@ -285,7 +285,7 @@ function Projectstudy() {
           <OurProcessWork panels={process[language]} />
           {/* <img width={"30%"} src={img} alt="Process Work" /> */}
         </Row2>
-        {/* <ProjectHighlight data={ProjectHighlightdata[language]} /> */}
+        <ProjectHighlight data={ProjectHighlightdata[language]} />
 
         <Title2>
           {language === "ar" ? "الأسئلة الشائعة" : "Frequently Asked"}

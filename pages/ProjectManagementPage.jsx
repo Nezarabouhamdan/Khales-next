@@ -206,16 +206,15 @@ const Faq = {
 const ProjectHighlightdata = {
   eng: [
     {
-      Title: " Case Studies",
-      button: " Get in touch with us",
-
-      Subtitle: "Al Wasl Dubai",
+      Title: "Case Studies",
+      button: "Get in touch with us",
+      Subtitle: "Dubai Hills Estate",
       Subheader: "A Turnkey Success Story",
       description: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis id purus ut magna tincidunt luctus. Curabitur euismod, turpis ac eleifend congue, nunc justo sollicitudin est, ac fermentum lorem odio eget elit. Nulla facilisi. Phasellus aliquet, felis a consectetur volutpat, nisl magna malesuada dolor, ut scelerisque nisl nulla sit amet ligula. Fusce eget metus nec nunc eleifend facilisis ut nec justo. Integer bibendum, augue eu fermentum sodales, turpis leo pharetra ex, eget dictum sapien turpis eget nunc.",
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In ut sapien quis velit vestibulum accumsan vel at lectus. Ut ut nunc at turpis molestie dignissim eget in nunc. Morbi sodales, sapien non facilisis scelerisque, velit lacus eleifend risus, eu eleifend elit elit nec ligula. Mauris sagittis orci nec nisl lacinia, id sodales arcu aliquet. Suspendisse ac ligula ex. Vestibulum in metus non erat imperdiet convallis. Nulla sed libero a metus bibendum sagittis. Fusce vehicula orci id lacus feugiat, ut ultricies nulla lacinia.",
-        "Nam venenatis, libero vel fermentum hendrerit, sapien mauris luctus tortor, id laoreet purus nisi non elit. Phasellus cursus, quam eget iaculis ultricies, lorem erat euismod orci, a ultrices justo enim eu dui. Etiam tincidunt felis id odio suscipit, nec aliquet nisl pharetra. Ut in scelerisque eros. Donec eget nisi congue, facilisis arcu eget, ullamcorper odio. Nunc vel nulla a neque elementum volutpat. Duis at velit eget libero interdum ultrices.",
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In ut sapien quis velit vestibulum accumsan vel at lectus. Ut ut nunc at turpis molestie dignissim eget in nunc. Morbi sodales, sapien non facilisis scelerisque, velit lacus eleifend risus, eu eleifend elit elit nec ligula. Mauris sagittis orci nec nisl lacinia, id sodales arcu aliquet. Suspendisse ac ligula ex. Vestibulum in metus non erat imperdiet convallis. Nulla sed libero a metus bibendum sagittis. Fusce vehicula orci id lacus feugiat, ut ultricies nulla lacinia.",
+        "In Dubai Hills Estate, a 1,100 sqm luxury villa needed to be built from the ground up. The client, based overseas, owned the land but didn’t have time to handle permits, design approvals, or coordinate contractors. They were looking for a smooth process with one team to manage everything while they stayed informed remotely.",
+        "One of the biggest challenges was communication. The client was in a different time zone, and the design was still evolving during construction. Material sourcing also needed to match their high-end taste without going over budget or missing deadlines.",
+        "To fix this, we kept things simple. A dedicated project manager became their single point of contact, and we built a live dashboard with weekly updates, progress videos, and instant approvals. That meant no chasing teams, no missed updates, and full control without having to be on-site.",
+        "We handled all design changes quickly, fast-tracked municipality approvals, and stayed on top of contractors with a tight schedule. In just 14 months, the villa was delivered fully complete, designed, built, and finished to luxury standards. This was a full turnkey project management service, including architecture coordination, construction, interior fit-out, and handover, tailored for anyone looking for luxury villa construction in Dubai without the usual stress.",
       ],
       mainimage: "https://placehold.co/400x300/eeeeee/eeeeee",
       images: [
@@ -227,15 +226,15 @@ const ProjectHighlightdata = {
   ],
   ar: [
     {
-      Title: " دراسة المشروع",
+      Title: "دراسة المشروع",
       button: "تواصل معنا",
-      Subtitle: "الوصل دبي",
-      Subheader: "قصة نجاح مفتاح في اليد",
+      Subtitle: "دبي هيلز استيت",
+      Subheader: "قصة نجاح  ",
       description: [
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
+        "في دبي هيلز استيت، كان هناك مشروع فيلا فاخرة بمساحة 1100 متر مربع مطلوب إنشاؤها من الصفر. كان العميل مقيماً في الخارج ويمتلك الأرض، لكنه لم يكن يملك الوقت أو الخبرة المحلية لإدارة التصاريح والموافقات التصميمية أو تنسيق أعمال المقاولين. كان يبحث عن عملية سلسة يشرف عليها فريق واحد، ويبقى على اطلاع دائم دون الحاجة للتواجد في الموقع.",
+        "أحد أكبر التحديات كان في التواصل. بسبب فرق التوقيت واستمرار التعديلات في التصميم خلال التنفيذ، أصبح من الضروري الحفاظ على وضوح التواصل وسرعة اتخاذ القرار. كما أن اختيار المواد الراقية كان يحتاج إلى عناية خاصة لتحقيق الجودة المطلوبة دون التأثير على الميزانية أو الجدول الزمني.",
+        "قمنا بتعيين مدير مشروع مخصص ليكون نقطة الاتصال الوحيدة للعميل، وأنشأنا لوحة متابعة رقمية تعرض التحديثات الأسبوعية، وفيديوهات من الموقع، وطلبات الموافقة الفورية. بهذه الطريقة، لم يكن العميل بحاجة لمتابعة عدة أطراف أو القلق بشأن تفاصيل التنفيذ، بل كان يتحكم في المشروع بالكامل عن بُعد.",
+        "تم التعامل مع جميع التعديلات التصميمية بسرعة، والحصول على الموافقات من بلدية دبي، وهيئة كهرباء ومياه دبي بسهولة. تم الالتزام بالجدول الزمني، واستُكمل المشروع خلال 14 شهرًا بجودة عالية وفقًا لما تم الاتفاق عليه. تم تسليم المشروع كحل متكامل يشمل إدارة المشروع بالكامل، تنسيق التصاميم المعمارية، أعمال البناء، التشطيبات الداخلية، والتسليم النهائي، وهو مثالي لمن يبحث عن إنشاء فيلا فاخرة في دبي دون التعقيدات المعتادة.",
       ],
       mainimage: "https://placehold.co/400x300/eeeeee/eeeeee",
       images: [

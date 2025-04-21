@@ -32,6 +32,7 @@ const contactData = {
       inquiryPlaceholder: "Type of Inquiry",
       namePlaceholder: "Full Name",
       emailPlaceholder: "Email",
+      phonePlaceholder: "Phone",
       messagePlaceholder: "Message",
       submitText: "Submit",
       inquiryOptions: [
@@ -53,21 +54,21 @@ const contactData = {
       general: {
         title: "استفسارات عامة",
         email: "info@khales.ae",
-        phone: "+971 4 557 1184", // Keep original LTR format
+        phone: "+971 4 557 1184",
       },
       customer: {
         title: "خدمة العملاء على مدار الساعة",
-        phone: "+971 55 129 9880", // Keep original LTR format
+        phone: "+971 55 129 9880",
       },
       hours: {
         title: "ساعات العمل",
         text: "من الأحد إلى الخميس - 9:00 صباحًا - 6:00 مساءً",
       },
     },
-
     form: {
       inquiryPlaceholder: "نوع الاستفسار",
       namePlaceholder: "الاسم الكامل",
+      phonePlaceholder: "رقم الهاتف",
       emailPlaceholder: "البريد الإلكتروني",
       messagePlaceholder: "الرسالة",
       submitText: "إرسال",
@@ -95,7 +96,7 @@ function ContactUs() {
         </Title>
         <ContactDescription>{content.header.description}</ContactDescription>
       </ContactHeader>
-      <ContactContent>
+      <ContactContent $dir={language === "ar" ? "rtl" : "ltr"}>
         <ContactInfo>
           <InfoGroup>
             <InfoTitle>{content.info.general.title}</InfoTitle>
@@ -126,29 +127,94 @@ function ContactUs() {
 const ContactForm = ({ content, rtl }) => {
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [selectedInquiry, setSelectedInquiry] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+    inquiry: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleInquirySelect = (option) => {
     setSelectedInquiry(option);
+    setFormData((prev) => ({ ...prev, inquiry: option }));
     setIsInquiryOpen(false);
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Submitting:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch(
+        "https://khalesapi.onrender.com/api/create-lead",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            description: formData.message,
+            branch: "Website",
+            inquiry: formData.inquiry,
+          }),
+          credentials: "omit",
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          message: "",
+          inquiry: "",
+        });
+        setSelectedInquiry("");
+      } else {
+        setSubmitStatus("error");
+        console.error("Submission error:", data.error);
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+      console.error("Network error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <FormGroup>
         <DropdownContainer>
           <DropdownInput
             type="text"
+            name="inquiry"
             placeholder={content.inquiryPlaceholder}
             value={selectedInquiry}
-            onClick={() => setIsInquiryOpen(!isInquiryOpen)}
+            onClick={() => setIsInquiryOpen((o) => !o)}
             readOnly
             $rtl={rtl}
+            required
           />
           {isInquiryOpen && (
             <DropdownMenu $rtl={rtl}>
-              {content.inquiryOptions.map((option, index) => (
+              {content.inquiryOptions.map((option, idx) => (
                 <DropdownItem
-                  key={index}
+                  key={idx}
                   onClick={() => handleInquirySelect(option)}
                 >
                   {option}
@@ -158,33 +224,87 @@ const ContactForm = ({ content, rtl }) => {
           )}
         </DropdownContainer>
       </FormGroup>
+
       <FormGroup>
         <FormInput
           type="text"
+          name="name"
           placeholder={content.namePlaceholder}
+          value={formData.name}
+          onChange={handleInputChange}
           $rtl={rtl}
+          required
         />
       </FormGroup>
+
+      <FormGroup>
+        <FormInput
+          type="tel"
+          name="phone"
+          placeholder={content.phonePlaceholder}
+          value={formData.phone}
+          onChange={handleInputChange}
+          $rtl={rtl}
+          required
+        />
+      </FormGroup>
+
       <FormGroup>
         <FormInput
           type="email"
+          name="email"
           placeholder={content.emailPlaceholder}
+          value={formData.email}
+          onChange={handleInputChange}
           $rtl={rtl}
+          required
         />
       </FormGroup>
+
       <FormGroup>
         <FormInput
-          type="text"
+          as="textarea"
+          name="message"
+          rows={4}
           placeholder={content.messagePlaceholder}
+          value={formData.message}
+          onChange={handleInputChange}
           $rtl={rtl}
+          required
         />
       </FormGroup>
-      <SubmitButton type="submit">{content.submitText}</SubmitButton>
+
+      <SubmitButton type="submit" disabled={isSubmitting} $rtl={rtl}>
+        {isSubmitting ? "Submitting..." : content.submitText}
+      </SubmitButton>
+
+      {submitStatus === "success" && (
+        <SuccessMessage $rtl={rtl}>
+          Thank you! Your submission has been received.
+        </SuccessMessage>
+      )}
+      {submitStatus === "error" && (
+        <ErrorMessage $rtl={rtl}>
+          There was an error submitting your form. Please try again.
+        </ErrorMessage>
+      )}
     </Form>
   );
 };
 
-// Styled Components (updated for RTL support)
+// Styled Components… (unchanged)
+const SuccessMessage = styled.p`
+  color: #66a109;
+  margin-top: 16px;
+  text-align: ${(props) => (props.$rtl ? "right" : "left")};
+`;
+
+const ErrorMessage = styled.p`
+  color: #e74c3c;
+  margin-top: 16px;
+  text-align: ${(props) => (props.$rtl ? "right" : "left")};
+`;
+
 const ContactSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -219,12 +339,6 @@ const ContactDescription = styled.p`
   color: #666;
   margin-bottom: 48px;
   text-align: center;
-  @media (max-width: 991px) {
-    margin-bottom: 40px;
-  }
-  @media (max-width: 640px) {
-    margin-bottom: 32px;
-  }
 `;
 
 const ContactContent = styled.div`
@@ -262,7 +376,6 @@ const FormInput = styled.input`
 const DropdownInput = styled(FormInput)`
   cursor: pointer;
 `;
-
 const DropdownMenu = styled.ul`
   position: absolute;
   top: 100%;
@@ -279,10 +392,9 @@ const DropdownMenu = styled.ul`
   list-style: none;
   text-align: ${(props) => (props.$rtl ? "right" : "left")};
 `;
-
 const SubmitButton = styled.button`
   background-color: #666;
-  color: #ffffff;
+  color: #fff;
   padding: 12px 32px;
   border-radius: 4px;
   font-size: 16px;
@@ -297,40 +409,11 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #555;
   }
-
   @media (max-width: 768px) {
     width: 40%;
   }
-
   @media (max-width: 480px) {
     width: 100%;
-  }
-`;
-
-// ... (keep all other styled components the same as in your original code)
-
-const ContactTitle = styled.h1`
-  font-size: 48px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 16px;
-  @media (max-width: 991px) {
-    font-size: 40px;
-  }
-  @media (max-width: 640px) {
-    font-size: 32px;
-  }
-`;
-
-const ContactInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-  @media (max-width: 991px) {
-    gap: 40px;
-  }
-  @media (max-width: 640px) {
-    gap: 32px;
   }
 `;
 
@@ -338,56 +421,41 @@ const InfoGroup = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 const InfoTitle = styled.h2`
   font-size: 24px;
   font-weight: 600;
   color: #333;
   margin-bottom: 16px;
-  @media (max-width: 991px) {
-    font-size: 20px;
-  }
-  @media (max-width: 640px) {
-    font-size: 18px;
-  }
 `;
-
 const InfoText = styled.p`
   font-size: 16px;
   color: #666;
 `;
-
+const ContactInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+`;
 const ContactFormContainer = styled.div`
   flex: 1;
 `;
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  @media (max-width: 991px) {
-    gap: 20px;
-  }
-  @media (max-width: 640px) {
-    gap: 16px;
-  }
 `;
-
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
 `;
-
 const DropdownContainer = styled.div`
   position: relative;
   width: 100%;
 `;
-
 const DropdownItem = styled.li`
   padding: 10px 16px;
   cursor: pointer;
-
   &:hover {
     background-color: #f5f5f5;
   }
