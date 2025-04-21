@@ -2,7 +2,8 @@ import HomeContent from "@/pages/HomeConent";
 
 export const metadata = {
   title: "Home - Khales",
-  description: "Welcome to Khales. Explore our luxury design and project management solutions.",
+  description:
+    "Welcome to Khales. Explore our luxury design and project management solutions.",
   keywords: [
     "Khales",
     "Luxury Design",
@@ -17,7 +18,8 @@ export const metadata = {
   metadataBase: new URL("http://localhost:3000/"),
   openGraph: {
     title: "Home - Khales",
-    description: "Welcome to Khales. Explore our luxury design and project management solutions.",
+    description:
+      "Welcome to Khales. Explore our luxury design and project management solutions.",
     url: "http://localhost:3000/",
     siteName: "Khales",
     locale: "en_US",
@@ -26,15 +28,26 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Home - Khales",
-    description: "Welcome to Khales. Explore our luxury design and project management solutions.",
+    description:
+      "Welcome to Khales. Explore our luxury design and project management solutions.",
   },
 };
 
 export default function Home() {
-
   return (
     <>
-    <HomeContent />
+      <Script
+        id="gtm-script"
+        strategy="afterInteractive" // Optimize loading strategy
+        dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
+        }}
+      />
+      <HomeContent />
     </>
   );
 }
