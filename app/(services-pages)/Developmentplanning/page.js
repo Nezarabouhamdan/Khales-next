@@ -1,5 +1,6 @@
 import DevelopmentplanningPage from "@/pages/DevelopmentplanningPage";
 import React from "react";
+import Script from "next/script"; // Use Next.js optimized Script component
 
 export const metadata = {
   title: "Develpoment Planing",

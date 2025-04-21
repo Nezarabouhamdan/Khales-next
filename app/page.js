@@ -1,4 +1,5 @@
 import HomeContent from "@/pages/HomeConent";
+import Script from "next/script"; // Use Next.js optimized Script component
 
 export const metadata = {
   title: "Home - Khales",
