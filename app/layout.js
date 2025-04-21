@@ -5,10 +5,12 @@ import ClientProviders from "@/provider/ClientProvaders";
 import Link from "next/link";
 import Footer from "@/components/Footer/Footer";
 import { footerData } from "../data/FooterData";
+import StyledComponentsRegistry from "@/utils/registry";
 
 export const metadata = {
   title: "Home",
-  description: "Welcome to Khales. Explore our luxury design and project management solutions.",
+  description:
+    "Welcome to Khales. Explore our luxury design and project management solutions.",
   keywords: [
     "Khales",
     "Luxury Design",
@@ -18,17 +20,18 @@ export const metadata = {
     "Construction",
     "Khales Projects",
   ],
-  authors: [{ name: "Khales Team", url: "http://localhost:3000/" }],
+  authors: [{ name: "Khales Team", url: "https://www.khales.ae/" }],
   creator: "Khales",
-  metadataBase: new URL("http://localhost:3000/"),
+  metadataBase: new URL("https://www.khales.ae/"),
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ClientProviders>
-          <div className="uc-embed" uc-embed-show-toggle="true"></div>
+        <StyledComponentsRegistry>
+          <ClientProviders>
+            <div className="uc-embed" uc-embed-show-toggle="true"></div>
             <Navbar />
             <link
               rel="stylesheet"
@@ -42,11 +45,10 @@ export default function RootLayout({ children }) {
             >
               <i className="fa fa-whatsapp my-float"></i>
             </Link>
-          <main>
-            {children}
-          </main>
-          <Footer footerData={footerData} />
-        </ClientProviders>
+            <main>{children}</main>
+            <Footer footerData={footerData} />
+          </ClientProviders>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

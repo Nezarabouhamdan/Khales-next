@@ -47,7 +47,7 @@ const branches = {
     {
       name: "London, UK Branch",
       address: ["Under preparation"],
-      phone: "+971 9 606 0826",
+      phone: "+44 20 3769 1865",
     },
   ],
   ar: [
@@ -84,7 +84,7 @@ const branches = {
     {
       name: "فرع لندن , بريطانيا",
       address: ["قيد التحضير"],
-      phone: "+971 9 606 0826",
+      phone: "+44 20 3769 1865",
     },
   ],
 };

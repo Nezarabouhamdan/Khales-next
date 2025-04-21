@@ -35,6 +35,8 @@ const Navbar = () => {
     "/Investing",
     "/Fit-OutDesign",
   ];
+  const [width] = useDeviceSize();
+
   const homePaths = ["/", "/ABOUTUS", "/PROJECTS", "/Blogs"];
   const isServicePath = () => {
     return servicePaths.some(
@@ -216,7 +218,7 @@ const Navbar = () => {
         </MobileIcon>
         <NavMenu $show={show}>
           <NavItem>
-            {useDeviceSize()[0] > "960" ? null : (
+            {width <= 960 && (
               <StyledButton href={`/booking`} style={{ margin: "auto" }}>
                 {language === "eng" ? "Book Consultation" : "أحجز موعدك الآن"}
               </StyledButton>

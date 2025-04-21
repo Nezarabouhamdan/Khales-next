@@ -92,6 +92,7 @@ export default function StepOne({ formData, updateFormData, isRTL }) {
 const InputContainer = styled.div`
   margin-top: 30px;
   position: relative;
+  height: 100%;
   width: 100%;
   direction: ${(props) => (props.$rtl ? "rtl" : "ltr")};
 `;

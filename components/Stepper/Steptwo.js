@@ -86,7 +86,6 @@ export default function StepTwo({ formData, updateFormData }) {
   return (
     <StepContainer $rtl={isRTL}>
       <h2 style={{ marginTop: "30px", color: "#545454" }}>{content.title}</h2>
-
       {/* Full Name Input */}
       <Label htmlFor="name" $rtl={isRTL}>
         {content.labels.name}
@@ -99,7 +98,6 @@ export default function StepTwo({ formData, updateFormData }) {
         onChange={(e) => handleInputChange("name", e)}
         rtl={isRTL}
       />
-
       {/* Phone Number Input */}
       <Label htmlFor="phone" $rtl={isRTL}>
         {content.labels.phone}
@@ -112,19 +110,6 @@ export default function StepTwo({ formData, updateFormData }) {
         onChange={(e) => handleInputChange("phone", e)}
         $rtl={isRTL}
       />
-
-      {/* Appointment Date Input */}
-      <Label htmlFor="appointmentDate" $rtl={isRTL}>
-        {content.labels.date}
-      </Label>
-      <TextInput
-        id="appointmentDate"
-        type="date"
-        value={formData.appointmentDate}
-        onChange={(e) => handleInputChange("appointmentDate", e)}
-        $rtl={isRTL}
-      />
-
       {/* Appointment Time Dropdown */}
       <Label htmlFor="appointmentTime" $rtl={isRTL}>
         {content.labels.time}
@@ -134,6 +119,17 @@ export default function StepTwo({ formData, updateFormData }) {
         value={formData.appointmentTime}
         onChange={(value) => handleInputChange("appointmentTime", value)}
         options={timeSlots}
+        $rtl={isRTL}
+      />{" "}
+      {/* Appointment Date Input */}
+      <Label htmlFor="appointmentDate" $rtl={isRTL}>
+        {content.labels.date}
+      </Label>
+      <TextInput
+        id="appointmentDate"
+        type="date"
+        value={formData.appointmentDate}
+        onChange={(e) => handleInputChange("appointmentDate", e)}
         $rtl={isRTL}
       />
     </StepContainer>

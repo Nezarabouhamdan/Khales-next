@@ -1,5 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import Script from "next/script"; // Use Next.js optimized Script component
 
 export const metadata = {
   title: "Aboutus - Khales",
@@ -37,7 +38,23 @@ export const metadata = {
 const AboutusPage = dynamic(() => import("@/pages/AboutsusPage"));
 
 const AboutUs = () => {
-  return <AboutusPage />;
+  return (
+    <>
+      {" "}
+      <Script
+        id="gtm-script"
+        strategy="afterInteractive" // Optimize loading strategy
+        dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
+        }}
+      />{" "}
+      <AboutusPage />
+    </>
+  );
 };
 
 export default AboutUs;

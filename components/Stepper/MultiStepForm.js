@@ -73,6 +73,8 @@ const formTranslations = {
 const FormContainer = styled.div`
   width: 90%;
   max-width: 600px;
+  position: relative;
+  z-index: 999;
   margin: 2rem auto;
   padding: 1rem;
   border: 1px solid #ccc;
@@ -83,9 +85,9 @@ const FormContainer = styled.div`
     width: 95%;
     padding: 0.5rem;
     margin: 1rem auto;
++   z-index: 1000; /* Ensure mobile priority */
   }
 `;
-
 const ButtonRow = styled.div`
   display: flex;
   justify-content: ${(props) => (props.$rtl ? "flex-start" : "flex-end")};

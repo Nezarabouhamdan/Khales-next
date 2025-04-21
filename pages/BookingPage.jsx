@@ -8,13 +8,14 @@ import { useLanguage } from "../Context/Languagecontext";
 const Wrapper = styled.section`
   position: relative;
   width: 100%;
-  height: 100vh; /* Adjust height as needed */
-  overflow: hidden;
+  height: 100%;
+  /* Remove overflow: hidden */
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
+  gap: 0rem;
   &::before {
     content: "";
     position: absolute;
@@ -23,11 +24,10 @@ const Wrapper = styled.section`
     width: 100%;
     height: 100%;
     background: #f8f9fa;
-
-    background-image: url('/assets/Group.png');
+    background-image: url("/assets/Group.png");
     background-size: cover;
     background-position: center;
-    opacity: 0.8; /* Adjust opacity as needed */
+    opacity: 0.8;
     z-index: -1;
   }
 `;

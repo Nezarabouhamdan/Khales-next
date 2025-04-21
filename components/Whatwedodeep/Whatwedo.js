@@ -13,32 +13,39 @@ export default function ServicesSwiper() {
       {
         title: "Projects feasibility study",
         image: "https://i.ibb.co/yFThVWVN/architecture.png", // Use imported assets here
+        link: "/Projectfeasability",
       },
       {
         title: "Interior Design",
         image: "https://i.ibb.co/Gfcksvnj/interior.png",
+        link: "InteriorDesign",
       },
       {
         title: "Development Planning",
         image:
           "https://img.freepik.com/premium-photo/back-view-architects-engineers-helmet-construction-site-generative-ai_81262-3132.jpg", // URL example
+        link: "Developmentplanning",
       },
       {
         title: "Project Management",
         image: "https://i.ibb.co/XkjJMvHQ/project-management.png",
+        link: "/ProjectManagement",
       },
 
       {
         title: "Landscaping",
         image: "https://i.ibb.co/zWqLyY8p/landscape.png",
+        link: "/LandscapingDesign",
       },
       {
         title: "Investing",
         image: "https://i.ibb.co/xqHS6kX0/real-estate.png",
+        link: "/Investing",
       },
       {
         title: "Engineering Consulting",
         image: "https://i.ibb.co/99QD96G8/eng-cons.jpg",
+        link: "/EngineeringConsultancy",
       },
     ],
     ar: [
@@ -113,13 +120,24 @@ export default function ServicesSwiper() {
       >
         {selectedservices.map((service, index) => (
           <SwiperSlide key={index}>
-            <div
-              className="slide-content"
-              style={{ backgroundImage: `url(${service.image})` }}
+            <a
+              href={selectedservices[index].link}
+              className="slide-link"
+              aria-label={`View ${service.title} details`}
             >
-              <div className="slide-overlay" />
-              <h3>{service.title}</h3>
-            </div>
+              <div
+                className="slide-content"
+                style={{ backgroundImage: `url(${service.image})` }}
+              >
+                <div className="slide-overlay" />
+                <h3>
+                  {service.title}
+                  <span className="explore-text">
+                    {language === "ar" ? "← استكشف المزيد" : "Explore more →"}
+                  </span>
+                </h3>
+              </div>
+            </a>
           </SwiperSlide>
         ))}
       </Swiper>

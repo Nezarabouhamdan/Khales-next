@@ -87,3 +87,68 @@
   color: white;
   font-size: 18px;
 }
+/* Add these CSS updates */
+.services-section .swiper-slide {
+  transition: transform 0.3s ease, z-index 0.3s;
+  z-index: 0;
+}
+
+.services-section .swiper-slide:hover {
+  z-index: 2;
+}
+
+.services-section .swiper-slide:hover .slide-content {
+  transform: scale(1.05);
+}
+
+.services-section .swiper-slide:hover .slide-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.services-section .swiper-slide:hover h3 {
+  bottom: auto;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transform: translateY(-50%);
+  font-size: 24px;
+}
+
+.services-section .explore-text {
+  display: block;
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.services-section .swiper-slide:hover .explore-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Existing transitions */
+.services-section .slide-content {
+  transition: transform 0.3s ease;
+}
+
+.services-section .slide-overlay {
+  transition: background-color 0.3s ease;
+}
+
+.services-section h3 {
+  transition: all 0.3s ease;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .services-section .swiper-slide:hover h3 {
+    font-size: 1.2rem;
+  }
+
+  .services-section .explore-text {
+    font-size: 0.8rem;
+  }
+}
