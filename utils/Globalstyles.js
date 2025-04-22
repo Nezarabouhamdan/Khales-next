@@ -158,26 +158,27 @@ export const Row = styled(motion.div)`
 export const Row2 = styled(motion.div)`
   display: flex;
   flex-direction: ${(props) => (props.$rtl ? "row-reverse" : "row")};
-  justify-content: ${({ justify }) => (justify ? justify : "center")};
-
-  align-items: ${({ align }) => (align ? align : "")};
-  gap: ${({ gap }) => (gap ? gap : "3rem")};
-  padding: ${({ padding }) => (padding ? padding : "")};
-  margin: ${({ margin }) => (margin ? margin : "")};
-  position: ${({ position }) => (position ? position : "")};
-  width: ${({ width }) => (width ? width : "auto")};
-  min-width: ${({ minWidth }) => (minWidth ? minWidth : "auto")};
-  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
-  height: ${({ height }) => (height ? height : "auto")};
-  max-height: ${({ maxHeight }) => (maxHeight ? maxHeight : "auto")};
-  min-height: ${({ minHeight }) => (minHeight ? minHeight : "auto")};
+  justify-content: center;
+  align-items: flex-start; // Changed from default to prevent vertical stretching
+  gap: 3rem;
   margin-bottom: 50px;
-  flex-wrap: ${({ wrap }) => (wrap ? wrap : "")};
+
+  img {
+    flex-shrink: 0; // Prevent image from shrinking
+    width: 30%;
+    max-height: 500px; // Adjust based on your needs
+    object-fit: contain;
+    border-radius: 8px; // Optional
+  }
+
   @media screen and (max-width: 968px) {
     padding: 0 30px;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+    img {
+      width: 100%;
+      max-height: 300px; // Adjust for mobile
+    }
   }
 `;
 export const Column = styled.div`

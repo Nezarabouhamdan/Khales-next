@@ -25,20 +25,7 @@ export const servicesData = {
       description:
         "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market.",
     },
-    {
-      image: img3,
-      titlePart1: "Building ",
-      titlePart2: "Contracting",
-      description:
-        "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market.",
-    },
-    {
-      image: img4,
-      titlePart1: "Architecture ",
-      titlePart2: "Design",
-      description:
-        "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market.",
-    },
+
     {
       image: img5,
       titlePart1: "Engineering ",
@@ -53,13 +40,7 @@ export const servicesData = {
       description:
         "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market.",
     },
-    {
-      image: img7,
-      titlePart1: "Fit-Out ",
-      titlePart2: "Design",
-      description:
-        "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market.",
-    },
+
     {
       image: img8,
       titlePart1: "Landscaping ",
@@ -69,8 +50,15 @@ export const servicesData = {
     },
     {
       image: img9,
-      titlePart1: "Real ",
-      titlePart2: "Estate",
+      titlePart1: "Investing ",
+      titlePart2: "Service",
+      description:
+        "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market.",
+    },
+    {
+      image: img9,
+      titlePart1: "Project ",
+      titlePart2: "Fseasability",
       description:
         "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market.",
     },
@@ -86,60 +74,45 @@ export const servicesData = {
     },
     {
       image: img2,
-      titlePart1: "إدارة",
-      titlePart2: "المشاريع",
-      description:
-        "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
-    },
-    {
-      image: img3,
-      titlePart1: "إدارة",
-      titlePart2: "المشاريع",
-      description:
-        "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
-    },
-    {
-      image: img4,
-      titlePart1: "إدارة",
-      titlePart2: "المشاريع",
+      titlePart1: "مخطط ",
+      titlePart2: "تطوير",
       description:
         "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
     },
     {
       image: img5,
-      titlePart1: "إدارة",
-      titlePart2: "المشاريع",
+      titlePart1: "استشارات",
+      titlePart2: "هندسية",
       description:
         "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
     },
     {
       image: img6,
-      titlePart1: "إدارة",
-      titlePart2: "المشاريع",
-      description:
-        "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
-    },
-    {
-      image: img7,
-      titlePart1: "إدارة",
-      titlePart2: "المشاريع",
+      titlePart1: "تصميم",
+      titlePart2: "داخلي",
       description:
         "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
     },
     {
       image: img8,
-      titlePart1: "إدارة",
-      titlePart2: "المشاريع",
+      titlePart1: "المناظر",
+      titlePart2: "الطبيعية",
       description:
         "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
     },
     {
       image: img9,
-      titlePart1: "إدارة",
-      titlePart2: "المشاريع",
+      titlePart1: "خدمات",
+      titlePart2: "الإستثمار",
       description:
         "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
     },
-    // ... all 9 arabic services
+    {
+      image: img9,
+      titlePart1: "دراسة",
+      titlePart2: "جدوى",
+      description:
+        "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
+    },
   ],
 };

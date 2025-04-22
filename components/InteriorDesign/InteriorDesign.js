@@ -43,7 +43,10 @@ const ContentSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 0rem;
-  align-items: ${(props) => (props.$rtl ? "flex-end" : "flex-start")};
+
+  unicode-bidi: isolate;
+  direction: ${(props) => (props.$rtl ? "rtl" : "	ltr")};
+  align-items: ${(props) => (props.$rtl ? "flex-start" : "flex-end")};
   text-align: ${(props) => (props.$rtl ? "right" : "left")};
   @media (max-width: 991px) {
     flex: 0 0 100%;

@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useLanguage } from "../../Context/Languagecontext";
+import Link from "next/link";
 
 const content = {
   eng: [
@@ -34,19 +35,21 @@ const TextContent = () => {
         <GreenText> {selectedcontent[0].green}</GreenText>
       </Title>
       <Description>{selectedcontent[0].content}</Description>
-      <LearnMoreButton
-        role="button"
-        tabIndex={0}
-        onClick={() => {}}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            // Handle click
-          }
-        }}
-      >
-        {selectedcontent[0].button}
-      </LearnMoreButton>
+      <Link href={"/ABOUTUS"}>
+        <LearnMoreButton
+          role="button"
+          tabIndex={0}
+          onClick={() => {}}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              // Handle click
+            }
+          }}
+        >
+          {selectedcontent[0].button}
+        </LearnMoreButton>
+      </Link>
     </TextSection>
   );
 };

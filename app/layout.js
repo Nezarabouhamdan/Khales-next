@@ -6,6 +6,7 @@ import Link from "next/link";
 import Footer from "@/components/Footer/Footer";
 import { footerData } from "../data/FooterData";
 import StyledComponentsRegistry from "@/utils/registry";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata = {
   title: "Home",
@@ -29,6 +30,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        {" "}
+        <ScrollToTop />
         <StyledComponentsRegistry>
           <ClientProviders>
             <div className="uc-embed" uc-embed-show-toggle="true"></div>

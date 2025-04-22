@@ -60,7 +60,7 @@ const ButtonIcon = styled.img`
 
 export const CTAButton = ({ children, onClick }) => {
   return (
-    <StyledButton href={"/Contact"} aria-label="Contact us">
+    <StyledButton href={"/booking"} aria-label="Contact us">
       <ButtonText>{children}</ButtonText>
       <ButtonIcon
         loading="lazy"

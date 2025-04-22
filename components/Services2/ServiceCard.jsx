@@ -99,15 +99,12 @@ const ServiceDescription = styled.p`
 
 const BackgroundImage = styled(Image)`
   position: absolute;
-  top: 25px;
+  top: 0px;
   left: 30px;
-  width: 117px;
-  height: 117px;
-  object-fit:cover:
-  border-radius: 10px;
-  object-fit: fill;
+  width: 137px;
+  height: 137px;
+  border-radius: 50px;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.5);
 
   transition: all 0.3s ease-in-out;
 

@@ -27,8 +27,7 @@ const branches = {
     {
       name: "Sharjah Branch",
       address: [
-        "Shop 11, Block C, Al Saud Head Office, Shk Khalifa",
-        "Bin Zayed Al Nahyan Road, Muwaileh Commercial, Sharjah, UAE",
+        "Shop 11, Block C, Al Saud Head Office, Muwaileh Commercial, Sharjah, UAE",
       ],
       phone: "+971 6 551 8070",
     },
@@ -92,13 +91,14 @@ const Column = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   align-content: flex-start;
 `;
 
 const BranchItem = styled.div`
   line-height: 1.6;
+  margin-top: 20px;
 `;
 
 const BranchName = styled.h3`
@@ -107,6 +107,8 @@ const BranchName = styled.h3`
   color: #545454;
   text-align: ${(props) =>
     props.$language === "ar" ? "right" : "left"}; // RTL support
+  unicode-bidi: isolate;
+  direction: ${(props) => (props.$rtl ? "rtl" : "rlt")};
 `;
 
 const AddressText = styled.p`
@@ -115,6 +117,8 @@ const AddressText = styled.p`
   margin: 0.2rem 0;
   text-align: ${(props) =>
     props.$language === "ar" ? "right" : "left"}; // RTL support
+  unicode-bidi: isolate;
+  direction: ${(props) => (props.$rtl ? "rtl" : "rlt")};
 `;
 
 const ContactSection = styled.div`
@@ -129,7 +133,8 @@ const ContactLink = styled.a`
   font-size: 0.95rem;
   text-align: ${(props) =>
     props.$language === "ar" ? "right" : "left"}; // RTL support
-
+  unicode-bidi: isolate;
+  direction: ${(props) => (props.$rtl ? "rtl" : "rlt")};
   &:hover {
     color: #66a109;
   }

@@ -317,7 +317,16 @@ const DevelopmentplanningPage = () => {
         </Title2>
         <Row2 rtl={language === "ar"}>
           <OurProcessWork panels={process[language]} />
-          <img width={"30%"} src={"/assets/4.png"} alt="Process Work" />
+          <img
+            width={"30%"}
+            style={{
+              maxHeight: "500px", // Adjust based on your needs
+              objectFit: "contain",
+              alignSelf: "flex-start", // Prevents vertical stretching
+            }}
+            src={"/assets/4.png"}
+            alt="Process Work"
+          />
         </Row2>
         <ProjectHighlight data={ProjectHighlightdata[language]} />
 

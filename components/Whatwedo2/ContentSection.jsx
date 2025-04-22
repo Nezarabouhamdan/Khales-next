@@ -36,7 +36,7 @@ const StyledArticle = styled.article`
   justify-content: center;
   align-items: ${(props) => (props.$rtl ? "flext-end" : "flex-start")};
   margin-bottom: 6%;
-  width: 32%;
+  width: 45%;
   gap: 2rem;
   text-align: ${(props) => (props.$rtl ? "right" : "left")};
 

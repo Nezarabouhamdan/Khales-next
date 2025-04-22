@@ -52,6 +52,8 @@ const Heading = styled.h2`
   margin-top: 200px;
   text-align: ${(props) =>
     props.$language === "ar" ? "right" : "left"}; // RTL support
+  // unicode-bidi: isolate;
+  direction: ${(props) => (props.$rtl ? "rtl" : "rlt")};
   @media (max-width: 991px) {
     width: 100%;
     max-width: 100%;
@@ -71,6 +73,8 @@ const Description = styled.p`
   width: 533px;
   text-align: ${(props) =>
     props.$language === "ar" ? "right" : "left"}; // RTL support
+  unicode-bidi: isolate;
+  direction: ${(props) => (props.$rtl ? "rtl" : "rlt")};
   @media (max-width: 991px) {
     width: 80%;
     font-size: 12px;

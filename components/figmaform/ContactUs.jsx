@@ -329,6 +329,8 @@ const ContactHeader = styled.header`
   flex-direction: column;
   align-items: center;
   text-align: ${(props) => (props.$dir === "rtl" ? "right" : "left")};
+  unicode-bidi: isolate;
+  direction: ${(props) => (props.$rtl ? "rtl" : "rlt")};
 `;
 const LtrText = styled.span`
   direction: ltr;
@@ -366,7 +368,8 @@ const FormInput = styled.input`
   outline: none;
   transition: border-color 0.3s ease;
   text-align: ${(props) => (props.$rtl ? "right" : "left")};
-  direction: ${(props) => (props.$rtl ? "rtl" : "ltr")};
+  unicode-bidi: isolate;
+  direction: ${(props) => (props.$rtl ? "rtl" : "rlt")};
 
   &:focus {
     border-bottom: 2px solid #66a109;

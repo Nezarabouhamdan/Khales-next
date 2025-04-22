@@ -35,22 +35,8 @@ const StyledAccordion = styled(Accordion)`
 const HeaderRow = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.$rtl ? "row-reverse" : "row")};
+
   align-items: center;
-`;
-
-const HeaderNumber = styled.div`
-  margin-right: 50px;
-  font-family: "Inter ExtraLight", sans-serif;
-  font-weight: 200;
-  font-size: 24px;
-  line-height: 36px;
-  color: rgb(153, 153, 153);
-
-  @media (max-width: 968px) {
-    margin-right: 20px;
-    font-size: 18px;
-    line-height: 27px;
-  }
 `;
 
 const HeaderTitle = styled.div`
@@ -76,6 +62,9 @@ const PanelContent = styled.div`
   text-align: ${(props) => (props.$rtl ? "right" : "left")};
   font-family: "Inter", sans-serif;
   font-size: 16px;
+  unicode-bidi: isolate;
+  direction: ${(props) => (props.$rtl ? "rtl" : "rlt")};
+
   white-space: pre-line;
   @media (max-width: 968px) {
     font-size: 14px;
@@ -103,11 +92,13 @@ function OurProcessWork({ panels, button }) {
   const { language } = useLanguage();
   // Create an array of refs for each panel
   const panelRefs = useRef([]);
-  
+
   // Initialize refs array
   if (panels && panelRefs.current.length !== panels.length) {
     // Create a ref for each panel
-    panelRefs.current = Array(panels.length).fill().map(() => React.createRef());
+    panelRefs.current = Array(panels.length)
+      .fill()
+      .map(() => React.createRef());
   }
 
   const handleSelect = (key) => {
@@ -138,19 +129,20 @@ function OurProcessWork({ panels, button }) {
                 classNames="fade"
                 unmountOnExit
               >
-                <PanelContent ref={panelRefs.current[index]} $rtl={language === "ar"}>
+                <PanelContent
+                  ref={panelRefs.current[index]}
+                  $rtl={language === "ar"}
+                >
                   {panel.content}
                 </PanelContent>
               </CSSTransition>
             </Accordion.Panel>
-          )
+          );
         })}
       </StyledAccordion>
       {button === true && (
         <Link href={"/projects"} style={{ marginTop: "50px" }}>
-          <AllProjectsLink>
-            More Details
-          </AllProjectsLink>
+          <AllProjectsLink>More Details</AllProjectsLink>
         </Link>
       )}
     </OurProcessWrapper>
