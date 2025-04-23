@@ -235,13 +235,13 @@ const ProjectHighlightdata = {
       Title: " Case Studies",
       button: " Get in touch with us",
 
-      Subtitle: "Al Wasl Dubai",
+      Subtitle: "Residential Project Development – Sharjah",
       Subheader: "A Turnkey Success Story",
       description: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis id purus ut magna tincidunt luctus. Curabitur euismod, turpis ac eleifend congue, nunc justo sollicitudin est, ac fermentum lorem odio eget elit. Nulla facilisi. Phasellus aliquet, felis a consectetur volutpat, nisl magna malesuada dolor, ut scelerisque nisl nulla sit amet ligula. Fusce eget metus nec nunc eleifend facilisis ut nec justo. Integer bibendum, augue eu fermentum sodales, turpis leo pharetra ex, eget dictum sapien turpis eget nunc.",
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In ut sapien quis velit vestibulum accumsan vel at lectus. Ut ut nunc at turpis molestie dignissim eget in nunc. Morbi sodales, sapien non facilisis scelerisque, velit lacus eleifend risus, eu eleifend elit elit nec ligula. Mauris sagittis orci nec nisl lacinia, id sodales arcu aliquet. Suspendisse ac ligula ex. Vestibulum in metus non erat imperdiet convallis. Nulla sed libero a metus bibendum sagittis. Fusce vehicula orci id lacus feugiat, ut ultricies nulla lacinia.",
-        "Nam venenatis, libero vel fermentum hendrerit, sapien mauris luctus tortor, id laoreet purus nisi non elit. Phasellus cursus, quam eget iaculis ultricies, lorem erat euismod orci, a ultrices justo enim eu dui. Etiam tincidunt felis id odio suscipit, nec aliquet nisl pharetra. Ut in scelerisque eros. Donec eget nisi congue, facilisis arcu eget, ullamcorper odio. Nunc vel nulla a neque elementum volutpat. Duis at velit eget libero interdum ultrices.",
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In ut sapien quis velit vestibulum accumsan vel at lectus. Ut ut nunc at turpis molestie dignissim eget in nunc. Morbi sodales, sapien non facilisis scelerisque, velit lacus eleifend risus, eu eleifend elit elit nec ligula. Mauris sagittis orci nec nisl lacinia, id sodales arcu aliquet. Suspendisse ac ligula ex. Vestibulum in metus non erat imperdiet convallis. Nulla sed libero a metus bibendum sagittis. Fusce vehicula orci id lacus feugiat, ut ultricies nulla lacinia.",
+        "In Sharjah, an investor owned a strategically located plot of land and planned to develop it into a medium-density residential compound. There was no clear vision for the layout, design, or execution strategy, and the investor needed a partner who could take the lead from planning through to delivery.",
+        "The main challenge was turning a general vision into a practical, phased development plan. A feasibility study was needed, along with initial design concepts, budgeting, and a deep understanding of the zoning and architectural requirements of the area.",
+        "We started by analyzing the land—its access points, infrastructure, and surrounding developments. From there, we developed an initial masterplan that divided the plot into villas and stand-alone units, with integrated parking and service areas. A phased execution plan was created, with budget estimates and timelines for each phase.",
+        "We prepared preliminary concept designs and coordinated with local authorities in Sharjah to secure early-stage approvals. A marketing strategy was also proposed, aligned with the product type, target audience, and market analysis. This was a fully integrated project development service, covering land planning, conceptual design, financial modeling, and authority coordination—built for investors who want to turn land into successful developments without getting involved in every day-to-day detail.",
       ],
       mainimage: "https://placehold.co/400x300/eeeeee/eeeeee",
       images: [
@@ -255,13 +255,13 @@ const ProjectHighlightdata = {
     {
       Title: " دراسة المشروع",
       button: "تواصل معنا",
-      Subtitle: "الوصل دبي",
+      Subtitle: " تطوير مشروع سكني – الشارقة",
       Subheader: "قصة نجاح مفتاح في اليد",
       description: [
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
-        "لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد. لوريم إيبسوم هو نص نموذجي يستخدم في صناعة الطباعة والتنضيد.",
+        "في إمارة الشارقة، امتلك أحد المستثمرين قطعة أرض ذات موقع استراتيجي وكان يهدف إلى تحويلها إلى مجمع سكني متوسط الكثافة. لم تكن لديه رؤية واضحة فيما يتعلق بتقسيم الأراضي، أو التصميم المعماري، أو حتى استراتيجية التنفيذ الشاملة، ولذلك كان المستثمر بحاجة إلى شريك موثوق يمكنه تحويل هذه الأرض إلى مشروع استثماري ناجح ومتكامل، بدءًا من مرحلة التخطيط الأولي وصولًا إلى التسليم النهائي.",
+        "تمثل التحدي الرئيسي في ترجمة هذه الرؤية الطموحة إلى خطة تطوير عملية ومفصلة قابلة للتنفيذ على أرض الواقع. كان من الضروري إجراء دراسات جدوى شاملة لتقييم الجدوى الاقتصادية للمشروع، ووضع التصاميم المعمارية الأولية التي تلبي احتياجات السوق، وتقدير الميزانيات الواقعية لكل مرحلة من مراحل التطوير، بالإضافة إلى فهم واستيعاب المتطلبات التنظيمية والمعمارية الخاصة بالمنطقة.",
+        "بدأ فريقنا المتخصص بدراسة الموقع بعناية فائقة، مع الأخذ في الاعتبار جميع الجوانب الهامة مثل المداخل الرئيسية، والبنية التحتية المحيطة، والنسيج العمراني القائم. ثم قمنا بتطوير مفهوم معماري مبدئي مبتكر يشمل تقسيمًا مدروسًا للأرض إلى فلل فاخرة ووحدات سكنية مستقلة ذات تصاميم عصرية، مع توفير مواقف سيارات كافية ومناطق خدمية متكاملة. بعد ذلك، تم إعداد خطة تنفيذية مفصلة ومتعددة المراحل، مع تقدير دقيق للميزانية والجدول الزمني المتوقع لكل مرحلة من مراحل المشروع.",
+        "قمنا بإعداد التصاميم المعمارية المبدئية وعرضها وتنسيقها مع الهيئات والجهات المعنية في إمارة الشارقة للحصول على الموافقات الأولية اللازمة. بالإضافة إلى ذلك، قدمنا خطة تسويقية مبدئية مستنيرة تستند إلى نوع المنتج العقاري المقترح، والجمهور المستهدف المحتمل، وتحليل شامل للسوق العقاري المحلي.",
       ],
       mainimage: "https://placehold.co/400x300/eeeeee/eeeeee",
       images: [
@@ -315,18 +315,12 @@ const DevelopmentplanningPage = () => {
           {language === "ar" ? "عملية عملنا" : "Our Process"}
           <GreenText>{language === "ar" ? "" : " Work"}</GreenText>
         </Title2>
-        <Row2 rtl={language === "ar"}>
+        <Row2
+          rtl={language === "ar"}
+          style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
+        >
           <OurProcessWork panels={process[language]} />
-          <img
-            width={"30%"}
-            style={{
-              maxHeight: "500px", // Adjust based on your needs
-              objectFit: "contain",
-              alignSelf: "flex-start", // Prevents vertical stretching
-            }}
-            src={"/assets/4.png"}
-            alt="Process Work"
-          />
+          <img width={"300px"} src={"/assets/4.png"} alt="Process Work" />
         </Row2>
         <ProjectHighlight data={ProjectHighlightdata[language]} />
 

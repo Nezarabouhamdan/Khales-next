@@ -25,6 +25,7 @@ import {
   Title,
 } from "./SliderStyles";
 import Link from "next/link";
+import styled from "styled-components";
 
 // HeroSlider Component
 const HeroSlider = ({ slides, language, isLoading, rtl }) => {
@@ -48,7 +49,12 @@ const HeroSlider = ({ slides, language, isLoading, rtl }) => {
     dots: slides.length > 1, // Hide dots for 1 slide
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
   };
-
+  const StyledLink = styled(Link)`
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  `;
   return (
     <SliderWrapper>
       {isLoading ? (
@@ -74,9 +80,9 @@ const HeroSlider = ({ slides, language, isLoading, rtl }) => {
                       </TextContianer>
                     </Column>
                     <ContentColumn>
-                      <Link href={"/booking"}>
+                      <StyledLink href={"/booking"}>
                         <Button2>{slide.button}</Button2>
-                      </Link>
+                      </StyledLink>
                     </ContentColumn>
                   </Row>
                 </SlideContent>

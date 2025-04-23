@@ -93,7 +93,7 @@ export const Button2 = styled(motion.div)`
   background: ${({ back }) => (back ? "black" : "none")};
   width: 100%;
   display: flex;
-  flex-direcation: row;
+  flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   height: 45px;
@@ -109,7 +109,7 @@ export const Button2 = styled(motion.div)`
   position: relative;
   overflow: hidden;
   font-family: "Inter", sans-serif;
-
+  text-decoration: none;
   &:before {
     background: ${({ back }) => (back ? "#fff" : "#66a109")};
 

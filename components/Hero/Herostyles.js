@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import Image from "next/image";
@@ -25,12 +26,10 @@ export const Herosection = styled.div`
   }
 `;
 
-export const Heroimg = styled(Image)`
+export const Heroimg = styled.img`
   object-fit: fill;
-  width: 100%;
   height: 100vh;
-  position: absolute;
-
+  position: relative;
   z-index: -1;
   @media screen and (max-width: 968px) {
     object-fit: fill;

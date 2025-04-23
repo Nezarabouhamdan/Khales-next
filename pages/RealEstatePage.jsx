@@ -16,9 +16,9 @@ export const slides = {
     {
       id: 1,
       image: "https://i.ibb.co/fVqLKY3r/investing.jpg",
-      title: "Your Gateway to Smart Real Estate",
+      title: "Your Gateway to Smart Investment",
       content:
-        "Unlock the full potential of your investment with strategic real estate insights",
+        "Partner with us to connect with investors and bring premium land developments to life.",
       button: "Learn More",
     },
   ],
@@ -27,7 +27,7 @@ export const slides = {
       id: 1,
       image: "https://i.ibb.co/fVqLKY3r/investing.jpg",
       title: "بوابتك نحو العقارات الذكية",
-      content: "اكتشف إمكانيات استثمارك بالكامل مع استراتيجيات عقارية ذكية.",
+      content: "شركاؤنا لربطك بالمستثمرين وإحياء تطويرات الأراضي المتميزة.",
       button: "اعرف المزيد",
     },
   ],
@@ -36,12 +36,12 @@ export const slides = {
 const data = {
   eng: [
     {
-      title: "Real Estate Solutions:",
-      subtitle: "Your Trusted Partner for All Your Real Estate Needs",
+      title: "Investing Solutions:",
+      subtitle: "",
       description1:
-        "Navigating the real estate landscape can be complex, but it doesn't have to be. We offer a comprehensive suite of real estate solutions designed to empower you at every stage of your property journey. From development consulting and investment analysis to property management, our team of experienced professionals provides strategic insights and tailored solutions to elevate your projects and investments. Whether you're developing a new property, expanding your portfolio, or managing existing assets, we've got you covered.",
+        "Khales provides a high-value investment property introduction service that connects developers and brokers with qualified investors actively seeking land for residential or commercial development across the UAE, Middle East and Europe. We partner with trusted real estate professionals to access verified land opportunities, then match these listings with serious investors from our network. Once aligned, we facilitate direct introductions between both parties, ensuring a transparent and efficient process. Our role is strategic—we focus on deal enablement while maintaining discretion and professionalism throughout.",
       description2:
-        "Our expertise spans Dubai, Abu Dhabi, Sharjah, Ajman, Umm Al Quwain, Fujairah, Al Ain, and Ras Al Khaimah, ensuring your projects thrive no matter where they're located. With a focus on precision, sustainability, and client satisfaction, we're here to make your real estate journey seamless and successful.",
+        "In addition to sourcing investment opportunities, Khales offers end-to-end support for clients who wish to develop their newly acquired land. From architectural design to full-scale construction and project management, we provide turnkey solutions that bring each investment to life. This integrated approach allows investors to move seamlessly from acquisition to execution with a single, experienced partner who understands both the market and the build environment.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -55,9 +55,9 @@ const data = {
       title: "الحلول العقارية:",
       subtitle: "شريكك الموثوق لجميع احتياجاتك العقارية",
       description1:
-        "في خالص، نقدم مجموعة شاملة من خدمات الحلول العقارية والاستشارات المتعلقة بالأراضي، لتلبية احتياجات الأفراد والمستثمرين في دولة الإمارات العربية المتحدة.نعمل على تحويل رؤيتك العقارية إلى واقع ناجح من خلال تقديم استشارات دقيقة وموثوقة تغطي جميع مراحل المشروع، بدءًا من التخطيط الأولي وصولًا إلى التنفيذ والتسليم.يضمن فريقنا المتخصص تقديم نصائح متكاملة تشمل التقييم البيئي والتنفيذي والقانوني لضمان تجنب المخاطر وتحقيق أقصى استفادة من الممتلكات.",
+        "تقدم خالص خدمة عالية القيمة لتقديم فرص الاستثمار العقاري، حيث تربط المطورين والوسطاء مع مستثمرين مؤهلين يبحثون بنشاط عن أراضٍ للتطوير السكني أو التجاري في الإمارات والشرق الأوسط وأوروبا. نتعاون مع محترفين موثوقين في القطاع العقاري للوصول إلى فرص أراضٍ مُتحقق منها، ثم نطابق هذه العروض مع مستثمرين جادين من شبكتنا. بمجرد التوافق، نسهل التعارف المباشر بين الطرفين، مع ضمان عملية شفافة وفعالة. دورنا استراتيجي—نركز على تمكين الصفقات مع الحفاظ على السرية والاحترافية.",
       description2:
-        "نحرص على تقديم استشارات عقارية دقيقة لمساعدتك في اتخاذ قرارات استثمارية صائبة، سواء كان هدفك شراء أرض جديدة أو تطوير عقار قائم. نقوم بإجراء تحليلات دقيقة للسوق وتقديم مشورة استثمارية مبنية على دراسات موثوقة لضمان نجاح استثمارك. كما نقدم خدمات المسح والترسيم لضمان دقة حدود العقارات وتوافقها مع المعايير القانونية، مما يساعدك على تفادي المخاطر المالية والقانونية المرتبطة بملكية الأراضي واستخدامها.",
+        "بالإضافة إلى توفير فرص الاستثمار، تقدم خالص دعمًا متكاملًا للعملاء الراغبين في تطوير أراضيهم الجديدة. من التصميم المعماري إلى البناء الكامل وإدارة المشاريع، نقدم حلولاً شاملة تُحيي كل استثمار. هذا النهج المتكامل يسمح للمستثمرين بالانتقال بسلاسة من مرحلة التملك إلى التنفيذ مع شريك واحد ذي خبرة يفهم السوق وبيئة البناء.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -71,87 +71,56 @@ const data = {
 const process = {
   eng: [
     {
-      title: "Real Estate Development Consulting",
+      title: "1. Partner Alignment",
       content:
-        "We begin by laying the foundation for your project's success. Our team conducts thorough market research to analyze current trends, demand, and competition in the UAE real estate market. We then perform feasibility studies to assess the financial, technical, and legal viability of your project. Based on these insights, we provide strategic recommendations to optimize your development plans and ensure maximum return on investment.",
+        "We begin by partnering with select real estate developers, brokers, and landowners who offer verified and high-potential land opportunities. Each collaboration is formalized through a clear agreement outlining roles, confidentiality, and success structure.",
     },
     {
-      title: "Property Acquisition & Disposition",
+      title: "2. Property Portfolio Curation",
       content:
-        "When it comes to buying or selling properties, we ensure seamless transactions from start to finish. Our process includes property identification, where we source assets that align with your investment goals and budget. We then conduct valuation and due diligence to determine fair market value and identify potential risks. Finally, we handle all negotiations, contracts, and legal formalities to ensure a smooth and secure transaction.",
+        "Once onboard, our partners share their available plots or off-plan assets. We review and structure each opportunity into a clean investment profile—highlighting zoning, usage, pricing, development potential, and location insights.",
     },
     {
-      title: "Real Estate Investment Analysis",
+      title: "3. Investor Matching & Introduction",
       content:
-        "To help you make informed decisions, we provide comprehensive investment analysis. This includes market analysis to evaluate dynamics, property values, and emerging trends. We also create detailed financial models to project potential returns and assess risks. Our risk assessment process identifies and mitigates potential challenges, ensuring your investment is both profitable and secure.",
+        "We engage with pre-qualified investors from our network who are actively seeking land for development. Once there’s a fit, we facilitate a direct introduction between the investor and the property partner, ensuring strategic alignment and clarity on both sides.",
     },
     {
-      title: "Project Management for Real Estate",
+      title: "4. Deal Facilitation & Confirmation",
       content:
-        "From concept to completion, we manage every aspect of your project to ensure it's delivered on time and within budget. Our process begins with planning and design, where we collaborate with architects and engineers to create a detailed project plan. We then handle procurement and tendering, sourcing high-quality materials and contractors at competitive rates. During the construction phase, we monitor progress, quality, and compliance to ensure everything aligns with your vision. Finally, we conduct final inspections and commissioning to ensure all systems are operational before handover.",
+        "While we do not negotiate on behalf of either party, we remain involved to ensure smooth communication throughout the early stages.",
     },
     {
-      title: "Real Estate Portfolio Management",
+      title: "5. Turnkey Development",
       content:
-        "We help you optimize and diversify your real estate holdings for maximum profitability. Our process starts with a portfolio assessment to evaluate your current assets and identify areas for improvement. We then develop customized strategies tailored to your investment goals. Throughout the process, we provide performance monitoring to track the success of your portfolio and make adjustments as needed.",
-    },
-    {
-      title: "Sustainability & Green Building Consultation",
-      content:
-        "Sustainability is at the core of everything we do. We guide you through the integration of eco-friendly materials and energy-efficient systems into your project. Our team also assists with achieving green certifications like LEED or Estidama, ensuring your project meets the highest environmental standards. Additionally, we implement practices to enhance operational efficiency, reducing energy consumption and minimizing environmental impact.",
-    },
-    {
-      title: "Property & Facility Management",
-      content:
-        "We simplify the day-to-day operations of your properties, allowing you to focus on what matters most. Our services include tenant relations, where we manage leases, inquiries, and conflict resolution. We also oversee maintenance and repairs, ensuring your property remains in top condition. To keep you informed, we provide detailed financial reporting on income, expenses, and overall performance.",
-    },
-    {
-      title: "Regulatory Compliance & Permitting",
-      content:
-        "Navigating the regulatory landscape can be challenging, but we make it easy. Our team stays updated on local laws and regulations affecting your project. We handle all necessary permits and approvals, ensuring your project complies with all requirements. Throughout the process, we provide ongoing support to address any regulatory changes or challenges that may arise.",
+        "For investors looking to build, we offer a full suite of design and construction services—from concept development, architectural design, and authority approvals to execution and handover. Our in-house project team manages everything, turning land into a delivered asset.",
     },
   ],
   ar: [
     {
-      title: "تحديد الرؤية وإعداد خطة المشروع",
+      title: "محاذاة الشركاء",
       content:
-        "نبدأ العملية بعقد جلسة استشارية لفهم متطلباتك وتطلعاتك الاستثمارية. نقوم بإعداد خطة مفصلة تتضمن تحليل القيمة السوقية وتحديد أفضل استخدام للأرض. تشمل هذه المرحلة أيضًا إعداد خارطة طريق واضحة تأخذ في الاعتبار جميع الجوانب المالية والقانونية والبيئية لتحقيق أفضل النتائج.",
+        "نبدأ بالشراكة مع مطورين ووسطاء عقاريين وعارضي أراضٍ مُختارين يقدمون فرص أراضٍ مُتحقق منها وعالية الإمكانات. يتم إضفاء الطابع الرسمي على كل تعاون عبر اتفاقية واضحة تحدد الأدوار والسرية وهيكل النجاح.",
     },
     {
-      title:
-        "الاستحواذ على العقارات والتصرف فيها - إدارة متكاملة لعمليات الشراء والبيع",
+      title: "تجميع محفظة العقارات",
       content:
-        "نتولى جميع جوانب عمليات الشراء والبيع بشكل يضمن تنفيذ المعاملات بسلاسة. يبدأ ذلك من تحديد العقارات المناسبة التي تتماشى مع أهدافك الاستثمارية وميزانيتك، يليه تقييم القيمة السوقية والتحقق من المخاطر المحتملة. نتولى أيضًا التفاوض على العقود وضمان التوافق مع اللوائح المحلية لتجنب المخاطر القانونية وضمان صفقة آمنة وناجحة.",
+        "بمجرد الانضمام، يشارك شركاؤنا قطع الأراضي المتاحة أو الأصول قيد التطوير. نقوم بمراجعة كل فرصة وتنظيمها في ملف استثماري واضح—مع إبراز التقسيمات والاستخدامات والأسعار وإمكانات التطوير ورؤى الموقع.",
     },
     {
-      title: "تحليل الاستثمار العقاري - قرارات استثمارية مستنيرة",
+      title: "المطابقة مع المستثمرين والتعارف",
       content:
-        "نقدم تحليلًا شاملاً للاستثمار العقاري يشمل تحليل السوق لتقييم الديناميكيات والقيم الناشئة. نقوم بتطوير نماذج مالية تفصيلية لتقدير العوائد المحتملة وتقييم المخاطر. يعتمد نهجنا على تحليل المخاطر لتحديد التحديات المحتملة ووضع استراتيجيات للتخفيف منها، مما يضمن تحقيق عائد استثماري آمن ومريح.",
+        "نتعامل مع مستثمرين مؤهلين مسبقًا من شبكتنا الذين يبحثون بنشاط عن أراضٍ للتطوير. عند وجود توافق، نسهل التعارف المباشر بين المستثمر والشريك العقاري، مع ضمان محاذاة استراتيجية ووضوح للطرفين.",
     },
     {
-      title: "إدارة المشاريع العقارية - من الفكرة إلى الإنجاز",
+      title: "تسهيل الصفقة والتأكيد",
       content:
-        "ندير مشاريع العقارية من التخطيط إلى التسليم، مع الحرص على تنفيذ جميع الجوانب بدقة وكفاءة. نقوم بتنسيق أعمال التصميم والبناء، وإدارة المشتريات والمناقصات، وضمان الالتزام بالجودة والمعايير الزمنية. يشرف فريقنا على متابعة سير العمل والتأكد من تنفيذ المشروع وفق أعلى معايير الجودة.",
+        "بينما لا نتفاوض نيابة عن أي طرف، نبقى مشاركين لضمان تواصل سلس خلال المراحل الأولى.",
     },
     {
-      title: "إدارة المحافظ العقارية - تحقيق أقصى عائد على الاستثمار",
+      title: "التطوير الشامل",
       content:
-        "نعمل على تحسين وتنويع المحفظة العقارية لتحقيق أقصى ربحية. نبدأ بتقييم الأصول الحالية وتحديد المجالات التي يمكن تحسينها. نقوم بوضع استراتيجيات استثمارية مخصصة تتماشى مع أهدافك المالية، مع مراقبة مستمرة للأداء لضمان تحقيق أفضل النتائج.",
-    },
-    {
-      title: "الاستدامة والاستشارات البيئية - بناء مستدام من أجل المستقبل",
-      content:
-        "ندرك أهمية البناء المستدام، لذا نقدم استشارات حول دمج المواد الصديقة للبيئة وتقنيات توفير الطاقة في مشاريعك. نقدم الدعم في الحصول على الشهادات البيئية مثل LEED أو Estidama لضمان التوافق مع المعايير البيئية الدولية، مما يقلل من الأثر البيئي ويحسن الكفاءة التشغيلية.",
-    },
-    {
-      title: "إدارة الممتلكات والمرافق - راحة البال وأمان الاستثمار",
-      content:
-        "ندير الممتلكات لضمان تشغيل سلس وخالٍ من المشاكل. نقدم خدمات مثل إدارة علاقات المستأجرين ومعالجة استفساراتهم، بالإضافة إلى إدارة الصيانة والإصلاحات بشكل منتظم. نوفر تقارير مالية تفصيلية تعكس الدخل والنفقات لتحليل الأداء وضمان تحقيق أقصى ربحية.",
-    },
-    {
-      title: "الامتثال التنظيمي والحصول على التصاريح - ضمان الامتثال الكامل",
-      content:
-        "قد يبدو التعامل مع الجوانب التنظيمية للمشاريع معقدًا، ولكننا نبسطه لك. يظل فريقنا على اطلاع دائم بالقوانين واللوائح المحلية التي تؤثر على مشروعك. نتولى مسؤولية الحصول على جميع التصاريح والموافقات اللازمة، لضمان توافق مشروعك مع كافة المتطلبات. كما نقدم دعمًا مستمرًا طوال فترة المشروع، لمعالجة أي تغييرات تنظيمية أو تحديات قد تظهر",
+        "بالنسبة للمستثمرين الراغبين في البناء، نقدم مجموعة كاملة من خدمات التصميم والبناء—من تطوير المفهوم والتصميم المعماري والموافقات الرسمية إلى التنفيذ والتسليم. فريقنا الداخلي يدير كل شيء، محولاً الأرض إلى أصل مُسلم.",
     },
   ],
 };
@@ -159,96 +128,58 @@ const process = {
 const Faq = {
   eng: [
     {
-      title: "What real estate services do you offer?",
+      title: "What type of properties do you promote?",
       content:
-        "We offer a comprehensive range of services, including development consulting, property acquisition and disposition, investment analysis, project management, portfolio management, sustainability consultation, property and facility management, and regulatory compliance.",
+        "We focus on prime land plots and off-plan opportunities for residential, commercial, and mixed-use development projects across the UAE.",
     },
     {
-      title: "Do you work on projects across all seven emirates?",
+      title:
+        "Do you work only as a connector, or do you manage the development too?",
       content:
-        "Yes, we provide real estate solutions in Dubai, Abu Dhabi, Sharjah, Ajman, Umm Al Quwain, Fujairah, Al Ain, and Ras Al Khaimah.",
+        "Both. Our initial role is to connect investors with land opportunities. Once the land is secured, we offer optional design, construction, and project management services through our in-house team.",
     },
     {
-      title: "How do you ensure my investment is profitable?",
+      title: "Who handles negotiations and contracts?",
       content:
-        "We conduct in-depth market research, financial modeling, and risk assessments to guide your investment strategies and maximize returns. Our goal is to help you make informed decisions that align with your financial goals.",
+        "We do not engage in sales or legal representation. All negotiations and contracts are handled directly between the investor and the property partner.",
     },
     {
-      title: "Can you handle both residential and commercial projects?",
+      title: "How are you compensated?",
       content:
-        "Absolutely. Whether it's a luxury villa, a commercial office, or a mixed-use development, we tailor our services to meet your specific needs and objectives.",
+        "We receive a success-based fee from the property partner upon completion of a successful deal, as agreed in a signed collaboration contract.",
     },
     {
-      title: "Do you offer sustainable real estate solutions?",
+      title:
+        "Do you build custom villas or commercial properties for investors?",
       content:
-        "Yes, sustainability is a core part of our approach. We integrate eco-friendly materials, energy-efficient systems, and green building practices into every project to minimize environmental impact and enhance long-term value.",
-    },
-    {
-      title: "How do you manage regulatory compliance?",
-      content:
-        "Our team stays updated on local laws and regulations and handles all necessary permits and approvals to ensure your project complies with all requirements. We also provide ongoing support to address any regulatory changes or challenges.",
-    },
-    {
-      title: "Can you manage my existing property portfolio?",
-      content:
-        "Yes, we offer portfolio management services to optimize and diversify your real estate holdings. We develop customized strategies to ensure your portfolio is balanced, profitable, and aligned with your investment goals.",
-    },
-    {
-      title: "What makes your real estate services stand out?",
-      content:
-        "Our client-centric approach, unparalleled expertise, and commitment to sustainability set us apart. We combine strategic insights with cutting-edge technology to deliver exceptional results tailored to your needs.",
-    },
-    {
-      title: "How can I get started with Khales Real Estate Solutions?",
-      content:
-        "Simply contact us for a consultation. We'll discuss your goals, provide a customized plan, and guide you through every step of your real estate journey.",
+        "Yes. After land acquisition, we offer tailored turnkey solutions for villa construction, residential buildings, and commercial projects—covering design, permits, build, and handover.",
     },
   ],
   ar: [
     {
-      title: "ما هي الخدمات العقارية التي تقدمها شركة خالص؟",
+      title: "ما نوع العقارات التي تروجون لها؟",
       content:
-        "نحن نقدم مجموعة شاملة من الخدمات العقارية تشمل الاستشارات التطويرية، الاستحواذ على العقارات والتصرف فيها، تحليل الاستثمار، إدارة المشاريع، إدارة المحافظ العقارية، الاستدامة والاستشارات البيئية، إدارة الممتلكات والمرافق، والامتثال التنظيمي. نسعى دائمًا إلى تقديم حلول متكاملة تلبي احتياجات العملاء المختلفة.",
+        "نركز على قطع الأراضي المتميزة وفرص الأصول قيد التطوير للمشاريع السكنية والتجارية والمختلطة في الإمارات.",
     },
     {
-      title: "هل تعملون على مشاريع في جميع الإمارات السبع؟",
+      title: "هل تعملون كوسيط فقط أم تديرون التطوير أيضًا؟",
       content:
-        "نعم، نقدم حلولنا العقارية في جميع أنحاء دولة الإمارات العربية المتحدة، بما في ذلك دبي، أبوظبي، الشارقة، عجمان، أم القيوين، الفجيرة، العين، ورأس الخيمة.",
+        "كلا. دورنا الأولي هو ربط المستثمرين بفرص الأراضي. بمجرد تأمين الأرض، نقدم خدمات اختيارية للتصميم والبناء وإدارة المشاريع عبر فريقنا الداخلي.",
     },
     {
-      title: "كيف تضمنون أن يكون استثماري مربحًا؟",
+      title: "من يتولى المفاوضات والعقود؟",
       content:
-        "نحن نقوم بإجراء أبحاث سوقية معمقة، ونماذج مالية مفصلة، وتقييمات مخاطر لضمان اتخاذ قرارات استثمارية مدروسة. نهدف إلى تعظيم العوائد من خلال تحليل دقيق للأسواق الناشئة وضمان توافق الاستثمار مع أهدافك المالية.",
+        "نحن لا نشارك في المبيعات أو التمثيل القانوني. تتم جميع المفاوضات والعقود مباشرة بين المستثمر والشريك العقاري.",
     },
     {
-      title: "هل يمكنكم إدارة مشاريع سكنية وتجارية؟",
+      title: "كيف يتم تعويضكم؟",
       content:
-        "نعم، نقدم خدمات إدارة المشاريع لكل من المشاريع السكنية والتجارية. سواء كان ذلك فيلا فاخرة، مكتب تجاري، أو تطوير متعدد الاستخدامات، نعمل على تقديم خدمات مخصصة لتلبية احتياجاتك وأهدافك.",
+        "نحصل على رسوم مبنية على النجاح من الشريك العقاري بعد إتمام الصفقة بنجاح، وفقًا لعقد تعاون موقع.",
     },
     {
-      title: "هل تقدمون حلولًا عقارية مستدامة؟",
+      title: "هل تقومون ببناء فيلات مخصصة أو عقارات تجارية للمستثمرين؟",
       content:
-        "نعم، نعتبر الاستدامة جزءًا أساسيًا من نهجنا. ندمج مواد صديقة للبيئة، وأنظمة كفاءة الطاقة، وممارسات البناء الأخضر في كل مشروع للحد من التأثير البيئي وتعزيز القيمة طويلة الأمد.",
-    },
-    {
-      title: "كيف تديرون الامتثال التنظيمي؟",
-      content:
-        "يبقى فريقنا على اطلاع دائم على القوانين واللوائح المحلية، ونتولى جميع الإجراءات اللازمة للحصول على التصاريح والموافقات. نقدم دعمًا مستمرًا لضمان امتثال المشروع لجميع المتطلبات القانونية.",
-    },
-    {
-      title: "هل يمكنكم إدارة محفظتي العقارية الحالية؟",
-      content:
-        "نعم، نقدم خدمات إدارة المحافظ العقارية لتحسين أداء أصولك العقارية. نقوم بتطوير استراتيجيات مخصصة لضمان توازن المحفظة وزيادة الربحية بما يتماشى مع أهدافك الاستثمارية.",
-    },
-    {
-      title: "ما الذي يميز خدماتكم العقارية عن غيرها؟",
-      content:
-        "ما يميزنا هو النهج الذي يركز على العميل، الخبرة العالية، والالتزام بالاستدامة. نحن نمزج بين الرؤى الاستراتيجية والتكنولوجيا الحديثة لتقديم نتائج متميزة تفوق التوقعات.",
-    },
-    {
-      title: "كيف يمكنني البدء مع خدمات خالص للحلول العقارية؟",
-      content:
-        "ما عليك سوى الاتصال بنا لتحديد موعد للاستشارة. سنناقش أهدافك ونقدم خطة مخصصة لإرشادك خلال رحلتك العقارية، مما يضمن لك اتخاذ قرارات ناجحة ومستدامة.",
+        "نعم. بعد امتلاك الأرض، نقدم حلولاً شاملة لبناء الفيلات والمباني السكنية والتجارية—تشمل التصميم والتراخيص والبناء والتسليم.",
     },
   ],
 };
@@ -340,9 +271,12 @@ const RealEstatePage = () => {
           {language === "ar" ? "عملية عملنا" : "Our Process"}
           <GreenText>{language === "ar" ? "" : " Work"}</GreenText>
         </Title2>
-        <Row2 rtl={language === "ar"}>
+        <Row2
+          rtl={language === "ar"}
+          style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
+        >
           <OurProcessWork panels={process[language]} />
-          <img width={"30%"} src={"/assets/4.png"} alt="Process Work" />
+          <img width={"300px"} src={"/assets/4.png"} alt="Process Work" />
         </Row2>
         <ProjectHighlight data={ProjectHighlightdata[language]} />
 

@@ -281,9 +281,12 @@ function Projectstudy() {
           {language === "ar" ? "عملية عملنا" : "Our Process"}
           <GreenText>{language === "ar" ? "" : " Work"}</GreenText>
         </Title2>
-        <Row2 rtl={language === "ar"}>
+        <Row2
+          rtl={language === "ar"}
+          style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
+        >
           <OurProcessWork panels={process[language]} />
-          {/* <img width={"30%"} src={img} alt="Process Work" /> */}
+          <img width={"300px"} src={"/assets/4.png"} alt="Process Work" />
         </Row2>
         <ProjectHighlight data={ProjectHighlightdata[language]} />
 

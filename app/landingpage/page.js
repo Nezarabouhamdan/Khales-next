@@ -1,9 +1,16 @@
 import Projectspage from "@/pages/Projectspage";
 import React from "react";
 import Script from "next/script"; // Use Next.js optimized Script component
+import InputDesign from "@/components/landingpage3/InputDesign";
+import LandingPage1 from "@/components/landingpage1/Landingpage1";
+import ServicesSection from "@/components/landingpage4/ServicesSection";
+import ProcessSteps from "@/components/landingpage6/ProcessSteps";
+import PropertyListings from "@/components/landingpage5/PropertyListings";
+import InputDesign2 from "@/components/landingpage7/InputDesign";
+import { Heroimg, Herosection } from "@/components/Hero/Herostyles";
 
 export const metadata = {
-  title: "Portfolio",
+  title: "Khales",
   description:
     "Welcome to Khales. Explore our luxury design and project management solutions.",
   keywords: [
@@ -49,7 +56,28 @@ const Page = () => {
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
-      />
+      />{" "}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <LandingPage1 />
+        <Herosection>
+          {" "}
+          <Heroimg src="https://i.ibb.co/DPKhyq7k/khales-ae-real-photograph-of-a-super-luxury-modern-mansion-fr-c2c57d33-5a47-4ccb-b054-498b16745d23-3.png" />
+        </Herosection>
+
+        <InputDesign />
+        <ServicesSection />
+        <ProcessSteps />
+        <PropertyListings />
+        <InputDesign2 />
+      </div>
     </>
   );
 };

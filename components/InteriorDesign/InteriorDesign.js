@@ -31,8 +31,12 @@ const InteriorDesign = ({ data }) => {
           <GreenText>{data[0].title}</GreenText>
           {data[0].subtitle}
         </Title>
-        <Description>{data[0].description1}</Description>
-        <Description>{data[0].description2}</Description>
+        <Description $rtl={language === "ar"}>
+          {data[0].description1}
+        </Description>
+        <Description $rtl={language === "ar"}>
+          {data[0].description2}
+        </Description>
       </ContentSection>
       <ImageSection images={data[0].images} />
     </MainContainer>
@@ -43,11 +47,9 @@ const ContentSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 0rem;
-
-  unicode-bidi: isolate;
-  direction: ${(props) => (props.$rtl ? "rtl" : "	ltr")};
-  align-items: ${(props) => (props.$rtl ? "flex-start" : "flex-end")};
+  align-items: ${(props) => (props.$rtl ? "flex-end" : "flex-start")};
   text-align: ${(props) => (props.$rtl ? "right" : "left")};
+  unicode-bidi: isolate;
   @media (max-width: 991px) {
     flex: 0 0 100%;
     max-width: 100%;
@@ -59,6 +61,8 @@ const Description = styled.p`
   font-size: 16px;
   font-weight: 400;
   color: #545454;
+  direction: ${(props) => (props.$rtl ? "ltr" : "ltr")};
+
   line-height: 175%;
   margin: 20px 0 30px 0;
   max-width: 559px;

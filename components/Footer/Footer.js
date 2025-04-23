@@ -33,7 +33,7 @@ const branches = {
     },
     {
       name: "Abu Dhabi Branch",
-      address: ["under preparation"],
+      address: ["under ", "  preparation"],
       phone: "+971 56 189 9918",
     },
     {
@@ -45,7 +45,7 @@ const branches = {
     },
     {
       name: "London, UK Branch",
-      address: ["Under preparation"],
+      address: ["under ", "  preparation"],
       phone: "+44 20 3769 1865",
     },
   ],
@@ -63,8 +63,7 @@ const branches = {
     {
       name: "فرع الشارقة",
       address: [
-        "متجر 11، بلوك C، المقر الرئيسي لآل سعود، شارخ خليفة",
-        "طريق بن زايد آل نهيان، المنطقة التجارية مويلح، الشارقة، الإمارات",
+        "متجر 11، بلوك C، المقر الرئيسي لآل سعود، شارخ خليفة   المنطقة التجارية مويلح، الشارقة، الإمارات",
       ],
       phone: "+971 6 551 8070",
     },

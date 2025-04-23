@@ -38,7 +38,11 @@ const ContactPage = () => {
   return (
     <>
       <Herosection>
-        <Heroimg src={img} style={{ filter: "brightness(75%)" }} alt="" />
+        <Heroimg
+          src="https://i.ibb.co/XfxqjCKb/Screenshot-2025-03-18-122742-1.png"
+          style={{ filter: "brightness(75%)" }}
+          alt=""
+        />
       </Herosection>
       <ContactUs />
       <section id="offices-location" aria-label="offices-location">

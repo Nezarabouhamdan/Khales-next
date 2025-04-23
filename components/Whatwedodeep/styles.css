@@ -102,7 +102,7 @@
 }
 
 .services-section .swiper-slide:hover .slide-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .services-section .swiper-slide:hover h3 {

@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
 import { useState } from "react";
-import styled from "styled-components";
 import { GreenText, Title } from "../Whoweare/TextContent";
 import { useLanguage } from "../../Context/Languagecontext";
+import { styled, keyframes } from "styled-components";
 
 // Content data for both languages
 const contactData = {
@@ -150,7 +150,6 @@ const ContactForm = ({ content, rtl }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting:", formData);
     setIsSubmitting(true);
     setSubmitStatus(null);
 
@@ -186,112 +185,313 @@ const ContactForm = ({ content, rtl }) => {
         setSelectedInquiry("");
       } else {
         setSubmitStatus("error");
-        console.error("Submission error:", data.error);
       }
     } catch (error) {
       setSubmitStatus("error");
-      console.error("Network error:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const closePopup = () => {
+    setSubmitStatus(null);
+  };
+
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormGroup>
-        <DropdownContainer>
-          <DropdownInput
+    <>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+          <DropdownContainer>
+            <DropdownInput
+              type="text"
+              name="inquiry"
+              placeholder={content.inquiryPlaceholder}
+              value={selectedInquiry}
+              onClick={() => setIsInquiryOpen((o) => !o)}
+              readOnly
+              $rtl={rtl}
+              required
+            />
+            {isInquiryOpen && (
+              <DropdownMenu $rtl={rtl}>
+                {content.inquiryOptions.map((option, idx) => (
+                  <DropdownItem
+                    key={idx}
+                    onClick={() => handleInquirySelect(option)}
+                  >
+                    {option}
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            )}
+          </DropdownContainer>
+        </FormGroup>
+
+        <FormGroup>
+          <FormInput
             type="text"
-            name="inquiry"
-            placeholder={content.inquiryPlaceholder}
-            value={selectedInquiry}
-            onClick={() => setIsInquiryOpen((o) => !o)}
-            readOnly
+            name="name"
+            placeholder={content.namePlaceholder}
+            value={formData.name}
+            onChange={handleInputChange}
             $rtl={rtl}
             required
           />
-          {isInquiryOpen && (
-            <DropdownMenu $rtl={rtl}>
-              {content.inquiryOptions.map((option, idx) => (
-                <DropdownItem
-                  key={idx}
-                  onClick={() => handleInquirySelect(option)}
-                >
-                  {option}
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
+        </FormGroup>
+
+        <FormGroup>
+          <FormInput
+            type="tel"
+            name="phone"
+            placeholder={content.phonePlaceholder}
+            value={formData.phone}
+            onChange={handleInputChange}
+            $rtl={rtl}
+            required
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <FormInput
+            type="email"
+            name="email"
+            placeholder={content.emailPlaceholder}
+            value={formData.email}
+            onChange={handleInputChange}
+            $rtl={rtl}
+            required
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <FormInput
+            as="textarea"
+            name="message"
+            rows={4}
+            placeholder={content.messagePlaceholder}
+            value={formData.message}
+            onChange={handleInputChange}
+            $rtl={rtl}
+            required
+          />
+        </FormGroup>
+
+        <SubmitButton type="submit" disabled={isSubmitting} $rtl={rtl}>
+          {isSubmitting ? (
+            <LoadingDots $rtl={rtl}>
+              <span>.</span>
+              <span>.</span>
+              <span>.</span>
+            </LoadingDots>
+          ) : (
+            content.submitText
           )}
-        </DropdownContainer>
-      </FormGroup>
+        </SubmitButton>
 
-      <FormGroup>
-        <FormInput
-          type="text"
-          name="name"
-          placeholder={content.namePlaceholder}
-          value={formData.name}
-          onChange={handleInputChange}
-          $rtl={rtl}
-          required
-        />
-      </FormGroup>
-
-      <FormGroup>
-        <FormInput
-          type="tel"
-          name="phone"
-          placeholder={content.phonePlaceholder}
-          value={formData.phone}
-          onChange={handleInputChange}
-          $rtl={rtl}
-          required
-        />
-      </FormGroup>
-
-      <FormGroup>
-        <FormInput
-          type="email"
-          name="email"
-          placeholder={content.emailPlaceholder}
-          value={formData.email}
-          onChange={handleInputChange}
-          $rtl={rtl}
-          required
-        />
-      </FormGroup>
-
-      <FormGroup>
-        <FormInput
-          as="textarea"
-          name="message"
-          rows={4}
-          placeholder={content.messagePlaceholder}
-          value={formData.message}
-          onChange={handleInputChange}
-          $rtl={rtl}
-          required
-        />
-      </FormGroup>
-
-      <SubmitButton type="submit" disabled={isSubmitting} $rtl={rtl}>
-        {isSubmitting ? "Submitting..." : content.submitText}
-      </SubmitButton>
-
-      {submitStatus === "success" && (
-        <SuccessMessage $rtl={rtl}>
-          Thank you! Your submission has been received.
-        </SuccessMessage>
+        {submitStatus === "success" && (
+          <SuccessMessage $rtl={rtl}>
+            Thank you! Your submission has been received.
+          </SuccessMessage>
+        )}
+        {submitStatus === "error" && (
+          <ErrorMessage $rtl={rtl}>
+            There was an error submitting your form. Please try again.
+          </ErrorMessage>
+        )}
+      </Form>
+      {submitStatus && (
+        <ModalOverlay onClick={closePopup}>
+          <ModalContent onClick={(e) => e.stopPropagation()} $rtl={rtl}>
+            {submitStatus === "success" ? (
+              <>
+                <AnimatedCheckmark viewBox="0 0 52 52">
+                  <Circle cx="26" cy="26" r="25" fill="none" />
+                  <Check
+                    stroke="white"
+                    fill="none"
+                    d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                  />
+                </AnimatedCheckmark>
+                <ModalTitle>{rtl ? "نجاح!" : "Success!"}</ModalTitle>
+                <ModalText>
+                  {rtl
+                    ? "شكراً لك! تم استلام طلبك بنجاح."
+                    : "Thank you! Your submission has been received."}
+                </ModalText>
+              </>
+            ) : (
+              <>
+                <AnimatedXMark viewBox="0 0 52 52">
+                  <Circle cx="26" cy="26" r="25" fill="none" />
+                  <XLine x1="16" y1="16" x2="36" y2="36" />
+                  <XLine x1="16" y1="36" x2="36" y2="16" />
+                </AnimatedXMark>
+                <ModalTitle>{rtl ? "خطأ!" : "Oops!"}</ModalTitle>
+                <ModalText>
+                  {rtl
+                    ? "حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى."
+                    : "There was an error submitting your form. Please try again."}
+                </ModalText>
+              </>
+            )}
+            <CloseButton onClick={closePopup}>
+              {rtl ? "إغلاق" : "Close"}
+            </CloseButton>
+          </ModalContent>
+        </ModalOverlay>
       )}
-      {submitStatus === "error" && (
-        <ErrorMessage $rtl={rtl}>
-          There was an error submitting your form. Please try again.
-        </ErrorMessage>
-      )}
-    </Form>
+    </>
   );
 };
 
+const scaleUp = keyframes`
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+`;
+
+const checkAnimation = keyframes`
+  0% { stroke-dashoffset: 80; }
+  100% { stroke-dashoffset: 0; }
+`;
+
+const circleAnimation = keyframes`
+  0% { stroke-dashoffset: 166; }
+  100% { stroke-dashoffset: 0; }
+`;
+
+// New styled components
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(3px);
+`;
+
+const ModalContent = styled.div`
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  animation: ${scaleUp} 0.3s ease-out;
+  max-width: 400px;
+  width: 90%;
+  direction: ${(props) => (props.$rtl ? "rtl" : "ltr")};
+`;
+
+const AnimatedCheckmark = styled.svg`
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  display: block;
+
+  circle {
+    stroke: #66a109;
+    stroke-width: 2;
+    animation: ${circleAnimation} 0.6s ease-in-out both;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+  }
+
+  path {
+    stroke: #66a109;
+    stroke-width: 2;
+    stroke-linecap: round;
+    animation: ${checkAnimation} 0.6s ease-in-out 0.6s both;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+  }
+`;
+
+const AnimatedXMark = styled.svg`
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  display: block;
+
+  circle {
+    stroke: #e74c3c;
+    stroke-width: 2;
+    animation: ${circleAnimation} 0.6s ease-in-out both;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+  }
+
+  line {
+    stroke: #e74c3c;
+    stroke-width: 2;
+    stroke-linecap: round;
+    animation: ${checkAnimation} 0.6s ease-in-out 0.6s both;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+  }
+`;
+
+const LoadingDots = styled.div`
+  display: inline-flex;
+  gap: 2px;
+  span {
+    animation: bounce 1.4s infinite ease-in-out both;
+    color: inherit;
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0s;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-6px);
+    }
+  }
+`;
+
+const ModalTitle = styled.h3`
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+`;
+
+const ModalText = styled.p`
+  color: #666;
+  margin-bottom: 1.5rem;
+  white-space: pre-line;
+`;
+
+const CloseButton = styled.button`
+  background: #666;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #555;
+  }
+`;
+
+const Circle = styled.circle``;
+const Check = styled.path``;
+const XLine = styled.line``;
 // Styled Components… (unchanged)
 const SuccessMessage = styled.p`
   color: #66a109;
