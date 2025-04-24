@@ -7,12 +7,12 @@ const contentData = {
   eng: {
     title: ["What", "we do"],
     description:
-      "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market. We specialize in providing luxury engineering services, delivering excellence in design, construction, and project management.",
+      "At Khales Project Management, we bring your vision to life with comprehensive project management and consultancy services. From architectural design to construction and fit-out solutions, we deliver turnkey projects that combine innovation, quality, and efficiency. Whether it’s residential, commercial, or industrial, we ensure that every project is executed with precision and meets the highest standards.",
   },
   ar: {
     title: ["ما", "نقدمه"],
     description:
-      "خالدز هي شركة رائدة في الاستشارات الهندسية وإدارة المشاريع، تهيمن على كامل الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولي. نختص بتقديم خدمات هندسية فاخرة، نقدم التميز في التصميم والبناء وإدارة المشاريع.",
+      "في خالص لإدارة المشاريع، نحول رؤاكم إلى واقع ملموس من خلال خدمات إدارة المشاريع والاستشارات الشاملة. بدءًا من التصميم المعماري وصولًا إلى الإنشاءات وحلول التشطيبات، نقدم مشاريع متكاملة تجمع بين الابتكار والجودة والكفاءة. سواء كان المشروع سكنيًا، تجاريًا أو صناعيًا، نضمن تنفيذ كل مشروع بدقة فائقة وفقًا لأعلى المعايير.",
   },
 };
 

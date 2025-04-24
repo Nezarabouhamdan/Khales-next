@@ -53,14 +53,14 @@ export const servicesData = {
       titlePart1: "Investing ",
       titlePart2: "Service",
       description:
-        "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market.",
+        "We help investors access high-potential real estate opportunities with clear guidance, reliable partnerships, and long-term value.",
     },
     {
       image: img9,
       titlePart1: "Project ",
       titlePart2: "Fseasability",
       description:
-        "Khales is a leading Engineering Consultancy and Project Management Company, dominating the entire UAE, the Gulf region, and the international market.",
+        "Smart land acquisition with end-to-end development support from concept to construction",
     },
     // ... all 9 english services
   ],
@@ -104,14 +104,13 @@ export const servicesData = {
       titlePart1: "خدمات",
       titlePart2: "الإستثمار",
       description:
-        "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
+        "نساعد المستثمرين في الوصول إلى فرص عقارية واعدة من خلال توجيه واضح، وشراكات موثوقة، وقيمة مستدامة.",
     },
     {
       image: img9,
       titlePart1: "دراسة",
       titlePart2: "جدوى",
-      description:
-        "خالص هي شركة رائدة في مجال الاستشارات الهندسية وإدارة المشاريع، وهي تهيمن على دولة الإمارات العربية المتحدة ومنطقة الخليج والسوق الدولية.",
+      description: "حلول تطوير الأراضي: من الفكرة إلى البناء",
     },
   ],
 };

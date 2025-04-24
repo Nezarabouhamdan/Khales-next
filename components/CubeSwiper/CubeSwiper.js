@@ -32,16 +32,32 @@ function CubeSwiper() {
         className="swipercube"
       >
         <SwiperSlide className="swipercube-slide">
-          <Image src="https://i.ibb.co/RmkrGcG/pool-min.jpg" alt="cube img 1" fill />
+          <Image
+            src="https://i.ibb.co/gFFG55Cx/4fa612ff-f5df-45ff-a473-d38cef3d2b17.jpg"
+            alt="cube img 1"
+            fill
+          />
         </SwiperSlide>
         <SwiperSlide className="swipercube-slide">
-          <Image src="https://i.ibb.co/xKhfYtPD/interior-min.jpg" alt="cube img 2" fill />
+          <Image
+            src="https://i.ibb.co/14ZwMyy/6f03f20c-3c54-4929-bbf4-5ca3d1a6d586.jpg"
+            alt="cube img 2"
+            fill
+          />
         </SwiperSlide>
         <SwiperSlide className="swipercube-slide">
-          <Image fill src="https://i.ibb.co/XrwLfbVn/khales-ae-arab-construction-luxury-engineering-make-it-crea-adbc814e-5da3-4265-a683-b41679c9a755-3-e.png" alt="cube img 3" />
+          <Image
+            fill
+            src="https://i.ibb.co/mVcNSCM1/55c99507-b985-4e62-b24b-f3df47a62b12.jpg"
+            alt="cube img 3"
+          />
         </SwiperSlide>
         <SwiperSlide className="swipercube-slide">
-          <Image fill src="https://i.ibb.co/HDQkwccZ/khales-ae-Modern-minimalist-interior-staircase-open-plan-desi-2ba91f49-ab7b-4ab5-972a-69e06f911a30-1.png" alt="cube img 4" />
+          <Image
+            fill
+            src="https://i.ibb.co/VGGvczn/ea71d61d-911a-4fa7-a8e1-d1fa9e5201ab.jpg"
+            alt="cube img 4"
+          />
         </SwiperSlide>
       </Swiper>
     </div>
