@@ -1,9 +1,8 @@
 "use client";
 import * as React from "react";
-import Link from "next/link";
 import styled from "styled-components";
 
-// ServiceCard.js (Updated)
+// ServiceCard.js (Fixed Height Version)
 export const ServiceCard = ({
   imageSrc,
   titlePart1,
@@ -12,9 +11,8 @@ export const ServiceCard = ({
   buttonText = "Learn More",
   rtl = false,
   link,
+  height = "350px", // default fixed height
 }) => {
-  // Create a URL-friendly slug
-
   return (
     <a
       style={{ textDecoration: "none" }}
@@ -22,7 +20,7 @@ export const ServiceCard = ({
       target="_blank"
       rel="noopener noreferrer"
     >
-      <CardWrapper>
+      <CardWrapper height={height}>
         <CardContainer rtl={rtl}>
           <ContentWrapper>
             <ServiceTitle rtl={rtl}>
@@ -40,44 +38,43 @@ export const ServiceCard = ({
 };
 
 const CardWrapper = styled.section`
-  height: auto; /* Replace min-height with auto */
+  height: ${({ height }) => height};
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   color: rgba(0, 0, 0, 1);
   font-weight: 400;
   width: 400px;
+  height: 200px;
+
   @media (max-width: 991px) {
     width: 100%;
   }
 `;
+
 const CardContainer = styled.article`
   ${({ rtl }) => rtl && `direction: rtl;`}
 
   position: relative;
-  width: 400px;
-  height: auto; /* Remove min-height constraint */
+  width: 100%;
+  height: 200px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(230, 229, 229, 0.58);
-  padding: 25px 30px 58px; /* Consider reducing bottom padding */
+  padding: 15px 20px 30px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Prevent content overflow */
-  @media (max-width: 991px) {
-    width: 300px;
-  }
+  overflow: hidden;
 `;
 
 const ServiceTitle = styled.h2`
-  font-size: 28px;
-  line-height: 1.2; /* Reduced from 50px */
-  margin: 0 0 10px 0; /* Add margin control */
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 0 0 8px;
   transition: all 0.3s ease-in-out;
   @media (max-width: 991px) {
     font-size: 15px;
-    margin-top: 50px;
-    width: 300px;
+    margin-top: 30px;
   }
   ${CardContainer}:hover & {
     padding-left: 0;
@@ -85,11 +82,11 @@ const ServiceTitle = styled.h2`
 `;
 
 const ServiceDescription = styled.p`
-  text-align: ${({ rtl }) => (rtl ? "center" : "center")};
+  text-align: center;
   color: #838383;
   font-size: 12px;
-  line-height: 1.5; /* Reduced from 39px */
-  margin-top: 80px; /* Adjusted margin */
+  line-height: 1.4;
+  margin-top: 20px;
   white-space: pre-line;
   ${CardContainer}:hover & {
     opacity: 0;
@@ -97,17 +94,14 @@ const ServiceDescription = styled.p`
 `;
 
 const ContentWrapper = styled.div`
-  text-align: ${({ rtl }) => (rtl ? "center" : "center")};
-
+  text-align: center;
   position: relative;
   z-index: 2;
   flex: 1;
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
-  align-content: center;
 `;
 
 const GreenText = styled.span`
@@ -115,21 +109,19 @@ const GreenText = styled.span`
 `;
 
 const ActionButton = styled.button`
-  margin-right: ${({ rtl }) => (rtl ? "40%" : "30%")};
   background-color: rgba(102, 161, 9, 1);
   color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 6px;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.3s ease-in-out;
   position: absolute;
-  bottom: -40px;
-  right: 0;
-  margin-top: auto;
+  bottom: 10px;
+  right: 120px;
 
   &:hover {
     background-color: #545454;

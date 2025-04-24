@@ -2,7 +2,6 @@
 import React from "react";
 import styled from "styled-components";
 import { StyledButton } from "../Homecontact/CTAButton";
-import { Width } from "@rsuite/icons";
 
 const Left = styled.div`
   width: 48vw;

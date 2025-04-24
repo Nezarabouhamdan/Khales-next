@@ -25,7 +25,7 @@ export const contactData = {
       titlePart1: "Sharjah ",
       titlePart2: "Branch",
       description:
-        "Shop 11, Block C, Al Saud Head Office,Muwaileh Commercial, Sharjah, UAE\n\n +971 6 551 8070",
+        "Shop 11, Block C, Al Saud Head Office,Muwaileh , Sharjah, UAE\n\n +971 6 551 8070",
       link: "https://maps.app.goo.gl/SD2R8ZKmym2NPLUu7",
     },
     {
