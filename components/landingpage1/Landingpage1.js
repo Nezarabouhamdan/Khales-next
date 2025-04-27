@@ -108,7 +108,15 @@ function LandingPage1() {
         </SubHeading>{" "}
         <SubHeading>Book Your Consultation on WhatsApp</SubHeading>
         <Buttoncontainer>
-          <StyledButton href={"/"}>Message Us</StyledButton>
+          <StyledButton
+            href="https://api.whatsapp.com/send?phone=+971551299880&text=Hi Khales Team! 👋
+
+I’m interested in your [Project Management / Development Planning / Interior Design] services.
+
+Could you please provide more details and help me get started?"
+          >
+            Message Us
+          </StyledButton>
         </Buttoncontainer>
       </Left>
       <Right>

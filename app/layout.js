@@ -41,7 +41,11 @@ export default function RootLayout({ children }) {
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
             />
             <Link
-              href="https://api.whatsapp.com/send?phone=+971504204279&text=مرحبا! "
+              href="https://api.whatsapp.com/send?phone=+971551299880&text=Hi Khales Team! 👋
+
+I’m interested in your [Project Management / Development Planning / Interior Design] services.
+
+Could you please provide more details and help me get started?"
               className="float"
               target="_blank"
               rel="noopener noreferrer"
