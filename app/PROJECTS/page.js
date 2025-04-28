@@ -40,17 +40,21 @@ const Projects = () => {
     <>
       {" "}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-T52CWE5XPZ"
         strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
       />
-      <Script id="ga-config" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-T52CWE5XPZ');
-        `}
-      </Script>
+      <Script
+        id="ga-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-FB575W8DQ8');
+          `,
+        }}
+      />
       <Script
         id="gtm-script"
         strategy="afterInteractive" // Optimize loading strategy
