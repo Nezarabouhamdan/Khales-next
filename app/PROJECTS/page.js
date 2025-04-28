@@ -15,14 +15,14 @@ export const metadata = {
     "Construction",
     "Khales Projects",
   ],
-  authors: [{ name: "Khales Team", url: "http://localhost:3000/" }],
+  authors: [{ name: "Khales Team", url: "http://www.khales.ae/" }],
   creator: "Khales",
-  metadataBase: new URL("http://localhost:3000/"),
+  metadataBase: new URL("http://www.khales.ae/"),
   openGraph: {
     title: "Portfolio",
     description:
       "Welcome to Khales. Explore our luxury design and project management solutions.",
-    url: "http://localhost:3000/",
+    url: "http://www.khales.ae/",
     siteName: "Khales",
     locale: "en_US",
     type: "website",
@@ -39,6 +39,18 @@ const Projects = () => {
   return (
     <>
       {" "}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-T52CWE5XPZ"
+        strategy="afterInteractive"
+      />
+      <Script id="ga-config" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-T52CWE5XPZ');
+        `}
+      </Script>
       <Script
         id="gtm-script"
         strategy="afterInteractive" // Optimize loading strategy

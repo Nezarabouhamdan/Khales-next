@@ -1,9 +1,9 @@
-import ContactPage from "@/pages/ContactPage";
+import ServicesPage from "@/pages/ServicesPage";
 import React from "react";
 import Script from "next/script"; // Use Next.js optimized Script component
 
 export const metadata = {
-  title: "Contact us",
+  title: "Thank you",
   description:
     "Welcome to Khales. Explore our luxury design and project management solutions.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata = {
   creator: "Khales",
   metadataBase: new URL("http://www.khales.ae/"),
   openGraph: {
-    title: "Contact us",
+    title: "Services",
     description:
       "Welcome to Khales. Explore our luxury design and project management solutions.",
     url: "http://www.khales.ae/",
@@ -29,13 +29,13 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact us",
+    title: "Services",
     description:
       "Welcome to Khales. Explore our luxury design and project management solutions.",
   },
 };
 
-const Contact = () => {
+const Thankyou = () => {
   return (
     <>
       {" "}
@@ -61,10 +61,10 @@ const Contact = () => {
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
-      />
-      <ContactPage />
+      />{" "}
+      <ServicesPage />
     </>
   );
 };
 
-export default Contact;
+export default Thankyou;

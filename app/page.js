@@ -37,6 +37,19 @@ export const metadata = {
 export default function Home() {
   return (
     <>
+      {" "}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-T52CWE5XPZ"
+        strategy="afterInteractive"
+      />
+      <Script id="ga-config" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-T52CWE5XPZ');
+        `}
+      </Script>
       <Script
         id="gtm-script"
         strategy="afterInteractive" // Optimize loading strategy
