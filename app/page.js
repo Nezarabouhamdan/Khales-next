@@ -39,7 +39,7 @@ export default function Home() {
     <>
       {" "}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
+        src="https://www.googletagmanager.com/gtag/js?id=G-T52CWE5XPZ"
         strategy="afterInteractive"
       />
       <Script id="ga-config" strategy="afterInteractive">
