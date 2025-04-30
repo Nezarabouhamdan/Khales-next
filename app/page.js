@@ -39,7 +39,7 @@ export default function Home() {
     <>
       {" "}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-T52CWE5XPZ"
+        src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
         strategy="afterInteractive"
       />
       <Script id="ga-config" strategy="afterInteractive">
@@ -47,7 +47,7 @@ export default function Home() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-T52CWE5XPZ');
+          gtag('config', 'G-FB575W8DQ8');
         `}
       </Script>
       <Script
