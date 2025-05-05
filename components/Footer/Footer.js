@@ -257,7 +257,9 @@ const Footer = () => {
             <ContactLink href="mailto:info@khales.ae" language={language}>
               info@khales.ae
             </ContactLink>
-            <AddressText language={language}>+971 55 129 9880</AddressText>
+            <ContactLink href="tel:+971551299880" language={language}>
+              +971 55 129 9880
+            </ContactLink>
           </ContactSection>
 
           <Row2 justify="flex-start" gap="1rem">

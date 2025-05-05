@@ -198,6 +198,16 @@ export default function MultiStepForm() {
       }
 
       const result = await response.json();
+
+      // ▶️ Fire the “Appointment” conversion event
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-10827937555/BtCiCLz84sEaEJPulKso",
+          value: 1.0,
+          currency: "AED",
+        });
+      }
+
       setSubmitStatus({
         type: "success",
         message: `${content.buttons.submit} - Meeting ID: ${result.meetingId}`,
@@ -211,6 +221,7 @@ export default function MultiStepForm() {
       setIsSubmitting(false);
     }
   };
+
   const closePopup = () => {
     setSubmitStatus(null);
   };

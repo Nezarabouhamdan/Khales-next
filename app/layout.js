@@ -7,6 +7,8 @@ import Footer from "@/components/Footer/Footer";
 import { footerData } from "../data/FooterData";
 import StyledComponentsRegistry from "@/utils/registry";
 import ScrollToTop from "@/components/ScrollToTop";
+import Script from "next/script";
+import Calltoaction from "./Calltoaction";
 
 export const metadata = {
   title: "Home",
@@ -29,14 +31,39 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <noscript>
-        <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-5ZMHD47B"
-          height="0"
-          width="0"
-          style={{ display: "none", visibility: "hidden" }}
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-10827937555"
+          strategy="afterInteractive"
         />
-      </noscript>
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-10827937555');
+          `}
+        </Script>
+        {/* Define conversion event snippet */}
+        <Script id="gtag-conversion" strategy="afterInteractive">
+          {`
+            function gtag_report_conversion(url) {
+              var callback = function() {
+                if (typeof url !== 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                send_to: 'AW-10827937555/udi-CPyU5cEaEJPulKso',
+                value: 1.0,
+                currency: 'AED',
+                event_callback: callback
+              });
+              return false;
+            }
+          `}
+        </Script>
+      </head>
       <body>
         {" "}
         <ScrollToTop />
@@ -60,6 +87,7 @@ Could you please provide more details and help me get started?"
             >
               <i className="fa fa-whatsapp my-float"></i>
             </Link>
+            <Calltoaction />
             <main>{children}</main>
             <Footer footerData={footerData} />
           </ClientProviders>
