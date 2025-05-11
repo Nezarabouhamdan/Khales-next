@@ -11,7 +11,7 @@ import Script from "next/script";
 import Calltoaction from "./Calltoaction";
 
 export const metadata = {
-  title: "Home",
+  title: "Welcome to Khales",
   description:
     "Welcome to Khales. Explore our luxury design and project management solutions.",
   keywords: [
@@ -23,6 +23,10 @@ export const metadata = {
     "Construction",
     "Khales Projects",
   ],
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/favicon.png",
+  },
   authors: [{ name: "Khales Team", url: "https://www.khales.ae/" }],
   creator: "Khales",
   metadataBase: new URL("https://www.khales.ae/"),
