@@ -185,7 +185,7 @@ const TestimonialSlider = () => {
               speed={3000}
               slidesPerView={1}
               loop
-              autoplay={{ delay: 1000, disableOnInteraction: false }}
+              autoplay={{ delay: 2500, disableOnInteraction: false }}
               keyboard={{ enabled: true, onlyInViewport: true }}
               effect="slide"
               dir={language === "ar" ? "rtl" : "ltr"}
@@ -219,7 +219,7 @@ const TestimonialSlider = () => {
             slidesPerView={1}
             loop
             autoplay={{
-              delay: 1000,
+              delay: 2500,
               disableOnInteraction: false,
               reverseDirection: true, // Reverse the autoplay direction
             }}

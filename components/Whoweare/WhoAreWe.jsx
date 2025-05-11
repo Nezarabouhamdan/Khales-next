@@ -21,7 +21,7 @@ const WhoAreWe = () => {
 };
 
 const StyledSection = styled.section`
-  padding: 100px 20px;
+  padding: 50px 20px;
   background-color: #ffffff;
   font-family: "Inter", sans-serif;
 `;

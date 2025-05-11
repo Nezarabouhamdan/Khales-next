@@ -103,7 +103,7 @@ const BranchItem = styled.div`
 const BranchName = styled.h3`
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
-  color: #545454;
+  color: #66a109;
   text-align: ${(props) =>
     props.$language === "ar" ? "right" : "left"}; // RTL support
   unicode-bidi: isolate;

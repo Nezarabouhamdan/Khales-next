@@ -10,7 +10,7 @@ import {
   FaPause,
   FaRedo,
 } from "react-icons/fa";
-import "@/app/globals.css"
+import "@/app/globals.css";
 
 const VideoOverlay = styled.div`
   position: absolute;
@@ -48,7 +48,7 @@ const ControlsWrapper = styled.div`
   border-radius: 30px;
   align-items: center;
   @media screen and (max-width: 968px) {
-    bottom: 30vh;
+    bottom: 40vh;
   }
 `;
 
@@ -120,7 +120,7 @@ export default function Hero() {
     <Herosection ref={ref}>
       <StyledVideo
         ref={videoRef}
-        src={'./assets/Untitled video - Made with Clipchamp.mp4'}
+        src={"./assets/Untitled video - Made with Clipchamp.mp4"}
         autoPlay
         loop
         muted={isMuted}
