@@ -7,7 +7,7 @@ import Link from "next/link";
 const content = {
   eng: [
     {
-      title: "Khales",
+      title: "Khalesssss",
       green: "Group",
       content:
         "At Khales Project Management, we turn ideas into reality with expert architecture, construction, and fit-out solutions. Whether its a luxury development, commercial space, or residential project, we deliver turnkey solutions with precision, efficiency, and innovation. No delays, no compromises—just results that exceed expectations.",
