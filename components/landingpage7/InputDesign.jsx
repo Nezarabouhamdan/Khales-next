@@ -10,12 +10,13 @@ import {
 import { FormInput, FormSelect, FormButton } from "./FormComponents";
 import { styled, keyframes } from "styled-components";
 
-const InputDesign2 = () => {
+export default function InputDesign2() {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
     category: "",
+    branch: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -29,6 +30,7 @@ const InputDesign2 = () => {
     { value: "Engineering Consultancy", label: "Engineering Consultancy" },
     { value: "Investing", label: "Investing" },
   ];
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -39,46 +41,49 @@ const InputDesign2 = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    try {
-      const response = await fetch(
-        "https://khalesapi.onrender.com/api/create-lead",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: formData.fullName,
-            phone: formData.phone,
-            email: formData.email,
-            inquiry: formData.category,
-            branch: "",
-            description: "Free consultation request", // Static description
-          }),
-          credentials: "omit",
-        }
-      );
+    const form = new FormData(e.target);
+    const payload = {
+      name: form.get("fullName"),
+      phone: form.get("phone"),
+      email: form.get("email"),
+      inquiry: form.get("category"),
+      branch: form.get("branch"),
+      description: "Free consultation request",
+    };
 
-      const data = await response.json();
+    try {
+      const res = await fetch("/api/create-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
 
       if (data.success) {
-        setSubmitStatus("success");
+        setSubmitStatus({
+          type: "success",
+          message: `Lead created! ID: ${data.leadId}`,
+        });
+        e.target.reset();
         setFormData({
           fullName: "",
           email: "",
           phone: "",
           category: "",
+          branch: "",
         });
+      } else {
+        setSubmitStatus({ type: "error", message: `Error: ${data.error}` });
       }
-    } catch (error) {
-      setSubmitStatus("error");
-      console.error("Network error:", error);
+    } catch (err) {
+      console.error(err);
+      setSubmitStatus({ type: "error", message: "Network error" });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const closePopup = () => {
-    setSubmitStatus(null);
-  };
+  const closePopup = () => setSubmitStatus(null);
 
   return (
     <SplitLayout>
@@ -86,7 +91,8 @@ const InputDesign2 = () => {
         <WelcomeText>
           <span>Let's Build</span>
           <br />
-          <span>Something Amazing</span> <br />
+          <span>Something Amazing</span>
+          <br />
           <span style={{ fontSize: "15px" }}>
             Ready to start? Fill the form, we will respond within 24 hours.
           </span>
@@ -100,7 +106,6 @@ const InputDesign2 = () => {
             name="fullName"
             placeholder="Full Name"
             required
-            aria-required="true"
             value={formData.fullName}
             onChange={handleInputChange}
           />
@@ -111,7 +116,6 @@ const InputDesign2 = () => {
             type="email"
             placeholder="Email"
             required
-            aria-required="true"
             value={formData.email}
             onChange={handleInputChange}
           />
@@ -122,7 +126,6 @@ const InputDesign2 = () => {
             type="tel"
             placeholder="Phone Number"
             required
-            aria-required="true"
             value={formData.phone}
             onChange={handleInputChange}
           />
@@ -132,12 +135,11 @@ const InputDesign2 = () => {
             name="category"
             options={categoryOptions}
             required
-            aria-required="true"
             value={formData.category}
             onChange={handleInputChange}
           />
 
-          <FormButton disabled={isSubmitting}>
+          <FormButton type="submit" disabled={isSubmitting}>
             {isSubmitting ? (
               <LoadingDots>
                 <span>.</span>
@@ -148,47 +150,39 @@ const InputDesign2 = () => {
               "Get Free Consultation"
             )}
           </FormButton>
-
-          {submitStatus && (
-            <ModalOverlay onClick={closePopup}>
-              <ModalContent onClick={(e) => e.stopPropagation()}>
-                {submitStatus === "success" ? (
-                  <>
-                    <AnimatedCheckmark viewBox="0 0 52 52">
-                      <Circle cx="26" cy="26" r="25" fill="none" />
-                      <Check
-                        stroke="white"
-                        fill="none"
-                        d="M14.1 27.2l7.1 7.2 16.7-16.8"
-                      />
-                    </AnimatedCheckmark>
-                    <ModalTitle>Success!</ModalTitle>
-                    <ModalText>
-                      Thank you! Your submission has been received.
-                    </ModalText>
-                  </>
-                ) : (
-                  <>
-                    <AnimatedXMark viewBox="0 0 52 52">
-                      <Circle cx="26" cy="26" r="25" fill="none" />
-                      <XLine x1="16" y1="16" x2="36" y2="36" />
-                      <XLine x1="16" y1="36" x2="36" y2="16" />
-                    </AnimatedXMark>
-                    <ModalTitle>Oops!</ModalTitle>
-                    <ModalText>
-                      There was an error submitting your form. Please try again.
-                    </ModalText>
-                  </>
-                )}
-                <CloseButton onClick={closePopup}>Close</CloseButton>
-              </ModalContent>
-            </ModalOverlay>
-          )}
         </FormCard>
       </FormContainer>
+
+      {submitStatus && (
+        <ModalOverlay onClick={closePopup}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            {submitStatus.type === "success" ? (
+              <>
+                <AnimatedCheckmark viewBox="0 0 52 52">
+                  <Circle cx="26" cy="26" r="25" fill="none" />
+                  <Check d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                </AnimatedCheckmark>
+                <ModalTitle>Success!</ModalTitle>
+              </>
+            ) : (
+              <>
+                <AnimatedXMark viewBox="0 0 52 52">
+                  <Circle cx="26" cy="26" r="25" fill="none" />
+                  <XLine x1="16" y1="16" x2="36" y2="36" />
+                  <XLine x1="16" y1="36" x2="36" y2="16" />
+                </AnimatedXMark>
+                <ModalTitle>Oops!</ModalTitle>
+              </>
+            )}
+            <ModalText>{submitStatus.message}</ModalText>
+            <CloseButton onClick={closePopup}>Close</CloseButton>
+          </ModalContent>
+        </ModalOverlay>
+      )}
     </SplitLayout>
   );
-};
+}
+
 const Circle = styled.circle``;
 const Check = styled.path``;
 const XLine = styled.line``;
@@ -307,7 +301,6 @@ const CloseButton = styled.button`
   }
 `;
 
-export default InputDesign2;
 const bounce = keyframes`
   0%, 80%, 100% { 
     transform: translateY(0);

@@ -154,21 +154,18 @@ const ContactForm = ({ content, rtl }) => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch(
-        "https://khalesapi.onrender.com/api/create-lead",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: formData.name,
-            phone: formData.phone,
-            email: formData.email,
-            description: formData.message,
-            branch: "Website",
-            inquiry: formData.inquiry,
-          }),
-        }
-      );
+      const response = await fetch("/api/Contact-us", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          description: formData.message,
+          branch: "Website",
+          inquiry: formData.inquiry,
+        }),
+      });
 
       const data = await response.json();
 

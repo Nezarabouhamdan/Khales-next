@@ -72,7 +72,7 @@ const Page = () => {
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
-      />{" "}
+      />
       <div
         style={{
           display: "flex",

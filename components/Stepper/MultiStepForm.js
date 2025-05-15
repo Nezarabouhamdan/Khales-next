@@ -182,15 +182,12 @@ export default function MultiStepForm() {
   const handleSubmit = async () => {
     try {
       setIsSubmitting(true);
-      const response = await fetch(
-        "https://khalesapi.onrender.com/api/create-meeting",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-          credentials: "omit",
-        }
-      );
+      const response = await fetch("/api/create-meeting", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+        credentials: "omit",
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
