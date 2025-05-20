@@ -72,7 +72,7 @@ export default async function handler(req, res) {
               start: formatOdooDateTime(startDate),
               stop: formatOdooDateTime(endDate),
               description: `Client Details:\n- Name: ${name}\n- Phone: ${phone}\n- Branch: ${branch}\n- Service: ${inquiry}`,
-              partner_ids: [9, 23, 1041, 1035], // default partner IDs
+              partner_ids: [9, 23, 1041], // default partner IDs
               location: branch,
             },
           ],
