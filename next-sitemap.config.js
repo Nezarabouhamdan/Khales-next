@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000/", // url
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://www.khales.ae/", // url
   generateRobotsTxt: true,
   changefreq: "daily",
   priority: 0.7,

@@ -171,13 +171,13 @@ const ContactForm = ({ content, rtl }) => {
 
       if (data.success) {
         // Fire Google Ads contact-form conversion
-        if (typeof window !== "undefined" && window.gtag) {
-          window.gtag("event", "conversion", {
-            send_to: "AW-10827937555/AXXWCJ-p2MEaEJPulKso",
-            value: 1.0,
-            currency: "AED",
-          });
-        }
+        // if (typeof window !== "undefined" && window.gtag) {
+        //   window.gtag("event", "conversion", {
+        //     send_to: "AW-10827937555/AXXWCJ-p2MEaEJPulKso",
+        //     value: 1.0,
+        //     currency: "AED",
+        //   });
+        // }
         setSubmitStatus("success");
         setFormData({
           name: "",

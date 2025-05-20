@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script
+        {/*      <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-10827937555"
           strategy="afterInteractive"
         />
@@ -47,26 +47,8 @@ export default function RootLayout({ children }) {
             gtag('js', new Date());
             gtag('config', 'AW-10827937555');
           `}
-        </Script>
+        </Script>  */}
         {/* Define conversion event snippet */}
-        <Script id="gtag-conversion" strategy="afterInteractive">
-          {`
-            function gtag_report_conversion(url) {
-              var callback = function() {
-                if (typeof url !== 'undefined') {
-                  window.location = url;
-                }
-              };
-              gtag('event', 'conversion', {
-                send_to: 'AW-10827937555/udi-CPyU5cEaEJPulKso',
-                value: 1.0,
-                currency: 'AED',
-                event_callback: callback
-              });
-              return false;
-            }
-          `}
-        </Script>
       </head>
       <body>
         {" "}
