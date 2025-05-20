@@ -99,7 +99,7 @@ export default async function handler(req, res) {
     });
 
     // 5. Subscribe default partners as followers without notification
-    const DEFAULT_PARTNER_IDS = [9, 23, 1041, 1035];
+    const DEFAULT_PARTNER_IDS = [9, 23, 1041];
     await new Promise((resolve, reject) => {
       objectClient.methodCall(
         "execute_kw",
