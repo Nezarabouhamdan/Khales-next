@@ -38,6 +38,14 @@ export default function InputDesign2() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "conversion_event_contact", {
+        event_callback: () => {
+          console.log("Conversion event sent.");
+        },
+        event_timeout: 2000,
+      });
+    }
     setIsSubmitting(true);
     setSubmitStatus(null);
 
