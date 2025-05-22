@@ -40,7 +40,7 @@ const AboutusPage = dynamic(() => import("@/pages/AboutsusPage"));
 const AboutUs = () => {
   return (
     <>
-      {/* {" "}
+      {" "}
       <Script
         strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
@@ -67,7 +67,7 @@ const AboutUs = () => {
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
-      />{" "} */}
+      />{" "}
       <AboutusPage />
     </>
   );

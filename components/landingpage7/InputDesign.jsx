@@ -9,6 +9,7 @@ import {
 } from "./StyledComponents";
 import { FormInput, FormSelect, FormButton } from "./FormComponents";
 import { styled, keyframes } from "styled-components";
+import Script from "next/script";
 
 export default function InputDesign2() {
   const [formData, setFormData] = useState({
@@ -35,8 +36,25 @@ export default function InputDesign2() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+  const gtag_report_conversion = (url) => {
+    const callback = () => {
+      if (typeof url !== "undefined") {
+        window.location = url;
+      }
+    };
+    if (typeof window !== "undefined" && typeof gtag === "function") {
+      gtag("event", "conversion", {
+        send_to: "AW-10827937555/iwK8CNDM9csaEJPulKso",
+        value: 1.0,
+        currency: "AED",
+        event_callback: callback,
+      });
+    }
+  };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    gtag_report_conversion();
     e.preventDefault();
     if (typeof window !== "undefined" && typeof gtag === "function") {
       gtag("event", "conversion_event_contact", {
@@ -95,6 +113,33 @@ export default function InputDesign2() {
 
   return (
     <SplitLayout>
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
+      />
+      <Script
+        id="ga-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-FB575W8DQ8');
+          `,
+        }}
+      />
+      <Script
+        id="gtm-script"
+        strategy="afterInteractive" // Optimize loading strategy
+        dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
+        }}
+      />
       <WelcomeSection>
         <WelcomeText>
           <span>Let's Build</span>

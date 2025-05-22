@@ -46,7 +46,7 @@ const Page = () => {
   return (
     <>
       {" "}
-      {/* <Script
+      <Script
         strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
       />
@@ -72,7 +72,20 @@ const Page = () => {
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
-      /> */}
+      />{" "}
+      <Script
+        id="google-ads-conversion"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          gtag('event', 'conversion', {
+            'send_to': 'AW-10827937555/iwK8CNDM9csaEJPulKso',
+            'value': 1.0,
+            'currency': 'AED'
+          });
+        `,
+        }}
+      />
       <div
         style={{
           display: "flex",
