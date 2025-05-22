@@ -26,11 +26,9 @@ export default function HomeContent() {
     <>
       <section id="hero" aria-label="hero">
         <h1 style={{ display: "none" }}>
-          {language === "ar"
-            ? "مرحبًا بك في Khales"
-            : "Welcome to Khales"}
+          {language === "ar" ? "مرحبًا بك في Khales" : "Welcome to Khales"}
         </h1>
-        <Hero />     
+        <Hero />
       </section>
       <WhoAreWe />
       <ServicesSwiper />
