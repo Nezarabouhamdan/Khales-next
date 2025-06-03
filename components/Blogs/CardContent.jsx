@@ -11,6 +11,7 @@ const CardContent = ({
   description,
   isRTL = false,
   buttonText,
+  link,
 }) => {
   return (
     <Content $isRTL={isRTL}>
@@ -26,7 +27,9 @@ const CardContent = ({
         </MetaInfo>
         <Description $isRTL={isRTL}>{description}</Description>
         <ViewPostContainer $isRTL={isRTL}>
-          <StyledButton href={'#'} $isRTL={isRTL}>{buttonText}</StyledButton>
+          <StyledButton href={`/blog/${link}`} $isRTL={isRTL}>
+            {buttonText}
+          </StyledButton>
         </ViewPostContainer>
       </ContentWrapper>
     </Content>
@@ -43,7 +46,8 @@ const Content = styled.div`
 const Title = styled.h2`
   color: #121416;
   font-size: 24px;
-  font-family: ${(props) => (props.$isRTL ? "'Playfair'" : "'Playfair', serif")};
+  font-family: ${(props) =>
+    props.$isRTL ? "'Playfair'" : "'Playfair', serif"};
   font-weight: 700;
   line-height: 1.3;
   margin: 0;
@@ -63,7 +67,8 @@ const MetaInfo = styled.div`
   gap: 10px;
   justify-content: ${(props) => (props.$isRTL ? "flex-end" : "flex-start")};
   flex-wrap: wrap;
-  font-family: ${(props) => (props.$isRTL ? "'Playfair'" : "'Playfair', serif")};
+  font-family: ${(props) =>
+    props.$isRTL ? "'Playfair'" : "'Playfair', serif"};
   font-size: 16px;
   color: #6c757d;
   flex-direction: ${(props) => (props.$isRTL ? "row-reverse" : "row")};
@@ -73,7 +78,8 @@ const AuthorInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: ${(props) => (props.$isRTL ? "'Playfair'" : "'Playfair', serif")};
+  font-family: ${(props) =>
+    props.$isRTL ? "'Playfair'" : "'Playfair', serif"};
   font-size: 16px;
   color: #121416;
   font-weight: 700;
@@ -100,7 +106,8 @@ const PublishDate = styled.time``;
 const Description = styled.p`
   color: #838383;
   font-size: 16px;
-  font-family: ${(props) => (props.$isRTL ? "'Playfair'" : "'Playfair', serif")};
+  font-family: ${(props) =>
+    props.$isRTL ? "'Playfair'" : "'Playfair', serif"};
   font-weight: 400;
   line-height: 1.6;
   margin: 20px 0;

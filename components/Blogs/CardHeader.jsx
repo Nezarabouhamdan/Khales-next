@@ -5,7 +5,7 @@ import styled from "styled-components";
 const CardHeader = ({ coverImage, avatarImage, isRTL = false }) => {
   return (
     <Header>
-      <CoverImage src={coverImage} alt="Article cover" />
+      <CoverImage src={coverImage} alt="Article cover" fill sizes="100vw" />
     </Header>
   );
 };
@@ -27,10 +27,8 @@ const Header = styled.header`
 `;
 
 const CoverImage = styled(Image)`
-  position: absolute;
+  position: absolute !important;
   inset: 0;
-  height: 100%;
-  width: 100%;
   object-fit: cover;
   object-position: center;
 `;
@@ -51,7 +49,8 @@ const Tag = styled.span`
   padding: 8px 10px;
   white-space: nowrap;
   cursor: pointer;
-  font-family: ${(props) => props.$isRTL ? "'Tajawal', sans-serif" : "'Playfair', serif"};
+  font-family: ${(props) =>
+    props.$isRTL ? "'Tajawal', sans-serif" : "'Playfair', serif"};
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.3);

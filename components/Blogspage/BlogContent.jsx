@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import styled from "styled-components";
 import QuoteBlock from "./QuoteBlock";
@@ -74,12 +75,7 @@ const ContentWrapper = styled.div`
 
 const MainParagraph = styled.p`
   font-size: 18px;
-  font-family:
-    Europa-Regular,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Europa-Regular, -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 400;
   line-height: 33px;
   @media (max-width: 991px) {
@@ -89,12 +85,7 @@ const MainParagraph = styled.p`
 
 const SecondParagraph = styled.p`
   font-size: 18px;
-  font-family:
-    Europa-Regular,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Europa-Regular, -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 400;
   line-height: 33px;
   margin-top: 40px;

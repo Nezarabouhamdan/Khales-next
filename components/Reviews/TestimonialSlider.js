@@ -246,7 +246,7 @@ const TestimonialSlider = () => {
                       />
                     </div>
                     <div className="company-box-bottom">
-                      <span>{company.text}</span>
+                      {/* <span>{company.text}</span> */}
                     </div>
                   </div>
                 </div>
