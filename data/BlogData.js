@@ -1,6 +1,6 @@
 // data/blogData.js
 import logo from "@/public/assets/Khales Logo K - favicon.png";
-
+const socialCounts = [1816, 47500, 13271, 571];
 export const blogCardsData = [
   {
     id: 1,
@@ -24,7 +24,7 @@ export const blogCardsData = [
           "In the pursuit of modern architectural excellence, Khales Project Management invites you to explore a world where innovation meets elegance.",
         paragraphAfterQuote:
           "Our commitment to staying at the forefront of residential design trends ensures that your home is not just a place to live but a testament to the artistry of contemporary living. Welcome to a new era of residential luxury.",
-        socialCounts: [12, 72000, 52, 71000, 68000],
+        socialCounts: socialCounts,
         sectionTitle: "Key Trends in Modern Residential Design",
         thirdParagraph:
           "Sustainable and Eco-Friendly Practices: Khales leads the way in integrating sustainable and eco-friendly practices into residential design. From energy-efficient appliances to eco-conscious building materials, our commitment to environmentally responsible design ensures homes that are both luxurious and sustainable.",
@@ -57,7 +57,7 @@ export const blogCardsData = [
           "في سعيها لتحقيق التميز المعماري الحديث، تدعوك شركة خالص لإدارة المشاريع لاستكشاف عالم يلتقي فيه الابتكار بالأناقة.",
         paragraphAfterQuote:
           "إن التزامنا بالبقاء في طليعة اتجاهات التصميم السكني يضمن أن منزلك ليس مجرد مكان للعيش فيه ولكنه شهادة على فن الحياة المعاصرة. مرحبًا بكم في عصر جديد من الفخامة السكنية.",
-        socialCounts: [12, 72000, 52, 71000, 68000],
+        socialCounts: socialCounts,
         sectionTitle: "الاتجاهات الرئيسية في التصميم السكني الحديث",
         thirdParagraph:
           "الممارسات المستدامة والصديقة للبيئة: خالص يقود الطريق في دمج الممارسات المستدامة والصديقة للبيئة في التصميم السكني. من الأجهزة الموفرة للطاقة إلى مواد البناء الصديقة للبيئة، يضمن التزامنا بالتصميم المسؤول بيئيًا توفير منازل فاخرة ومستدامة.",
@@ -93,7 +93,7 @@ export const blogCardsData = [
           "Steel is not just a material, it's a design philosophy that enables architectural freedom.",
         paragraphAfterQuote:
           "The integration of steel structures in luxury villas has opened new possibilities for open floor plans and expansive glass facades. Architects can now create cantilevers and large spans previously impossible with traditional materials.",
-        socialCounts: [15, 75000, 48, 73000, 71000],
+        socialCounts: socialCounts,
         sectionTitle: "The Future of Villa Construction",
         thirdParagraph:
           "As urbanization increases and land becomes more valuable, steel structures allow for taller, more efficient villa designs. These designs maximize space while minimizing environmental impact through efficient material usage.",
@@ -125,7 +125,7 @@ export const blogCardsData = [
         quote: "الفولاذ ليس مجرد مادة، إنه فلسفة تصميم تتيح الحرية المعمارية.",
         paragraphAfterQuote:
           "فتح دمج الهياكل الفولاذية في الفيلات الفاخرة إمكانيات جديدة لخطط الطوابق المفتوحة والواجهات الزجاجية الواسعة. يمكن للمهندسين المعماريين الآن إنشاء كوابيل وامتدادات كبيرة كانت مستحيلة سابقًا بالمواد التقليدية.",
-        socialCounts: [15, 75000, 48, 73000, 71000],
+        socialCounts: socialCounts,
         sectionTitle: "مستقبل بناء الفيلات",
         thirdParagraph:
           "مع زيادة التحضر وأصبحت الأرض أكثر قيمة، تسمح الهياكل الفولاذية بتصميمات فيلات أطول وأكثر كفاءة. تزيد هذه التصميمات من المساحة مع تقليل التأثير البيئي من خلال استخدام المواد بكفاءة.",
@@ -161,7 +161,7 @@ export const blogCardsData = [
           "As Khales Project Management delves into the future of high-rise construction, innovative approaches pave the way for safer, more efficient structures.",
         paragraphAfterQuote:
           "We are committed to staying at the forefront of these advancements, ensuring our projects not only reach new heights but stand firmly on foundations engineered for excellence.",
-        socialCounts: [18, 78000, 55, 76000, 72000],
+        socialCounts: socialCounts,
         sectionTitle: "Cutting-Edge Foundation Technologies",
         thirdParagraph:
           "Soil-Structure Interaction Studies: Modern geotechnical engineering utilizes sophisticated studies to analyze soil-structure interaction, enabling optimized foundation design based on specific site conditions.",
@@ -194,7 +194,7 @@ export const blogCardsData = [
           "بينما تخوض إدارة مشاريع الخالص في مستقبل البناء الشاهق، تمهد الأساليب المبتكرة الطريق لهياكل أكثر أمانًا وكفاءة.",
         paragraphAfterQuote:
           "نحن ملتزمون بالبقاء في طليعة هذه التطورات، مما يضمن أن مشاريعنا لا تصل إلى آفاق جديدة فحسب، بل تقف بقوة على أسس مصممة للتميز.",
-        socialCounts: [18, 78000, 55, 76000, 72000],
+        socialCounts: socialCounts,
         sectionTitle: "تقنيات الأساس المتطورة",
         thirdParagraph:
           "دراسات التفاعل بين بنية التربة: تستخدم الهندسة الجيوتقنية الحديثة دراسات متطورة لتحليل التفاعل بين بنية التربة، مما يمكّن من تحسين تصميم الأساس بناءً على ظروف الموقع المحددة.",
@@ -230,7 +230,7 @@ export const blogCardsData = [
           "Embracing sustainable materials in interior design is not merely a trend; it's a commitment to a more harmonious relationship with our planet.",
         paragraphAfterQuote:
           "As designers and homeowners tread the path of sustainable living, each material choice becomes a step towards a greener, more beautiful future.",
-        socialCounts: [22, 82000, 60, 79000, 75000],
+        socialCounts: socialCounts,
         sectionTitle: "Sustainable Design Elements",
         thirdParagraph:
           "Low VOC, High Impact: Sustainable design prioritizes indoor air quality. Low Volatile Organic Compound paints ensure spaces are visually appealing while contributing to healthier environments.",
@@ -263,7 +263,7 @@ export const blogCardsData = [
           "إن تبني المواد المستدامة في التصميم الداخلي ليس مجرد اتجاه؛ إنه التزام بعلاقة أكثر انسجامًا مع كوكبنا.",
         paragraphAfterQuote:
           "بينما يسير المصممون وأصحاب المنازل على طريق الحياة المستدامة، يصبح كل اختيار للمواد خطوة نحو مستقبل أكثر اخضرارًا وجمالاً.",
-        socialCounts: [22, 82000, 60, 79000, 75000],
+        socialCounts: socialCounts,
         sectionTitle: "عناصر التصميم المستدام",
         thirdParagraph:
           "انخفاض المركبات العضوية المتطايرة، تأثير كبير: يعطي التصميم المستدام الأولوية لجودة الهواء الداخلي. تضمن الدهانات ذات المركبات العضوية المنخفضة المتطايرة أن المساحات جذابة بصريًا مع المساهمة في بيئات أكثر صحة.",
@@ -299,7 +299,7 @@ export const blogCardsData = [
           "Our team looks forward to creating a project management ecosystem where strategic communication is the driving force behind successful outcomes.",
         paragraphAfterQuote:
           "The next project will be with you, guided by clear, consistent communication that meets and exceeds expectations.",
-        socialCounts: [25, 85000, 65, 82000, 78000],
+        socialCounts: socialCounts,
         sectionTitle: "Key Communication Strategies",
         thirdParagraph:
           "At Khales, we implement proven strategies that ensure project success through effective stakeholder engagement:",
@@ -332,7 +332,7 @@ export const blogCardsData = [
           "يتطلع فريقنا إلى إنشاء نظام بيئي لإدارة المشروع حيث يكون التواصل الاستراتيجي هو القوة الدافعة وراء النتائج الناجحة.",
         paragraphAfterQuote:
           "سيكون المشروع التالي معك، بتوجيه من اتصال واضح ومتسق يلبي التوقعات ويتجاوزها.",
-        socialCounts: [25, 85000, 65, 82000, 78000],
+        socialCounts: socialCounts,
         sectionTitle: "استراتيجيات التواصل الرئيسية",
         thirdParagraph:
           "في خالص، ننفذ استراتيجيات مثبتة تضمن نجاح المشروع من خلال إشراك أصحاب المصلحة الفعال:",
@@ -369,7 +369,7 @@ export const blogCardsData = [
           "Khales Project Management strives for a synthesis of aesthetics and functionality, creating spaces that resonate with beauty and purpose.",
         paragraphAfterQuote:
           "Join our pursuit of harmonious design where every element serves a purpose, and every purpose is infused with elegance.",
-        socialCounts: [28, 88000, 70, 85000, 81000],
+        socialCounts: socialCounts,
         sectionTitle: "Principles of Balanced Design",
         thirdParagraph:
           "Tailored Design Solutions: Rejecting one-size-fits-all approaches. Crafting solutions to unique needs ensures aesthetic choices complement required functionality.",
@@ -402,7 +402,7 @@ export const blogCardsData = [
           "تسعى شركة خالص لإدارة المشاريع جاهدة إلى الجمع بين الجماليات والوظائف، وخلق مساحات تتناسب مع الجمال والغرض.",
         paragraphAfterQuote:
           "كن جزءًا من سعينا وراء التصميم المتناغم حيث يخدم كل عنصر غرضًا، وكل غرض مملوء بالأناقة.",
-        socialCounts: [28, 88000, 70, 85000, 81000],
+        socialCounts: socialCounts,
         sectionTitle: "مبادئ التصميم المتوازن",
         thirdParagraph:
           "حلول التصميم المخصصة: رفض النهج الواحد الذي يناسب الجميع. تضمن صياغة الحلول للاحتياجات الفريدة أن الخيارات الجمالية تكمل الوظائف المطلوبة.",
@@ -438,7 +438,7 @@ export const blogCardsData = [
           "As we look towards the future, Khales invites you to join our journey towards sustainable architecture.",
         paragraphAfterQuote:
           "Every project is not just a testament to architectural excellence but a declaration to build a greener, more sustainable tomorrow.",
-        socialCounts: [32, 92000, 75, 89000, 85000],
+        socialCounts: socialCounts,
         sectionTitle: "Core Sustainable Practices",
         thirdParagraph:
           "Green Building Materials: We meticulously select materials like recycled steel and reclaimed wood to minimize environmental impact.",
@@ -471,7 +471,7 @@ export const blogCardsData = [
           "بينما نتطلع إلى المستقبل، تدعوكم خالص للانضمام إلى رحلتنا نحو الهندسة المعمارية المستدامة.",
         paragraphAfterQuote:
           "كل مشروع ليس مجرد شهادة على التميز المعماري ولكن إعلان لبناء غد أكثر اخضرارًا واستدامة.",
-        socialCounts: [32, 92000, 75, 89000, 85000],
+        socialCounts: socialCounts,
         sectionTitle: "الممارسات المستدامة الأساسية",
         thirdParagraph:
           "مواد البناء الخضراء: نختار بعناية مواد مثل الفولاذ المعاد تدويره والخشب المستصلح لتقليل التأثير البيئي.",
@@ -507,7 +507,7 @@ export const blogCardsData = [
           "As we navigate the construction landscape, Agile Project Management emerges as a cornerstone for success.",
         paragraphAfterQuote:
           "At Khales Project Management, we don't just build structures; we build with agility, adaptability, and excellence.",
-        socialCounts: [35, 95000, 80, 92000, 88000],
+        socialCounts: socialCounts,
         sectionTitle: "Agile Principles in Action",
         thirdParagraph:
           "Enhancing Collaboration: Regular team meetings and open communication ensure all stakeholders are aligned, fostering transparency and teamwork.",
@@ -540,7 +540,7 @@ export const blogCardsData = [
           "بينما نتنقل في مشهد البناء، تظهر إدارة المشاريع الرشيقة كحجر الزاوية للنجاح.",
         paragraphAfterQuote:
           "في خالص لإدارة المشاريع، لا نبني الهياكل فحسب؛ نحن نبني بخفة الحركة والقدرة على التكيف والتميز.",
-        socialCounts: [35, 95000, 80, 92000, 88000],
+        socialCounts: socialCounts,
         sectionTitle: "مبادئ الرشاقة في العمل",
         thirdParagraph:
           "تعزيز التعاون: تضمن اجتماعات الفريق المنتظمة والاتصال المفتوح توافق جميع أصحاب المصلحة، وتعزيز الشفافية والعمل الجماعي.",
@@ -577,7 +577,7 @@ export const blogCardsData = [
         quote: "Tech that protects workers also protects the bottom line.",
         paragraphAfterQuote:
           "Projects that roll out even one of these AI tools enjoy tighter budgets, smoother audits and friendlier insurance premiums. Lower incident rates also boost a contractor's pre-qualification score—pure gold when bidding on the next mega-development.",
-        socialCounts: [42, 105000, 88, 98000, 92000],
+        socialCounts: socialCounts,
         sectionTitle: "Three Predictive Tools Making the Difference",
         thirdParagraph:
           "These AI-powered solutions are transforming construction site management:",
@@ -611,7 +611,7 @@ export const blogCardsData = [
         quote: "التكنولوجيا التي تحمي العمال تحمي أيضًا الأرباح النهائية.",
         paragraphAfterQuote:
           "تتمتع المشاريع التي تطبق حتى واحدة من هذه الأدوات القائمة على الذكاء الاصطناعي في البناء في الإمارات بميزانيات أكثر إحكامًا، ومراجعات حسابات أكثر سلاسة، وأقساط تأمين أكثر ودية. كما تؤدي معدلات الحوادث المنخفضة إلى تعزيز نقاط التأهل المسبق للمقاول - وهو ما يمثل 'ذهبًا خالصًا' عند التقدم بعروض لمشاريع التطوير الضخمة القادمة.",
-        socialCounts: [42, 105000, 88, 98000, 92000],
+        socialCounts: socialCounts,
         sectionTitle:
           "ثلاث أدوات تنبؤية تُحدث الفارق في مجال البناء في الإمارات",
         thirdParagraph:

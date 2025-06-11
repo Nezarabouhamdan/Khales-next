@@ -21,15 +21,28 @@ function BlogSinglePage({ blogData }) {
   return (
     <BlogContainer rtl={isRTL}>
       <HeroSection>
-        <div className="absolute inset-0 w-full h-full">
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            overflow: "hidden",
+          }}
+        >
           <Image
             src={blogData.coverImage}
             alt={blogData.title}
             layout="fill"
             objectFit="cover"
             quality={100}
+            style={{
+              filter: "blur(1px) brightness(0.7)",
+              transform: "scale(1.1)", // Helps reduce blur edge cropping
+            }}
           />
         </div>
+
         <HeroContent>
           <ContentWrapper>
             <TitleWrapper>
@@ -89,17 +102,17 @@ function BlogSinglePage({ blogData }) {
                     {blogData.socialCounts.map((count, index) => (
                       <SocialIconContainer key={index}>
                         <SocialIcon
-                          src={`https://cdn.builder.io/api/v1/image/assets/TEMP/${
+                          src={
                             [
-                              "e9ebab5ab95c4e82344bf38ecf9d27394bd852e0",
-                              "75e2f5a617ac8cafcd15f236b3ce3ccbfaefa695",
-                              "e0be31bed2138cf7cd2820212d447bfa8b8d210f",
-                              "7f58655be2f2217bcf1dc7da74d3530abeb9ebeb",
-                              "9142d4b0497072ab8df359d5a5fa50d14914ce41",
+                              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACd0lEQVR4nO2Zv2sUQRTHP+evwigSrCyiAWOpTXpBxcRcCkn8BVrZif+AjUJQSA5Jo4VpbMQiJtrE/CCojZ3YGEQx9nYaE6PRxOJWBp4Qwu7czuzb3Tm4L3zhmn1vPszsm7fvoKWWgtceoArUgGlgEfgO/BWb35+A58AI0CfPBKGKLGgSWAciR/8BJoAzEqsUXQDeeyw+yQvAYJEAR4BXigBb/QLoyhviHLCSI0QkXgUu5wFgzu9QAQDRFtc03x0TaKwEiEj8QAtmpESISHwnK8SlACAi8ZUs1emn0iLMffFQSraJux/YB7QDncBRYLRBjB/AYR8QrRL7EjiQIt/VFLHmXSHOK0HMAjtS5kwDYjyQFqKidGN/kyOEMsi7tFWsT2k3hh0gXEAioDdNwEklkGOWHN3Afcn1328dYo83gtjr2cXGVZjtFoiNjPF/A7ttIFXFTjZJj5Ry9NhAakpJXltyfCniHZxWSjKXEL8iX4saOaZsIJ8V74847VKKH8lnc6KWmgjkqw1ko4lA1rVBBqT522zbdKQ9wXcd85q1JmrZA+Q0Onri0QIlarFEENNDueT9aAs2WxLINmBNs/wOlwRySPvzt98j4HXpnza7y3Ihdsf4mkfeXhuIacR+eQQtuvyuAW2NtvlpE4BMkEI9TQByKg2IOccfAgZZwEFnAwapUuA4KC+QeTzUKVPxUEBWgIN4yjSE9QBA6sBFMup2ACBDKOleiSCjKOuGwzHTAKlr7kTcX2/LBYAsucx4s3SqMzmCTAEdFKh+y5jTB+SNzJ1L03HgsYxJXUFWZfJoYgQjs8iTwE0pDHHaCTwDbgEn5JmWWiJg/QOlYrQmouYwLQAAAABJRU5ErkJggg==",
+                              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACvElEQVR4nO2ZTWsUQRCGn0P04pLE+3oQs1nBi/h1EPVg9GziX1GTP6CoR2MOGvHjP4gRsxtJBH+Cq7nHk27EGIyXtaWgGoaB+ejpWbsX9oUX9jBVXe9OVXVNN4wxRhRoA0tAF/gM7AOmJoov8dkBFnWt2nEO2Kgx6LL8CFysQ8AhYAX4G0CEUcraj4GJqiKOAu8DCjApbmhMzm8iRCqZAn4ADrsIWYkgaJPBZZfCDlkTpoAS29kyQmJMKZOitOhctAMH+AZoKtcKnm3lCVkKLKSZiOVYwbN38oR0RkjIep6Q7RqC6QPPgRuaqkeU8nseeAHsZtiuqQDh24J1vuQJ2fMQ8Bu4C0xSjCngntpUXW8vb4GqTndSLfE68Ez/tf3EQLgKXEu1+h2PdTNRVYTN7Vlgq4TNZqLrND3EZKJKOtk3cSUn97Nq6bLangcOQgqRmrBvwkVEUsyM+ngQSkhfi5aS6ZRFmbAF0xX+jFqESIu1hW08Oae+XoYQIvsE2p18hTxVXwshhEhdoC3WV4i0ZkE7hJCG2vyqQYj4EDRGXchP9TU56qnVC5la82qzWoOQJ+rrZgghMsWis5OvkKvq61XoDXHTQ4R8WtsN8UcIIUZHccFx4JvniPKwgn1tQg50FEcHwL6D7XfgktpeCD00mtQYP1PydFLS6YTayNfg14prZ8J4iJFR3GJOx46e7jPCT9qdbGHbN1FVhBnWp66kxn0t2iJMa038Gdan7raHY8tdnWJlADypE0BDfy9oi3XtTsb18CH0cZBx4Ls8IYsRBGhK8laekFYEARrHWS8T3QiCND6njBangUEEwZoMDspeK6B3diZSPsIBE5Gm2Jbr1Rt68RjTpU+35Gab+WaWA1/FDTSdKl9PJ3EKeB1ARAc4wxDQ0puidT3CqePgwVJ89XTHvl10tTbGGPwf/APThWw4L8JxcwAAAABJRU5ErkJggg==",
+                              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABZElEQVR4nO2ZvUoDQRSFP1Hs/AFtBQt9A99BwV20FIV0lr6CjQTyID6DnSbqg9gp/iDopkpzZWEaw+zOzFrsHbkHThNuZs+Xu3dmk4DJZOqqI2ACTAHp2VNgDJSpECMF4aXBw5ROiHIXMSATBUEl4LsYkEpBUAn4OwZEMnFQfQcUA5lT2yfyApwAG85nwFuOHdlXtF0H1fbmVU/9Wo4gpae+yBHkHRgAm871jLzmCCKKHFTfAcVA5tSlnSk1j+4s2gKWgRVgD7gEPnIAqQ/Og8C114Eb7SA7MRcHloAHzSAp2gZmOYAsRtRcawa5AJ5d3RNw3lJ7qhXkOPH7965WkPuGNevfCOjwMNobyGfDmvXrPi1oBfnrumIgWEe8slsLmxFs1xL/eNiMiJ0jtG+TmhzUvwGpFISUgL9iQMYKgkrAtzEgpYKgEvAhkRoqCCsNviJRhfv3VMPMVO52iu6EyWTil34AFdRDhxtrT8cAAAAASUVORK5CYII=",
+                              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAETUlEQVR4nO2aX4hXVRDHP7bWumhhyaYgpdAffRBBiFCRhdRMIf8UBJr4qKIgyT70VJJo5aqoi+hDT2b0oPSkrmJkf6Do36qglesfLLcENRXD1Vx33SsT84vL+Z37u3PO7+5uiV8Y+K3nzsyZe2fmzMwR7uPexaPAPGAD0AK0AVeBTiX5fULX5Jm5wFD+I6gFFgIHgW4gCSThOQC8rrL6HHVAI3A+YvNZ9AewEhjUV0bMAs4UaIBLp4GXetMA+fTNvWiASzv1yxeK4UBrHxqRKP0APF6UEaP1cyf9RKd0D1WhXtNo0s90BhgRa8SgfnKnpIKbRaXo7VUovQJ8CnwEbALeBrYAHwOHgTuRcrfGpNhQJX8Ca4CJQE2OfAngRcCRCD0zrEbUBZ4T1/WNPxz6toABwGzgt8Dgr7UIbwwMwnFUj8eAfQF638gTWBtQdoivD8uQMwF4Sw81qaX2AzuAZcCoDJ4HgN1G3b/nfZWFRkEXgSc8/NMNft+tSWBkRqb82riHBZUMORgZcOLr7wYG7QVNDC6e0bI/j1++cmY/YSnFP/Pwrg80okSXgac88jYaeLuAR3yGzDMqb3D4XgZ6nGfk72PASc+aS+IFLp408CWa8aLewkUNyhLk90/OM7L58alnpgB/5cj1udiPhv2IJ5TBkv4+dHimOus3Mlzl/Ry56yJ4EmCvz5BTBkY5Y9LYYCwhXs2R+4WHZ7lhP1LQluGygVHScxp7nPWZGYYsypErQwkXc41lURksKU8CO41vnPVnMwx5L0euxJWLVwz7ueVTdsPAuNjh2e+sj80w5Nscud97eJbEGnLOwLjW4Wly1l/MqKPyzqddHr5Vsa512MAorpRGg7MuLuRigUHumx6+FgOfL7bK3MRHPZ70mu4iP/HI3WmQ61bQNYazJ9FkU4bVBsZE3SmN5yukZzkwLxlaWBczI/fyb+VqYf7bCeoxqTUxyi018uSJXhcHjHtxs+g/GAzcNgr4OTVvWqz/1gE86MgckpPWfQfoc8Y663ZW0WiNkxKd1aJtT4Wq2Hf6l6jZ09s/pMWmRb+UVJmYE2CIS+9kyJReZSnwuTZNH2QUifLctgB98ysZUmM8Tyy+Lm/XigGBc+V2i/yVEUZ0aTykIaOhFwxGjNYZWIi+FZa3MxA4HijYl0Jb1cD1ntmtfIHJOgTsCNTVFjJxbDBmjhLJNNEtS9LTRPn9q8aInMY3I923JyNdV8TWAAXSb4T0H7HUTATkTDhkVPC0wxuSfaz0XWACKXORvM6xW+MqnfmKvFtMtF+RK46qMDIn+K8VMADPM2IUBUHuw7/MUCRvP41DBbtTPQVDxpmbPXcb6eZmUkEG9GhgR8eEBZOd6zhpkUv4qgAj2mJSbDVfZ5leK9xJ3XNUY4CUHSv6639ASIZ6TbPW0YjNd2kVO7+33SgE0s9M0yq4RWcA7ep6nTo3+0XL/iZtimJuue6D/wPuAqeA+9L0FIqYAAAAAElFTkSuQmCC",
                             ][index]
-                          }?placeholderIfAbsent=true&apiKey=934bdeb679ca4a59ae6868dceb8afdbf`}
+                          }
                           alt="Social media icon"
                         />
+
                         <SocialCount>{count}</SocialCount>
                       </SocialIconContainer>
                     ))}

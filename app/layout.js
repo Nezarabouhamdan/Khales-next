@@ -3,12 +3,12 @@ import "./globals.css";
 import "../fonts/style.css";
 import ClientProviders from "@/provider/ClientProvaders";
 import Link from "next/link";
-import Footer from "@/components/Footer/Footer";
 import { footerData } from "../data/FooterData";
 import StyledComponentsRegistry from "@/utils/registry";
 import ScrollToTop from "@/components/ScrollToTop";
 import Script from "next/script";
 import Calltoaction from "./Calltoaction";
+import Footer from "@/components/Footer New/Footer";
 
 export const metadata = {
   title: "Welcome to Khales",
@@ -75,7 +75,7 @@ Could you please provide more details and help me get started?"
             </Link>
             <Calltoaction />
             <main>{children}</main>
-            <Footer footerData={footerData} />
+            <Footer />{" "}
           </ClientProviders>
         </StyledComponentsRegistry>
       </body>
