@@ -27,6 +27,12 @@ export const metadata = {
     icon: "/favicon.ico",
     apple: "/favicon.png",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services",
+    description:
+      "Welcome to Khales. Explore our luxury design and project management solutions.",
+  },
   authors: [{ name: "Khales Team", url: "https://www.khales.ae/" }],
   creator: "Khales",
   metadataBase: new URL("https://www.khales.ae/"),
