@@ -4,8 +4,10 @@ import styled, { keyframes } from "styled-components";
 // In your NavbarStyles.js
 // Update your NavbarStyles.js
 export const Text = styled.h1`
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-family: Inter;
+
+  font-weight: 200;
   transition: all 0.3s ease;
   position: relative;
   color: black;
