@@ -3,7 +3,7 @@ import Script from "next/script"; // Use Next.js optimized Script component
 import React from "react";
 
 export const metadata = {
-  title: "Buliding contracting",
+  title: "Project feasability",
   description:
     "Welcome to Khales. Explore our luxury design and project management solutions.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata = {
   creator: "Khales",
   metadataBase: new URL("http://www.khales.ae/"),
   openGraph: {
-    title: "Buliding contracting",
+    title: "Project feasability",
     description:
       "Welcome to Khales. Explore our luxury design and project management solutions.",
     url: "http://www.khales.ae/",
@@ -29,7 +29,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Buliding contracting",
+    title: "Project feasability",
     description:
       "Welcome to Khales. Explore our luxury design and project management solutions.",
   },

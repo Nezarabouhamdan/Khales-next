@@ -21,10 +21,6 @@ const ProjectHighlightContainer = styled.article`
 const ProjectHighlight = ({ data }) => {
   return (
     <>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
       <ProjectHighlightContainer>
         <ProjectHeader
           style={{ textAlign: "left" }}
