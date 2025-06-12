@@ -22,7 +22,7 @@ const footerContent = {
     companyLinks: [
       { text: "About", href: "/ABOUTUS" },
       { text: "Contact us", href: "/Contact" },
-      { text: "Portfolio", href: "#" },
+      { text: "Main Page", href: "/" },
       { text: "Book Consultation", href: "/booking" },
       { text: "Blogs", href: "/Blogs" },
     ],
@@ -48,7 +48,7 @@ const footerContent = {
     companyLinks: [
       { text: "من نحن", href: "/ABOUTUS" },
       { text: "اتصل بنا", href: "/Contact" },
-      { text: "أعمالنا", href: "#" },
+      { text: "الصفحة الرئيسية", href: "/" },
       { text: "احجز استشارة", href: "/booking" },
       { text: "المدونة", href: "/Blogs" },
     ],

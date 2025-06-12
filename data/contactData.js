@@ -37,7 +37,7 @@ export const contactData = {
     {
       titlePart1: "London , Uk ",
       titlePart2: "Branch",
-      description: "Al Qana, Rabdan, Abu Dhabi, UAE\n\n +971 56 189 9918",
+      description: "London , Uk\n\n +971 56 189 9918",
       link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8",
     },
   ],
