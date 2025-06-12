@@ -352,16 +352,25 @@ const Footer = () => {
             />
             <Description>{content.description}</Description>
             <SocialMedia>
-              <SocialLink href="#" aria-label="Facebook">
+              <SocialLink
+                href="https://www.facebook.com/Khales.ae/"
+                aria-label="Facebook"
+              >
                 <FacebookIcon />
               </SocialLink>
               <SocialLink href="#" aria-label="Pinterest">
                 <PinterestIcon />
               </SocialLink>
-              <SocialLink href="#" aria-label="Instagram">
+              <SocialLink
+                href="https://www.instagram.com/khales.ae/"
+                aria-label="Instagram"
+              >
                 <InstagramIcon />
               </SocialLink>
-              <SocialLink href="#" aria-label="LinkedIn">
+              <SocialLink
+                href="https://www.linkedin.com/company/khales-ae/posts/?feedView=all"
+                aria-label="LinkedIn"
+              >
                 <LinkedInIcon />
               </SocialLink>
             </SocialMedia>
