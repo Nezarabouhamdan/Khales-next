@@ -358,7 +358,10 @@ const Footer = () => {
               >
                 <FacebookIcon />
               </SocialLink>
-              <SocialLink href="#" aria-label="Pinterest">
+              <SocialLink
+                href="https://www.pinterest.com/khalesae/"
+                aria-label="Pinterest"
+              >
                 <PinterestIcon />
               </SocialLink>
               <SocialLink

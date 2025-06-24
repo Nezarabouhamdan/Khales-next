@@ -4,7 +4,7 @@ import React from "react";
 const Analytics = () => {
   return (
     <>
-      <script
+      {/* <script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-QWG6JYC3Q8"
       ></script>
@@ -36,7 +36,7 @@ const Analytics = () => {
           fbq('init', '9524287924291839');
           fbq('track', 'PageView');
         `}
-      </script>
+      </script> */}
     </>
   );
 };

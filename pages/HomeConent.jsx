@@ -1,7 +1,6 @@
 "use client";
 import { useLanguage } from "@/Context/Languagecontext";
 import { useEffect, useState } from "react";
-import { slides } from "../data/HeroData";
 import WhoAreWe from "@/components/Whoweare/WhoAreWe";
 import ServicesSwiper from "@/components/Whatwedodeep/Whatwedo";
 import FeaturedProjects from "@/components/Featured Projects/FeaturedProjects";

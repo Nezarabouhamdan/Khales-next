@@ -38,7 +38,7 @@ export const metadata = {
 const Thankyou = () => {
   return (
     <>
-      {" "}
+      {/* {" "}
       <Script
         strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
@@ -65,7 +65,7 @@ const Thankyou = () => {
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
-      />{" "}
+      />{" "} */}
       <ServicesPage />
     </>
   );

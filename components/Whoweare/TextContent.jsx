@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useLanguage } from "../../Context/Languagecontext";
 import Link from "next/link";
+// Step 1: Import motion from Framer Motion
+import { motion } from "framer-motion";
 
 const content = {
   eng: [
@@ -25,34 +27,74 @@ const content = {
   ],
 };
 
+// Step 2: Define Animation Variants
+// This variant is for the container, orchestrating the children's animations.
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      // This creates the "sequence" effect. Each child will animate 0.3s after the previous one.
+      staggerChildren: 0.3,
+      duration: 0.5,
+    },
+  },
+};
+
+// This variant is for each individual text item (Title, Description, Button).
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 }, // Start invisible and 20px down
+  visible: {
+    opacity: 1,
+    y: 0, // Animate to fully visible and its original position
+    transition: {
+      duration: 0.6,
+      ease: "easeOut", // A smooth easing function
+    },
+  },
+};
+
 const TextContent = () => {
-  const { language } = useLanguage(); // Use the context
+  const { language } = useLanguage();
   const selectedcontent = content[language] || content["eng"];
+
   return (
-    <TextSection rtl={language === "ar"}>
-      <Title>
+    // Step 3: Apply variants and in-view trigger to the main container
+    <TextSection
+      as={motion.div} // Use the 'as' prop to render TextSection as a motion.div
+      variants={containerVariants}
+      initial="hidden" // Start in the "hidden" state
+      whileInView="visible" // Animate to "visible" when it enters the viewport
+      viewport={{ once: true, amount: 0.3 }} // Animation triggers once when 30% is visible
+      rtl={language === "ar"}
+    >
+      {/* Step 4: Apply the item variant to each child element */}
+      <Title as={motion.h1} variants={itemVariants}>
         {selectedcontent[0].title}
         <GreenText> {selectedcontent[0].green}</GreenText>
       </Title>
-      <Description>{selectedcontent[0].content}</Description>
-      <Link href={"/ABOUTUS"}>
-        <LearnMoreButton
-          role="button"
-          tabIndex={0}
-          onClick={() => {}}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              // Handle click
-            }
-          }}
-        >
-          {selectedcontent[0].button}
-        </LearnMoreButton>
-      </Link>
+
+      <Description as={motion.p} variants={itemVariants}>
+        {selectedcontent[0].content}
+      </Description>
+
+      <motion.div variants={itemVariants}>
+        <Link href={"/ABOUTUS"} passHref>
+          <LearnMoreButton
+            role="button"
+            tabIndex={0}
+            // No need for onClick/onKeyDown handlers if it's just for navigation
+          >
+            {selectedcontent[0].button}
+          </LearnMoreButton>
+        </Link>
+      </motion.div>
     </TextSection>
   );
 };
+
+// No changes needed for the styled-components definitions below.
+// Framer Motion will handle adding the necessary transform and opacity styles.
 
 export const TextSection = styled.div`
   flex: 2 0 100%;

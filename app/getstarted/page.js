@@ -46,7 +46,7 @@ const Page = () => {
   return (
     <>
       {" "}
-      <Script
+      {/* <Script
         strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
       />
@@ -85,7 +85,7 @@ const Page = () => {
           });
         `,
         }}
-      />
+      /> */}
       <div
         style={{
           display: "flex",

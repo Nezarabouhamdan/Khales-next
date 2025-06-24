@@ -9,6 +9,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Script from "next/script";
 import Calltoaction from "./Calltoaction";
 import Footer from "@/components/Footer New/Footer";
+import { Inter } from "next/font/google";
+import Head from "next/head";
 
 export const metadata = {
   title: "Welcome to Khales",
@@ -37,11 +39,27 @@ export const metadata = {
   creator: "Khales",
   metadataBase: new URL("https://www.khales.ae/"),
 };
+const META_PIXEL_ID = "3634194126882623"; // Replace with your actual pixel ID
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Analytics */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-FYYEQCM8Z7"
+        ></Script>
+        <Script
+          dangerouslySetInnerHTML={{
+            __html: `
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      gtag('config', 'G-FYYEQCM8Z7');
+                    `,
+          }}
+        />
         {/*      <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-10827937555"
           strategy="afterInteractive"
@@ -55,6 +73,32 @@ export default function RootLayout({ children }) {
           `}
         </Script>  */}
         {/* Define conversion event snippet */}
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
+              n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'Script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '${META_PIXEL_ID}');
+              fbq('track', 'PageView');
+            `,
+          }}
+        />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+          />
+        </noscript>
       </head>
       <body>
         {" "}
