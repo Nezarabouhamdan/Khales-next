@@ -260,7 +260,11 @@ export default function MultiStepForm() {
           {currentStep < content.steps.length - 1 ? (
             <NextButton onClick={handleNext}>{content.buttons.next}</NextButton>
           ) : (
-            <NextButton onClick={handleSubmitClick} disabled={isSubmitting}>
+            <NextButton
+              id="booking"
+              onClick={handleSubmitClick}
+              disabled={isSubmitting}
+            >
               {isSubmitting ? (
                 <LoadingDots $rtl={isRTL}>
                   <span>.</span>
