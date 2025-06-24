@@ -225,7 +225,7 @@ export default function MultiStepForm() {
 
   return (
     <>
-      <FormContainer $rtl={isRTL}>
+      <FormContainer $rtl={isRTL} id="booking" className="booking">
         <Stepper
           steps={content.steps}
           currentStep={currentStep}
