@@ -136,7 +136,7 @@ Could you please provide more details and help me get started?"
             >
               <i className="fa fa-whatsapp my-float"></i>
             </Link>
-            <Calltoaction className="call" id="call" />
+            <Calltoaction id="call" />
             <main>{children}</main>
             <Footer />{" "}
           </ClientProviders>
