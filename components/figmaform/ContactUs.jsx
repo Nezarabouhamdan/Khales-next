@@ -203,7 +203,7 @@ const ContactForm = ({ content, rtl }) => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form id="contact" onSubmit={handleSubmit}>
         <FormGroup>
           <DropdownContainer>
             <DropdownInput
