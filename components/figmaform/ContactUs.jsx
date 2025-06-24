@@ -280,7 +280,12 @@ const ContactForm = ({ content, rtl }) => {
           />
         </FormGroup>
 
-        <SubmitButton type="submit" disabled={isSubmitting} $rtl={rtl}>
+        <SubmitButton
+          id="contact"
+          type="submit"
+          disabled={isSubmitting}
+          $rtl={rtl}
+        >
           {isSubmitting ? (
             <LoadingDots $rtl={rtl}>
               <span>.</span>
