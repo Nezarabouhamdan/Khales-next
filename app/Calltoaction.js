@@ -9,7 +9,12 @@ function Calltoaction() {
   };
 
   return (
-    <a href="tel:+971551299880" className="float2" onClick={handleClick}>
+    <a
+      id="call"
+      href="tel:+971551299880"
+      className="float2"
+      onClick={handleClick}
+    >
       <i className="fa fa-phone my-float2"></i>
     </a>
   );
