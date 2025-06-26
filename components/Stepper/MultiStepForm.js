@@ -250,7 +250,12 @@ export default function MultiStepForm() {
           />
         )}
         {currentStep === 2 && (
-          <StepThree formData={formData} content={content.stepThree} />
+          <StepThree
+            formData={formData}
+            updateFormData={updateFormData}
+            content={content.stepThree}
+            isRTL={!!isRTL}
+          />
         )}
 
         <ButtonRow $rtl={isRTL}>
