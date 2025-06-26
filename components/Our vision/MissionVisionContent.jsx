@@ -36,17 +36,21 @@ const ContentContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  align-items: stretch;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
   @media (max-width: 991px) {
-    max-width: 100%;
     margin-top: 40px;
   }
 `;
 
 const CardsSection = styled.div`
-  margin-top: 163px;
+  margin-top: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   @media (max-width: 991px) {
-    max-width: 100%;
     margin-top: 40px;
   }
 `;
@@ -54,20 +58,20 @@ const CardsSection = styled.div`
 const CardsWrapper = styled.div`
   gap: 20px;
   display: flex;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: center;
   @media (max-width: 991px) {
     flex-direction: column;
-    align-items: stretch;
-    gap: 0px;
+    align-items: center;
+    gap: 20px;
   }
 `;
 
 const MissionColumn = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  line-height: normal;
   width: 50%;
-  margin-left: 0px;
   @media (max-width: 991px) {
     width: 100%;
   }
@@ -76,10 +80,7 @@ const MissionColumn = styled.div`
 const VisionColumn = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  line-height: normal;
   width: 50%;
-  margin-left: 00px;
   @media (max-width: 991px) {
     width: 100%;
   }

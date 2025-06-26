@@ -27,10 +27,9 @@ const AboutusPage = () => {
     <>
       {" "}
       <div style={{ height: "10vh" }}></div>
-      {/* <MissionVision />
       <SuccessStory />
-      <TeamSection /> */}
-      <AboutSection />
+      <MissionVision />
+      <TeamSection />
     </>
   );
 };

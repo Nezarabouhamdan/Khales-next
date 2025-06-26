@@ -134,7 +134,7 @@ Could you please provide more details and help me get started?"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="fa fa-whatsapp my-float"></i>
+              <i id="whatsapp" className="fa fa-whatsapp my-float"></i>
             </Link>
             <Calltoaction id="call" />
             <main>{children}</main>

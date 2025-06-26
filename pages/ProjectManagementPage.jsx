@@ -20,7 +20,7 @@ export const slides = {
       image: "https://i.ibb.co/W4CfS4wX/project.jpg",
       title: "Efficient Project Management for Success",
       content: "Delivering seamless projects from concept to completion",
-      button: "Let’s Get Started",
+      button: "Book Appointment",
     },
   ],
   ar: [
@@ -29,7 +29,7 @@ export const slides = {
       image: "https://i.ibb.co/W4CfS4wX/project.jpg",
       title: "إدارة مشاريع فعالة لتحقيق النجاح",
       content: "تنفيذ مشاريع متكاملة من الفكرة إلى الإنجاز",
-      button: "لنبدأ الآن",
+      button: "احجز موعدك الآن",
     },
   ],
 };

@@ -19,7 +19,7 @@ export const slides = {
       title: "Your Gateway to Smart Investment",
       content:
         "Partner with us to connect with investors and bring premium land developments to life.",
-      button: "Learn More",
+      button: "Book Appointment",
     },
   ],
   ar: [
@@ -28,7 +28,7 @@ export const slides = {
       image: "https://i.ibb.co/fVqLKY3r/investing.jpg",
       title: "بوابتك نحو العقارات الذكية",
       content: "شركاؤنا لربطك بالمستثمرين وإحياء تطويرات الأراضي المتميزة.",
-      button: "اعرف المزيد",
+      button: "احجز موعدك الآن",
     },
   ],
 };

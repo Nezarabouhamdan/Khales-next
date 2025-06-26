@@ -8,6 +8,9 @@ import TestimonialSlider from "@/components/Reviews/TestimonialSlider";
 import CTASection from "@/components/Homecontact/CTASection";
 import dynamic from "next/dynamic";
 import Hero from "@/components/Hero/Hero";
+import StatisticsSection from "@/components/Section1";
+import Services from "@/components/Services/Services";
+import WhyUs from "@/components/why khales/WhyUs";
 const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 
 export default function HomeContent() {
@@ -29,7 +32,10 @@ export default function HomeContent() {
         </h1>
         <Hero />
       </section>
+      {/* <StatisticsSection /> */}
       <WhoAreWe />
+      {/* <Services /> */}
+      {/* <WhyUs /> */}
       <ServicesSwiper />
       <FeaturedProjects />
       <TestimonialSlider />

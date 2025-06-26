@@ -21,7 +21,7 @@ const slides = {
         "https://i.ibb.co/DPKhyq7k/khales-ae-real-photograph-of-a-super-luxury-modern-mansion-fr-c2c57d33-5a47-4ccb-b054-498b16745d23-3.png",
       title: "Make confident decisions with data-driven insights.",
       content: "Your roadmap to smarter investments.",
-      button: "Start You Project Today",
+      button: "Book Appointment",
     },
   ],
   ar: [
@@ -31,7 +31,7 @@ const slides = {
         "https://i.ibb.co/DPKhyq7k/khales-ae-real-photograph-of-a-super-luxury-modern-mansion-fr-c2c57d33-5a47-4ccb-b054-498b16745d23-3.png",
       title: "اتخذ قرارات واثقة مبنية على تحليلات دقيقة مدعومة بالبيانات.",
       content: "خارطة طريقك نحو استثمارات أكثر ذكاءً.",
-      button: " ابدأ مشروعك اليوم",
+      button: "احجز موعدك الآن",
     },
   ],
 };

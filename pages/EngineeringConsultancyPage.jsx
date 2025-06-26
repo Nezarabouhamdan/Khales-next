@@ -18,7 +18,7 @@ export const slides = {
       image: "https://i.ibb.co/1f92NM3V/eng.jpg",
       title: "Engineering Excellence That Inspires",
       content: "Innovative engineering solutions tailored to your vision.",
-      button: "Talk to an Expert",
+      button: "Book Appointment",
     },
   ],
   ar: [
@@ -27,7 +27,7 @@ export const slides = {
       image: "https://i.ibb.co/1f92NM3V/eng.jpg",
       title: "هندسة بإتقان تلهم",
       content: "حلول هندسية مبتكرة تتماشى مع رؤيتك.",
-      button: "تواصل مع خبير",
+      button: "احجز موعدك الآن",
     },
   ],
 };

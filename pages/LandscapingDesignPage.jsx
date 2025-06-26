@@ -18,7 +18,7 @@ export const slides = {
       image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
       title: "Breathtaking Landscapes That Inspire",
       content: "Transform your outdoor space into a natural masterpiece",
-      button: "Book Your Design",
+      button: "Book Appointment",
     },
   ],
   ar: [
@@ -27,7 +27,7 @@ export const slides = {
       image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
       title: "مناظر طبيعية خلابة تُلهم",
       content: "حوّل مساحتك الخارجية إلى لوحة فنية طبيعية",
-      button: " احجز تصميمك الآن",
+      button: "احجز موعدك الآن",
     },
   ],
 };

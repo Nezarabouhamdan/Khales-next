@@ -18,7 +18,7 @@ export const slides = {
       title: "Shape Your Vision with Smart Planning",
       content:
         "Empowering your projects with innovative and sustainable planning solutions.",
-      button: "Start Planning Today",
+      button: "Book Appointment",
     },
   ],
   ar: [
@@ -27,7 +27,7 @@ export const slides = {
       image: "https://i.ibb.co/fzFfphKy/development.jpg",
       title: "شكّل رؤيتك بتخطيط ذكي",
       content: "نُمكّن مشاريعك بحلول تخطيط مبتكرة ومستدامة.",
-      button: "ابدأ التخطيط الآن",
+      button: "احجز موعدك الآن",
     },
   ],
 };

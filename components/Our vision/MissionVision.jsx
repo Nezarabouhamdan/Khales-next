@@ -49,7 +49,7 @@ const MainContainer = styled.section`
 
 const ContentWrapper = styled.div`
   width: 100%;
-  max-width: 1645px;
+  max-width: 1450px;
   @media (max-width: 991px) {
     max-width: 100%;
   }
@@ -70,7 +70,7 @@ const ImageColumn = styled.div`
   flex-direction: column;
   align-items: stretch;
   line-height: normal;
-  width: 50%;
+  width: 25%;
   margin-left: 0px;
   @media (max-width: 991px) {
     width: 100%;
@@ -78,10 +78,10 @@ const ImageColumn = styled.div`
 `;
 
 const HeroImage = styled.img`
-  aspect-ratio: 1.68;
+  aspect-ratio: 1;
   object-fit: contain;
   object-position: center;
-  width: 100%;
+  width: s0%;
   margin-top: auto;
   margin-bottom: auto;
   align-self: stretch;
@@ -94,9 +94,11 @@ const HeroImage = styled.img`
 const ContentColumn = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   line-height: normal;
-  width: 50%;
+  width: 75%;
   margin-left: 20px;
   @media (max-width: 991px) {
     width: 100%;

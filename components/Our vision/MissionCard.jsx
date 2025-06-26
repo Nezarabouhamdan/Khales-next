@@ -20,6 +20,7 @@ const MissionContainer = styled.section`
   align-items: start;
   font-family: Manrope, -apple-system, Roboto, Helvetica, sans-serif;
   color: #fff;
+  border-radius: 8px;
   width: 100%;
   @media (max-width: 991px) {
     margin-top: 40px;
@@ -40,9 +41,8 @@ const MissionDescription = styled.p`
   color: #fff;
   font-size: 18px;
   font-weight: 400;
-  line-height: 27px;
   letter-spacing: -0.2px;
-  margin-top: 78px;
+  margin-top: 30px;
   margin-bottom: 0;
   @media (max-width: 991px) {
     margin-top: 40px;

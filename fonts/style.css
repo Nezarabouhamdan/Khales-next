@@ -24,14 +24,14 @@
 @font-face {
   font-family: "Playfair";
   src: local("Playfair Meduim"), local("Inter-Meduim"),
-    url("Merriweather_120pt-SemiBold.ttf") format("truetype");
+    url("BeVietnamPro-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Inter ExtraLight";
   src: local("Inter ExtraLight"), local("Inter-ExtraLight"),
-    url("Playfair_144pt-Regular.ttf") format("truetype");
+    url("BeVietnamPro-Bold.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }

@@ -1,30 +1,35 @@
+// MissionVisionHeader.js
 "use client";
 import React from "react";
 import styled from "styled-components";
 
-const MissionVisionHeader = ({ title = "Mission & Vision" }) => {
-  return <HeaderTitle>{title}</HeaderTitle>;
-};
+const HeaderContainer = styled.header`
+  width: 100%;
+  text-align: center; /* This is the key property to center the text */
+  margin-bottom: 20px; /* Adds space between title and cards */
+`;
 
-const HeaderTitle = styled.h1`
+const Title = styled.h2`
   color: #000;
-  font-family:
-    Manrope,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-size: 128px;
-  font-weight: 800;
-  line-height: 128px;
-  letter-spacing: -1.41px;
-  align-self: start;
-  margin: 0;
+  font-size: 56px;
+  font-weight: 800; /* Bold weight */
+  letter-spacing: -1px;
+
   @media (max-width: 991px) {
-    max-width: 100%;
-    font-size: 40px;
-    line-height: 45px;
+    font-size: 44px;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 36px;
   }
 `;
+
+const MissionVisionHeader = ({ title }) => {
+  return (
+    <HeaderContainer>
+      <Title>{title}</Title>
+    </HeaderContainer>
+  );
+};
 
 export default MissionVisionHeader;
