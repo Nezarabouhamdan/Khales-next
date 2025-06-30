@@ -2,20 +2,22 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MultiStepForm from "../components/Stepper/MultiStepForm";
-import { GreenText, Title } from "../components/Whoweare/TextContent";
+import { Title } from "../components/Whoweare/TextContent"; // Removed unused GreenText import
 import { useLanguage } from "../Context/Languagecontext";
 
 const Wrapper = styled.section`
   position: relative;
   width: 100%;
-  height: 100%;
-  /* Remove overflow: hidden */
+  min-height: 100vh; /* Use min-height to ensure it fills the screen */
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0rem;
+  /* Removed justify-content to allow content to start from the top */
+  padding-top: 100px; /* Use padding instead of margin on the Title */
+  padding-bottom: 50px;
+  gap: 2rem; /* Add some gap between title and form */
+
   &::before {
     content: "";
     position: absolute;
@@ -33,31 +35,40 @@ const Wrapper = styled.section`
 `;
 
 const BookingPage = () => {
-  const { language } = useLanguage(); // Assuming you have a language context
+  const { language } = useLanguage();
   const [isClient, setIsClient] = useState(false);
+
+  // --- 1. Create a state variable for the page title ---
+  const [pageTitle, setPageTitle] = useState("");
 
   useEffect(() => {
     setIsClient(true);
-    return () => setIsClient(false); // Cleanup
   }, []);
 
-  // change metadata from client side
+  // --- 2. Create an effect to update BOTH the state and document.title ---
   useEffect(() => {
-    document.title = `${
-      language === "ar" ? "احجز موعدك" : "Book an appointemt"
-    } - Khales`;
-  }, [language]);
+    // Only run this logic on the client side
+    if (isClient) {
+      const newTitle = language === "ar" ? "احجز موعدك" : "Book an Appointment";
 
-  // Don't render anything during SSR
-  if (!isClient) return null;
+      // Update the React state (this will cause the component to re-render)
+      setPageTitle(newTitle);
+
+      // Update the browser tab title
+      document.title = newTitle;
+    }
+  }, [language, isClient]); // This effect runs when language or isClient changes
+
+  // Don't render anything during SSR to avoid hydration errors
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <>
       <Wrapper>
-        <Title style={{ marginTop: "100px" }}>
-          Booking
-          <GreenText> appointment </GreenText>
-        </Title>
+        {/* --- 3. Use the state variable here for rendering --- */}
+        <Title>{pageTitle}</Title>
         <MultiStepForm />
       </Wrapper>
     </>
