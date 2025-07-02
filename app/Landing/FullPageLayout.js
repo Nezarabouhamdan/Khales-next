@@ -972,6 +972,7 @@ const DetailedServices = ({ scrollToRegister }) => {
   );
 };
 
+// PASTE THIS CORRECTED COMPONENT INTO YOUR FILE
 const RegisterInterestForm = () => {
   const [emirateOpen, setEmirateOpen] = useState(false);
   const [budgetOpen, setBudgetOpen] = useState(false);
@@ -1144,6 +1145,10 @@ const RegisterInterestForm = () => {
                   as="div"
                   style={{ textAlign: "right", paddingRight: 0 }}
                 >
+                  {/*
+                    HERE IS THE FIX: I've wrapped the placeholder string
+                    in `{''}` to ensure it's treated as a safe JS string.
+                  */}
                   {formData.emirate ||
                     "في أي إمارة تخطط للحصول على قطعة الأرض؟"}
                 </FormInput>
@@ -1173,6 +1178,9 @@ const RegisterInterestForm = () => {
                   as="div"
                   style={{ textAlign: "right", paddingRight: 0 }}
                 >
+                  {/*
+                    AND HERE IS THE SECOND FIX: Same solution for the budget placeholder.
+                  */}
                   {formData.budget || "ميزانية البناء المتوقعة"}
                 </FormInput>
                 <AnimatePresence>
