@@ -688,20 +688,24 @@ const SeloraHero = ({ scrollToSection }) => {
       <Overlay />
       <Header initial="hidden" animate="visible" variants={headerVariants}>
         <NavLinksDesktop>
-          <a onClick={() => scrollToSection("eng")}>تصميم المناظر الطبيعية</a>
-          <a onClick={() => scrollToSection("eng")}>التصميم الداخلي</a>
+          <a onClick={() => scrollToSection("eng")}>
+            {"تصميم المناظر الطبيعية"}
+          </a>
+          <a onClick={() => scrollToSection("eng")}>{"التصميم الداخلي"}</a>
         </NavLinksDesktop>
         <Logo>
           <img
             width={"100px"}
             src={"https://i.ibb.co/m5xG5N9J/Khales-White-Logo.png"}
+            alt="Khales Logo" // FIX: Added alt text for accessibility
           />
-          <p>الطبيعة المصممة ببراعة</p>
+          {/* FIX: Wrapped text in curly braces to treat as a string */}
+          <p>{"الطبيعة المصممة ببراعة"}</p>
         </Logo>
         <NavLinksDesktop>
-          <a onClick={() => scrollToSection("eng")}>الإشراف على الموقع</a>
-          <a onClick={() => scrollToSection("pm")}>الاستشارات الهندسية</a>
-          <a onClick={() => scrollToSection("pm")}>إدارة المشاريع</a>
+          <a onClick={() => scrollToSection("eng")}>{"الإشراف على الموقع"}</a>
+          <a onClick={() => scrollToSection("pm")}>{"الاستشارات الهندسية"}</a>
+          <a onClick={() => scrollToSection("pm")}>{"إدارة المشاريع"}</a>
         </NavLinksDesktop>
         <HamburgerIcon onClick={() => setMenuOpen(true)}>
           <FaBars />
@@ -742,17 +746,17 @@ const SeloraHero = ({ scrollToSection }) => {
           <Headline>
             <div style={{ overflow: "hidden" }}>
               <motion.div variants={textRevealVariants}>
-                مجتمع مسور حصري
+                {"مجتمع مسور حصري"}
               </motion.div>
             </div>
             <div style={{ overflow: "hidden" }}>
               <motion.div variants={textRevealVariants}>
-                يضم 30 فيلا فاخرة
+                {"يضم 30 فيلا فاخرة"}
               </motion.div>
             </div>
             <div style={{ overflow: "hidden" }}>
               <motion.div variants={textRevealVariants}>
-                في ميدان، دبي
+                {"في ميدان، دبي"}
               </motion.div>
             </div>
           </Headline>
@@ -761,7 +765,7 @@ const SeloraHero = ({ scrollToSection }) => {
           variants={itemFadeIn}
           onClick={() => scrollToSection("register")}
         >
-          سجل اهتمامك
+          {"سجل اهتمامك"}
         </CTAButton>
       </MainContent>
     </HeroWrapper>
@@ -792,23 +796,24 @@ const ServicesOverview = ({ scrollToRegister }) => {
         >
           <TextColumn>
             <motion.div variants={itemVariants}>
-              <ServicesTitle>إدارة المشاريع:</ServicesTitle>
+              <ServicesTitle>{"إدارة المشاريع:"}</ServicesTitle>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <ServicesSubtitle>دع خالص يتولى مشروعك</ServicesSubtitle>
+              <ServicesSubtitle>{"دع خالص يتولى مشروعك"}</ServicesSubtitle>
             </motion.div>
           </TextColumn>
           <TextColumn>
             <motion.div variants={itemVariants}>
+              {/* FIX: Wrapped paragraph text in curly braces to treat as a string */}
               <ServicesParagraph>
-                نحن نعتني بكل شيء، من الموافقات الأولية إلى التسليم النهائي.
-                يشرف مديرو المشاريع لدينا على كل التفاصيل والجداول الزمنية
-                والميزانيات لضمان التنفيذ السلس.
+                {
+                  "نحن نعتني بكل شيء، من الموافقات الأولية إلى التسليم النهائي. يشرف مديرو المشاريع لدينا على كل التفاصيل والجداول الزمنية والميزانيات لضمان التنفيذ السلس."
+                }
               </ServicesParagraph>
             </motion.div>
             <motion.div variants={itemVariants}>
               <ServicesConsultButton onClick={scrollToRegister}>
-                استشر الآن
+                {"استشر الآن"}
               </ServicesConsultButton>
             </motion.div>
           </TextColumn>
@@ -821,18 +826,19 @@ const ServicesOverview = ({ scrollToRegister }) => {
         >
           <TextColumn>
             <motion.div variants={itemVariants}>
-              <ServicesTitle>الاستشارات الهندسية</ServicesTitle>
+              <ServicesTitle>{"الاستشارات الهندسية"}</ServicesTitle>
             </motion.div>
             <motion.div variants={itemVariants}>
+              {/* FIX: Wrapped paragraph text in curly braces to treat as a string */}
               <ServicesParagraph>
-                يقوم مهندسونا بإنشاء خطط واضحة ومتوافقة تلبي جميع اللوائح
-                المحلية وظروف الموقع. تتم مراجعة كل التفاصيل من أجل السلامة
-                والكفاءة والأداء طويل الأمد.
+                {
+                  "يقوم مهندسونا بإنشاء خطط واضحة ومتوافقة تلبي جميع اللوائح المحلية وظروف الموقع. تتم مراجعة كل التفاصيل من أجل السلامة والكفاءة والأداء طويل الأمد."
+                }
               </ServicesParagraph>
             </motion.div>
             <motion.div variants={itemVariants}>
               <ServicesConsultButton onClick={scrollToRegister}>
-                استشر الآن
+                {"استشر الآن"}
               </ServicesConsultButton>
             </motion.div>
           </TextColumn>
@@ -851,8 +857,6 @@ const ServicesOverview = ({ scrollToRegister }) => {
     </ServicesSectionWrapper>
   );
 };
-
-// PASTE THIS CORRECTED COMPONENT INTO YOUR FILE
 
 const DetailedServices = ({ scrollToRegister }) => {
   const containerVariants = {
@@ -884,18 +888,19 @@ const DetailedServices = ({ scrollToRegister }) => {
           </DetailedImageColumn>
           <TextColumn>
             <motion.div variants={itemVariants}>
-              <ServicesTitle>الإشراف على الموقع</ServicesTitle>
+              <ServicesTitle>{"الإشراف على الموقع"}</ServicesTitle>
             </motion.div>
             <motion.div variants={itemVariants}>
+              {/* FIX: Wrapped paragraph text in curly braces to treat as a string */}
               <ServicesParagraph>
-                قوة تصميمك تكمن في تنفيذه. يضمن مشرفونا في الموقع أن كل مهمة
-                تلبي أعلى معايير الجودة وفي الوقت المحدد. نحن نمثل مصالحك،
-                ونراقب الجودة، ونمنع الأخطاء المكلفة.
+                {
+                  "قوة تصميمك تكمن في تنفيذه. يضمن مشرفونا في الموقع أن كل مهمة تلبي أعلى معايير الجودة وفي الوقت المحدد. نحن نمثل مصالحك، ونراقب الجودة، ونمنع الأخطاء المكلفة."
+                }
               </ServicesParagraph>
             </motion.div>
             <motion.div variants={itemVariants}>
               <ServicesConsultButton onClick={scrollToRegister}>
-                استشر الآن
+                {"استشر الآن"}
               </ServicesConsultButton>
             </motion.div>
           </TextColumn>
@@ -907,15 +912,15 @@ const DetailedServices = ({ scrollToRegister }) => {
           viewport={{ once: true, amount: 0.2 }}
         >
           <motion.div variants={itemVariants}>
-            <ServicesTitle>التصميم الداخلي</ServicesTitle>
+            <ServicesTitle>{"التصميم الداخلي"}</ServicesTitle>
+            {/* FIX: Wrapped paragraph text in curly braces to treat as a string */}
             <ServicesParagraph>
-              نصمم بيئات داخلية مدروسة وعملية ومصممة خصيصًا لتناسب طابع كل عقار.
-              سواء كانت حديقة خاصة أو مساحة معيشة خارجية متكاملة، فإن حلولنا
-              مبنية حول نمط حياتك والبيئة المحلية، مع مراعاة الراحة والجمال
-              والمناخ على المدى الطويل.
+              {
+                "نصمم بيئات داخلية مدروسة وعملية ومصممة خصيصًا لتناسب طابع كل عقار. سواء كانت حديقة خاصة أو مساحة معيشة خارجية متكاملة، فإن حلولنا مبنية حول نمط حياتك والبيئة المحلية، مع مراعاة الراحة والجمال والمناخ على المدى الطويل."
+              }
             </ServicesParagraph>
             <ServicesConsultButton onClick={scrollToRegister}>
-              استشر الآن
+              {"استشر الآن"}
             </ServicesConsultButton>
           </motion.div>
           <InteriorGallery>
@@ -945,18 +950,19 @@ const DetailedServices = ({ scrollToRegister }) => {
           </DetailedImageColumn>
           <TextColumn>
             <motion.div variants={itemVariants}>
-              <ServicesTitle>تصميم المناظر الطبيعية</ServicesTitle>
+              <ServicesTitle>{"تصميم المناظر الطبيعية"}</ServicesTitle>
             </motion.div>
             <motion.div variants={itemVariants}>
+              {/* FIX: Wrapped paragraph text in curly braces to treat as a string */}
               <ServicesParagraph>
-                نصمم بيئات خارجية مدروسة وعملية ومصممة خصيصًا لتناسب طابع كل
-                عقار. حلولنا مبنية حول نمط حياتك والبيئة المحلية، مع مراعاة
-                الراحة والجمال والمناخ.
+                {
+                  "نصمم بيئات خارجية مدروسة وعملية ومصممة خصيصًا لتناسب طابع كل عقار. حلولنا مبنية حول نمط حياتك والبيئة المحلية، مع مراعاة الراحة والجمال والمناخ."
+                }
               </ServicesParagraph>
             </motion.div>
             <motion.div variants={itemVariants}>
               <ServicesConsultButton onClick={scrollToRegister}>
-                استشر الآن
+                {"استشر الآن"}
               </ServicesConsultButton>
             </motion.div>
           </TextColumn>
@@ -1061,7 +1067,7 @@ const RegisterInterestForm = () => {
               },
             }}
           >
-            سجل اهتمامك
+            {"سجل اهتمامك"}
           </motion.h1>
           <motion.p
             variants={{
@@ -1110,7 +1116,7 @@ const RegisterInterestForm = () => {
               <PhoneInputWrapper
                 style={{ borderColor: errors.phone ? "#e74c3c" : "#ccc" }}
               >
-                <span>🇦🇪</span>
+                <span>{"🇦🇪"}</span>
                 <FormInput
                   name="phone"
                   type="tel"
@@ -1254,7 +1260,6 @@ const FullPageLayout = () => {
         />
       </div>
 
-      {/* We assign the engRef to the container of DetailedServices to handle both */}
       <div ref={engRef}>
         <DetailedServices
           supervisionRef={supervisionRef}
