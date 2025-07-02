@@ -852,6 +852,8 @@ const ServicesOverview = ({ scrollToRegister }) => {
   );
 };
 
+// PASTE THIS CORRECTED COMPONENT INTO YOUR FILE
+
 const DetailedServices = ({ scrollToRegister }) => {
   const containerVariants = {
     hidden: {},
