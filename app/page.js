@@ -1,3 +1,5 @@
+import Footer from "@/components/Footer New/Footer";
+import Navbar from "@/components/Navbar/Navbar";
 import HomeContent from "@/pages/HomeConent";
 import Script from "next/script"; // Use Next.js optimized Script component
 
@@ -61,7 +63,9 @@ export default function Home() {
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
       /> */}
+      <Navbar />
       <HomeContent />
+      <Footer />
     </>
   );
 }

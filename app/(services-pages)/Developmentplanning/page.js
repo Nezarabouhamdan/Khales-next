@@ -1,6 +1,8 @@
 import DevelopmentplanningPage from "@/pages/DevelopmentplanningPage";
 import React from "react";
 import Script from "next/script"; // Use Next.js optimized Script component
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer New/Footer";
 
 export const metadata = {
   title: "Develpoment Planing",
@@ -66,7 +68,9 @@ const Developmentplanning = () => {
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
       /> */}
+      <Navbar />
       <DevelopmentplanningPage />
+      <Footer />
     </>
   );
 };

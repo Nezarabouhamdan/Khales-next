@@ -1,7 +1,21 @@
 import ServicesPage from "@/pages/ServicesPage";
 import React from "react";
 import Script from "next/script"; // Use Next.js optimized Script component
-
+import MissionVision from "@/components/MV/Mv";
+import OurServices from "@/components/Ser2/Ser2";
+import ValuePropositionV2 from "@/components/Statics/Statics2";
+import SuccessStory from "@/components/Ceo/S2";
+import FullCaseStudyPage from "@/components/case study/cs1";
+import CaseStudy from "@/components/case study/cs2";
+import WhyKhales from "@/components/Whykhales/w1";
+import WhyKhalesSplit from "@/components/Whykhales/w2";
+import WhyKhalesHybrid from "@/components/Whykhales/w3";
+import OfficeLocations from "@/components/Locations/L1";
+import OfficeLocationsCombined from "@/components/Locations/L2";
+import PropertyPage from "@/components/Projectspage/p1";
+import PropertyListing from "@/components/Projectspage/p2";
+import PropertyListingMinimal from "@/components/Projectspage/p3";
+import MeetTheTeam from "@/components/Team/T1";
 export const metadata = {
   title: "Thank you",
   description:
@@ -38,35 +52,25 @@ export const metadata = {
 const Thankyou = () => {
   return (
     <>
-      {/* {" "}
-      <Script
-        strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
-      />
-      <Script
-        id="ga-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-FB575W8DQ8');
-          `,
-        }}
-      />
-      <Script
-        id="gtm-script"
-        strategy="afterInteractive" // Optimize loading strategy
-        dangerouslySetInnerHTML={{
-          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
-        }}
-      />{" "} */}
-      <ServicesPage />
+      {/* <MissionVisionGalaxy /> */}
+      <MissionVision />
+      {/* <ServicesSection /> */}
+      <OurServices />
+      {/* <ValueProposition /> */}
+      <ValuePropositionV2 />
+      <SuccessStory />
+      {/* <SuccessStoryV2 /> */}
+      <FullCaseStudyPage />
+      <CaseStudy />
+      <WhyKhales />
+      <WhyKhalesSplit />
+      <WhyKhalesHybrid />
+      <OfficeLocations />
+      <OfficeLocationsCombined />
+      <PropertyPage />
+      <PropertyListing />
+      <PropertyListingMinimal />
+      <MeetTheTeam />
     </>
   );
 };

@@ -6,6 +6,8 @@ import BlogSinglePage from "@/components/Blogspage/BlogSinglePage";
 import { blogCardsData } from "@/data/BlogData";
 import { useLanguage } from "@/Context/Languagecontext";
 import { useEffect, useState } from "react";
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer New/Footer";
 
 export default function BlogPage() {
   const { id } = useParams();
@@ -54,5 +56,11 @@ export default function BlogPage() {
     );
   }
 
-  return <BlogSinglePage blogData={blogData} />;
+  return (
+    <>
+      <Navbar />
+      <BlogSinglePage blogData={blogData} />
+      <Footer />
+    </>
+  );
 }

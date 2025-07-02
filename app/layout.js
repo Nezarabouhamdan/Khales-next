@@ -118,7 +118,6 @@ export default function RootLayout({ children }) {
         <StyledComponentsRegistry>
           <ClientProviders>
             <div className="uc-embed" uc-embed-show-toggle="true"></div>
-            <Navbar />
             <link
               rel="stylesheet"
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
@@ -138,7 +137,6 @@ Could you please provide more details and help me get started?"
             </Link>
             <Calltoaction id="call" />
             <main>{children}</main>
-            <Footer />{" "}
           </ClientProviders>
         </StyledComponentsRegistry>
       </body>

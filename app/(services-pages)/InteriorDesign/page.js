@@ -1,6 +1,8 @@
 import InteriorDesignPage from "@/pages/InteriorDesignPage";
 import React from "react";
 import Script from "next/script"; // Use Next.js optimized Script component
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer New/Footer";
 
 export const metadata = {
   title: "Interior desgin",
@@ -66,7 +68,9 @@ const InteriorDesign = () => {
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
       /> */}
+      <Navbar />
       <InteriorDesignPage />
+      <Footer />
     </>
   );
 };

@@ -1,3 +1,5 @@
+import Footer from "@/components/Footer New/Footer";
+import Navbar from "@/components/Navbar/Navbar";
 import Projectstudy from "@/pages/BuildingContractingPage";
 import Script from "next/script"; // Use Next.js optimized Script component
 import React from "react";
@@ -66,7 +68,9 @@ const BuildingContracting = () => {
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
       />{" "} */}
+      <Navbar />
       <Projectstudy />
+      <Footer />
     </>
   );
 };

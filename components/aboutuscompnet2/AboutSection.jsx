@@ -78,7 +78,7 @@ const AboutSection = () => {
               src={logo}
               alt={
                 language === "ar"
-                  ? "فريق خالز للاستشارات الإدارية في العمل"
+                  ? "فريق خالص للاستشارات الإدارية في العمل"
                   : "Khales Project Management Consultancy team at work"
               }
             />
@@ -101,7 +101,6 @@ const ContentWrapper = styled.div`
   margin-right: auto;
   padding: 40px 240px;
   max-width: none;
-
   @media (max-width: 991px) {
     padding: 32px 20px;
     max-width: 991px;

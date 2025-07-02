@@ -89,8 +89,8 @@ export const Button = styled(motion.div)`
   }
 `;
 export const Button2 = styled(motion.div)`
-  border-radius: 50rem;
-  background: ${({ back }) => (back ? "black" : "none")};
+  border-radius: 8px;
+  background: ${({ back }) => (back ? "#66A109" : "none")};
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -100,15 +100,14 @@ export const Button2 = styled(motion.div)`
   margin-top: 50px;
   white-space: nowrap;
   padding: ${({ big }) => (big ? "12px 64px" : "10px 12px")};
-  font-weight: 1000;
-  font-size: ${({ fontbig }) => (fontbig ? "20px" : "14px")};
+  font-weight: 100;
+  font-size: ${({ fontbig }) => (fontbig ? "20px" : "16px")};
   color: ${({ back }) => (back ? "white" : "white")};
   outline: none;
   border: 2px solid WHITE;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  font-family: "Inter", sans-serif;
   text-decoration: none;
   &:before {
     background: ${({ back }) => (back ? "#fff" : "#66a109")};

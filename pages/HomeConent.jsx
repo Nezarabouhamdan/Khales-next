@@ -11,6 +11,10 @@ import Hero from "@/components/Hero/Hero";
 import StatisticsSection from "@/components/Section1";
 import Services from "@/components/Services/Services";
 import WhyUs from "@/components/why khales/WhyUs";
+import MissionVision from "@/components/MV/Mv";
+import ServicesSection from "@/components/Ser/Ser";
+import MeetTheTeam from "@/components/Team/T1";
+import HeroGlass from "@/components/Banners/B1";
 const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 
 export default function HomeContent() {
@@ -30,13 +34,17 @@ export default function HomeContent() {
         <h1 style={{ display: "none" }}>
           {language === "ar" ? "مرحبًا بك في Khales" : "Welcome to Khales"}
         </h1>
+        {/* <HeroGlass /> */}
         <Hero />
       </section>
+
       {/* <StatisticsSection /> */}
       <WhoAreWe />
+      {/* <MissionVision /> */}
       {/* <Services /> */}
       {/* <WhyUs /> */}
       <ServicesSwiper />
+      {/* <ServicesSection /> */}
       <FeaturedProjects />
       <TestimonialSlider />
       <CTASection />

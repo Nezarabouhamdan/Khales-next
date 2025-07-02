@@ -76,7 +76,7 @@ export default async function handler(req, res) {
 
     // 4. Create the lead
     const leadData = {
-      name: `Website Lead - ${name}`,
+      name: `July 2nd Lead`,
       contact_name: name,
       phone,
       email_from: email,

@@ -1,6 +1,8 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import Script from "next/script"; // Use Next.js optimized Script component
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer New/Footer";
 
 export const metadata = {
   title: "Aboutus - Khales",
@@ -68,7 +70,9 @@ const AboutUs = () => {
           })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
         }}
       />{" "} */}
+      <Navbar />
       <AboutusPage />
+      <Footer />
     </>
   );
 };
