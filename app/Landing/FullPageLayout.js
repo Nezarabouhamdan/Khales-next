@@ -9,16 +9,18 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import {
-  FaBars,
-  FaTimes,
-  FaArrowRight,
-  FaRegBuilding,
-  FaDraftingCompass,
-  FaCubes,
-  FaMicrochip,
-  FaHammer,
-} from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
+
+// --- PERFORMANCE OPTIMIZATION IMPORTS ---
+import Image from "next/image";
+import { Almarai } from "next/font/google";
+
+// --- FONT CONFIGURATION ---
+const almarai = Almarai({
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  display: "swap",
+});
 
 //================================================================
 // 1. DATA FOR THE ENTIRE PAGE
@@ -30,25 +32,18 @@ const heroNavLinks = {
   landscape: "تصميم  الحدائق",
 };
 
-// UPDATED: Now contains both desktop and mobile images for the hero
 const heroImages = [
   {
     desktop:
       "https://i.ibb.co/wFXfpSSW/khales-ae-mansion-in-dubai-ar-21-sref-httpss-mj-runvjvid-32337233-c72f-48c9-9d90-f673870717dd-3.png",
-
-    mobile:
-      "https://i.ibb.co/MyBD8bfs/khales-ae-mansion-in-dubai-ar-5191-v-6-1-43193149-fd3b-4690-afcb-bbccccf24c33-1-1.png",
   },
   {
     desktop:
       "https://i.ibb.co/LdPcyrfq/enhanced-khales-ae-real-photograph-of-a-super-luxury-villa-front-view-a11ecba1-05c6-4f9b-9d86-41228b.png",
-    mobile:
-      "https://i.ibb.co/5xvjWdM3/khales-ae-real-photograph-of-a-super-luxury-villa-front-view-61c7852e-9cd2-447b-b2ee-0c015df736dc-2.png",
   },
   {
     desktop:
       "https://i.ibb.co/jkKRKBnQ/Luxury-Mixed-Use-Building-Design-Build-2.png",
-    mobile: "https://i.ibb.co/TqdhJdfF/Untitled-design-3-copy-1.png",
   },
 ];
 
@@ -110,7 +105,6 @@ const SectionWrapper = styled.section`
   background-color: #ffffff;
   position: relative;
   overflow: hidden;
-  font-family: "Almarai", sans-serif;
   direction: rtl;
 `;
 const ContentContainer = styled.div`
@@ -178,27 +172,23 @@ const HeroWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Almarai", sans-serif;
   color: white;
   direction: rtl;
 `;
-const BackgroundImage = styled(motion.div)`
+
+const BackgroundImageContainer = styled(motion.div)`
   position: absolute;
-  top: -10%;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 120%;
-  background-size: cover;
-  background-position: center;
-  animation: ${kenBurns} 10s ease-in-out infinite alternate;
+  height: 100%;
   z-index: 1;
-  transition: background-image 1.5s ease-in-out;
-  background-image: url(${(props) => props.desktopImg});
-
-  @media (max-width: 768px) {
-    background-image: url(${(props) => props.mobileImg});
-  }
 `;
+
+const KenBurnsImage = styled(Image)`
+  animation: ${kenBurns} 10s ease-in-out infinite alternate;
+`;
+
 const Overlay = styled.div`
   position: absolute;
   top: 0;
@@ -261,11 +251,7 @@ const NavLinksDesktop = styled.nav`
     display: none;
   }
 `;
-const Logo = styled.div`
-  img {
-    width: 100px;
-  }
-`;
+const Logo = styled.div``;
 const HamburgerIcon = styled(motion.button)`
   display: none;
   background: none;
@@ -367,12 +353,11 @@ const ServiceCard = styled(motion.div)`
   height: 250px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     transition: transform 0.4s ease;
   }
+
   h4 {
     position: absolute;
     bottom: 1.5rem;
@@ -410,10 +395,9 @@ const DetailedImageColumn = styled(motion.div)`
   overflow: hidden;
   height: 500px;
   cursor: pointer;
+  position: relative;
+
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     transition: transform 0.2s ease;
   }
   &:hover img {
@@ -449,16 +433,16 @@ const GalleryImageWrapper = styled(motion.div)`
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
+  position: relative;
+
   &.gallery-item-0 {
     height: 550px;
     @media (max-width: 768px) {
       height: 400px;
     }
   }
+
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     transition: transform 0.3s ease;
   }
   &:hover img {
@@ -534,7 +518,7 @@ const FormInput = styled.input`
   border-bottom: 1px solid #ccc;
   background-color: transparent;
   font-size: 1rem;
-  font-family: "Almarai", sans-serif;
+  font-family: inherit;
   outline: none;
   transition: border-color 0.3s ease;
   text-align: right;
@@ -548,6 +532,13 @@ const FormInput = styled.input`
 const DropdownContainer = styled.div`
   position: relative;
   cursor: pointer;
+  border-bottom: 1px solid ${(props) => (props.$hasError ? "#e74c3c" : "#ccc")};
+  transition: border-color 0.3s ease;
+
+  &:focus-within {
+    border-bottom-color: #66a109;
+  }
+
   &::after {
     content: "▼";
     position: absolute;
@@ -585,7 +576,7 @@ const PhoneInputWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${(props) => (props.$hasError ? "#e74c3c" : "#ccc")};
   transition: border-color 0.3s ease;
   &:focus-within {
     border-bottom-color: #66a109;
@@ -650,6 +641,7 @@ const ModalContent = styled.div`
 // MAIN PAGE COMPONENT
 //================================================================
 const FullPageLayout = () => {
+  // State and refs are unchanged
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [selectedImg, setSelectedImg] = useState(null);
@@ -674,7 +666,7 @@ const FullPageLayout = () => {
   const heroWrapperRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  // Close dropdowns when clicking outside
+  // Unchanged handlers and effects
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -739,33 +731,95 @@ const FullPageLayout = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (name === "phone" && validatePhone(value)) {
-      setErrors((prev) => ({ ...prev, phone: null }));
+    // Clear error for this field as user types
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: null }));
     }
   };
   const handleDropdownSelect = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (field === "emirate") setEmirateOpen(false);
     if (field === "budget") setBudgetOpen(false);
+    // Clear error for this field on selection
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: null }));
+    }
   };
+
+  // =================================================================
+  // UPDATED: handleSubmit with comprehensive validation for all fields
+  // =================================================================
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let tempErrors = {};
+    const tempErrors = {};
+
+    // 1. Validate all required fields
+    if (!formData.name.trim()) {
+      tempErrors.name = "الاسم الكامل مطلوب";
+    }
+    if (!formData.email.trim()) {
+      tempErrors.email = "البريد الإلكتروني مطلوب";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      tempErrors.email = "صيغة البريد الإلكتروني غير صحيحة";
+    }
     if (!validatePhone(formData.phone)) {
       tempErrors.phone =
         "الرجاء إدخال رقم هاتف إماراتي صحيح (مثال: 05XXXXXXXX)";
     }
+    if (!formData.emirate) {
+      tempErrors.emirate = "يرجى اختيار الإمارة";
+    }
+    if (!formData.budget) {
+      tempErrors.budget = "يرجى اختيار الميزانية";
+    }
+
+    // 2. If there are errors, update state and stop submission
     if (Object.keys(tempErrors).length > 0) {
       setErrors(tempErrors);
       return;
     }
+
+    // 3. If validation passes, proceed with submission
     setIsSubmitting(true);
     setSubmitStatus(null);
     setErrors({});
-    await new Promise((res) => setTimeout(res, 1500));
-    setSubmitStatus("success");
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", phone: "", emirate: "", budget: "" });
+
+    const description = `Emirate: ${formData.emirate}\nBudget: ${formData.budget}`;
+
+    try {
+      const response = await fetch("/api/create-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          description: description,
+          branch: "Website",
+          inquiry: "Website Lead Form",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          emirate: "",
+          budget: "",
+        });
+      } else {
+        setSubmitStatus(data.error || "error");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const containerVariants = {
@@ -786,17 +840,10 @@ const FullPageLayout = () => {
   };
 
   return (
-    <>
-      <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap");
-        html {
-          scroll-behavior: smooth;
-        }
-      `}</style>
-
+    <div className={almarai.className}>
       <HeroWrapper ref={heroWrapperRef}>
         <AnimatePresence>
-          <BackgroundImage
+          <BackgroundImageContainer
             key={currentHeroIndex}
             initial={{ opacity: 0 }}
             animate={{
@@ -808,9 +855,16 @@ const FullPageLayout = () => {
               transition: { duration: 1.5, ease: "easeOut" },
             }}
             style={{ y: heroY }}
-            desktopImg={heroImages[currentHeroIndex].desktop}
-            mobileImg={heroImages[currentHeroIndex].mobile}
-          />
+          >
+            <KenBurnsImage
+              alt="Luxury villa background"
+              src={heroImages[currentHeroIndex].desktop}
+              fill
+              style={{ objectFit: "cover" }}
+              priority
+              sizes="100vw"
+            />
+          </BackgroundImageContainer>
         </AnimatePresence>
         <Overlay />
         <Header
@@ -820,9 +874,12 @@ const FullPageLayout = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <Logo>
-            <img
+            <Image
               src={"https://i.ibb.co/m5xG5N9J/Khales-White-Logo.png"}
               alt="Khales Logo"
+              width={100}
+              height={40}
+              priority
             />
           </Logo>
           <NavLinksDesktop>
@@ -910,6 +967,7 @@ const FullPageLayout = () => {
         </HeroMainContent>
       </HeroWrapper>
 
+      {/* --- ALL OTHER SECTIONS ARE THE SAME --- */}
       <SectionWrapper
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -960,6 +1018,7 @@ const FullPageLayout = () => {
                   بسلاسة، دون أي عناء من جانبك.
                 </Paragraph>
                 <ConsultButton onClick={() => scrollToSection("register")}>
+                  {" "}
                   ابدأ مشروعك{" "}
                 </ConsultButton>
               </TextColumn>
@@ -988,6 +1047,7 @@ const FullPageLayout = () => {
                   والكفاءة واستمرارية الأداء على المدى الطويل.
                 </Paragraph>
                 <ConsultButton onClick={() => scrollToSection("register")}>
+                  {" "}
                   ابدأ مشروعك{" "}
                 </ConsultButton>
               </TextColumn>
@@ -998,7 +1058,13 @@ const FullPageLayout = () => {
                     variants={itemVariants}
                     onClick={() => setSelectedImg(service.imageUrl)}
                   >
-                    <img src={service.imageUrl} alt={service.title} />
+                    <Image
+                      src={service.imageUrl}
+                      alt={service.title}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 25vw"
+                    />
                     <h4>{service.title}</h4>
                   </ServiceCard>
                 ))}
@@ -1007,7 +1073,6 @@ const FullPageLayout = () => {
           </motion.div>
         </ContentContainer>
       </SectionWrapper>
-
       <SectionWrapper
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -1040,6 +1105,7 @@ const FullPageLayout = () => {
                 الأناقة والوظيفة، لتحويل منزلك إلى ملاذ مريح ومفعم بالحياة.
               </Paragraph>
               <ConsultButton onClick={() => scrollToSection("register")}>
+                {" "}
                 ابدأ مشروعك{" "}
               </ConsultButton>
             </InteriorSectionHeader>
@@ -1051,7 +1117,13 @@ const FullPageLayout = () => {
                   className={`gallery-item-${i}`}
                   onClick={() => setSelectedImg(url)}
                 >
-                  <img src={url} alt={`Interior Design ${i + 1}`} />
+                  <Image
+                    src={url}
+                    alt={`Interior Design ${i + 1}`}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 33vw"
+                  />
                 </GalleryImageWrapper>
               ))}
             </InteriorGalleryGrid>
@@ -1080,6 +1152,7 @@ const FullPageLayout = () => {
                   واستغلال أفضل لما يتيحه المناخ والبيئة المحلية.
                 </Paragraph>
                 <ConsultButton onClick={() => scrollToSection("register")}>
+                  {" "}
                   ابدأ مشروعك{" "}
                 </ConsultButton>
               </TextColumn>
@@ -1091,9 +1164,12 @@ const FullPageLayout = () => {
                   )
                 }
               >
-                <img
+                <Image
                   src="https://i.ibb.co/zVgMq5QD/Whats-App-Image-2025-07-02-at-18-44-22-a78d9d06.jpg"
                   alt="تصميم الحدائق "
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 992px) 100vw, 50vw"
                 />
               </DetailedImageColumn>
             </ServiceBlock>
@@ -1101,6 +1177,7 @@ const FullPageLayout = () => {
         </ContentContainer>
       </SectionWrapper>
 
+      {/* --- FORM SECTION WITH VALIDATION --- */}
       <FormSectionWrapper
         ref={registerRef}
         onMouseMove={handleMouseMove}
@@ -1136,15 +1213,32 @@ const FullPageLayout = () => {
               <Form onSubmit={handleSubmit} noValidate>
                 <FormGroup>
                   <FormInput
+                    style={{
+                      borderBottomColor: errors.name ? "#e74c3c" : "#ccc",
+                    }}
                     name="name"
                     placeholder="الاسم الكامل"
                     value={formData.name}
                     onChange={handleInputChange}
                     required
                   />
+                  <AnimatePresence>
+                    {errors.name && (
+                      <ErrorText
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                      >
+                        {errors.name}
+                      </ErrorText>
+                    )}
+                  </AnimatePresence>
                 </FormGroup>
                 <FormGroup>
                   <FormInput
+                    style={{
+                      borderBottomColor: errors.email ? "#e74c3c" : "#ccc",
+                    }}
                     name="email"
                     type="email"
                     placeholder="البريد الإلكتروني"
@@ -1152,11 +1246,20 @@ const FullPageLayout = () => {
                     onChange={handleInputChange}
                     required
                   />
+                  <AnimatePresence>
+                    {errors.email && (
+                      <ErrorText
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                      >
+                        {errors.email}
+                      </ErrorText>
+                    )}
+                  </AnimatePresence>
                 </FormGroup>
                 <FormGroup>
-                  <PhoneInputWrapper
-                    style={{ borderColor: errors.phone ? "#e74c3c" : "#ccc" }}
-                  >
+                  <PhoneInputWrapper $hasError={!!errors.phone}>
                     <span>🇦🇪</span>
                     <FormInput
                       name="phone"
@@ -1181,6 +1284,7 @@ const FullPageLayout = () => {
                 </FormGroup>
                 <FormGroup>
                   <DropdownContainer
+                    $hasError={!!errors.emirate}
                     onClick={() => {
                       setBudgetOpen(false);
                       setEmirateOpen((prev) => !prev);
@@ -1189,8 +1293,7 @@ const FullPageLayout = () => {
                     <FormInput
                       as="div"
                       style={{
-                        textAlign: "right",
-                        paddingRight: 0,
+                        border: "none",
                         color: formData.emirate ? "#333" : "#888",
                       }}
                     >
@@ -1219,9 +1322,21 @@ const FullPageLayout = () => {
                       )}
                     </AnimatePresence>
                   </DropdownContainer>
+                  <AnimatePresence>
+                    {errors.emirate && (
+                      <ErrorText
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                      >
+                        {errors.emirate}
+                      </ErrorText>
+                    )}
+                  </AnimatePresence>
                 </FormGroup>
                 <FormGroup>
                   <DropdownContainer
+                    $hasError={!!errors.budget}
                     onClick={() => {
                       setEmirateOpen(false);
                       setBudgetOpen((prev) => !prev);
@@ -1230,8 +1345,7 @@ const FullPageLayout = () => {
                     <FormInput
                       as="div"
                       style={{
-                        textAlign: "right",
-                        paddingRight: 0,
+                        border: "none",
                         color: formData.budget ? "#333" : "#888",
                       }}
                     >
@@ -1259,6 +1373,17 @@ const FullPageLayout = () => {
                       )}
                     </AnimatePresence>
                   </DropdownContainer>
+                  <AnimatePresence>
+                    {errors.budget && (
+                      <ErrorText
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                      >
+                        {errors.budget}
+                      </ErrorText>
+                    )}
+                  </AnimatePresence>
                 </FormGroup>
                 <FormSubmitButton type="submit" disabled={isSubmitting}>
                   {isSubmitting ? "جار الإرسال..." : "إرسال"}
@@ -1270,15 +1395,19 @@ const FullPageLayout = () => {
             <ModalOverlay onClick={() => setSubmitStatus(null)}>
               <ModalContent onClick={(e) => e.stopPropagation()}>
                 {submitStatus === "success"
-                  ? "تم الإرسال بنجاح!"
-                  : "حدث خطأ. يرجى المحاولة مرة أخرى."}
+                  ? "تم الإرسال بنجاح! سنتواصل معك قريباً."
+                  : `حدث خطأ: ${
+                      typeof submitStatus === "string" &&
+                      submitStatus !== "error"
+                        ? submitStatus
+                        : "يرجى المحاولة مرة أخرى."
+                    }`}
               </ModalContent>
             </ModalOverlay>
           )}
         </ContentContainer>
       </FormSectionWrapper>
 
-      {/* Lightbox Modal logic */}
       <AnimatePresence>
         {selectedImg && (
           <LightboxOverlay
@@ -1299,7 +1428,7 @@ const FullPageLayout = () => {
           </LightboxOverlay>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 };
 
