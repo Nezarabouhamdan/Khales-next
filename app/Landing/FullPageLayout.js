@@ -75,12 +75,13 @@ const engineeringServicesData = [
   },
 ];
 const interiorGalleryUrls = [
-  "https://i.ibb.co/9m7CdfC6/008.jpg",
   "https://i.ibb.co/ZR7FJfKN/007.jpg",
+  "https://i.ibb.co/9m7CdfC6/008.jpg",
   "https://i.ibb.co/ZpK5Rh7b/006.jpg",
   "https://i.ibb.co/kgmmWTr9/001.jpg",
   "https://i.ibb.co/gM2K4Vm4/002.jpg",
   "https://i.ibb.co/5xvVM856/003.jpg",
+  "https://i.ibb.co/nNnRHRqQ/004.jpg",
 ];
 const emirates = [
   "أبوظبي",
