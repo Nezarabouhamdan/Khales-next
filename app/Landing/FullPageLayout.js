@@ -115,7 +115,7 @@ const BackgroundImage = styled(motion.div)`
   left: 0;
   width: 100%;
   height: 120%;
-  background-image: url("https://i.ibb.co/jkKRKBnQ/Luxury-Mixed-Use-Building-Design-Build-2.png");
+  background-image: url("https://i.ibb.co/LdPcyrfq/enhanced-khales-ae-real-photograph-of-a-super-luxury-villa-front-view-a11ecba1-05c6-4f9b-9d86-41228b.png");
   background-size: cover;
   background-position: center;
   animation: ${kenBurns} 10s ease-in-out infinite alternate;
