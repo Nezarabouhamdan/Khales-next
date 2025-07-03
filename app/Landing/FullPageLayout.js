@@ -47,22 +47,23 @@ const heroNavLinks = {
 const engineeringServicesData = [
   {
     imageUrl:
-      "https://images.unsplash.com/photo-1572111529999-443bce393aa6?auto=format&fit=crop&q=80",
+      "https://i.ibb.co/LXThd4n4/Whats-App-Image-2025-07-02-at-18-33-19-1907bd25.jpg",
     title: "التصميم المبدئي",
   },
   {
     imageUrl:
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&q=80",
+      "https://i.ibb.co/JFzxMbPc/Whats-App-Image-2025-07-02-at-18-31-13-bfc6017c.jpg",
+
     title: "الهندسة المعمارية",
   },
   {
     imageUrl:
-      "https://images.unsplash.com/photo-1581092580433-c2c1f0456133?auto=format&fit=crop&q=80",
+      "https://i.ibb.co/XfcMCS36/Whats-App-Image-2025-07-02-at-18-31-13-a18478d0.jpg",
     title: "الهيكل الإنشائي",
   },
   {
     imageUrl:
-      "https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&q=80",
+      "https://i.ibb.co/6R6N16gw/Whats-App-Image-2025-07-02-at-18-31-13-7d552635.jpg",
     title: "الكهروميكانيكية",
   },
 ];
@@ -114,7 +115,7 @@ const BackgroundImage = styled(motion.div)`
   left: 0;
   width: 100%;
   height: 120%;
-  background-image: url("https://i.ibb.co/LdPcyrfq/enhanced-khales-ae-real-photograph-of-a-super-luxury-villa-front-view-a11ecba1-05c6-4f9b-9d86-41228b.png");
+  background-image: url("https://i.ibb.co/jkKRKBnQ/Luxury-Mixed-Use-Building-Design-Build-2.png");
   background-size: cover;
   background-position: center;
   animation: ${kenBurns} 10s ease-in-out infinite alternate;
@@ -944,7 +945,7 @@ const DetailedServices = ({ scrollToRegister }) => {
         >
           <DetailedImageColumn variants={itemVariants}>
             <img
-              src="https://images.unsplash.com/photo-1549137929-370952b14421?auto=format&fit=crop&q=80"
+              src="https://i.ibb.co/zVgMq5QD/Whats-App-Image-2025-07-02-at-18-44-22-a78d9d06.jpg"
               alt="تصميم المناظر الطبيعية"
             />
           </DetailedImageColumn>

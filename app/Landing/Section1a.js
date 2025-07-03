@@ -4,35 +4,26 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+// Icons are needed for the updated card design
+import {
+  FaRegBuilding,
+  FaDraftingCompass,
+  FaCubes,
+  FaMicrochip,
+} from "react-icons/fa";
 
 //================================================================
-// DATA (WITH ARABIC CONTENT AND IMAGE URLS)
+// DATA (NOW WITH ICONS)
 //================================================================
 const engineeringServices = [
-  {
-    imageUrl:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80",
-    title: "التصميم المبدئي",
-  },
-  {
-    imageUrl:
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&q=80",
-    title: "الهندسة المعمارية",
-  },
-  {
-    imageUrl:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80",
-    title: "الهيكل الإنشائي",
-  },
-  {
-    imageUrl:
-      "https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&q=80",
-    title: "الكهروميكانيكية",
-  }, // MEP
+  { icon: <FaRegBuilding />, title: "التصميم المبدئي" },
+  { icon: <FaDraftingCompass />, title: "الهندسة المعمارية" },
+  { icon: <FaCubes />, title: "الهيكل الإنشائي" },
+  { icon: <FaMicrochip />, title: "الكهروميكانيكية" }, // MEP
 ];
 
 //================================================================
-// STYLED COMPONENTS
+// STYLED COMPONENTS (WITH NEW ENHANCEMENTS)
 //================================================================
 const SectionWrapper = styled.section`
   padding: 6rem 2rem;
@@ -40,7 +31,7 @@ const SectionWrapper = styled.section`
   position: relative;
   overflow: hidden;
   font-family: "Almarai", sans-serif;
-  direction: rtl; /* Set layout to RTL */
+  direction: rtl;
 `;
 
 const ContentContainer = styled.div`
@@ -50,7 +41,7 @@ const ContentContainer = styled.div`
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  gap: 4rem; /* Reduced gap slightly */
 `;
 
 const ServiceBlock = styled(motion.div)`
@@ -84,7 +75,7 @@ const Subtitle = styled.h3`
 `;
 
 const Paragraph = styled.p`
-  font-size: 1.1rem; /* Slightly larger for better readability in Arabic */
+  font-size: 1.1rem;
   line-height: 1.9;
   color: #555;
   max-width: 450px;
@@ -123,52 +114,33 @@ const CardsGrid = styled(motion.div)`
   }
 `;
 
+// Card design updated to use icons instead of images for a cleaner look
 const ServiceCard = styled(motion.div)`
+  background-color: #f8f9fa;
+  border: 1px solid #f0f0f0;
   border-radius: 16px;
+  padding: 2rem;
   text-align: center;
-  overflow: hidden;
-  position: relative;
-  height: 250px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  h4 {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: white;
-    z-index: 3;
+  .icon {
+    font-size: 2.5rem;
+    color: #66a109; /* Using brand color for icon */
+    margin-bottom: 1rem;
     transition: transform 0.3s ease;
   }
 
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 70%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-    z-index: 2;
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
   }
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    img {
-      transform: scale(1.05);
-    }
-    h4 {
-      transform: translate(-50%, -5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    .icon {
+      transform: scale(1.1);
     }
   }
 `;
@@ -178,6 +150,13 @@ const DecorativeShape = styled.div`
   z-index: 1;
   pointer-events: none;
   transition: transform 0.4s ease-out;
+`;
+
+// NEW: Animated Divider Line
+const Divider = styled(motion.div)`
+  height: 1px;
+  background-color: #e9ecef;
+  margin: 2rem 0;
 `;
 
 //================================================================
@@ -196,14 +175,44 @@ const ServicesOverview = () => {
       transition: { duration: 0.7, ease: "easeOut" },
     },
   };
+  const lineVariants = {
+    hidden: { scaleX: 0 },
+    visible: {
+      scaleX: 1,
+      transition: { duration: 1, ease: [0.6, 0.01, -0.05, 0.95] },
+    },
+  };
+
+  // Our signature parallax effect logic
+  const handleMouseMove = (e) => {
+    const shapes = e.currentTarget.querySelectorAll(".shape");
+    shapes.forEach((shape) => {
+      const factor = parseInt(shape.getAttribute("data-factor")) || 20;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) / factor;
+      const y = (e.clientY - rect.top - rect.height / 2) / factor;
+      shape.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  };
+  const handleMouseLeave = (e) => {
+    const shapes = e.currentTarget.querySelectorAll(".shape");
+    shapes.forEach((shape) => {
+      shape.style.transform = `translate(0px, 0px)`;
+    });
+  };
 
   return (
     <>
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap");
       `}</style>
-      <SectionWrapper>
+      <SectionWrapper
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
         <DecorativeShape
+          className="shape"
+          data-factor="30"
           style={{
             top: "10%",
             right: "5%",
@@ -214,6 +223,8 @@ const ServicesOverview = () => {
           }}
         />
         <DecorativeShape
+          className="shape"
+          data-factor="-20"
           style={{
             bottom: "15%",
             left: "5%",
@@ -253,6 +264,14 @@ const ServicesOverview = () => {
             </TextColumn>
           </ServiceBlock>
 
+          <Divider
+            variants={lineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            style={{ transformOrigin: "center" }}
+          />
+
           <ServiceBlock
             variants={containerVariants}
             initial="hidden"
@@ -278,7 +297,7 @@ const ServicesOverview = () => {
               <CardsGrid variants={containerVariants}>
                 {engineeringServices.map((service, index) => (
                   <ServiceCard key={index} variants={itemVariants}>
-                    <img src={service.imageUrl} alt={service.title} />
+                    <div className="icon">{service.icon}</div>
                     <h4>{service.title}</h4>
                   </ServiceCard>
                 ))}
