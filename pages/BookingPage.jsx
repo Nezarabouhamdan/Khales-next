@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MultiStepForm from "../components/Stepper/MultiStepForm";
 import { Title } from "../components/Whoweare/TextContent"; // Removed unused GreenText import
 import { useLanguage } from "../Context/Languagecontext";
+import MultiStepFormnew from "@/components/New Stepper/MultiStepForm";
 
 const Wrapper = styled.section`
   position: relative;
@@ -26,7 +27,6 @@ const Wrapper = styled.section`
     width: 100%;
     height: 100%;
     background: #f8f9fa;
-    background-image: url("/assets/Group.png");
     background-size: cover;
     background-position: center;
     opacity: 0.8;
@@ -66,11 +66,8 @@ const BookingPage = () => {
 
   return (
     <>
-      <Wrapper>
-        {/* --- 3. Use the state variable here for rendering --- */}
-        <Title>{pageTitle}</Title>
-        <MultiStepForm />
-      </Wrapper>
+      {/* --- 3. Use the state variable here for rendering --- */}
+      <MultiStepFormnew />
     </>
   );
 };

@@ -1,553 +1,504 @@
+// src/components/Navbar/Navbar.js
+// --- CORRECTED CODE WITH LANGUAGE CONTEXT INTEGRATION ---
+
 "use client";
-import React, { useState, useEffect } from "react";
-import { FaTimes } from "react-icons/fa";
-import { CgMenuRight } from "react-icons/cg";
-import "./Nav.css";
 
-import {
-  Nav,
-  NavbarContainer,
-  NavLogo,
-  NavIcon,
-  MobileIcon,
-  NavMenu,
-  NavLinks,
-  NavItem,
-  Text,
-} from "./NavbarStyles.js";
-
-import styled from "styled-components";
-import useDeviceSize from "../../utils/WindowSize";
-import { useLanguage } from "../../Context/Languagecontext.js";
-import { usePathname } from "next/navigation";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import styled, { css } from "styled-components";
+import { FaTimes, FaBars } from "react-icons/fa";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
-const Navbar = () => {
-  // Define paths for each category
-  const projectManagementPaths = [
-    "/ProjectManagement",
-    "/ProjectManager",
-    "/Developmentplanning",
-    "/Projectfeasability",
-  ];
+// --- 1. IMPORT YOUR LANGUAGE CONTEXT HOOK ---
+// Make sure this path is correct for your project structure
+import { useLanguage } from "../../Context/Languagecontext";
 
-  const engineeringConsultancyPaths = [
-    "/EngineeringConsultancy",
-    "/EngineeringDesign",
-    "/EngineeringSupervision",
-    "/InteriorDesign",
-    "/LandscapingDesign",
-  ];
-
-  const allServicePaths = [
-    ...projectManagementPaths,
-    ...engineeringConsultancyPaths,
-    "/service",
-  ];
-
-  const [width] = useDeviceSize();
-
-  const homePaths = ["/", "/ABOUTUS", "/PROJECTS", "/Blogs"];
-
-  // Active path checkers
-  const isProjectManagementPath = () => {
-    return projectManagementPaths.some(
-      (path) => pathname === path || pathname.startsWith(path + "/")
-    );
-  };
-
-  const isEngineeringConsultancyPath = () => {
-    return engineeringConsultancyPaths.some(
-      (path) => pathname === path || pathname.startsWith(path + "/")
-    );
-  };
-
-  const isHomePath = () => {
-    return homePaths.some(
-      (path) => pathname === path || pathname.startsWith(path + "/")
-    );
-  };
-
-  const [isSticky, setSticky] = useState(false);
-  const { language, changeLanguage } = useLanguage();
-  const pathname = usePathname();
-
-  const handleScroll = () => {
-    setSticky(window.scrollY > 0);
-  };
-
+// A custom hook to detect clicks outside of a component
+const useClickOutside = (ref, handler) => {
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const listener = (event) => {
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+      handler(event);
     };
-  }, []);
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, handler]);
+};
 
-  const StyledButton = styled(Link)`
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    justify-content: center;
-    z-index: 1;
-    border-radius: 5px;
-    background-color: rgba(92, 145, 8, 1);
-    padding: 11px 25px;
-    font-size: 15px;
-    color: rgb(255, 255, 255);
-    letter-spacing: 0.36px;
-    font-weight: 400;
+// --- DATA-DRIVEN MENU ---
+const menuData = [
+  {
+    label: "Home",
+    labelAr: "الرئيسية",
+    isDropdown: true,
+    children: [
+      { label: "About Khales", labelAr: "نبذة عنا", path: "/ABOUTUS" },
+      { label: "Portfolio", labelAr: "المشاريع", path: "/PROJECTS" },
+      { label: "Blogs", labelAr: "المدونة", path: "/Blogs" },
+    ],
+  },
+  {
+    label: "Project Management",
+    labelAr: "إدارة مشاريع",
+    isDropdown: true,
+    children: [
+      {
+        label: "360 Project Management",
+        labelAr: "خدمة إدارة المشروع الشاملة",
+        path: "/ProjectManagement",
+      },
+      {
+        label: "Project Manager",
+        labelAr: "مدير المشروع",
+        path: "/ProjectManager",
+      },
+      {
+        label: "Development Planning",
+        labelAr: "التخطيط التطويري",
+        path: "/Developmentplanning",
+      },
+      {
+        label: "Feasibility Study",
+        labelAr: "دراسة الجدوى",
+        path: "/Projectfeasability",
+      },
+    ],
+  },
+  {
+    label: "Engineering Consultancy",
+    labelAr: "استشارات هندسية",
+    isDropdown: true,
+    children: [
+      {
+        label: "Engineering Design",
+        labelAr: "التصميم الهندسي",
+        path: "/EngineeringDesign",
+      },
+      {
+        label: "Engineering Supervision",
+        labelAr: "الإشراف الهندسي",
+        path: "/EngineeringSupervision",
+      },
+      {
+        label: "Interior Designing",
+        labelAr: "التصميم الداخلي",
+        path: "/InteriorDesign",
+      },
+      {
+        label: "Landscaping",
+        labelAr: "تنسيق الحدائق",
+        path: "/LandscapingDesign",
+      },
+    ],
+  },
+  {
+    label: "Connect",
+    labelAr: "اتصل بنا",
+    path: "/Contact",
+    isDropdown: false,
+  },
+  {
+    label: "Language",
+    labelAr: "اللغة",
+    isDropdown: true,
+    children: [
+      { label: "English", langCode: "eng" },
+      { label: "Arabic", langCode: "ar" },
+    ],
+  },
+];
+
+// --- STYLED COMPONENTS (No changes here) ---
+
+const COLORS = {
+  primary: "#66a109",
+  primaryDarker: "#5a8f08",
+  white: "#ffffff",
+  darkText: "#1a1a1a",
+  darkBg: "#222222",
+};
+
+const NavWrapper = styled.nav`
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  transition: height 0.3s ease-in-out;
+
+  ${({ $isScrolled }) =>
+    $isScrolled &&
+    css`
+      height: 80px;
+    `}
+`;
+
+const NavbarContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 65px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 24px;
+  padding: 0 20px;
+  border-radius: 7px;
+  transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+  background: ${({ $isScrolled }) =>
+    $isScrolled ? "rgba(255, 255, 255, 0.7)" : "rgba(188, 188, 188, 0.13)"};
+  backdrop-filter: blur(15px);
+  border: 1px solid
+    ${({ $isScrolled }) =>
+      $isScrolled ? "rgba(255, 255, 255, 0.4)" : "rgba(255, 255, 255, 0.1)"};
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 960px) {
+    margin: 0;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    background: ${({ $isScrolled }) =>
+      $isScrolled ? "rgba(255, 255, 255, 0.85)" : "transparent"};
     border: none;
+    border-bottom: 1px solid
+      ${({ $isScrolled }) =>
+        $isScrolled ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)"};
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+  }
+`;
+
+const NavLogoLink = styled(Link)`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
+
+const NavIcon = styled.img`
+  height: 40px;
+  width: auto;
+`;
+
+const MobileIcon = styled.div`
+  display: none;
+  @media screen and (max-width: 960px) {
+    display: block;
+    font-size: 1.8rem;
     cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.2s ease;
-    text-decoration: none;
-    &:hover {
-      background-color: #545454;
-    }
+    color: ${({ $isScrolled }) =>
+      $isScrolled ? COLORS.darkText : COLORS.white};
+    transition: color 0.3s ease-in-out;
+    z-index: 1001;
+  }
+`;
 
-    &:focus {
-      outline: 2px solid #fff;
-      outline-offset: 2px;
-    }
+const NavMenu = styled.ul`
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  gap: 1rem;
 
-    @media (max-width: 991px) {
-      width: 230px;
-      padding-left: 20px;
-      padding-right: 20px;
-      margin-right: 0px;
-    }
-  `;
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: ${({ $isOpen }) => ($isOpen ? "0" : "-100%")};
+    opacity: 1;
+    transition: all 0.5s ease;
+    background: ${COLORS.white};
+    padding: 100px 2rem 2rem 2rem;
+  }
+`;
 
-  // Updated tab structure with new service names
-  const tabE = [
-    "Home",
-    "Project Management",
-    "Engineering Consultancy",
-    "Comprehensive Project Management",
-    "Project Manager ",
-    "Development Planning",
-    "Feasibility Study",
-    "Engineering Design",
-    "Engineering Supervision",
-    "Interior Designing",
-    "Landscaping",
-    "Portfolio",
-    "Connect",
-    "About Khales",
-    "Blogs",
-    "Language",
-    "Arabic",
-    "English",
-    "View All Services",
-  ];
+const MenuItem = styled.li`
+  position: relative;
+  height: 65px;
+  display: flex;
+  align-items: center;
 
-  const tabA = [
-    "الرئيسية",
-    "إدارة مشاريع",
-    "استشارات هندسية",
-    "خدمة إدارة المشروع الشاملة",
-    "مدير المشروع ",
-    "التخطيط التطويري",
-    "دراسة الجدوى",
-    "التصميم الهندسي",
-    "الإشراف الهندسي",
-    "التصميم الداخلي",
-    "تنسيق الحدائق",
-    "المشاريع",
-    "اتصل بنا",
-    "نبذة عنا",
-    "المدونة",
-    "اللغة",
-    "العربية",
-    "الانجليزية",
-    "تصفح كل الخدمات",
-  ];
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+  }
+`;
 
-  const [show, setShow] = useState(false);
-  const [tabs, setTabs] = useState(language === "ar" ? tabA : tabE);
+const MenuLink = styled.a`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+  color: ${({ $isScrolled, $isActive }) =>
+    $isActive ? COLORS.primary : $isScrolled ? COLORS.darkText : COLORS.white};
+  text-shadow: ${({ $isScrolled }) =>
+    $isScrolled ? "none" : "0 1px 3px rgba(0, 0, 0, 0.3)"};
 
-  useEffect(() => {
-    setTabs(language === "ar" ? tabA : tabE);
-  }, [language]);
-
-  const handleLanguageChange = (lang) => {
-    changeLanguage(lang);
-  };
-
-  const [isMenu, setisMenu] = useState(false);
-  const [isResponsiveclose, setResponsiveclose] = useState(false);
-  const toggleClass = () => {
-    setShow(false);
-    setisMenu(isMenu === false ? true : false);
-    setResponsiveclose(isResponsiveclose === false ? true : false);
-  };
-
-  let boxClass = ["main-menu menu-right menuq1"];
-  if (isMenu) {
-    boxClass.push("menuq2");
-  } else {
-    boxClass.push("");
+  &:hover {
+    color: ${COLORS.primary};
   }
 
-  const [isMenuSubMenuHome, setMenuSubMenuHome] = useState(false);
-  const [isMenuSubMenuPM, setMenuSubMenuPM] = useState(false);
-  const [isMenuSubMenuEC, setMenuSubMenuEC] = useState(false);
-  const [isMenuSubMenuLang, setMenuSubMenuLang] = useState(false);
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem;
+    justify-content: center;
+    font-size: 1.2rem;
+    text-shadow: none;
+    color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
 
-  // Helper to close all other dropdowns
-  const closeOtherDropdowns = (currentDropdown) => {
-    const dropdowns = {
-      home: setMenuSubMenuHome,
-      pm: setMenuSubMenuPM,
-      ec: setMenuSubMenuEC,
-      lang: setMenuSubMenuLang,
-    };
+    &:hover {
+      background-color: #f4f4f4;
+      border-radius: 8px;
+    }
+  }
+`;
 
-    Object.entries(dropdowns).forEach(([key, setter]) => {
-      if (key !== currentDropdown) setter(false);
-    });
+const ArrowIcon = styled(MdKeyboardArrowDown)`
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+  transform: ${({ $isOpen }) => ($isOpen ? "rotate(180deg)" : "rotate(0deg)")};
+`;
+
+const SubMenu = styled.ul`
+  position: absolute;
+  top: 65px;
+  left: 50%;
+  width: 260px;
+  background-color: ${COLORS.white};
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  list-style: none;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
+  visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
+  transform: ${({ $isOpen }) =>
+    $isOpen
+      ? "translateY(0) translateX(-50%)"
+      : "translateY(-10px) translateX(-50%)"};
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  @media screen and (max-width: 960px) {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+    background-color: #f7f7f7;
+    margin-top: 0.5rem;
+    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
+  }
+`;
+
+const SubMenuItem = styled.li`
+  width: 100%;
+`;
+
+const SubMenuLink = styled(Link)`
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
+  font-weight: ${({ $isActive }) => ($isActive ? "600" : "500")};
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+
+  &:hover {
+    background-color: #f4f4f4;
+    color: ${COLORS.primary};
+  }
+`;
+
+const SubMenuButton = styled.button`
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
+  font-weight: ${({ $isActive }) => ($isActive ? "600" : "500")};
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f4f4f4;
+    color: ${COLORS.primary};
+  }
+`;
+
+const NavActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
+`;
+
+const CTAButton = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: ${COLORS.primary};
+  color: ${COLORS.white};
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: ${COLORS.primaryDarker};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 161, 9, 0.3);
+  }
+`;
+
+// --- MAIN NAVBAR COMPONENT ---
+const Navbar = () => {
+  // --- 2. REMOVE LOCAL STATE and USE THE GLOBAL CONTEXT ---
+  const { language, changeLanguage } = useLanguage();
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  const pathname = usePathname();
+  const navRef = useRef();
+
+  useClickOutside(navRef, () => setOpenDropdown(null));
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  const handleDropdownToggle = (label) => {
+    setOpenDropdown(openDropdown === label ? null : label);
   };
 
-  const toggleSubmenuHome = () => {
-    setMenuSubMenuHome(!isMenuSubMenuHome);
-    closeOtherDropdowns("home");
+  // --- 3. UPDATE HANDLER TO USE THE GLOBAL FUNCTION ---
+  const handleLanguageChange = (langCode) => {
+    changeLanguage(langCode); // This now calls the function from your context
+    setOpenDropdown(null);
   };
 
-  const toggleSubmenuPM = () => {
-    setMenuSubMenuPM(!isMenuSubMenuPM);
-    closeOtherDropdowns("pm");
+  const isDropdownActive = (children) => {
+    return children.some((child) => pathname === child.path);
   };
-
-  const toggleSubmenuEC = () => {
-    setMenuSubMenuEC(!isMenuSubMenuEC);
-    closeOtherDropdowns("ec");
-  };
-
-  const toggleSubmenuLang = () => {
-    setMenuSubMenuLang(!isMenuSubMenuLang);
-    closeOtherDropdowns("lang");
-  };
-
-  const handleClick = () => setShow(!show);
 
   return (
-    <Nav className={isSticky ? "sticky" : ""}>
-      <NavbarContainer>
-        <NavLogo href="/">
-          <NavIcon src="/assets/Khales-Logo.png" alt="site logo" />
-        </NavLogo>
-        <MobileIcon onClick={handleClick}>
-          {show ? <FaTimes /> : <CgMenuRight />}
+    <NavWrapper $isScrolled={isScrolled}>
+      <NavbarContainer $isScrolled={isScrolled}>
+        <NavLogoLink href="/">
+          <NavIcon src="/assets/Khales-Logo.png" alt="Khales Logo" />
+        </NavLogoLink>
+
+        <MobileIcon
+          $isScrolled={isScrolled}
+          onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
         </MobileIcon>
-        <NavMenu $show={show}>
-          <NavItem>
-            {width <= 960 && (
-              <StyledButton href={`/booking`} style={{ margin: "auto" }}>
-                {language === "eng" ? "Book Consultation" : "أحجز موعدك الآن"}
-              </StyledButton>
-            )}
-            <ul className={boxClass.join(" ")}>
-              {/* Home Dropdown - Reverted to original structure */}
-              <li
-                onClick={toggleSubmenuHome}
-                className={`menu-item sub__menus__arrows ${
-                  isHomePath() ? "active-home" : ""
-                }`}
-              >
-                <Link href="#">
-                  <Text style={{ color: isHomePath() ? "#66a109" : "black" }}>
-                    {tabs[0]}
-                  </Text>
-                </Link>
-                <ul
-                  className={
-                    isMenuSubMenuHome
-                      ? "sub__menus sub__menus__Active"
-                      : "sub__menus"
+
+        <NavMenu $isOpen={isMobileMenuOpen} ref={navRef}>
+          {menuData.map((item) => {
+            const label = language === "ar" ? item.labelAr : item.label;
+            const isActive = item.isDropdown
+              ? isDropdownActive(item.children)
+              : pathname === item.path;
+
+            return (
+              <MenuItem key={item.label}>
+                <MenuLink
+                  as={item.isDropdown ? "div" : Link}
+                  href={item.path || "#"}
+                  $isActive={isActive}
+                  $isScrolled={isScrolled}
+                  onClick={
+                    item.isDropdown
+                      ? () => handleDropdownToggle(item.label)
+                      : () => setMobileMenuOpen(false)
                   }
                 >
-                  <li>
-                    <Link href="/ABOUTUS" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color: pathname === "/ABOUTUS" ? "#66a109" : "black",
-                        }}
-                      >
-                        {tabs[13]}
-                      </Text>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/PROJECTS" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color: pathname === "/PROJECTS" ? "#66a109" : "black",
-                        }}
-                      >
-                        {tabs[11]}
-                      </Text>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/Blogs" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color: pathname === "/Blogs" ? "#66a109" : "black",
-                        }}
-                      >
-                        {tabs[14]}
-                      </Text>
-                    </Link>
-                  </li>
-                </ul>
-              </li>
+                  {label}
+                  {item.isDropdown && (
+                    <ArrowIcon $isOpen={openDropdown === item.label} />
+                  )}
+                </MenuLink>
 
-              {/* Project Management Dropdown */}
-              <li
-                onClick={toggleSubmenuPM}
-                className={`menu-item sub__menus__arrows ${
-                  isProjectManagementPath() ? "active-service" : ""
-                }`}
-              >
-                <Link href="#">
-                  <Text
-                    style={{
-                      color: isProjectManagementPath() ? "#66a109" : "BLACK",
-                    }}
-                  >
-                    {tabs[1]}
-                  </Text>
-                </Link>
-                <ul
-                  className={
-                    isMenuSubMenuPM
-                      ? "sub__menus sub__menus__Active"
-                      : "sub__menus"
-                  }
-                >
-                  <li>
-                    <Link href="/ProjectManagement" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color:
-                            pathname === "/ProjectManagement"
-                              ? "#66a109"
-                              : "black",
-                        }}
-                      >
-                        {tabs[3]} {/* Comprehensive Project Management */}
-                      </Text>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/ProjectManager" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color:
-                            pathname === "/ProjectManager"
-                              ? "#66a109"
-                              : "black",
-                        }}
-                      >
-                        {tabs[4]} {/* Project Manager */}
-                      </Text>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/Developmentplanning" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color:
-                            pathname === "/Developmentplanning"
-                              ? "#66a109"
-                              : "black",
-                        }}
-                      >
-                        {tabs[5]} {/* Development Planning */}
-                      </Text>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/Projectfeasability" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color:
-                            pathname === "/Projectfeasability"
-                              ? "#66a109"
-                              : "black",
-                        }}
-                      >
-                        {tabs[6]} {/* Feasibility Study */}
-                      </Text>
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-
-              {/* Engineering Consultancy Dropdown */}
-              <li
-                onClick={toggleSubmenuEC}
-                className={`menu-item sub__menus__arrows ${
-                  isEngineeringConsultancyPath() ? "active-service" : ""
-                }`}
-              >
-                <Link href="#">
-                  <Text
-                    style={{
-                      color: isEngineeringConsultancyPath()
-                        ? "#66a109"
-                        : "BLACK",
-                    }}
-                  >
-                    {tabs[2]}
-                  </Text>
-                </Link>
-                <ul
-                  className={
-                    isMenuSubMenuEC
-                      ? "sub__menus sub__menus__Active"
-                      : "sub__menus"
-                  }
-                >
-                  <li>
-                    <Link href="/EngineeringDesign" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color:
-                            pathname === "/EngineeringDesign"
-                              ? "#66a109"
-                              : "black",
-                        }}
-                      >
-                        {tabs[7]} {/* Engineering Design */}
-                      </Text>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/EngineeringSupervision" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color:
-                            pathname === "/EngineeringSupervision"
-                              ? "#66a109"
-                              : "black",
-                        }}
-                      >
-                        {tabs[8]} {/* Engineering Supervision */}
-                      </Text>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/InteriorDesign" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color:
-                            pathname === "/InteriorDesign"
-                              ? "#66a109"
-                              : "black",
-                        }}
-                      >
-                        {tabs[9]} {/* Interior Designing */}
-                      </Text>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/LandscapingDesign" onClick={toggleClass}>
-                      <Text
-                        style={{
-                          color:
-                            pathname === "/LandscapingDesign"
-                              ? "#66a109"
-                              : "black",
-                        }}
-                      >
-                        {tabs[10]} {/* Landscaping */}
-                      </Text>
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-
-              {/* Contact Link */}
-              <li className="menu-item">
-                <Link href="/Contact" onClick={toggleClass}>
-                  <Text
-                    style={{
-                      color: pathname === "/Contact" ? "#66a109" : "black",
-                    }}
-                  >
-                    {tabs[12]} {/* Connect */}
-                  </Text>
-                </Link>
-              </li>
-
-              {/* Language Dropdown */}
-              <li
-                onClick={toggleSubmenuLang}
-                className="menu-item sub__menus__arrows"
-              >
-                <Link href="#">
-                  <Text
-                    style={{ color: pathname === "/sss" ? "#66a109" : "black" }}
-                  >
-                    {tabs[15]} {/* Language */}
-                  </Text>
-                </Link>
-                <ul
-                  className={
-                    isMenuSubMenuLang
-                      ? "sub__menus sub__menus__Active"
-                      : "sub__menus"
-                  }
-                >
-                  <li>
-                    <button
-                      onClick={() => handleLanguageChange("ar")}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                        width: "100%",
-                        textAlign: "left",
-                        padding: "8px 16px",
-                        color: language === "ar" ? "#66a109" : "black",
-                      }}
-                    >
-                      <Text>
-                        {tabs[16]} {/* Arabic */}
-                      </Text>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => handleLanguageChange("eng")}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                        width: "100%",
-                        textAlign: "left",
-                        padding: "8px 16px",
-                        color: language === "eng" ? "#66a109" : "black",
-                      }}
-                    >
-                      <Text>
-                        {tabs[17]} {/* English */}
-                      </Text>
-                    </button>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </NavItem>
+                {item.isDropdown && (
+                  <SubMenu $isOpen={openDropdown === item.label}>
+                    {item.children.map((child) => (
+                      <SubMenuItem key={child.label}>
+                        {child.path ? (
+                          <SubMenuLink
+                            href={child.path}
+                            $isActive={pathname === child.path}
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            {language === "ar" ? child.labelAr : child.label}
+                          </SubMenuLink>
+                        ) : (
+                          <SubMenuButton
+                            $isActive={language === child.langCode}
+                            onClick={() => handleLanguageChange(child.langCode)}
+                          >
+                            {child.label}
+                          </SubMenuButton>
+                        )}
+                      </SubMenuItem>
+                    ))}
+                  </SubMenu>
+                )}
+              </MenuItem>
+            );
+          })}
         </NavMenu>
-        <NavMenu>
-          <StyledButton href={`/booking`}>
+
+        <NavActions>
+          <CTAButton href="/booking">
             {language === "eng" ? "Book Consultation" : "أحجز موعدك الآن"}
-          </StyledButton>
-        </NavMenu>
+          </CTAButton>
+        </NavActions>
       </NavbarContainer>
-    </Nav>
+    </NavWrapper>
   );
 };
 

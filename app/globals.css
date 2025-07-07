@@ -14,6 +14,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+* {
+  cursor: none !important;
+}
 /* @font-face {
   font-family: "Red Thinker";
   src: local("Red Thinker Regular"), local("Red-Thinker-Regular"),

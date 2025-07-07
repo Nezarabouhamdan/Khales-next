@@ -11,6 +11,7 @@ import Calltoaction from "./Calltoaction";
 import Footer from "@/components/Footer New/Footer";
 import { Inter } from "next/font/google";
 import Head from "next/head";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata = {
   title: "Welcome to Khales",
@@ -139,6 +140,7 @@ Could you please provide more details and help me get started?"
             <main>{children}</main>
           </ClientProviders>
         </StyledComponentsRegistry>
+        <CustomCursor />
       </body>
     </html>
   );
