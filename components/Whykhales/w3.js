@@ -1,50 +1,79 @@
-// components/WhyKhalesHybrid.jsx
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaHammer, FaSlidersH, FaClock, FaHome } from "react-icons/fa";
+import { useLanguage } from "@/Context/Languagecontext";
 
-//================================================================
-// 1. DATA & KEYFRAME ANIMATIONS
-//================================================================
-
-const featuresData = [
-  {
-    icon: <FaHammer />,
-    title: "Quality Craftsmanship",
-    description:
-      "Our commitment to excellence is evident in every detail, using premium materials and skilled artisans.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+const contentData = {
+  eng: {
+    label: "Why Choose Khales",
+    title: "Building Beyond a Blueprint",
+    features: [
+      {
+        icon: <FaHammer />,
+        title: "Quality Craftsmanship",
+        description:
+          "Our commitment to excellence is evident in every detail, using premium materials and skilled artisans.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+      },
+      {
+        icon: <FaSlidersH />,
+        title: "Visionary Customization",
+        description:
+          "We believe your home should be a true reflection of your vision, tailoring every space to your unique lifestyle.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+      },
+      {
+        icon: <FaClock />,
+        title: "Transparent Timelines",
+        description:
+          "With meticulous project management, we ensure your new home is delivered on schedule, without compromising quality.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+      },
+    ],
   },
-  {
-    icon: <FaSlidersH />,
-    title: "Visionary Customization",
-    description:
-      "We believe your home should be a true reflection of your vision, tailoring every space to your unique lifestyle.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+  ar: {
+    label: "لماذا تختار خالص",
+    title: "نبني ما هو أبعد من المخططات",
+    features: [
+      {
+        icon: <FaHammer />,
+        title: "حرفية عالية الجودة",
+        description:
+          "يتجلى التزامنا بالتميز في كل التفاصيل، باستخدام مواد فاخرة وحرفيين مهرة.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+      },
+      {
+        icon: <FaSlidersH />,
+        title: "تخصيص برؤية مبتكرة",
+        description:
+          "نؤمن بأن منزلك يجب أن يكون انعكاسًا حقيقيًا لرؤيتك، ونقوم بتصميم كل مساحة لتناسب نمط حياتك الفريد.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+      },
+      {
+        icon: <FaClock />,
+        title: "جداول زمنية شفافة",
+        description:
+          "من خلال إدارة المشاريع الدقيقة، نضمن تسليم منزلك الجديد في الموعد المحدد، دون المساومة على الجودة.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+      },
+    ],
   },
-  {
-    icon: <FaClock />,
-    title: "Transparent Timelines",
-    description:
-      "With meticulous project management, we ensure your new home is delivered on schedule, without compromising quality.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
-  },
-];
+};
 
 const kenBurns = keyframes`
   0% { transform: scale(1.0); }
   100% { transform: scale(1.1); }
 `;
 
-//================================================================
-// 2. STYLED COMPONENTS
-//================================================================
 const SectionContainer = styled.section`
   width: 100%;
   padding: 6rem 2rem;
@@ -52,6 +81,7 @@ const SectionContainer = styled.section`
   position: relative;
   overflow: hidden;
   font-family: "Inter", sans-serif;
+  direction: ${(props) => props.dir};
   @media (max-width: 992px) {
     padding: 4rem 1.5rem;
   }
@@ -76,6 +106,10 @@ const Label = styled.p`
   color: #66a109;
   font-weight: 600;
   margin-bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: ${(props) => (props.dir === "rtl" ? "row-reverse" : "row")};
 `;
 
 const MainTitle = styled.h1`
@@ -99,7 +133,7 @@ const FeaturesGrid = styled.div`
 `;
 
 const FeatureCard = styled(motion.div)`
-  text-align: left;
+  text-align: ${(props) => (props.dir === "rtl" ? "right" : "left")};
   padding: 1.5rem;
   border-radius: 12px;
   cursor: pointer;
@@ -167,6 +201,8 @@ const ImageCaption = styled(motion.div)`
   );
   color: white;
   z-index: 2;
+  text-align: ${(props) => (props.dir === "rtl" ? "right" : "left")};
+
   h3 {
     font-size: 1.5rem;
     font-weight: 600;
@@ -186,21 +222,24 @@ const DecorativeShape = styled.div`
   transition: transform 0.4s ease-out;
 `;
 
-//================================================================
-// 3. MAIN COMPONENT
-//================================================================
 const WhyKhalesHybrid = () => {
-  // Default to showing the middle feature on load
-  const [activeFeature, setActiveFeature] = useState(featuresData[1]);
+  const { language } = useLanguage();
+  const content = contentData[language] || contentData.eng;
+  const isRTL = language === "ar";
+
+  const [activeFeature, setActiveFeature] = useState(content.features?.[1]);
+
+  useEffect(() => {
+    setActiveFeature(content.features?.[1]);
+  }, [language]);
 
   return (
-    <SectionContainer>
+    <SectionContainer dir={isRTL ? "rtl" : "ltr"}>
       <DecorativeShape
-        className="shape"
-        data-factor="30"
         style={{
           top: "10%",
-          left: "5%",
+          left: isRTL ? "auto" : "5%",
+          right: isRTL ? "5%" : "auto",
           width: "50px",
           height: "50px",
           background: "rgba(102, 161, 9, 0.1)",
@@ -208,11 +247,10 @@ const WhyKhalesHybrid = () => {
         }}
       />
       <DecorativeShape
-        className="shape"
-        data-factor="-20"
         style={{
           bottom: "10%",
-          right: "5%",
+          right: isRTL ? "auto" : "5%",
+          left: isRTL ? "5%" : "auto",
           width: "80px",
           height: "80px",
           border: "1px solid rgba(102, 161, 9, 0.15)",
@@ -220,7 +258,6 @@ const WhyKhalesHybrid = () => {
       />
 
       <ContentWrapper
-        as={motion.div}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -233,51 +270,74 @@ const WhyKhalesHybrid = () => {
           }}
         >
           <Header>
-            <Label>
-              <FaHome /> Why Choose Khales
+            <Label dir={isRTL ? "rtl" : "ltr"}>
+              <FaHome />
+              <span>{content.label}</span>
             </Label>
-            <MainTitle>Building Beyond a Blueprint</MainTitle>
+            <MainTitle>{content.title}</MainTitle>
           </Header>
         </motion.div>
 
-        <FeaturesGrid>
-          {featuresData.map((feature, index) => (
-            <FeatureCard
-              key={index}
-              className={activeFeature.title === feature.title ? "active" : ""}
-              onMouseEnter={() => setActiveFeature(feature)}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
-              <IconWrapper>{feature.icon}</IconWrapper>
-              <FeatureTitle>{feature.title}</FeatureTitle>
-              <FeatureDescription>{feature.description}</FeatureDescription>
-            </FeatureCard>
-          ))}
-        </FeaturesGrid>
+        <motion.div
+          key={language}
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+          style={{ width: "100%" }}
+        >
+          <FeaturesGrid>
+            {content.features.map((feature) => (
+              <FeatureCard
+                key={feature.title + language}
+                dir={isRTL ? "rtl" : "ltr"}
+                className={
+                  activeFeature?.title === feature.title ? "active" : ""
+                }
+                onMouseEnter={() => setActiveFeature(feature)}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+              >
+                <IconWrapper>{feature.icon}</IconWrapper>
+                <FeatureTitle>{feature.title}</FeatureTitle>
+                <FeatureDescription>{feature.description}</FeatureDescription>
+              </FeatureCard>
+            ))}
+          </FeaturesGrid>
+        </motion.div>
 
         <ImageShowcase>
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             <ShowcaseImage
-              key={activeFeature.imageUrl}
-              imageUrl={activeFeature.imageUrl}
-              initial={{ opacity: 0, scale: 1.1 }}
+              key={activeFeature?.imageUrl}
+              imageUrl={activeFeature?.imageUrl}
+              initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, ease: "circOut" }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             />
           </AnimatePresence>
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             <ImageCaption
-              key={activeFeature.title}
+              key={activeFeature?.title}
+              dir={isRTL ? "rtl" : "ltr"}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
             >
-              <h3>{activeFeature.title}</h3>
-              <p>{activeFeature.description}</p>
+              <h3>{activeFeature?.title}</h3>
+              <p>{activeFeature?.description}</p>
             </ImageCaption>
           </AnimatePresence>
         </ImageShowcase>

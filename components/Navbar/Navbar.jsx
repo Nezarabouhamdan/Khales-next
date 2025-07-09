@@ -40,7 +40,6 @@ const menuData = [
     isDropdown: true,
     children: [
       { label: "About Khales", labelAr: "نبذة عنا", path: "/ABOUTUS" },
-      { label: "Portfolio", labelAr: "المشاريع", path: "/PROJECTS" },
       { label: "Blogs", labelAr: "المدونة", path: "/Blogs" },
     ],
   },
@@ -109,8 +108,9 @@ const menuData = [
     labelAr: "اللغة",
     isDropdown: true,
     children: [
-      { label: "English", langCode: "eng" },
-      { label: "Arabic", langCode: "ar" },
+      // *** FIX 1: Added 'labelAr' to the language options ***
+      { label: "English", labelAr: "الإنجليزية", langCode: "eng" },
+      { label: "Arabic", labelAr: "العربية", langCode: "ar" },
     ],
   },
 ];
@@ -249,7 +249,11 @@ const MenuLink = styled.a`
   position: relative;
   transition: color 0.3s ease;
   color: ${({ $isScrolled, $isActive }) =>
-    $isActive ? COLORS.primary : $isScrolled ? COLORS.darkText : COLORS.white};
+    $isActive
+      ? COLORS.primary
+      : $isScrolled
+      ? COLORS.darkText
+      : COLORS.darkText};
   text-shadow: ${({ $isScrolled }) =>
     $isScrolled ? "none" : "0 1px 3px rgba(0, 0, 0, 0.3)"};
 
@@ -387,7 +391,6 @@ const CTAButton = styled(Link)`
 
 // --- MAIN NAVBAR COMPONENT ---
 const Navbar = () => {
-  // --- 2. REMOVE LOCAL STATE and USE THE GLOBAL CONTEXT ---
   const { language, changeLanguage } = useLanguage();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -413,9 +416,8 @@ const Navbar = () => {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
-  // --- 3. UPDATE HANDLER TO USE THE GLOBAL FUNCTION ---
   const handleLanguageChange = (langCode) => {
-    changeLanguage(langCode); // This now calls the function from your context
+    changeLanguage(langCode);
     setOpenDropdown(null);
   };
 
@@ -480,7 +482,10 @@ const Navbar = () => {
                             $isActive={language === child.langCode}
                             onClick={() => handleLanguageChange(child.langCode)}
                           >
-                            {child.label}
+                            {/* *** FIX 2: Use the language state to render the correct label *** */}
+                            {language === "ar" && child.labelAr
+                              ? child.labelAr
+                              : child.label}
                           </SubMenuButton>
                         )}
                       </SubMenuItem>

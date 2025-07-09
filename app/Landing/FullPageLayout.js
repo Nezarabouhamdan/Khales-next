@@ -962,7 +962,7 @@ const FullPageLayout = () => {
             variants={itemVariants}
             onClick={() => scrollToSection("register")}
           >
-            ابدأ مشروعك{" "}
+            ابدأ التصميم{" "}
           </HeroCTAButton>
         </HeroMainContent>
       </HeroWrapper>
@@ -1019,7 +1019,7 @@ const FullPageLayout = () => {
                 </Paragraph>
                 <ConsultButton onClick={() => scrollToSection("register")}>
                   {" "}
-                  ابدأ مشروعك{" "}
+                  ابدأ التصميم{" "}
                 </ConsultButton>
               </TextColumn>
             </ServiceBlock>
@@ -1048,7 +1048,7 @@ const FullPageLayout = () => {
                 </Paragraph>
                 <ConsultButton onClick={() => scrollToSection("register")}>
                   {" "}
-                  ابدأ مشروعك{" "}
+                  ابدأ التصميم{" "}
                 </ConsultButton>
               </TextColumn>
               <CardsGrid variants={containerVariants}>
@@ -1106,7 +1106,7 @@ const FullPageLayout = () => {
               </Paragraph>
               <ConsultButton onClick={() => scrollToSection("register")}>
                 {" "}
-                ابدأ مشروعك{" "}
+                ابدأ التصميم{" "}
               </ConsultButton>
             </InteriorSectionHeader>
             <InteriorGalleryGrid variants={containerVariants}>
@@ -1153,7 +1153,7 @@ const FullPageLayout = () => {
                 </Paragraph>
                 <ConsultButton onClick={() => scrollToSection("register")}>
                   {" "}
-                  ابدأ مشروعك{" "}
+                  ابدأ التصميم{" "}
                 </ConsultButton>
               </TextColumn>
               <DetailedImageColumn

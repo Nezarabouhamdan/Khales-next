@@ -6,6 +6,10 @@ import ServicesSwiper from "@/components/Whatwedodeep/Whatwedo";
 import FeaturedProjects from "@/components/Featured Projects/FeaturedProjects";
 import TestimonialSlider from "@/components/Reviews/TestimonialSlider";
 import CTASection from "@/components/Homecontact/CTASection";
+import FAQ from "@/components/FAQ/FAQ";
+import HowTo from "@/components/HowTo/HowTo";
+import ServiceAreas from "@/components/ServiceAreas/ServiceAreas";
+import LocalBusinessSchema from "@/components/LocalBusiness/LocalBusiness";
 import dynamic from "next/dynamic";
 import Hero from "@/components/Hero/Hero";
 import StatisticsSection from "@/components/Section1";
@@ -15,6 +19,10 @@ import MissionVision from "@/components/MV/Mv";
 import ServicesSection from "@/components/Ser/Ser";
 import MeetTheTeam from "@/components/Team/T1";
 import HeroGlass from "@/components/Banners/B1";
+import OurServices from "@/components/Ser2/Ser2";
+import AboutKhalesUltimate from "@/components/Aboutkhales/AboutKhales2";
+import WhyKhalesHybrid from "@/components/Whykhales/w3";
+import ValuePropositionV2 from "@/components/Statics/Statics2";
 const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 
 export default function HomeContent() {
@@ -30,6 +38,7 @@ export default function HomeContent() {
 
   return (
     <>
+      <LocalBusinessSchema />
       <section id="hero" aria-label="hero">
         <h1 style={{ display: "none" }}>
           {language === "ar" ? "مرحبًا بك في Khales" : "Welcome to Khales"}
@@ -37,14 +46,18 @@ export default function HomeContent() {
         {/* <HeroGlass /> */}
         <Hero />
       </section>
-
+      <AboutKhalesUltimate />
+      <WhyKhalesHybrid />
+      {/* <AboutKhalesGroupInteractive />  */}
+      {/* it timeline */}
+      <ValuePropositionV2 />
       {/* <StatisticsSection /> */}
-      <WhoAreWe />
       {/* <MissionVision /> */}
       {/* <Services /> */}
       {/* <WhyUs /> */}
-      <ServicesSwiper />
       {/* <ServicesSection /> */}
+      <OurServices />
+
       <FeaturedProjects />
       <TestimonialSlider />
       <CTASection />

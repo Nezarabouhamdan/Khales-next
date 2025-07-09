@@ -281,7 +281,7 @@ const RealEstatePage = () => {
         <ProjectHighlight data={ProjectHighlightdata[language]} />
 
         <Title2>
-          {language === "ar" ? "عملية عملنا" : "Frequently Asked"}
+          {language === "ar" ? "الأسئلة الشائعة " : "Frequently Asked"}
           <GreenText>{language === "ar" ? "" : " Questions"}</GreenText>
         </Title2>
 

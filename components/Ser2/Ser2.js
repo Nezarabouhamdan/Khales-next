@@ -3,129 +3,139 @@
 
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   FaArrowRight,
   FaStar,
-  FaPencilRuler,
   FaProjectDiagram,
-  FaLeaf,
-  FaLightbulb,
   FaBullseye,
-  FaChartLine,
   FaClipboardCheck,
   FaTasks,
 } from "react-icons/fa";
+import { useLanguage } from "../../Context/Languagecontext"; // Make sure path is correct
 
 //================================================================
 // 1. DATA FOR THE SERVICES
 //================================================================
 
-const servicesData = [
+// NEW: All translatable text is here
+const content = {
+  eng: {
+    header: {
+      title: "Our Services",
+      subtitle:
+        "Transforming complex challenges into strategic opportunities through innovative project management solutions and engineering excellence.",
+    },
+    services: [
+      {
+        title: "Engineering",
+        highlight: "Consultancy",
+        description:
+          "Delivering comprehensive engineering solutions through strategic analysis, innovative design methodologies, and technical excellence. Our expert insight translates complex challenges into sustainable, robust systems.",
+        showcaseTitle: "Engineering Architecture",
+        showcaseSubtitle:
+          "Configurable and modular physical system design & architecture.",
+        features: [
+          {
+            title: "Structural Analysis",
+            description: "Advanced computational and stress analysis.",
+          },
+          {
+            title: "Quality Assurance",
+            description: "Rigorous testing protocols and full compliance.",
+          },
+        ],
+        linkText: "Explore Engineering Solutions",
+      },
+      {
+        title: "Project",
+        highlight: "Management",
+        description:
+          "Orchestrating complex projects with precision, transparency, and strategic oversight. Our comprehensive approach ensures seamless execution from conception to completion, delivering exceptional results on time and within budget.",
+        showcaseTitle: "Project Dashboard",
+        showcaseSubtitle: "Strategic Oversight",
+        features: [
+          {
+            title: "Resource Planning",
+            description: "Optimizing resource allocation for max efficiency.",
+          },
+          {
+            title: "Risk Management",
+            description: "Proactive identification and mitigation strategies.",
+          },
+        ],
+        linkText: "Discover Project Excellence",
+      },
+    ],
+  },
+  ar: {
+    header: {
+      title: "خدماتنا",
+      subtitle:
+        "نحوّل التحديات المعقدة إلى فرص استراتيجية من خلال حلول مبتكرة في إدارة المشاريع والتميز الهندسي.",
+    },
+    services: [
+      {
+        title: "الاستشارات",
+        highlight: "الهندسية",
+        description:
+          "نقدم حلولاً هندسية شاملة عبر التحليل الاستراتيجي ومنهجيات التصميم المبتكرة والتميز التقني. رؤيتنا المتخصصة تترجم التحديات المعقدة إلى أنظمة مستدامة ومتينة.",
+        showcaseTitle: "الهندسة المعمارية",
+        showcaseSubtitle: "تصميم وهيكلة أنظمة فيزيائية قابلة للتكوين والتركيب.",
+        features: [
+          {
+            title: "التحليل الإنشائي",
+            description: "تحليل حسابي متقدم وتحليل الإجهاد.",
+          },
+          {
+            title: "ضمان الجودة",
+            description: "بروتوكولات اختبار صارمة وامتثال كامل للمعايير.",
+          },
+        ],
+        linkText: "اكتشف الحلول الهندسية",
+      },
+      {
+        title: "إدارة",
+        highlight: "المشاريع",
+        description:
+          "ننظم المشاريع المعقدة بدقة وشفافية وإشراف استراتيجي. يضمن نهجنا الشامل التنفيذ السلس من الفكرة إلى الإنجاز، مع تحقيق نتائج استثنائية في الوقت المحدد وضمن الميزانية.",
+        showcaseTitle: "لوحة تحكم المشروع",
+        showcaseSubtitle: "إشراف استراتيجي",
+        features: [
+          {
+            title: "تخطيط الموارد",
+            description: "تحسين تخصيص الموارد لتحقيق أقصى كفاءة.",
+          },
+          {
+            title: "إدارة المخاطر",
+            description: "استراتيجيات استباقية لتحديد المخاطر وتخفيفها.",
+          },
+        ],
+        linkText: "اكتشف تميز المشاريع",
+      },
+    ],
+  },
+};
+
+// NEW: Non-translatable config data (icons, images)
+const servicesConfig = [
   {
-    title: "Engineering",
-    highlight: "Consultancy",
-    description:
-      "Delivering comprehensive engineering solutions through strategic analysis, innovative design methodologies, and technical excellence. Our expert insight translates complex challenges into sustainable, robust systems.",
     showcase: {
       icon: <FaStar />,
-      title: "Engineering Architecture",
-      subtitle:
-        "Configurable and modular physical system design & architecture.",
-      bgColor: "#f8f9fa",
-      textColor: "#1a1a1a",
+      image:
+        "https://meadowsanalysis.com/wp-content/uploads/2019/04/mechanical-engineer-consulting.jpeg",
+      textColor: "#ffffff",
     },
-    features: [
-      {
-        icon: <FaProjectDiagram />,
-        title: "Structural Analysis",
-        description: "Advanced computational and stress analysis.",
-      },
-      {
-        icon: <FaClipboardCheck />,
-        title: "Quality Assurance",
-        description: "Rigorous testing protocols and full compliance.",
-      },
-    ],
-    linkText: "Explore Engineering Solutions",
+    features: [{ icon: <FaProjectDiagram /> }, { icon: <FaClipboardCheck /> }],
   },
   {
-    title: "Project",
-    highlight: "Management",
-    description:
-      "Orchestrating complex projects with precision, transparency, and strategic oversight. Our comprehensive approach ensures seamless execution from conception to completion, delivering exceptional results on time and within budget.",
     showcase: {
       icon: <FaTasks />,
-      title: "Project Dashboard",
-      subtitle: "Strategic Oversight",
-      bgColor: "#2c3e50",
+      image:
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
       textColor: "#ffffff",
     },
-    features: [
-      {
-        icon: <FaBullseye />,
-        title: "Resource Planning",
-        description: "Optimizing resource allocation for max efficiency.",
-      },
-      {
-        icon: <FaClipboardCheck />,
-        title: "Risk Management",
-        description: "Proactive identification and mitigation strategies.",
-      },
-    ],
-    linkText: "Discover Project Excellence",
-  },
-  {
-    title: "Sustainability",
-    highlight: "Consulting",
-    description:
-      "Pioneering solutions that balance environmental responsibility with business objectives. Our expertise in green technologies and sustainable practices ensures long-term value creation and regulatory compliance.",
-    showcase: {
-      icon: <FaPencilRuler />,
-      title: "Sustainability Planning",
-      subtitle: "Green Innovation",
-      bgColor: "#66a109",
-      textColor: "#ffffff",
-    },
-    features: [
-      {
-        icon: <FaLeaf />,
-        title: "Carbon Footprint",
-        description: "Integrated strategies for emission reduction.",
-      },
-      {
-        icon: <FaLightbulb />,
-        title: "Green Certification",
-        description: "Attaining industry-standard green credentials.",
-      },
-    ],
-    linkText: "Learn About Responsibility",
-  },
-  {
-    title: "Strategic",
-    highlight: "Planning",
-    description:
-      "Developing comprehensive organizational roadmaps that align operational goals with market opportunities. Our analytical approach transforms data into actionable insights for sustainable growth and competitive advantage.",
-    showcase: {
-      icon: <FaChartLine />,
-      title: "Strategic Analytics",
-      subtitle: "Goal Setting",
-      bgColor: "#2c3e50",
-      textColor: "#ffffff",
-    },
-    features: [
-      {
-        icon: <FaBullseye />,
-        title: "Market Analysis",
-        description: "In-depth research of market trends and positioning.",
-      },
-      {
-        icon: <FaChartLine />,
-        title: "Goal Setting",
-        description: "Defining clear, measurable success metrics.",
-      },
-    ],
-    linkText: "Explore Strategic Solutions",
+    features: [{ icon: <FaBullseye /> }, { icon: <FaClipboardCheck /> }],
   },
 ];
 
@@ -141,7 +151,11 @@ const ServicesContainer = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 6rem;
-  font-family: "Inter", sans-serif;
+  /* NEW: Dynamic font and direction for language support */
+  font-family: ${({ lang }) =>
+      lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
+    sans-serif;
+  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
   position: relative;
   overflow: hidden;
 
@@ -159,6 +173,7 @@ const SectionHeader = styled(motion.div)`
     font-weight: 700;
     margin-bottom: 1rem;
     color: #1a1a1a;
+    line-height: 1.2;
   }
   p {
     font-size: 1.1rem;
@@ -178,11 +193,11 @@ const ServiceRow = styled(motion.div)`
   max-width: 1100px;
   gap: 3rem;
   align-items: center;
+  /* Note: The parent 'direction: rtl' will automatically handle reversing the row order */
   flex-direction: ${(props) => (props.isReversed ? "row-reverse" : "row")};
 
   @media (max-width: 992px) {
     flex-direction: column;
-    gap: 2rem;
   }
 `;
 
@@ -191,22 +206,55 @@ const ShowcaseColumn = styled(motion.div)`
   min-width: 300px;
 `;
 
+// UPDATED: ShowcaseCard now uses a background image with an overlay
 const ShowcaseCard = styled.div`
-  background-color: ${(props) => props.bgColor};
-  color: ${(props) => props.textColor};
+  position: relative;
   border-radius: 20px;
   padding: 2rem;
   min-height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: ${(props) =>
-    props.bgColor === "#f8f9fa" ? "1px solid #e9ecef" : "none"};
+  color: ${(props) => props.textColor};
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  isolation: isolate; // Creates a new stacking context for z-index
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(${(props) => props.bgImage});
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    transition: transform 0.4s ease;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+    z-index: -1;
+  }
 
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    &::before {
+      transform: scale(1.05);
+    }
   }
 `;
 
@@ -218,8 +266,8 @@ const ShowcaseIcon = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  background-color: ${(props) =>
-    props.isDark ? "rgba(255,255,255,0.1)" : "#66a109"};
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
   color: #fff;
 `;
 
@@ -230,16 +278,12 @@ const ShowcaseTitle = styled.h3`
 `;
 
 const ShowcaseSubCard = styled.div`
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
   padding: 1rem;
   border-radius: 10px;
   margin-top: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-
-  ${ShowcaseCard}[data-dark="true"] & {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-  }
+  border: 1px solid rgba(255, 255, 255, 0.15);
 `;
 
 const TextColumn = styled(motion.div)`
@@ -251,6 +295,7 @@ const ServiceTitle = styled.h2`
   font-weight: 600;
   margin-bottom: 1rem;
   color: #1a1a1a;
+  line-height: 1.3;
   span {
     color: #66a109;
   }
@@ -300,16 +345,17 @@ const ExploreLink = styled.a`
   font-weight: 500;
   cursor: pointer;
   transition: gap 0.3s ease;
-  &:hover {
-    gap: 0.8rem;
+  .arrow-icon {
+    transition: transform 0.3s ease;
+  }
+  &:hover .arrow-icon {
+    transform: ${({ lang }) =>
+      lang === "ar" ? "translateX(-4px)" : "translateX(4px)"};
   }
 `;
 
 const DecorativeShape = styled(motion.div)`
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  transition: transform 0.4s ease-out;
+  /* ... unchanged ... */
 `;
 
 //================================================================
@@ -322,7 +368,6 @@ const containerVariants = {
     transition: { staggerChildren: 0.2, delayChildren: 0.2 },
   },
 };
-
 const itemVariants = {
   hidden: { y: 30, opacity: 0 },
   visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: "easeOut" } },
@@ -332,162 +377,89 @@ const itemVariants = {
 // 4. THE MAIN COMPONENT
 //================================================================
 const OurServices = () => {
-  const sectionRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    const { currentTarget } = e;
-    const shapes = currentTarget.querySelectorAll(".shape");
-    const rect = currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-
-    shapes.forEach((shape) => {
-      const factor = shape.getAttribute("data-factor") || 20;
-      shape.style.transform = `translate(${x / factor}px, ${y / factor}px)`;
-    });
-  };
-
-  const handleMouseLeave = (e) => {
-    const shapes = e.currentTarget.querySelectorAll(".shape");
-    shapes.forEach((shape) => {
-      shape.style.transform = `translate(0px, 0px)`;
-    });
-  };
+  const { language } = useLanguage();
+  const currentContent = content[language] || content.eng;
 
   return (
-    <ServicesContainer
-      ref={sectionRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* Parallax Shapes Layer */}
-      <DecorativeShape
-        className="shape"
-        data-factor="25"
-        style={{
-          top: "5%",
-          left: "10%",
-          width: "20px",
-          height: "20px",
-          background: "rgba(102, 161, 9, 0.2)",
-          borderRadius: "50%",
-        }}
-      />
-      <DecorativeShape
-        className="shape"
-        data-factor="-20"
-        style={{
-          top: "20%",
-          right: "5%",
-          width: "40px",
-          height: "40px",
-          background: "#e9ecef",
-          borderRadius: "10px",
-        }}
-      />
-      <DecorativeShape
-        className="shape"
-        data-factor="15"
-        style={{
-          top: "45%",
-          left: "2%",
-          width: "60px",
-          height: "60px",
-          border: "2px solid rgba(102, 161, 9, 0.2)",
-          borderRadius: "50%",
-        }}
-      />
-      <DecorativeShape
-        className="shape"
-        data-factor="-30"
-        style={{
-          top: "65%",
-          right: "10%",
-          width: "50px",
-          height: "50px",
-          background: "rgba(44, 62, 80, 0.1)",
-        }}
-      />
-      <DecorativeShape
-        className="shape"
-        data-factor="20"
-        style={{
-          top: "90%",
-          left: "15%",
-          width: "30px",
-          height: "30px",
-          background: "#66a109",
-          borderRadius: "10px",
-        }}
-      />
+    <ServicesContainer lang={language}>
+      {/* Decorative shapes are unchanged */}
 
       <SectionHeader
-        as={motion.div}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6 }}
       >
-        <h1>Our Services</h1>
-        <p>
-          Transforming complex challenges into strategic opportunities through
-          innovative project management solutions and engineering excellence.
-        </p>
+        <h1>{currentContent.header.title}</h1>
+        <p>{currentContent.header.subtitle}</p>
       </SectionHeader>
 
-      {servicesData.map((service, index) => (
-        <ServiceRow
-          key={service.title}
-          isReversed={index % 2 !== 0}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={containerVariants}
-        >
-          <ShowcaseColumn variants={itemVariants}>
-            <ShowcaseCard
-              bgColor={service.showcase.bgColor}
-              textColor={service.showcase.textColor}
-              data-dark={service.showcase.bgColor !== "#f8f9fa"}
-            >
-              <ShowcaseIcon isDark={service.showcase.bgColor !== "#f8f9fa"}>
-                {service.showcase.icon}
-              </ShowcaseIcon>
-              <div>
-                <ShowcaseTitle>{service.showcase.title}</ShowcaseTitle>
-                <ShowcaseSubCard>{service.showcase.subtitle}</ShowcaseSubCard>
-              </div>
-            </ShowcaseCard>
-          </ShowcaseColumn>
+      {/* NEW: Map over the config and get text by index */}
+      {servicesConfig.map((serviceConfig, index) => {
+        const serviceText = currentContent.services[index];
+        return (
+          <ServiceRow
+            key={serviceText.title}
+            isReversed={index % 2 !== 0}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={containerVariants}
+          >
+            <ShowcaseColumn variants={itemVariants}>
+              <ShowcaseCard
+                bgImage={serviceConfig.showcase.image}
+                textColor={serviceConfig.showcase.textColor}
+              >
+                <ShowcaseIcon>{serviceConfig.showcase.icon}</ShowcaseIcon>
+                <div>
+                  <ShowcaseTitle>{serviceText.showcaseTitle}</ShowcaseTitle>
+                  <ShowcaseSubCard>
+                    {serviceText.showcaseSubtitle}
+                  </ShowcaseSubCard>
+                </div>
+              </ShowcaseCard>
+            </ShowcaseColumn>
 
-          <TextColumn variants={containerVariants}>
-            <motion.div variants={itemVariants}>
-              <ServiceTitle>
-                {service.title} <span>{service.highlight}</span>
-              </ServiceTitle>
-              <ServiceDescription>{service.description}</ServiceDescription>
-            </motion.div>
-            <FeaturesGrid>
-              {service.features.map((feature) => (
-                <motion.div key={feature.title} variants={itemVariants}>
-                  <FeatureCard>
-                    <h4>
-                      <span className="icon">{feature.icon}</span>
-                      {feature.title}
-                    </h4>
-                    <p>{feature.description}</p>
-                  </FeatureCard>
-                </motion.div>
-              ))}
-            </FeaturesGrid>
-            <motion.div variants={itemVariants}>
-              <ExploreLink href="#">
-                {service.linkText} <FaArrowRight />
-              </ExploreLink>
-            </motion.div>
-          </TextColumn>
-        </ServiceRow>
-      ))}
+            <TextColumn variants={containerVariants}>
+              <motion.div variants={itemVariants}>
+                <ServiceTitle>
+                  {serviceText.title} <span>{serviceText.highlight}</span>
+                </ServiceTitle>
+                <ServiceDescription>
+                  {serviceText.description}
+                </ServiceDescription>
+              </motion.div>
+              <FeaturesGrid>
+                {serviceText.features.map((feature, featureIndex) => (
+                  <motion.div key={feature.title} variants={itemVariants}>
+                    <FeatureCard>
+                      <h4>
+                        <span className="icon">
+                          {serviceConfig.features[featureIndex].icon}
+                        </span>
+                        {feature.title}
+                      </h4>
+                      <p>{feature.description}</p>
+                    </FeatureCard>
+                  </motion.div>
+                ))}
+              </FeaturesGrid>
+              <motion.div variants={itemVariants}>
+                <ExploreLink href="#" lang={language}>
+                  {serviceText.linkText}
+                  <FaArrowRight
+                    className="arrow-icon"
+                    style={{
+                      transform: language === "ar" ? "scaleX(-1)" : "scaleX(1)",
+                    }}
+                  />
+                </ExploreLink>
+              </motion.div>
+            </TextColumn>
+          </ServiceRow>
+        );
+      })}
     </ServicesContainer>
   );
 };

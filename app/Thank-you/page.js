@@ -16,6 +16,9 @@ import PropertyPage from "@/components/Projectspage/p1";
 import PropertyListing from "@/components/Projectspage/p2";
 import PropertyListingMinimal from "@/components/Projectspage/p3";
 import MeetTheTeam from "@/components/Team/T1";
+import HowTo from "@/components/HowTo/HowTo";
+import ServiceAreas from "@/components/ServiceAreas/ServiceAreas";
+import FAQ from "@/components/FAQ/FAQ";
 export const metadata = {
   title: "Thank you",
   description:
@@ -61,16 +64,13 @@ const Thankyou = () => {
       <SuccessStory />
       {/* <SuccessStoryV2 /> */}
       <FullCaseStudyPage />
-      <CaseStudy />
-      <WhyKhales />
-      <WhyKhalesSplit />
       <WhyKhalesHybrid />
-      <OfficeLocations />
       <OfficeLocationsCombined />
       <PropertyPage />
-      <PropertyListing />
-      <PropertyListingMinimal />
       <MeetTheTeam />
+      <HowTo />
+      <ServiceAreas />
+      <FAQ />
     </>
   );
 };

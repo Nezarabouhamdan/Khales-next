@@ -3,74 +3,143 @@
 
 import React from "react";
 import styled from "styled-components";
-import {
-  FaLinkedinIn,
-  FaTwitter,
-  FaDribbble,
-  FaArrowRight,
-} from "react-icons/fa";
+import { FaLinkedinIn, FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { useLanguage } from "@/Context/Languagecontext"; // Adjust path if needed
 
 //================================================================
-// DATA
+// 1. DYNAMIC CONTENT
 //================================================================
-const teamMembersData = [
-  {
-    imgSrc:
-      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=200",
-    name: "Zane Robott",
-    title: "Founder & CEO",
-    bio: "A visionary leader with a passion for innovation and design excellence.",
-    socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+const contentData = {
+  eng: {
+    label: "Our Experts",
+    title: "Meet our team members",
+    subtitle:
+      "We believe in the power of collective genius. Our multidisciplinary team of architects, designers, and engineers collaborate to turn visionary ideas into reality.",
+    buttons: {
+      apply: "Apply Now",
+      contact: "Contact Us",
+    },
+    team: [
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=200",
+        name: "Zane Robott",
+        title: "Founder & CEO",
+        bio: "A visionary leader with a passion for innovation and design excellence.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+        name: "Mays Murnay",
+        title: "Lead Architect",
+        bio: "Expert in translating complex client needs into breathtaking architectural forms.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+        name: "Aluala Almario",
+        title: "Head of Design",
+        bio: "Curates our signature aesthetic, blending modernism with timeless elegance.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
+        name: "Amelia Biriya",
+        title: "Project Manager",
+        bio: "Ensures every project is executed flawlessly, on time, and within budget.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&q=80&w=200",
+        name: "Stanislav Barna",
+        title: "Lead Engineer",
+        bio: "Drives our technical innovation, ensuring structural integrity and sustainability.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?auto=format&fit=crop&q=80&w=200",
+        name: "Antony Vist",
+        title: "Head of Client Relations",
+        bio: "Fosters lasting partnerships through unparalleled service and communication.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+    ],
   },
-  {
-    imgSrc:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
-    name: "Mays Murnay",
-    title: "Lead Architect",
-    bio: "Expert in translating complex client needs into breathtaking architectural forms.",
-    socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+  ar: {
+    label: "خبراؤنا",
+    title: "تعرف على أعضاء فريقنا",
+    subtitle:
+      "نؤمن بقوة العبقرية الجماعية. يتعاون فريقنا متعدد التخصصات من المهندسين المعماريين والمصممين والمهندسين لتحويل الأفكار الطموحة إلى واقع ملموس.",
+    buttons: {
+      apply: "قدم الآن",
+      contact: "اتصل بنا",
+    },
+    team: [
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=200",
+        name: "زين روبوت",
+        title: "المؤسس والرئيس التنفيذي",
+        bio: "قائد ذو رؤية وشغف بالابتكار والتميز في التصميم.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+        name: "ميس مورناي",
+        title: "كبير المهندسين المعماريين",
+        bio: "خبير في ترجمة احتياجات العملاء المعقدة إلى أشكال معمارية مذهلة.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+        name: "ألولا الماريو",
+        title: "رئيس قسم التصميم",
+        bio: "تشرف على جمالياتنا المميزة، وتمزج بين الحداثة والأناقة الخالدة.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
+        name: "أميليا بيريا",
+        title: "مديرة المشاريع",
+        bio: "تضمن تنفيذ كل مشروع بشكل لا تشوبه شائبة، في الوقت المحدد وضمن الميزانية.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&q=80&w=200",
+        name: "ستانيسلاف بارنا",
+        title: "كبير المهندسين",
+        bio: "يقود ابتكارنا التقني، ويضمن السلامة الهيكلية والاستدامة.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+      {
+        imgSrc:
+          "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?auto=format&fit=crop&q=80&w=200",
+        name: "أنتوني فيست",
+        title: "رئيس علاقات العملاء",
+        bio: "يعزز الشراكات الدائمة من خلال خدمة وتواصل لا مثيل لهما.",
+        socials: [{ icon: <FaLinkedinIn />, url: "#" }],
+      },
+    ],
   },
-  {
-    imgSrc:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
-    name: "Aluala Almario",
-    title: "Head of Design",
-    bio: "Curates our signature aesthetic, blending modernism with timeless elegance.",
-    socials: [{ icon: <FaLinkedinIn />, url: "#" }],
-  },
-  {
-    imgSrc:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200",
-    name: "Amelia Biriya",
-    title: "Project Manager",
-    bio: "Ensures every project is executed flawlessly, on time, and within budget.",
-    socials: [{ icon: <FaLinkedinIn />, url: "#" }],
-  },
-  {
-    imgSrc:
-      "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&q=80&w=200",
-    name: "Stanislav Barna",
-    title: "Lead Engineer",
-    bio: "Drives our technical innovation, ensuring structural integrity and sustainability.",
-    socials: [{ icon: <FaLinkedinIn />, url: "#" }],
-  },
-  {
-    imgSrc:
-      "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?auto=format&fit=crop&q=80&w=200",
-    name: "Antony Vist",
-    title: "Head of Client Relations",
-    bio: "Fosters lasting partnerships through unparalleled service and communication.",
-    socials: [{ icon: <FaLinkedinIn />, url: "#" }],
-  },
-];
+};
 
 //================================================================
-// STYLED COMPONENTS (NO FRAMER MOTION)
+// 2. STYLED COMPONENTS
 //================================================================
 const SectionWrapper = styled.section`
   padding: 6rem 2rem;
   background-color: #ffffff;
   font-family: "Inter", sans-serif;
+  direction: ${(props) => props.dir};
 `;
 
 const ContentWrapper = styled.div`
@@ -124,6 +193,7 @@ const PrimaryButton = styled.a`
   border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
   transition: all 0.3s ease;
   &:hover {
     box-shadow: 0 10px 20px rgba(102, 161, 9, 0.3);
@@ -134,6 +204,8 @@ const SecondaryButton = styled(PrimaryButton)`
   background-color: transparent;
   color: #1a1a1a;
   border: 1px solid #ccc;
+  /* RTL FIX: Reverse flex direction for icon placement */
+  flex-direction: ${(props) => (props.dir === "rtl" ? "row-reverse" : "row")};
   &:hover {
     background-color: #1a1a1a;
     color: white;
@@ -153,21 +225,26 @@ const HoverOverlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-  border-radius: 0 0 60px 60px;
+  height: 100%; /* Cover entire image */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+  border-radius: 50%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 0.75rem;
+  padding-bottom: 1rem;
   opacity: 0;
   transition: opacity 0.3s ease;
 `;
 
+const SocialIconsContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
 const SocialIcon = styled.a`
   color: white;
-  font-size: 1rem;
-  transform: translateY(10px);
+  font-size: 1.2rem;
+  transform: translateY(15px);
   opacity: 0;
   transition: all 0.3s ease;
   &:hover {
@@ -190,13 +267,6 @@ const MemberCard = styled.div`
   &:hover ${SocialIcon} {
     transform: translateY(0);
     opacity: 1;
-  }
-  /* Stagger the social icon animation on hover */
-  &:hover ${SocialIcon}:nth-child(2) {
-    transition-delay: 0.1s;
-  }
-  &:hover ${SocialIcon}:nth-child(3) {
-    transition-delay: 0.2s;
   }
 `;
 
@@ -221,8 +291,6 @@ const ImageWrapper = styled.div`
   }
 
   ${MemberCard}:hover &::before {
-    opacity: 1;
-    transform: scale(1);
     border-color: #66a109;
   }
 `;
@@ -251,39 +319,50 @@ const Bio = styled.p`
   color: #555;
 `;
 
+//================================================================
+// 3. MAIN COMPONENT
+//================================================================
 const MeetTheTeam = () => {
+  const { language } = useLanguage();
+  const content = contentData[language] || contentData.eng;
+  const isRTL = language === "ar";
+
   return (
-    <SectionWrapper>
+    <SectionWrapper dir={isRTL ? "rtl" : "ltr"}>
       <ContentWrapper>
         <Header>
-          <Label>Our Experts</Label>
-          <Title>Meet our team members</Title>
-          <Subtitle>
-            We believe in the power of collective genius. Our multidisciplinary
-            team of architects, designers, and engineers collaborate to turn
-            visionary ideas into reality.
-          </Subtitle>
+          <Label>{content.label}</Label>
+          <Title>{content.title}</Title>
+          <Subtitle>{content.subtitle}</Subtitle>
           <ButtonsWrapper>
-            <PrimaryButton href="#">Apply Now</PrimaryButton>
-            <SecondaryButton href="#">
-              Contact Us <FaArrowRight style={{ marginLeft: "4px" }} />
+            <PrimaryButton href="#">{content.buttons.apply}</PrimaryButton>
+            <SecondaryButton href="#" dir={isRTL ? "rtl" : "ltr"}>
+              <span>{content.buttons.contact}</span>
+              {/* RTL FIX: Conditional arrow icon */}
+              {isRTL ? <FaArrowLeft /> : <FaArrowRight />}
             </SecondaryButton>
           </ButtonsWrapper>
         </Header>
 
         <TeamGrid>
-          {teamMembersData.map((member, index) => (
+          {content.team.map((member, index) => (
             <MemberCard key={index}>
               <ImageWrapper>
                 <ProfileImage src={member.imgSrc} alt={member.name} />
                 <HoverOverlay>
-                  <div>
+                  <SocialIconsContainer>
                     {member.socials.map((social, i) => (
-                      <SocialIcon key={i} href={social.url} target="_blank">
+                      <SocialIcon
+                        key={i}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ transitionDelay: `${i * 0.1}s` }}
+                      >
                         {social.icon}
                       </SocialIcon>
                     ))}
-                  </div>
+                  </SocialIconsContainer>
                 </HoverOverlay>
               </ImageWrapper>
               <MemberInfo>

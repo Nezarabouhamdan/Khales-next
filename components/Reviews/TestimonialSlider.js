@@ -1,262 +1,275 @@
+// components/ClientsAndPartners.jsx
 "use client";
-import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { Autoplay } from "swiper/modules";
-import { GreenText, Title } from "../Whoweare/TextContent";
-import { useLanguage } from "../../Context/Languagecontext";
-import "./TestimonialSlider.css";
-const TestimonialSlider = () => {
-  const { language } = useLanguage();
-  const [swiperKey, setSwiperKey] = useState(0);
 
-  const companies = {
-    eng: [
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import { useLanguage } from "../../Context/Languagecontext";
+
+import "swiper/css";
+
+// --- DATA FOR THE COMPONENT ---
+const content = {
+  eng: {
+    title: "Clients & Partners",
+    testimonials: [
       {
-        logo: 1,
-        text: "Project management - 275% Growth",
+        text: "From the very first consultation, Khales impressed me with their professionalism and depth of architectural knowledge. Our Ras Al Khaimah retreat now stands as a statement of contemporary elegance and balance—exactly what we dreamed of.",
+        name: "IVAN K., RAS AL KHAIMAH",
+        service: "ARCHITECTURAL DESIGN",
       },
       {
-        logo: 2,
-        text: "Team management - 195% Growth",
-      },
-      {
-        logo: 3,
-        text: "Secure storage - 235% Growth",
-      },
-      {
-        logo: 4,
-        text: "Secure storage - 235% Growth",
-      },
-      {
-        logo: 5,
-        text: "Secure storage - 235% Growth",
-      },
-      {
-        logo: 6,
-        text: "Secure storage - 235% Growth",
-      },
-      {
-        logo: 7,
-        text: "Secure storage - 235% Growth",
-      },
-      {
-        logo: 8,
-        text: "Secure storage - 235% Growth",
-      },
-      {
-        logo: 9,
-        text: "Secure storage - 235% Growth",
-      },
-      {
-        logo: 10,
-        text: "Secure storage - 235% Growth",
-      },
-    ],
-    ar: [
-      {
-        logo: 1,
-        text: "إدارة المشاريع - نمو 275%",
-      },
-      {
-        logo: 2,
-        text: "إدارة الفريق - نمو 195%",
-      },
-      {
-        logo: 3,
-        text: "التخزين الآمن - نمو 235%",
-      },
-      {
-        logo: 4,
-        text: "التخزين الآمن - نمو 235%",
-      },
-      {
-        logo: 5,
-        text: "التخزين الآمن - نمو 235%",
-      },
-      {
-        logo: 6,
-        text: "التخزين الآمن - نمو 235%",
-      },
-      {
-        logo: 7,
-        text: "التخزين الآمن - نمو 235%",
-      },
-      {
-        logo: 8,
-        text: "التخزين الآمن - نمو 235%",
-      },
-      {
-        logo: 9,
-        text: "التخزين الآمن - نمو 235%",
-      },
-      {
-        logo: 10,
-        text: "التخزين الآمن - نمو 235%",
-      },
-    ],
-  };
-  // Updated testimonial data structure
-  const testimonials = {
-    eng: [
-      {
-        text: "Working with Khales was a masterclass in professionalism. Their landscaping transformed our Dubai villa into a lush, serene retreat. Every detail—from layout to plant selection—was perfectly executed. It's an outdoor space we now truly enjoy every day.",
+        text: "Working with Khales was a masterclass in professionalism. Their landscaping transformed our Dubai villa into a lush, serene retreat. Every detail was perfectly executed.",
         name: "James W. , Dubai",
         service: "Landscaping",
       },
-      {
-        text: "Khales brought our vision to life with incredible precision. Their interior design team curated our Abu Dhabi home with refined elegance and functional comfort. From the furniture layout to the lighting, everything reflects thoughtful design.",
-        name: "Emily R. , Abu Dhabi",
-        service: "Interior Design",
-      },
-      {
-        text: "From the very first consultation, Khales impressed me with their professionalism and depth of architectural knowledge. Our Ras Al Khaimah retreat now stands as a statement of contemporary elegance and balance—exactly what we dreamed of.",
-        name: "Ivan K. , Ras Al Khaimah",
-        service: "Architectural Design",
-      },
-      {
-        text: "As an Emirati, I was looking for a firm that could manage every aspect of my home's development—from planning to final handover. Khales exceeded every expectation. Their team ensured smooth coordination, clear communication, and timely delivery. Truly a full-service experience.",
-        name: "Ahmed Al Mansoori , Al Ain",
-        service: "Full Project Management",
-      },
     ],
-    ar: [
-      {
-        text: "العمل مع خالص كان مثالاً للاحترافية. لقد حوّل فريق تنسيق الحدائق فيلتنا في دبي إلى ملاذ هادئ ومورق. كل تفصيلة، من التخطيط إلى اختيار النباتات، تم تنفيذها بإتقان. إنها مساحة خارجية نتمتع بها كل يوم.",
-        name: "جيمس و. ، دبي",
-        service: "تنسيق حدائق",
-      },
-      {
-        text: "خالص حولوا رؤيتنا إلى واقع بدقة مذهلة. فريق التصميم الداخلي صمم منزلنا في أبوظبي بأناقة راقية وراحة وظيفية. من توزيع الأثاث إلى الإضاءة، كل شيء يعكس تفكيراً وتصميماً مدروساً.",
-        name: "إيميلي ر.، أبوظبي",
-        service: "تصميم داخلي",
-      },
+    partners: [
+      { logo: "/assets/Partners/1.png" },
+      { logo: "/assets/Partners/2.png" },
+      { logo: "/assets/Partners/3.png" },
+      { logo: "/assets/Partners/4.png" },
+      { logo: "/assets/Partners/5.png" },
+      { logo: "/assets/Partners/6.png" },
+      { logo: "/assets/Partners/7.png" },
+      { logo: "/assets/Partners/8.png" },
+      { logo: "/assets/Partners/9.png" },
+      { logo: "/assets/Partners/10.png" },
+    ],
+  },
+  ar: {
+    title: "عملاؤنا وشركاؤنا",
+    testimonials: [
       {
         text: "منذ أول استشارة، أبهرني خالص باحترافيتهم وعمق معرفتهم المعمارية. أصبح منزلنا في رأس الخيمة اليوم تحفة من الأناقة المعاصرة والتوازن، تمامًا كما حلمنا.",
-        name: "إيفان ك. ، رأس الخيمة",
+        name: "إيفان ك.، رأس الخيمة",
         service: "تصميم معماري",
       },
       {
-        text: "بصفتي إماراتيًا، كنت أبحث عن شركة تدير كل جانب من جوانب بناء منزلي، من التخطيط حتى التسليم. خالص تجاوزوا كل التوقعات. فريقهم ضمن التنسيق السلس، التواصل الواضح، والتسليم في الوقت المحدد. تجربة متكاملة بحق.",
-        name: "أحمد المنصوري، العين",
-        service: "إدارة مشاريع متكاملة",
+        text: "العمل مع خالص كان مثالاً للاحترافية. لقد حوّل فريق تنسيق الحدائق فيلتنا في دبي إلى ملاذ هادئ ومورق. كل تفصيلة تم تنفيذها بإتقان.",
+        name: "جيمس و. ، دبي",
+        service: "تنسيق حدائق",
       },
     ],
-  };
+    partners: [
+      { logo: "/assets/Partners/1.png" },
+      { logo: "/assets/Partners/2.png" },
+      { logo: "/assets/Partners/3.png" },
+      { logo: "/assets/Partners/4.png" },
+      { logo: "/assets/Partners/5.png" },
+      { logo: "/assets/Partners/6.png" },
+      { logo: "/assets/Partners/7.png" },
+      { logo: "/assets/Partners/8.png" },
+      { logo: "/assets/Partners/9.png" },
+      { logo: "/assets/Partners/10.png" },
+    ],
+  },
+};
 
-  useEffect(() => {
-    setSwiperKey((prev) => prev + 1);
-  }, [language]);
+// --- MAIN COMPONENT ---
+const ClientsAndPartners = () => {
+  const { language } = useLanguage();
+  const currentContent = content[language] || content.eng;
+
+  // Duplicate partners for a seamless, infinite loop
+  const loopedPartners = [
+    ...currentContent.partners,
+    ...currentContent.partners,
+  ];
 
   return (
-    <section className="creative-testimonial--slider">
-      <div
-        className="testimonial-inner"
-        style={{
-          backgroundImage:
-            "url(https://res.cloudinary.com/greenappletravel-ae/image/upload/v1730893099/greenapple/header/Untitled_design_69_k9jhxg.png)",
-        }}
-      >
-        <div className="testimonial-row">
-          <div
-            className="testimonial-heading"
-            style={{ marginTop: "40px", marginBottom: "60px" }}
-          >
-            <Title>
-              {language === "ar" ? (
-                <>
-                  عملاؤنا <GreenText>وشركاؤنا</GreenText>
-                </>
-              ) : (
-                <>
-                  Clients <GreenText> & Partners</GreenText>
-                </>
-              )}
-            </Title>
-          </div>
+    <SectionWrapper>
+      <Container>
+        <SectionTitle>{currentContent.title}</SectionTitle>
 
-          <div className="testimonial-wrap">
-            <Swiper
-              key={swiperKey}
-              modules={[Autoplay]}
-              spaceBetween={50}
-              speed={3000}
-              slidesPerView={1}
-              loop
-              autoplay={{ delay: 2500, disableOnInteraction: false }}
-              keyboard={{ enabled: true, onlyInViewport: true }}
-              effect="slide"
-              dir={language === "ar" ? "rtl" : "ltr"}
-            >
-              {testimonials[language].map((testimonial, index) => (
-                <SwiperSlide key={index}>
-                  <div className="swiper-slide--inner">
-                    <div className="testimonial-detail">
-                      <p> &quot;{testimonial.text}&quot;</p>
-                      <div className="testimonial-meta">
-                        <span className="testimonial-name">
-                          {testimonial.name}
-                        </span>
-                        <span className="testimonial-service">
-                          {testimonial.service}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
-        <div className="company-details--row">
+        <TestimonialWrapper>
           <Swiper
-            key={swiperKey}
             modules={[Autoplay]}
-            spaceBetween={30}
-            speed={3000}
             slidesPerView={1}
-            loop
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-              reverseDirection: true, // Reverse the autoplay direction
-            }}
+            loop={true}
+            // FIX: SLOWED DOWN the testimonial movement significantly (12 seconds per slide)
+            autoplay={{ delay: 3200, disableOnInteraction: false }}
+            speed={5000} // This is the duration of the scroll animation. Longer is smoother.
             dir={language === "ar" ? "rtl" : "ltr"}
-            breakpoints={{
-              0: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              992: { slidesPerView: 3 },
-            }}
+            // Re-initializes Swiper on language change to prevent RTL bugs
+            key={language}
           >
-            {companies[language].map((company, index) => (
+            {currentContent.testimonials.map((testimonial, index) => (
               <SwiperSlide key={index}>
-                <div className="company-box">
-                  <div className="company-box-inner">
-                    <div className="company-box-top">
-                      <img
-                        src={`./assets/Partners/${company.logo}.png`}
-                        alt="Company Logo"
-                        style={{
-                          width: "50%",
-                          height: "50%",
-                          objectFit: "fill",
-                        }}
-                      />
-                    </div>
-                    <div className="company-box-bottom">
-                      {/* <span>{company.text}</span> */}
-                    </div>
-                  </div>
-                </div>
+                <TestimonialContent>
+                  <QuoteText>"{testimonial.text}"</QuoteText>
+                  <Author>
+                    <AuthorName>{testimonial.name}</AuthorName>
+                    <AuthorService>{testimonial.service}</AuthorService>
+                  </Author>
+                </TestimonialContent>
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
-      </div>
-    </section>
+        </TestimonialWrapper>
+      </Container>
+
+      <PartnersMarquee>
+        <Swiper
+          // FIX: Refined settings for a perfect, non-stop marquee scroll
+          modules={[Autoplay]}
+          spaceBetween={30}
+          slidesPerView="auto"
+          loop={true}
+          speed={10000} // This is the duration of the scroll animation. Longer is smoother.
+          autoplay={{
+            delay: 0, // No delay between transitions
+            disableOnInteraction: false,
+          }}
+          allowTouchMove={false}
+          // Adding loopedSlides helps Swiper calculate the loop correctly
+          loopedSlides={5}
+        >
+          {loopedPartners.map((partner, index) => (
+            <SwiperSlide key={index}>
+              <PartnerCard>
+                <img src={partner.logo} alt={`Partner logo ${index + 1}`} />
+              </PartnerCard>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </PartnersMarquee>
+    </SectionWrapper>
   );
 };
 
-export default TestimonialSlider;
+// --- STYLED COMPONENTS ---
+const SectionWrapper = styled.section`
+  padding: 6rem 0;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    background-image: url("https://res.cloudinary.com/greenappletravel-ae/image/upload/v1730893099/greenapple/header/Untitled_design_69_k9jhxg.png");
+    background-repeat: no-repeat;
+    background-position: center 30%;
+    background-size: contain;
+    opacity: 0.15;
+    z-index: 1;
+  }
+`;
+
+const Container = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+  text-align: center;
+`;
+
+const TestimonialWrapper = styled.div`
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 5rem;
+  text-align: center;
+  .swiper-slide {
+    align-self: stretch;
+  }
+`;
+
+const TestimonialContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+`;
+
+const QuoteText = styled.p`
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+`;
+
+const Author = styled.div`
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+`;
+
+const AuthorName = styled.span`
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 1rem;
+`;
+
+const AuthorService = styled.span`
+  font-weight: 600;
+  color: #66a109;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+`;
+
+const PartnersMarquee = styled.div`
+  width: 100%;
+  .swiper-wrapper {
+    transition-timing-function: linear !important; // This is the key for non-stop scroll
+  }
+  .swiper-slide {
+    width: 300px;
+    @media (max-width: 768px) {
+      width: 220px;
+    }
+  }
+`;
+
+const PartnerCard = styled(motion.div)`
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+  }
+  &:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+`;
+
+export default ClientsAndPartners;

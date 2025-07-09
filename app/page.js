@@ -4,65 +4,118 @@ import HomeContent from "@/pages/HomeConent";
 import Script from "next/script"; // Use Next.js optimized Script component
 
 export const metadata = {
-  title: "Home - Khales",
+  title:
+    "Khales - Leading Architecture & Interior Design Company in Dubai, UAE",
   description:
-    "Welcome to Khales. Explore our luxury design and project management solutions.",
+    "Khales is Dubai's premier architecture and interior design company. We specialize in luxury residential and commercial projects, project management, engineering consultancy, and development planning across the UAE. Transform your space with our expert team.",
   keywords: [
-    "Khales",
-    "Luxury Design",
-    "Interior Design",
-    "Architecture",
-    "Project Management",
-    "Construction",
-    "Khales Projects",
+    "architecture Dubai",
+    "interior design Dubai",
+    "luxury design UAE",
+    "commercial architecture Dubai",
+    "residential design Dubai",
+    "project management UAE",
+    "engineering consultancy Dubai",
+    "development planning UAE",
+    "fit-out companies Dubai",
+    "villa design Dubai",
+    "office design Dubai",
+    "sustainable architecture UAE",
+    "building contractors Dubai",
+    "landscape design Dubai",
+    "Khales Dubai",
+    "best architects Dubai",
+    "top interior designers UAE",
   ],
-  authors: [{ name: "Khales Team", url: "http://localhost:3000/" }],
+  authors: [{ name: "Khales Team", url: "https://www.khales.ae/" }],
   creator: "Khales",
-  metadataBase: new URL("http://localhost:3000/"),
+  metadataBase: new URL("https://www.khales.ae/"),
   openGraph: {
-    title: "Home - Khales",
+    title:
+      "Khales - Leading Architecture & Interior Design Company in Dubai, UAE",
     description:
-      "Welcome to Khales. Explore our luxury design and project management solutions.",
-    url: "http://localhost:3000/",
+      "Dubai's premier architecture and interior design company. Specializing in luxury residential and commercial projects across the UAE.",
+    url: "https://www.khales.ae/",
     siteName: "Khales",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://www.khales.ae/assets/Khales-Logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Khales - Architecture & Interior Design Dubai",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Home - Khales",
+    title:
+      "Khales - Leading Architecture & Interior Design Company in Dubai, UAE",
     description:
-      "Welcome to Khales. Explore our luxury design and project management solutions.",
+      "Dubai's premier architecture and interior design company. Specializing in luxury residential and commercial projects across the UAE.",
+    images: ["https://www.khales.ae/assets/Khales-Logo.png"],
+  },
+  alternates: {
+    canonical: "https://www.khales.ae/",
+  },
+};
+
+// Structured Data for Home Page
+const homePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Khales - Leading Architecture & Interior Design Company in Dubai, UAE",
+  description:
+    "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across the UAE.",
+  url: "https://www.khales.ae/",
+  mainEntity: {
+    "@type": "Organization",
+    name: "Khales",
+    url: "https://www.khales.ae/",
+    logo: "https://www.khales.ae/assets/Khales-Logo.png",
+    description:
+      "Leading architecture and interior design company in Dubai, UAE",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "AE",
+      addressRegion: "Dubai",
+      addressLocality: "Dubai",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+971551299880",
+      contactType: "customer service",
+      availableLanguage: ["English", "Arabic"],
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+  },
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.khales.ae/",
+      },
+    ],
   },
 };
 
 export default function Home() {
   return (
     <>
-      {" "}
-      {/* <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-FB575W8DQ8"
-        strategy="afterInteractive"
-      />
-      <Script id="ga-config" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-FB575W8DQ8');
-        `}
-      </Script>
       <Script
-        id="gtm-script"
-        strategy="afterInteractive" // Optimize loading strategy
+        id="home-page-schema"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-5ZMHD47B');`,
+          __html: JSON.stringify(homePageSchema),
         }}
-      /> */}
+      />
       <Navbar />
       <HomeContent />
       <Footer />

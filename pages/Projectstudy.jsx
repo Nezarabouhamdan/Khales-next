@@ -291,7 +291,7 @@ function Projectstudy() {
         <ProjectHighlight data={ProjectHighlightdata[language]} />
 
         <Title2>
-          {language === "ar" ? "الأسئلة الشائعة" : "Frequently Asked"}
+          {language === "ar" ? "الأسئلة الشائعة " : "Frequently Asked"}
           <GreenText>{language === "ar" ? "" : " Questions"}</GreenText>
         </Title2>
 

@@ -9,6 +9,7 @@ import { GreenText, Title } from "@/components/Whoweare/TextContent";
 import CTASection from "@/components/Homecontact/CTASection";
 import { Row2 } from "@/utils/Globalstyles";
 import ServiceCard from "@/components/Services2 copy/ServiceCard";
+import OfficeLocationsFinal from "@/components/Locations/L2";
 
 const ContactPage = () => {
   const { language } = useLanguage();
@@ -37,39 +38,11 @@ const ContactPage = () => {
 
   return (
     <>
-      <Herosection>
-        <Heroimg
-          src="https://i.ibb.co/XfxqjCKb/Screenshot-2025-03-18-122742-1.png"
-          style={{ filter: "brightness(75%)" }}
-          alt=""
-        />
-      </Herosection>
-      <ContactUs />
-      <section id="offices-location" aria-label="offices-location">
-        <div style={{ display: "grid", placeItems: "center", margin: "70px" }}>
-          {" "}
-          <Title>
-            Offices<GreenText> Location</GreenText>
-          </Title>
-        </div>
-        {serviceChunks.map((chunk, index) => (
-          <div key={index}>
-            <Row2 rtl={language === "ar" ? true : undefined}>
-              {chunk.map((service, idx) => (
-                <ServiceCard
-                  key={idx}
-                  imageSrc={service.image}
-                  titlePart1={service.titlePart1}
-                  titlePart2={service.titlePart2}
-                  description={service.description}
-                  buttonText={language === "ar" ? "المزيد" : "Learn More"}
-                  rtl={language === "ar"}
-                />
-              ))}
-            </Row2>
-          </div>
-        ))}
-      </section>
+      {" "}
+      <div style={{ display: "grid", placeItems: "center", margin: "70px" }}>
+        <ContactUs />{" "}
+      </div>
+      <OfficeLocationsFinal />
       <CTASection />
     </>
   );

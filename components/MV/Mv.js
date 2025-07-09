@@ -1,23 +1,57 @@
 // components/MissionVision.jsx
-"use client"; // Add this line if you are using Next.js 13+ App Router
+"use client";
 
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { motion, useInView } from "framer-motion";
 import { FaStar, FaCheck } from "react-icons/fa";
-import { BsFillLightningFill } from "react-icons/bs";
+import { useLanguage } from "@/Context/Languagecontext"; // Adjust path if needed
 
 //================================================================
-// 1. STYLED COMPONENTS (with new color #66a109)
+// 1. DYNAMIC CONTENT
+//================================================================
+const contentData = {
+  eng: {
+    mission: {
+      title: "Our Mission",
+      description:
+        "To deliver innovative, sustainable, and results-driven project management and consultancy solutions. We aim to exceed client expectations by combining strategic planning with professional execution, ensuring each project is delivered on time and within budget.",
+      tags: ["Strategic Planning", "Team Collaboration", "Innovation"],
+    },
+    vision: {
+      title: "Our Vision",
+      description:
+        "To be the leading project management consultancy that consistently turns visionary ideas into sustainable and successful projects, while fostering long-term relationships with our clients through trust and excellence.",
+      tags: ["Visionary Leadership", "Sustainable Growth", "Excellence"],
+    },
+  },
+  ar: {
+    mission: {
+      title: "مهمتنا",
+      description:
+        "تقديم حلول مبتكرة ومستدامة وموجهة نحو النتائج في إدارة المشاريع والاستشارات. نهدف إلى تجاوز توقعات العملاء من خلال الجمع بين التخطيط الاستراتيجي والتنفيذ الاحترافي، مما يضمن تسليم كل مشروع في الوقت المحدد وضمن الميزانية.",
+      tags: ["تخطيط استراتيجي", "تعاون الفريق", "ابتكار"],
+    },
+    vision: {
+      title: "رؤيتنا",
+      description:
+        "أن نكون الشركة الرائدة في استشارات إدارة المشاريع التي تحول الأفكار الطموحة باستمرار إلى مشاريع ناجحة ومستدامة، مع بناء علاقات طويلة الأمد مع عملائنا من خلال الثقة والتميز.",
+      tags: ["قيادة رؤيوية", "نمو مستدام", "التميز"],
+    },
+  },
+};
+
+//================================================================
+// 2. STYLED COMPONENTS (Corrected for RTL)
 //================================================================
 
 const SectionWrapper = styled.section`
   display: flex;
   width: 100%;
   min-height: 100vh;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter", sans-serif;
   overflow: hidden;
+  direction: ${(props) => props.dir};
 
   @media (max-width: 992px) {
     flex-direction: column;
@@ -52,9 +86,10 @@ const VisionColumn = styled(Column)`
 `;
 
 const ContentWrapper = styled.div`
-  max-width: 500px;
+  max-width: 550px;
   z-index: 2;
   position: relative;
+  text-align: ${(props) => (props.dir === "rtl" ? "right" : "left")};
 `;
 
 const Header = styled(motion.div)`
@@ -62,6 +97,7 @@ const Header = styled(motion.div)`
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 2rem;
+  justify-content: flex-start;
 `;
 
 const IconWrapper = styled(motion.div)`
@@ -71,27 +107,25 @@ const IconWrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #66a109; /* <-- NEW COLOR */
-  color: #ffffff; /* White icon for better contrast */
+  background-color: #66a109;
+  color: #ffffff;
   font-size: 1.5rem;
   flex-shrink: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
   &:hover {
     transform: scale(1.1) rotate(15deg);
-    box-shadow: 0 0 25px rgba(102, 161, 9, 0.6); /* <-- NEW COLOR with alpha */
+    box-shadow: 0 0 25px rgba(102, 161, 9, 0.6);
   }
 `;
 
 const VisionIconWrapper = styled(IconWrapper)`
-  box-shadow: 0 0 0 3px #66a109; /* <-- NEW COLOR */
+  box-shadow: 0 0 0 3px #66a109;
   border: 3px solid #121212;
 `;
 
 const Title = styled.h2`
   font-size: 2.8rem;
   font-weight: 700;
-
   @media (max-width: 768px) {
     font-size: 2.2rem;
   }
@@ -102,7 +136,6 @@ const Description = styled(motion.p)`
   line-height: 1.8;
   margin-bottom: 2.5rem;
   color: #495057;
-
   ${VisionColumn} & {
     color: #ced4da;
   }
@@ -111,7 +144,9 @@ const Description = styled(motion.p)`
 const TagsContainer = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem;
+  width: 100%;
+  justify-content: flex-start;
 `;
 
 const Tag = styled.span`
@@ -121,12 +156,9 @@ const Tag = styled.span`
   font-weight: 500;
   cursor: default;
   transition: all 0.3s ease;
-
-  /* Using new color as default, with white text */
   background-color: ${(props) => props.bg || "#66a109"};
   color: ${(props) => props.color || "#ffffff"};
   border: 1px solid ${(props) => props.border || "transparent"};
-
   &:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -137,40 +169,12 @@ const DecorativeShape = styled(motion.div)`
   position: absolute;
   z-index: 1;
   pointer-events: none;
-`;
-
-const NavDots = styled(motion.div)`
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.75rem;
-  z-index: 3;
-
-  span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #d3d3d3;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
-
-    &:hover {
-      transform: scale(1.3);
-    }
-  }
-
-  span.active {
-    background-color: #66a109; /* <-- NEW COLOR */
-    transform: scale(1.3);
-  }
+  transition: transform 0.4s ease-out; /* Added for smooth parallax */
 `;
 
 //================================================================
-// 2. FRAMER MOTION VARIANTS
+// 3. FRAMER MOTION VARIANTS (RESTORED)
 //================================================================
-
 const sectionVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -195,14 +199,17 @@ const itemVariants = {
 };
 
 //================================================================
-// 3. THE MAIN COMPONENT
+// 4. THE MAIN COMPONENT
 //================================================================
-
 const MissionVision = () => {
+  const { language } = useLanguage();
+  const content = contentData[language] || contentData.eng;
+  const isRTL = language === "ar";
+
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
-  // Mouse move handler for parallax effect
+  // Parallax effect handler
   const handleMouseMove = (e) => {
     const { currentTarget } = e;
     const shapes = currentTarget.querySelectorAll(".shape");
@@ -224,7 +231,7 @@ const MissionVision = () => {
   };
 
   return (
-    <SectionWrapper ref={sectionRef}>
+    <SectionWrapper ref={sectionRef} dir={isRTL ? "rtl" : "ltr"}>
       {/* -------------------- MISSION COLUMN -------------------- */}
       <MissionColumn
         onMouseMove={handleMouseMove}
@@ -233,18 +240,17 @@ const MissionVision = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        {/* Decorative Shapes with NEW COLOR */}
         <DecorativeShape
           className="shape"
           data-factor="-20"
           style={{
             top: "10%",
-            left: "15%",
+            left: isRTL ? "auto" : "15%",
+            right: isRTL ? "15%" : "auto",
             width: "100px",
             height: "100px",
             background: "rgba(102, 161, 9, 0.2)",
             borderRadius: "50%",
-            transition: "transform 0.4s ease-out",
           }}
         />
         <DecorativeShape
@@ -252,12 +258,12 @@ const MissionVision = () => {
           data-factor="30"
           style={{
             top: "20%",
-            right: "15%",
+            right: isRTL ? "auto" : "15%",
+            left: isRTL ? "15%" : "auto",
             width: "50px",
             height: "50px",
             background: "#e9ecef",
             borderRadius: "10px",
-            transition: "transform 0.4s ease-out",
           }}
         />
         <DecorativeShape
@@ -265,55 +271,31 @@ const MissionVision = () => {
           data-factor="-15"
           style={{
             bottom: "15%",
-            left: "20%",
+            left: isRTL ? "auto" : "20%",
+            right: isRTL ? "20%" : "auto",
             width: "80px",
             height: "80px",
             border: "2px solid rgba(102, 161, 9, 0.3)",
             borderRadius: "50%",
-            transition: "transform 0.4s ease-out",
           }}
         />
-        <DecorativeShape
-          className="shape"
-          data-factor="25"
-          style={{
-            bottom: "10%",
-            left: "10%",
-            width: "60px",
-            height: "60px",
-            background: "#66a109",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "1.5rem",
-            color: "#fff",
-            transition: "transform 0.4s ease-out",
-          }}
-        >
-          <BsFillLightningFill />
-        </DecorativeShape>
 
-        <ContentWrapper>
+        <ContentWrapper dir={isRTL ? "rtl" : "ltr"}>
           <Header variants={itemVariants}>
             <IconWrapper>
               <FaStar />
             </IconWrapper>
-            <Title>Our Mission</Title>
+            <Title>{content.mission.title}</Title>
           </Header>
           <Description variants={itemVariants}>
-            To deliver innovative, sustainable, and results-driven project
-            management and consultancy solutions. We aim to exceed client
-            expectations by combining strategic planning with professional
-            execution, ensuring each project is delivered on time and within
-            budget.
+            {content.mission.description}
           </Description>
           <TagsContainer variants={itemVariants}>
-            <Tag>Strategic Planning</Tag>
+            <Tag>{content.mission.tags[0]}</Tag>
             <Tag bg="#121212" color="#ffffff">
-              Team Collaboration
+              {content.mission.tags[1]}
             </Tag>
-            <Tag>Innovation</Tag>
+            <Tag>{content.mission.tags[2]}</Tag>
           </TagsContainer>
         </ContentWrapper>
       </MissionColumn>
@@ -326,18 +308,17 @@ const MissionVision = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        {/* Decorative Shapes with NEW COLOR */}
         <DecorativeShape
           className="shape"
           data-factor="-20"
           style={{
             top: "15%",
-            left: "10%",
+            left: isRTL ? "auto" : "10%",
+            right: isRTL ? "10%" : "auto",
             width: "60px",
             height: "60px",
             border: "2px solid rgba(102, 161, 9, 0.4)",
             borderRadius: "10px",
-            transition: "transform 0.4s ease-out",
           }}
         />
         <DecorativeShape
@@ -345,12 +326,12 @@ const MissionVision = () => {
           data-factor="30"
           style={{
             top: "25%",
-            right: "20%",
+            right: isRTL ? "auto" : "20%",
+            left: isRTL ? "20%" : "auto",
             width: "80px",
             height: "80px",
             background: "rgba(102, 161, 9, 0.1)",
             borderRadius: "50%",
-            transition: "transform 0.4s ease-out",
           }}
         />
         <DecorativeShape
@@ -358,54 +339,31 @@ const MissionVision = () => {
           data-factor="-15"
           style={{
             bottom: "20%",
-            left: "40%",
+            left: isRTL ? "auto" : "40%",
+            right: isRTL ? "40%" : "auto",
             width: "120px",
             height: "120px",
             background: "rgba(255, 255, 255, 0.05)",
             borderRadius: "50%",
-            transition: "transform 0.4s ease-out",
           }}
         />
-        <DecorativeShape
-          className="shape"
-          data-factor="25"
-          style={{
-            bottom: "8%",
-            right: "10%",
-            width: "60px",
-            height: "60px",
-            background: "#66a109",
-            borderRadius: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "1.5rem",
-            color: "#fff",
-            transition: "transform 0.4s ease-out",
-          }}
-        >
-          <FaStar />
-        </DecorativeShape>
 
-        <ContentWrapper>
+        <ContentWrapper dir={isRTL ? "rtl" : "ltr"}>
           <Header variants={itemVariants}>
             <VisionIconWrapper>
               <FaCheck />
             </VisionIconWrapper>
-            <Title>Our Vision</Title>
+            <Title>{content.vision.title}</Title>
           </Header>
           <Description variants={itemVariants}>
-            To be the leading project management consultancy that consistently
-            turns visionary ideas into sustainable and successful projects,
-            while fostering long-term relationships with our clients through
-            trust and excellence.
+            {content.vision.description}
           </Description>
           <TagsContainer variants={itemVariants}>
-            <Tag color="#111111">Visionary Leadership</Tag>
+            <Tag color="#111111">{content.vision.tags[0]}</Tag>
             <Tag bg="#ffffff" color="#111111" border="1px solid #dee2e6">
-              Sustainable Growth
+              {content.vision.tags[1]}
             </Tag>
-            <Tag color="#111111">Excellence</Tag>
+            <Tag color="#111111">{content.vision.tags[2]}</Tag>
           </TagsContainer>
         </ContentWrapper>
       </VisionColumn>
