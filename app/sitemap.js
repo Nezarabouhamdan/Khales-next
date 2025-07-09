@@ -1,85 +1,86 @@
 export default function sitemap() {
-  const baseUrl = \'https://www.khales.ae\';
-  
+  const baseUrl = "https://www.khales.ae";
+
   return [
     {
       url: baseUrl,
-      lastModified: new Date( ),
-      changeFrequency: \'weekly\',
+      lastModified: new Date(),
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
+      url: baseUrl + "/about",
       lastModified: new Date(),
-      changeFrequency: \'monthly\',
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services`,
+      url: baseUrl + "/services",
       lastModified: new Date(),
-      changeFrequency: \'weekly\',
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/projects`,
+      url: baseUrl + "/projects",
       lastModified: new Date(),
-      changeFrequency: \'weekly\',
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: baseUrl + "/contact",
       lastModified: new Date(),
-      changeFrequency: \'monthly\',
+      changeFrequency: "monthly",
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/interior-design`,
+      url: baseUrl + "/interior-design",
       lastModified: new Date(),
-      changeFrequency: \'weekly\',
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/architecture`,
+      url: baseUrl + "/architecture",
       lastModified: new Date(),
-      changeFrequency: \'weekly\',
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/project-management`,
+      url: baseUrl + "/project-management",
       lastModified: new Date(),
-      changeFrequency: \'weekly\',
+      changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/engineering-consultancy`,
+      url: baseUrl + "/engineering-consultancy",
       lastModified: new Date(),
-      changeFrequency: \'weekly\',
+      changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/development-planning`,
+      url: baseUrl + "/development-planning",
       lastModified: new Date(),
-      changeFrequency: \'weekly\',
+      changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/landscape-design`,
+      url: baseUrl + "/landscape-design",
       lastModified: new Date(),
-      changeFrequency: \'weekly\',
+      changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/blogs`,
+      url: baseUrl + "/blogs",
       lastModified: new Date(),
-      changeFrequency: \'daily\',
+      changeFrequency: "daily",
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/booking`,
+      url: baseUrl + "/booking",
       lastModified: new Date(),
-      changeFrequency: \'monthly\',
+      changeFrequency: "monthly",
       priority: 0.6,
-    }
+    },
   ];
 }
 
+live;
