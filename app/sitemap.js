@@ -3,18 +3,22 @@ export default async function sitemap() {
 
   const routes = [
     "/",
-    "/about",
+    "/ABOUTUS",
     "/services",
     "/projects",
-    "/contact",
-    "/interior-design",
+    "/Contact",
+    "/InteriorDesign",
     "/architecture",
-    "/project-management",
-    "/engineering-consultancy",
-    "/development-planning",
-    "/landscape-design",
-    "/blogs",
+    "/ProjectManagement",
+    "/EngineeringConsultancy",
+    "/Developmentplanning",
+    "/LandscapingDesign",
+    "/Blogs",
     "/booking",
+    "/Investing",
+    "/Projectfeasability",
+    "/Landing",
+    "/Thank-you",
   ];
 
   const sitemapEntries = routes.map((route) => ({
