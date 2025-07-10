@@ -464,15 +464,20 @@ const ContactCard = styled.div`
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   padding: 56px;
   overflow: hidden;
+  /* Add a small margin for desktop view */
+  margin: 0 24px;
 
   @media (max-width: 991px) {
     padding: 40px;
+    margin: 0 20px; /* Adjust margin for tablet view */
   }
+
   @media (max-width: 640px) {
-    padding: 24px;
+    padding: 32px 24px; /* More standard mobile padding */
+    margin: 0; /* No margin on mobile, allowing it to be full-width */
+    border-radius: 0; /* Optional: Make it a flat card on mobile */
   }
 `;
-
 const ContactLayout = styled.div`
   display: flex;
   width: 100%;
