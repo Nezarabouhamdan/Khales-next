@@ -13,6 +13,7 @@ import { Inter } from "next/font/google";
 import Head from "next/head";
 import CustomCursor from "@/components/CustomCursor";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 export const metadata = {
   title:
     "Khales - Premier Architecture & Interior Design Company in Dubai, UAE",
@@ -213,6 +214,8 @@ export default function RootLayout({ children }) {
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
+        <SpeedInsights />
+        <Analytics />
         <ScrollToTop />
         <StyledComponentsRegistry>
           <ClientProviders>
