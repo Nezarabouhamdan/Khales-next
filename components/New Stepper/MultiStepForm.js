@@ -1,5 +1,5 @@
 // components/MultiStepFormnew/MultiStepFormnew.js
-// --- THE COMPLETE, ALL-IN-ONE, ENHANCED COMPONENT ---
+// --- The only change is simplifying the handleSubmit function ---
 
 "use client";
 
@@ -9,7 +9,7 @@ import styled, { css, keyframes } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiCheck, FiChevronDown, FiX, FiLoader } from "react-icons/fi";
 
-// --- Form Content & Options (No changes here) ---
+// ... (All form translations, options, and helper components remain the same) ...
 const formTranslations = {
   eng: {
     title: "Book an Appointment",
@@ -122,8 +122,6 @@ const branchOptions = {
   ],
   ar: ["مجلس دبي", "فرع دبي", "فرع الفجيرة", "فرع الشارقة", "فرع أبو ظبي"],
 };
-
-// --- Helper Components & Logic (No changes here) ---
 const DecorativeShape = ({ initialX, initialY, size, stiffness, rtl }) => {
   const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -177,7 +175,6 @@ const stepVariants = {
   }),
 };
 
-// --- Main Form Component ---
 export default function MultiStepFormnew() {
   const { language } = useLanguage();
   const content = formTranslations[language] || formTranslations.eng;
@@ -231,7 +228,7 @@ export default function MultiStepFormnew() {
   };
 
   // --- CHANGED ---
-  // This is the updated handleSubmit function
+  // The handleSubmit function is now simplified.
   const handleSubmit = async () => {
     if (!isStepValid()) {
       setGlobalError(content.errors.required);
@@ -241,27 +238,17 @@ export default function MultiStepFormnew() {
     setIsSubmitting(true);
 
     // --- REASON ---
-    // We create the full date object here, adjust it for the timezone,
-    // and then send the adjusted date as an ISO string to the backend.
-    const [hours, minutes] = formData.appointmentTime.split(":").map(Number);
-    const originalDate = new Date(formData.appointmentDate);
-    originalDate.setHours(hours, minutes, 0, 0); // Combine date and time
-
-    // Subtract 4 hours to counteract the backend addition
-    originalDate.setHours(originalDate.getHours() - 4);
-
-    const payload = {
-      ...formData,
-      appointmentDate: originalDate.toISOString(), // Send the adjusted date
-    };
-
+    // We send the raw form data directly. The backend is now responsible
+    // for all date/time calculations and validation. This is more robust.
     try {
       const response = await fetch("/api/create-meeting", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // Send the new payload with the adjusted time
-        body: JSON.stringify(payload),
+        body: JSON.stringify(formData),
       });
+
+      // The response.ok check is now reliable because the backend
+      // will send a 500 status on a silent Odoo failure.
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Failed to book appointment");
@@ -274,7 +261,6 @@ export default function MultiStepFormnew() {
     }
   };
 
-  // --- The rest of the component (JSX, sub-components, styles) remains the same ---
   return (
     <>
       <PageWrapper
@@ -372,8 +358,8 @@ export default function MultiStepFormnew() {
     </>
   );
 }
-// All sub-components and styled-components remain exactly the same as in your original file
-// Stepper, StepOne, StepTwo, StepThree, SubmitModal, and all styled components...
+
+// ... (All sub-components and styled-components remain exactly the same) ...
 const Stepper = ({ steps, currentStep }) => (
   <StepperContainer>
     {steps.map((step, index) => (
