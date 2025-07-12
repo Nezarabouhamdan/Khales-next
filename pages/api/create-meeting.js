@@ -12,12 +12,12 @@ const objectClient = xmlrpc.createSecureClient({
   url: `${ODOO_URL}/xmlrpc/2/object`,
 });
 
-// Helper to format JS Date into Odoo datetime string
+// Helper to format JS Date into Odoo datetime string (no changes here)
 function formatOdooDateTime(date) {
   return date.toISOString().replace(/T/, " ").replace(/\..+/, "");
 }
 
-// Authenticate and return UID
+// Authenticate and return UID (no changes here)
 async function authenticate() {
   return new Promise((resolve, reject) => {
     commonClient.methodCall(
@@ -40,20 +40,26 @@ export default async function handler(req, res) {
 
   try {
     const uid = await authenticate();
-    const { name, phone, appointmentDate, appointmentTime, branch, inquiry } =
-      req.body;
 
-    // Validate required fields
-    if (!name || !phone || !appointmentDate || !appointmentTime) {
+    // --- CHANGED ---
+    // The incoming service field is named `service`, not `inquiry`.
+    // We no longer need `appointmentTime` here because the full date comes in `appointmentDate`.
+    const { name, phone, appointmentDate, branch, service } = req.body;
+
+    // --- REASON ---
+    // Validate the fields that are actually being sent from the frontend.
+    if (!name || !phone || !appointmentDate || !branch || !service) {
       return res
         .status(400)
         .json({ success: false, error: "Missing required fields" });
     }
 
-    // Parse and build start/end
-    const [hours, minutes] = appointmentTime.split(":").map(Number);
+    // --- CHANGED ---
+    // The date logic is now much simpler.
+    // --- REASON ---
+    // `appointmentDate` is already a pre-adjusted ISO string from the frontend.
+    // We just need to parse it and create the end date.
     const startDate = new Date(appointmentDate);
-    startDate.setHours(hours, minutes);
     const endDate = new Date(startDate.getTime() + 60 * 60 * 1000); // +1 hour
 
     // Create calendar event
@@ -71,7 +77,9 @@ export default async function handler(req, res) {
               name: `${name}'s Appointment`,
               start: formatOdooDateTime(startDate),
               stop: formatOdooDateTime(endDate),
-              description: `Client Details:\n- Name: ${name}\n- Phone: ${phone}\n- Branch: ${branch}\n- Service: ${inquiry}`,
+              // --- CHANGED ---
+              // Use the correct `service` variable here.
+              description: `Client Details:\n- Name: ${name}\n- Phone: ${phone}\n- Branch: ${branch}\n- Service: ${service}`,
               partner_ids: [9, 23, 1041], // default partner IDs
               location: branch,
             },

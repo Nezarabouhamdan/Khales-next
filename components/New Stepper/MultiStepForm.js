@@ -9,7 +9,7 @@ import styled, { css, keyframes } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiCheck, FiChevronDown, FiX, FiLoader } from "react-icons/fi";
 
-// --- Form Content & Options ---
+// --- Form Content & Options (No changes here) ---
 const formTranslations = {
   eng: {
     title: "Book an Appointment",
@@ -92,7 +92,6 @@ const formTranslations = {
     },
   },
 };
-
 const serviceOptions = {
   eng: [
     "Projects Management",
@@ -113,7 +112,6 @@ const serviceOptions = {
     "دراسة جدوى",
   ],
 };
-
 const branchOptions = {
   eng: [
     "Dubai Majlis",
@@ -125,7 +123,7 @@ const branchOptions = {
   ar: ["مجلس دبي", "فرع دبي", "فرع الفجيرة", "فرع الشارقة", "فرع أبو ظبي"],
 };
 
-// --- Helper Components & Logic ---
+// --- Helper Components & Logic (No changes here) ---
 const DecorativeShape = ({ initialX, initialY, size, stiffness, rtl }) => {
   const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -161,7 +159,6 @@ const DecorativeShape = ({ initialX, initialY, size, stiffness, rtl }) => {
     />
   );
 };
-
 const containerVariants = {
   hidden: { opacity: 0, y: 50 },
   show: {
@@ -233,6 +230,8 @@ export default function MultiStepFormnew() {
     setCurrentStep((prev) => Math.max(prev - 1, 0));
   };
 
+  // --- CHANGED ---
+  // This is the updated handleSubmit function
   const handleSubmit = async () => {
     if (!isStepValid()) {
       setGlobalError(content.errors.required);
@@ -240,11 +239,28 @@ export default function MultiStepFormnew() {
     }
     setGlobalError("");
     setIsSubmitting(true);
+
+    // --- REASON ---
+    // We create the full date object here, adjust it for the timezone,
+    // and then send the adjusted date as an ISO string to the backend.
+    const [hours, minutes] = formData.appointmentTime.split(":").map(Number);
+    const originalDate = new Date(formData.appointmentDate);
+    originalDate.setHours(hours, minutes, 0, 0); // Combine date and time
+
+    // Subtract 4 hours to counteract the backend addition
+    originalDate.setHours(originalDate.getHours() - 4);
+
+    const payload = {
+      ...formData,
+      appointmentDate: originalDate.toISOString(), // Send the adjusted date
+    };
+
     try {
       const response = await fetch("/api/create-meeting", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        // Send the new payload with the adjusted time
+        body: JSON.stringify(payload),
       });
       if (!response.ok) {
         const errorData = await response.json();
@@ -258,6 +274,7 @@ export default function MultiStepFormnew() {
     }
   };
 
+  // --- The rest of the component (JSX, sub-components, styles) remains the same ---
   return (
     <>
       <PageWrapper
@@ -355,8 +372,8 @@ export default function MultiStepFormnew() {
     </>
   );
 }
-
-// --- All Sub-Components are now included inside this file ---
+// All sub-components and styled-components remain exactly the same as in your original file
+// Stepper, StepOne, StepTwo, StepThree, SubmitModal, and all styled components...
 const Stepper = ({ steps, currentStep }) => (
   <StepperContainer>
     {steps.map((step, index) => (
@@ -374,7 +391,6 @@ const Stepper = ({ steps, currentStep }) => (
     ))}
   </StepperContainer>
 );
-
 const StepOne = ({ formData, updateFormData, content, isRTL, language }) => (
   <StepContent>
     <StepTitle $rtl={isRTL}>{content.title}</StepTitle>
@@ -416,7 +432,6 @@ const StepOne = ({ formData, updateFormData, content, isRTL, language }) => (
     </InputGroup>
   </StepContent>
 );
-
 const StepTwo = ({ formData, updateFormData, content, isRTL }) => {
   const timeSlots = (() => {
     const slots = [];
@@ -483,7 +498,6 @@ const StepTwo = ({ formData, updateFormData, content, isRTL }) => {
     </StepContent>
   );
 };
-
 const StepThree = ({ formData, content, isRTL }) => (
   <StepContent>
     <StepTitle $rtl={isRTL}>{content.title}</StepTitle>
@@ -515,7 +529,6 @@ const StepThree = ({ formData, content, isRTL }) => (
     </ReviewGrid>
   </StepContent>
 );
-
 const SubmitModal = ({ status, onClose, content }) => (
   <ModalOverlay
     as={motion.div}
@@ -536,8 +549,6 @@ const SubmitModal = ({ status, onClose, content }) => (
     </ModalContent>
   </ModalOverlay>
 );
-
-// --- All Styled Components ---
 const PageWrapper = styled(motion.div)`
   margin-top: 7vh;
   padding: 4rem 1rem;
