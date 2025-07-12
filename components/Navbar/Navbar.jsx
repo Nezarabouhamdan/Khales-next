@@ -1,5 +1,5 @@
 // src/components/Navbar/Navbar.js
-// --- CORRECTED CODE WITH LANGUAGE CONTEXT INTEGRATION ---
+// --- CORRECTED CODE WITH MOBILE FIXES ---
 
 "use client";
 
@@ -108,14 +108,13 @@ const menuData = [
     labelAr: "اللغة",
     isDropdown: true,
     children: [
-      // *** FIX 1: Added 'labelAr' to the language options ***
       { label: "English", labelAr: "الإنجليزية", langCode: "eng" },
       { label: "Arabic", labelAr: "العربية", langCode: "ar" },
     ],
   },
 ];
 
-// --- STYLED COMPONENTS (No changes here) ---
+// --- STYLED COMPONENTS (With modifications) ---
 
 const COLORS = {
   primary: "#66a109",
@@ -155,8 +154,7 @@ const NavbarContainer = styled.div`
   padding: 0 20px;
   border-radius: 7px;
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
-  background: ${({ $isScrolled }) =>
-    $isScrolled ? "rgba(255, 255, 255, 0.7)" : "rgba(188, 188, 188, 0.13)"};
+  background: rgba(255, 255, 255, 0.7)
   backdrop-filter: blur(15px);
   border: 1px solid
     ${({ $isScrolled }) =>
@@ -190,16 +188,23 @@ const NavIcon = styled.img`
   width: auto;
 `;
 
+// --- MODIFICATION 1 ---
+// Added an `$isMobileMenuOpen` prop to control the color of the close (FaTimes) icon.
 const MobileIcon = styled.div`
   display: none;
   @media screen and (max-width: 960px) {
     display: block;
     font-size: 1.8rem;
     cursor: pointer;
-    color: ${({ $isScrolled }) =>
-      $isScrolled ? COLORS.darkText : COLORS.white};
+    // When the menu is open, the background is white, so the icon must be dark.
+    color: ${({ $isMobileMenuOpen, $isScrolled }) =>
+      $isMobileMenuOpen
+        ? COLORS.darkText
+        : $isScrolled
+        ? COLORS.darkText
+        : COLORS.white};
     transition: color 0.3s ease-in-out;
-    z-index: 1001;
+    z-index: 1001; // Ensure it's on top
   }
 `;
 
@@ -221,6 +226,8 @@ const NavMenu = styled.ul`
     transition: all 0.5s ease;
     background: ${COLORS.white};
     padding: 100px 2rem 2rem 2rem;
+    // Add space for the button at the bottom
+    justify-content: flex-start;
   }
 `;
 
@@ -364,7 +371,7 @@ const NavActions = styled.div`
   align-items: center;
   gap: 1rem;
   @media screen and (max-width: 960px) {
-    display: none;
+    display: none; // This hides the button on mobile in its original position
   }
 `;
 
@@ -386,6 +393,18 @@ const CTAButton = styled(Link)`
     background-color: ${COLORS.primaryDarker};
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(102, 161, 9, 0.3);
+  }
+`;
+
+// --- MODIFICATION 2 ---
+// A new styled component for the button when it's inside the mobile menu.
+const MobileCTAWrapper = styled.div`
+  display: none; // Hidden by default
+
+  @media screen and (max-width: 960px) {
+    display: block;
+    width: 100%;
+    margin-top: 2rem; // Add some space above the button
   }
 `;
 
@@ -432,8 +451,11 @@ const Navbar = () => {
           <NavIcon src="/assets/Khales-Logo.png" alt="Khales Logo" />
         </NavLogoLink>
 
+        {/* --- MODIFICATION 1 (Applied) --- */}
+        {/* Pass the $isMobileMenuOpen prop to the MobileIcon styled component */}
         <MobileIcon
           $isScrolled={isScrolled}
+          $isMobileMenuOpen={isMobileMenuOpen}
           onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -482,7 +504,6 @@ const Navbar = () => {
                             $isActive={language === child.langCode}
                             onClick={() => handleLanguageChange(child.langCode)}
                           >
-                            {/* *** FIX 2: Use the language state to render the correct label *** */}
                             {language === "ar" && child.labelAr
                               ? child.labelAr
                               : child.label}
@@ -495,6 +516,14 @@ const Navbar = () => {
               </MenuItem>
             );
           })}
+
+          {/* --- MODIFICATION 2 (Applied) --- */}
+          {/* Add the CTA button inside a mobile-only wrapper within the NavMenu */}
+          <MobileCTAWrapper>
+            <CTAButton href="/booking">
+              {language === "eng" ? "Book Consultation" : "أحجز موعدك الآن"}
+            </CTAButton>
+          </MobileCTAWrapper>
         </NavMenu>
 
         <NavActions>
