@@ -52,274 +52,216 @@ const SectionContainer = styled.section`
 `;
 
 const ContentWrapper = styled.div`
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 4rem;
-`;
-
-const Header = styled(motion.div)`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  align-items: center;
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 `;
 
-const TitleBlock = styled.div`
-  max-width: 600px;
+const TextSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
-const Label = styled.p`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #66a109;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-`;
-
-const MainTitle = styled.h1`
-  font-size: 3.5rem;
+const SectionTitle = styled(motion.h2)`
+  font-size: 3rem;
   font-weight: 700;
   color: #1a1a1a;
   line-height: 1.2;
-  @media (max-width: 992px) {
-    font-size: 2.8rem;
+  margin: 0;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
   }
 `;
 
-const ExploreButton = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background-color: #66a109;
-  color: white;
-  padding: 1rem 1.75rem;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.3s ease;
-
-  .arrow {
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
-    box-shadow: 0 10px 20px rgba(102, 161, 9, 0.3);
-    transform: translateY(-3px);
-    .arrow {
-      transform: translateX(5px);
-    }
-  }
+const SectionDescription = styled(motion.p)`
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  margin: 0;
 `;
 
 const FeaturesGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  border-top: 1px solid #e9ecef;
-  padding-top: 3rem;
-  @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const FeatureCard = styled(motion.div)`
-  text-align: center;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  border-radius: 12px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  border: 1px solid rgba(102, 161, 9, 0.1);
+  transition: all 0.3s ease;
   &:hover {
-    transform: translateY(-10px);
-    background-color: #f8f9fa;
-    .icon-wrapper {
-      transform: scale(1.1);
-      background-color: #66a109;
-      color: white;
-    }
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: rgba(102, 161, 9, 0.3);
   }
 `;
 
-const IconWrapper = styled.div`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+const FeatureIcon = styled.div`
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #66a109, #8bc34a);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  background-color: #f0f0f0;
-  color: #1a1a1a;
-  border: 1px solid #e9ecef;
-  transition: all 0.3s ease;
+  color: white;
+  font-size: 1.2rem;
   flex-shrink: 0;
 `;
 
+const FeatureContent = styled.div`
+  flex: 1;
+`;
+
 const FeatureTitle = styled.h3`
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
 `;
 
 const FeatureDescription = styled.p`
   font-size: 0.95rem;
-  line-height: 1.7;
-  color: #555;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
 `;
 
-const ImageWrapper = styled(motion.div)`
-  height: 500px;
+const ImageSection = styled.div`
+  position: relative;
   border-radius: 20px;
   overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: ${kenBurns} 15s ease-in-out infinite alternate;
+  height: 500px;
+  @media (max-width: 992px) {
+    order: -1;
+    height: 400px;
   }
 `;
 
-const DecorativeShape = styled.div`
+const HeroImage = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: url("https://i.ibb.co/XftcdnrY/aboutus2.jpg");
+  background-size: cover;
+  background-position: center;
+  animation: ${kenBurns} 20s ease-in-out infinite alternate;
+`;
+
+const ImageOverlay = styled.div`
   position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  transition: transform 0.4s ease-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(102, 161, 9, 0.2) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+`;
+
+const CTAButton = styled(motion.button)`
+  background: linear-gradient(135deg, #66a109, #8bc34a);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 161, 9, 0.3);
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 161, 9, 0.4);
+  }
 `;
 
 //================================================================
 // 3. MAIN COMPONENT
 //================================================================
 const WhyKhales = () => {
-  const handleMouseMove = (e) => {
-    const shapes = e.currentTarget.querySelectorAll(".shape");
-    shapes.forEach((shape) => {
-      const factor = parseInt(shape.getAttribute("data-factor")) || 20;
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = (e.clientX - rect.left - rect.width / 2) / factor;
-      const y = (e.clientY - rect.top - rect.height / 2) / factor;
-      shape.style.transform = `translate(${x}px, ${y}px)`;
-    });
-  };
-  const handleMouseLeave = (e) => {
-    const shapes = e.currentTarget.querySelectorAll(".shape");
-    shapes.forEach((shape) => {
-      shape.style.transform = `translate(0px, 0px)`;
-    });
-  };
-
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
-
   return (
-    <SectionContainer
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      <DecorativeShape
-        className="shape"
-        data-factor="25"
-        style={{
-          top: "20%",
-          left: "5%",
-          width: "60px",
-          height: "60px",
-          background: "rgba(102, 161, 9, 0.05)",
-          borderRadius: "50%",
-        }}
-      />
-      <DecorativeShape
-        className="shape"
-        data-factor="-15"
-        style={{
-          top: "60%",
-          right: "5%",
-          width: "100px",
-          height: "100px",
-          border: "1px solid rgba(102, 161, 9, 0.1)",
-        }}
-      />
-
+    <SectionContainer>
       <ContentWrapper>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <Header>
-            <TitleBlock>
-              <motion.div variants={itemVariants}>
-                <Label>
-                  <FaHammer />
-                  Why Khales
-                </Label>
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <MainTitle>Elevating Home Construction Standards</MainTitle>
-              </motion.div>
-            </TitleBlock>
-            <motion.div variants={itemVariants}>
-              <ExploreButton href="#">
-                Explore More{" "}
-                <span className="arrow">
-                  <FaArrowRight />
-                </span>
-              </ExploreButton>
-            </motion.div>
-          </Header>
-        </motion.div>
+        <TextSection>
+          <SectionTitle
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            Why Choose Khales?
+          </SectionTitle>
 
-        <FeaturesGrid
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {featuresData.map((feature, index) => (
-            <FeatureCard key={index} variants={itemVariants}>
-              <IconWrapper className="icon-wrapper">{feature.icon}</IconWrapper>
-              <FeatureTitle>{feature.title}</FeatureTitle>
-              <FeatureDescription>{feature.description}</FeatureDescription>
-            </FeatureCard>
-          ))}
-        </FeaturesGrid>
+          <SectionDescription
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            We believe your home should be a true reflection of your vision,
+            tailored to your lifestyle and built to the highest standards. Our
+            commitment to excellence, innovation, and customer satisfaction sets
+            us apart in the industry.
+          </SectionDescription>
 
-        <ImageWrapper
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80"
-            alt="Luxurious modern living room"
-          />
-        </ImageWrapper>
+          <FeaturesGrid
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4, staggerChildren: 0.1 }}
+            viewport={{ once: true }}
+          >
+            {featuresData.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <FeatureIcon>{feature.icon}</FeatureIcon>
+                <FeatureContent>
+                  <FeatureTitle>{feature.title}</FeatureTitle>
+                  <FeatureDescription>{feature.description}</FeatureDescription>
+                </FeatureContent>
+              </FeatureCard>
+            ))}
+          </FeaturesGrid>
+
+          <CTAButton
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Learn More About Us
+            <FaArrowRight />
+          </CTAButton>
+        </TextSection>
+
+        <ImageSection>
+          <HeroImage />
+          <ImageOverlay />
+        </ImageSection>
       </ContentWrapper>
     </SectionContainer>
   );

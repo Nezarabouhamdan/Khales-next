@@ -4,10 +4,9 @@ import HomeContent from "@/pages/HomeConent";
 import Script from "next/script"; // Use Next.js optimized Script component
 
 export const metadata = {
-  title:
-    "Khales - Leading Architecture & Interior Design Company in Dubai, UAE",
+  title: "Khales - Architecture & Interior Design Dubai, UAE",
   description:
-    "Khales is Dubai's premier architecture and interior design company. We specialize in luxury residential and commercial projects, project management, engineering consultancy, and development planning across the UAE. Transform your space with our expert team.",
+    "Khales is Dubai's premier architecture and interior design company. We specialize in luxury residential and commercial projects, project management, engineering consultancy, and development planning across the UAE.",
   keywords: [
     "architecture Dubai",
     "interior design Dubai",
@@ -31,8 +30,7 @@ export const metadata = {
   creator: "Khales",
   metadataBase: new URL("https://www.khales.ae/"),
   openGraph: {
-    title:
-      "Khales - Leading Architecture & Interior Design Company in Dubai, UAE",
+    title: "Khales - Architecture & Interior Design Dubai, UAE",
     description:
       "Dubai's premier architecture and interior design company. Specializing in luxury residential and commercial projects across the UAE.",
     url: "https://www.khales.ae/",
@@ -50,8 +48,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Khales - Leading Architecture & Interior Design Company in Dubai, UAE",
+    title: "Khales - Architecture & Interior Design Dubai, UAE",
     description:
       "Dubai's premier architecture and interior design company. Specializing in luxury residential and commercial projects across the UAE.",
     images: ["https://www.khales.ae/assets/Khales-Logo.png"],
@@ -65,7 +62,7 @@ export const metadata = {
 const homePageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Khales - Leading Architecture & Interior Design Company in Dubai, UAE",
+  name: "Khales - Architecture & Interior Design Dubai, UAE",
   description:
     "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across the UAE.",
   url: "https://www.khales.ae/",

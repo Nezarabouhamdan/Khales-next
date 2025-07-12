@@ -51,53 +51,44 @@ const SectionContainer = styled.section`
   position: relative;
   overflow: hidden;
   font-family: "Inter", sans-serif;
-  @media (max-width: 992px) {
-    padding: 4rem 1.5rem;
-  }
 `;
 
 const ContentWrapper = styled.div`
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 `;
 
-const HeroImage = styled(motion.div)`
-  height: 400px;
-  border-radius: 20px;
+const HeroSection = styled.div`
   position: relative;
+  border-radius: 20px;
   overflow: hidden;
-  color: white;
+  height: 500px;
+  background-image: url("https://i.ibb.co/7tKV3xP1/aboutus5.jpg");
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
-  padding: 3rem;
-  @media (max-width: 768px) {
-    padding: 2rem;
-  }
-
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: ${kenBurns} 15s ease-in-out infinite alternate;
-  }
-
-  &::after {
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  &::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(
-      90deg,
+      135deg,
       rgba(0, 0, 0, 0.6) 0%,
       rgba(0, 0, 0, 0.1) 100%
     );
@@ -105,7 +96,7 @@ const HeroImage = styled(motion.div)`
   }
 `;
 
-const HeroTitle = styled(motion.h1)`
+const HeroTitle = styled(motion.h2)`
   font-size: 3.2rem; /* <-- REDUCED */
   font-weight: 700;
   max-width: 500px;
@@ -149,162 +140,97 @@ const CounterText = styled.span`
   font-size: 3.8rem; /* <-- REDUCED */
   font-weight: 700;
   line-height: 1;
+  @media (max-width: 768px) {
+    font-size: 2.8rem;
+  } /* <-- REDUCED */
 `;
 
 const StatTitle = styled.h3`
-  font-size: 1.25rem; /* <-- REDUCED */
+  font-size: 1.3rem; /* <-- REDUCED */
   font-weight: 600;
+  margin: 0;
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  } /* <-- REDUCED */
 `;
 
 const StatDescription = styled.p`
-  font-size: 0.95rem; /* Slightly smaller for balance */
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.7;
-`;
-
-const DecorativeShape = styled.div`
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  transition: transform 0.4s ease-out;
+  font-size: 0.95rem; /* <-- REDUCED */
+  line-height: 1.5;
+  opacity: 0.9;
+  margin: 0;
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  } /* <-- REDUCED */
 `;
 
 //================================================================
-// 3. ANIMATED NUMBER COMPONENT
+// 3. COUNTER HOOK
 //================================================================
-const AnimatedNumber = ({ value }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+const useCounter = (end, duration = 2000) => {
+  const [count, setCount] = React.useState(0);
+  const countRef = useRef(null);
+  const isInView = useInView(countRef, { once: true });
 
   useEffect(() => {
-    if (isInView) {
-      const controls = animate(0, value, {
-        duration: 2,
-        ease: "easeOut",
-        onUpdate(latest) {
-          if (ref.current) {
-            ref.current.textContent = Math.round(latest);
-          }
-        },
-      });
-      return () => controls.stop();
-    }
-  }, [isInView, value]);
+    if (!isInView) return;
 
-  return <CounterText ref={ref}>0</CounterText>;
+    const controls = animate(0, end, {
+      duration: duration / 1000,
+      onUpdate: (value) => setCount(Math.floor(value)),
+    });
+
+    return () => controls.stop();
+  }, [end, duration, isInView]);
+
+  return { count, ref: countRef };
 };
 
 //================================================================
 // 4. MAIN COMPONENT
 //================================================================
 const ValueProposition = () => {
-  const handleMouseMove = (e) => {
-    const shapes = e.currentTarget.querySelectorAll(".shape");
-    shapes.forEach((shape) => {
-      const factor = parseInt(shape.getAttribute("data-factor")) || 20;
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = (e.clientX - rect.left - rect.width / 2) / factor;
-      const y = (e.clientY - rect.top - rect.height / 2) / factor;
-      shape.style.transform = `translate(${x}px, ${y}px)`;
-    });
-  };
-  const handleMouseLeave = (e) => {
-    const shapes = e.currentTarget.querySelectorAll(".shape");
-    shapes.forEach((shape) => {
-      shape.style.transform = `translate(0px, 0px)`;
-    });
-  };
-
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.15 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
-
   return (
-    <SectionContainer
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      <DecorativeShape
-        className="shape"
-        data-factor="30"
-        style={{
-          top: "10%",
-          left: "5%",
-          width: "50px",
-          height: "50px",
-          background: "rgba(102, 161, 9, 0.1)",
-          borderRadius: "10px",
-        }}
-      />
-      <DecorativeShape
-        className="shape"
-        data-factor="-20"
-        style={{
-          top: "50%",
-          right: "5%",
-          width: "80px",
-          height: "80px",
-          border: "2px solid rgba(102, 161, 9, 0.15)",
-          borderRadius: "50%",
-        }}
-      />
-      <DecorativeShape
-        className="shape"
-        data-factor="15"
-        style={{
-          bottom: "5%",
-          left: "20%",
-          width: "40px",
-          height: "40px",
-          background: "rgba(44, 62, 80, 0.1)",
-        }}
-      />
-
+    <SectionContainer>
       <ContentWrapper>
-        <HeroImage
-          as={motion.div}
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <img
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80"
-            alt="Modern interior design"
-          />
-          <HeroTitle>Crafting Your Value Proposition</HeroTitle>
-        </HeroImage>
+        <HeroSection>
+          <HeroTitle
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            Delivering Excellence in Every Project
+          </HeroTitle>
+        </HeroSection>
 
         <StatsGrid
-          as={motion.div}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, staggerChildren: 0.2 }}
           viewport={{ once: true }}
         >
-          {statsData.map((stat, index) => (
-            <StatCard
-              key={index}
-              highlight={stat.highlight}
-              variants={itemVariants}
-            >
-              <div>
-                <AnimatedNumber value={stat.value} />
-                <CounterText>{stat.suffix}</CounterText>
-              </div>
-              <StatTitle>{stat.title}</StatTitle>
-              <StatDescription>{stat.description}</StatDescription>
-            </StatCard>
-          ))}
+          {statsData.map((stat, index) => {
+            const { count, ref } = useCounter(stat.value);
+            return (
+              <StatCard
+                key={index}
+                ref={ref}
+                highlight={stat.highlight}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <CounterText>
+                  {count}
+                  {stat.suffix}
+                </CounterText>
+                <StatTitle>{stat.title}</StatTitle>
+                <StatDescription>{stat.description}</StatDescription>
+              </StatCard>
+            );
+          })}
         </StatsGrid>
       </ContentWrapper>
     </SectionContainer>

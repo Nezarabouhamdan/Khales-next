@@ -48,54 +48,54 @@ const sectionVariants = {
   },
 };
 
-// Controls the cascading animation of text elements
+// Text block container
 const textContainerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+// Individual text elements
+const textItemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+// Gallery container
+const galleryContainerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15, // Animate title, then paragraph, then button
-      delayChildren: 0.2, // Small delay after the block itself appears
+      duration: 0.8,
+      staggerChildren: 0.15,
     },
   },
 };
 
-// Variant for each text item (Title, Paragraph, Button)
-const textItemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 15 },
-  },
-};
-
-// Controls the stagger for the image gallery
-const galleryContainerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1, // Images appear in rapid succession
-    },
-  },
-};
-
-// Variant for each image, with a softer spring
+// Individual image animations
 const imageVariants = {
-  hidden: { opacity: 0, scale: 0.6 },
+  hidden: { opacity: 0, scale: 0.8 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100, // Softer spring
-      damping: 18, // Less bounce
-    },
+    transition: { duration: 0.6, ease: "easeOut" },
   },
 };
 
 //================================================================
-// HOOKS
+// CUSTOM HOOK FOR RESPONSIVE DESIGN
 //================================================================
 const useMediaQuery = (query) => {
   const [matches, setMatches] = useState(false);
@@ -148,51 +148,53 @@ const TextBlock = styled(motion.div)`
   z-index: 10;
   @media (max-width: 900px) {
     max-width: 95vw;
-    padding: 2rem 1.5rem;
-    order: -1;
+    padding: 2rem;
   }
 `;
 
-const Title = styled(motion.h1)`
-  font-size: 3rem;
-  font-weight: 800;
+const Title = styled(motion.h2)`
+  font-size: 4rem;
+  font-weight: 700;
   margin-bottom: 1.5rem;
-  text-transform: uppercase;
   line-height: 1.1;
-  @media (max-width: 768px) {
+  color: #1a1a1a;
+  @media (max-width: 900px) {
     font-size: 3rem;
   }
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     font-size: 2.5rem;
   }
 `;
 
 const Paragraph = styled(motion.p)`
   font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-  color: #333;
-  @media (max-width: 480px) {
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: #555;
+  @media (max-width: 600px) {
     font-size: 1rem;
-    line-height: 1.6;
   }
 `;
 
-const MotionLink = motion(Link);
-const LearnMoreButton = styled.a`
+const MotionLink = styled(motion(Link))`
   display: inline-block;
-  padding: 0.8rem 2.5rem;
-  border-radius: 8px;
-  background-color: #66a109;
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
   text-decoration: none;
-  font-family: inherit;
+`;
+
+const LearnMoreButton = styled.button`
+  background: linear-gradient(135deg, #66a109, #8bc34a);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 161, 9, 0.3);
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(102, 161, 9, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 161, 9, 0.4);
   }
 `;
 
@@ -253,20 +255,20 @@ const LightboxOverlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 5000;
+  align-items: center;
+  z-index: 1000;
   cursor: pointer;
 `;
 
 const LightboxImage = styled(motion.img)`
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
   cursor: default;
 `;
 
@@ -277,13 +279,15 @@ const AboutKhalesUltimate = () => {
   const { language } = useLanguage();
   const [selectedImg, setSelectedImg] = useState(null);
   const isMobile = useMediaQuery("(max-width: 900px)");
+
   const currentContent = content[language] || content.eng;
 
+  // Image positions for desktop (orbiting effect)
   const imagePositions = [
-    { top: "10%", left: "15%", width: "250px", height: "350px" },
-    { top: "15%", right: "10%", width: "300px", height: "200px" },
-    { bottom: "12%", right: "18%", width: "280px", height: "400px" },
-    { bottom: "15%", left: "8%", width: "220px", height: "300px" },
+    { top: "10%", left: "10%", width: "200px", height: "150px" },
+    { top: "15%", right: "15%", width: "180px", height: "120px" },
+    { bottom: "20%", left: "5%", width: "220px", height: "160px" },
+    { bottom: "10%", right: "20%", width: "190px", height: "140px" },
   ];
 
   return (
@@ -296,7 +300,12 @@ const AboutKhalesUltimate = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <DecorativeShape
-          style={{ top: "5%", left: "5%", width: "220px", height: "220px" }}
+          style={{
+            top: "20%",
+            left: "5%",
+            width: "150px",
+            height: "150px",
+          }}
         />
         <DecorativeShape
           style={{
@@ -334,7 +343,12 @@ const AboutKhalesUltimate = () => {
                   : {}
               }
             >
-              <img src={url} alt={`Gallery image ${index + 1}`} />
+              <img
+                src={url}
+                alt={`Khales Group project showcase ${
+                  index + 1
+                } - Architecture and interior design work`}
+              />
             </ImageWrapper>
           ))}
         </OrbitingGallery>
@@ -350,10 +364,10 @@ const AboutKhalesUltimate = () => {
           >
             <LightboxImage
               src={selectedImg}
-              alt="Enlarged view"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              alt="Enlarged view of Khales Group project showcase"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
             />

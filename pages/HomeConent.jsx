@@ -30,8 +30,10 @@ export default function HomeContent() {
     <>
       <LocalBusinessSchema />
       <section id="hero" aria-label="hero">
-        <h1 style={{ display: "none" }}>
-          {language === "ar" ? "مرحبًا بك في Khales" : "Welcome to Khales"}
+        <h1>
+          {language === "ar"
+            ? "خالص - شركة رائدة في الهندسة المعمارية والتصميم الداخلي في دبي، الإمارات العربية المتحدة"
+            : "Khales - Leading Architecture & Interior Design Company in Dubai, UAE"}
         </h1>
         {/* <HeroGlass /> */}
         <Hero />

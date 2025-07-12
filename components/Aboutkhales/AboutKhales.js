@@ -64,7 +64,7 @@ const Header = styled(motion.div)`
   text-align: center;
   margin-bottom: 5rem;
 `;
-const Title = styled.h1`
+const Title = styled.h2`
   font-size: 3.5rem;
   font-weight: 700;
   color: #1a1a1a;
@@ -99,54 +99,33 @@ const TimelineProgress = styled(motion.div)`
   width: 4px;
   background-color: #66a109;
   z-index: 2;
-  transform-origin: top;
 `;
-
 const Milestone = styled(motion.div)`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
   margin-bottom: 4rem;
   position: relative;
-  width: 100%;
-
-  .content-block {
-    width: calc(50% - 2rem);
-    text-align: left;
-  }
-  .image-block {
-    width: calc(50% - 2rem);
-  }
-
-  &:nth-child(odd) {
-    flex-direction: row-reverse;
-    .content-block {
-      text-align: right;
+  &:nth-child(even) {
+    .content {
+      order: 3;
     }
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column !important;
-    align-items: center;
-    .content-block,
-    .image-block {
-      width: 100%;
-      max-width: 400px;
-    }
-    .content-block {
-      order: 2;
-      text-align: center !important;
-    }
-    .image-block {
+    .image {
       order: 1;
-      margin-bottom: 1.5rem;
     }
   }
 `;
-
-const MilestoneYear = styled.div`
+const MilestoneContent = styled.div`
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+`;
+const YearBadge = styled.div`
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
   transform: translateX(-50%);
   background-color: #66a109;
@@ -180,9 +159,36 @@ const ImageWrapper = styled.div`
     transform: scale(1.05);
   }
 `;
-const DecorativeShape = styled.div`...`;
-const LightboxOverlay = styled(motion.div)`...`;
-const LightboxImage = styled(motion.img)`...`;
+const DecorativeShape = styled.div`
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #66a109, #8bc34a);
+  border-radius: 50%;
+  opacity: 0.1;
+  top: 10%;
+  right: -100px;
+  z-index: 1;
+`;
+const LightboxOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+`;
+const LightboxImage = styled(motion.img)`
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+  cursor: default;
+`;
 
 //================================================================
 // MAIN COMPONENT
@@ -200,36 +206,31 @@ const AboutKhalesGroupInteractive = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.7, ease: "easeOut" },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
+
+  const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <>
       <SectionWrapper>
-        <ContentContainer>
-          <Header>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              Khales Group
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              At Khales Project Management, we turn ideas into reality with
-              expert architecture, construction, and fit-out solutions. No
-              delays, no compromises—just results that exceed expectations.
-            </motion.p>
+        <DecorativeShape />
+        <ContentContainer
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Header variants={itemVariants}>
+            <Title>Our Journey</Title>
+            <Paragraph>
+              From humble beginnings to industry leaders, discover the
+              milestones that have shaped Khales Group into the trusted name it
+              is today.
+            </Paragraph>
           </Header>
           <TimelineContainer ref={timelineRef}>
-            <TimelineProgress style={{ scaleY: scrollYProgress }} />
+            <TimelineProgress style={{ height: progressHeight }} />
             {timelineData.map((item, index) => (
               <Milestone
                 key={index}
@@ -238,16 +239,21 @@ const AboutKhalesGroupInteractive = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
               >
-                <MilestoneYear>{item.year}</MilestoneYear>
-                <div className="content-block">
-                  <MilestoneTitle>{item.title}</MilestoneTitle>
-                  <MilestoneDescription>
-                    {item.description}
-                  </MilestoneDescription>
+                <div className="content">
+                  <MilestoneContent>
+                    <MilestoneTitle>{item.title}</MilestoneTitle>
+                    <MilestoneDescription>
+                      {item.description}
+                    </MilestoneDescription>
+                  </MilestoneContent>
                 </div>
-                <div className="image-block">
+                <YearBadge>{item.year}</YearBadge>
+                <div className="image">
                   <ImageWrapper onClick={() => setSelectedImg(item.imageUrl)}>
-                    <img src={item.imageUrl} alt={item.title} />
+                    <img
+                      src={item.imageUrl}
+                      alt={`${item.title} - Khales Group milestone from ${item.year}`}
+                    />
                   </ImageWrapper>
                 </div>
               </Milestone>
@@ -265,7 +271,7 @@ const AboutKhalesGroupInteractive = () => {
           >
             <LightboxImage
               src={selectedImg}
-              alt="Enlarged view"
+              alt="Enlarged view of Khales Group milestone"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.8 }}

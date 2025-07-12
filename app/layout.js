@@ -14,11 +14,11 @@ import Head from "next/head";
 import CustomCursor from "@/components/CustomCursor";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+
 export const metadata = {
-  title:
-    "Khales - Premier Architecture & Interior Design Company in Dubai, UAE",
+  title: "Khales - Architecture & Interior Design Dubai, UAE",
   description:
-    "Khales is a leading architecture and interior design company in Dubai, UAE. We offer luxury residential and commercial design, project management, engineering consultancy, and development planning services across the UAE.",
+    "Khales is a leading architecture and interior design company in Dubai, UAE. We offer luxury residential and commercial design, project management, and engineering consultancy services.",
   keywords: [
     "architecture Dubai",
     "interior design Dubai",
@@ -46,8 +46,7 @@ export const metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title:
-      "Khales - Premier Architecture & Interior Design Company in Dubai, UAE",
+    title: "Khales - Architecture & Interior Design Dubai, UAE",
     description:
       "Leading architecture and interior design company in Dubai, UAE. Specializing in luxury residential and commercial projects, project management, and engineering consultancy.",
     url: "https://www.khales.ae/",
@@ -65,8 +64,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Khales - Premier Architecture & Interior Design Company in Dubai, UAE",
+    title: "Khales - Architecture & Interior Design Dubai, UAE",
     description:
       "Leading architecture and interior design company in Dubai, UAE. Specializing in luxury residential and commercial projects.",
     images: ["https://www.khales.ae/assets/Khales-Logo.png"],
@@ -116,7 +114,12 @@ const organizationSchema = {
     contactType: "customer service",
     availableLanguage: ["English", "Arabic"],
   },
-  sameAs: ["https://api.whatsapp.com/send?phone=+971551299880"],
+  sameAs: [
+    "https://api.whatsapp.com/send?phone=+971551299880",
+    "https://facebook.com/Khales.ae",
+    "https://instagram.com/khales.ae",
+    "https://linkedin.com/company/khales-ae",
+  ],
   areaServed: {
     "@type": "Country",
     name: "United Arab Emirates",
@@ -201,6 +204,7 @@ export default function RootLayout({ children }) {
             width="1"
             style={{ display: "none" }}
             src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+            alt=""
           />
         </noscript>
       </head>

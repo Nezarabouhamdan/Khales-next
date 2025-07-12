@@ -48,9 +48,9 @@ const content = {
         service: "تصميم معماري",
       },
       {
-        text: "العمل مع خالص كان مثالاً للاحترافية. لقد حوّل فريق تنسيق الحدائق فيلتنا في دبي إلى ملاذ هادئ ومورق. كل تفصيلة تم تنفيذها بإتقان.",
-        name: "جيمس و. ، دبي",
-        service: "تنسيق حدائق",
+        text: "العمل مع خالص كان درسًا في الاحترافية. تنسيق الحدائق حوّل فيلتنا في دبي إلى ملاذ أخضر هادئ. كل التفاصيل نُفذت بإتقان.",
+        name: "جيمس و.، دبي",
+        service: "تنسيق الحدائق",
       },
     ],
     partners: [
@@ -69,12 +69,13 @@ const content = {
 };
 
 // --- MAIN COMPONENT ---
-const ClientsAndPartners = () => {
+const TestimonialSlider = () => {
   const { language } = useLanguage();
   const currentContent = content[language] || content.eng;
 
-  // Duplicate partners for a seamless, infinite loop
+  // Create a looped array for the marquee effect
   const loopedPartners = [
+    ...currentContent.partners,
     ...currentContent.partners,
     ...currentContent.partners,
   ];
@@ -82,19 +83,25 @@ const ClientsAndPartners = () => {
   return (
     <SectionWrapper>
       <Container>
-        <SectionTitle>{currentContent.title}</SectionTitle>
+        <Header>
+          <Title>{currentContent.title}</Title>
+        </Header>
 
         <TestimonialWrapper>
           <Swiper
             modules={[Autoplay]}
+            spaceBetween={30}
             slidesPerView={1}
             loop={true}
-            // FIX: SLOWED DOWN the testimonial movement significantly (12 seconds per slide)
-            autoplay={{ delay: 3200, disableOnInteraction: false }}
-            speed={5000} // This is the duration of the scroll animation. Longer is smoother.
-            dir={language === "ar" ? "rtl" : "ltr"}
-            // Re-initializes Swiper on language change to prevent RTL bugs
-            key={language}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              768: {
+                slidesPerView: 1,
+              },
+            }}
           >
             {currentContent.testimonials.map((testimonial, index) => (
               <SwiperSlide key={index}>
@@ -130,7 +137,10 @@ const ClientsAndPartners = () => {
           {loopedPartners.map((partner, index) => (
             <SwiperSlide key={index}>
               <PartnerCard>
-                <img src={partner.logo} alt={`Partner logo ${index + 1}`} />
+                <img
+                  src={partner.logo}
+                  alt={`Khales partner company logo ${index + 1}`}
+                />
               </PartnerCard>
             </SwiperSlide>
           ))}
@@ -151,125 +161,124 @@ const SectionWrapper = styled.section`
     content: "";
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 1400px;
-    height: 100%;
-    background-image: url("https://res.cloudinary.com/greenappletravel-ae/image/upload/v1730893099/greenapple/header/Untitled_design_69_k9jhxg.png");
-    background-repeat: no-repeat;
-    background-position: center 30%;
-    background-size: contain;
-    opacity: 0.15;
-    z-index: 1;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(102, 161, 9, 0.3),
+      transparent
+    );
   }
 `;
 
 const Container = styled.div`
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
-const SectionTitle = styled.h2`
-  font-size: 2.8rem;
+const Header = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const Title = styled.h2`
+  font-size: 3rem;
   font-weight: 700;
   color: #1a1a1a;
-  margin-bottom: 3rem;
-  text-align: center;
-`;
-
-const TestimonialWrapper = styled.div`
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 5rem;
-  text-align: center;
-  .swiper-slide {
-    align-self: stretch;
+  margin-bottom: 1rem;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
   }
 `;
 
+const TestimonialWrapper = styled.div`
+  max-width: 800px;
+  margin: 0 auto 6rem;
+`;
+
 const TestimonialContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(102, 161, 9, 0.1);
 `;
 
 const QuoteText = styled.p`
-  font-size: 1.25rem;
-  font-style: italic;
+  font-size: 1.2rem;
   line-height: 1.8;
   color: #333;
-  margin: 0;
+  margin-bottom: 2rem;
+  font-style: italic;
   @media (max-width: 768px) {
     font-size: 1.1rem;
   }
 `;
 
 const Author = styled.div`
-  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
 `;
 
-const AuthorName = styled.span`
+const AuthorName = styled.h4`
+  font-size: 1rem;
   font-weight: 600;
   color: #1a1a1a;
-  font-size: 1rem;
+  margin: 0;
 `;
 
 const AuthorService = styled.span`
-  font-weight: 600;
-  color: #66a109;
   font-size: 0.9rem;
-  letter-spacing: 0.5px;
+  color: #66a109;
+  font-weight: 500;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 `;
 
 const PartnersMarquee = styled.div`
-  width: 100%;
-  .swiper-wrapper {
-    transition-timing-function: linear !important; // This is the key for non-stop scroll
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  padding: 3rem 0;
+  border-top: 1px solid rgba(102, 161, 9, 0.1);
+  .swiper {
+    overflow: visible;
   }
   .swiper-slide {
-    width: 300px;
-    @media (max-width: 768px) {
-      width: 220px;
-    }
+    width: auto !important;
   }
 `;
 
-const PartnerCard = styled(motion.div)`
-  background: #ffffff;
-  border: 1px solid #e9ecef;
-  border-radius: 16px;
-  padding: 2rem;
+const PartnerCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 180px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-
+  padding: 1rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(102, 161, 9, 0.1);
+  transition: all 0.3s ease;
+  height: 80px;
+  min-width: 120px;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
   img {
-    max-width: 100%;
-    max-height: 100%;
+    max-height: 50px;
+    max-width: 100px;
     object-fit: contain;
-    opacity: 0.6;
-    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
   }
   &:hover img {
     filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.05);
   }
 `;
 
-export default ClientsAndPartners;
+export default TestimonialSlider;

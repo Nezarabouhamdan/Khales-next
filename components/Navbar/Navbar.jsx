@@ -154,7 +154,7 @@ const NavbarContainer = styled.div`
   padding: 0 20px;
   border-radius: 7px;
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
-  background: rgba(255, 255, 255, 0.7)
+  background: rgba(188, 188, 188, 0.13);
   backdrop-filter: blur(15px);
   border: 1px solid
     ${({ $isScrolled }) =>
