@@ -278,11 +278,6 @@ const DevelopmentplanningPage = () => {
   const { language } = useLanguage(); // Assuming you have a language context
   const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-    return () => setIsClient(false); // Cleanup
-  }, []);
-
   // change metadata from client side
   useEffect(() => {
     document.title = `${

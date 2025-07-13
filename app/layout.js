@@ -1,16 +1,12 @@
-import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
 import "../fonts/style.css";
 import ClientProviders from "@/provider/ClientProvaders";
 import Link from "next/link";
-import { footerData } from "../data/FooterData";
 import StyledComponentsRegistry from "@/utils/registry";
 import ScrollToTop from "@/components/ScrollToTop";
 import Script from "next/script";
 import Calltoaction from "./Calltoaction";
-import Footer from "@/components/Footer New/Footer";
 import { Inter } from "next/font/google";
-import Head from "next/head";
 import CustomCursor from "@/components/CustomCursor";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";

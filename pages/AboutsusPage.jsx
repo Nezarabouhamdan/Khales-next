@@ -8,18 +8,10 @@ const AboutusPage = () => {
   const { language } = useLanguage();
   const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-    return () => setIsClient(false); // Cleanup
-  }, []);
-
   // change metadata from client side
   useEffect(() => {
     document.title = `${language === "ar" ? "نبذة عنا" : "Aboutus"} - Khales`;
   }, [language]);
-
-  // Don't render anything during SSR
-  if (!isClient) return null;
 
   return (
     <>
