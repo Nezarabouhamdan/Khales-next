@@ -295,8 +295,6 @@ const EngineeringConsultancyPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Don't render anything during SSR
-  if (!isClient) return null;
   return (
     <>
       <section id="hero" aria-label="hero">
