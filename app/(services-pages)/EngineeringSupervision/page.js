@@ -1,3 +1,16 @@
-export default function Custom404() {
-  return <h1>404 - Page Not Found</h1>;
+import ComingSoon from "@/components/ComingSoon";
+import Footer from "@/components/Footer New/Footer";
+import Navbar from "@/components/Navbar/Navbar";
+import React from "react";
+
+function page() {
+  return (
+    <div>
+      <Navbar />
+      <ComingSoon />
+      <Footer />
+    </div>
+  );
 }
+
+export default page;

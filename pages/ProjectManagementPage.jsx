@@ -265,7 +265,6 @@ const ProjectManagementPage = () => {
   }, []);
 
   // Don't render anything during SSR
-  if (!isClient) return null;
 
   return (
     <>
