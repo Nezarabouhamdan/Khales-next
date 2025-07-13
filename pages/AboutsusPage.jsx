@@ -1,10 +1,6 @@
 "use client";
-import AboutSection from "@/components/aboutuscompnet2/AboutSection";
 import SuccessStory from "@/components/Ceo/S2";
-import MissionVision from "@/components/MV/Mv";
-import MissionVisionHeader from "@/components/Our vision/MissionVisionHeader";
-import MeetTheTeam from "@/components/Team/T1";
-import TeamSection from "@/components/Team/TeamSection";
+import MissionVision from "@/components/Mission Vision/Mission Vision";
 import { useLanguage } from "@/Context/Languagecontext";
 import React, { useEffect, useState } from "react";
 
@@ -29,7 +25,7 @@ const AboutusPage = () => {
     <>
       {" "}
       <div style={{ height: "10vh" }}></div>
-      {/* <SuccessStory /> */}
+      <SuccessStory />
       <MissionVision />
       {/* <MeetTheTeam /> */}
     </>

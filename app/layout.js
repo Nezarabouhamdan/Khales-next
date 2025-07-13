@@ -15,10 +15,26 @@ import CustomCursor from "@/components/CustomCursor";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
+// Import enhanced structured data
+import {
+  organizationSchema,
+  localBusinessSchema,
+  websiteSchema,
+  professionalServiceSchema,
+} from "../enhanced_structured_data";
+
+// Optimize font loading for FCP
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
+});
+
 export const metadata = {
-  title: "Khales - Architecture & Interior Design Dubai, UAE",
+  title: "Khales - Premier Architecture & Interior Design Company Dubai, UAE",
   description:
-    "Khales is a leading architecture and interior design company in Dubai, UAE. We offer luxury residential and commercial design, project management, and engineering consultancy services.",
+    "Khales is Dubai's leading architecture and interior design company specializing in luxury residential and commercial projects. Expert project management, engineering consultancy, and development planning services across UAE. Transform your vision into reality with our award-winning team.",
   keywords: [
     "architecture Dubai",
     "interior design Dubai",
@@ -37,6 +53,15 @@ export const metadata = {
     "sustainable architecture UAE",
     "villa design Dubai",
     "office interior design Dubai",
+    "modern interior design Dubai",
+    "contemporary architecture UAE",
+    "luxury villa design Dubai",
+    "commercial interior design Dubai",
+    "residential interior design Dubai",
+    "best architects Dubai",
+    "top interior designers UAE",
+    "architecture firms in Dubai",
+    "interior designers near me",
     "Khales",
     "Dubai architects",
     "UAE interior designers",
@@ -46,9 +71,9 @@ export const metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "Khales - Architecture & Interior Design Dubai, UAE",
+    title: "Khales - Premier Architecture & Interior Design Company Dubai, UAE",
     description:
-      "Leading architecture and interior design company in Dubai, UAE. Specializing in luxury residential and commercial projects, project management, and engineering consultancy.",
+      "Dubai's leading architecture and interior design company specializing in luxury residential and commercial projects. Expert project management, engineering consultancy, and development planning services across UAE.",
     url: "https://www.khales.ae/",
     siteName: "Khales",
     images: [
@@ -56,7 +81,7 @@ export const metadata = {
         url: "https://www.khales.ae/assets/Khales-Logo.png",
         width: 1200,
         height: 630,
-        alt: "Khales - Architecture & Interior Design Dubai",
+        alt: "Khales - Premier Architecture & Interior Design Company Dubai",
       },
     ],
     locale: "en_US",
@@ -64,9 +89,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Khales - Architecture & Interior Design Dubai, UAE",
+    title: "Khales - Premier Architecture & Interior Design Company Dubai, UAE",
     description:
-      "Leading architecture and interior design company in Dubai, UAE. Specializing in luxury residential and commercial projects.",
+      "Dubai's leading architecture and interior design company specializing in luxury residential and commercial projects across UAE.",
     images: ["https://www.khales.ae/assets/Khales-Logo.png"],
   },
   authors: [{ name: "Khales Team", url: "https://www.khales.ae/" }],
@@ -94,78 +119,78 @@ export const metadata = {
 
 const META_PIXEL_ID = "3634194126882623"; // Replace with your actual pixel ID
 
-// Structured Data for Organization
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Khales",
-  url: "https://www.khales.ae/",
-  logo: "https://www.khales.ae/assets/Khales-Logo.png",
-  description: "Leading architecture and interior design company in Dubai, UAE",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "AE",
-    addressRegion: "Dubai",
-    addressLocality: "Dubai",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+971551299880",
-    contactType: "customer service",
-    availableLanguage: ["English", "Arabic"],
-  },
-  sameAs: [
-    "https://api.whatsapp.com/send?phone=+971551299880",
-    "https://facebook.com/Khales.ae",
-    "https://instagram.com/khales.ae",
-    "https://linkedin.com/company/khales-ae",
-  ],
-  areaServed: {
-    "@type": "Country",
-    name: "United Arab Emirates",
-  },
-  serviceArea: {
-    "@type": "GeoCircle",
-    geoMidpoint: {
-      "@type": "GeoCoordinates",
-      latitude: 25.2048,
-      longitude: 55.2708,
-    },
-    geoRadius: "100000",
-  },
-};
-
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={inter.className}>
       <head>
-        {/* Structured Data */}
+        {/* Preload critical resources for FCP optimization */}
+        <link rel="preload" href="/assets/Khales-Logo.png" as="image" />
+        <link rel="preload" href="/fonts/style.css" as="style" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//connect.facebook.net" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+
+        {/* Enhanced Structured Data - Multiple Schemas */}
         <Script
           id="organization-schema"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
           }}
         />
 
-        {/* Google Analytics */}
         <Script
-          async
+          id="local-business-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
+
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+
+        <Script
+          id="professional-service-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(professionalServiceSchema),
+          }}
+        />
+
+        {/* Google Analytics - Optimized loading */}
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-FYYEQCM8Z7"
+          strategy="afterInteractive"
         />
         <Script
           id="gtag-google"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
         window.dataLayer = window.dataLayer || [];
-        function gtag( ){dataLayer.push(arguments);}
-        gtag(\'js\', new Date());
-        gtag(\'config\', \'G-FYYEQCM8Z7\');
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYEQCM8Z7');
       `,
           }}
         />
 
-        {/* Meta Pixel */}
+        {/* Meta Pixel - Optimized loading */}
         <Script
           id="facebook-meta-pixel"
           strategy="afterInteractive"
@@ -174,26 +199,27 @@ export default function RootLayout({ children }) {
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
         n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=\'2.0\';
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
         n.queue=[];t=b.createElement(e);t.async=!0;
         t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,\'script\',
-        \'https://connect.facebook.net/en_US/fbevents.js\' );
-        fbq(\'init\', \'${META_PIXEL_ID}\');
-        fbq(\'track\', \'PageView\');
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '${META_PIXEL_ID}');
+        fbq('track', 'PageView');
       `,
           }}
         />
+
         <Script
           id="google-tag-manager"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':
-      new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!=\'dataLayer\'?\'\\u0026l=\'+l:\'\';j.async=true;j.src=
-      \'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f );
-      })(window,document,\'script\',\'dataLayer\',\'GTM-TNHGBH7J\');
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TNHGBH7J');
     `,
           }}
         />
@@ -232,7 +258,7 @@ export default function RootLayout({ children }) {
               id="whatsapp"
               href="https://api.whatsapp.com/send?phone=+971551299880&text=Hi Khales Team! 👋
 
-I\'m interested in your [Project Management / Development Planning / Interior Design] services.
+I'm interested in your [Project Management / Development Planning / Interior Design] services.
 
 Could you please provide more details and help me get started?"
               className="float"

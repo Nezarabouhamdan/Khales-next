@@ -2,12 +2,12 @@
 "use client";
 
 import React from "react";
-import PropertyPage from "@/components/Featured Projects/PropertyPage"; // Your detail page component
-import { findProjectBySlug } from "@/components/Featured Projects/FeaturedProjects";
+import PropertyPage from "@/components/Property Page/PropertyPage"; // Your detail page component
+import { findProjectBySlug } from "@/components/Property Page/FeaturedProjects";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer New/Footer";
 
-const ProjectDetailPage = ({ params }) => {
+const ProjectDetailPage = async ({ params }) => {
   const { slug } = params;
 
   // Find the complete project data (including both languages) using the slug

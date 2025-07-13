@@ -4,9 +4,10 @@ import HomeContent from "@/pages/HomeConent";
 import Script from "next/script"; // Use Next.js optimized Script component
 
 export const metadata = {
-  title: "Khales - Architecture & Interior Design Dubai, UAE",
+  title:
+    "Khales - Premier Architecture & Interior Design Company Dubai, UAE | Luxury Residential & Commercial Projects",
   description:
-    "Khales is Dubai's premier architecture and interior design company. We specialize in luxury residential and commercial projects, project management, engineering consultancy, and development planning across the UAE.",
+    "Khales is Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects. Expert project management, engineering consultancy, and development planning services across UAE. Transform your vision into reality with our award-winning team of architects and designers.",
   keywords: [
     "architecture Dubai",
     "interior design Dubai",
@@ -22,6 +23,15 @@ export const metadata = {
     "sustainable architecture UAE",
     "building contractors Dubai",
     "landscape design Dubai",
+    "modern interior design Dubai",
+    "contemporary architecture UAE",
+    "luxury villa design Dubai",
+    "commercial interior design Dubai",
+    "residential interior design Dubai",
+    "best architects Dubai",
+    "top interior designers UAE",
+    "architecture firms in Dubai",
+    "interior designers near me",
     "Khales Dubai",
     "best architects Dubai",
     "top interior designers UAE",
@@ -30,9 +40,9 @@ export const metadata = {
   creator: "Khales",
   metadataBase: new URL("https://www.khales.ae/"),
   openGraph: {
-    title: "Khales - Architecture & Interior Design Dubai, UAE",
+    title: "Khales - Premier Architecture & Interior Design Company Dubai, UAE",
     description:
-      "Dubai's premier architecture and interior design company. Specializing in luxury residential and commercial projects across the UAE.",
+      "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects. Expert project management, engineering consultancy, and development planning services across UAE.",
     url: "https://www.khales.ae/",
     siteName: "Khales",
     locale: "en_US",
@@ -42,15 +52,15 @@ export const metadata = {
         url: "https://www.khales.ae/assets/Khales-Logo.png",
         width: 1200,
         height: 630,
-        alt: "Khales - Architecture & Interior Design Dubai",
+        alt: "Khales - Premier Architecture & Interior Design Company Dubai",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Khales - Architecture & Interior Design Dubai, UAE",
+    title: "Khales - Premier Architecture & Interior Design Company Dubai, UAE",
     description:
-      "Dubai's premier architecture and interior design company. Specializing in luxury residential and commercial projects across the UAE.",
+      "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across UAE.",
     images: ["https://www.khales.ae/assets/Khales-Logo.png"],
   },
   alternates: {
@@ -62,7 +72,7 @@ export const metadata = {
 const homePageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Khales - Architecture & Interior Design Dubai, UAE",
+  name: "Khales - Premier Architecture & Interior Design Company Dubai, UAE",
   description:
     "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across the UAE.",
   url: "https://www.khales.ae/",
@@ -72,22 +82,80 @@ const homePageSchema = {
     url: "https://www.khales.ae/",
     logo: "https://www.khales.ae/assets/Khales-Logo.png",
     description:
-      "Leading architecture and interior design company in Dubai, UAE",
+      "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across UAE",
     address: {
       "@type": "PostalAddress",
       addressCountry: "AE",
       addressRegion: "Dubai",
       addressLocality: "Dubai",
+      streetAddress: "Dubai, United Arab Emirates",
     },
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+971551299880",
       contactType: "customer service",
       availableLanguage: ["English", "Arabic"],
+      areaServed: "AE",
     },
-    areaServed: {
-      "@type": "Country",
-      name: "United Arab Emirates",
+    areaServed: [
+      {
+        "@type": "Country",
+        name: "United Arab Emirates",
+      },
+      {
+        "@type": "City",
+        name: "Dubai",
+      },
+      {
+        "@type": "City",
+        name: "Abu Dhabi",
+      },
+      {
+        "@type": "City",
+        name: "Sharjah",
+      },
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Architecture and Interior Design Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Architecture Design",
+            description:
+              "Professional architectural design services for residential and commercial projects in Dubai and UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Interior Design",
+            description:
+              "Luxury interior design services for homes, offices, and commercial spaces across UAE",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Project Management",
+            description:
+              "Comprehensive project management services from conception to completion",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Engineering Consultancy",
+            description:
+              "Expert engineering consultancy and technical analysis services",
+          },
+        },
+      ],
     },
   },
   breadcrumb: {
@@ -100,6 +168,11 @@ const homePageSchema = {
         item: "https://www.khales.ae/",
       },
     ],
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://www.khales.ae/search?q={search_term_string}",
+    "query-input": "required name=search_term_string",
   },
 };
 

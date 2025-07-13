@@ -4,7 +4,6 @@ import { Accordion, Stack } from "rsuite";
 import "rsuite/Accordion/styles/index.css";
 import "./animation.css";
 import styled from "styled-components";
-import { AllProjectsLink } from "../Latest Projects/LatestProjectsStyles";
 import { useLanguage } from "../../Context/Languagecontext";
 import Link from "next/link";
 
@@ -141,9 +140,7 @@ function OurProcessWork({ panels, button }) {
         })}
       </StyledAccordion>
       {button === true && (
-        <Link href={"/projects"} style={{ marginTop: "50px" }}>
-          <AllProjectsLink>More Details</AllProjectsLink>
-        </Link>
+        <Link href={"/projects"} style={{ marginTop: "50px" }}></Link>
       )}
     </OurProcessWrapper>
   );

@@ -1,20 +1,12 @@
-import ServicesPage from "@/pages/ServicesPage";
 import React from "react";
-import Script from "next/script"; // Use Next.js optimized Script component
-import MissionVision from "@/components/MV/Mv";
-import OurServices from "@/components/Ser2/Ser2";
+import MissionVision from "@/components/Mission Vision/Mission Vision";
+import OurServices from "@/components/Our Services/OurServices";
 import ValuePropositionV2 from "@/components/Statics/Statics2";
-import SuccessStory from "@/components/Ceo/S2";
 import FullCaseStudyPage from "@/components/case study/cs1";
-import CaseStudy from "@/components/case study/cs2";
-import WhyKhales from "@/components/Whykhales/w1";
-import WhyKhalesSplit from "@/components/Whykhales/w2";
 import WhyKhalesHybrid from "@/components/Whykhales/w3";
-import OfficeLocations from "@/components/Locations/L1";
 import OfficeLocationsCombined from "@/components/Locations/L2";
 import PropertyPage from "@/components/Projectspage/p1";
-import PropertyListing from "@/components/Projectspage/p2";
-import PropertyListingMinimal from "@/components/Projectspage/p3";
+
 import MeetTheTeam from "@/components/Team/T1";
 import HowTo from "@/components/HowTo/HowTo";
 import ServiceAreas from "@/components/ServiceAreas/ServiceAreas";
@@ -61,7 +53,6 @@ const Thankyou = () => {
       <OurServices />
       {/* <ValueProposition /> */}
       <ValuePropositionV2 />
-      <SuccessStory />
       {/* <SuccessStoryV2 /> */}
       <FullCaseStudyPage />
       <WhyKhalesHybrid />

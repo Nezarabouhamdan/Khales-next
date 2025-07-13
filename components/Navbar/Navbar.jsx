@@ -1,19 +1,15 @@
 // src/components/Navbar/Navbar.js
 // --- CORRECTED CODE WITH MOBILE FIXES ---
-
 "use client";
-
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styled, { css } from "styled-components";
 import { FaTimes, FaBars } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
-
 // --- 1. IMPORT YOUR LANGUAGE CONTEXT HOOK ---
 // Make sure this path is correct for your project structure
 import { useLanguage } from "../../Context/Languagecontext";
-
 // A custom hook to detect clicks outside of a component
 const useClickOutside = (ref, handler) => {
   useEffect(() => {
@@ -31,7 +27,6 @@ const useClickOutside = (ref, handler) => {
     };
   }, [ref, handler]);
 };
-
 // --- DATA-DRIVEN MENU ---
 const menuData = [
   {
@@ -154,7 +149,7 @@ const NavbarContainer = styled.div`
   padding: 0 20px;
   border-radius: 7px;
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
-  background: rgba(188, 188, 188, 0.13);
+  background: rgba(255, 254, 254, 0.6);
   backdrop-filter: blur(15px);
   border: 1px solid
     ${({ $isScrolled }) =>

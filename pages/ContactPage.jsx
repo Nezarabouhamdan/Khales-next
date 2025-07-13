@@ -1,16 +1,10 @@
 "use client";
-import { Heroimg, Herosection } from "@/components/Hero/Herostyles";
 import { useLanguage } from "@/Context/Languagecontext";
 import { contactData } from "@/data/contactData";
 import React, { useEffect, useState } from "react";
-import img from "../public/assets/Screenshot 2025-03-18 122742.png";
-import ContactUs from "@/components/figmaform/ContactUs";
-import { GreenText, Title } from "@/components/Whoweare/TextContent";
+import ContactUs from "@/components/ContactForm/ContactUs";
 import CTASection from "@/components/Homecontact/CTASection";
-import { Row2 } from "@/utils/Globalstyles";
-import ServiceCard from "@/components/Services2 copy/ServiceCard";
 import OfficeLocationsFinal from "@/components/Locations/L2";
-
 const ContactPage = () => {
   const { language } = useLanguage();
   const [isLoading, setIsLoading] = useState(true);

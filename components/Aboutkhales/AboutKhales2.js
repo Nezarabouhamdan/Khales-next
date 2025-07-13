@@ -283,11 +283,12 @@ const AboutKhalesUltimate = () => {
   const currentContent = content[language] || content.eng;
 
   // Image positions for desktop (orbiting effect)
+  // Solution: Use viewport width (vw) for responsive scaling
   const imagePositions = [
-    { top: "10%", left: "10%", width: "200px", height: "150px" },
-    { top: "15%", right: "15%", width: "180px", height: "120px" },
-    { bottom: "20%", left: "5%", width: "220px", height: "160px" },
-    { bottom: "10%", right: "20%", width: "190px", height: "140px" },
+    { top: "10%", left: "10%", width: "15vw", height: "11vw" },
+    { top: "15%", right: "15%", width: "13vw", height: "9vw" },
+    { bottom: "20%", left: "5%", width: "16vw", height: "12vw" },
+    { bottom: "10%", right: "20%", width: "14vw", height: "10vw" },
   ];
 
   return (

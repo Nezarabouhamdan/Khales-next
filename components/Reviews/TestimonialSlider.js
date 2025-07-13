@@ -48,9 +48,9 @@ const content = {
         service: "تصميم معماري",
       },
       {
-        text: "العمل مع خالص كان درسًا في الاحترافية. تنسيق الحدائق حوّل فيلتنا في دبي إلى ملاذ أخضر هادئ. كل التفاصيل نُفذت بإتقان.",
-        name: "جيمس و.، دبي",
-        service: "تنسيق الحدائق",
+        text: "العمل مع خالص كان مثالاً للاحترافية. لقد حوّل فريق تنسيق الحدائق فيلتنا في دبي إلى ملاذ هادئ ومورق. كل تفصيلة تم تنفيذها بإتقان.",
+        name: "جيمس و. ، دبي",
+        service: "تنسيق حدائق",
       },
     ],
     partners: [
@@ -69,13 +69,12 @@ const content = {
 };
 
 // --- MAIN COMPONENT ---
-const TestimonialSlider = () => {
+const ClientsAndPartners = () => {
   const { language } = useLanguage();
   const currentContent = content[language] || content.eng;
 
-  // Create a looped array for the marquee effect
+  // Duplicate partners for a seamless, infinite loop
   const loopedPartners = [
-    ...currentContent.partners,
     ...currentContent.partners,
     ...currentContent.partners,
   ];
@@ -83,25 +82,17 @@ const TestimonialSlider = () => {
   return (
     <SectionWrapper>
       <Container>
-        <Header>
-          <Title>{currentContent.title}</Title>
-        </Header>
+        <SectionTitle>{currentContent.title}</SectionTitle>
 
         <TestimonialWrapper>
           <Swiper
             modules={[Autoplay]}
-            spaceBetween={30}
             slidesPerView={1}
             loop={true}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
-            breakpoints={{
-              768: {
-                slidesPerView: 1,
-              },
-            }}
+            autoplay={{ delay: 3200, disableOnInteraction: false }}
+            speed={5000}
+            dir={language === "ar" ? "rtl" : "ltr"}
+            key={language}
           >
             {currentContent.testimonials.map((testimonial, index) => (
               <SwiperSlide key={index}>
@@ -120,27 +111,22 @@ const TestimonialSlider = () => {
 
       <PartnersMarquee>
         <Swiper
-          // FIX: Refined settings for a perfect, non-stop marquee scroll
           modules={[Autoplay]}
           spaceBetween={30}
           slidesPerView="auto"
           loop={true}
-          speed={10000} // This is the duration of the scroll animation. Longer is smoother.
+          speed={10000}
           autoplay={{
-            delay: 0, // No delay between transitions
+            delay: 0,
             disableOnInteraction: false,
           }}
           allowTouchMove={false}
-          // Adding loopedSlides helps Swiper calculate the loop correctly
           loopedSlides={5}
         >
           {loopedPartners.map((partner, index) => (
             <SwiperSlide key={index}>
               <PartnerCard>
-                <img
-                  src={partner.logo}
-                  alt={`Khales partner company logo ${index + 1}`}
-                />
+                <img src={partner.logo} alt={`Partner logo ${index + 1}`} />
               </PartnerCard>
             </SwiperSlide>
           ))}
@@ -161,124 +147,132 @@ const SectionWrapper = styled.section`
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(102, 161, 9, 0.3),
-      transparent
-    );
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    background-image: url("https://res.cloudinary.com/greenappletravel-ae/image/upload/v1730893099/greenapple/header/Untitled_design_69_k9jhxg.png");
+    background-repeat: no-repeat;
+    background-position: center 30%;
+    background-size: contain;
+    opacity: 0.15;
+    z-index: 1;
   }
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const Header = styled.div`
-  text-align: center;
-  margin-bottom: 4rem;
-`;
-
-const Title = styled.h2`
-  font-size: 3rem;
+const SectionTitle = styled.h2`
+  font-size: 2.8rem;
   font-weight: 700;
   color: #1a1a1a;
-  margin-bottom: 1rem;
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
+  margin-bottom: 3rem;
+  text-align: center;
 `;
 
 const TestimonialWrapper = styled.div`
+  width: 100%;
   max-width: 800px;
-  margin: 0 auto 6rem;
+  margin-bottom: 5rem;
+  text-align: center;
+  .swiper-slide {
+    align-self: stretch;
+  }
 `;
 
 const TestimonialContent = styled.div`
-  text-align: center;
-  padding: 3rem 2rem;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(102, 161, 9, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 `;
 
 const QuoteText = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  font-style: italic;
   line-height: 1.8;
   color: #333;
-  margin-bottom: 2rem;
-  font-style: italic;
+  margin: 0;
   @media (max-width: 768px) {
     font-size: 1.1rem;
   }
 `;
 
 const Author = styled.div`
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
 `;
 
-const AuthorName = styled.h4`
-  font-size: 1rem;
+const AuthorName = styled.span`
   font-weight: 600;
   color: #1a1a1a;
-  margin: 0;
+  font-size: 1rem;
 `;
 
 const AuthorService = styled.span`
-  font-size: 0.9rem;
+  font-weight: 600;
   color: #66a109;
-  font-weight: 500;
-  text-transform: uppercase;
+  font-size: 0.9rem;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
 `;
 
 const PartnersMarquee = styled.div`
-  background: linear-gradient(135deg, #f8f9fa, #ffffff);
-  padding: 3rem 0;
-  border-top: 1px solid rgba(102, 161, 9, 0.1);
-  .swiper {
-    overflow: visible;
+  width: 100%;
+  .swiper-wrapper {
+    transition-timing-function: linear !important; // This is the key for non-stop scroll
   }
   .swiper-slide {
-    width: auto !important;
+    /* FIX: Increased width to make the partner cards larger */
+    width: 400px;
+    @media (max-width: 768px) {
+      /* FIX: Increased width for mobile as well */
+      width: 280px;
+    }
   }
 `;
 
-const PartnerCard = styled.div`
+const PartnerCard = styled(motion.div)`
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
+  /* FIX: Increased padding to give the larger logo more space */
+  padding: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(102, 161, 9, 0.1);
-  transition: all 0.3s ease;
-  height: 80px;
-  min-width: 120px;
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  }
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  /* FIX: Set a consistent height for all cards */
+  height: 200px;
+
   img {
-    max-height: 50px;
-    max-width: 100px;
+    /* FIX: Changed height to a more sensible value */
+    height: 210px;
+    /* FIX: Changed object-fit to 'contain' to prevent cropping logos */
     object-fit: contain;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
+    /* Set max-width to ensure it doesn't overflow the card's padding */
+    max-width: 100%;
+    opacity: 0.6;
+    transition: all 0.3s ease;
   }
   &:hover img {
     filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
   }
 `;
 
-export default TestimonialSlider;
+export default ClientsAndPartners;

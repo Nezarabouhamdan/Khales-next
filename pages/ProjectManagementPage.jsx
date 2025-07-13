@@ -10,7 +10,6 @@ import CTASection from "../components/Homecontact/CTASection";
 import ProjectHighlight from "../components/Projecthighlights/ProjectHighlight";
 import { useLanguage } from "../Context/Languagecontext"; // Import the language context
 import dynamic from "next/dynamic";
-import banner from "@/public/assets/banner/project.jpeg";
 const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 
 export const slides = {

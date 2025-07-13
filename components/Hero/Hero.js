@@ -1,4 +1,3 @@
-// components/Hero.jsx
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
@@ -11,20 +10,31 @@ import {
   FaPause,
   FaRedo,
   FaPhone,
-  FaWhatsapp,
 } from "react-icons/fa";
-import { useLanguage } from "../../Context/Languagecontext"; // Adjust path if needed
+import { useLanguage } from "../../Context/Languagecontext";
 
-// --- CONTENT FOR THE HERO SECTION ---
+// --- CONTENT FOR THE HERO SECTION (FULLY TRANSLATED) ---
 const content = {
   eng: {
-    title: "Building Futures, Creating Landmarks",
+    title: "Premier Architecture & Interior Design in Dubai",
     subtitle:
-      "Your vision, engineered with precision and delivered with excellence.",
+      "Transforming visions into reality with luxury residential and commercial projects across the UAE.",
+    cta: "Get in Touch", // <<< CHANGED HERE
+    expertiseTitle: "Our Expertise",
+    services: ["Architecture", "Interior Design", "Management", "Consultancy"],
   },
   ar: {
-    title: "نبني المستقبل، ونصنع المعالم",
-    subtitle: "رؤيتكم، بهندسة دقيقة وإنجاز يتسم بالتميز",
+    title: "شركة الهندسة المعمارية والتصميم الداخلي الرائدة في دبي",
+    subtitle:
+      "نحوّل رؤيتك إلى واقع مع مشاريع سكنية وتجارية فاخرة في جميع أنحاء الإمارات.",
+    cta: "تواصل معنا", // <<< CHANGED HERE
+    expertiseTitle: "خبراتنا",
+    services: [
+      "الهندسة المعمارية",
+      "التصميم الداخلي",
+      "إدارة المشاريع",
+      "الاستشارات الهندسية",
+    ],
   },
 };
 
@@ -33,16 +43,16 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.3, delayChildren: 0.5 },
+    transition: { staggerChildren: 0.2, delayChildren: 0.5 },
   },
 };
 
 const fadeInUp = {
-  hidden: { y: 40, opacity: 0 },
+  hidden: { y: 30, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { type: "spring", stiffness: 100, damping: 15 },
+    transition: { type: "spring", stiffness: 100, damping: 20 },
   },
 };
 
@@ -78,14 +88,15 @@ export default function Hero() {
   };
 
   return (
-    <Herosection>
+    <Herosection lang={language}>
       <VideoBackground
         ref={videoRef}
         src={"/assets/Untitled video - Made with Clipchamp.mp4"}
         autoPlay
         loop
         muted={isMuted}
-        playsInline // Important for iOS devices
+        playsInline
+        poster="/path/to/your/video-poster-image.jpg"
       />
       <VideoOverlay />
 
@@ -96,16 +107,18 @@ export default function Hero() {
       >
         <MainTitle variants={fadeInUp}>{currentContent.title}</MainTitle>
         <Subtitle variants={fadeInUp}>{currentContent.subtitle}</Subtitle>
+
+        <CTAButton href="/Contact">{currentContent.cta}</CTAButton>
       </ContentContainer>
 
       <ControlsWrapper>
-        <IconButton onClick={toggleMute} aria-label="Toggle Mute">
+        <IconButton onClick={toggleMute} aria-label="Toggle Sound">
           {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
         </IconButton>
-        <IconButton onClick={togglePlay} aria-label="Toggle Play/Pause">
+        <IconButton onClick={togglePlay} aria-label="Play/Pause">
           {isPlaying ? <FaPause /> : <FaPlay />}
         </IconButton>
-        <IconButton onClick={handleReplay} aria-label="Replay Video">
+        <IconButton onClick={handleReplay} aria-label="Replay">
           <FaRedo />
         </IconButton>
       </ControlsWrapper>
@@ -113,10 +126,10 @@ export default function Hero() {
   );
 }
 
-// --- STYLED COMPONENTS ---
+// --- STYLED COMPONENTS (REFINED & SIMPLIFIED) ---
 
 const Herosection = styled.section`
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   position: relative;
   display: flex;
@@ -124,8 +137,13 @@ const Herosection = styled.section`
   justify-content: center;
   overflow: hidden;
   color: white;
+  font-family: ${({ lang }) =>
+      lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
+    sans-serif;
+  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
+
   @media (max-width: 768px) {
-    height: 80vh; /* Shorter height on mobile */
+    height: 85vh;
   }
 `;
 
@@ -146,12 +164,7 @@ const VideoOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
+  background: rgba(0, 0, 0, 0.5);
   z-index: 2;
 `;
 
@@ -163,112 +176,96 @@ const ContentContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 900px;
 `;
 
 const MainTitle = styled(motion.h1)`
-  font-size: 4rem;
+  font-size: 3.2rem;
   font-weight: 700;
-  font-family: "Inter", sans-serif;
-  max-width: 900px;
-  line-height: 1.2;
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  line-height: 1.25;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+
   @media (max-width: 768px) {
     font-size: 2.5rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 2rem;
   }
 `;
 
 const Subtitle = styled(motion.p)`
-  font-size: 1.25rem;
-  max-width: 600px;
-  margin-top: 1rem;
+  font-size: 1.2rem;
+  max-width: 650px;
+  margin-bottom: 2.5rem;
   line-height: 1.6;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+
   @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+`;
+
+const CTAButton = styled(motion.a)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #66a109;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: translateY(-3px);
+    background: #5a9008;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.8rem 1.8rem;
     font-size: 1rem;
   }
 `;
 
 const ControlsWrapper = styled.div`
   position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 2rem;
   display: flex;
-  gap: 15px;
+  gap: 1rem;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 1rem;
   border-radius: 30px;
-  align-items: center;
   backdrop-filter: blur(5px);
+
+  @media (max-width: 768px) {
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
 `;
 
 const IconButton = styled.button`
   background: none;
   border: none;
   color: white;
-  font-size: 20px;
+  font-size: 1.1rem;
   cursor: pointer;
-  padding: 5px;
+  padding: 0.5rem;
   display: flex;
-  transition: transform 0.2s ease, color 0.2s ease;
+  opacity: 0.8;
+  transition: all 0.2s ease;
   &:hover {
-    transform: scale(1.2);
+    opacity: 1;
+    transform: scale(1.15);
     color: #66a109;
-  }
-`;
-
-const FloatingActionButtons = styled(motion.div)`
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  z-index: 1000;
-  @media (max-width: 768px) {
-    bottom: 20px;
-    right: 20px;
-  }
-`;
-
-const Fab = styled(motion.a)`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #66a109;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-  &:hover {
-    transform: scale(1.1);
-    background-color: #5a9008;
-  }
-`;
-
-const NButton = styled(motion.div)`
-  position: fixed;
-  bottom: 30px;
-  left: 30px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  font-weight: 700;
-  z-index: 1000;
-  cursor: pointer;
-  @media (max-width: 768px) {
-    bottom: 20px;
-    left: 20px;
   }
 `;

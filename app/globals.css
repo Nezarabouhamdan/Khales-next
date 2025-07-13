@@ -117,3 +117,177 @@ body {
 code {
   font-family: "Playfair";
 }
+
+/* Performance Optimizations */
+
+/* Font Display Optimization */
+@font-face {
+  font-display: swap;
+}
+
+/* Reduce Layout Shift */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Optimize Critical Rendering Path */
+.above-fold {
+  contain: layout style paint;
+}
+
+/* Lazy Loading Placeholder */
+.lazy-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optimize Animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GPU Acceleration for Smooth Animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize Scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Critical CSS for Above-the-Fold Content */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Preload Critical Resources */
+.preload-critical {
+  font-display: swap;
+}
+
+/* FCP and Performance Optimizations */
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  contain: layout style paint;
+}
+
+/* Font Display Optimization */
+@font-face {
+  font-display: swap;
+}
+
+/* Reduce Layout Shift */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Lazy Loading Placeholder */
+.lazy-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optimize Animations for Performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GPU Acceleration for Smooth Animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize Scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Preload Critical Resources */
+.preload-critical {
+  font-display: swap;
+}
+
+/* Critical rendering path optimization */
+.above-fold {
+  contain: layout style paint;
+}
+
+/* Optimize video loading */
+video {
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* Optimize image loading */
+.optimized-image {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 200px;
+}
+
+/* Reduce paint complexity */
+.complex-element {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize text rendering */
+.optimized-text {
+  text-rendering: optimizeSpeed;
+  font-display: swap;
+}
+
+/* Critical CSS for layout stability */
+.layout-stable {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Optimize for Core Web Vitals */
+.web-vitals-optimized {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
