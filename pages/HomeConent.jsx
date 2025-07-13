@@ -1,8 +1,5 @@
-// This is a SERVER COMPONENT (no "use client" directive)
-
 import { cookies } from "next/headers"; // Server-side function to read cookies
 
-// Import the Hero shell and the styled components to render the content
 import Hero, {
   MainTitle,
   Subtitle,
