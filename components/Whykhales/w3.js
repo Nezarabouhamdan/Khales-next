@@ -13,27 +13,24 @@ const contentData = {
     features: [
       {
         icon: <FaHammer />,
-        title: "Quality Craftsmanship",
+        title: "Quality You Can Measure ",
         description:
-          "Our commitment to excellence is evident in every detail, using premium materials and skilled artisans.",
-        imageUrl:
-          "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+          "We apply clear standards at every stage, from structural integrity to interior finishes. Our teams deliver consistent quality across residential and commercial scopes. ",
+        imageUrl: "https://i.ibb.co/1YR61bcz/Quality.png",
       },
       {
         icon: <FaSlidersH />,
-        title: "Visionary Customization",
+        title: "Design with Purpose and Precision ",
         description:
-          "We believe your home should be a true reflection of your vision, tailoring every space to your unique lifestyle.",
-        imageUrl:
-          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+          "Every space is tailored to meet real needs — aesthetic, operational, or functional. We align creative direction with practical use, budget, and long-term value. ",
+        imageUrl: "https://i.ibb.co/67CTVJ08/Design-with-Purpose.png",
       },
       {
         icon: <FaClock />,
-        title: "Transparent Timelines",
+        title: "Clear Process. Reliable Delivery. ",
         description:
-          "With meticulous project management, we ensure your new home is delivered on schedule, without compromising quality.",
-        imageUrl:
-          "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+          "Our approach is transparent, coordinated, and deadline-driven. Whether for a single home or multi-phase development, we keep timelines, budgets, and expectations aligned. ",
+        imageUrl: "https://i.ibb.co/YThQqjqL/Clear-Process.png",
       },
     ],
   },

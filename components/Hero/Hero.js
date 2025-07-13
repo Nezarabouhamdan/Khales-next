@@ -1,6 +1,6 @@
-"use client";
+"use client"; // This is REQUIRED because it uses state and refs for interactivity
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import {
@@ -9,62 +9,16 @@ import {
   FaPlay,
   FaPause,
   FaRedo,
-  FaPhone,
 } from "react-icons/fa";
-import { useLanguage } from "../../Context/Languagecontext";
-
-// --- CONTENT FOR THE HERO SECTION (FULLY TRANSLATED) ---
-const content = {
-  eng: {
-    title: "Premier Architecture & Interior Design in Dubai",
-    subtitle:
-      "Transforming visions into reality with luxury residential and commercial projects across the UAE.",
-    cta: "Get in Touch", // <<< CHANGED HERE
-    expertiseTitle: "Our Expertise",
-    services: ["Architecture", "Interior Design", "Management", "Consultancy"],
-  },
-  ar: {
-    title: "شركة الهندسة المعمارية والتصميم الداخلي الرائدة في دبي",
-    subtitle:
-      "نحوّل رؤيتك إلى واقع مع مشاريع سكنية وتجارية فاخرة في جميع أنحاء الإمارات.",
-    cta: "تواصل معنا", // <<< CHANGED HERE
-    expertiseTitle: "خبراتنا",
-    services: [
-      "الهندسة المعمارية",
-      "التصميم الداخلي",
-      "إدارة المشاريع",
-      "الاستشارات الهندسية",
-    ],
-  },
-};
-
-// --- ANIMATION VARIANTS ---
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.5 },
-  },
-};
-
-const fadeInUp = {
-  hidden: { y: 30, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { type: "spring", stiffness: 100, damping: 20 },
-  },
-};
 
 // --- MAIN COMPONENT ---
-export default function Hero() {
-  const { language } = useLanguage();
-  const currentContent = content[language] || content.eng;
-
+// Accepts `children` (your H1, P, etc.) and `lang` from the parent page
+export default function Hero({ children, lang }) {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef(null);
 
+  // All the video control logic remains the same
   const toggleMute = () => setIsMuted((prev) => !prev);
 
   const togglePlay = () => {
@@ -88,7 +42,8 @@ export default function Hero() {
   };
 
   return (
-    <Herosection lang={language}>
+    // Pass the lang prop to styled-component for direction/font
+    <Herosection lang={lang}>
       <VideoBackground
         ref={videoRef}
         src={"/assets/Untitled video - Made with Clipchamp.mp4"}
@@ -105,10 +60,11 @@ export default function Hero() {
         initial="hidden"
         animate="visible"
       >
-        <MainTitle variants={fadeInUp}>{currentContent.title}</MainTitle>
-        <Subtitle variants={fadeInUp}>{currentContent.subtitle}</Subtitle>
-
-        <CTAButton href="/Contact">{currentContent.cta}</CTAButton>
+        {/*
+          <<< KEY CHANGE >>>
+          This renders the SEO-friendly content passed from the parent server component.
+        */}
+        {children}
       </ContentContainer>
 
       <ControlsWrapper>
@@ -126,7 +82,26 @@ export default function Hero() {
   );
 }
 
-// --- STYLED COMPONENTS (REFINED & SIMPLIFIED) ---
+// --- ANIMATION VARIANTS (Exported for parent component use) ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.5 },
+  },
+};
+
+export const fadeInUp = {
+  hidden: { y: 30, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 100, damping: 20 },
+  },
+};
+
+// --- STYLED COMPONENTS ---
+// These are exported so the parent Server Component can use them to style the content
 
 const Herosection = styled.section`
   height: 90vh;
@@ -179,7 +154,7 @@ const ContentContainer = styled(motion.div)`
   max-width: 900px;
 `;
 
-const MainTitle = styled(motion.h1)`
+export const MainTitle = styled(motion.h1)`
   font-size: 3.2rem;
   font-weight: 700;
   line-height: 1.25;
@@ -194,7 +169,7 @@ const MainTitle = styled(motion.h1)`
   }
 `;
 
-const Subtitle = styled(motion.p)`
+export const Subtitle = styled(motion.p)`
   font-size: 1.2rem;
   max-width: 650px;
   margin-bottom: 2.5rem;
@@ -208,7 +183,7 @@ const Subtitle = styled(motion.p)`
   }
 `;
 
-const CTAButton = styled(motion.a)`
+export const CTAButton = styled(motion.a)`
   display: inline-flex;
   align-items: center;
   justify-content: center;

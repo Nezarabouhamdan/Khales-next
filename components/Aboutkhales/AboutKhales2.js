@@ -1,14 +1,27 @@
-// components/AboutKhalesUltimate.jsx
+// components/Aboutkhales/AboutKhales2.js
 "use client";
 
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components"; // 'keyframes' is imported
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { useLanguage } from "../../Context/Languagecontext"; // Make sure this path is correct
+import { useLanguage } from "../../Context/Languagecontext";
+
+// --- 1. DEFINE THE FLOATING ANIMATION ---
+const floatAnimation = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px); /* Controls how high the images float */
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
 
 //================================================================
-// CONTENT & DATA
+// CONTENT & DATA (Unchanged)
 //================================================================
 const content = {
   eng: {
@@ -35,21 +48,21 @@ const galleryImages = [
 ];
 
 //================================================================
-// ANIMATION VARIANTS (FOR SMOOTHER ANIMATIONS)
+// --- 2. ANIMATION VARIANTS (RESTORED) ---
+// This section is now complete again, which fixes the ReferenceError.
 //================================================================
-// Main container to orchestrate the text block and gallery
 const sectionVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3, // Animate text block, then the gallery
+      staggerChildren: 0.3,
     },
   },
 };
 
-// Text block container
 const textContainerVariants = {
+  // <<< THIS IS NOW DEFINED
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
@@ -62,8 +75,8 @@ const textContainerVariants = {
   },
 };
 
-// Individual text elements
 const textItemVariants = {
+  // <<< THIS IS NOW DEFINED
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -72,8 +85,8 @@ const textItemVariants = {
   },
 };
 
-// Gallery container
 const galleryContainerVariants = {
+  // <<< THIS IS NOW DEFINED
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -84,8 +97,8 @@ const galleryContainerVariants = {
   },
 };
 
-// Individual image animations
 const imageVariants = {
+  // <<< THIS IS NOW DEFINED
   hidden: { opacity: 0, scale: 0.8 },
   visible: {
     opacity: 1,
@@ -95,7 +108,7 @@ const imageVariants = {
 };
 
 //================================================================
-// CUSTOM HOOK FOR RESPONSIVE DESIGN
+// CUSTOM HOOK FOR RESPONSIVE DESIGN (Unchanged)
 //================================================================
 const useMediaQuery = (query) => {
   const [matches, setMatches] = useState(false);
@@ -110,7 +123,7 @@ const useMediaQuery = (query) => {
 };
 
 //================================================================
-// STYLED COMPONENTS (No changes here)
+// STYLED COMPONENTS (ImageWrapper is modified for floating)
 //================================================================
 const SectionWrapper = styled(motion.section)`
   min-height: 100vh;
@@ -218,6 +231,7 @@ const OrbitingGallery = styled(motion.div)`
   }
 `;
 
+// --- 3. APPLY THE ANIMATION TO THE IMAGE WRAPPER ---
 const ImageWrapper = styled(motion.div)`
   position: absolute;
   border-radius: 16px;
@@ -226,6 +240,30 @@ const ImageWrapper = styled(motion.div)`
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   border: 2px solid white;
   pointer-events: auto;
+
+  /* --- ADDED FLOATING ANIMATION --- */
+  animation-name: ${floatAnimation};
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
+  /* Different durations make the floating look natural */
+  &:nth-of-type(1) {
+    animation-duration: 7s;
+  }
+  &:nth-of-type(2) {
+    animation-duration: 8s;
+    animation-delay: -2s;
+  }
+  &:nth-of-type(3) {
+    animation-duration: 6s;
+    animation-delay: -4s;
+  }
+  &:nth-of-type(4) {
+    animation-duration: 7.5s;
+    animation-delay: -1s;
+  }
+  /* --- END OF ADDED ANIMATION --- */
+
   img {
     width: 100%;
     height: 100%;
@@ -273,7 +311,7 @@ const LightboxImage = styled(motion.img)`
 `;
 
 //================================================================
-// MAIN COMPONENT
+// MAIN COMPONENT (Unchanged)
 //================================================================
 const AboutKhalesUltimate = () => {
   const { language } = useLanguage();
@@ -282,13 +320,11 @@ const AboutKhalesUltimate = () => {
 
   const currentContent = content[language] || content.eng;
 
-  // Image positions for desktop (orbiting effect)
-  // Solution: Use viewport width (vw) for responsive scaling
   const imagePositions = [
-    { top: "10%", left: "10%", width: "15vw", height: "11vw" },
-    { top: "15%", right: "15%", width: "13vw", height: "9vw" },
+    { top: "10%", left: "10%", width: "16vw", height: "12vw" },
+    { top: "15%", right: "15%", width: "16vw", height: "12vw" },
     { bottom: "20%", left: "5%", width: "16vw", height: "12vw" },
-    { bottom: "10%", right: "20%", width: "14vw", height: "10vw" },
+    { bottom: "10%", right: "10%", width: "16vw", height: "12vw" },
   ];
 
   return (

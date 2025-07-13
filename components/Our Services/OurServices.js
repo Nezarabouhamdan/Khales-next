@@ -31,18 +31,19 @@ const content = {
         title: "Engineering",
         highlight: "Consultancy",
         description:
-          "Delivering comprehensive engineering solutions through strategic analysis, innovative design methodologies, and technical excellence. Our expert insight translates complex challenges into sustainable, robust systems.",
-        showcaseTitle: "Engineering Architecture",
+          "Our engineering team supports each project with clear, code-compliant technical solutions. We focus on structural integrity, buildability, and long-term performance — ensuring that every design decision can be executed with confidence and precision. ",
         showcaseSubtitle:
-          "Configurable and modular physical system design & architecture.",
+          "Technical solutions that support design intent and buildability.",
         features: [
           {
             title: "Structural Analysis",
-            description: "Advanced computational and stress analysis.",
+            description:
+              "Detailed engineering checks tailored to site conditions and design requirements. ",
           },
           {
             title: "Quality Assurance",
-            description: "Rigorous testing protocols and full compliance.",
+            description:
+              "Technical reviews and verification processes to ensure regulatory and structural compliance. ",
           },
         ],
         linkText: "Explore Engineering Solutions",
@@ -51,17 +52,19 @@ const content = {
         title: "Project",
         highlight: "Management",
         description:
-          "Orchestrating complex projects with precision, transparency, and strategic oversight. Our comprehensive approach ensures seamless execution from conception to completion, delivering exceptional results on time and within budget.",
-        showcaseTitle: "Project Dashboard",
-        showcaseSubtitle: "Strategic Oversight",
+          "Managing projects with a clear structure, defined responsibilities, and full transparency. Our approach prioritizes coordination, risk control, and quality delivery — ensuring outcomes align with client expectations, timelines, and regulatory standards. ",
+        showcaseSubtitle:
+          "Complete oversight from design approvals to handover. ",
         features: [
           {
             title: "Resource Planning",
-            description: "Optimizing resource allocation for max efficiency.",
+            description:
+              "Efficient allocation of personnel, materials, and schedules to avoid delays. ",
           },
           {
             title: "Risk Management",
-            description: "Proactive identification and mitigation strategies.",
+            description:
+              "Early detection of design, site, or execution risks, and structured response planning. .",
           },
         ],
         linkText: "Discover Project Excellence",
@@ -80,7 +83,6 @@ const content = {
         highlight: "الهندسية",
         description:
           "نقدم حلولاً هندسية شاملة عبر التحليل الاستراتيجي ومنهجيات التصميم المبتكرة والتميز التقني. رؤيتنا المتخصصة تترجم التحديات المعقدة إلى أنظمة مستدامة ومتينة.",
-        showcaseTitle: "الهندسة المعمارية",
         showcaseSubtitle: "تصميم وهيكلة أنظمة فيزيائية قابلة للتكوين والتركيب.",
         features: [
           {
@@ -99,7 +101,6 @@ const content = {
         highlight: "المشاريع",
         description:
           "ننظم المشاريع المعقدة بدقة وشفافية وإشراف استراتيجي. يضمن نهجنا الشامل التنفيذ السلس من الفكرة إلى الإنجاز، مع تحقيق نتائج استثنائية في الوقت المحدد وضمن الميزانية.",
-        showcaseTitle: "لوحة تحكم المشروع",
         showcaseSubtitle: "إشراف استراتيجي",
         features: [
           {
@@ -123,7 +124,7 @@ const servicesConfig = [
     showcase: {
       icon: <FaStar />,
       image:
-        "https://meadowsanalysis.com/wp-content/uploads/2019/04/mechanical-engineer-consulting.jpeg",
+        "https://i.ibb.co/rGyjXZdb/Firefly-architectural-drawing-color-palette-schedule-map-or-graph-on-the-table-with-hands-452215.jpg",
       textColor: "#ffffff",
     },
     features: [{ icon: <FaProjectDiagram /> }, { icon: <FaClipboardCheck /> }],
@@ -132,7 +133,7 @@ const servicesConfig = [
     showcase: {
       icon: <FaTasks />,
       image:
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+        "https://i.ibb.co/whYgvthL/Firefly-architects-and-engineers-discussing-about-a-project-they-are-in-the-meeting-room-th-623561.jpg",
       textColor: "#ffffff",
     },
     features: [{ icon: <FaBullseye /> }, { icon: <FaClipboardCheck /> }],

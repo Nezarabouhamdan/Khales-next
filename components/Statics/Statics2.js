@@ -21,16 +21,19 @@ const content = {
     },
     stats: [
       {
-        title: "Successful Projects",
-        description: "Delivering complex projects that exceed expectations.",
+        title: "Projects Completed",
+        description:
+          "Delivered across residential, architectural and interior scopes.",
       },
       {
         title: "Client Satisfaction",
-        description: "Our commitment to partnership and excellence.",
+        description:
+          "Measured through completed handovers and client feedback .",
       },
       {
         title: "Years of Experience",
-        description: "Seasoned experts with invaluable industry knowledge.",
+        description:
+          "Delivering residential and architectural projects across the UAE ",
       },
     ],
   },

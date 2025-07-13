@@ -1,22 +1,42 @@
-"use client";
-import { useLanguage } from "@/Context/Languagecontext";
-import { useEffect, useState } from "react";
-import Head from "next/head";
+// This is a SERVER COMPONENT (no "use client" directive)
 
+import { cookies } from "next/headers"; // Server-side function to read cookies
+
+// Import the Hero shell and the styled components to render the content
+import Hero, {
+  MainTitle,
+  Subtitle,
+  CTAButton,
+  fadeInUp,
+} from "@/components/Hero/Hero";
+
+// Import other page sections (assuming their paths are correct)
 import FeaturedProjects from "@/components/Property Page/FeaturedProjects";
 import TestimonialSlider from "@/components/Reviews/TestimonialSlider";
 import CTASection from "@/components/Homecontact/CTASection";
-
 import LocalBusinessSchema from "@/components/LocalBusiness/LocalBusiness";
-import dynamic from "next/dynamic";
-import Hero from "@/components/Hero/Hero";
-
 import OurServices from "@/components/Our Services/OurServices";
 import AboutKhalesUltimate from "@/components/Aboutkhales/AboutKhales2";
 import WhyKhalesHybrid from "@/components/Whykhales/w3";
 import ValuePropositionV2 from "@/components/Statics/Statics2";
 
-// Enhanced structured data for the homepage
+// --- CONTENT FOR THE HERO SECTION ---
+const content = {
+  eng: {
+    title: "Premier Architecture & Interior Design in Dubai",
+    subtitle:
+      "Transforming visions into reality with luxury residential and commercial projects across the UAE.",
+    cta: "Get in Touch",
+  },
+  ar: {
+    title: "شركة الهندسة المعمارية والتصميم الداخلي الرائدة في دبي",
+    subtitle:
+      "نحوّل رؤيتك إلى واقع مع مشاريع سكنية وتجارية فاخرة في جميع أنحاء الإمارات.",
+    cta: "تواصل معنا",
+  },
+};
+
+// --- ENHANCED STRUCTURED DATA ---
 const homePageStructuredData = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -70,22 +90,10 @@ const homePageStructuredData = {
       "https://linkedin.com/company/khales-ae",
     ],
     areaServed: [
-      {
-        "@type": "Country",
-        name: "United Arab Emirates",
-      },
-      {
-        "@type": "City",
-        name: "Dubai",
-      },
-      {
-        "@type": "City",
-        name: "Abu Dhabi",
-      },
-      {
-        "@type": "City",
-        name: "Sharjah",
-      },
+      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "City", name: "Dubai" },
+      { "@type": "City", name: "Abu Dhabi" },
+      { "@type": "City", name: "Sharjah" },
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -93,179 +101,73 @@ const homePageStructuredData = {
       itemListElement: [
         {
           "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Architecture Design",
-            description:
-              "Professional architectural design services for residential and commercial projects in Dubai and UAE",
-            provider: {
-              "@type": "Organization",
-              "@id": "https://www.khales.ae/#organization",
-            },
-            areaServed: {
-              "@type": "Country",
-              name: "United Arab Emirates",
-            },
-          },
+          itemOffered: { "@type": "Service", name: "Architecture Design" },
         },
         {
           "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Interior Design",
-            description:
-              "Luxury interior design services for homes, offices, and commercial spaces across UAE",
-            provider: {
-              "@type": "Organization",
-              "@id": "https://www.khales.ae/#organization",
-            },
-            areaServed: {
-              "@type": "Country",
-              name: "United Arab Emirates",
-            },
-          },
+          itemOffered: { "@type": "Service", name: "Interior Design" },
         },
         {
           "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Project Management",
-            description:
-              "Comprehensive project management services from conception to completion",
-            provider: {
-              "@type": "Organization",
-              "@id": "https://www.khales.ae/#organization",
-            },
-            areaServed: {
-              "@type": "Country",
-              name: "United Arab Emirates",
-            },
-          },
+          itemOffered: { "@type": "Service", name: "Project Management" },
         },
         {
           "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Engineering Consultancy",
-            description:
-              "Expert engineering consultancy and technical analysis services",
-            provider: {
-              "@type": "Organization",
-              "@id": "https://www.khales.ae/#organization",
-            },
-            areaServed: {
-              "@type": "Country",
-              name: "United Arab Emirates",
-            },
-          },
+          itemOffered: { "@type": "Service", name: "Engineering Consultancy" },
         },
       ],
     },
   },
-  mainEntity: {
-    "@type": "ItemList",
-    name: "Main Sections",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        item: {
-          "@type": "WebPageElement",
-          name: "Hero Section",
-          description:
-            "Premier Architecture & Interior Design Company in Dubai, UAE",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        item: {
-          "@type": "WebPageElement",
-          name: "About Khales",
-          description: "Learn about our expertise and commitment to excellence",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        item: {
-          "@type": "WebPageElement",
-          name: "Our Services",
-          description:
-            "Architecture, Interior Design, Project Management, and Engineering Consultancy",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        item: {
-          "@type": "WebPageElement",
-          name: "Featured Projects",
-          description:
-            "Showcase of our luxury residential and commercial projects",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 5,
-        item: {
-          "@type": "WebPageElement",
-          name: "Client Testimonials",
-          description: "Reviews and feedback from our satisfied clients",
-        },
-      },
-    ],
-  },
-  breadcrumb: {
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://www.khales.ae/",
-      },
-    ],
-  },
 };
 
-export default function HomeContent() {
-  const [isLoading, setIsLoading] = useState(true);
-  const { language } = useLanguage();
+// --- METADATA (The Next.js 13+ way for SEO) ---
+export const metadata = {
+  title: "Khales - Premier Architecture & Interior Design Company Dubai, UAE",
+  description:
+    "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across UAE. Discover our portfolio of luxury villas and commercial spaces.",
+};
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+export default function HomePage() {
+  // Determine language on the server using cookies
+  const langCookie = cookies().get("language"); // Example: read a cookie named 'language'
+  const language = langCookie?.value === "ar" ? "ar" : "eng";
+  const currentContent = content[language];
 
   return (
     <>
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(homePageStructuredData),
-          }}
-        />
-      </Head>
-
+      {/* Add structured data scripts to the head of the document */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homePageStructuredData),
+        }}
+      />
       <LocalBusinessSchema />
 
-      {/* Hero Section with H1 */}
       <section
         id="hero"
         aria-label="Premier Architecture & Interior Design Company Dubai"
       >
-        <Hero />
+        {/*
+          <<< THE SOLUTION >>>
+          The interactive <Hero> component is called, and the SEO-critical content
+          (MainTitle, Subtitle, CTAButton) is passed to it as children.
+          This content is rendered on the server, solving the H1 issue.
+        */}
+        <Hero lang={language}>
+          <MainTitle variants={fadeInUp}>{currentContent.title}</MainTitle>
+          <Subtitle variants={fadeInUp}>{currentContent.subtitle}</Subtitle>
+          <CTAButton href="/Contact" variants={fadeInUp}>
+            {currentContent.cta}
+          </CTAButton>
+        </Hero>
       </section>
 
-      {/* About Section with H2 */}
+      {/* The rest of your page sections will be rendered on the server */}
       <section id="about" aria-label="About Khales - Building Excellence">
         <AboutKhalesUltimate />
       </section>
-      {/* Services Section with H2 */}
+
       <section
         id="services"
         aria-label="Our Architecture and Interior Design Services"
@@ -273,14 +175,13 @@ export default function HomeContent() {
         <OurServices />
       </section>
 
-      {/* Featured Projects Section with H2 */}
       <section
         id="projects"
         aria-label="Featured Architecture and Interior Design Projects"
       >
         <FeaturedProjects />
       </section>
-      {/* Why Choose Us Section with H2 */}
+
       <section
         id="why-choose-us"
         aria-label="Why Choose Khales for Your Project"
@@ -288,7 +189,6 @@ export default function HomeContent() {
         <WhyKhalesHybrid />
       </section>
 
-      {/* Statistics Section with H2 */}
       <section
         id="statistics"
         aria-label="Our Achievements and Success Stories"
@@ -296,12 +196,10 @@ export default function HomeContent() {
         <ValuePropositionV2 />
       </section>
 
-      {/* Testimonials Section with H2 */}
       <section id="testimonials" aria-label="Client Reviews and Testimonials">
         <TestimonialSlider />
       </section>
 
-      {/* Contact Section with H2 */}
       <section id="contact" aria-label="Contact Khales for Your Next Project">
         <CTASection />
       </section>
