@@ -123,8 +123,7 @@ const servicesConfig = [
   {
     showcase: {
       icon: <FaStar />,
-      image:
-        "https://i.ibb.co/rGyjXZdb/Firefly-architectural-drawing-color-palette-schedule-map-or-graph-on-the-table-with-hands-452215.jpg",
+      image: "https://i.ibb.co/277qKX62/Project-Management.jpg",
       textColor: "#ffffff",
     },
     features: [{ icon: <FaProjectDiagram /> }, { icon: <FaClipboardCheck /> }],
@@ -132,8 +131,7 @@ const servicesConfig = [
   {
     showcase: {
       icon: <FaTasks />,
-      image:
-        "https://i.ibb.co/whYgvthL/Firefly-architects-and-engineers-discussing-about-a-project-they-are-in-the-meeting-room-th-623561.jpg",
+      image: "https://i.ibb.co/pvsmTgg6/Engineering-Consultancy.jpg",
       textColor: "#ffffff",
     },
     features: [{ icon: <FaBullseye /> }, { icon: <FaClipboardCheck /> }],

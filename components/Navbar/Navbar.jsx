@@ -161,8 +161,7 @@ const NavbarContainer = styled.div`
     border-radius: 0;
     width: 100%;
     height: 100%;
-    background: ${({ $isScrolled }) =>
-      $isScrolled ? "rgba(255, 255, 255, 0.85)" : "transparent"};
+    background: rgba(255, 254, 254, 0.6);
     border: none;
     border-bottom: 1px solid
       ${({ $isScrolled }) =>
@@ -197,7 +196,7 @@ const MobileIcon = styled.div`
         ? COLORS.darkText
         : $isScrolled
         ? COLORS.darkText
-        : COLORS.white};
+        : COLORS.darkText};
     transition: color 0.3s ease-in-out;
     z-index: 1001; // Ensure it's on top
   }

@@ -1,10 +1,10 @@
 "use client";
-
 import React from "react";
 import styled from "styled-components";
-import { useLanguage } from "../../Context/Languagecontext"; // Make sure this path is correct
+import Link from "next/link"; // IMPORTED FOR FASTER NAVIGATION
+import { useLanguage } from "@/Context/Languagecontext";
 
-// --- DATA FOR TRANSLATIONS (Unchanged) ---
+// --- DATA FOR TRANSLATIONS (WITH FIXED LINKS) ---
 const footerContent = {
   eng: {
     description:
@@ -29,8 +29,8 @@ const footerContent = {
     copyright: "Copyright © 2025 KHALES",
     legal: {
       rights: "All Rights Reserved",
-      terms: "Terms and Conditions",
-      privacy: "Privacy Policy",
+      terms: { text: "Terms and Conditions", href: "/Terms-and-Conditions" },
+      privacy: { text: "Privacy Policy", href: "/Privacy-Policy" }, // CORRECT LINK
     },
   },
   ar: {
@@ -55,16 +55,16 @@ const footerContent = {
     copyright: "حقوق النشر © 2025 خالص",
     legal: {
       rights: "جميع الحقوق محفوظة",
-      terms: "الشروط والأحكام",
-      privacy: "سياسة الخصوصية",
+      terms: { text: "الشروط والأحكام", href: "/Terms-and-Conditions" },
+      privacy: { text: "سياسة الخصوصية", href: "/Privacy-Policy" }, // CORRECT LINK
     },
   },
 };
 
-// --- STYLED COMPONENTS (ENHANCED) ---
+// --- STYLED COMPONENTS (UPGRADED TO USE NEXT/LINK) ---
 
 const FooterWrapper = styled.footer`
-  background-color: #f8f9fa; /* A slightly off-white for subtle separation */
+  background-color: #f8f9fa;
   color: #5a6475;
   border-top: 1px solid #e9ecef;
   font-family: "Inter", sans-serif;
@@ -75,7 +75,6 @@ const Container = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   padding: 4rem 1.5rem 2rem;
-
   @media (min-width: 1024px) {
     padding: 5rem 2rem 2.5rem;
   }
@@ -86,11 +85,9 @@ const MainGrid = styled.div`
   grid-template-columns: 1fr;
   gap: 3rem;
   margin-bottom: 3rem;
-
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
-
   @media (min-width: 1024px) {
     grid-template-columns: 1.5fr repeat(3, 1fr);
     gap: 4rem;
@@ -102,7 +99,6 @@ const BrandSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  /* Ensures alignment to the start (left in LTR, right in RTL) */
   align-items: flex-start;
 `;
 
@@ -124,7 +120,6 @@ const SocialMedia = styled.div`
   align-items: center;
   gap: 0.75rem;
   margin-top: 0.5rem;
-  /* Reverses icon order for RTL */
   flex-direction: ${(props) => (props.dir === "rtl" ? "row-reverse" : "row")};
 `;
 
@@ -137,14 +132,12 @@ const SocialIconLink = styled.a`
   border-radius: 50%;
   background-color: #e9ecef;
   transition: background-color 0.2s ease, transform 0.2s ease;
-
   svg {
     transition: fill 0.2s ease;
     fill: #5a6475;
-    width: 18px; /* Standardize icon size */
+    width: 18px;
     height: 18px;
   }
-
   &:hover {
     background-color: #66a109;
     transform: translateY(-2px);
@@ -162,7 +155,7 @@ const Column = styled.div`
 
 const ColumnTitle = styled.h3`
   color: #1a202c;
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
   font-weight: 600;
   margin: 0;
 `;
@@ -173,12 +166,12 @@ const NavList = styled.nav`
   gap: 1rem;
 `;
 
-const NavLink = styled.a`
-  font-size: 1rem; /* 16px */
+const NavLink = styled(Link)`
+  /* CHANGED TO NEXT/LINK */
+  font-size: 1rem;
   text-decoration: none;
   color: #5a6475;
   transition: color 0.2s ease;
-
   &:hover {
     color: #66a109;
   }
@@ -191,25 +184,21 @@ const ContactList = styled.div`
 `;
 
 const ContactLink = styled.a`
+  /* Stays as <a> for mailto: and tel: */
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
   text-decoration: none;
   color: #5a6475;
   transition: color 0.2s ease;
-
-  /* RTL FIX: Reverses the icon and text order */
   flex-direction: ${(props) => (props.dir === "rtl" ? "row-reverse" : "row")};
-
   svg {
     transition: stroke 0.2s ease;
     stroke: #5a6475;
   }
-
   &:hover {
     color: #66a109;
-
     svg {
       stroke: #66a109;
     }
@@ -228,7 +217,6 @@ const BottomFooter = styled.div`
   flex-direction: column-reverse;
   align-items: center;
   gap: 1rem;
-
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
@@ -236,26 +224,25 @@ const BottomFooter = styled.div`
 `;
 
 const Copyright = styled.div`
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem;
   text-align: center;
 `;
 
 const LegalLinks = styled.div`
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
   justify-content: center;
-
   span {
     margin: 0 0.25rem;
   }
 `;
 
-const LegalLink = styled.a`
+const LegalLink = styled(Link)`
+  /* CHANGED TO NEXT/LINK */
   color: #5a6475;
   text-decoration: none;
-
   &:hover {
     color: #66a109;
     text-decoration: underline;
@@ -291,8 +278,6 @@ const LinkedInIcon = () => (
     <path d="M0.849609 3.31507C0.849609 2.73786 1.05232 2.26167 1.45772 1.8865C1.86312 1.51131 2.39016 1.32373 3.0388 1.32373C3.67587 1.32373 4.1913 1.50842 4.58513 1.87784C4.99053 2.2588 5.19324 2.75518 5.19324 3.36702C5.19324 3.92113 4.99633 4.38288 4.6025 4.7523C4.19711 5.13325 3.66428 5.32373 3.00405 5.32373H2.98668C2.3496 5.32373 1.83417 5.13325 1.44034 4.7523C1.04651 4.37135 0.849609 3.89227 0.849609 3.31507ZM1.07548 18.4666V6.89949H4.93262V18.4666H1.07548ZM7.06969 18.4666H10.9268V12.0077C10.9268 11.6037 10.9732 11.292 11.0658 11.0726C11.228 10.6801 11.4741 10.3482 11.8042 10.077C12.1344 9.80568 12.5484 9.67005 13.0465 9.67005C14.3438 9.67005 14.9925 10.5416 14.9925 12.2848V18.4666H18.8496V11.8345C18.8496 10.126 18.4442 8.83022 17.6334 7.9471C16.8226 7.06399 15.7512 6.62243 14.4191 6.62243C12.9249 6.62243 11.7608 7.26312 10.9268 8.54451V8.57914H10.9095L10.9268 8.54451V6.89949H7.06969C7.09285 7.26889 7.10444 8.41751 7.10444 10.3454C7.10444 12.2732 7.09285 14.9803 7.06969 18.4666Z" />
   </svg>
 );
-
-// CORRECTED: Replaced the broken Instagram SVG with a clean, standard version.
 const InstagramIcon = () => (
   <svg viewBox="0 0 16 16">
     <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.85.174 1.431.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.297-.048c.85-.04 1.43-.174 1.942-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.198-.51.333-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.297c-.04-.85-.174-1.431-.372-1.942a3.916 3.916 0 0 0-.923-1.417A3.916 3.916 0 0 0 13.24.42c-.51-.198-1.09-.333-1.942-.372C10.445.01 10.173 0 8 0zm0 1.442c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.282.11-.705.24-1.485.276-.843.038-1.096.047-3.231.047s-2.389-.009-3.232-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.282-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.389.046-3.232.036-.78.166-1.204.275-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.231-.047z" />
@@ -300,7 +285,6 @@ const InstagramIcon = () => (
     <path d="M12.021 3.25a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92z" />
   </svg>
 );
-
 const MailIcon = () => (
   <svg width="20" height="15" viewBox="0 0 20 15" fill="none">
     <path
@@ -376,7 +360,7 @@ const Footer = () => {
             </SocialMedia>
           </BrandSection>
 
-          {/* Other columns... */}
+          {/* Services Column */}
           <Column>
             <ColumnTitle>{content.servicesTitle}</ColumnTitle>
             <NavList>
@@ -388,6 +372,7 @@ const Footer = () => {
             </NavList>
           </Column>
 
+          {/* Company Column */}
           <Column>
             <ColumnTitle>{content.companyTitle}</ColumnTitle>
             <NavList>
@@ -399,6 +384,7 @@ const Footer = () => {
             </NavList>
           </Column>
 
+          {/* Contact us Column */}
           <Column>
             <ColumnTitle>{content.contactTitle}</ColumnTitle>
             <ContactList>
@@ -421,9 +407,13 @@ const Footer = () => {
           <LegalLinks>
             {content.legal.rights}
             <span>|</span>
-            <LegalLink href="#">{content.legal.terms}</LegalLink>
+            <LegalLink href={content.legal.terms.href}>
+              {content.legal.terms.text}
+            </LegalLink>
             <span>|</span>
-            <LegalLink href="#">{content.legal.privacy}</LegalLink>
+            <LegalLink href={content.legal.privacy.href}>
+              {content.legal.privacy.text}
+            </LegalLink>
           </LegalLinks>
         </BottomFooter>
       </Container>

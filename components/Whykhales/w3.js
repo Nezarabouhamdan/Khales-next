@@ -16,21 +16,22 @@ const contentData = {
         title: "Quality You Can Measure ",
         description:
           "We apply clear standards at every stage, from structural integrity to interior finishes. Our teams deliver consistent quality across residential and commercial scopes. ",
-        imageUrl: "https://i.ibb.co/1YR61bcz/Quality.png",
+        imageUrl: "https://i.ibb.co/n80MKYz4/Quality-you-can-measure.jpg",
       },
       {
         icon: <FaSlidersH />,
         title: "Design with Purpose and Precision ",
         description:
           "Every space is tailored to meet real needs — aesthetic, operational, or functional. We align creative direction with practical use, budget, and long-term value. ",
-        imageUrl: "https://i.ibb.co/67CTVJ08/Design-with-Purpose.png",
+        imageUrl: "https://i.ibb.co/s95K2LPZ/Design-with-Purpose.jpg",
       },
       {
         icon: <FaClock />,
         title: "Clear Process. Reliable Delivery. ",
         description:
           "Our approach is transparent, coordinated, and deadline-driven. Whether for a single home or multi-phase development, we keep timelines, budgets, and expectations aligned. ",
-        imageUrl: "https://i.ibb.co/YThQqjqL/Clear-Process.png",
+        imageUrl:
+          "https://i.ibb.co/x8jx7JPG/Clear-Process-Reliable-Delivery.jpg",
       },
     ],
   },
@@ -43,16 +44,14 @@ const contentData = {
         title: "حرفية عالية الجودة",
         description:
           "يتجلى التزامنا بالتميز في كل التفاصيل، باستخدام مواد فاخرة وحرفيين مهرة.",
-        imageUrl:
-          "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+        imageUrl: "https://i.ibb.co/n80MKYz4/Quality-you-can-measure.jpg",
       },
       {
         icon: <FaSlidersH />,
         title: "تخصيص برؤية مبتكرة",
         description:
           "نؤمن بأن منزلك يجب أن يكون انعكاسًا حقيقيًا لرؤيتك، ونقوم بتصميم كل مساحة لتناسب نمط حياتك الفريد.",
-        imageUrl:
-          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+        imageUrl: "https://i.ibb.co/s95K2LPZ/Design-with-Purpose.jpg",
       },
       {
         icon: <FaClock />,
@@ -60,7 +59,7 @@ const contentData = {
         description:
           "من خلال إدارة المشاريع الدقيقة، نضمن تسليم منزلك الجديد في الموعد المحدد، دون المساومة على الجودة.",
         imageUrl:
-          "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+          "https://i.ibb.co/x8jx7JPG/Clear-Process-Reliable-Delivery.jpg",
       },
     ],
   },
