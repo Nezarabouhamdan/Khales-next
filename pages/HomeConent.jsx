@@ -268,9 +268,7 @@ export default function HomeContent() {
           }}
         />
       </Head>
-
       <LocalBusinessSchema />
-
       {/* Hero Section with H1 */}
       <section
         id="hero"
@@ -286,7 +284,6 @@ export default function HomeContent() {
           {/* --- END OF REQUESTED CONTENT --- */}
         </Hero>
       </section>
-
       {/* About Section with H2 */}
       <section id="about" aria-label="About Khales - Building Excellence">
         <AboutKhalesUltimate />
@@ -298,7 +295,6 @@ export default function HomeContent() {
       >
         <OurServices />
       </section>
-
       {/* Featured Projects Section with H2 */}
       <section
         id="projects"
@@ -313,7 +309,6 @@ export default function HomeContent() {
       >
         <WhyKhalesHybrid />
       </section>
-
       {/* Statistics Section with H2 */}
       <section
         id="statistics"
@@ -321,12 +316,10 @@ export default function HomeContent() {
       >
         <ValuePropositionV2 />
       </section>
-
       {/* Testimonials Section with H2 */}
       <section id="testimonials" aria-label="Client Reviews and Testimonials">
         <TestimonialSlider />
       </section>
-
       {/* Contact Section with H2 */}
       <section id="contact" aria-label="Contact Khales for Your Next Project">
         <CTASection />

@@ -21,6 +21,13 @@ const projectsData = [
       "/assets/v5.jpeg",
       "/assets/v6.jpeg",
       "/assets/int.jpg",
+      "/assets/v6.jpeg",
+      "/assets/int.jpg",
+      "/assets/int.jpg",
+      "/assets/int.jpg",
+      "/assets/int.jpg",
+      "/assets/v6.jpeg",
+      "/assets/int.jpg",
     ],
     eng: {
       tags: ["Architecture", "Furniture"],

@@ -1,9 +1,8 @@
-// components/PropertyPage.jsx
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaBed, FaBath, FaRulerCombined } from "react-icons/fa";
 import { useLanguage } from "../../Context/Languagecontext";
 
@@ -15,7 +14,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // This is just for the "Similar Projects" example.
-// In a real app, you would fetch this data or filter it from your main data source.
 const similarListingsData = [
   {
     price: "12,750,000",
@@ -53,6 +51,8 @@ const kenBurns = keyframes`
 
 const PropertyPage = ({ project }) => {
   const { language } = useLanguage();
+  // State to track the currently displayed main image
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!project) {
     return <div>Loading project...</div>;
@@ -61,10 +61,22 @@ const PropertyPage = ({ project }) => {
   const projectData = project[language];
   const gallery = project.galleryImages || [];
 
+  // useEffect to handle the automatic image cycling
+  useEffect(() => {
+    if (gallery.length > 1) {
+      const timer = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % gallery.length);
+      }, 5000); // Change image every 5 seconds
+
+      return () => clearInterval(timer); // Cleanup on component unmount
+    }
+  }, [gallery.length]);
+
   const containerVariants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.1 } },
   };
+
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -78,39 +90,59 @@ const PropertyPage = ({ project }) => {
     <SectionContainer lang={language}>
       <ContentWrapper>
         <HeroGrid>
-          {/* --- Desktop Grid View (Hidden on mobile) --- */}
+          {/* --- Desktop Grid View (with automatic main image) --- */}
           <DesktopMainImage as={motion.div} variants={itemVariants}>
-            <img src={gallery[0]} alt={projectData.title} />
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentImageIndex}
+                src={gallery[currentImageIndex]}
+                alt={`${projectData.title} - view ${currentImageIndex + 1}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 1 } }}
+                exit={{ opacity: 0, transition: { duration: 1 } }}
+                // Added a style to prevent layout shift during transition
+                style={{ position: "absolute", top: 0, left: 0 }}
+              />
+            </AnimatePresence>
           </DesktopMainImage>
-          <DesktopSubImageGrid>
-            {gallery.slice(1, 5).map((imgSrc, i) => (
-              <ImageWrapper as={motion.div} variants={itemVariants} key={i}>
-                <img src={imgSrc} alt={`${projectData.title} view ${i + 1}`} />
-              </ImageWrapper>
-            ))}
-          </DesktopSubImageGrid>
+
+          {gallery.length > 1 && (
+            <DesktopSubImageGrid>
+              {gallery.slice(1).map((imgSrc, i) => (
+                <ImageWrapper as={motion.div} variants={itemVariants} key={i}>
+                  <img
+                    src={imgSrc}
+                    alt={`${projectData.title} view ${i + 2}`}
+                  />
+                </ImageWrapper>
+              ))}
+            </DesktopSubImageGrid>
+          )}
 
           {/* --- Mobile Swiper Gallery (Hidden on desktop) --- */}
-          <MobileSwiperWrapper>
-            <Swiper
-              modules={[Navigation, Pagination]}
-              slidesPerView={1}
-              spaceBetween={10}
-              navigation
-              pagination={{ clickable: true }}
-            >
-              {gallery.map((imgSrc, i) => (
-                <SwiperSlide key={i}>
-                  <MobileImageContainer>
-                    <img
-                      src={imgSrc}
-                      alt={`${projectData.title} gallery image ${i + 1}`}
-                    />
-                  </MobileImageContainer>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </MobileSwiperWrapper>
+          {gallery.length > 0 && (
+            <MobileSwiperWrapper>
+              <Swiper
+                modules={[Navigation, Pagination]}
+                slidesPerView={1}
+                spaceBetween={10}
+                navigation
+                pagination={{ clickable: true }}
+                autoplay={{ delay: 5000 }} // Also add autoplay to mobile swiper
+              >
+                {gallery.map((imgSrc, i) => (
+                  <SwiperSlide key={i}>
+                    <MobileImageContainer>
+                      <img
+                        src={imgSrc}
+                        alt={`${projectData.title} gallery image ${i + 1}`}
+                      />
+                    </MobileImageContainer>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </MobileSwiperWrapper>
+          )}
         </HeroGrid>
 
         <DetailsGrid
@@ -229,7 +261,7 @@ const PropertyPage = ({ project }) => {
   );
 };
 
-// --- STYLED COMPONENTS ---
+// --- STYLED COMPONENTS (with modifications) ---
 const SectionContainer = styled.section`
   margin-top: 10vh;
   width: 100%;
@@ -253,7 +285,6 @@ const HeroGrid = styled(motion.div)`
   @media (min-width: 993px) {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: repeat(2, 1fr);
     gap: 1rem;
     height: 550px;
   }
@@ -301,8 +332,10 @@ const ImageWrapper = styled.div`
   }
 `;
 
+// MODIFIED: Added position relative to act as a container for the absolute positioned image
 const DesktopMainImage = styled(ImageWrapper)`
   grid-row: span 2;
+  position: relative;
   @media (max-width: 992px) {
     display: none;
   }
@@ -311,9 +344,23 @@ const DesktopMainImage = styled(ImageWrapper)`
 const DesktopSubImageGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-auto-rows: min-content; // Adjust row height to content
   gap: 1rem;
   grid-row: span 2;
+  overflow-y: auto; // Adds scrolling for overflow
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
   @media (max-width: 992px) {
     display: none;
   }
@@ -331,7 +378,6 @@ const DetailsGrid = styled(motion.div)`
 `;
 
 const LeftColumn = styled.div``;
-
 const RightColumn = styled.div``;
 
 const PropertyTitle = styled.h1`
