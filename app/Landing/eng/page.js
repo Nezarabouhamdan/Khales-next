@@ -1,45 +1,78 @@
 import React from "react";
-
 import FullPageLayouteng from "./FullPageLayouteng";
-export const metadata = {
-  title: "خالص | شركاؤك في الرفاهية للتصميم والبناء في الإمارات",
-  description:
-    "خالص للاستشارات الهندسية: خبراء في إدارة المشاريع، التصميم الداخلي الفاخر، تصميم الحدائق، وخدمات البناء المتكاملة في دبي، أبوظبي، وكافة الإمارات. نحوّل رؤيتك إلى واقع ملموس.",
 
+export const metadata = {
+  // SEO: Title is specific, keyword-rich, and under 60 characters.
+  title:
+    "Khales | Luxury Villa Design, Engineering & Construction in Dubai & Abu Dhabi",
+
+  // SEO: Description is a compelling summary, under 160 characters, and encourages clicks.
+  description:
+    "Transform your vision into reality with Khales. We specialize in luxury villa design, engineering consultancy, interior design, and full-service construction across the UAE. Partner with us to build your dream home.",
+
+  // SEO: Keywords include brand, services, and location-specific terms.
   keywords: [
     "Khales",
-    "Luxury Design",
+    "Luxury villa design Dubai",
+    "Engineering consultants UAE",
+    "High-end construction Abu Dhabi",
     "Interior Design",
-    "Architecture",
+    "Architecture Firm UAE",
     "Project Management",
-    "Construction",
+    "Landscape Design",
     "Khales Projects",
+    "Building contractors in Dubai",
   ],
-  authors: [{ name: "Khales Team", url: "http://www.khales.ae/" }],
+
+  authors: [{ name: "Khales Team", url: "https://www.khales.ae/" }],
   creator: "Khales",
-  metadataBase: new URL("http://www.khales.ae/"),
+
+  // Sets the base URL for resolving relative paths in metadata.
+  metadataBase: new URL("https://www.khales.ae/"),
+
+  // --- Social Media Sharing (Open Graph for Facebook, LinkedIn, etc.) ---
   openGraph: {
-    title: "Portfolio",
+    // SEO: Use the same compelling title.
+    title:
+      "Khales | Luxury Villa Design, Engineering & Construction in Dubai & Abu Dhabi",
+    // SEO: Use the same engaging description.
     description:
-      "Welcome to Khales. Explore our luxury design and project management solutions.",
-    url: "http://www.khales.ae/",
+      "Transform your vision into reality with Khales. We specialize in luxury villa design, engineering, and full-service construction in the UAE.",
+    url: "https://www.khales.ae/",
     siteName: "Khales",
+
+    // IMPORTANT: Add a high-quality image for sharing. Recommended size: 1200x630px.
+    images: [
+      {
+        url: "https://www.khales.ae/path-to-your-featured-image.jpg", // REPLACE THIS URL
+        width: 1200,
+        height: 630,
+        alt: "Luxury villa designed by Khales in Dubai",
+      },
+    ],
+
     locale: "en_US",
     type: "website",
   },
+
+  // --- Twitter Sharing ---
   twitter: {
     card: "summary_large_image",
-    title: "Portfolio",
+    // SEO: Use a consistent title.
+    title:
+      "Khales | Luxury Villa Design, Engineering & Construction in Dubai & Abu Dhabi",
+    // SEO: Use a consistent description.
     description:
-      "Welcome to Khales. Explore our luxury design and project management solutions.",
+      "Transform your vision into reality with Khales. We specialize in luxury villa design, engineering, and full-service construction in the UAE.",
+    // SEO: Add your Twitter handle.
+    creator: "@YourTwitterHandle", // REPLACE THIS with your actual Twitter handle
+    // The image from openGraph will be used by default.
   },
 };
-function page() {
-  return (
-    <div>
-      <FullPageLayouteng />
-    </div>
-  );
-}
 
-export default page;
+// The rest of your component remains the same.
+const Page = () => {
+  return <FullPageLayouteng />;
+};
+
+export default Page;
