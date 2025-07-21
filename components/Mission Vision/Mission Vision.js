@@ -205,10 +205,8 @@ const MissionVision = () => {
   const { language } = useLanguage();
   const content = contentData[language] || contentData.eng;
   const isRTL = language === "ar";
-
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-
   // Parallax effect handler
   const handleMouseMove = (e) => {
     const { currentTarget } = e;
@@ -216,20 +214,17 @@ const MissionVision = () => {
     const rect = currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-
     shapes.forEach((shape) => {
       const factor = shape.getAttribute("data-factor") || 20;
       shape.style.transform = `translate(${x / factor}px, ${y / factor}px)`;
     });
   };
-
   const handleMouseLeave = (e) => {
     const shapes = e.currentTarget.querySelectorAll(".shape");
     shapes.forEach((shape) => {
       shape.style.transform = `translate(0px, 0px)`;
     });
   };
-
   return (
     <SectionWrapper ref={sectionRef} dir={isRTL ? "rtl" : "ltr"}>
       {/* -------------------- MISSION COLUMN -------------------- */}

@@ -20,6 +20,7 @@ import OurServices from "@/components/Our Services/OurServices";
 import AboutKhalesUltimate from "@/components/Aboutkhales/AboutKhales2";
 import WhyKhalesHybrid from "@/components/Whykhales/w3";
 import ValuePropositionV2 from "@/components/Statics/Statics2";
+import InteractiveHero from "@/components/Chatbot/Chatbot";
 
 // Enhanced structured data for the homepage
 const homePageStructuredData = {
@@ -283,7 +284,10 @@ export default function HomeContent() {
           </CTAButton>
           {/* --- END OF REQUESTED CONTENT --- */}
         </Hero>
-      </section>
+      </section>{" "}
+      {/* <section id="about" aria-label="About Khales - Building Excellence">
+        <InteractiveHero />
+      </section> */}
       {/* About Section with H2 */}
       <section id="about" aria-label="About Khales - Building Excellence">
         <AboutKhalesUltimate />
@@ -308,6 +312,10 @@ export default function HomeContent() {
         aria-label="Why Choose Khales for Your Project"
       >
         <WhyKhalesHybrid />
+      </section>{" "}
+      {/* Testimonials Section with H2 */}
+      <section id="testimonials" aria-label="Client Reviews and Testimonials">
+        <TestimonialSlider />
       </section>
       {/* Statistics Section with H2 */}
       <section
@@ -315,10 +323,6 @@ export default function HomeContent() {
         aria-label="Our Achievements and Success Stories"
       >
         <ValuePropositionV2 />
-      </section>
-      {/* Testimonials Section with H2 */}
-      <section id="testimonials" aria-label="Client Reviews and Testimonials">
-        <TestimonialSlider />
       </section>
       {/* Contact Section with H2 */}
       <section id="contact" aria-label="Contact Khales for Your Next Project">

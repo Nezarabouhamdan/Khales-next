@@ -149,9 +149,6 @@ const FeaturedProjects = () => {
                 </FilterButton>
               ))}
             </FilterTabs>
-            <ViewAllButton href="/projects">
-              {language === "ar" ? "عرض كل المشاريع" : "View All Projects"}
-            </ViewAllButton>
           </FilterContainer>
         </Header>
 

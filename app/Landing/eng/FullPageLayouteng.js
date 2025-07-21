@@ -778,6 +778,23 @@ const FullPageLayouteng = () => {
       });
       const data = await response.json();
       if (data.success) {
+        if (typeof window !== "undefined" && window.fbq) {
+          // Optional: Assign a numeric value to the budget for tracking
+          let leadValue = 0;
+          if (formData.budget.includes("Less than 1.5M")) {
+            leadValue = 1500000;
+          } else if (formData.budget.includes("1.5M - 2.5M")) {
+            leadValue = 2000000; // Use an average
+          } else if (formData.budget.includes("More than 2.5M")) {
+            leadValue = 3000000; // Use a representative value
+          }
+
+          window.fbq("track", "Lead", {
+            content_name: "Khales Landing Page Inquiry",
+            currency: "AED",
+            value: leadValue,
+          });
+        }
         setSubmitStatus("success");
         setFormData({
           name: "",

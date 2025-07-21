@@ -1,17 +1,19 @@
-// components/ValuePropositionV2.jsx
+// components/ValuePropositionV2.jsx (Improved Performance)
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-import { motion, useInView, animate } from "framer-motion";
+import styled, { keyframes } from "styled-components"; // Import keyframes
+import {
+  motion,
+  useInView,
+  animate,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { FaBuilding, FaRegThumbsUp, FaRegCalendarCheck } from "react-icons/fa";
-import { useLanguage } from "../../Context/Languagecontext"; // Make sure this path is correct
+import { useLanguage } from "../../Context/Languagecontext";
 
-//================================================================
-// 1. DATA (Translatable & Non-Translatable)
-//================================================================
-
-// NEW: All text content is now in this object for easy translation
+// --- 1. DATA (Unchanged) ---
 const content = {
   eng: {
     hero: {
@@ -60,21 +62,27 @@ const content = {
   },
 };
 
-// This data remains, but without the text descriptions
 const statsData = [
   { icon: <FaBuilding />, value: 120, suffix: "+" },
   { icon: <FaRegThumbsUp />, value: 98, suffix: "%" },
   { icon: <FaRegCalendarCheck />, value: 15, suffix: "+" },
 ];
 
-//================================================================
-// 2. STYLED COMPONENTS
-//================================================================
+// --- 2. STYLED COMPONENTS (Improved) ---
 
-const SectionContainer = styled.section`
-  padding-bottom: 5rem;
+// PERFORMANCE FIX: Define a CSS keyframe animation for the smoothest result.
+const slowZoom = keyframes`
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.2);
+  }
+`;
+
+const SectionContainer = styled.div`
+  position: relative;
   background-color: #ffffff;
-  /* NEW: Dynamic font and direction based on language */
   font-family: ${({ lang }) =>
       lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
     sans-serif;
@@ -84,10 +92,9 @@ const SectionContainer = styled.section`
 const StickyWrapper = styled.div`
   position: sticky;
   top: 0;
-  height: 60vh;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
-  background-color: #121212;
 `;
 
 const ImageBackground = styled(motion.div)`
@@ -100,9 +107,14 @@ const ImageBackground = styled(motion.div)`
   background-size: cover;
   background-position: center;
   z-index: 1;
+
+  /* PERFORMANCE FIX: Apply the smooth CSS animation */
+  animation: ${slowZoom} 25s linear infinite alternate;
+  /* Hint to the browser to use hardware acceleration */
+  will-change: transform;
 `;
 
-const Overlay = styled.div`
+const Overlay = styled(motion.div)`
   position: absolute;
   top: 0;
   left: 0;
@@ -125,43 +137,37 @@ const HeroContent = styled(motion.div)`
   padding: 2rem;
 
   h1 {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 700;
-    max-width: 800px;
+    max-width: 900px;
     line-height: 1.2;
   }
   p {
     font-size: 1.2rem;
     max-width: 600px;
-    margin-top: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.85);
     line-height: 1.7;
   }
   @media (max-width: 768px) {
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
     }
   }
 `;
 
 const StatsPanel = styled.div`
   background-color: #ffffff;
-  padding: 5rem;
-  border-radius: 30px 30px 0 0;
-  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.1);
+  padding: 6rem 2rem;
   position: relative;
   z-index: 4;
-  margin-top: -10vh;
-  @media (max-width: 992px) {
-    padding: 4rem 2rem;
-  }
 `;
 
-const StatsGrid = styled.div`
+const StatsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   @media (max-width: 992px) {
     grid-template-columns: 1fr;
@@ -169,20 +175,33 @@ const StatsGrid = styled.div`
   }
 `;
 
-const StatColumn = styled(motion.div)`
-  text-align: center;
+const IconWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f0f7e6;
+  margin-bottom: 2rem;
+  transition: all 0.4s ease;
   .icon {
     font-size: 2.5rem;
     color: #66a109;
-    margin-bottom: 1.5rem;
-    transition: transform 0.3s ease;
   }
+`;
+
+const StatColumn = styled(motion.div)`
+  text-align: center;
+  padding: 2rem;
+  border-radius: 24px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
   .counter-container {
     margin-bottom: 0.5rem;
-    transition: transform 0.3s ease;
   }
   h3 {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: #1a1a1a;
     margin-bottom: 0.5rem;
@@ -191,12 +210,8 @@ const StatColumn = styled(motion.div)`
     font-size: 1rem;
     color: #555;
     line-height: 1.6;
-  }
-  &:hover {
-    .icon,
-    .counter-container {
-      transform: scale(1.1);
-    }
+    max-width: 300px;
+    margin: 0 auto;
   }
 `;
 
@@ -211,9 +226,7 @@ const Suffix = styled(CounterText)`
   color: #66a109;
 `;
 
-//================================================================
-// 3. ANIMATED NUMBER COMPONENT
-//================================================================
+// --- 3. ANIMATED NUMBER COMPONENT (Unchanged) ---
 const AnimatedNumber = ({ value }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
@@ -221,7 +234,7 @@ const AnimatedNumber = ({ value }) => {
   useEffect(() => {
     if (isInView) {
       animate(0, value, {
-        duration: 2,
+        duration: 2.5,
         ease: "easeOut",
         onUpdate: (latest) => {
           if (ref.current) ref.current.textContent = Math.round(latest);
@@ -230,18 +243,36 @@ const AnimatedNumber = ({ value }) => {
     }
   }, [isInView, value]);
 
-  return <CounterText ref={ref}>0</CounterText>;
+  return <CounterText ref={ref}></CounterText>;
 };
 
-//================================================================
-// 4. MAIN COMPONENT
-//================================================================
+// --- 4. MAIN COMPONENT ---
 const ValuePropositionV2 = () => {
-  const { language } = useLanguage(); // NEW: Get language from context
-  const currentContent = content[language] || content.eng; // NEW: Select the correct content object
+  const { language } = useLanguage();
+  const currentContent = content[language] || content.eng;
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
+
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.5, 0.9]);
+
+  const gridContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const gridItemVariants = {
+    hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
@@ -250,46 +281,41 @@ const ValuePropositionV2 = () => {
   };
 
   return (
-    <SectionContainer lang={language}>
+    <SectionContainer lang={language} ref={targetRef}>
       <StickyWrapper>
-        <ImageBackground
-          initial={{ scale: 1.05 }}
-          animate={{ scale: 1.2 }}
-          transition={{
-            duration: 25,
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "mirror",
-          }}
-        />
-        <Overlay />
-        <HeroContent
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-        >
-          {/* NEW: Dynamic text */}
+        {/* PERFORMANCE FIX: Removed the Framer Motion animate props */}
+        <ImageBackground />
+        <Overlay style={{ opacity: overlayOpacity }} />
+        <HeroContent style={{ opacity: heroOpacity, scale: heroScale }}>
           <h1>{currentContent.hero.title}</h1>
           <p>{currentContent.hero.subtitle}</p>
         </HeroContent>
       </StickyWrapper>
 
       <StatsPanel>
-        <StatsGrid>
+        <StatsGrid
+          variants={gridContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {statsData.map((stat, index) => (
             <StatColumn
               key={index}
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
+              variants={gridItemVariants}
+              whileHover={{
+                y: -10,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)",
+              }}
+              transition={{ duration: 0.3 }}
             >
-              <div className="icon">{stat.icon}</div>
+              <IconWrapper>
+                <div className="icon">{stat.icon}</div>
+              </IconWrapper>
               <div className="counter-container">
                 <AnimatedNumber value={stat.value} />
                 <Suffix>{stat.suffix}</Suffix>
               </div>
-              {/* NEW: Dynamic text from content object */}
               <h3>{currentContent.stats[index].title}</h3>
               <p>{currentContent.stats[index].description}</p>
             </StatColumn>
