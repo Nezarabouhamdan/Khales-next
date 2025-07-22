@@ -1385,7 +1385,11 @@ const FullPageLayout = () => {
                     )}
                   </AnimatePresence>
                 </FormGroup>
-                <FormSubmitButton type="submit" disabled={isSubmitting}>
+                <FormSubmitButton
+                  id="Landing-ar"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "جار الإرسال..." : "إرسال"}
                 </FormSubmitButton>
               </Form>
