@@ -310,7 +310,6 @@ const ContactForm = ({ content, rtl }) => {
             {content.namePlaceholder}
           </FormLabel>
         </FormGroup>
-
         <FormGroup>
           <FormInput
             type="tel"
@@ -326,7 +325,6 @@ const ContactForm = ({ content, rtl }) => {
             {content.phonePlaceholder}
           </FormLabel>
         </FormGroup>
-
         <FormGroup>
           <FormInput
             type="email"
@@ -342,7 +340,6 @@ const ContactForm = ({ content, rtl }) => {
             {content.emailPlaceholder}
           </FormLabel>
         </FormGroup>
-
         <FormGroup>
           <FormTextarea
             as="textarea"
@@ -359,7 +356,6 @@ const ContactForm = ({ content, rtl }) => {
             {content.messagePlaceholder}
           </FormLabel>
         </FormGroup>
-
         <SubmitButton
           id="contact"
           type="submit"

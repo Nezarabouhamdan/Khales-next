@@ -335,7 +335,11 @@ export default function MultiStepFormnew() {
                 {content.buttons.next}
               </FormButton>
             ) : (
-              <FormButton onClick={handleSubmit} disabled={isSubmitting}>
+              <FormButton
+                id="booking"
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? <LoadingSpinner /> : content.buttons.submit}
               </FormButton>
             )}
