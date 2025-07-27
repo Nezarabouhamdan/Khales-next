@@ -1,4 +1,4 @@
-"use client"; // This is REQUIRED because it uses state and refs for interactivity
+"use client"; // REQUIRED: Uses state, refs, and event handlers for interactivity
 
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
@@ -11,21 +11,23 @@ import {
   FaRedo,
 } from "react-icons/fa";
 
-// --- MAIN COMPONENT ---
-// Accepts `children` (your H1, P, etc.) and `lang` from the parent page
+// --- MAIN ENHANCED HERO COMPONENT ---
 export default function Hero({ children, lang }) {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
+  // State to track if the video fails to load, for graceful fallback
+  const [isVideoError, setIsVideoError] = useState(false);
   const videoRef = useRef(null);
 
-  // All the video control logic remains the same
   const toggleMute = () => setIsMuted((prev) => !prev);
 
   const togglePlay = () => {
     const video = videoRef.current;
     if (!video) return;
+
     if (video.paused) {
-      video.play();
+      // play() returns a promise which can reject if interrupted
+      video.play().catch(() => setIsVideoError(true));
       setIsPlaying(true);
     } else {
       video.pause();
@@ -37,22 +39,38 @@ export default function Hero({ children, lang }) {
     const video = videoRef.current;
     if (!video) return;
     video.currentTime = 0;
-    video.play();
+    video.play().catch(() => setIsVideoError(true));
     setIsPlaying(true);
   };
 
+  // This function is triggered by the <video> element's onError event
+  const handleVideoError = () => {
+    setIsVideoError(true);
+  };
+
   return (
-    // Pass the lang prop to styled-component for direction/font
+    // Pass the language and error state to the styled component
     <Herosection lang={lang}>
-      <VideoBackground
-        ref={videoRef}
-        src={"/assets/Untitled video - Made with Clipchamp.mp4"}
-        autoPlay
-        loop
-        muted={isMuted}
-        playsInline
-        poster="/path/to/your/video-poster-image.jpg"
-      />
+      {/*
+        The video is now conditionally rendered.
+        If it fails to load, it will be removed from the DOM,
+        leaving only the fast-loading poster image (set via CSS background).
+      */}
+      {!isVideoError && (
+        <VideoBackground
+          ref={videoRef}
+          src={"/assets/Untitled video - Made with Clipchamp.mp4"}
+          autoPlay
+          loop
+          muted={isMuted}
+          playsInline
+          // The poster attribute helps the browser display an image while the video loads.
+          poster="/assets/hero-poster.jpg"
+          // This error handler is key to our fallback strategy.
+          onError={handleVideoError}
+        />
+      )}
+
       <VideoOverlay />
 
       <ContentContainer
@@ -60,29 +78,29 @@ export default function Hero({ children, lang }) {
         initial="hidden"
         animate="visible"
       >
-        {/*
-          <<< KEY CHANGE >>>
-          This renders the SEO-friendly content passed from the parent server component.
-        */}
+        {/* Renders the SEO-friendly content from the parent */}
         {children}
       </ContentContainer>
 
-      <ControlsWrapper>
-        <IconButton onClick={toggleMute} aria-label="Toggle Sound">
-          {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
-        </IconButton>
-        <IconButton onClick={togglePlay} aria-label="Play/Pause">
-          {isPlaying ? <FaPause /> : <FaPlay />}
-        </IconButton>
-        <IconButton onClick={handleReplay} aria-label="Replay">
-          <FaRedo />
-        </IconButton>
-      </ControlsWrapper>
+      {/* Video controls are also hidden if the video fails, preventing user confusion */}
+      {!isVideoError && (
+        <ControlsWrapper>
+          <IconButton onClick={toggleMute} aria-label="Toggle Sound">
+            {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+          </IconButton>
+          <IconButton onClick={togglePlay} aria-label="Play/Pause">
+            {isPlaying ? <FaPause /> : <FaPlay />}
+          </IconButton>
+          <IconButton onClick={handleReplay} aria-label="Replay">
+            <FaRedo />
+          </IconButton>
+        </ControlsWrapper>
+      )}
     </Herosection>
   );
 }
 
-// --- ANIMATION VARIANTS (Exported for parent component use) ---
+// --- ANIMATION VARIANTS (Exported for reuse) ---
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -100,9 +118,7 @@ export const fadeInUp = {
   },
 };
 
-// --- STYLED COMPONENTS ---
-// These are exported so the parent Server Component can use them to style the content
-
+// --- STYLED COMPONENTS (Exported for reuse) ---
 const Herosection = styled.section`
   height: 90vh;
   width: 100%;
@@ -116,6 +132,16 @@ const Herosection = styled.section`
       lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
     sans-serif;
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
+
+  /*
+    CRITICAL LCP ENHANCEMENT:
+    The poster is applied as a background image on the main section.
+    This ensures it's always visible, even if the <video> tag fails or is removed.
+    This makes the visual experience seamless and provides a reliable fallback.
+  */
+  background-image: url("/assets/hero-poster.jpg");
+  background-size: cover;
+  background-position: center;
 
   @media (max-width: 768px) {
     height: 85vh;
@@ -139,7 +165,7 @@ const VideoOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
   z-index: 2;
 `;
 
@@ -213,6 +239,8 @@ export const CTAButton = styled(motion.a)`
 const ControlsWrapper = styled.div`
   position: absolute;
   bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 1rem;
   z-index: 10;
@@ -220,12 +248,6 @@ const ControlsWrapper = styled.div`
   padding: 0.5rem 1rem;
   border-radius: 30px;
   backdrop-filter: blur(5px);
-
-  @media (max-width: 768px) {
-    left: 50%;
-    transform: translateX(-50%);
-    right: auto;
-  }
 `;
 
 const IconButton = styled.button`
@@ -236,8 +258,11 @@ const IconButton = styled.button`
   cursor: pointer;
   padding: 0.5rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0.8;
   transition: all 0.2s ease;
+
   &:hover {
     opacity: 1;
     transform: scale(1.15);

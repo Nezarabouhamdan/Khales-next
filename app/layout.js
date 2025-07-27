@@ -10,8 +10,6 @@ import { Inter } from "next/font/google";
 import CustomCursor from "@/components/CustomCursor";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-
-// Import enhanced structured data
 import {
   organizationSchema,
   localBusinessSchema,
@@ -19,7 +17,6 @@ import {
   professionalServiceSchema,
 } from "../enhanced_structured_data";
 
-// Optimize font loading for FCP
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -109,17 +106,20 @@ export const metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code", // Replace with actual verification code
+    google: "your-google-verification-code",
   },
 };
 
-const META_PIXEL_ID = "3634194126882623"; // Replace with your actual pixel ID
+const META_PIXEL_ID = "3634194126882623";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning className={inter.className}>
       <head>
-        {/* Preload critical resources for FCP optimization */}
+        {/* === LCP PERFORMANCE ENHANCEMENT === */}
+        <link rel="preload" href="/assets/hero-poster.jpg" as="image" />
+
+        {/* --- Your existing preloads --- */}
         <link rel="preload" href="/assets/Khales-Logo.png" as="image" />
         <link rel="preload" href="/fonts/style.css" as="style" />
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
@@ -131,7 +131,7 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
 
-        {/* Enhanced Structured Data - Multiple Schemas */}
+        {/* === Your existing scripts (schemas, analytics, etc.) === */}
         <Script
           id="organization-schema"
           type="application/ld+json"
@@ -140,7 +140,6 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(organizationSchema),
           }}
         />
-
         <Script
           id="local-business-schema"
           type="application/ld+json"
@@ -149,7 +148,6 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(localBusinessSchema),
           }}
         />
-
         <Script
           id="website-schema"
           type="application/ld+json"
@@ -158,7 +156,6 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(websiteSchema),
           }}
         />
-
         <Script
           id="professional-service-schema"
           type="application/ld+json"
@@ -167,8 +164,6 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(professionalServiceSchema),
           }}
         />
-
-        {/* Google Analytics - Optimized loading */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-FYYEQCM8Z7"
           strategy="afterInteractive"
@@ -178,48 +173,44 @@ export default function RootLayout({ children }) {
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FYYEQCM8Z7');
-      `,
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-FYYEQCM8Z7');
+            `,
           }}
         />
-
-        {/* Meta Pixel - Optimized loading */}
         <Script
           id="facebook-meta-pixel"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
-        n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '${META_PIXEL_ID}');
-        fbq('track', 'PageView');
-      `,
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '${META_PIXEL_ID}');
+              fbq('track', 'PageView');
+            `,
           }}
         />
-
         <Script
           id="google-tag-manager"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-TNHGBH7J');
-    `,
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-TNHGBH7J');
+            `,
           }}
         />
-
         <noscript>
           <img
             height="1"

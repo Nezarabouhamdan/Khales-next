@@ -1,28 +1,18 @@
-// components/Aboutkhales/AboutKhales2.js
 "use client";
 
 import React, { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components"; // 'keyframes' is imported
+import styled, { keyframes } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useLanguage } from "../../Context/Languagecontext";
+import LazyImage from "../LazyImage"; // <-- 1. IMPORT THE COMPONENT
 
-// --- 1. DEFINE THE FLOATING ANIMATION ---
+// --- ANIMATION & CONTENT (Unchanged) ---
 const floatAnimation = keyframes`
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-12px); /* Controls how high the images float */
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
 `;
-
-//================================================================
-// CONTENT & DATA (Unchanged)
-//================================================================
 const content = {
   eng: {
     title: "Khales",
@@ -39,66 +29,33 @@ const content = {
     button: "أعرف المزيد",
   },
 };
-
 const galleryImages = [
   "https://i.ibb.co/7tKV3xP1/aboutus5.jpg",
   "https://i.ibb.co/XftcdnrY/aboutus2.jpg",
   "https://i.ibb.co/v4S8JftQ/aboutus4.jpg",
   "https://i.ibb.co/jPgtTSzr/aboutus3.jpg",
 ];
-
-//================================================================
-// --- 2. ANIMATION VARIANTS (RESTORED) ---
-// This section is now complete again, which fixes the ReferenceError.
-//================================================================
 const sectionVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-    },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
 };
-
 const textContainerVariants = {
-  // <<< THIS IS NOW DEFINED
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut",
-      staggerChildren: 0.2,
-    },
+    transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.2 },
   },
 };
-
 const textItemVariants = {
-  // <<< THIS IS NOW DEFINED
   hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
-
 const galleryContainerVariants = {
-  // <<< THIS IS NOW DEFINED
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      staggerChildren: 0.15,
-    },
-  },
+  visible: { opacity: 1, transition: { duration: 0.8, staggerChildren: 0.15 } },
 };
-
 const imageVariants = {
-  // <<< THIS IS NOW DEFINED
   hidden: { opacity: 0, scale: 0.8 },
   visible: {
     opacity: 1,
@@ -107,9 +64,7 @@ const imageVariants = {
   },
 };
 
-//================================================================
-// CUSTOM HOOK FOR RESPONSIVE DESIGN (Unchanged)
-//================================================================
+// --- HOOK & STYLED COMPONENTS (Unchanged) ---
 const useMediaQuery = (query) => {
   const [matches, setMatches] = useState(false);
   useEffect(() => {
@@ -121,11 +76,8 @@ const useMediaQuery = (query) => {
   }, [query]);
   return matches;
 };
-
-//================================================================
-// STYLED COMPONENTS (ImageWrapper is modified for floating)
-//================================================================
 const SectionWrapper = styled(motion.section)`
+  /* ... */
   min-height: 100vh;
   width: 100%;
   position: relative;
@@ -145,8 +97,8 @@ const SectionWrapper = styled(motion.section)`
     gap: 3rem;
   }
 `;
-
 const TextBlock = styled(motion.div)`
+  /* ... */
   max-width: 550px;
   text-align: center;
   color: #1a1a1a;
@@ -164,8 +116,8 @@ const TextBlock = styled(motion.div)`
     padding: 2rem;
   }
 `;
-
 const Title = styled(motion.h2)`
+  /* ... */
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
@@ -178,8 +130,8 @@ const Title = styled(motion.h2)`
     font-size: 2.5rem;
   }
 `;
-
 const Paragraph = styled(motion.p)`
+  /* ... */
   font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 2rem;
@@ -188,13 +140,12 @@ const Paragraph = styled(motion.p)`
     font-size: 1rem;
   }
 `;
-
 const MotionLink = styled(motion(Link))`
   display: inline-block;
   text-decoration: none;
 `;
-
 const LearnMoreButton = styled.button`
+  /* ... */
   background: linear-gradient(135deg, #66a109, #8bc34a);
   color: white;
   border: none;
@@ -210,8 +161,8 @@ const LearnMoreButton = styled.button`
     box-shadow: 0 8px 25px rgba(102, 161, 9, 0.4);
   }
 `;
-
 const OrbitingGallery = styled(motion.div)`
+  /* ... */
   position: absolute;
   top: 0;
   left: 0;
@@ -230,8 +181,6 @@ const OrbitingGallery = styled(motion.div)`
     pointer-events: auto;
   }
 `;
-
-// --- 3. APPLY THE ANIMATION TO THE IMAGE WRAPPER ---
 const ImageWrapper = styled(motion.div)`
   position: absolute;
   border-radius: 16px;
@@ -240,13 +189,10 @@ const ImageWrapper = styled(motion.div)`
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   border: 2px solid white;
   pointer-events: auto;
-
-  /* --- ADDED FLOATING ANIMATION --- */
   animation-name: ${floatAnimation};
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 
-  /* Different durations make the floating look natural */
   &:nth-of-type(1) {
     animation-duration: 7s;
   }
@@ -262,13 +208,7 @@ const ImageWrapper = styled(motion.div)`
     animation-duration: 7.5s;
     animation-delay: -1s;
   }
-  /* --- END OF ADDED ANIMATION --- */
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
   @media (max-width: 900px) {
     position: relative;
     width: 90%;
@@ -276,8 +216,8 @@ const ImageWrapper = styled(motion.div)`
     height: 250px;
   }
 `;
-
 const DecorativeShape = styled.div`
+  /* ... */
   position: absolute;
   z-index: 1;
   pointer-events: none;
@@ -288,8 +228,8 @@ const DecorativeShape = styled.div`
     display: none;
   }
 `;
-
 const LightboxOverlay = styled(motion.div)`
+  /* ... */
   position: fixed;
   top: 0;
   left: 0;
@@ -302,24 +242,20 @@ const LightboxOverlay = styled(motion.div)`
   z-index: 1000;
   cursor: pointer;
 `;
-
 const LightboxImage = styled(motion.img)`
+  /* ... */
   max-width: 90%;
   max-height: 90%;
   border-radius: 16px;
   cursor: default;
 `;
 
-//================================================================
-// MAIN COMPONENT (Unchanged)
-//================================================================
+// --- MAIN COMPONENT ---
 const AboutKhalesUltimate = () => {
   const { language } = useLanguage();
   const [selectedImg, setSelectedImg] = useState(null);
   const isMobile = useMediaQuery("(max-width: 900px)");
-
   const currentContent = content[language] || content.eng;
-
   const imagePositions = [
     { top: "10%", left: "10%", width: "16vw", height: "12vw" },
     { top: "15%", right: "15%", width: "16vw", height: "12vw" },
@@ -337,12 +273,7 @@ const AboutKhalesUltimate = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <DecorativeShape
-          style={{
-            top: "20%",
-            left: "5%",
-            width: "150px",
-            height: "150px",
-          }}
+          style={{ top: "20%", left: "5%", width: "150px", height: "150px" }}
         />
         <DecorativeShape
           style={{
@@ -380,11 +311,15 @@ const AboutKhalesUltimate = () => {
                   : {}
               }
             >
-              <img
+              {/* --- 2. REPLACE <img> WITH LazyImage --- */}
+              <LazyImage
                 src={url}
                 alt={`Khales Group project showcase ${
                   index + 1
                 } - Architecture and interior design work`}
+                fill
+                sizes="(max-width: 900px) 90vw, 16vw" // Helps Next.js optimize image selection
+                // The object-cover class is handled inside LazyImage, but can be kept for clarity
               />
             </ImageWrapper>
           ))}

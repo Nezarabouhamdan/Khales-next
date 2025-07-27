@@ -22,7 +22,7 @@ const LazyImage = ({
   const imgRef = useRef();
 
   useEffect(() => {
-    if (priority) return; // Skip intersection observer for priority images
+    if (priority) return; // Skip observer for priority images
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -56,9 +56,13 @@ const LazyImage = ({
   return (
     <div
       ref={imgRef}
-      className={`relative overflow-hidden ${className}`}
+      className={`overflow-hidden ${className}`}
+      // --- FIX IS HERE ---
+      // This ensures the container div fills its parent when using the 'fill' prop
       style={
-        fill ? { position: "relative", ...style } : { width, height, ...style }
+        fill
+          ? { position: "relative", width: "100%", height: "100%", ...style }
+          : { width, height, ...style }
       }
     >
       {isInView || priority ? (
@@ -85,7 +89,7 @@ const LazyImage = ({
             />
           ) : (
             <div
-              className="w-full h-full bg-gray-200 flex items-center justify-content-center"
+              className="w-full h-full bg-gray-200 flex items-center justify-center"
               style={
                 fill ? { position: "absolute", inset: 0 } : { width, height }
               }
@@ -95,12 +99,11 @@ const LazyImage = ({
           )}
         </>
       ) : (
+        // This is the placeholder before the image is in view
         <div
-          className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center"
+          className="w-full h-full bg-gray-200"
           style={fill ? { position: "absolute", inset: 0 } : { width, height }}
-        >
-          <div className="text-gray-400 text-sm">Loading...</div>
-        </div>
+        ></div>
       )}
     </div>
   );

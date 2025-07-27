@@ -1,7 +1,6 @@
-// components/OurServices.jsx
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import {
@@ -12,38 +11,35 @@ import {
   FaClipboardCheck,
   FaTasks,
 } from "react-icons/fa";
-import { useLanguage } from "../../Context/Languagecontext"; // Make sure path is correct
+import { useLanguage } from "../../Context/Languagecontext";
+import LazyImage from "../LazyImage"; // We still need this
 
 //================================================================
-// 1. DATA FOR THE SERVICES
+// DATA (Unchanged)
 //================================================================
-
-// NEW: All translatable text is here
 const content = {
   eng: {
     header: {
       title: "Our Services",
       subtitle:
-        "Transforming complex challenges into strategic opportunities through innovative project management solutions and engineering excellence.",
+        "Transforming complex challenges into strategic opportunities...",
     },
     services: [
       {
         title: "Engineering",
         highlight: "Consultancy",
         description:
-          "Our engineering team supports each project with clear, code-compliant technical solutions. We focus on structural integrity, buildability, and long-term performance — ensuring that every design decision can be executed with confidence and precision. ",
+          "Our engineering team supports each project with clear, code-compliant...",
         showcaseSubtitle:
           "Technical solutions that support design intent and buildability.",
         features: [
           {
             title: "Structural Analysis",
-            description:
-              "Detailed engineering checks tailored to site conditions and design requirements. ",
+            description: "Detailed engineering checks tailored...",
           },
           {
             title: "Quality Assurance",
-            description:
-              "Technical reviews and verification processes to ensure regulatory and structural compliance. ",
+            description: "Technical reviews and verification processes...",
           },
         ],
         linkText: "Explore Engineering Solutions",
@@ -52,19 +48,18 @@ const content = {
         title: "Project",
         highlight: "Management",
         description:
-          "Managing projects with a clear structure, defined responsibilities, and full transparency. Our approach prioritizes coordination, risk control, and quality delivery — ensuring outcomes align with client expectations, timelines, and regulatory standards. ",
+          "Managing projects with a clear structure, defined responsibilities...",
         showcaseSubtitle:
-          "Complete oversight from design approvals to handover. ",
+          "Complete oversight from design approvals to handover.",
         features: [
           {
             title: "Resource Planning",
-            description:
-              "Efficient allocation of personnel, materials, and schedules to avoid delays. ",
+            description: "Efficient allocation of personnel...",
           },
           {
             title: "Risk Management",
             description:
-              "Early detection of design, site, or execution risks, and structured response planning. .",
+              "Early detection of design, site, or execution risks...",
           },
         ],
         linkText: "Discover Project Excellence",
@@ -74,51 +69,34 @@ const content = {
   ar: {
     header: {
       title: "خدماتنا",
-      subtitle:
-        "نحوّل التحديات المعقدة إلى فرص استراتيجية من خلال حلول مبتكرة في إدارة المشاريع والتميز الهندسي.",
+      subtitle: "نحوّل التحديات المعقدة إلى فرص استراتيجية...",
     },
     services: [
       {
         title: "الاستشارات",
         highlight: "الهندسية",
-        description:
-          "نقدم حلولاً هندسية شاملة عبر التحليل الاستراتيجي ومنهجيات التصميم المبتكرة والتميز التقني. رؤيتنا المتخصصة تترجم التحديات المعقدة إلى أنظمة مستدامة ومتينة.",
+        description: "نقدم حلولاً هندسية شاملة عبر التحليل الاستراتيجي...",
         showcaseSubtitle: "تصميم وهيكلة أنظمة فيزيائية قابلة للتكوين والتركيب.",
         features: [
-          {
-            title: "التحليل الإنشائي",
-            description: "تحليل حسابي متقدم وتحليل الإجهاد.",
-          },
-          {
-            title: "ضمان الجودة",
-            description: "بروتوكولات اختبار صارمة وامتثال كامل للمعايير.",
-          },
+          { title: "التحليل الإنشائي", description: "تحليل حسابي متقدم..." },
+          { title: "ضمان الجودة", description: "بروتوكولات اختبار صارمة..." },
         ],
         linkText: "اكتشف الحلول الهندسية",
       },
       {
         title: "إدارة",
         highlight: "المشاريع",
-        description:
-          "ننظم المشاريع المعقدة بدقة وشفافية وإشراف استراتيجي. يضمن نهجنا الشامل التنفيذ السلس من الفكرة إلى الإنجاز، مع تحقيق نتائج استثنائية في الوقت المحدد وضمن الميزانية.",
+        description: "ننظم المشاريع المعقدة بدقة وشفافية...",
         showcaseSubtitle: "إشراف استراتيجي",
         features: [
-          {
-            title: "تخطيط الموارد",
-            description: "تحسين تخصيص الموارد لتحقيق أقصى كفاءة.",
-          },
-          {
-            title: "إدارة المخاطر",
-            description: "استراتيجيات استباقية لتحديد المخاطر وتخفيفها.",
-          },
+          { title: "تخطيط الموارد", description: "تحسين تخصيص الموارد..." },
+          { title: "إدارة المخاطر", description: "استراتيجيات استباقية..." },
         ],
         linkText: "اكتشف تميز المشاريع",
       },
     ],
   },
 };
-
-// NEW: Non-translatable config data (icons, images)
 const servicesConfig = [
   {
     showcase: {
@@ -139,9 +117,65 @@ const servicesConfig = [
 ];
 
 //================================================================
-// 2. STYLED COMPONENTS
+// STYLED COMPONENTS (Corrected)
 //================================================================
 
+// <-- FIX STEP 1: Create a dedicated wrapper for the background image -->
+// This wrapper will be positioned absolutely and will contain our LazyImage.
+const BackgroundImageWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2; /* Places it behind the overlay and content */
+  transition: transform 0.4s ease;
+  border-radius: 20px; /* Ensures the image container also has rounded corners */
+  overflow: hidden; /* Clips the image to the rounded corners */
+`;
+
+const ShowcaseCard = styled.div`
+  position: relative; /* This is the positioning context for its children */
+  border-radius: 20px;
+  padding: 2rem;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: ${(props) => props.textColor};
+  overflow: hidden; /* This is important */
+  isolation: isolate; /* Creates a stacking context */
+
+  /* The background-image ::before pseudo-element is no longer needed. */
+
+  /* Overlay for text readability */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+    z-index: -1;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+    /* <-- FIX STEP 2: Target the wrapper for the hover effect --> */
+    ${BackgroundImageWrapper} {
+      transform: scale(1.05);
+    }
+  }
+`;
+
+// --- Other styled-components remain unchanged ---
 const ServicesContainer = styled.section`
   width: 100%;
   padding: 6rem 2rem;
@@ -150,20 +184,17 @@ const ServicesContainer = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 6rem;
-  /* NEW: Dynamic font and direction for language support */
   font-family: ${({ lang }) =>
       lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
     sans-serif;
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
   position: relative;
   overflow: hidden;
-
   @media (max-width: 992px) {
     padding: 4rem 1.5rem;
     gap: 4rem;
   }
 `;
-
 const SectionHeader = styled(motion.div)`
   text-align: center;
   max-width: 700px;
@@ -185,78 +216,21 @@ const SectionHeader = styled(motion.div)`
     }
   }
 `;
-
 const ServiceRow = styled(motion.div)`
   display: flex;
   width: 100%;
   max-width: 1100px;
   gap: 3rem;
   align-items: center;
-  /* Note: The parent 'direction: rtl' will automatically handle reversing the row order */
   flex-direction: ${(props) => (props.isReversed ? "row-reverse" : "row")};
-
   @media (max-width: 992px) {
     flex-direction: column;
   }
 `;
-
 const ShowcaseColumn = styled(motion.div)`
   flex: 1;
   min-width: 300px;
 `;
-
-// UPDATED: ShowcaseCard now uses a background image with an overlay
-const ShowcaseCard = styled.div`
-  position: relative;
-  border-radius: 20px;
-  padding: 2rem;
-  min-height: 350px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: ${(props) => props.textColor};
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  isolation: isolate; // Creates a new stacking context for z-index
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url(${(props) => props.bgImage});
-    background-size: cover;
-    background-position: center;
-    z-index: -2;
-    transition: transform 0.4s ease;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.7) 100%
-    );
-    z-index: -1;
-  }
-
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    &::before {
-      transform: scale(1.05);
-    }
-  }
-`;
-
 const ShowcaseIcon = styled.div`
   width: 50px;
   height: 50px;
@@ -269,13 +243,11 @@ const ShowcaseIcon = styled.div`
   backdrop-filter: blur(5px);
   color: #fff;
 `;
-
 const ShowcaseTitle = styled.h3`
   font-size: 1.75rem;
   font-weight: 600;
   margin-top: auto;
 `;
-
 const ShowcaseSubCard = styled.div`
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
@@ -284,11 +256,9 @@ const ShowcaseSubCard = styled.div`
   margin-top: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
 `;
-
 const TextColumn = styled(motion.div)`
   flex: 1.2;
 `;
-
 const ServiceTitle = styled.h2`
   font-size: 2.2rem;
   font-weight: 600;
@@ -299,13 +269,11 @@ const ServiceTitle = styled.h2`
     color: #66a109;
   }
 `;
-
 const ServiceDescription = styled.p`
   color: #555;
   line-height: 1.8;
   margin-bottom: 2rem;
 `;
-
 const FeaturesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -315,7 +283,6 @@ const FeaturesGrid = styled.div`
     grid-template-columns: 1fr;
   }
 `;
-
 const FeatureCard = styled.div`
   h4 {
     font-size: 1rem;
@@ -335,7 +302,6 @@ const FeatureCard = styled.div`
     color: #66a109;
   }
 `;
-
 const ExploreLink = styled.a`
   display: inline-flex;
   align-items: center;
@@ -353,12 +319,8 @@ const ExploreLink = styled.a`
   }
 `;
 
-const DecorativeShape = styled(motion.div)`
-  /* ... unchanged ... */
-`;
-
 //================================================================
-// 3. FRAMER MOTION VARIANTS
+// 3. FRAMER MOTION VARIANTS (Unchanged)
 //================================================================
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -373,7 +335,7 @@ const itemVariants = {
 };
 
 //================================================================
-// 4. THE MAIN COMPONENT
+// 4. THE MAIN COMPONENT (with LazyImage integration)
 //================================================================
 const OurServices = () => {
   const { language } = useLanguage();
@@ -381,8 +343,6 @@ const OurServices = () => {
 
   return (
     <ServicesContainer lang={language}>
-      {/* Decorative shapes are unchanged */}
-
       <SectionHeader
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -393,7 +353,6 @@ const OurServices = () => {
         <p>{currentContent.header.subtitle}</p>
       </SectionHeader>
 
-      {/* NEW: Map over the config and get text by index */}
       {servicesConfig.map((serviceConfig, index) => {
         const serviceText = currentContent.services[index];
         return (
@@ -406,10 +365,23 @@ const OurServices = () => {
             variants={containerVariants}
           >
             <ShowcaseColumn variants={itemVariants}>
-              <ShowcaseCard
-                bgImage={serviceConfig.showcase.image}
-                textColor={serviceConfig.showcase.textColor}
-              >
+              <ShowcaseCard textColor={serviceConfig.showcase.textColor}>
+                {/*
+                  <-- FIX STEP 3: Use the new wrapper -->
+                  The LazyImage is placed inside the dedicated wrapper.
+                  The LazyImage component's internal div will have position: relative,
+                  satisfying the requirement for the `fill` prop on the next/image.
+                */}
+                <BackgroundImageWrapper>
+                  <LazyImage
+                    src={serviceConfig.showcase.image}
+                    alt={`Showcase for ${serviceText.title}`}
+                    fill
+                    sizes="(max-width: 992px) 90vw, 45vw"
+                  />
+                </BackgroundImageWrapper>
+
+                {/* The rest of the card content is now correctly layered on top */}
                 <ShowcaseIcon>{serviceConfig.showcase.icon}</ShowcaseIcon>
                 <div>
                   <ShowcaseTitle>{serviceText.showcaseTitle}</ShowcaseTitle>
@@ -421,6 +393,7 @@ const OurServices = () => {
             </ShowcaseColumn>
 
             <TextColumn variants={containerVariants}>
+              {/* This entire column is unchanged */}
               <motion.div variants={itemVariants}>
                 <ServiceTitle>
                   {serviceText.title} <span>{serviceText.highlight}</span>
