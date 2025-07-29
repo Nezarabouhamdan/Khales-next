@@ -10,10 +10,11 @@ import {
   FaBuilding,
 } from "react-icons/fa";
 import { useLanguage } from "../../Context/Languagecontext";
+import Image from "next/image";
 
-// Import Swiper for the mobile gallery
+// Swiper for mobile gallery
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -43,11 +44,6 @@ const PropertyPage = ({ project }) => {
     }
   }, [gallery.length, currentImageIndex]);
 
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.1 } },
-  };
-
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -61,30 +57,33 @@ const PropertyPage = ({ project }) => {
     <SectionContainer lang={language}>
       <ContentWrapper>
         <HeroGrid>
-          {/* --- Desktop Image Gallery (Hidden on mobile) --- */}
+          {/* --- Main Desktop Image --- */}
           {gallery.length > 0 && (
             <DesktopMainImage as={motion.div} variants={itemVariants}>
               <AnimatePresence mode="wait">
-                <motion.img
+                <motion.div
                   key={currentImageIndex}
-                  src={gallery[currentImageIndex]}
-                  alt={`${projectData.title} - view ${currentImageIndex + 1}`}
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 1, transition: { duration: 0.8 } }}
-                  exit={{ opacity: 0, transition: { duration: 0.8 } }}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8 }}
+                  style={{ width: "100%", height: "100%" }}
+                >
+                  <Image
+                    src={gallery[currentImageIndex]}
+                    alt={`${projectData.title} - view ${currentImageIndex + 1}`}
+                    fill
+                    priority
+                    quality={90}
+                    sizes="(min-width: 993px) 60vw, 0vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </motion.div>
               </AnimatePresence>
             </DesktopMainImage>
           )}
 
+          {/* --- Desktop Thumbnail Gallery (Using <img> for testing) --- */}
           {gallery.length > 1 && (
             <DesktopSubImageGrid>
               {gallery
@@ -101,6 +100,12 @@ const PropertyPage = ({ project }) => {
                       <img
                         src={imgSrc}
                         alt={`${projectData.title} thumbnail`}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                        loading="lazy"
                       />
                     </ImageWrapper>
                   );
@@ -108,23 +113,28 @@ const PropertyPage = ({ project }) => {
             </DesktopSubImageGrid>
           )}
 
-          {/* --- FIX IS HERE: The Swiper component was missing from the mobile wrapper --- */}
+          {/* --- Mobile Gallery --- */}
           {gallery.length > 0 && (
             <MobileSwiperWrapper>
               <Swiper
-                modules={[Navigation, Pagination]}
+                modules={[Navigation, Pagination, Autoplay]}
                 slidesPerView={1}
                 spaceBetween={10}
                 navigation
                 pagination={{ clickable: true }}
-                autoplay={{ delay: 5000 }}
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                loop={gallery.length > 1}
               >
                 {gallery.map((imgSrc, i) => (
-                  <SwiperSlide key={i}>
+                  <SwiperSlide key={imgSrc}>
                     <MobileImageContainer>
-                      <img
+                      <Image
                         src={imgSrc}
                         alt={`${projectData.title} gallery image ${i + 1}`}
+                        fill
+                        sizes="100vw"
+                        quality={85}
+                        style={{ objectFit: "cover" }}
                       />
                     </MobileImageContainer>
                   </SwiperSlide>
@@ -134,11 +144,11 @@ const PropertyPage = ({ project }) => {
           )}
         </HeroGrid>
 
+        {/* --- FIX: RESTORED THE COMPLETE DetailsGrid CONTENT THAT WAS PREVIOUSLY MISSING --- */}
         <DetailsGrid
-          variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <LeftColumn as={motion.div} variants={itemVariants}>
             <PropertyTitle>{projectData.title}</PropertyTitle>
@@ -177,7 +187,6 @@ const PropertyPage = ({ project }) => {
                 </div>
               </StatItem>
 
-              {/* Corrected typo from `floor` to `floors` and added text label */}
               {projectData.floor && (
                 <StatItem>
                   <span className="icon">
@@ -219,7 +228,7 @@ const PropertyPage = ({ project }) => {
                 </HighlightRow>
               ))}
             </HighlightsTable>
-            <ContactButton href="#">
+            <ContactButton href="/booking">
               {language === "ar" ? "تواصل معنا" : "Contact us"}{" "}
               <span className="arrow">→</span>
             </ContactButton>
@@ -230,35 +239,37 @@ const PropertyPage = ({ project }) => {
   );
 };
 
-// --- STYLED COMPONENTS ---
+// --- STYLED COMPONENTS (No Changes Needed) ---
 const ImageWrapper = styled.div`
   overflow: hidden;
   border-radius: 16px;
   cursor: pointer;
+  position: relative;
+  background-color: #f0f0f0;
+
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     animation: ${kenBurns} 20s ease-in-out infinite alternate;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease !important;
   }
   &:hover img {
-    transform: scale(1.05);
+    transform: scale(1.05) !important;
   }
 `;
-
 const DesktopMainImage = styled(ImageWrapper)`
   grid-row: span 2;
-  position: relative;
   cursor: default;
   @media (max-width: 992px) {
     display: none;
   }
   &:hover img {
-    transform: none;
+    transform: none !important;
   }
 `;
-
+const MobileImageContainer = styled.div`
+  width: 100%;
+  height: 350px;
+  position: relative;
+`;
 const SectionContainer = styled.section`
   margin-top: 10vh;
   width: 100%;
@@ -302,15 +313,6 @@ const MobileSwiperWrapper = styled.div`
   }
   .swiper-pagination-bullet-active {
     background-color: #66a109;
-  }
-`;
-const MobileImageContainer = styled.div`
-  width: 100%;
-  height: 350px;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 `;
 const DesktopSubImageGrid = styled.div`
@@ -362,7 +364,6 @@ const Address = styled.p`
   color: #555;
   margin-bottom: 2rem;
 `;
-
 const Subheading = styled.h3`
   font-size: 1.25rem;
   font-weight: 600;

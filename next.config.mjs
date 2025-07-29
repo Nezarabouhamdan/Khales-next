@@ -2,14 +2,26 @@
 const nextConfig = {
   transpilePackages: ["framer-motion"],
   eslint: { ignoreDuringBuilds: true },
+
+  // --- MERGED AND CORRECTED IMAGES CONFIG ---
   images: {
+    // Combine 'domains' and 'remotePatterns' hostnames
     domains: [
       "imgpanda.com",
-      "i.ibb.co",
       "upload.wikimedia.org",
       "gulfvisiongov.com",
       "www.tsilimited.com",
     ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.ibb.co",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+
+    // The rest of your image settings
     formats: ["image/webp", "image/avif"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -17,6 +29,7 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+
   compiler: {
     styledComponents: true,
     removeConsole: process.env.NODE_ENV === "production",
@@ -29,11 +42,9 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: false,
   serverRuntimeConfig: {
-    // Only available on server side
     odooSecret: process.env.ODOO_PASSWORD,
   },
   publicRuntimeConfig: {
-    // Available on both server and client
     appEnv: process.env.NODE_ENV,
   },
   async headers() {
@@ -41,22 +52,10 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
-          {
-            key: "X-XSS-Protection",
-            value: "1; mode=block",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "origin-when-cross-origin",
-          },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-XSS-Protection", value: "1; mode=block" },
+          { key: "Referrer-Policy", value: "origin-when-cross-origin" },
         ],
       },
       {
