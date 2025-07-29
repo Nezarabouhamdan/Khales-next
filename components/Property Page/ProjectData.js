@@ -18,7 +18,6 @@ export const projectsData = [
       "https://i.ibb.co/G4Dn2N05/9.png",
       "https://i.ibb.co/JjtJ6WhY/10.png",
       "https://i.ibb.co/spnHPwtG/11.png",
-      "https://i.ibb.co/sd1FPKPW/12.png",
     ],
     eng: {
       tags: ["Architectural Design", "Site Supervision"],
