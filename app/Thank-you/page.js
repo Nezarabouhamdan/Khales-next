@@ -5,7 +5,6 @@ import ValuePropositionV2 from "@/components/Statics/Statics2";
 import FullCaseStudyPage from "@/components/case study/cs1";
 import WhyKhalesHybrid from "@/components/Whykhales/w3";
 import OfficeLocationsCombined from "@/components/Locations/L2";
-import PropertyPage from "@/components/Projectspage/p1";
 
 import MeetTheTeam from "@/components/Team/T1";
 import HowTo from "@/components/HowTo/HowTo";
@@ -57,7 +56,6 @@ const Thankyou = () => {
       <FullCaseStudyPage />
       <WhyKhalesHybrid />
       <OfficeLocationsCombined />
-      <PropertyPage />
       <MeetTheTeam />
       <HowTo />
       <ServiceAreas />

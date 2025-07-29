@@ -3,7 +3,12 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaBed, FaBath, FaRulerCombined } from "react-icons/fa";
+import {
+  FaBed,
+  FaRulerCombined,
+  FaCheckCircle,
+  FaBuilding,
+} from "react-icons/fa";
 import { useLanguage } from "../../Context/Languagecontext";
 
 // Import Swiper for the mobile gallery
@@ -13,37 +18,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// This is just for the "Similar Projects" example.
-const similarListingsData = [
-  {
-    price: "12,750,000",
-    address: "2024 West Coast, London, CA 90420",
-    beds: 4,
-    baths: 5,
-    sqft: "5,210",
-    imageUrl:
-      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&q=80",
-  },
-  {
-    price: "11,790,000",
-    address: "26724 Villa Court, London, CA 90410",
-    beds: 4,
-    baths: 5,
-    sqft: "5,210",
-    imageUrl:
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&q=80",
-  },
-  {
-    price: "12,758,000",
-    address: "26500 Alan Crest, London, CA 90410",
-    beds: 4,
-    baths: 5,
-    sqft: "5,170",
-    imageUrl:
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80",
-  },
-];
-
 const kenBurns = keyframes`
   0% { transform: scale(1.0); }
   100% { transform: scale(1.1); }
@@ -51,7 +25,6 @@ const kenBurns = keyframes`
 
 const PropertyPage = ({ project }) => {
   const { language } = useLanguage();
-  // State to track the currently displayed main image
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!project) {
@@ -61,16 +34,14 @@ const PropertyPage = ({ project }) => {
   const projectData = project[language];
   const gallery = project.galleryImages || [];
 
-  // useEffect to handle the automatic image cycling
   useEffect(() => {
     if (gallery.length > 1) {
       const timer = setInterval(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % gallery.length);
-      }, 5000); // Change image every 5 seconds
-
-      return () => clearInterval(timer); // Cleanup on component unmount
+      }, 5000);
+      return () => clearInterval(timer);
     }
-  }, [gallery.length]);
+  }, [gallery.length, currentImageIndex]);
 
   const containerVariants = {
     hidden: {},
@@ -90,36 +61,54 @@ const PropertyPage = ({ project }) => {
     <SectionContainer lang={language}>
       <ContentWrapper>
         <HeroGrid>
-          {/* --- Desktop Grid View (with automatic main image) --- */}
-          <DesktopMainImage as={motion.div} variants={itemVariants}>
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={currentImageIndex}
-                src={gallery[currentImageIndex]}
-                alt={`${projectData.title} - view ${currentImageIndex + 1}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 1 } }}
-                exit={{ opacity: 0, transition: { duration: 1 } }}
-                // Added a style to prevent layout shift during transition
-                style={{ position: "absolute", top: 0, left: 0 }}
-              />
-            </AnimatePresence>
-          </DesktopMainImage>
+          {/* --- Desktop Image Gallery (Hidden on mobile) --- */}
+          {gallery.length > 0 && (
+            <DesktopMainImage as={motion.div} variants={itemVariants}>
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentImageIndex}
+                  src={gallery[currentImageIndex]}
+                  alt={`${projectData.title} - view ${currentImageIndex + 1}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { duration: 0.8 } }}
+                  exit={{ opacity: 0, transition: { duration: 0.8 } }}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              </AnimatePresence>
+            </DesktopMainImage>
+          )}
 
           {gallery.length > 1 && (
             <DesktopSubImageGrid>
-              {gallery.slice(1).map((imgSrc, i) => (
-                <ImageWrapper as={motion.div} variants={itemVariants} key={i}>
-                  <img
-                    src={imgSrc}
-                    alt={`${projectData.title} view ${i + 2}`}
-                  />
-                </ImageWrapper>
-              ))}
+              {gallery
+                .filter((_, index) => index !== currentImageIndex)
+                .map((imgSrc) => {
+                  const originalIndex = gallery.indexOf(imgSrc);
+                  return (
+                    <ImageWrapper
+                      as={motion.div}
+                      variants={itemVariants}
+                      key={imgSrc}
+                      onClick={() => setCurrentImageIndex(originalIndex)}
+                    >
+                      <img
+                        src={imgSrc}
+                        alt={`${projectData.title} thumbnail`}
+                      />
+                    </ImageWrapper>
+                  );
+                })}
             </DesktopSubImageGrid>
           )}
 
-          {/* --- Mobile Swiper Gallery (Hidden on desktop) --- */}
+          {/* --- FIX IS HERE: The Swiper component was missing from the mobile wrapper --- */}
           {gallery.length > 0 && (
             <MobileSwiperWrapper>
               <Swiper
@@ -128,7 +117,7 @@ const PropertyPage = ({ project }) => {
                 spaceBetween={10}
                 navigation
                 pagination={{ clickable: true }}
-                autoplay={{ delay: 5000 }} // Also add autoplay to mobile swiper
+                autoplay={{ delay: 5000 }}
               >
                 {gallery.map((imgSrc, i) => (
                   <SwiperSlide key={i}>
@@ -154,14 +143,26 @@ const PropertyPage = ({ project }) => {
           <LeftColumn as={motion.div} variants={itemVariants}>
             <PropertyTitle>{projectData.title}</PropertyTitle>
             <Address>{projectData.address}</Address>
-            <Price>
-              <p>{language === "ar" ? "يبدأ من" : "Starting from"}</p>
-              <h2>${projectData.price}</h2>
-            </Price>
+
             <Subheading>
               {language === "ar" ? "وصف المشروع" : "House Description"}
             </Subheading>
             <Description>{projectData.longDescription}</Description>
+
+            {projectData.keyFeatures && projectData.keyFeatures.length > 0 && (
+              <KeyFeaturesSection>
+                <Subheading>
+                  {language === "ar" ? "الميزات الرئيسية" : "Key Features"}
+                </Subheading>
+                <FeaturesList>
+                  {projectData.keyFeatures.map((feature, index) => (
+                    <FeatureItem key={index}>
+                      <FaCheckCircle /> <span>{feature}</span>
+                    </FeatureItem>
+                  ))}
+                </FeaturesList>
+              </KeyFeaturesSection>
+            )}
           </LeftColumn>
           <RightColumn as={motion.div} variants={itemVariants}>
             <Stats>
@@ -175,16 +176,20 @@ const PropertyPage = ({ project }) => {
                   {language === "ar" ? "غرف" : "Bed"}
                 </div>
               </StatItem>
-              <StatItem>
-                <span className="icon">
-                  <FaBath />
-                </span>
-                <div>
-                  <strong>{projectData.baths}</strong>
-                  <br />
-                  {language === "ar" ? "حمامات" : "Bath"}
-                </div>
-              </StatItem>
+
+              {/* Corrected typo from `floor` to `floors` and added text label */}
+              {projectData.floor && (
+                <StatItem>
+                  <span className="icon">
+                    <FaBuilding />
+                  </span>
+                  <div>
+                    <strong>{projectData.floor}</strong>
+                    <br />
+                  </div>
+                </StatItem>
+              )}
+
               <StatItem>
                 <span className="icon">
                   <FaRulerCombined />
@@ -220,48 +225,40 @@ const PropertyPage = ({ project }) => {
             </ContactButton>
           </RightColumn>
         </DetailsGrid>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <SimilarListings>
-            <motion.h2 variants={itemVariants}>
-              {language === "ar" ? "مشاريع مشابهة" : "Similar Projects"}
-            </motion.h2>
-            <ListingsGrid>
-              {similarListingsData.map((item, i) => (
-                <PropertyCard key={i} variants={itemVariants}>
-                  <div className="card-image">
-                    <img src={item.imageUrl} alt={item.address} />
-                  </div>
-                  <div className="card-content">
-                    <p className="price">${item.price}</p>
-                    <p className="address">{item.address}</p>
-                    <div className="stats">
-                      <span>{item.beds} BEDS</span> •{" "}
-                      <span>{item.baths} BATHS</span> •{" "}
-                      <span>{item.sqft} SQFT</span>
-                    </div>
-                  </div>
-                </PropertyCard>
-              ))}
-            </ListingsGrid>
-            <motion.div variants={itemVariants}>
-              <ViewAllButton href="#">
-                {language === "ar" ? "عرض كل المشاريع" : "View All Properties"}
-              </ViewAllButton>
-            </motion.div>
-          </SimilarListings>
-        </motion.div>
       </ContentWrapper>
     </SectionContainer>
   );
 };
 
-// --- STYLED COMPONENTS (with modifications) ---
+// --- STYLED COMPONENTS ---
+const ImageWrapper = styled.div`
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: ${kenBurns} 20s ease-in-out infinite alternate;
+    transition: transform 0.3s ease;
+  }
+  &:hover img {
+    transform: scale(1.05);
+  }
+`;
+
+const DesktopMainImage = styled(ImageWrapper)`
+  grid-row: span 2;
+  position: relative;
+  cursor: default;
+  @media (max-width: 992px) {
+    display: none;
+  }
+  &:hover img {
+    transform: none;
+  }
+`;
+
 const SectionContainer = styled.section`
   margin-top: 10vh;
   width: 100%;
@@ -274,12 +271,10 @@ const SectionContainer = styled.section`
     margin-top: 8vh;
   }
 `;
-
 const ContentWrapper = styled(motion.div)`
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 `;
-
 const HeroGrid = styled(motion.div)`
   margin-bottom: 3rem;
   @media (min-width: 993px) {
@@ -289,7 +284,6 @@ const HeroGrid = styled(motion.div)`
     height: 550px;
   }
 `;
-
 const MobileSwiperWrapper = styled.div`
   display: none;
   @media (max-width: 992px) {
@@ -310,7 +304,6 @@ const MobileSwiperWrapper = styled.div`
     background-color: #66a109;
   }
 `;
-
 const MobileImageContainer = styled.div`
   width: 100%;
   height: 350px;
@@ -320,34 +313,13 @@ const MobileImageContainer = styled.div`
     object-fit: cover;
   }
 `;
-
-const ImageWrapper = styled.div`
-  overflow: hidden;
-  border-radius: 16px;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: ${kenBurns} 20s ease-in-out infinite alternate;
-  }
-`;
-
-// MODIFIED: Added position relative to act as a container for the absolute positioned image
-const DesktopMainImage = styled(ImageWrapper)`
-  grid-row: span 2;
-  position: relative;
-  @media (max-width: 992px) {
-    display: none;
-  }
-`;
-
 const DesktopSubImageGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: min-content; // Adjust row height to content
+  grid-auto-rows: min-content;
   gap: 1rem;
   grid-row: span 2;
-  overflow-y: auto; // Adds scrolling for overflow
+  overflow-y: auto;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -365,7 +337,6 @@ const DesktopSubImageGrid = styled.div`
     display: none;
   }
 `;
-
 const DetailsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -376,10 +347,8 @@ const DetailsGrid = styled(motion.div)`
     gap: 3rem;
   }
 `;
-
 const LeftColumn = styled.div``;
 const RightColumn = styled.div``;
-
 const PropertyTitle = styled.h1`
   font-size: 2.5rem;
   font-weight: 700;
@@ -389,23 +358,9 @@ const PropertyTitle = styled.h1`
     font-size: 2rem;
   }
 `;
-
 const Address = styled.p`
   color: #555;
   margin-bottom: 2rem;
-`;
-
-const Price = styled.div`
-  margin-bottom: 2rem;
-  h2 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: #1a1a1a;
-  }
-  p {
-    color: #66a109;
-    font-weight: 500;
-  }
 `;
 
 const Subheading = styled.h3`
@@ -414,20 +369,43 @@ const Subheading = styled.h3`
   color: #1a1a1a;
   border-bottom: 2px solid #e9ecef;
   padding-bottom: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 2.5rem;
 `;
-
 const Description = styled.p`
   line-height: 1.8;
   color: #495057;
 `;
+const KeyFeaturesSection = styled.div`
+  width: 100%;
+`;
+const FeaturesList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+`;
+const FeatureItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #343a40;
+  font-size: 1rem;
 
+  svg {
+    color: #66a109;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+`;
 const Stats = styled.div`
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 `;
-
 const StatItem = styled.div`
   display: flex;
   align-items: center;
@@ -444,11 +422,9 @@ const StatItem = styled.div`
     color: #1a1a1a;
   }
 `;
-
 const HighlightsTable = styled.div`
   margin-bottom: 2rem;
 `;
-
 const HighlightRow = styled(motion.div)`
   display: flex;
   justify-content: space-between;
@@ -462,7 +438,6 @@ const HighlightRow = styled(motion.div)`
     color: #1a1a1a;
   }
 `;
-
 const ContactButton = styled.a`
   display: block;
   width: 100%;
@@ -477,72 +452,6 @@ const ContactButton = styled.a`
   &:hover {
     box-shadow: 0 10px 20px rgba(102, 161, 9, 0.3);
     transform: translateY(-3px);
-  }
-`;
-
-const SimilarListings = styled.div`
-  text-align: center;
-  h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 2.5rem;
-  }
-`;
-
-const ListingsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  text-align: left;
-  margin-bottom: 2.5rem;
-  @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const PropertyCard = styled(motion.div)`
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #e9ecef;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
-  .card-image {
-    height: 250px;
-  }
-  .card-content {
-    padding: 1.5rem;
-  }
-  .price {
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-  .address {
-    color: #555;
-    margin-bottom: 1rem;
-  }
-  .stats {
-    display: flex;
-    gap: 1rem;
-    color: #555;
-    font-size: 0.9rem;
-  }
-`;
-
-const ViewAllButton = styled.a`
-  display: inline-block;
-  padding: 0.8rem 2rem;
-  border: 1px solid #1a1a1a;
-  color: #1a1a1a;
-  border-radius: 8px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  &:hover {
-    background-color: #1a1a1a;
-    color: white;
   }
 `;
 

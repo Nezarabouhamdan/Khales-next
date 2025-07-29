@@ -1,4 +1,3 @@
-// components/FeaturedProjects.jsx
 "use client";
 
 import React, { useState } from "react";
@@ -7,104 +6,191 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useLanguage } from "../../Context/Languagecontext";
 import Link from "next/link";
-import Image from "next/image";
+// --- CHANGE 1: Import LazyImage instead of next/image ---
 
 // --- DATA & HELPER FUNCTION (This is correct and remains the same) ---
 const projectsData = [
   {
     id: 1,
-    slug: "townhouse-san-jose",
-    category: { eng: "Featured", ar: "مميز" },
-    mainImage: "/assets/villa4.jpeg",
+    slug: "The-Royal-Villa",
+    category: { eng: "Villas", ar: "فلل" },
+    mainImage: "https://i.ibb.co/k69GLvRT/2.png",
     galleryImages: [
-      "/assets/villa4.jpeg",
-      "/assets/v5.jpeg",
-      "/assets/v6.jpeg",
-      "/assets/int.jpg",
-      "/assets/v6.jpeg",
-      "/assets/int.jpg",
-      "/assets/int.jpg",
-      "/assets/int.jpg",
-      "/assets/int.jpg",
-      "/assets/v6.jpeg",
-      "/assets/int.jpg",
+      "https://i.ibb.co/k69GLvRT/2.png",
+      "https://i.ibb.co/5h2krDmw/1.png",
+      "https://i.ibb.co/qLmR8MpK/3.png",
+      "https://i.ibb.co/hFX56DBK/4.png",
+      "https://i.ibb.co/N2w6syYQ/5.png",
+      "https://i.ibb.co/7xLwfjnn/7.png",
+      "https://i.ibb.co/9HxWgYVG/8.png",
+      "https://i.ibb.co/G4Dn2N05/9.png",
+      "https://i.ibb.co/JjtJ6WhY/10.png",
+      "https://i.ibb.co/spnHPwtG/11.png",
+      "https://i.ibb.co/sd1FPKPW/12.png",
     ],
     eng: {
-      tags: ["Architecture", "Furniture"],
-      title: "Townhouse in San Jose",
-      address: "123 Meadow Lane, San Jose, CA 95123",
-      description: "A brief description of the project.",
+      tags: ["Architectural Design", "Site Supervision"],
+      title: "The Royal Villa",
+      address: "Muscat, Oman",
+      description: "Luxurious single-storey palace designed in Muscat.",
       longDescription:
-        "An architectural masterpiece, this estate offers unparalleled luxury and privacy with breathtaking panoramic views and seamless indoor-outdoor flow.",
+        "The Royal Villa is a one-floor luxury residence in Muscat, Oman, designed to embody the presence and elegance of a true palace. Created for a private client, the design focuses on classical proportions, golden columns, and elevated ceiling heights to achieve a grand architectural expression within a single-storey layout. Khales provided full architectural design and site supervision, ensuring every detail, from the entry arches to the roofline composition, supported the vision of a timeless, royal home.",
       price: "2,500,000",
-      beds: 4,
-      baths: 3,
-      sqft: "3,120",
+      beds: 6,
+      floor: "Ground Floor",
+      sqft: "12,600",
       highlights: [
-        { label: "Property Type", value: "Residential" },
-        { label: "Year Built", value: "2023" },
-        { label: "Location", value: "San Jose, CA" },
+        { label: "Project Type", value: "Palace" },
+        { label: "Under Construction", value: "2025" },
+      ],
+      keyFeatures: [
+        "Golden columns",
+        "Classical symmetry",
+        "High ceilings",
+        "Detailed façade",
       ],
     },
     ar: {
-      tags: ["الهندسة المعمارية", "الأثاث"],
-      title: "تاونهوس في سان خوسيه",
-      address: "١٢٣ ميدو لين، سان خوسيه، كاليفورنيا ٩٥١٢٣",
-      description: "وصف موجز للمشروع.",
+      tags: ["تصميم معماري", "إشراف على الموقع"],
+      title: "الفيلا الملكية",
+      address: "مسقط، عمان",
+      description: "قصر فخم من طابق واحد مصمم في مسقط.",
       longDescription:
-        "تحفة معمارية، يوفر هذا العقار فخامة وخصوصية لا مثيل لهما مع إطلالات بانورامية خلابة وتدفق سلس بين الداخل والخارج.",
+        "الفيلا الملكية هي سكن فاخر من طابق واحد في مسقط، عمان، مصممة لتجسيد حضور وأناقة قصر حقيقي. تم تصميمها لعميل خاص، حيث يركز التصميم على النسب الكلاسيكية، والأعمدة الذهبية، وارتفاعات الأسقف الشاهقة لتحقيق تعبير معماري فخم ضمن تصميم من طابق واحد. قدمت خالص التصميم المعماري الكامل والإشراف على الموقع، مع التأكد من أن كل التفاصيل، من أقواس المدخل إلى تكوين خط السقف، تدعم رؤية منزل ملكي خالد.",
       price: "٢٬٥٠٠٬٠٠٠",
-      beds: "٤",
-      baths: "٣",
-      sqft: "٣٬١٢٠",
+      beds: "٦",
+      floor: "الطابق الأرضي",
+      sqft: "١٢٬٦٠٠",
       highlights: [
-        { label: "نوع العقار", value: "سكني" },
-        { label: "سنة البناء", value: "٢٠٢٣" },
-        { label: "الموقع", value: "سان خوسيه، كاليفورنيا" },
+        { label: "نوع المشروع", value: "قصر" },
+        { label: "تحت الإنشاء", value: "٢٠٢٥" },
+      ],
+      keyFeatures: [
+        "أعمدة ذهبية",
+        "تناظر كلاسيكي",
+        "أسقف عالية",
+        "واجهة مفصلة",
       ],
     },
   },
   {
     id: 2,
-    slug: "home-renovation-design",
-    category: { eng: "Interior Design", ar: "تصميم داخلي" },
-    mainImage: "/assets/int.jpg",
+    slug: "TheCrownCentral",
+    category: { eng: "Commerical", ar: "تجاري" },
+    mainImage: "https://i.ibb.co/1Gn1hMNV/Landscape-Saudi-Arabia.png",
     galleryImages: [
-      "/assets/int.jpg",
-      "/assets/int2.jpg",
-      "/assets/int3.jpg",
-      "/assets/int4.jpg",
+      "https://i.ibb.co/1Gn1hMNV/Landscape-Saudi-Arabia.png",
+      "https://i.ibb.co/Z6jRc9zm/Riyadh-1-sq.png",
+      "https://i.ibb.co/Xxp72yFD/Riyadh-2-sq.png",
     ],
     eng: {
-      tags: ["Furniture", "Interior Design"],
-      title: "Home Renovation & Design",
-      address: "456 Luxe Avenue, Beverly Hills, CA 90210",
-      description: "Complete overhaul of a classic space.",
+      tags: ["Architectural Design", "Site Supervision"],
+      title: "The Crown Central",
+      address: "Riyadh, Saudi Arabia",
+      description: "Urban luxury living in a high-rise.",
       longDescription:
-        "This project focused on transforming a classic villa into a modern sanctuary by blending contemporary design elements with timeless materials.",
+        "The Crown Central is a high-rise mixed-use development located in a prime area of Riyadh. Designed to balance luxury with accessibility, the project offers an urban experience that combines residential, commercial, and lifestyle spaces within a unified architectural language. With sweeping views of the city and a high-exposure site, the design focuses on clean vertical rhythm, clear circulation, and material elegance. Khales was appointed for full architectural design and site supervision, overseeing quality and consistency from concept to delivery.",
       price: "5,750,000",
-      beds: 5,
-      baths: 6,
-      sqft: "6,500",
+      beds: "60+ units/rooms",
+      floor: "6",
+      sqft: "60,100",
+      keyFeatures: [
+        "Vertical urban design",
+        "Luxury-accessible concept",
+        "Skyline views",
+      ],
       highlights: [
-        { label: "Project Type", value: "Renovation" },
-        { label: "Year Completed", value: "2024" },
+        { label: "Project Type", value: "Mixed-Use Development" },
+        { label: "Under Construction", value: "2025" },
       ],
     },
     ar: {
-      tags: ["الأثاث", "التصميم الداخلي"],
-      title: "تجديد وتصميم منزل",
-      address: "٤٥٦ لوكس أفينيو، بيفرلي هيلز، كاليفورنيا ٩٠٢١٠",
-      description: "تجديد كامل لمساحة كلاسيكية.",
+      tags: ["تصميم معماري", "إشراف على الموقع"],
+      title: "ذا كراون سنترال",
+      address: "الرياض، المملكة العربية السعودية",
+      description: "حياة حضرية فاخرة في برج شاهق.",
       longDescription:
-        "ركز هذا المشروع على تحويل فيلا كلاسيكية إلى ملاذ عصري من خلال دمج عناصر التصميم المعاصر مع المواد الخالدة.",
+        "ذا كراون سنترال هو مشروع تطويري شاهق متعدد الاستخدامات يقع في منطقة حيوية بالرياض. تم تصميمه لتحقيق التوازن بين الفخامة وسهولة الوصول، ويقدم المشروع تجربة حضرية تجمع بين المساحات السكنية والتجارية والترفيهية ضمن لغة معمارية موحدة. مع إطلالات واسعة على المدينة وموقع بارز، يركز التصميم على الإيقاع الرأسي النظيف، والحركة الواضحة، وأناقة المواد. تم تعيين خالص لتقديم التصميم المعماري الكامل والإشراف على الموقع، ومراقبة الجودة والاتساق من الفكرة حتى التسليم.",
       price: "٥٬٧٥٠٬٠٠٠",
-      beds: "٥",
-      baths: "٦",
-      sqft: "٦٬٥٠٠",
+      beds: "+٦٠ وحدة/غرفة",
+      floor: "٦",
+      sqft: "٦٠٬١٠٠",
+      keyFeatures: [
+        "تصميم حضري رأسي",
+        "مفهوم الفخامة المتاحة",
+        "إطلالات على الأفق",
+      ],
       highlights: [
-        { label: "نوع المشروع", value: "تجديد" },
-        { label: "سنة الإنجاز", value: "٢٠٢٤" },
+        { label: "نوع المشروع", value: "تطوير متعدد الاستخدامات" },
+        { label: "تحت الإنشاء", value: "٢٠٢٥" },
+      ],
+    },
+  },
+  {
+    id: 3,
+    slug: "TheOrganicVilla",
+    category: { eng: "Villas", ar: "فلل" },
+    mainImage: "https://i.ibb.co/4R44GVyc/1-1-Photo.jpg",
+    galleryImages: [
+      "https://i.ibb.co/4R44GVyc/1-1-Photo.jpg",
+      "https://i.ibb.co/QjnnHK2c/1-2-Photo.jpg",
+      "https://i.ibb.co/0RNvR5Wx/1-3-Photo.jpg",
+      "https://i.ibb.co/gZ7rmmzw/1-4-Photo.jpg",
+      "https://i.ibb.co/PvwkwnTJ/1-5-Photo.jpg",
+      "https://i.ibb.co/RT4tHXR5/1-6-Photo.jpg",
+      "https://i.ibb.co/Y75XsB4m/1-8-Photo.jpg",
+      "https://i.ibb.co/DHd44my9/1-9-Photo.jpg",
+      "https://i.ibb.co/JRFdvF4m/1-10-Photo.jpg",
+      "https://i.ibb.co/Z1prj0GQ/DSC02344.jpg",
+      "https://i.ibb.co/gbKW99RW/DSC02350.jpg",
+      "https://i.ibb.co/5XfyFzVC/DSC02352.jpg",
+      "https://i.ibb.co/zHQ9zMT8/DSC02358.jpg",
+      "https://i.ibb.co/5WY5J4Wx/DSC02367.jpg",
+      "https://i.ibb.co/KjswkzWT/DSC023721.jpg",
+      "https://i.ibb.co/fYd1LY0C/panorama.jpg",
+    ],
+    eng: {
+      tags: ["Project Management", "Construction Oversight"],
+      title: "The Organic Villa",
+      address: "Al Wasl, Dubai",
+      description: "A tranquil retreat of understated luxury.",
+      longDescription:
+        "Located in the heart of Al Wasl, Dubai, The Organic Villa is a modern private residence that brings together calm, softness, and understated luxury. The design embraces an organic architectural language, with curved edges, natural transitions, and a focus on flow and serenity. Inspired by the concept of “less is more,” the villa was envisioned as a tranquil retreat, blending openness with refined spatial control. Khales is leading the full project management scope, overseeing design, engineering coordination, and site execution to ensure a seamless delivery from ground to roof.",
+      price: "5,750,000",
+      beds: "6",
+      floor: "Ground + 1st + Roof",
+      sqft: "10,800",
+      keyFeatures: [
+        "Curved façade elements",
+        "Soft architectural lines",
+        "Minimal palette",
+        "Layered spaces",
+      ],
+      highlights: [
+        { label: "Project Type", value: "Villa" },
+        { label: "Under Construction", value: "2025" },
+      ],
+    },
+    ar: {
+      tags: ["إدارة المشاريع", "إشراف على البناء"],
+      title: "الفيلا العضوية",
+      address: "الوصل، دبي",
+      description: "ملاذ هادئ من الفخامة البسيطة.",
+      longDescription:
+        "تقع الفيلا العضوية في قلب منطقة الوصل بدبي، وهي سكن خاص حديث يجمع بين الهدوء والنعومة والفخامة البسيطة. يتبنى التصميم لغة معمارية عضوية، مع حواف منحنية وتحولات طبيعية وتركيز على التدفق والسكينة. مستوحاة من مفهوم 'الأقل هو الأكثر'، تم تصور الفيلا كملاذ هادئ، يمزج بين الانفتاح والتحكم المكاني الراقي. تقود خالص نطاق إدارة المشروع بالكامل، حيث تشرف على التصميم والتنسيق الهندسي وتنفيذ الموقع لضمان تسليم سلس من الأساس إلى السقف.",
+      price: "٥٬٧٥٠٬٠٠٠",
+      beds: "٦",
+      floor: "أرضي + أول + سطح",
+      sqft: "١٠٬٨٠٠",
+      keyFeatures: [
+        "عناصر واجهة منحنية",
+        "خطوط معمارية ناعمة",
+        "ألوان بسيطة",
+        "مساحات متدرجة",
+      ],
+      highlights: [
+        { label: "نوع المشروع", value: "فيلا" },
+        { label: "تحت الإنشاء", value: "٢٠٢٥" },
       ],
     },
   },
@@ -157,7 +243,7 @@ const FeaturedProjects = () => {
             {filteredProjects.map((project, index) => (
               <ProjectCard
                 as={motion.div}
-                key={project.id} // Use a stable key for animation
+                key={project.id}
                 layout
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -179,11 +265,12 @@ const FeaturedProjects = () => {
                   }}
                 >
                   <ImageWrapper>
+                    {/* The ProjectImage component now uses LazyImage */}
                     <ProjectImage
                       src={project.mainImage}
                       alt={project[language].title}
                       width={500}
-                      height={400}
+                      height={500}
                     />
                   </ImageWrapper>
                   <CardContent lang={language}>
@@ -201,8 +288,9 @@ const FeaturedProjects = () => {
   );
 };
 
-// --- STYLED COMPONENTS (Re-styled to match your new image) ---
+// --- STYLED COMPONENTS ---
 const SectionWrapper = styled.section`
+  /* ... styles remain the same ... */
   width: 100%;
   padding: 5rem 2rem;
   background-color: #fff;
@@ -210,13 +298,16 @@ const SectionWrapper = styled.section`
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
 `;
 const Container = styled.div`
+  /* ... styles remain the same ... */
   max-width: 1200px;
   margin: 0 auto;
 `;
 const Header = styled.div`
+  /* ... styles remain the same ... */
   margin: 0 auto 3rem auto;
 `;
 const Title = styled.h2`
+  /* ... styles remain the same ... */
   text-align: center;
   font-size: 2.8rem;
   font-weight: 700;
@@ -224,6 +315,7 @@ const Title = styled.h2`
   color: #1a1a1a;
 `;
 const FilterContainer = styled.div`
+  /* ... styles remain the same ... */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -231,11 +323,13 @@ const FilterContainer = styled.div`
   gap: 1rem;
 `;
 const FilterTabs = styled.div`
+  /* ... styles remain the same ... */
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 `;
 const FilterButton = styled.button`
+  /* ... styles remain the same ... */
   padding: 0.6rem 1.2rem;
   border-radius: 99px;
   border: 1px solid ${({ active }) => (active ? "#66a109" : "#e0e0e0")};
@@ -250,28 +344,15 @@ const FilterButton = styled.button`
     background-color: ${({ active }) => (active ? "#5a9008" : "#f5f5f5")};
   }
 `;
-const ViewAllButton = styled.a`
-  padding: 0.6rem 1.5rem;
-  border: 1px solid #66a109;
-  color: #66a109;
-  border-radius: 99px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-  white-space: nowrap;
-  &:hover {
-    background-color: #66a109;
-    color: #fff;
-  }
-`;
 const ProjectsGrid = styled(motion.div)`
+  /* ... styles remain the same ... */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 2.5rem;
-  align-items: stretch; /* This ensures all grid items in a row stretch to the same height */
+  align-items: stretch;
 `;
-
 const CardTitle = styled.h3`
+  /* ... styles remain the same ... */
   font-family: "Georgia", "Times New Roman", serif;
   font-size: 1.5rem;
   font-weight: 600;
@@ -280,30 +361,27 @@ const CardTitle = styled.h3`
   text-decoration: none;
   transition: color 0.2s ease;
 `;
-
 const Description = styled.p`
+  /* ... styles remain the same ... */
   color: #666;
   font-size: 1rem;
   line-height: 1.6;
   margin: 0;
   text-decoration: none;
 `;
-
-// THIS IS THE MAIN FIX: Making the card a flex container
 const ProjectCard = styled(motion.div)`
+  /* ... styles remain the same ... */
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex; /* Makes this a flex container */
-  flex-direction: column; /* Stacks children (image, content) vertically */
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-
-    /* Underline text on hover */
     ${CardTitle}, ${Description} {
       text-decoration: underline;
       text-decoration-color: #a0a0a0;
@@ -311,27 +389,33 @@ const ProjectCard = styled(motion.div)`
   }
 `;
 const ImageWrapper = styled.div`
+  /* ... styles remain the same ... */
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
 `;
-const ProjectImage = styled(Image)`
+
+// --- CHANGE 2: Base the styled component on LazyImage ---
+const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   transition: transform 0.4s ease;
   ${ProjectCard}:hover & {
     transform: scale(1.05);
   }
 `;
+
 const CardContent = styled.div`
+  /* ... styles remain the same ... */
   padding: 1.5rem;
   text-align: ${({ lang }) => (lang === "ar" ? "right" : "left")};
-  flex-grow: 1; /* This makes the content area take up all available vertical space */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 `;
 const Tags = styled.p`
+  /* ... styles remain the same ... */
   color: #66a109;
   font-weight: 500;
   font-size: 0.9rem;
