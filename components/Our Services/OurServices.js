@@ -3,6 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import Link from "next/link"; // <-- IMPORT NEXT.JS LINK
 import {
   FaArrowRight,
   FaStar,
@@ -11,12 +12,10 @@ import {
   FaClipboardCheck,
   FaTasks,
 } from "react-icons/fa";
-import { useLanguage } from "../../Context/Languagecontext";
-import LazyImage from "../LazyImage"; // We still need this
+import { useLanguage } from "../../Context/Languagecontext"; // Assuming this path is correct
+import LazyImage from "../LazyImage";
 
-//================================================================
-// DATA (Unchanged)
-//================================================================
+// --- UPDATED DATA (with 'slug' for linking) ---
 const content = {
   eng: {
     header: {
@@ -26,6 +25,7 @@ const content = {
     },
     services: [
       {
+        slug: "engineering-consultancy", // <-- ADDED SLUG
         title: "Engineering",
         highlight: "Consultancy",
         description:
@@ -45,6 +45,7 @@ const content = {
         linkText: "Explore Engineering Solutions",
       },
       {
+        slug: "project-management", // <-- ADDED SLUG
         title: "Project",
         highlight: "Management",
         description:
@@ -73,6 +74,7 @@ const content = {
     },
     services: [
       {
+        slug: "engineering-consultancy", // <-- ADDED SLUG
         title: "الاستشارات",
         highlight: "الهندسية",
         description: "نقدم حلولاً هندسية شاملة عبر التحليل الاستراتيجي...",
@@ -84,6 +86,7 @@ const content = {
         linkText: "اكتشف الحلول الهندسية",
       },
       {
+        slug: "project-management", // <-- ADDED SLUG
         title: "إدارة",
         highlight: "المشاريع",
         description: "ننظم المشاريع المعقدة بدقة وشفافية...",
@@ -97,58 +100,47 @@ const content = {
     ],
   },
 };
+
 const servicesConfig = [
   {
     showcase: {
       icon: <FaStar />,
-      image: "https://i.ibb.co/277qKX62/Project-Management.jpg",
-      textColor: "#ffffff",
+      image: "https://i.ibb.co/pvsmTgg6/Engineering-Consultancy.jpg",
     },
     features: [{ icon: <FaProjectDiagram /> }, { icon: <FaClipboardCheck /> }],
   },
   {
     showcase: {
       icon: <FaTasks />,
-      image: "https://i.ibb.co/pvsmTgg6/Engineering-Consultancy.jpg",
-      textColor: "#ffffff",
+      image: "https://i.ibb.co/277qKX62/Project-Management.jpg",
     },
     features: [{ icon: <FaBullseye /> }, { icon: <FaClipboardCheck /> }],
   },
 ];
 
-//================================================================
-// STYLED COMPONENTS (Corrected)
-//================================================================
-
-// <-- FIX STEP 1: Create a dedicated wrapper for the background image -->
-// This wrapper will be positioned absolutely and will contain our LazyImage.
+// --- STYLED COMPONENTS (No changes needed here) ---
 const BackgroundImageWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2; /* Places it behind the overlay and content */
+  z-index: -2;
   transition: transform 0.4s ease;
-  border-radius: 20px; /* Ensures the image container also has rounded corners */
-  overflow: hidden; /* Clips the image to the rounded corners */
+  border-radius: 20px;
+  overflow: hidden;
 `;
-
 const ShowcaseCard = styled.div`
-  position: relative; /* This is the positioning context for its children */
+  position: relative;
   border-radius: 20px;
   padding: 2rem;
   min-height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: ${(props) => props.textColor};
-  overflow: hidden; /* This is important */
-  isolation: isolate; /* Creates a stacking context */
-
-  /* The background-image ::before pseudo-element is no longer needed. */
-
-  /* Overlay for text readability */
+  color: white;
+  overflow: hidden;
+  isolation: isolate;
   &::after {
     content: "";
     position: absolute;
@@ -163,19 +155,14 @@ const ShowcaseCard = styled.div`
     );
     z-index: -1;
   }
-
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-
-    /* <-- FIX STEP 2: Target the wrapper for the hover effect --> */
     ${BackgroundImageWrapper} {
       transform: scale(1.05);
     }
   }
 `;
-
-// --- Other styled-components remain unchanged ---
 const ServicesContainer = styled.section`
   width: 100%;
   padding: 6rem 2rem;
@@ -184,12 +171,7 @@ const ServicesContainer = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 6rem;
-  font-family: ${({ lang }) =>
-      lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
-    sans-serif;
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
-  position: relative;
-  overflow: hidden;
   @media (max-width: 992px) {
     padding: 4rem 1.5rem;
     gap: 4rem;
@@ -203,7 +185,6 @@ const SectionHeader = styled(motion.div)`
     font-weight: 700;
     margin-bottom: 1rem;
     color: #1a1a1a;
-    line-height: 1.2;
   }
   p {
     font-size: 1.1rem;
@@ -264,7 +245,6 @@ const ServiceTitle = styled.h2`
   font-weight: 600;
   margin-bottom: 1rem;
   color: #1a1a1a;
-  line-height: 1.3;
   span {
     color: #66a109;
   }
@@ -303,6 +283,7 @@ const FeatureCard = styled.div`
   }
 `;
 const ExploreLink = styled.a`
+  /* Can stay as 'a' for styling */
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -319,24 +300,17 @@ const ExploreLink = styled.a`
   }
 `;
 
-//================================================================
-// 3. FRAMER MOTION VARIANTS (Unchanged)
-//================================================================
+// --- FRAMER MOTION VARIANTS ---
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.2 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
 };
 const itemVariants = {
   hidden: { y: 30, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: "easeOut" } },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.7 } },
 };
 
-//================================================================
-// 4. THE MAIN COMPONENT (with LazyImage integration)
-//================================================================
+// --- THE MAIN COMPONENT ---
 const OurServices = () => {
   const { language } = useLanguage();
   const currentContent = content[language] || content.eng;
@@ -355,6 +329,8 @@ const OurServices = () => {
 
       {servicesConfig.map((serviceConfig, index) => {
         const serviceText = currentContent.services[index];
+        const serviceUrl = `/services/${serviceText.slug}`; // <-- Dynamically create the URL
+
         return (
           <ServiceRow
             key={serviceText.title}
@@ -365,13 +341,7 @@ const OurServices = () => {
             variants={containerVariants}
           >
             <ShowcaseColumn variants={itemVariants}>
-              <ShowcaseCard textColor={serviceConfig.showcase.textColor}>
-                {/*
-                  <-- FIX STEP 3: Use the new wrapper -->
-                  The LazyImage is placed inside the dedicated wrapper.
-                  The LazyImage component's internal div will have position: relative,
-                  satisfying the requirement for the `fill` prop on the next/image.
-                */}
+              <ShowcaseCard>
                 <BackgroundImageWrapper>
                   <LazyImage
                     src={serviceConfig.showcase.image}
@@ -380,11 +350,8 @@ const OurServices = () => {
                     sizes="(max-width: 992px) 90vw, 45vw"
                   />
                 </BackgroundImageWrapper>
-
-                {/* The rest of the card content is now correctly layered on top */}
                 <ShowcaseIcon>{serviceConfig.showcase.icon}</ShowcaseIcon>
                 <div>
-                  <ShowcaseTitle>{serviceText.showcaseTitle}</ShowcaseTitle>
                   <ShowcaseSubCard>
                     {serviceText.showcaseSubtitle}
                   </ShowcaseSubCard>
@@ -393,7 +360,6 @@ const OurServices = () => {
             </ShowcaseColumn>
 
             <TextColumn variants={containerVariants}>
-              {/* This entire column is unchanged */}
               <motion.div variants={itemVariants}>
                 <ServiceTitle>
                   {serviceText.title} <span>{serviceText.highlight}</span>
@@ -418,15 +384,19 @@ const OurServices = () => {
                 ))}
               </FeaturesGrid>
               <motion.div variants={itemVariants}>
-                <ExploreLink href="#" lang={language}>
-                  {serviceText.linkText}
-                  <FaArrowRight
-                    className="arrow-icon"
-                    style={{
-                      transform: language === "ar" ? "scaleX(-1)" : "scaleX(1)",
-                    }}
-                  />
-                </ExploreLink>
+                {/* ▼▼▼ UPDATED LINK ▼▼▼ */}
+                <Link href={serviceUrl} passHref>
+                  <ExploreLink lang={language}>
+                    {serviceText.linkText}
+                    <FaArrowRight
+                      className="arrow-icon"
+                      style={{
+                        transform:
+                          language === "ar" ? "scaleX(-1)" : "scaleX(1)",
+                      }}
+                    />
+                  </ExploreLink>
+                </Link>
               </motion.div>
             </TextColumn>
           </ServiceRow>

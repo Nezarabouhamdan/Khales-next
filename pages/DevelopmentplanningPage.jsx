@@ -14,19 +14,20 @@ export const slides = {
   eng: [
     {
       id: 1,
-      image: "https://i.ibb.co/fzFfphKy/development.jpg",
-      title: "Shape Your Vision with Smart Planning",
+      image: "https://i.ibb.co/j93MLS7t/5-Banner-Development.jpg",
+      title: "Turn Land into a Project — With a Clear Plan",
       content:
-        "Empowering your projects with innovative and sustainable planning solutions.",
+        "We evaluate your site and help define what can be built, what’s allowed, and how to move forward with confidence.",
       button: "Book Appointment",
     },
   ],
   ar: [
     {
       id: 1,
-      image: "https://i.ibb.co/fzFfphKy/development.jpg",
-      title: "شكّل رؤيتك بتخطيط ذكي",
-      content: "نُمكّن مشاريعك بحلول تخطيط مبتكرة ومستدامة.",
+      image: "https://i.ibb.co/j93MLS7t/5-Banner-Development.jpg",
+      title: "حوّل أرضك إلى مشروع — بخطة واضحة",
+      content:
+        "نقوم بتقييم موقعك ونساعد في تحديد ما يمكن بناؤه، وما هو مسموح به، وكيفية المضي قدمًا بثقة.",
       button: "احجز موعدك الآن",
     },
   ],
@@ -34,12 +35,12 @@ export const slides = {
 const data = {
   eng: [
     {
-      title: "Development Planning: ",
-      subtitle: "Craft Your Vision, Achieve Success",
+      title: "Development Planning ",
+      subtitle: "",
       description1:
-        "Every successful project begins with a clear and well-defined plan. We specialize in delivering comprehensive development planning services that transform your vision into a strategic roadmap for success. Our approach ensures that every aspect of your project is meticulously planned, from initial concept to final execution.We offer end-to-end solutions, starting with market research and extending to long-term facility management",
+        "Before design or construction begins, every project needs a plan. Our Development Planning service helps landowners, investors, and private clients understand what’s possible on a site, based on regulations, project goals, market potential, and technical requirements.",
       description2:
-        "Our expertise spans across key regions in the UAE, including Dubai, Abu Dhabi, Sharjah, Ajman, Umm Al Quwain, Fujairah, Al Ain, and Ras Al Khaimah. No matter the scale or complexity, we are committed to ensuring your project thrives in every phase.Whether you’re envisioning a residential community, a commercial hub, or a mixed-use development, our team is here to bring your ideas to life. With a focus on innovation, sustainability, and client satisfaction, we turn challenges into opportunities and dreams into reality.",
+        "Khales guides you through zoning laws, land use restrictions, authority procedures, and development options, turning a raw plot into a viable project direction. This service helps avoid delays, wasted costs, or design mistakes by making sure your vision is feasible and aligned from the start.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -51,11 +52,11 @@ const data = {
   ar: [
     {
       title: "التخطيط التطويري: ",
-      subtitle: " صياغة رؤيتك وتحقيق النجاح",
+      subtitle: "",
       description1:
-        "يبدأ كل مشروع ناجح بخطة واضحة ومحددة بدقة. نحن نختص بتقديم خدمات التخطيط التطويري الشاملة التي تحول رؤيتك إلى خارطة طريق استراتيجية للنجاح. نضمن من خلال نهجنا الدقيق أن يتم التخطيط لكل جانب من جوانب مشروعك بدقة، بدءًا من المفهوم الأولي ووصولًا إلى التنفيذ النهائي.نقدم حلولًا شاملة تبدأ من أبحاث السوق وتمتد إلى إدارة المرافق على المدى الطويل.",
+        "قبل بدء التصميم أو البناء، يحتاج كل مشروع إلى خطة. تساعد خدمة التخطيط التطويري التي نقدمها ملاك الأراضي والمستثمرين والعملاء الخاصين على فهم ما هو ممكن في الموقع، بناءً على اللوائح التنظيمية وأهداف المشروع وإمكانيات السوق والمتطلبات الفنية.",
       description2:
-        " تمتد خبرتنا عبر المناطق الرئيسية في الإمارات العربية المتحدة، بما في ذلك دبي، أبوظبي، الشارقة، عجمان، أم القيوين، الفجيرة، العين، ورأس الخيمة. بغض النظر عن حجم المشروع أو تعقيده، نحن ملتزمون بضمان ازدهار مشروعك في كل مرحلة.سواء كنت تتخيل مجتمعًا سكنيًا، أو مركزًا تجاريًا، أو تطويرًا مختلط الاستخدامات، فإن فريقنا موجود هنا لتحويل أفكارك إلى واقع. مع التركيز على الابتكار والاستدامة ورضا العملاء، نحول التحديات إلى فرص والأحلام إلى واقع ملموس",
+        "ترشدك شركة خالص عبر قوانين تقسيم المناطق، وقيود استخدام الأراضي، وإجراءات الجهات الحكومية، وخيارات التطوير، لتحويل قطعة أرض خام إلى اتجاه مشروع قابل للتطبيق. تساعد هذه الخدمة على تجنب التأخير، والتكاليف المهدرة، وأخطاء التصميم من خلال التأكد من أن رؤيتك مجدية ومتوافقة منذ البداية.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -69,61 +70,66 @@ const data = {
 const process = {
   eng: [
     {
-      title: "Project Definition & Roadmap",
+      title: "Site Review & Initial Assessment",
       content:
-        "We define your project’s scope, objectives, and deliverables through meticulous programming, creating a clear roadmap for a well-coordinated development process.",
+        "We visit or study the site and gather data on size, location, zoning, utility access, topography, and authority requirements.",
     },
     {
-      title: "Tailored Market Research",
+      title: "Regulatory & Municipality Check",
       content:
-        "Our market research services analyze current trends, demands, and opportunities in the UAE real estate market, ensuring your project aligns with investor and resident needs.",
+        "We verify allowable FAR (floor area ratio), height limits, setbacks, building types, and special conditions based on local codes.",
     },
     {
-      title: "Pre-Feasibility Studies",
+      title: "Project Concept Direction",
       content:
-        "We conduct comprehensive pre-feasibility studies to assess your project’s potential, identifying challenges and opportunities while considering investment firms and market dynamics.",
+        "We suggest development types (villa, residential block, mixed-use, etc.) that fit both the land and your goals.",
     },
     {
-      title: "Concept Design Management",
+      title: "Time & Cost Planning (Optional)",
       content:
-        "Through collaborative concept design management, we refine and visualize your ideas, laying a strong foundation for the next stages of development.",
+        "We can provide preliminary project timelines and rough cost bands to guide future planning and budgeting.",
     },
     {
-      title: "Sustainable Construction",
+      title: "Authority Strategy",
       content:
-        "We integrate eco-friendly materials and energy-efficient practices to minimize environmental impact, ensuring your project is as sustainable as it is stunning.",
+        "We advise on submission routes, timelines, and which approvals will be needed — helping you avoid process surprises later on.",
     },
     {
-      title: " Facility Management Integration",
+      title: "Summary Report & Recommendation",
       content:
-        "We integrate facility management planning from the start, ensuring your project’s long-term performance and connecting you with leading property management companies in the UAE.",
+        "We deliver a clear document summarizing your land’s potential, next steps, and how to move into design and execution.",
     },
   ],
   ar: [
     {
-      title: " تعريف المشروع وإعداد خارطة الطريق",
+      title: "مراجعة الموقع والتقييم الأولي",
       content:
-        "في بداية كل مشروع، نعمل على تحديد نطاق المشروع وأهدافه بشكل دقيق من خلال جلسات تفاعلية مع العميل. نحرص على تطوير خارطة طريق واضحة تشمل جميع المراحل المطلوبة، مما يضمن تخطيطًا منظمًا وفعالًا. يتم وضع استراتيجيات تشمل تقييم الجدوى المالية والفنية لضمان أن المشروع يسير وفق منهجية مدروسة منذ البداية وحتى الإنجاز.",
+        "نقوم بزيارة أو دراسة الموقع وجمع البيانات حول المساحة، والموقع، والتصنيف، وتوفر الخدمات، والطبوغرافيا، ومتطلبات الجهات الحكومية.",
     },
     {
-      title: " أبحاث السوق المخصصة",
+      title: "التدقيق التنظيمي والبلدي",
       content:
-        "نقدم خدمات أبحاث السوق المتخصصة لتحليل الاتجاهات الحالية وتقييم حجم الطلب والفرص المتاحة في سوق العقارات الإماراتي. نقوم بتجميع وتحليل البيانات لتوفير رؤى واضحة تدعم اتخاذ قرارات استراتيجية مستنيرة. يساعد ذلك في ضمان توافق المشروع مع احتياجات المستثمرين والسوق المحلي، مما يزيد من فرص النجاح ويضمن مواءمة الخطط مع المتطلبات الواقعية.",
+        "نتحقق من نسبة المساحة الطابقية المسموح بها (FAR)، وحدود الارتفاع، والارتدادات، وأنواع المباني، والشروط الخاصة بناءً على القوانين المحلية.",
     },
     {
-      title: " دراسات الجدوى الأولية ",
+      title: "توجيه مفهوم المشروع",
       content:
-        "نقوم بإجراء دراسات جدوى شاملة تأخذ في الاعتبار جميع العوامل المؤثرة في المشروع، بما في ذلك توقعات المستثمرين وديناميكيات السوق. تتيح هذه الدراسات تحديد التحديات المحتملة واستكشاف الفرص، مع وضع خطط للتعامل مع المخاطر بشكل استباقي. يضمن ذلك أن يكون المشروع مدروسًا من جميع الجوانب قبل الشروع في التنفيذ.",
+        "نقترح أنواع التطوير (فيلا، مبنى سكني، متعدد الاستخدامات، إلخ) التي تناسب كل من الأرض وأهدافك.",
     },
     {
-      title: "إدارة تصميم المفهوم",
+      title: "تخطيط الوقت والتكلفة (اختياري)",
       content:
-        "نؤمن بأن تصميم المفهوم هو حجر الأساس في نجاح المشروع. نقوم بتطوير الأفكار وتحويلها إلى تصاميم أولية تستند إلى رؤية واضحة ومحددة. يعمل فريقنا بشكل تعاوني لضمان أن التصاميم ليست فقط جمالية ولكن أيضًا عملية وقابلة للتنفيذ. يتم توفير نماذج ثلاثية الأبعاد ولوحات تصور تساعدك على تخيل المشروع بشكل واقعي قبل البدء في التنفيذ.",
+        "يمكننا تقديم جداول زمنية أولية للمشروع ونطاقات تكلفة تقريبية لتوجيه التخطيط والميزانية المستقبلية.",
     },
     {
-      title: "  دمج إدارة المرافق  ",
+      title: "استراتيجية التعامل مع الجهات الحكومية",
       content:
-        "بعد إدارة المرافق جزءًا أساسيًا من خطتنا التطويرية، حيث نقوم بدمج خطط الإدارة منذ البداية لضمان استدامة المشروع على المدى الطويل. يتم ربط المشروع بشركات إدارة العقارات الرائدة في الإمارات لضمان أداء فعال وسلس. كما نضمن أن تكون جميع الأنظمة التشغيلية ملائمة للاستخدام طويل الأمد مع توفير خدمات دعم متواصلة.",
+        "نقدم المشورة بشأن مسارات التقديم، والجداول الزمنية، والموافقات المطلوبة، مما يساعدك على تجنب المفاجآت الإجرائية لاحقًا.",
+    },
+    {
+      title: "التقرير الموجز والتوصيات",
+      content:
+        "نسلم وثيقة واضحة تلخص إمكانيات أرضك، والخطوات التالية، وكيفية الانتقال إلى مرحلة التصميم والتنفيذ.",
     },
   ],
 };
@@ -132,17 +138,17 @@ const Faq = {
     {
       title: "What is development planning?",
       content:
-        "Development planning involves creating a strategic roadmap for your project, from initial concept to long-term performance, ensuring it meets market demands and regulatory requirements",
+        "Development planning involves creating a strategic roadmap for your project, from initial concept to long-term performance, ensuring it meets market demands and regulatory requirements.",
     },
     {
-      title: " Do you work on projects across all seven emirates?",
+      title: "Do you work on projects across all seven emirates?",
       content:
         "Yes, we provide building contracting services in Dubai, Abu Dhabi, Sharjah, Ajman, Umm Al Quwain, Fujairah, Al Ain, and Ras Al Khaimah.",
     },
     {
       title: "How do you ensure my project aligns with market trends?",
       content:
-        "We conduct tailored market research to analyze current trends, demands, and opportunities, ensuring your project meets investor and resident expectations",
+        "We conduct tailored market research to analyze current trends, demands, and opportunities, ensuring your project meets investor and resident expectations.",
     },
     {
       title: "Can you handle both small and large-scale projects?",
@@ -155,12 +161,12 @@ const Faq = {
         "Yes, sustainability is a core part of our planning process. We integrate eco-friendly designs and energy-efficient systems into every project.",
     },
     {
-      title: " How long does the development planning process take?",
+      title: "How long does the development planning process take?",
       content:
         "The timeline depends on the project’s complexity. After the initial consultation, we provide a detailed schedule to keep you informed every step of the way.",
     },
     {
-      title: " Do you provide facility management planning?",
+      title: "Do you provide facility management planning?",
       content:
         "Yes, we integrate facility management planning from the start, ensuring your project’s long-term performance and connecting you with leading property management companies.",
     },
@@ -170,7 +176,7 @@ const Faq = {
         "We create plans that align with your budget without compromising on quality. During the consultation, we discuss your financial parameters and tailor our solutions accordingly.",
     },
     {
-      title: " What makes your building contracting services stand out?",
+      title: "What makes your building contracting services stand out?",
       content:
         "Our commitment to precision, innovation, and excellence sets us apart. We combine award-winning expertise with a client-centric approach to deliver exceptional results.",
     },
@@ -179,10 +185,30 @@ const Faq = {
       content:
         "Simply contact us for a consultation. We’ll discuss your vision, provide a customized plan, and guide you through the process of creating your dream project.",
     },
+    {
+      title: "Is this only for large developments?",
+      content:
+        "No — this is helpful for any landowner, whether you’re building one villa or planning a full investment project.",
+    },
+    {
+      title: "Can you help us compare multiple land plots?",
+      content:
+        "Yes. We can provide basic development potential comparisons so you can decide which plot is more suitable.",
+    },
+    {
+      title: "Do you also help with concept design after this?",
+      content:
+        "Yes. After the development plan is clear, we can proceed with full design, approvals, and project management.",
+    },
+    {
+      title: "How long does a development plan take?",
+      content:
+        "Most basic development studies are completed in 1–2 weeks, depending on plot complexity and authority feedback.",
+    },
   ],
   ar: [
     {
-      title: " ما هو التخطيط التطويري؟",
+      title: "ما هو التخطيط التطويري؟",
       content:
         "التخطيط التطويري يشمل إنشاء خارطة طريق استراتيجية لمشروعك، بدءًا من المفهوم الأولي ووصولاً إلى الأداء طويل الأمد، مع ضمان توافقه مع متطلبات السوق واللوائح التنظيمية.",
     },
@@ -197,34 +223,54 @@ const Faq = {
         "نقوم بإجراء أبحاث سوق مخصصة لتحليل الاتجاهات الحالية وحجم الطلب والفرص المتاحة، مما يضمن أن مشروعك يلبي توقعات المستثمرين والمستفيدين.",
     },
     {
-      title: "هل يمكنكم التعامل مع المشاريع الصغيرة والكبيرة؟  ",
+      title: "هل يمكنكم التعامل مع المشاريع الصغيرة والكبيرة؟",
       content:
         "بالتأكيد. سواء كان مشروعًا سكنيًا صغيرًا أو مجمعًا تجاريًا كبيرًا، نقدم خدمات مخصصة تناسب حجم ونطاق مشروعك.",
     },
     {
-      title: " هل تقدمون حلولاً للتطوير المستدام؟ ",
+      title: "هل تقدمون حلولاً للتطوير المستدام؟",
       content:
         "نعم، تُعد الاستدامة جزءًا أساسيًا من عملية التخطيط لدينا. ندمج التصاميم الصديقة للبيئة والأنظمة الموفرة للطاقة في كل مشروع.",
     },
     {
-      title: "  كم تستغرق عملية التخطيط التطويري؟",
+      title: "كم تستغرق عملية التخطيط التطويري؟",
       content:
         "تعتمد المدة على تعقيد المشروع. بعد الاستشارة الأولية، نقدم جدولاً زمنياً مفصلاً لإبقائك على اطلاع بكل خطوة.",
     },
     {
-      title: " هل تقدمون تخطيطًا لإدارة المرافق؟",
+      title: "هل تقدمون تخطيطًا لإدارة المرافق؟",
       content:
-        "نعم، ندمج تخطيط إدارة المرافق من البداية، مما يضمن الأداء طويل الأمد لمشروعك وربطه بشركات إدارة العقارات الرائدة",
+        "نعم، ندمج تخطيط إدارة المرافق من البداية، مما يضمن الأداء طويل الأمد لمشروعك وربطه بشركات إدارة العقارات الرائدة.",
     },
     {
-      title: " هل يمكنكم العمل ضمن ميزانيتي؟",
+      title: "هل يمكنكم العمل ضمن ميزانيتي؟",
       content:
-        "نضع خططًا تتوافق مع ميزانيتك دون المساس بالجودة. خلال الاستشارة، نناقش معاييرك المالية ونقدم حلولاً مخصصة",
+        "نضع خططًا تتوافق مع ميزانيتك دون المساس بالجودة. خلال الاستشارة، نناقش معاييرك المالية ونقدم حلولاً مخصصة.",
     },
     {
-      title: " كيف يمكنني البدء مع خدمات التخطيط التطويري؟",
+      title: "كيف يمكنني البدء مع خدمات التخطيط التطويري؟",
       content:
         "ببساطة، قم بالاتصال بنا لترتيب استشارة. سنناقش رؤيتك ونقدم خطة مخصصة ونرشدك خلال عملية إنشاء مشروعك المثالي.",
+    },
+    {
+      title: "هل هذه الخدمة مخصصة فقط للمشاريع الكبيرة؟",
+      content:
+        "لا، هذه الخدمة مفيدة لأي مالك أرض، سواء كنت تبني فيلا واحدة أو تخطط لمشروع استثماري كامل.",
+    },
+    {
+      title: "هل يمكنكم المساعدة في مقارنة عدة قطع أراضٍ؟",
+      content:
+        "نعم، يمكننا تقديم مقارنات أساسية لإمكانيات التطوير لمساعدتك في تحديد قطعة الأرض الأنسب.",
+    },
+    {
+      title: "هل تساعدون أيضاً في تصميم المفهوم بعد هذه المرحلة؟",
+      content:
+        "نعم، بعد أن تتضح خطة التطوير، يمكننا المتابعة بالتصميم الكامل، والموافقات، وإدارة المشروع.",
+    },
+    {
+      title: "كم من الوقت تستغرق خطة التطوير؟",
+      content:
+        "تُستكمل معظم دراسات التطوير الأساسية في غضون أسبوع إلى أسبوعين، اعتمادًا على تعقيد قطعة الأرض وردود الجهات الحكومية.",
     },
   ],
 };
@@ -314,9 +360,13 @@ const DevelopmentplanningPage = () => {
           style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
         >
           <OurProcessWork panels={process[language]} />
-          <img width={"300px"} src={"/assets/4.png"} alt="Process Work" />
+          <img
+            width={"300px"}
+            src={"https://i.ibb.co/qMyChkJ5/6-Process-Development.jpg"}
+            alt="Process Work"
+          />
         </Row2>
-        <ProjectHighlight data={ProjectHighlightdata[language]} />
+        {/* <ProjectHighlight data={ProjectHighlightdata[language]} /> */}
 
         <Title2>
           {language === "ar" ? "الأسئلة الشائعة " : "Frequently Asked"}

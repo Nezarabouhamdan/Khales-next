@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer New/Footer";
 import Navbar from "@/components/Navbar/Navbar";
-import Projectstudy from "@/pages/BuildingContractingPage";
+import Projectstudy from "@/pages/Projectstudy";
 import Script from "next/script"; // Use Next.js optimized Script component
 import React from "react";
 

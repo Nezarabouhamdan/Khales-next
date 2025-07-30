@@ -16,8 +16,9 @@ export const slides = {
     {
       id: 1,
       image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
-      title: "Breathtaking Landscapes That Inspire",
-      content: "Transform your outdoor space into a natural masterpiece",
+      title: "Elegant Interiors Designed with Purpose",
+      content:
+        "Creating spaces that reflect your lifestyle, align with your architecture, and stand the test of time.",
       button: "Book Appointment",
     },
   ],
@@ -25,8 +26,9 @@ export const slides = {
     {
       id: 1,
       image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
-      title: "مناظر طبيعية خلابة تُلهم",
-      content: "حوّل مساحتك الخارجية إلى لوحة فنية طبيعية",
+      title: "تصاميم داخلية أنيقة مصممة لغرض",
+      content:
+        "نخلق مساحات تعكس نمط حياتك، وتنسجم مع عمارتك، وتصمد أمام اختبار الزمن.",
       button: "احجز موعدك الآن",
     },
   ],
@@ -34,12 +36,12 @@ export const slides = {
 const data = {
   eng: [
     {
-      title: "Landscape Design and Garden Planning:  ",
-      subtitle: " Where Art Meets Nature",
+      title: "Interior Design ",
+      subtitle: "",
       description1:
-        "At Khales, we believe that landscape design is more than just planting trees and shrubs; it’s an art of transforming outdoor spaces into beautiful, functional, and sustainable environments. As a leading landscape design and garden planning company in Dubai, our services go beyond simple greenery to include modern irrigation systems, pathways, patios, and outdoor living spaces that blend elegance with practicality.",
+        "Interior design at Khales is about more than selecting finishes; it’s about shaping how people live, feel, and experience space. Our interior designers work closely with clients to create interiors that are functional, refined, and aligned with the architectural identity of the project.",
       description2:
-        "Our team of landscape architects and garden specialists works closely with you to understand your vision and aspirations. Whether you have a sprawling garden or a compact balcony, we bring your ideas to life with creative solutions and meticulous attention to detail. By using high-quality materials and advanced construction techniques, we ensure lasting beauty and durability in every project",
+        "We handle everything from spatial planning and mood concepts to material selection and technical drawings. Whether for a private villa, commercial space, or full development, we ensure the design reflects both the client’s taste and the project’s context, while staying practical, buildable, and regulation-ready.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -50,13 +52,12 @@ const data = {
   ],
   ar: [
     {
-      title: "تصميم المناظر الطبيعية وتنسيق الحدائق: ",
-      subtitle: "  حيث يلتقي الفن بالطبيعة",
-
+      title: "التصميم الداخلي",
+      subtitle: "",
       description1:
-        "في خالص، نؤمن بأن تصميم المناظر الطبيعية هو أكثر من مجرد غرس الأشجار وزراعة النباتات؛ بل هو فن تحويل المساحات الخارجية إلى بيئات تنبض بالجمال والراحة. نحن نقدم مجموعة متكاملة من خدمات تصميم المناظر الطبيعية وتنسيق الحدائق في دبي وجميع أنحاء الإمارات العربية المتحدة، بهدف خلق مساحات تجمع بين الأناقة والوظيفة",
+        "التصميم الداخلي في خالص هو أكثر من مجرد اختيار التشطيبات؛ إنه يتعلق بتشكيل كيفية عيش الناس وشعورهم وتجربتهم للمساحة. يعمل مصممونا الداخليون عن كثب مع العملاء لإنشاء تصميمات داخلية وظيفية ومصقولة ومتوافقة مع الهوية المعمارية للمشروع.",
       description2:
-        "يقوم فريقنا المتخصص من مهندسي المناظر الطبيعية وخبراء تنسيق الحدائق بالعمل معك بشكل وثيق لفهم رؤيتك وطموحاتك، لضمان تنفيذ تصاميم متكاملة تراعي جميع التفاصيل. سواء كان لديك حديقة منزلية واسعة أو ممر تجاري جذاب، نحن نضع لمسات إبداعية تضمن الراحة والجمال وتدوم طويلاً. بفضل استخدام مواد عالية الجودة وتقنيات حديثة، نقدم حلولًا تلبي أعلى معايير الجودة والاستدامة.",
+        "نتولى كل شيء من التخطيط المكاني ومفاهيم الأجواء إلى اختيار المواد والرسومات الفنية. سواء كان ذلك لفيلا خاصة أو مساحة تجارية أو مشروع تطوير كامل، فإننا نضمن أن التصميم يعكس ذوق العميل وسياق المشروع، مع الحفاظ على كونه عمليًا وقابلاً للبناء وجاهزًا للوائح.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -70,112 +71,113 @@ const data = {
 const process = {
   eng: [
     {
-      title: "Consultation & Concept Development",
+      title: "Client Brief & Lifestyle Understanding",
       content:
-        "We start with a comprehensive consultation to understand your vision and requirements. Our team conducts a thorough site analysis to assess soil conditions, climate, and space utilization. After gathering insights, we develop 3D design concepts and detailed plans that perfectly align with your expectations",
+        "We begin by learning about your style, goals, and how each space will be used — function always comes first.",
     },
     {
-      title: "Plant Selection and Installation",
+      title: "Moodboard & Concept Development",
       content:
-        "Our horticulture experts choose plant varieties that thrive in the local climate and complement the overall landscape design. We carefully plan the arrangement to ensure seasonal color and aesthetic appeal while minimizing maintenance. From vibrant flowers to lush shrubs, we create a dynamic and enduring green space.",
+        "We translate your preferences into design direction — with curated references, material palettes, and layout studies.",
     },
     {
-      title: "Integrated Systems Installation",
+      title: "Space Planning & Layout Optimization",
       content:
-        "We focus on installing modern irrigation systems that promote efficient water usage, including drip irrigation and sprinklers. Additionally, we install strategic outdoor lighting that not only enhances nighttime aesthetics but also improves safety and functionality.",
+        "We ensure flow, usability, and comfort by organizing space logically and in harmony with structure and light.",
     },
     {
-      title: "Hardscape and Water Features",
+      title: "Material & Finish Selection",
       content:
-        "Our designers craft elegant walkways, patios, and garden paths that seamlessly connect different areas. We also incorporate water features such as fountains, waterfalls, and ponds, adding a sense of tranquility and sophistication to your outdoor environment",
+        "We help select the right materials, colors, textures, and finishes — balancing beauty, durability, and context.",
     },
     {
-      title: "Maintenance and Upkeep",
+      title: "Technical Drawings & Joinery Details",
       content:
-        "To keep your garden looking pristine, we offer comprehensive maintenance services, including pruning, irrigation management, fertilization, and pest control. We ensure your outdoor spaces remain beautiful and vibrant throughout the year.",
+        "We produce detailed interior drawings (e.g., ceilings, elevations, joinery) ready for contractors and authority approvals.",
+    },
+    {
+      title: "Design Supervision (Optional)",
+      content:
+        "We can also follow through with on-site visits, material submittal reviews, and built-work verification upon request.",
     },
   ],
   ar: [
     {
-      title: "  الاستشارة والتخطيط",
+      title: "موجز العميل وفهم نمط الحياة",
       content:
-        "نبدأ بتقديم استشارة شاملة لفهم رؤيتك واحتياجاتك. يقوم فريقنا بإجراء تحليل شامل للموقع ودراسة لتحديد أفضل تصاميم المساحات الخارجية. بعد ذلك، نقدم تصاميم ثلاثية الأبعاد تضمن وضوح الرؤية والتوافق مع توقعاتك.",
+        "نبدأ بالتعرف على أسلوبك وأهدافك، وكيف سيتم استخدام كل مساحة — الوظيفة تأتي دائمًا في المقام الأول.",
     },
     {
-      title: " اختيار النباتات وتنفيذ الزراعة",
+      title: "لوحة الإلهام وتطوير المفهوم",
       content:
-        "نقوم باختيار مجموعة متنوعة من النباتات التي تناسب المناخ المحلي وتحقق توازنًا بين الجمال والعملية. نضمن زراعة نباتات مقاومة للجفاف وتحتاج إلى صيانة قليلة، مما يضمن منظرًا طبيعيًا نابضًا بالحياة على مدار العام.",
+        "نترجم تفضيلاتك إلى توجه تصميمي، من خلال مراجع منسقة، ولوحات مواد، ودراسات للتوزيع.",
     },
     {
-      title: "تركيب الأنظمة المتكاملة",
+      title: "تخطيط المساحات وتحسين التوزيع",
       content:
-        "نركز على تصميم أنظمة ري حديثة تضمن توزيع المياه بشكل متساوٍ، مما يقلل استهلاكها ويعزز صحة النباتات. كما نقوم بتركيب أنظمة إضاءة خارجية تعزز جمال المساحات ليلاً وتخلق أجواءً ساحرة.",
+        "نضمن الانسيابية وسهولة الاستخدام والراحة من خلال تنظيم المساحة بشكل منطقي ومتناغم مع الهيكل والإضاءة.",
     },
     {
-      title: " إنشاء الممرات والأحواض والعناصر المائية ",
+      title: "اختيار المواد والتشطيبات",
       content:
-        "نصمم ممرات عصرية تربط بين المساحات المختلفة، بالإضافة إلى أحواض مائية وديكورات نوافير تضفي على المساحات طابعًا فريدًا. نهتم بجميع التفاصيل لضمان تكامل التصميم وتناغم العناصر الطبيعية",
+        "نساعد في اختيار المواد والألوان والخامات والتشطيبات المناسبة، مع تحقيق التوازن بين الجمال والمتانة والسياق.",
     },
     {
-      title: " الصيانة الدورية ",
+      title: "المخططات الفنية وتفاصيل الأعمال الخشبية",
       content:
-        "نعتمد على خطط صيانة دقيقة تضمن الحفاظ على جمال الحدائق والمساحات الخضراء. تشمل الخدمات التقليم، الري، التسميد، ومكافحة الآفات بشكل منتظم، لضمان استدامة الحدائق وجمالها طوال العام.",
+        "نُعدّ رسومات داخلية مفصلة (مثل الأسقف، الواجهات، الأعمال الخشبية) جاهزة للمقاولين وموافقات الجهات الحكومية.",
+    },
+    {
+      title: "الإشراف على التصميم (اختياري)",
+      content:
+        "يمكننا أيضًا المتابعة من خلال زيارات ميدانية، ومراجعة تقديمات المواد، والتحقق من الأعمال المنفذة عند الطلب.",
     },
   ],
 };
 const Faq = {
   eng: [
     {
-      title: "What types of outdoor spaces can you design?",
+      title:
+        "Do you work with existing architectural layouts or only your own?",
       content:
-        "We design a wide range of outdoor spaces, including residential gardens, commercial landscapes, patios, terraces, and rooftop gardens.",
+        "We can design interiors for both — whether the architecture was done by Khales or by another firm.",
     },
     {
-      title: " Do you provide eco-friendly landscaping solutions?",
+      title: "Can you help select furniture and decor too?",
       content:
-        "Yes, we prioritize sustainable practices by using drought-resistant plants, water-efficient irrigation systems, and eco-friendly materials.",
+        "Yes. We can advise or fully curate furniture and accessory selections, especially if we are involved during the fit-out phase.",
     },
     {
-      title: "How do you ensure quality in your landscape projects?",
+      title: "Do you submit drawings for authority approval?",
       content:
-        "Our team follows strict quality control measures, using premium materials and modern techniques to ensure longevity and durability. We also perform regular maintenance to keep your garden looking its best.",
+        "Yes. All technical drawings are prepared in line with UAE authority standards and submission formats.",
     },
     {
-      title: "Do you offer regular garden maintenance services?",
+      title: "What kinds of interiors do you specialize in?",
       content:
-        "Yes, we provide comprehensive maintenance packages to ensure your garden remains healthy, vibrant, and well-maintained throughout the year.",
-    },
-    {
-      title: "How can I start my landscape project with Khales?",
-      content:
-        "Simply reach out to us to schedule a consultation. Our team will discuss your vision, offer insights, and develop a customized landscape plan that suits your needs and preferences.",
+        "We design for private villas, apartments, offices, and select commercial spaces — always tailored to the project and client lifestyle.",
     },
   ],
   ar: [
     {
-      title: " ما هي أنواع المساحات التي يمكنكم تصميمها؟",
+      title: "هل تعملون على مخططات معمارية قائمة أم على تصاميمكم الخاصة فقط؟",
       content:
-        "نحن نقدم خدمات تصميم المناظر الطبيعية وتنسيق الحدائق للمساحات السكنية والتجارية على حد سواء، بما في ذلك الحدائق المنزلية، المساحات التجارية، الممرات، والشرفات.",
+        "يمكننا تصميم الديكور الداخلي لكليهما، سواء تم التصميم المعماري بواسطة شركة خالص أو شركة أخرى.",
     },
     {
-      title: " هل يمكنكم تصميم حدائق صديقة للبيئة؟",
+      title: "هل يمكنكم المساعدة في اختيار الأثاث والديكور أيضًا؟",
       content:
-        "نعم، نحرص على استخدام نباتات مقاومة للجفاف وأنظمة ري ذكية لتقليل استهلاك المياه وضمان استدامة الحدائق.",
+        "نعم. يمكننا تقديم المشورة أو تنسيق اختيارات الأثاث والإكسسوارات بالكامل، خاصة إذا كنا مشاركين في مرحلة التشطيب.",
     },
     {
-      title: "كيف تضمنون جودة التنفيذ؟",
+      title: "هل تقدمون المخططات للحصول على موافقة الجهات الحكومية؟",
       content:
-        "نحن نلتزم بأعلى معايير الجودة من خلال استخدام مواد معتمدة وتقنيات حديثة، بالإضافة إلى إشراف مباشر من فريقنا على جميع مراحل التنفيذ.",
+        "نعم. يتم إعداد جميع المخططات الفنية بما يتماشى مع معايير الجهات الحكومية في الإمارات وصيغ التقديم المعتمدة.",
     },
     {
-      title: "هل تشمل خدماتكم الصيانة الدورية؟",
+      title: "ما هي أنواع التصاميم الداخلية التي تتخصصون فيها؟",
       content:
-        "نعم، نقدم خدمات صيانة شاملة تضمن بقاء الحدائق والمساحات الخارجية في أفضل حالة على مدار العام.",
-    },
-    {
-      title: "  كيف يمكنني البدء بمشروع تصميم المناظر الطبيعية معكم؟ ",
-      content:
-        "ما عليك سوى الاتصال بنا لتحديد موعد استشارة. سنعمل معك على وضع خطة تصميم تلبي رؤيتك وتطلعاتك، مع ضمان تجربة متميزة من البداية حتى النهاية",
+        "نصمم للفلل الخاصة، والشقق، والمكاتب، ومساحات تجارية مختارة، مع الحرص دائمًا على أن يكون التصميم مخصصًا للمشروع ونمط حياة العميل.",
     },
   ],
 };
@@ -270,7 +272,7 @@ const LandscapingDesignPage = () => {
           <OurProcessWork panels={process[language]} />
           <img width={"300px"} src={"/assets/4.png"} alt="Process Work" />
         </Row2>
-        <ProjectHighlight data={ProjectHighlightdata[language]} />
+        {/* <ProjectHighlight data={ProjectHighlightdata[language]} /> */}
 
         <Title2>
           {language === "ar" ? "الأسئلة الشائعة " : "Frequently Asked"}

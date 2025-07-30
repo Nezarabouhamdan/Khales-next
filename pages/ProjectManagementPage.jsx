@@ -16,18 +16,20 @@ export const slides = {
   eng: [
     {
       id: 1,
-      image: "https://i.ibb.co/W4CfS4wX/project.jpg",
-      title: "Efficient Project Management for Success",
-      content: "Delivering seamless projects from concept to completion",
+      image: "https://i.ibb.co/jZBcL9d6/1-Banner-360.jpg",
+      title: "Complete Project Delivery: From Concept to Handover",
+      content:
+        "We take full responsibility at every stage, so your project runs smoothly, on time, and to the highest standards.",
       button: "Book Appointment",
     },
   ],
   ar: [
     {
       id: 1,
-      image: "https://i.ibb.co/W4CfS4wX/project.jpg",
-      title: "إدارة مشاريع فعالة لتحقيق النجاح",
-      content: "تنفيذ مشاريع متكاملة من الفكرة إلى الإنجاز",
+      image: "https://i.ibb.co/jZBcL9d6/1-Banner-360.jpg",
+      title: "تسليم كامل للمشروع: من الفكرة إلى التسليم",
+      content:
+        "نتحمل المسؤولية الكاملة في كل مرحلة، لضمان سير مشروعك بسلاسة، في الوقت المحدد، وبأعلى المعايير.",
       button: "احجز موعدك الآن",
     },
   ],
@@ -35,12 +37,12 @@ export const slides = {
 const data = {
   eng: [
     {
-      title: " Project Management ",
-      subtitle: "Services",
+      title: "360 Project Management ",
+      subtitle: "",
       description1:
-        "At Khales Project Management, we don't just manage projects—we deliver end-to-end solutions that transform your vision into reality. From strategic planning to execution and final handover, our expert team ensures that your projects are completed on time, within budget, and to the highest standards. Whether it’s a construction project, infrastructure development, or a complex industrial initiative, we provide turnkey solutions that drive success and exceed expectations",
+        "Our 360 Project Management service is a fully integrated solution that covers the entire lifecycle of your project. From early planning and design coordination to authority approvals, construction management, and final handover, we handle it all. You deal with one trusted partner while we manage all consultants, contractors, documents, timelines, and decisions on your behalf.",
       description2:
-        "Our approach combines industry expertise, cutting-edge tools, and a commitment to precision and innovation. We work closely with you to understand your goals, anticipate challenges, and deliver results that align with your vision. With a focus on quality, efficiency, and sustainability, we ensure your project not only meets but surpasses its objectives.",
+        "This service is ideal for clients who want peace of mind, fewer headaches, and a professional team ensuring that the work is done right — on time, on budget, and to the standard you expect.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -51,13 +53,12 @@ const data = {
   ],
   ar: [
     {
-      title: " خدمات إدارة",
-      subtitle: "المشاريع",
-
+      title: " خدمة إدارة المشاريع الشاملة (360)  ",
+      subtitle: "",
       description1:
-        "في خالص لإدارة المشاريع، لا نقتصر على إدارة المشاريع فقط، بل نقدم حلولًا شاملة تحول رؤيتك إلى واقع ملموس. من التخطيط الاستراتيجي إلى التنفيذ والتسليم النهائي، يضمن فريقنا الخبير إتمام مشاريعك في الوقت المحدد، وضمن الميزانية، ووفقًا لأعلى المعايير. سواء كان مشروعًا إنشائيًا، أو تطويرًا للبنية التحتية، أو مبادرة صناعية معقدة، نقدم حلولًا متكاملة تدفع بالنجاح وتتجاوز التوقعات.",
+        "خدمة إدارة المشاريع الشاملة (360) التي نقدمها هي حل متكامل يغطي دورة حياة مشروعك بأكملها. من التخطيط المبكر وتنسيق التصميم إلى موافقات الجهات الحكومية وإدارة البناء والتسليم النهائي، نحن نتولى كل شيء. أنت تتعامل مع شريك واحد موثوق به بينما ندير جميع الاستشاريين والمقاولين والوثائق والجداول الزمنية والقرارات نيابةً عنك.",
       description2:
-        "يجمع نهجنا بين الخبرة الصناعية، والأدوات المتطورة، والالتزام بالدقة والابتكار. نعمل معكم عن كثب لفهم أهدافكم، وتوقع التحديات، وتقديم نتائج تتوافق مع رؤيتكم. مع التركيز على الجودة، والكفاءة، والاستدامة، نضمن أن مشروعكم لا يلبي الأهداف فحسب، بل يتجاوزها.",
+        "هذه الخدمة مثالية للعملاء الذين يرغبون في راحة البال، وتقليل المتاعب، وفريق محترف يضمن إنجاز العمل بشكل صحيح — في الوقت المحدد، وضمن الميزانية، وبالمستوى الذي تتوقعه.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -71,24 +72,34 @@ const data = {
 const process = {
   eng: [
     {
-      title: "Strategic Planning & Consultation",
+      title: "Project Setup & Briefing",
       content:
-        "Every successful project starts with a clear vision. Our process begins with in-depth consultations where we listen to your ideas, objectives, and challenges. Through thorough analysis and discussion, we develop a customized project plan that serves as the foundation for successful execution. This phase ensures that all aspects are meticulously planned to achieve maximum clarity and efficiency.\nKey Elements:\nVision & Goal Setting: Understanding your project ambitions.\nFeasibility Studies: Evaluating technical and financial viability.\nRisk Assessment & Mitigation: Identifying potential challenges and developing contingency plans.\nProject Blueprint: Crafting a detailed project roadmap to ensure seamless execution",
+        " We begin by understanding your goals, site conditions, and expectations. We then build a delivery strategy that matches your timeline and budget.",
     },
     {
-      title: "Design & Development",
+      title: "Design Coordination",
       content:
-        "We translate your vision into reality through innovative design and precise development. Our team of experts utilizes advanced technology to create sustainable designs that balance aesthetic appeal with functionality. From material selection to custom architectural details, every aspect is thoughtfully designed to meet your unique needs.\nKey Elements:\nConceptual Design: Crafting visual representations and blueprints.\nSustainable Materials: Selecting eco-friendly and durable options.\nCollaborative Approach: Involving stakeholders at every step.\nInnovation & Precision: Ensuring cutting-edge solutions with meticulous attention to detail.",
+        "We manage architects, engineers, and consultants to ensure the design process is aligned, efficient, and technically sound.",
     },
     {
-      title: "Execution & Monitoring",
+      title: "Approvals & Permitting",
       content:
-        "With the design phase complete, our dedicated team takes over to execute the project with unwavering commitment to quality. We manage resource allocation, timeline adherence, and quality control through real-time monitoring. Our project managers coordinate every aspect of construction, from procurement to installation, to guarantee seamless progress.\nKey Elements:\nEfficient Resource Management: Allocating materials and manpower.\nContinuous Monitoring: Keeping track of progress with regular updates.\nProactive Problem Solving: Addressing issues before they escalate.\nQuality Assurance: Adhering to the highest standards in every detail.",
+        "We prepare and submit all necessary documents to local authorities, handling follow-ups and compliance.",
     },
     {
-      title: "Delivery & Evaluation",
+      title: "Procurement & Contractor Selection",
       content:
-        "We don’t just finish projects; we perfect them. Upon completion, our team conducts comprehensive evaluations to verify that every element meets our rigorous standards of excellence. We perform post-completion inspections, client walkthroughs, and performance assessments to ensure that your investment continues to deliver long-lasting value.\nKey Elements:\nFinal Inspections: Ensuring compliance with standards.\nClient Satisfaction: Walking through the finished project to verify satisfaction.\nPerformance Analysis: Assessing the efficiency and functionality of the project.\nMaintenance Recommendations: Providing guidance on upkeep and optimization.",
+        "We identify qualified contractors, evaluate bids, and negotiate the best options to balance cost and quality.",
+    },
+    {
+      title: "Construction Management",
+      content:
+        "We monitor site work daily, review progress, resolve conflicts, and make sure timelines and specs are followed.",
+    },
+    {
+      title: "Final Handover",
+      content:
+        "We ensure the project is completed properly — with quality checks, documentation, and smooth handover to the client.",
     },
   ],
   ar: [
@@ -117,44 +128,25 @@ const process = {
 const Faq = {
   eng: [
     {
-      title: "What project management services do you offer in the UAE",
+      title:
+        "What’s the difference between 360 Project Management and hiring a contractor directly?",
       content:
-        "We provide end-to-end project management services in the UAE, including construction project management, fit-out management, MEP coordination, and sustainable building solutions. Our services are tailored to meet the unique demands of the UAE and GCC market.",
+        "With 360 Project Management, you’re not just hiring a builder — you’re hiring a professional team to plan, oversee, and control every step of your project. We coordinate all parties, not just execute construction.",
     },
     {
-      title: "What makes Khales Project Management different from other firms?",
+      title: "Will I still be involved in decisions?",
       content:
-        "We stand out because we deliver bespoke solutions, prioritize sustainability, and use real-time monitoring to keep your project on track. With industry expertise and a client-first approach, we ensure your project is completed on time, within budget, and to the highest standards. From start to finish, we’re here to make your vision a reality.",
+        "Yes. You remain in control, and we provide structured updates and recommendations so you can make informed decisions without dealing with daily project stress.",
     },
     {
-      title: "Do you have experience working on UAE-based projects?",
+      title: "Does this include authority approvals?",
       content:
-        "Yes, we have extensive experience managing projects across the UAE, including high-rise buildings, commercial developments, residential complexes, and infrastructure projects. Our team is well-versed in local regulations and standards.",
+        "Yes. We handle all approval processes — drawings, permits, inspections, and submissions — as part of the full-service scope.",
     },
     {
-      title: "How do you ensure compliance with UAE regulations and standards?",
+      title: "What types of projects is this service best for?",
       content:
-        "Our team stays updated on Dubai Municipality regulations, DDA (Dubai Development Authority) guidelines, and Abu Dhabi UPC codes. We ensure all projects adhere to local laws, permitting processes, and sustainability requirements like Al Sa’fat in Dubai.",
-    },
-    {
-      title: "Can you manage fit-out projects across all seven emirates?",
-      content:
-        "Absolutely. We specialize in fit-out project management for offices, retail spaces, and hospitality venues in Dubai, Abu Dhabi, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah, and Fujairah. From design coordination to final handover, we handle every detail to ensure a seamless and high-quality finish.",
-    },
-    {
-      title: "How do you handle delays caused by UAE weather or logistics?",
-      content:
-        "We factor in UAE-specific challenges, such as extreme weather and supply chain delays, during the planning phase. Our real-time monitoring system allows us to adapt quickly and keep projects on track.",
-    },
-    {
-      title: "How do you ensure quality in UAE construction projects?",
-      content:
-        "We implement rigorous quality control processes, including regular inspections and compliance checks, to meet UAE construction standards and deliver projects of the highest quality.",
-    },
-    {
-      title: "How can I get a quote for my project in the UAE?",
-      content:
-        "Simply contact us with your project details, and we’ll provide a customized quote tailored to your needs. Our team is ready to help you bring your vision to life.",
+        "360 Project Management is ideal for private villas, luxury residences, commercial properties, or any project that requires clear coordination and accountability across all phases.",
     },
   ],
   ar: [
@@ -287,9 +279,13 @@ const ProjectManagementPage = () => {
           style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
         >
           <OurProcessWork panels={process[language]} />
-          <img width={"300px"} src={"/assets/4.png"} alt="Process Work" />
+          <img
+            width={"300px"}
+            src={"https://i.ibb.co/tdm4dt5/2-Process-360.jpg"}
+            alt="Process Work"
+          />
         </Row2>
-        <ProjectHighlight data={ProjectHighlightdata[language]} />
+        {/* <ProjectHighlight data={ProjectHighlightdata[language]} /> */}
 
         <Title2>
           {language === "ar" ? "الأسئلة الشائعة " : "Frequently Asked"}

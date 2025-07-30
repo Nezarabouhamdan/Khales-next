@@ -13,38 +13,37 @@ import dynamic from "next/dynamic";
 import banner from "@/public/assets/banner/project.jpeg";
 import styled from "styled-components";
 const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
-const slides = {
+export const slides = {
   eng: [
     {
       id: 1,
-      image:
-        "https://i.ibb.co/DPKhyq7k/khales-ae-real-photograph-of-a-super-luxury-modern-mansion-fr-c2c57d33-5a47-4ccb-b054-498b16745d23-3.png",
-      title: "Make confident decisions with data-driven insights.",
-      content: "Your roadmap to smarter investments.",
-      button: "Start You Project Today",
+      image: "https://i.ibb.co/WWw0FNK7/7-Banner-Feasibility.jpg",
+      title: "Know the Potential Before You Build",
+      content:
+        "Helping you assess if your project makes sense — financially, functionally, and within your timeline.",
+      button: "Start Your Project Today",
     },
   ],
   ar: [
     {
       id: 1,
-      image:
-        "https://i.ibb.co/DPKhyq7k/khales-ae-real-photograph-of-a-super-luxury-modern-mansion-fr-c2c57d33-5a47-4ccb-b054-498b16745d23-3.png",
-      title: "اتخذ قرارات واثقة مبنية على تحليلات دقيقة مدعومة بالبيانات.",
-      content: "خارطة طريقك نحو استثمارات أكثر ذكاءً.",
-      button: " ابدأ مشروعك اليوم",
+      image: "https://i.ibb.co/WWw0FNK7/7-Banner-Feasibility.jpg",
+      title: "اعرف إمكانيات مشروعك قبل أن تبدأ بالبناء",
+      content:
+        "نساعدك على تقييم ما إذا كان مشروعك منطقيًا من الناحية المالية والوظيفية وضمن جدولك الزمني.",
+      button: "ابدأ مشروعك اليوم",
     },
   ],
 };
-
 const data = {
   eng: [
     {
-      title: "Project Feasibility  ",
-      subtitle: "Study Service",
+      title: "Feasibility Study ",
+      subtitle: "Service",
       description1:
-        "A feasibility study is more than just a report—it’s a decision-making tool that helps you assess whether a project is worth pursuing.",
+        "A great idea is not always a viable project; that is where our Feasibility Study comes in. Before you invest in land, design, or construction, we help you evaluate whether the project is achievable, profitable, and aligned with your budget, site conditions, and regulatory framework.",
       description2:
-        ". At Khales, we conduct comprehensive feasibility studies that evaluate the financial, technical, operational, and market viability of your project. We help you understand risks, identify opportunities, and build the foundation for long-term success.",
+        "Khales' team reviews all key factors: land potential, design requirements, authority constraints, estimated costs, and timeframes. We then prepare a clear, data-backed summary of your project’s risks, strengths, and practical next steps, so you can move forward with clarity and confidence.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -55,12 +54,12 @@ const data = {
   ],
   ar: [
     {
-      title: "خدمة دراسة",
-      subtitle: "جدوى المشروع",
+      title: "خدمة دراسة ",
+      subtitle: "الجدوى",
       description1:
-        "دراسة الجدوى ليست مجرد تقرير، بل أداة تساعدك في اتخاذ القرار الصحيح بشأن مشروعك.",
+        "الفكرة العظيمة ليست دائمًا مشروعًا قابلاً للتطبيق، وهنا يأتي دور دراسة الجدوى التي نقدمها. قبل أن تستثمر في الأرض أو التصميم أو البناء، نساعدك على تقييم ما إذا كان المشروع قابلاً للتحقيق ومربحًا ومتوافقًا مع ميزانيتك وظروف الموقع والإطار التنظيمي.",
       description2:
-        "في خالص، نقوم بإعداد دراسات جدوى شاملة تُقيّم الجوانب المالية، الفنية، التشغيلية، والسوقية لأي مشروع. نساعدك على فهم المخاطر، اكتشاف الفرص، وبناء أساس قوي للنجاح المستدام.",
+        "يراجع فريق خالص جميع العوامل الرئيسية: إمكانيات الأرض، ومتطلبات التصميم، وقيود الجهات الحكومية، والتكاليف التقديرية، والجداول الزمنية. بعد ذلك، نُعدّ ملخصًا واضحًا مدعومًا بالبيانات لمخاطر مشروعك ونقاط قوته وخطواته العملية التالية، حتى تتمكن من المضي قدمًا بوضوح وثقة.",
       images: [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
         "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
@@ -70,122 +69,115 @@ const data = {
     },
   ],
 };
-
 const process = {
   eng: [
     {
-      title: "Project Understanding & Consultation",
+      title: "Project Objective Review",
       content:
-        "We begin by learning about your goals, challenges, and expectations. Our team gathers all required inputs before moving into deeper market and business analysis.",
+        "We begin by understanding what you want to build, why, and what your targets are — financial, functional, or strategic.",
     },
     {
-      title: "Market & Industry Research",
+      title: "Site & Location Analysis",
       content:
-        "We analyze demand, competition, pricing, and audience behavior to assess the viability and potential of your idea.",
+        "We assess site constraints, access, zoning, exposure, and local market dynamics.",
     },
     {
-      title: "Financial & Technical Analysis",
+      title: "Design & Regulatory Considerations",
       content:
-        "We estimate capital and operational costs, revenue projections, and investment returns. Technical feasibility, including logistics and infrastructure, is also assessed.",
+        "We study what’s allowed, what design challenges may arise, and what approvals will be required.",
     },
     {
-      title: "Alternatives & Risk Planning",
+      title: "Budget & Cost Estimate",
       content:
-        "We explore different development options and identify potential risks, along with strategies to mitigate them.",
+        "We develop a high-level cost estimate, factoring in design, construction, approvals, and key risks.",
     },
     {
-      title: "Conclusion & Recommendations",
+      title: "Timeline Mapping",
       content:
-        "You’ll receive a complete, clear summary that outlines whether the project is feasible and how to best proceed.",
+        "We provide a realistic delivery timeline, including design, permitting, and construction phases.",
+    },
+    {
+      title: "Viability Report",
+      content:
+        "You receive a full summary of findings — with a clear go/no-go recommendation and action plan.",
     },
   ],
   ar: [
     {
-      title: "فهم المشروع والاستشارة الأولية",
+      title: "مراجعة أهداف المشروع",
       content:
-        "نبدأ بفهم أهدافك وتحدياتك وتوقعاتك. يجمع فريقنا كل المعلومات الأساسية قبل الانتقال إلى التحليل الفني والسوقي.",
+        "نبدأ بفهم ما تريد بناءه، والسبب وراء ذلك، وما هي أهدافك — سواء كانت مالية أو وظيفية أو استراتيجية.",
     },
     {
-      title: "بحث السوق والقطاع",
+      title: "تحليل الموقع والمنطقة",
       content:
-        "نقوم بتحليل العرض والطلب، التسعير، سلوك الجمهور، والمنافسة لفهم إمكانات المشروع",
+        "نقوم بتقييم قيود الموقع، وسهولة الوصول إليه، والتصنيف، والرؤية، وديناميكيات السوق المحلي.",
     },
     {
-      title: "التحليل المالي والفني",
+      title: "اعتبارات التصميم واللوائح التنظيمية",
       content:
-        "نقدّر التكاليف الرأسمالية والتشغيلية، العائد على الاستثمار، وندرس الجوانب الفنية مثل البنية التحتية والعمليات.",
+        "ندرس ما هو مسموح به، وما هي تحديات التصميم التي قد تظهر، وما هي الموافقات التي ستكون مطلوبة.",
     },
     {
-      title: "دراسة البدائل وتخطيط المخاطر",
+      title: "الميزانية وتقدير التكاليف",
       content:
-        "نقترح حلول بديلة ونحدّد المخاطر المحتملة مع تقديم خطط للحد منها.",
+        "نضع تقديرًا عالي المستوى للتكاليف، مع الأخذ في الاعتبار التصميم، والبناء، والموافقات، والمخاطر الرئيسية.",
     },
     {
-      title: " التوصيات النهائية ",
+      title: "وضع الجدول الزمني",
       content:
-        "نقدّم ملخصًا واضحًا يحدد مدى جدوى المشروع مع خطوات وتوصيات تنفيذية للمضي قدمًا.",
+        "نقدم جدولًا زمنيًا واقعيًا للتسليم، يشمل مراحل التصميم، والحصول على التصاريح، والبناء.",
+    },
+    {
+      title: "تقرير الجدوى",
+      content:
+        "تتلقى ملخصًا كاملاً للنتائج — مع توصية واضحة بالمتابعة أو عدمها وخطة عمل للمضي قدمًا.",
     },
   ],
 };
 const Faq = {
   eng: [
     {
-      title: "Who should get a feasibility study?",
+      title: "Who needs a feasibility study?",
       content:
-        "Real estate developers, startups, nonprofits, and investors planning a new venture or assessing land potential.",
+        "Anyone considering a new project — villa owners, landowners, investors, or developers — should do this before committing large time or capital.",
     },
     {
-      title: "How long does a feasibility study take?",
-      content: "Typically 20–24 days depending on project size and scope.",
-    },
-    {
-      title: "Can it help secure funding?",
+      title: "Does this include financial returns or ROI projections?",
       content:
-        "Yes. Many clients use our studies to pitch to banks, investors, or government entities.",
+        "Yes. For investment-oriented projects, we can include basic return projections, sale/rental values, or holding cost scenarios.",
     },
     {
-      title: "Can you handle both small and large-scale projects?",
+      title: "Will you help move forward if the project is viable?",
       content:
-        "Absolutely. Whether it’s a small villa or a large commercial complex, we tailor our services to meet the scale and scope of your project.",
+        "Absolutely. If the study shows green lights, we can continue with design, approvals, and full project management.",
     },
     {
-      title: "Is it fully customized?",
+      title: "How accurate are the cost and timeline estimates?",
       content:
-        "Absolutely. Each report is tailored to your specific location, industry, and goals.",
-    },
-    {
-      title: "Do you offer fast-track delivery?",
-      content: "Yes, expedited timelines are available upon request.",
+        "They are based on current market conditions and Khales’ experience across the UAE — offering a realistic early-stage forecast.",
     },
   ],
   ar: [
     {
       title: "من يحتاج إلى دراسة جدوى؟",
       content:
-        "المطورون العقاريون، رواد الأعمال، الجهات غير الربحية، والمستثمرون الذين يخططون لمشاريع جديدة أو تقييم أراضٍ.",
+        "أي شخص يفكر في مشروع جديد — سواء كان مالك فيلا، أو مالك أرض، أو مستثمر، أو مطور عقاري — يجب أن يقوم بهذه الدراسة قبل الالتزام بوقت أو رأس مال كبير.",
     },
     {
-      title: " كم تستغرق دراسة الجدوى؟",
-      content: "تستغرق الدراسة عادة من ٢٠ إلى ٢٤ يومًا حسب حجم المشروع.",
-    },
-    {
-      title: " هل تساعد في تأمين تمويل؟",
+      title: "هل تشمل الدراسة توقعات العوائد المالية أو العائد على الاستثمار؟",
       content:
-        "نعم، يستخدمها العديد من عملائنا للحصول على تمويل من بنوك أو جهات استثمارية أو حكومية.",
+        "نعم. للمشاريع ذات التوجه الاستثماري، يمكننا تضمين توقعات العوائد الأساسية، أو قيم البيع/الإيجار، أو سيناريوهات تكاليف الاحتفاظ.",
     },
     {
-      title: "هل الدراسة مخصصة حسب المشروع؟",
+      title: "هل تساعدون في المضي قدمًا إذا كان المشروع مجديًا؟",
       content:
-        "بالتأكيد. يتم تخصيص كل دراسة وفقًا للقطاع، والموقع، والأهداف الخاصة بك.",
+        "بالتأكيد. إذا أظهرت الدراسة نتائج إيجابية، يمكننا المتابعة بالتصميم، والحصول على الموافقات، وإدارة المشروع بالكامل.",
     },
     {
-      title: "هل تقدمون حلول بناء مستدامة؟",
+      title: "ما مدى دقة تقديرات التكلفة والجدول الزمني؟",
       content:
-        "نعم، ندمج حلول البناء المستدام باستخدام مواد صديقة للبيئة وتقنيات موفرة للطاقة، بما يتماشى مع رؤية دولة الإمارات في الحفاظ على البيئة.",
-    },
-    {
-      title: "هل تقدمون خدمة التسليم السريع؟ ",
-      content: "نعم، يمكننا توفير خدمة عاجلة عند الطلب",
+        "تستند تقديراتنا إلى ظروف السوق الحالية وخبرة شركة خالص في جميع أنحاء الإمارات، مما يوفر توقعات واقعية للمراحل المبكرة.",
     },
   ],
 };
@@ -286,9 +278,13 @@ function Projectstudy() {
           style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
         >
           <OurProcessWork panels={process[language]} />
-          <img width={"300px"} src={"/assets/4.png"} alt="Process Work" />
+          <img
+            width={"300px"}
+            src={"https://i.ibb.co/YB8KsmD5/8-Process-Feasibility.jpg"}
+            alt="Process Work"
+          />
         </Row2>
-        <ProjectHighlight data={ProjectHighlightdata[language]} />
+        {/* <ProjectHighlight data={ProjectHighlightdata[language]} /> */}
 
         <Title2>
           {language === "ar" ? "الأسئلة الشائعة " : "Frequently Asked"}
