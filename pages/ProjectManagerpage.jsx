@@ -147,46 +147,6 @@ const process = {
 const Faq = {
   eng: [
     {
-      title: "What project management services do you offer in the UAE?",
-      content:
-        "We provide end-to-end project management services in the UAE, including construction project management, fit-out management, MEP coordination, and sustainable building solutions. Our services are tailored to meet the unique demands of the UAE and GCC market.",
-    },
-    {
-      title: "What makes Khales Project Management different from other firms?",
-      content:
-        "We stand out because we deliver bespoke solutions, prioritize sustainability, and use real-time monitoring to keep your project on track. With industry expertise and a client-first approach, we ensure your project is completed on time, within budget, and to the highest standards. From start to finish, we’re here to make your vision a reality.",
-    },
-    {
-      title: "Do you have experience working on UAE-based projects?",
-      content:
-        "Yes, we have extensive experience managing projects across the UAE, including high-rise buildings, commercial developments, residential complexes, and infrastructure projects. Our team is well-versed in local regulations and standards.",
-    },
-    {
-      title: "How do you ensure compliance with UAE regulations and standards?",
-      content:
-        "Our team stays updated on Dubai Municipality regulations, DDA (Dubai Development Authority) guidelines, and Abu Dhabi UPC codes. We ensure all projects adhere to local laws, permitting processes, and sustainability requirements like Al Sa’fat in Dubai.",
-    },
-    {
-      title: "Can you manage fit-out projects across all seven emirates?",
-      content:
-        "Absolutely. We specialize in fit-out project management for offices, retail spaces, and hospitality venues in Dubai, Abu Dhabi, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah, and Fujairah. From design coordination to final handover, we handle every detail to ensure a seamless and high-quality finish.",
-    },
-    {
-      title: "How do you handle delays caused by UAE weather or logistics?",
-      content:
-        "We factor in UAE-specific challenges, such as extreme weather and supply chain delays, during the planning phase. Our real-time monitoring system allows us to adapt quickly and keep projects on track.",
-    },
-    {
-      title: "How do you ensure quality in UAE construction projects?",
-      content:
-        "We implement rigorous quality control processes, including regular inspections and compliance checks, to meet UAE construction standards and deliver projects of the highest quality.",
-    },
-    {
-      title: "How can I get a quote for my project in the UAE?",
-      content:
-        "Simply contact us with your project details, and we’ll provide a customized quote tailored to your needs. Our team is ready to help you bring your vision to life.",
-    },
-    {
       title: "How is this different from full 360 Project Management?",
       content:
         "With 360, we handle every part of the project from design to construction. As your Project Manager, we represent your interests within a project that may already have its own team — keeping everything on track while you remain the final decision-maker.",
@@ -208,47 +168,6 @@ const Faq = {
     },
   ],
   ar: [
-    {
-      title: "ما هي خدمات إدارة المشاريع التي تقدمونها في الإمارات؟",
-      content:
-        "نحن نقدم إدارة مشاريع شاملة تتضمن إدارة الإنشاءات والتشطيبات، بالإضافة إلى تنسيق أعمال الهندسة الميكانيكية والكهربائية والصحية (MEP)، وتقديم حلول بناء مستدامة. جميع خدماتنا مصممة خصيصًا لتلبية متطلبات السوق في الإمارات ودول الخليج.",
-    },
-    {
-      title: "ما الذي يميّز شركة خالص لإدارة المشاريع عن الشركات الأخرى؟",
-      content:
-        "نحن نتميز بتقديم حلول مخصصة تلبي احتياجاتكم بدقة، مع التركيز على الممارسات المستدامة والمراقبة الفورية لضمان سير المشاريع بسلاسة. بفضل فريقنا المتخصص ونهجنا الذي يركز على العملاء، نضمن تسليم مشاريعكم في الوقت المحدد، وضمن الميزانية، وبأعلى معايير الجودة.",
-    },
-    {
-      title: " هل لديكم خبرة في تنفيذ المشاريع في الإمارات؟",
-      content:
-        "نعم، لدينا خبرة واسعة في إدارة المشاريع في مختلف أنحاء الإمارات، وتشمل هذه المشاريع المباني الشاهقة، والمشاريع التجارية، والمجمعات السكنية، بالإضافة إلى تطوير البنية التحتية. ونحن على دراية كاملة باللوائح والمعايير المحلية.",
-    },
-    {
-      title: "كيف تضمنون الامتثال للوائح ومعايير البناء في دولة الإمارات؟",
-      content:
-        "نحرص دائمًا على مواكبة أحدث اللوائح والمعايير المحلية في جميع إمارات الدولة. ففي دبي، نلتزم بمعايير بلدية دبي وإرشادات هيئة تطوير دبي، بينما نتبع في أبوظبي معايير التخطيط العمراني. كما نراعي متطلبات الاستدامة، مثل نظام السعفات في دبي. وبهذه الإجراءات، نضمن تنفيذ مشاريعنا وفقًا لأعلى المعايير المطلوبة في كل إمارة.",
-    },
-    {
-      title: "هل تديرون مشاريع التشطيبات الداخلية في جميع الإمارات السبع؟",
-      content:
-        "نحن متخصصون في إدارة مشاريع التشطيبات الداخلية للمكاتب، والمساحات التجارية، والفنادق في جميع إمارات الدولة، بما في ذلك دبي وأبوظبي والشارقة وعجمان وأم القيوين ورأس الخيمة والفجيرة. نولي اهتمامًا دقيقًا بكل التفاصيل، بدءًا من التصميم وحتى التسليم النهائي، لضمان تشطيبات عالية الجودة تفوق توقعاتكم.",
-    },
-    {
-      title:
-        "كيف تتعاملون مع التأخيرات الناتجة عن الطقس أو تحديات الإمداد في الإمارات؟",
-      content:
-        "ظرًا للتحديات المناخية الفريدة في دولة الإمارات، كالارتفاع الشديد في درجات الحرارة والرطوبة، بالإضافة إلى تحديات سلاسل التوريد، فإننا نوليها اهتمامًا خاصًا. وخلال مرحلة التخطيط، نضع خططًا بديلة ونتعامل بمرونة مع أي تغييرات غير متوقعة. كما نعتمد نظام مراقبة فورية يسمح لنا بالتكيف السريع مع الظروف الطارئة، مما يضمن سير المشروع في مساره الصحيح دون تأخيرات كبيرة.",
-    },
-    {
-      title: " كيف تضمنون جودة البناء في مشاريع الإمارات؟",
-      content:
-        "نلتزم بأعلى معايير الجودة من خلال تطبيق إجراءات صارمة لمراقبة الجودة، والتي تتضمن عمليات تفتيش منتظمة ومراجعات شاملة للتأكد من الالتزام بمعايير البناء المحلية والدولية. نحرص على متابعة كل مرحلة من مراحل المشروع بدقة، مما يضمن تسليم مشاريع عالية الجودة ومتميزة التنفيذ.",
-    },
-    {
-      title: "كيف يمكنني الحصول على عرض سعر لمشروعي في الإمارات؟",
-      content:
-        "كل ما عليك فعله هو التواصل معنا وتزويدنا بتفاصيل مشروعك، وسنقوم بإعداد عرض أسعار مخصص يناسب احتياجاتك. فريقنا على أتم الاستعداد لمساعدتك في تحقيق رؤيتك.",
-    },
     {
       title: "ما الفرق بين هذه الخدمة والإدارة الشاملة للمشاريع (360)؟",
       content:
