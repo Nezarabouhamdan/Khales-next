@@ -117,7 +117,7 @@ const servicesData = {
       {
         slug: "engineering-supervision",
         path: "/EngineeringSupervision", // <-- CORRECTED PATH
-        image: "https://i.ibb.co/Yc5tZzD/supervision.jpg",
+        image: "https://i.ibb.co/fGNXpJH0/3-Banner-Site-Supervision.jpg",
         eng: {
           title: "Engineering Supervision",
           description:
@@ -132,7 +132,7 @@ const servicesData = {
       {
         slug: "interior-design",
         path: "/InteriorDesign", // <-- CORRECTED PATH
-        image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
+        image: "https://i.ibb.co/7bNq3fN/landscape-card.jpg",
         eng: {
           title: "Interior Design",
           description:
