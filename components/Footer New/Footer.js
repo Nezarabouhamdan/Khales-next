@@ -11,11 +11,11 @@ const footerContent = {
       "Khales Group, your trusted partner in transforming visions into successful projects.",
     servicesTitle: "Our Services",
     servicesLinks: [
-      { text: "Project Management", href: "/ProjectManagement" },
-      { text: "Engineering consultancy", href: "/EngineeringConsultancy" },
-      { text: "Investing", href: "/Investing" },
-      { text: "Interior Design", href: "/InteriorDesign" },
-      { text: "Landscaping", href: "/LandscapingDesign" },
+      { text: "Project Management", href: "/services/project-management" },
+      {
+        text: "Engineering Consultancy",
+        href: "/services/engineering-consultancy",
+      },
     ],
     companyTitle: "Company",
     companyLinks: [
@@ -37,11 +37,11 @@ const footerContent = {
     description: "مجموعة خالص، شريككم الموثوق في تحويل الرؤى إلى مشاريع ناجحة.",
     servicesTitle: "خدماتنا",
     servicesLinks: [
-      { text: "إدارة المشاريع", href: "/ProjectManagement" },
-      { text: "الاستشارات الهندسية", href: "/EngineeringConsultancy" },
-      { text: "الاستثمار", href: "/Investing" },
-      { text: "التصميم الداخلي", href: "/InteriorDesign" },
-      { text: "مناظر طبيعية", href: "/LandscapingDesign" },
+      { text: "إدارة المشاريع", href: "/services/project-management" },
+      {
+        text: "الاستشارات الهندسية",
+        href: "/services/engineering-consultancy",
+      },
     ],
     companyTitle: "الشركة",
     companyLinks: [

@@ -132,7 +132,7 @@ const servicesData = {
       {
         slug: "interior-design",
         path: "/InteriorDesign", // <-- CORRECTED PATH
-        image: "https://i.ibb.co/7bNq3fN/landscape-card.jpg",
+        image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
         eng: {
           title: "Interior Design",
           description:
@@ -147,7 +147,7 @@ const servicesData = {
       {
         slug: "landscape-design",
         path: "/LandscapingDesign", // <-- CORRECTED PATH
-        image: "https://i.ibb.co/7bNq3fN/landscape-card.jpg",
+        image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
         eng: {
           title: "Landscape Design",
           description:
