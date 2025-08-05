@@ -13,7 +13,7 @@ export const dictionary = {
         isDropdown: true,
         children: [
           { label: "نبذة عنا", path: "/about-us" },
-          { label: "المدونة", path: "/blogs" },
+          { label: "المدونة", path: "/blog" },
         ],
       },
       {
@@ -185,10 +185,10 @@ export const dictionary = {
     ],
     companyTitle: "الشركة",
     companyLinks: [
-      { text: "About", href: "/about-us" },
-      { text: "Contact us", href: "/Contact" },
-      { text: "Blogs", href: "/Blogs" },
-      { text: "Book Consultation", href: "/booking" },
+      { text: "نبذة عنا", href: "/about-us" },
+      { text: " تواصل معنا", href: "/Contact" },
+      { text: "المدونة", href: "/blog" },
+      { text: "احجز استشارة", href: "/booking" },
     ],
     contactTitle: "اتصل بنا",
     copyright: "حقوق النشر © 2025 خالص",

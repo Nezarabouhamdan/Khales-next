@@ -274,7 +274,7 @@ export default function HeroSlider({ slides, rtl, lang }) {
         <Headline variants={itemVariants}>{slide.title}</Headline>
         <Subline variants={itemVariants}>{slide.content}</Subline>
         <motion.div variants={itemVariants}>
-          <Link href={`/${lang}/booking`} passHref legacyBehavior>
+          <Link href={`/booking`} passHref legacyBehavior>
             <CTAButton $rtl={rtl}>{slide.button}</CTAButton>
           </Link>
         </motion.div>

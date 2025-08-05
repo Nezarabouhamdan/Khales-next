@@ -13,7 +13,7 @@ export const dictionary = {
         isDropdown: true,
         children: [
           { label: "About Khales", path: "/About-Us" },
-          { label: "Blogs", path: "/blogs" },
+          { label: "Blogs", path: "/blog" },
         ],
       },
 
@@ -203,7 +203,7 @@ export const dictionary = {
     companyLinks: [
       { text: "About", href: "/about-us" },
       { text: "Contact us", href: "/Contact" },
-      { text: "Blogs", href: "/Blogs" },
+      { text: "Blogs", href: "/blog" },
       { text: "Book Consultation", href: "/booking" },
     ],
     contactTitle: "Contact us",
