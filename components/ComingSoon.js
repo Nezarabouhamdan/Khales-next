@@ -1,29 +1,11 @@
-// components/ComingSoon.jsx
 "use client";
 
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import Link from "next/link";
-import { useLanguage } from "@/Context/Languagecontext"; // Adjust path if needed
-import { FaCog } from "react-icons/fa"; // Using a "settings/work" icon
+import { FaCog } from "react-icons/fa";
 
-// 1. Define the text content for both languages
-const comingSoonData = {
-  eng: {
-    title: "Page Coming Soon!",
-    description:
-      "We are working hard to bring you this page. It's under construction, but it will be worth the wait. Please check back later.",
-    buttonText: "Go to Homepage",
-  },
-  ar: {
-    title: "الصفحة قيد الإنشاء!",
-    description:
-      "نحن نعمل بجد لإطلاق هذه الصفحة. إنها قيد الإنشاء حالياً، لكنها ستستحق الانتظار. يرجى التحقق مرة أخرى في وقت لاحق.",
-    buttonText: "العودة إلى الصفحة الرئيسية",
-  },
-};
-
-// 2. Define keyframe animation for the icon
+// --- Styled Components (from your original file) ---
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -33,14 +15,13 @@ const rotate = keyframes`
   }
 `;
 
-// 3. Define the styled components
 const ComingSoonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 70vh; /* Takes up most of the screen */
+  min-height: 80vh; /* Adjusted to better fit within a layout with Navbar/Footer */
   padding: 2rem;
-  background-color: #f8f9fa; /* A light, neutral background */
+  background-color: #f8f9fa;
   font-family: "Inter", sans-serif;
   direction: ${(props) => props.dir};
 `;
@@ -58,11 +39,9 @@ const ContentBox = styled.div`
 
 const IconWrapper = styled.div`
   font-size: 4rem;
-  color: #66a109; /* Using your brand's green */
+  color: #66a109;
   margin-bottom: 1.5rem;
   display: inline-block;
-
-  /* Apply the slow, continuous rotation animation */
   animation: ${rotate} 12s linear infinite;
 `;
 
@@ -105,23 +84,19 @@ const HomeButton = styled(Link)`
   }
 `;
 
-// 4. The main component logic
-const ComingSoon = () => {
-  const { language } = useLanguage();
-  const content = comingSoonData[language] || comingSoonData.eng;
-
+// --- The Refactored Main Component ---
+export default function ComingSoonClientPage({ lang, content }) {
   return (
-    <ComingSoonContainer dir={language === "ar" ? "rtl" : "ltr"}>
+    <ComingSoonContainer dir={lang === "ar" ? "rtl" : "ltr"}>
       <ContentBox>
         <IconWrapper>
           <FaCog />
         </IconWrapper>
         <Title>{content.title}</Title>
         <Description>{content.description}</Description>
-        <HomeButton href="/">{content.buttonText}</HomeButton>
+        {/* The link now correctly points to the homepage for the current language */}
+        <HomeButton href={`/${lang}`}>{content.buttonText}</HomeButton>
       </ContentBox>
     </ComingSoonContainer>
   );
-};
-
-export default ComingSoon;
+}

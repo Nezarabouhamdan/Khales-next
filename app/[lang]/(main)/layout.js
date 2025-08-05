@@ -1,9 +1,8 @@
-// app/[lang]/layout.js
-
 import "../../globals.css";
 import "../../../fonts/style.css"; // Corrected path assuming fonts is in root
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import Script from "next/script"; // Import the Script component
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { getDictionary } from "@/get-dictionary";
@@ -26,22 +25,15 @@ const inter = Inter({
   fallback: ["system-ui", "arial"],
 });
 
-// This function tells Next.js to pre-build the 'en' and 'ar' routes
-
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-// This is the ROOT METADATA. It acts as a fallback for pages
-// that might not have their own specific metadata.
-
 export async function generateMetadata({ params: { lang } }) {
-  // You can even translate your fallback metadata
   const title =
     lang === "ar"
       ? "مجموعة خالص | للاستشارات الهندسية وإدارة المشاريع في دبي"
       : "Khales Group | Engineering Consultancy & Project Management in Dubai";
-
   const description =
     lang === "ar"
       ? "شركة رائدة في دبي متخصصة في التصميم المعماري، والتصميم الداخلي، وإدارة المشاريع للمباني السكنية والتجارية الفاخرة."
@@ -50,16 +42,13 @@ export async function generateMetadata({ params: { lang } }) {
   return {
     title: {
       default: title,
-      template: `%s | Khales Group`, // Child pages will append their title
+      template: `%s | Khales Group`,
     },
     description: description,
     metadataBase: new URL("https://www.khales.ae"),
     alternates: {
       canonical: "/",
-      languages: {
-        "en-US": "/en",
-        "ar-AE": "/ar",
-      },
+      languages: { "en-US": "/en", "ar-AE": "/ar" },
     },
     openGraph: {
       title: title,
@@ -84,7 +73,6 @@ export async function generateMetadata({ params: { lang } }) {
   };
 }
 
-// This is the Root Layout component
 export default async function RootLayout({ children, params }) {
   const lang = params.lang || i18n.defaultLocale;
   const dictionary = await getDictionary(lang);
@@ -109,8 +97,15 @@ export default async function RootLayout({ children, params }) {
       className={inter.className}
     >
       <head>
-        {/* Your <head> tags like scripts, fonts, etc. can go here */}
-        {/* The LocalBusinessSchema will appear on every page for great SEO */}
+        {/* ================= THE FIX IS HERE ================= */}
+        {/* Add the link to the Font Awesome stylesheet. */}
+        {/* This will load the CSS needed to render the icons. */}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        {/* ====================================================== */}
+
         <LocalBusinessSchema />
       </head>
       <body>
@@ -119,12 +114,10 @@ export default async function RootLayout({ children, params }) {
 
         <StyledComponentsRegistry>
           <ClientProviders>
-            {/* The Navbar and Footer now wrap the main content */}
             <Navbar lang={lang} navigation={dictionary.navigation} />
             <main>{children}</main>
             <Footer lang={lang} content={dictionary.footer} />
 
-            {/* Other sitewide components */}
             <ScrollToTop />
             <Link
               id="whatsapp"
@@ -133,6 +126,7 @@ export default async function RootLayout({ children, params }) {
               target="_blank"
               rel="noopener noreferrer"
             >
+              {/* This `<i>` tag will now be correctly replaced by the WhatsApp icon */}
               <i id="whatsapp" className="fa fa-whatsapp my-float"></i>
             </Link>
             <Calltoaction id="call" />

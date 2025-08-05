@@ -1972,5 +1972,97 @@ export const dictionary = {
       successMessage: "Submitted successfully! We will contact you soon.",
       errorMessage: "An error occurred: Please try again.",
     },
+  }, // ... (inside the export const dictionary = { ... })
+
+  privacyPolicyPage: {
+    // For Metadata
+    metaTitle: "Privacy Policy | Khales Group",
+    metaDescription:
+      "Read the Khales Project Management Privacy Policy to understand how we collect, use, and safeguard your personal information on our website and services.",
+    metaKeywords: [
+      "privacy policy",
+      "data protection",
+      "personal information",
+      "khales legal",
+      "user data",
+    ],
+
+    // For the Page Component
+    title: "Privacy Policy",
+    lastUpdated: "This Privacy Policy was last updated on March 26, 2025.",
+    sections: [
+      {
+        heading: "Introduction",
+        content: `We at Khales Project Management value your privacy and are committed to safeguarding it by adhering to this privacy policy ("Policy"). This Policy outlines how we collect, use, maintain, and disclose your personal information ("Personal Information") on our website ("Website") and related products and services (collectively, "Services"). It also details your options regarding our use of your personal information and how you can access and update it.`,
+      },
+      {
+        heading: "Agreement to Policy",
+        content: `This Policy is a legally binding agreement between you ("User", "you" or "your") and Khales Project Management ("Khales", "we", "us" or "our"). By accessing or using our Website and Services, you acknowledge that you have read, understood, and agree to be bound by the terms of this Policy. If you do not agree to the terms of this Policy, you must discontinue the use of our Website and Services.`,
+      },
+      {
+        heading: "Collection of Personal Information",
+        content: `We collect and process personal information that you voluntarily provide to us when registering on the Website, subscribing to a newsletter, filling out a form, or interacting with our Services. This information may include, but is not limited to:`,
+        list: [
+          "Name and contact information (such as email address and phone number)",
+          "Geolocation data (where applicable)",
+          "Device and usage information",
+        ],
+        extra: `You can choose not to provide us with your Personal Information; however, doing so may prevent you from using certain features of our Website and Services.`,
+      },
+      {
+        heading: "Use of Collected Information",
+        content: `We use your Personal Information for the following purposes:`,
+        list: [
+          "To improve user experience and enhance our Services",
+          "To respond to inquiries and support requests",
+          "To comply with legal obligations",
+          "To run and maintain our Website and Services",
+        ],
+        extra: `We process your information with your consent or as required to fulfill our contractual obligations to you, comply with legal requirements, or protect legitimate business interests.`,
+      },
+      {
+        heading: "Data Security",
+        content: `We implement robust security measures to protect your Personal Information from unauthorized access, alteration, or disclosure. While we take reasonable precautions, please be aware that no transmission of data over the internet can be entirely secure.`,
+      },
+      {
+        heading: "Disclosure of Information",
+        content: `We may share your Personal Information with trusted partners and service providers to assist in operating our Website and delivering our Services. These partners are bound by confidentiality obligations and are not permitted to use your data for any other purpose.`,
+      },
+      {
+        heading: "Retention of Information",
+        content: `We retain your Personal Information for as long as necessary to fulfill the purposes outlined in this Policy unless a longer retention period is required or permitted by law.`,
+      },
+      {
+        heading: "Your Data Protection Rights",
+        content: `You have the right to:`,
+        list: [
+          "Access, update, or delete your Personal Information",
+          "Restrict or object to the processing of your data",
+          "Withdraw consent at any time",
+        ],
+      },
+      {
+        heading: "Changes to This Policy",
+        content: `We may update this Policy periodically to reflect changes in our practices or for legal or regulatory reasons. Any changes will be posted on this page, and your continued use of our Website and Services constitutes your acceptance of the updated Policy.`,
+      },
+      {
+        heading: "Contact Us",
+        content: `If you have any questions or concerns about this Policy or your personal data, please contact us at:`,
+        contactDetails: ["Email: info@khales.ae", "Phone: +971551299880"],
+      },
+    ],
   },
+  comingSoonPage: {
+    // For Metadata
+    metaTitle: "Page Coming Soon | Khales Group",
+    metaDescription:
+      "This page is currently under construction. Please check back later for updates from Khales Group.",
+
+    // For the Component
+    title: "Page Coming Soon!",
+    description:
+      "We are working hard to bring you this page. It's under construction, but it will be worth the wait. Please check back later.",
+    buttonText: "Go to Homepage",
+  },
+  // ... (rest of your dictionary)
 };
