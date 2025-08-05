@@ -44,7 +44,7 @@ export const dictionary = {
           { label: "تنسيق الحدائق", path: "/services/LandscapingDesign" },
         ],
       },
-      { label: "اتصل بنا", path: "/connect", isDropdown: false },
+      { label: "اتصل بنا", path: "/Contact", isDropdown: false },
     ],
     ctaButton: "أحجز موعدك الآن",
     languageButton: "اللغة",

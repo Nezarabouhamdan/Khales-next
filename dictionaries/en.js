@@ -13,7 +13,7 @@ export const dictionary = {
         isDropdown: true,
         children: [
           { label: "About Khales", path: "/About-Us" },
-          { label: "Blogs", path: "/landing" },
+          { label: "Blogs", path: "/blogs" },
         ],
       },
 
