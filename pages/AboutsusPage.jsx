@@ -2,23 +2,22 @@
 
 import React from "react";
 import MissionVision from "@/components/Mission Vision/Mission Vision";
-// Import other sections like SuccessStory or MeetTheTeam here if you add them back
 
 export default function AboutUsPageClient({ lang, content }) {
-  // This component simply receives content and passes it down.
-  // No more useEffect for document.title, as it's handled by Next.js metadata.
+  // THE FIX IS HERE: We check if `content` and `content.missionVision` exist before trying to use them.
+  // If `missionVision` is missing from the dictionary, this will prevent the component from crashing.
+  const missionVisionContent = content?.missionVision;
 
   return (
     <>
-      {/* Spacer to account for fixed navbar */}
-      <div style={{ height: "10vh" }}></div>
+      <div style={{ paddingTop: "10vh" }}></div>
 
-      {/* Pass the specific 'missionVision' content object to the component */}
-      <MissionVision lang={lang} content={content.missionVision} />
+      {/* We only render the MissionVision component if we have the content for it */}
+      {missionVisionContent && (
+        <MissionVision lang={lang} content={missionVisionContent} />
+      )}
 
-      {/* You can add other components here and pass them their content */}
-      {/* <SuccessStory content={content.successStory} /> */}
-      {/* <MeetTheTeam content={content.meetTheTeam} /> */}
+      {/* You can add other components here with similar safety checks */}
     </>
   );
 }

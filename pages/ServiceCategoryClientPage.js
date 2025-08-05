@@ -122,6 +122,24 @@ export default function ServiceCategoryClientPage({
 }) {
   const isRTL = lang === "ar";
 
+  // ================== THE FIX IS HERE ==================
+  // If the categoryData prop is missing, render a fallback.
+  // This prevents the "Cannot read properties of undefined (reading 'title')" crash.
+  if (!categoryData) {
+    return (
+      <PageWrapper initial="hidden" animate="show">
+        <HeaderSection $rtl={isRTL}>
+          <PageTitle>Service Category Not Found</PageTitle>
+          <PageIntro>
+            The content for this service category could not be loaded. Please
+            check the dictionary files.
+          </PageIntro>
+        </HeaderSection>
+      </PageWrapper>
+    );
+  }
+  // =====================================================
+
   return (
     <PageWrapper variants={containerVariants} initial="hidden" animate="show">
       <HeaderSection $rtl={isRTL} variants={itemVariants}>
@@ -129,7 +147,8 @@ export default function ServiceCategoryClientPage({
         <PageIntro>{categoryData.intro}</PageIntro>
       </HeaderSection>
       <ServicesGrid>
-        {subServices.map((service) => (
+        {/* Added a safety check for subServices as well */}
+        {subServices?.map((service) => (
           <motion.div key={service.path} variants={itemVariants}>
             <ServiceCard href={`/${lang}${service.path}`}>
               <CardImage src={service.image} />

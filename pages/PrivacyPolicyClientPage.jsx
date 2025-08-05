@@ -86,6 +86,22 @@ const PhoneNumber = styled.p`
 
 // --- The Refactored Main Component ---
 export default function PrivacyPolicyClientPage({ lang, content }) {
+  // ================== THE FIX IS HERE ==================
+  // If the `content` prop is missing for any reason,
+  // we render a simple fallback instead of crashing.
+  if (!content) {
+    return (
+      <PolicyContainer>
+        <PolicyHeader>Content Not Available</PolicyHeader>
+        <Paragraph>
+          The content for this page could not be loaded. Please check the
+          dictionary files.
+        </Paragraph>
+      </PolicyContainer>
+    );
+  }
+  // =====================================================
+
   return (
     <PolicyContainer dir={lang === "ar" ? "rtl" : "ltr"}>
       <PolicyHeader>{content.title}</PolicyHeader>
@@ -108,10 +124,9 @@ export default function PrivacyPolicyClientPage({ lang, content }) {
           {section.contactDetails && (
             <div>
               {section.contactDetails.map((detail, i) => {
-                const parts = detail.split(/:(.*)/s); // Split only on the first colon
+                const parts = detail.split(/:(.*)/s);
                 const label = parts[0];
                 const value = parts[1]?.trim();
-
                 const isEmail =
                   label.toLowerCase().includes("email") ||
                   label.includes("البريد الإلكتروني");
