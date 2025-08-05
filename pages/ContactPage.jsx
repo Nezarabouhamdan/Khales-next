@@ -1,13 +1,10 @@
-// components/PageSpecific/ContactPage.js
 "use client";
 
 import React from "react";
 import styled from "styled-components";
-
-// Import your existing UI components
-import ContactUs from "@/components/ContactForm/ContactUs";
+import ContactUs from "@/components/ContactForm/ContactUs"; // Assuming this is your form
+import OfficeLocationsFinal from "@/components/Locations/L2"; // Your locations component
 import CTASection from "@/components/Homecontact/CTASection";
-import OfficeLocationsFinal from "@/components/Locations/L2";
 
 const PageWrapper = styled.div`
   /* Add padding to the top to account for the fixed navbar */
@@ -15,7 +12,6 @@ const PageWrapper = styled.div`
 `;
 
 const FormContainer = styled.div`
-  /* The original ContactSection styling is moved here */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +25,7 @@ const FormContainer = styled.div`
   }
 `;
 
-export default function ContactPage({ lang, content, ctaContent }) {
+export default function ContactClientPage({ lang, content, ctaContent }) {
   if (!content || !ctaContent) {
     return null; // Or a loading skeleton
   }
@@ -37,10 +33,11 @@ export default function ContactPage({ lang, content, ctaContent }) {
   return (
     <PageWrapper>
       <FormContainer>
-        {/* Pass the specific 'form' and 'info' content to the ContactUs component */}
+        {/* Pass the form and info content to the ContactUs component */}
         <ContactUs lang={lang} content={content} />
       </FormContainer>
 
+      {/* Pass the specific 'locations' object down to the component */}
       <OfficeLocationsFinal lang={lang} content={content.locations} />
 
       <CTASection lang={lang} content={ctaContent} />

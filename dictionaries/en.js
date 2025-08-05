@@ -1066,47 +1066,52 @@ export const dictionary = {
       ],
     },
     locations: {
-      titlePart1: "Our",
+      titlePart1: "Our ",
       titlePart2: "Offices",
       offices: [
         {
-          titlePart1: "Dubai,",
-          titlePart2: "UAE",
-          description: "Business Bay, Dubai, UAE",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "Dubai",
+          titlePart2: "Majlis",
+          description:
+            "Office M03, Building 5 Block B, Design District, Dubai, UAE\n\n+971 4 580 6307",
+          link: "https://maps.app.goo.gl/mJ2i9EfLTbooABVM9",
         },
         {
-          titlePart1: "Abu Dhabi,",
-          titlePart2: "UAE",
-          description: "Al Reem Island, Abu Dhabi, UAE",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "Dubai",
+          titlePart2: "Branch",
+          description:
+            "Office 113, SIT Tower, Dubai Silicon Oasis, Dubai, UAE\n\n+971 4 557 1184",
+          link: "https://maps.app.goo.gl/2Rgo7ZE5KSgVNDD37",
         },
         {
-          titlePart1: "Sharjah,",
-          titlePart2: "UAE",
-          description: "Al Majaz, Sharjah, UAE",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "Fujairah",
+          titlePart2: "Branch",
+          description:
+            "Office 202, Creative Tower, Hamad Bin Abdulla St., Fujairah, UAE\n\n+971 9 501 0762",
+          link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
         },
         {
-          titlePart1: "Ajman,",
-          titlePart2: "UAE",
-          description: "Al Rashidiya, Ajman, UAE",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "Sharjah",
+          titlePart2: "Branch",
+          description:
+            "Shop 11, Block C, Al Saud Head Office, Muwaileh, Sharjah, UAE\n\n+971 6 551 8070",
+          link: "https://maps.app.goo.gl/SD2R8ZKmym2NPLUu7",
         },
         {
-          titlePart1: "RAK,",
-          titlePart2: "UAE",
-          description: "Al Nakheel, Ras Al Khaimah, UAE",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "Abu Dhabi",
+          titlePart2: "Branch",
+          description: "Al Qana, Rabdan, Abu Dhabi, UAE\n\n+971 56 189 9918",
+          link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8",
         },
         {
-          titlePart1: "Muscat,",
-          titlePart2: "Oman",
-          description: "Al Khuwair, Muscat, Oman",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "London, UK",
+          titlePart2: "Branch",
+          description: "London, UK\n\n+971 56 189 9918",
+          link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8",
         },
       ],
     },
+    // ==================================================
   },
   bookingPage: {
     // For Metadata

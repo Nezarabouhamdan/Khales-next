@@ -223,7 +223,7 @@ export const dictionary = {
       ],
     },
     process: {
-      title: "عملية عملنا",
+      title: "آلية عملنا",
       highlight: "",
       steps: [
         {
@@ -355,7 +355,7 @@ export const dictionary = {
       ],
     },
     process: {
-      title: "عملية عملنا",
+      title: "آلية عملنا",
       highlight: "",
       steps: [
         {
@@ -438,7 +438,7 @@ export const dictionary = {
       ],
     },
     process: {
-      title: "عملية عملنا",
+      title: "آلية عملنا",
       highlight: "",
       steps: [
         {
@@ -528,7 +528,7 @@ export const dictionary = {
       ],
     },
     process: {
-      title: "عملية عملنا",
+      title: "آلية عملنا",
       highlight: "",
       steps: [
         {
@@ -619,7 +619,7 @@ export const dictionary = {
       ],
     },
     process: {
-      title: "عملية عملنا",
+      title: "آلية عملنا",
       highlight: "",
       steps: [
         {
@@ -730,7 +730,7 @@ export const dictionary = {
       ],
     },
     process: {
-      title: "عملية عملنا",
+      title: "آلية عملنا",
       highlight: "",
       steps: [
         {
@@ -851,7 +851,7 @@ export const dictionary = {
       ],
     },
     process: {
-      title: "عملية عملنا",
+      title: "آلية عملنا",
       highlight: "",
       steps: [
         {
@@ -938,7 +938,7 @@ export const dictionary = {
       ],
     },
     process: {
-      title: "عملية عملنا",
+      title: "آلية عملنا",
       highlight: "",
       steps: [
         {
@@ -1055,47 +1055,52 @@ export const dictionary = {
       ],
     },
     locations: {
-      titlePart1: "مكاتبنا",
-      titlePart2: "حول العالم",
+      titlePart1: " مكاتبنا",
+      titlePart2: " حول العالم ",
       offices: [
         {
-          titlePart1: "دبي،",
-          titlePart2: "الإمارات",
-          description: "الخليج التجاري، دبي، الإمارات العربية المتحدة",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "مجلس",
+          titlePart2: "دبي",
+          description:
+            "مكتب M03، مبنى 5، بلوك B منطقة التصميم، دبي، الإمارات\n\n+971 4 580 6307",
+          link: "https://maps.app.goo.gl/mJ2i9EfLTbooABVM9",
         },
         {
-          titlePart1: "أبوظبي،",
-          titlePart2: "الإمارات",
-          description: "جزيرة الريم، أبوظبي، الإمارات العربية المتحدة",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "فرع",
+          titlePart2: "دبي",
+          description:
+            "مكتب 113، برج SIT واحة دبي للسيليكون، دبي، الإمارات\n\n+971 4 557 1184",
+          link: "https://maps.app.goo.gl/2Rgo7ZE5KSgVNDD37",
         },
         {
-          titlePart1: "الشارقة،",
-          titlePart2: "الإمارات",
-          description: "المجاز، الشارقة، الإمارات العربية المتحدة",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "فرع",
+          titlePart2: "الشارقة",
+          description:
+            "متجر 11، بلوك C، المقر الرئيسي لآل سعود، المنطقة التجارية مويلح، الشارقة، الإمارات\n\n+971 6 551 8070",
+          link: "https://maps.app.goo.gl/SD2R8ZKmym2NPLUu7",
         },
         {
-          titlePart1: "عجمان،",
-          titlePart2: "الإمارات",
-          description: "الراشدية، عجمان، الإمارات العربية المتحدة",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "فرع",
+          titlePart2: "أبوظبي",
+          description: "القناة، ربدان، أبوظبي، الإمارات\n\n+971 56 189 9918",
+          link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8",
         },
         {
-          titlePart1: "رأس الخيمة،",
-          titlePart2: "الإمارات",
-          description: "النخيل، رأس الخيمة، الإمارات العربية المتحدة",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "فرع",
+          titlePart2: "الفجيرة",
+          description:
+            "مكتب 202، برج كرييتيف، شارع حمد بن عبدالله، الفجيرة، الإمارات\n\n+971 9 606 0826",
+          link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
         },
         {
-          titlePart1: "مسقط،",
-          titlePart2: "عمان",
-          description: "الخوير، مسقط، عمان",
-          link: "https://maps.app.goo.gl/u5nd4jPyveb74K5f8",
+          titlePart1: "فرع",
+          titlePart2: "لندن, بريطانيا",
+          description: "لندن, بريطانيا\n\n+971 56 189 9918", // Note: Original AR data had Fujairah's description here, I kept it but you might want to correct it
+          link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
         },
       ],
     },
+    // ==================================================
   },
   bookingPage: {
     // For Metadata

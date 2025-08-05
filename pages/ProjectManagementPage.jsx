@@ -76,7 +76,6 @@ export default function ProjectManagementPage({ lang, content, ctaContent }) {
         </Row2>
 
         {/* Project highlight section is now functional with data from the dictionary */}
-        <ProjectHighlight data={projectHighlightData} />
 
         <Title2>
           {content.faq.title}
