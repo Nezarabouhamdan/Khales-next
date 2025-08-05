@@ -11,6 +11,7 @@ import {
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import { Almarai } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const almarai = Almarai({
   subsets: ["arabic"],
@@ -18,8 +19,15 @@ const almarai = Almarai({
   display: "swap",
 });
 
+// FIX: Added a proper CSS reset to remove default margins/paddings
 const GlobalLandingStyle = createGlobalStyle`
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
   body {
+    margin: 0;
+    padding: 0;
     font-family: ${(props) =>
       props.isArabic ? almarai.style.fontFamily : "Inter, sans-serif"};
   }
@@ -54,9 +62,6 @@ const kenBurns = keyframes`
   100% { transform: scale(1.05) translate(1%, -1%); }
 `;
 
-// ========================================================================
-// ALL THE MISSING STYLED-COMPONENTS ARE NOW INCLUDED HERE
-// ========================================================================
 const SectionWrapper = styled.section`
   padding: 6rem 2rem;
   background-color: #ffffff;
@@ -157,23 +162,32 @@ const Overlay = styled.div`
   );
   z-index: 2;
 `;
+
 const Header = styled(motion.header)`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+  // This inner container will handle the content alignment
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1600px; // Your max width for content
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+  }
+
+  // The bar itself is full-width
   width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 1.5rem 2rem;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(5px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 `;
+
 const NavLinksDesktop = styled.nav`
   display: flex;
   align-items: center;
@@ -186,6 +200,8 @@ const NavLinksDesktop = styled.nav`
     position: relative;
     padding: 0.5rem 0;
     cursor: pointer;
+    white-space: nowrap;
+
     &::after {
       content: "";
       position: absolute;
@@ -202,11 +218,14 @@ const NavLinksDesktop = styled.nav`
       transform: scaleX(1);
     }
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 980px) {
+    // Consistent breakpoint
     display: none;
   }
 `;
+
 const Logo = styled.div``;
+
 const HamburgerIcon = styled(motion.button)`
   display: none;
   background: none;
@@ -215,10 +234,14 @@ const HamburgerIcon = styled(motion.button)`
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 1001;
-  @media (max-width: 1200px) {
+  padding: 0.5rem;
+
+  @media (max-width: 980px) {
+    // Consistent breakpoint
     display: block;
   }
 `;
+
 const MobileNavOverlay = styled(motion.div)`
   position: fixed;
   top: 0;
@@ -258,13 +281,10 @@ const HeroMainContent = styled(motion.div)`
   padding: 0 1rem;
 `;
 const Headline = styled.h1`
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 1.4;
   max-width: 800px;
-  @media (max-width: 768px) {
-    font-size: 2.2rem;
-  }
 `;
 const HeroCTAButton = styled(motion.a)`
   background: white;
@@ -581,6 +601,7 @@ const ModalContent = styled.div`
 `;
 
 export default function FullPageLanding({ lang, content }) {
+  const router = useRouter(); // Added router for potential future use
   const isRTL = lang === "ar";
 
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -738,14 +759,9 @@ export default function FullPageLanding({ lang, content }) {
             value: leadValue,
           });
         }
-        setSubmitStatus("success");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          emirate: "",
-          budget: "",
-        });
+
+        // Use router to navigate to thank you page
+        router.push(`/${lang}/thankyou`);
       } else {
         setSubmitStatus(data.error || "error");
       }
@@ -824,25 +840,27 @@ export default function FullPageLanding({ lang, content }) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <Logo>
-            <Image
-              src={"https://i.ibb.co/m5xG5N9J/Khales-White-Logo.png"}
-              alt="Khales Logo"
-              width={100}
-              height={40}
-              priority
-            />
-          </Logo>
-          <NavLinksDesktop $rtl={isRTL}>
-            {Object.entries(content.navLinks).map(([key, link]) => (
-              <a key={key} onClick={() => scrollToSection(key)}>
-                {link}
-              </a>
-            ))}
-          </NavLinksDesktop>
-          <HamburgerIcon onClick={() => setMenuOpen(true)}>
-            <FaBars />
-          </HamburgerIcon>
+          <div className="header-content">
+            <Logo>
+              <Image
+                src={"https://i.ibb.co/m5xG5N9J/Khales-White-Logo.png"}
+                alt="Khales Logo"
+                width={100}
+                height={40}
+                priority
+              />
+            </Logo>
+            <NavLinksDesktop $rtl={isRTL}>
+              {Object.entries(content.navLinks).map(([key, link]) => (
+                <a key={key} onClick={() => scrollToSection(key)}>
+                  {link}
+                </a>
+              ))}
+            </NavLinksDesktop>
+            <HamburgerIcon onClick={() => setMenuOpen(true)}>
+              <FaBars />
+            </HamburgerIcon>
+          </div>
         </Header>
         <AnimatePresence>
           {isMenuOpen && (
@@ -917,6 +935,8 @@ export default function FullPageLanding({ lang, content }) {
           </HeroCTAButton>
         </HeroMainContent>
       </HeroWrapper>
+
+      {/* --- ALL OTHER SECTIONS REMAIN UNCHANGED --- */}
 
       <SectionWrapper
         $rtl={isRTL}

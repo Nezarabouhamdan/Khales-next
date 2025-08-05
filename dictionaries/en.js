@@ -2069,5 +2069,17 @@ export const dictionary = {
       "We are working hard to bring you this page. It's under construction, but it will be worth the wait. Please check back later.",
     buttonText: "Go to Homepage",
   },
-  // ... (rest of your dictionary)
+  thankYouPage: {
+    // For Metadata
+    metaTitle: "Thank You for Contacting Us | Khales Group",
+    metaDescription:
+      "Thank you for your submission. A member of the Khales Group team will be in touch with you shortly.",
+
+    // For the Page Component
+    icon: "", // or an SVG component name
+    title: "Thank You!",
+    message:
+      "Your submission has been received successfully. A member of our team will be in touch with you shortly to discuss your project.",
+    buttonText: "Return to Homepage",
+  },
 };
