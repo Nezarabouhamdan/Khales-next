@@ -202,8 +202,8 @@ export const dictionary = {
     companyTitle: "Company",
     companyLinks: [
       { text: "About", href: "/about-us" },
-      { text: "Contact us", href: "/connect" },
-      { text: "Blogs", href: "/blogs" },
+      { text: "Contact us", href: "/Contact" },
+      { text: "Blogs", href: "/Blogs" },
       { text: "Book Consultation", href: "/booking" },
     ],
     contactTitle: "Contact us",
