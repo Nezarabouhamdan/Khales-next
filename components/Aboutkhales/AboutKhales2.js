@@ -1,45 +1,21 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState } from "react";
+import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { useLanguage } from "../../Context/Languagecontext";
-import LazyImage from "../LazyImage"; // <-- 1. IMPORT THE COMPONENT
+import LazyImage from "../LazyImage"; // Assuming this path is correct
 
-// --- ANIMATION & CONTENT (Unchanged) ---
-const floatAnimation = keyframes`
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
-`;
-const content = {
-  eng: {
-    title: "Khales",
-    group: "Group",
-    paragraph:
-      "At Khales Project Management, we turn ideas into reality with expert architecture, construction, and fit-out solutions. No delays, no compromises—just results that exceed expectations.",
-    button: "Learn More",
-  },
-  ar: {
-    title: "مجموعة",
-    group: "خالص",
-    paragraph:
-      "في مجموعة خالص لإدارة المشاريع، نحوّل الأفكار إلى واقع ملموس من خلال حلول معمارية وإنشائية وتشطيبات متخصصة. لا تأخير ولا تنازلات، فقط نتائج تفوق التوقعات.",
-    button: "أعرف المزيد",
-  },
-};
+// Static data can remain here
 const galleryImages = [
   "https://i.ibb.co/7tKV3xP1/aboutus5.jpg",
   "https://i.ibb.co/XftcdnrY/aboutus2.jpg",
   "https://i.ibb.co/v4S8JftQ/aboutus4.jpg",
   "https://i.ibb.co/jPgtTSzr/aboutus3.jpg",
 ];
-const sectionVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
-};
-const textContainerVariants = {
+
+// --- FRAMER MOTION VARIANTS (Your original code) ---
+const cardVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
@@ -47,109 +23,97 @@ const textContainerVariants = {
     transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.2 },
   },
 };
-const textItemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-const galleryContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.8, staggerChildren: 0.15 } },
-};
-const imageVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
 };
 
-// --- HOOK & STYLED COMPONENTS (Unchanged) ---
-const useMediaQuery = (query) => {
-  const [matches, setMatches] = useState(false);
-  useEffect(() => {
-    const media = window.matchMedia(query);
-    const updateMatches = () => setMatches(media.matches);
-    updateMatches();
-    media.addEventListener("change", updateMatches);
-    return () => media.removeEventListener("change", updateMatches);
-  }, [query]);
-  return matches;
-};
+// --- STYLED COMPONENTS (Your original code, with layout fixes) ---
 const SectionWrapper = styled(motion.section)`
-  /* ... */
-  min-height: 100vh;
   width: 100%;
-  position: relative;
-  overflow: hidden;
+  min-height: 100vh;
+  padding: 5rem 0; /* REMOVED horizontal padding here */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: ${({ lang }) =>
-      lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
-    sans-serif;
-  padding: 4rem 2rem;
+  position: relative;
+  background-color: #f9fafb;
+  font-family: ${(({ lang }) =>
+    lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)",
+  "sans-serif")};
+  overflow: hidden; /* This is the key fix */
+  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
+`;
+
+// NEW CONTAINER TO MANAGE PADDING AND SHAPES
+const Container = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 5%; /* MOVED horizontal padding here */
+  position: relative; /* Shapes will be positioned relative to this */
+  z-index: 5;
+
+  @media (max-width: 992px) {
+    padding: 0 2.5rem;
+  }
+  @media (max-width: 576px) {
+    padding: 0 1.5rem;
+  }
+`;
+
+const ContentCard = styled(motion.div)`
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  width: 100%;
   background-color: #ffffff;
-  @media (max-width: 900px) {
-    padding: 4rem 1rem;
-    min-height: auto;
-    flex-direction: column;
-    gap: 3rem;
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    padding: 2.5rem;
+    gap: 2.5rem;
+  }
+  @media (max-width: 576px) {
+    padding: 2rem 1.5rem;
   }
 `;
 const TextBlock = styled(motion.div)`
-  /* ... */
-  max-width: 550px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: ${({ lang }) => (lang === "ar" ? "right" : "left")};
   color: #1a1a1a;
-  padding: 3rem;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 10;
-  @media (max-width: 900px) {
-    max-width: 95vw;
-    padding: 2rem;
-  }
 `;
 const Title = styled(motion.h2)`
-  /* ... */
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
+  line-height: 1.2;
   margin-bottom: 1.5rem;
-  line-height: 1.1;
   color: #1a1a1a;
-  @media (max-width: 900px) {
-    font-size: 3rem;
-  }
-  @media (max-width: 600px) {
-    font-size: 2.5rem;
+  span {
+    color: #66a109;
   }
 `;
 const Paragraph = styled(motion.p)`
-  /* ... */
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 2rem;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
   color: #555;
-  @media (max-width: 600px) {
-    font-size: 1rem;
-  }
 `;
-const MotionLink = styled(motion(Link))`
+const MotionLinkWrapper = styled(motion.div)`
   display: inline-block;
   text-decoration: none;
+  width: fit-content;
+  align-self: ${({ lang }) => (lang === "ar" ? "flex-end" : "flex-start")};
 `;
 const LearnMoreButton = styled.button`
-  /* ... */
-  background: linear-gradient(135deg, #66a109, #8bc34a);
+  background: linear-gradient(135deg, #66a109, #66a109);
   color: white;
   border: none;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
@@ -157,85 +121,46 @@ const LearnMoreButton = styled.button`
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(102, 161, 9, 0.3);
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(102, 161, 9, 0.4);
   }
 `;
-const OrbitingGallery = styled(motion.div)`
-  /* ... */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-  @media (max-width: 900px) {
-    position: relative;
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    pointer-events: auto;
-  }
+const GalleryGrid = styled(motion.div)`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
 `;
 const ImageWrapper = styled(motion.div)`
-  position: absolute;
-  border-radius: 16px;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  border: 2px solid white;
-  pointer-events: auto;
-  animation-name: ${floatAnimation};
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-
-  &:nth-of-type(1) {
-    animation-duration: 7s;
-  }
-  &:nth-of-type(2) {
-    animation-duration: 8s;
-    animation-delay: -2s;
-  }
-  &:nth-of-type(3) {
-    animation-duration: 6s;
-    animation-delay: -4s;
-  }
-  &:nth-of-type(4) {
-    animation-duration: 7.5s;
-    animation-delay: -1s;
-  }
-
-  @media (max-width: 900px) {
-    position: relative;
-    width: 90%;
-    max-width: 400px;
-    height: 250px;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+    z-index: 5;
   }
 `;
 const DecorativeShape = styled.div`
-  /* ... */
   position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  transition: transform 0.4s ease-out;
-  background: rgba(102, 161, 9, 0.05);
   border-radius: 50%;
-  @media (max-width: 900px) {
+  background: rgba(102, 161, 9, 0.05);
+  z-index: 1; /* Behind the content card */
+  pointer-events: none;
+  @media (max-width: 992px) {
     display: none;
   }
 `;
 const LightboxOverlay = styled(motion.div)`
-  /* ... */
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -243,87 +168,72 @@ const LightboxOverlay = styled(motion.div)`
   cursor: pointer;
 `;
 const LightboxImage = styled(motion.img)`
-  /* ... */
   max-width: 90%;
   max-height: 90%;
-  border-radius: 16px;
+  border-radius: 12px;
   cursor: default;
 `;
 
-// --- MAIN COMPONENT ---
-const AboutKhalesUltimate = () => {
-  const { language } = useLanguage();
+// --- MAIN REFACTORED COMPONENT ---
+export default function AboutKhalesUltimate({ lang, content }) {
   const [selectedImg, setSelectedImg] = useState(null);
-  const isMobile = useMediaQuery("(max-width: 900px)");
-  const currentContent = content[language] || content.eng;
-  const imagePositions = [
-    { top: "10%", left: "10%", width: "16vw", height: "12vw" },
-    { top: "15%", right: "15%", width: "16vw", height: "12vw" },
-    { bottom: "20%", left: "5%", width: "16vw", height: "12vw" },
-    { bottom: "10%", right: "10%", width: "16vw", height: "12vw" },
-  ];
+
+  if (!content) {
+    return null; // Or a loading skeleton
+  }
 
   return (
     <>
-      <SectionWrapper
-        lang={language}
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
+      <SectionWrapper lang={lang}>
+        {/* Decorative shapes are now positioned relative to the full-width SectionWrapper */}
         <DecorativeShape
-          style={{ top: "20%", left: "5%", width: "150px", height: "150px" }}
+          style={{ top: "15%", left: "5%", width: "250px", height: "250px" }}
         />
         <DecorativeShape
           style={{
             bottom: "10%",
-            right: "10%",
+            right: "8%",
             width: "180px",
             height: "180px",
           }}
         />
 
-        <TextBlock variants={textContainerVariants}>
-          <Title variants={textItemVariants}>
-            {currentContent.title}
-            <br />
-            {currentContent.group}
-          </Title>
-          <Paragraph variants={textItemVariants}>
-            {currentContent.paragraph}
-          </Paragraph>
-          <MotionLink href="/ABOUTUS" passHref variants={textItemVariants}>
-            <LearnMoreButton>{currentContent.button}</LearnMoreButton>
-          </MotionLink>
-        </TextBlock>
+        <Container>
+          <ContentCard
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <TextBlock lang={lang}>
+              <Title variants={itemVariants}>{content.title}</Title>
+              <Paragraph variants={itemVariants}>{content.paragraph}</Paragraph>
+              <MotionLinkWrapper lang={lang} variants={itemVariants}>
+                <Link href={`/${lang}/about-us`} passHref>
+                  <LearnMoreButton>{content.button}</LearnMoreButton>
+                </Link>
+              </MotionLinkWrapper>
+            </TextBlock>
 
-        <OrbitingGallery variants={galleryContainerVariants}>
-          {galleryImages.map((url, index) => (
-            <ImageWrapper
-              key={url}
-              variants={imageVariants}
-              style={!isMobile ? imagePositions[index] : {}}
-              onClick={() => setSelectedImg(url)}
-              whileHover={
-                !isMobile
-                  ? { scale: 1.05, zIndex: 4, transition: { duration: 0.2 } }
-                  : {}
-              }
-            >
-              {/* --- 2. REPLACE <img> WITH LazyImage --- */}
-              <LazyImage
-                src={url}
-                alt={`Khales Group project showcase ${
-                  index + 1
-                } - Architecture and interior design work`}
-                fill
-                sizes="(max-width: 900px) 90vw, 16vw" // Helps Next.js optimize image selection
-                // The object-cover class is handled inside LazyImage, but can be kept for clarity
-              />
-            </ImageWrapper>
-          ))}
-        </OrbitingGallery>
+            <GalleryGrid>
+              {galleryImages.map((url, index) => (
+                <ImageWrapper
+                  key={url}
+                  variants={itemVariants}
+                  onClick={() => setSelectedImg(url)}
+                  whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                >
+                  <LazyImage
+                    src={url}
+                    alt={`Khales Group showcase ${index + 1}`}
+                    fill
+                    sizes="(max-width: 992px) 45vw, 22vw"
+                  />
+                </ImageWrapper>
+              ))}
+            </GalleryGrid>
+          </ContentCard>
+        </Container>
       </SectionWrapper>
 
       <AnimatePresence>
@@ -336,11 +246,8 @@ const AboutKhalesUltimate = () => {
           >
             <LightboxImage
               src={selectedImg}
-              alt="Enlarged view of Khales Group project showcase"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              alt="Enlarged view of Khales Group project"
+              layoutId={selectedImg}
               onClick={(e) => e.stopPropagation()}
             />
           </LightboxOverlay>
@@ -348,6 +255,4 @@ const AboutKhalesUltimate = () => {
       </AnimatePresence>
     </>
   );
-};
-
-export default AboutKhalesUltimate;
+}

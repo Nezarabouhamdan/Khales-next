@@ -1,29 +1,28 @@
-// components/HeroSlider/HeroSlider.js
-// --- FINAL VERSION WITH FULL RTL SUPPORT ---
-
 "use client";
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// --- Styled Components with RTL logic ---
+// --- Styled Components (with Centering Logic) ---
 
 const HeroSection = styled.section`
   height: 100vh;
   position: relative;
   display: flex;
-  align-items: center;
   overflow: hidden;
   background-color: #05080a;
 
-  /* 1. Content Alignment based on RTL prop */
-  justify-content: ${({ $rtl }) => ($rtl ? "flex-end" : "flex-start")};
+  /* ===================== THE FIX IS HERE ===================== */
+  /* This will center the content container horizontally on ALL screen sizes */
+  align-items: center;
+  justify-content: center;
+  /* ========================================================== */
 
   @media (max-width: 768px) {
     height: 85vh;
-    align-items: flex-end;
+    align-items: flex-end; /* Keep vertical alignment for mobile */
   }
 `;
 
@@ -67,11 +66,13 @@ const Overlay = styled.div`
   height: 100%;
   z-index: 3;
 
-  /* 2. Flipped Gradient Overlay for RTL */
-  background: ${({ $rtl }) =>
-    $rtl
-      ? "linear-gradient(270deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%)"
-      : "linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%)"};
+  /* This gradient works well for centered text */
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
 
   @media (max-width: 768px) {
     background: linear-gradient(
@@ -110,16 +111,18 @@ const ContentContainer = styled(motion.div)`
   position: relative;
   z-index: 4;
   max-width: 1200px;
+  width: 100%;
   padding: 0 5%;
   color: #fff;
 
-  /* 3. Text Alignment for RTL */
-  text-align: ${({ $rtl }) => ($rtl ? "right" : "left")};
+  /* ===================== THE FIX IS HERE ===================== */
+  /* This ensures text inside the container is always centered */
+  text-align: center;
+  /* ========================================================== */
 
   @media (max-width: 768px) {
     padding: 0 8%;
     margin-bottom: 20vh;
-    width: 100%;
   }
 `;
 
@@ -127,7 +130,9 @@ const Headline = styled(motion.h1)`
   font-size: 3.8rem;
   font-weight: 700;
   line-height: 1.15;
-  max-width: 680px;
+  max-width: 800px; /* Allow a bit more width for centered text */
+  margin-left: auto; /* Center the block itself */
+  margin-right: auto; /* Center the block itself */
   margin-bottom: 1rem;
   text-shadow: 0 3px 15px rgba(0, 0, 0, 0.6);
 
@@ -145,6 +150,9 @@ const Subline = styled(motion.p)`
   font-weight: 300;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
   line-height: 1.7;
+  max-width: 680px; /* Limit width */
+  margin-left: auto; /* Center the block itself */
+  margin-right: auto; /* Center the block itself */
 
   @media (max-width: 768px) {
     font-size: 1.15rem;
@@ -175,8 +183,7 @@ const CTAButton = styled(motion.a)`
     height: 100%;
     background-color: #fff;
     z-index: -1;
-    /* 4. Flipped Animation Origin for RTL */
-    transform-origin: ${({ $rtl }) => ($rtl ? "right" : "left")};
+    transform-origin: center; /* Animate from center */
     transform: scaleX(0);
     transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
   }
@@ -190,44 +197,7 @@ const CTAButton = styled(motion.a)`
   }
 `;
 
-const ScrollIndicator = styled(motion.div)`
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  opacity: 0.7;
-
-  @keyframes bounce {
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-
-  div {
-    width: 24px;
-    height: 24px;
-    border-left: 2px solid white;
-    border-bottom: 2px solid white;
-    transform: rotate(-45deg);
-    animation: bounce 2s infinite;
-  }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
+// Animation Variants (Unchanged)
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -245,22 +215,10 @@ const itemVariants = {
 };
 
 // --- The Main Component ---
-const HeroSlider = (props) => {
+export default function HeroSlider({ slides, rtl, lang }) {
   const sectionRef = useRef(null);
 
-  const { rtl } = props; // Extract the rtl prop
-
-  const content =
-    props.slides && props.slides.length > 0
-      ? {
-          imageUrl: props.slides[0].image,
-          videoUrl: props.slides[0].videoUrl,
-          headline: props.slides[0].title,
-          subline: props.slides[0].content,
-          buttonText: props.slides[0].button,
-          buttonLink: "/booking",
-        }
-      : props;
+  const slide = slides && slides.length > 0 ? slides[0] : null;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -268,25 +226,19 @@ const HeroSlider = (props) => {
   });
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
-  if (!content.imageUrl && !content.videoUrl) return null;
+  if (!slide) {
+    return null;
+  }
 
   return (
     <HeroSection ref={sectionRef} $rtl={rtl}>
       <BackgroundContainer style={{ y: backgroundY }}>
-        {content.videoUrl ? (
-          <VideoBackground
-            key={content.videoUrl}
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src={content.videoUrl} type="video/mp4" />
+        {slide.videoUrl ? (
+          <VideoBackground key={slide.videoUrl} autoPlay loop muted playsInline>
+            <source src={slide.videoUrl} type="video/mp4" />
           </VideoBackground>
         ) : (
-          <ImageBackground
-            style={{ backgroundImage: `url(${content.imageUrl})` }}
-          />
+          <ImageBackground style={{ backgroundImage: `url(${slide.image})` }} />
         )}
       </BackgroundContainer>
 
@@ -319,16 +271,14 @@ const HeroSlider = (props) => {
         initial="hidden"
         animate="show"
       >
-        <Headline variants={itemVariants}>{content.headline}</Headline>
-        <Subline variants={itemVariants}>{content.subline}</Subline>
+        <Headline variants={itemVariants}>{slide.title}</Headline>
+        <Subline variants={itemVariants}>{slide.content}</Subline>
         <motion.div variants={itemVariants}>
-          <Link href={content.buttonLink || "/"} passHref legacyBehavior>
-            <CTAButton $rtl={rtl}>{content.buttonText}</CTAButton>
+          <Link href={`/${lang}/booking`} passHref legacyBehavior>
+            <CTAButton $rtl={rtl}>{slide.button}</CTAButton>
           </Link>
         </motion.div>
       </ContentContainer>
     </HeroSection>
   );
-};
-
-export default HeroSlider;
+}

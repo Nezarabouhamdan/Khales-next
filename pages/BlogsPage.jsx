@@ -1,57 +1,43 @@
-// app/BlogsPage.js
 "use client";
-import React, { useEffect, useState } from "react";
-import BlogGrid from "../components/Blogs/BlogGrid";
-import HeroSlider from "../components/Slider/Slider";
-import { useLanguage } from "../Context/Languagecontext";
-import CTASection from "../components/Homecontact/CTASection";
-import { blogCardsData } from "../data/BlogData"; // Only import blogCardsData now
+import React, { useState, useEffect } from "react";
+import BlogGrid from "@/components/Blogs/BlogGrid";
+import HeroSlider from "@/components/Slider/Slider"; // Assuming this is the correct path
+import CTASection from "@/components/Homecontact/CTASection";
 
-function BlogsPage() {
+export default function BlogsPageClient({ lang, posts, ctaSectionContent }) {
   const [isLoading, setIsLoading] = useState(true);
-  const { language } = useLanguage();
 
-  // Extract hero slides from the first blog post
-  const heroSlides = {
-    eng: [
-      {
-        id: 1,
-        image: blogCardsData[0].eng.coverImage, // Using first blog's image
-        title: blogCardsData[0].eng.title,
-        content: blogCardsData[0].eng.description,
-        button: "Start Your Project Today",
-      },
-    ],
-    ar: [
-      {
-        id: 1,
-        image: blogCardsData[0].ar.coverImage, // Using first blog's image
-        title: blogCardsData[0].ar.title,
-        content: blogCardsData[0].ar.description,
-        button: "ابدأ مشروعك اليوم",
-      },
-    ],
-  };
+  // Use the first blog post for the hero slider content
+  const heroSlides =
+    posts?.length > 0
+      ? [
+          {
+            id: posts[0].id,
+            image: posts[0].coverImage,
+            title: posts[0].title,
+            content: posts[0].description,
+            // Pass the correct button link
+            buttonLink: `/${lang}/blog/${posts[0].slug}`,
+            buttonText: "Read More",
+          },
+        ]
+      : [];
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    const timer = setTimeout(() => setIsLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <div>
       <HeroSlider
-        slides={heroSlides[language] || heroSlides["eng"]}
-        language={language}
+        slides={heroSlides}
+        language={lang}
         isLoading={isLoading}
-        rtl={language === "ar"}
+        rtl={lang === "ar"}
       />
-      <BlogGrid cardsData={blogCardsData} />
-      <CTASection />
+      <BlogGrid cardsData={posts} lang={lang} />
+      <CTASection lang={lang} content={ctaSectionContent} />
     </div>
   );
 }
-
-export default BlogsPage;

@@ -9,8 +9,8 @@ import {
   FaCheckCircle,
   FaBuilding,
 } from "react-icons/fa";
-import { useLanguage } from "../../Context/Languagecontext";
 import Image from "next/image";
+import Link from "next/link";
 
 // Swiper for mobile gallery
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,227 +19,37 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+// --- STYLED COMPONENTS (WITH LAYOUT FIX) ---
 const kenBurns = keyframes`
   0% { transform: scale(1.0); }
   100% { transform: scale(1.1); }
 `;
 
-const PropertyPage = ({ project }) => {
-  const { language } = useLanguage();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+const SectionContainer = styled.section`
+  margin-top: 10vh;
+  width: 100%;
+  padding: 4rem 0; /* REMOVED horizontal padding */
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
+  overflow-x: hidden; /* Prevent horizontal scroll */
 
-  if (!project) {
-    return <div>Loading project...</div>;
+  @media (max-width: 992px) {
+    padding: 2rem 0;
+    margin-top: 8vh;
   }
+`;
 
-  const projectData = project[language];
-  const gallery = project.galleryImages || [];
+const ContentWrapper = styled(motion.div)`
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem; /* ADDED horizontal padding here */
 
-  useEffect(() => {
-    if (gallery.length > 1) {
-      const timer = setInterval(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % gallery.length);
-      }, 5000);
-      return () => clearInterval(timer);
-    }
-  }, [gallery.length, currentImageIndex]);
+  @media (max-width: 992px) {
+    padding: 0 1rem;
+  }
+`;
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
-
-  return (
-    <SectionContainer lang={language}>
-      <ContentWrapper>
-        <HeroGrid>
-          {/* --- Main Desktop Image --- */}
-          {gallery.length > 0 && (
-            <DesktopMainImage as={motion.div} variants={itemVariants}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentImageIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8 }}
-                  style={{ width: "100%", height: "100%" }}
-                >
-                  <Image
-                    src={gallery[currentImageIndex]}
-                    alt={`${projectData.title} - view ${currentImageIndex + 1}`}
-                    fill
-                    priority
-                    quality={90}
-                    sizes="(min-width: 993px) 60vw, 0vw"
-                    style={{ objectFit: "cover" }}
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </DesktopMainImage>
-          )}
-
-          {/* --- Desktop Thumbnail Gallery (Using <img> for testing) --- */}
-          {gallery.length > 1 && (
-            <DesktopSubImageGrid>
-              {gallery
-                .filter((_, index) => index !== currentImageIndex)
-                .map((imgSrc) => {
-                  const originalIndex = gallery.indexOf(imgSrc);
-                  return (
-                    <ImageWrapper
-                      as={motion.div}
-                      variants={itemVariants}
-                      key={imgSrc}
-                      onClick={() => setCurrentImageIndex(originalIndex)}
-                    >
-                      <img
-                        src={imgSrc}
-                        alt={`${projectData.title} thumbnail`}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                        }}
-                        loading="lazy"
-                      />
-                    </ImageWrapper>
-                  );
-                })}
-            </DesktopSubImageGrid>
-          )}
-
-          {/* --- Mobile Gallery --- */}
-          {gallery.length > 0 && (
-            <MobileSwiperWrapper>
-              <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                slidesPerView={1}
-                spaceBetween={10}
-                navigation
-                pagination={{ clickable: true }}
-                autoplay={{ delay: 5000, disableOnInteraction: false }}
-                loop={gallery.length > 1}
-              >
-                {gallery.map((imgSrc, i) => (
-                  <SwiperSlide key={imgSrc}>
-                    <MobileImageContainer>
-                      <Image
-                        src={imgSrc}
-                        alt={`${projectData.title} gallery image ${i + 1}`}
-                        fill
-                        sizes="100vw"
-                        quality={85}
-                        style={{ objectFit: "cover" }}
-                      />
-                    </MobileImageContainer>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </MobileSwiperWrapper>
-          )}
-        </HeroGrid>
-
-        {/* --- FIX: RESTORED THE COMPLETE DetailsGrid CONTENT THAT WAS PREVIOUSLY MISSING --- */}
-        <DetailsGrid
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <LeftColumn as={motion.div} variants={itemVariants}>
-            <PropertyTitle>{projectData.title}</PropertyTitle>
-            <Address>{projectData.address}</Address>
-
-            <Subheading>
-              {language === "ar" ? "وصف المشروع" : "House Description"}
-            </Subheading>
-            <Description>{projectData.longDescription}</Description>
-
-            {projectData.keyFeatures && projectData.keyFeatures.length > 0 && (
-              <KeyFeaturesSection>
-                <Subheading>
-                  {language === "ar" ? "الميزات الرئيسية" : "Key Features"}
-                </Subheading>
-                <FeaturesList>
-                  {projectData.keyFeatures.map((feature, index) => (
-                    <FeatureItem key={index}>
-                      <FaCheckCircle /> <span>{feature}</span>
-                    </FeatureItem>
-                  ))}
-                </FeaturesList>
-              </KeyFeaturesSection>
-            )}
-          </LeftColumn>
-          <RightColumn as={motion.div} variants={itemVariants}>
-            <Stats>
-              <StatItem>
-                <span className="icon">
-                  <FaBed />
-                </span>
-                <div>
-                  <strong>{projectData.beds}</strong>
-                  <br />
-                  {language === "ar" ? "غرف" : "Bed"}
-                </div>
-              </StatItem>
-
-              {projectData.floor && (
-                <StatItem>
-                  <span className="icon">
-                    <FaBuilding />
-                  </span>
-                  <div>
-                    <strong>{projectData.floor}</strong>
-                    <br />
-                  </div>
-                </StatItem>
-              )}
-
-              <StatItem>
-                <span className="icon">
-                  <FaRulerCombined />
-                </span>
-                <div>
-                  <strong>{projectData.sqft}</strong>
-                  <br />
-                  {language === "ar" ? "قدم مربع" : "SqFt"}
-                </div>
-              </StatItem>
-            </Stats>
-            <Subheading>
-              {language === "ar" ? "أبرز الميزات" : "Highlights"}
-            </Subheading>
-            <HighlightsTable>
-              {projectData.highlights.map((item, i) => (
-                <HighlightRow
-                  key={i}
-                  custom={i}
-                  initial="hidden"
-                  animate="visible"
-                  variants={itemVariants}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <span>{item.label}</span>
-                  <span>{item.value}</span>
-                </HighlightRow>
-              ))}
-            </HighlightsTable>
-            <ContactButton href="/booking">
-              {language === "ar" ? "تواصل معنا" : "Contact us"}{" "}
-              <span className="arrow">→</span>
-            </ContactButton>
-          </RightColumn>
-        </DetailsGrid>
-      </ContentWrapper>
-    </SectionContainer>
-  );
-};
-
-// --- STYLED COMPONENTS (No Changes Needed) ---
 const ImageWrapper = styled.div`
   overflow: hidden;
   border-radius: 16px;
@@ -269,22 +79,6 @@ const MobileImageContainer = styled.div`
   width: 100%;
   height: 350px;
   position: relative;
-`;
-const SectionContainer = styled.section`
-  margin-top: 10vh;
-  width: 100%;
-  padding: 4rem 2rem;
-  background-color: #ffffff;
-  font-family: "Inter", sans-serif;
-  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
-  @media (max-width: 992px) {
-    padding: 2rem 1rem;
-    margin-top: 8vh;
-  }
-`;
-const ContentWrapper = styled(motion.div)`
-  max-width: 1300px;
-  margin: 0 auto;
 `;
 const HeroGrid = styled(motion.div)`
   margin-bottom: 3rem;
@@ -439,7 +233,7 @@ const HighlightRow = styled(motion.div)`
     color: #1a1a1a;
   }
 `;
-const ContactButton = styled.a`
+const ContactButton = styled(Link)`
   display: block;
   width: 100%;
   text-align: center;
@@ -450,10 +244,237 @@ const ContactButton = styled.a`
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
+  .arrow {
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+  }
   &:hover {
     box-shadow: 0 10px 20px rgba(102, 161, 9, 0.3);
     transform: translateY(-3px);
+    .arrow {
+      transform: translateX(5px);
+    }
   }
 `;
 
-export default PropertyPage;
+// --- MAIN UI COMPONENT ---
+export default function PropertyPage({ project, lang }) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  if (!project) {
+    return <div>Loading project...</div>;
+  }
+
+  const projectData = project[lang] || project.en;
+  const gallery = project.galleryImages || [];
+
+  if (!projectData) {
+    return <div>Content for this language not found.</div>;
+  }
+
+  useEffect(() => {
+    if (gallery.length > 1) {
+      const timer = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % gallery.length);
+      }, 5000);
+      return () => clearInterval(timer);
+    }
+  }, [gallery.length]);
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <SectionContainer lang={lang}>
+      <ContentWrapper>
+        <HeroGrid>
+          {gallery.length > 0 && (
+            <DesktopMainImage as={motion.div} variants={itemVariants}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImageIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8 }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    position: "absolute",
+                  }}
+                >
+                  <Image
+                    src={gallery[currentImageIndex]}
+                    alt={`${projectData.title} - view ${currentImageIndex + 1}`}
+                    fill
+                    priority
+                    quality={90}
+                    sizes="(min-width: 993px) 60vw, 0vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </DesktopMainImage>
+          )}
+
+          {gallery.length > 1 && (
+            <DesktopSubImageGrid>
+              {gallery
+                .filter((_, index) => index !== currentImageIndex)
+                .map((imgSrc) => {
+                  const originalIndex = gallery.indexOf(imgSrc);
+                  return (
+                    <ImageWrapper
+                      as={motion.div}
+                      variants={itemVariants}
+                      key={imgSrc}
+                      onClick={() => setCurrentImageIndex(originalIndex)}
+                    >
+                      <img
+                        src={imgSrc}
+                        alt={`${projectData.title} thumbnail`}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                        loading="lazy"
+                      />
+                    </ImageWrapper>
+                  );
+                })}
+            </DesktopSubImageGrid>
+          )}
+
+          {gallery.length > 0 && (
+            <MobileSwiperWrapper>
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                slidesPerView={1}
+                spaceBetween={10}
+                navigation
+                pagination={{ clickable: true }}
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                loop={gallery.length > 1}
+              >
+                {gallery.map((imgSrc, i) => (
+                  <SwiperSlide key={i}>
+                    <MobileImageContainer>
+                      <Image
+                        src={imgSrc}
+                        alt={`${projectData.title} gallery image ${i + 1}`}
+                        fill
+                        sizes="100vw"
+                        quality={85}
+                        style={{ objectFit: "cover" }}
+                      />
+                    </MobileImageContainer>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </MobileSwiperWrapper>
+          )}
+        </HeroGrid>
+
+        <DetailsGrid
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <LeftColumn as={motion.div} variants={itemVariants}>
+            <PropertyTitle>{projectData.title}</PropertyTitle>
+            <Address>{projectData.address}</Address>
+
+            <Subheading>
+              {lang === "ar" ? "وصف المشروع" : "Project Description"}
+            </Subheading>
+            <Description>{projectData.longDescription}</Description>
+
+            {projectData.keyFeatures && projectData.keyFeatures.length > 0 && (
+              <KeyFeaturesSection>
+                <Subheading>
+                  {lang === "ar" ? "الميزات الرئيسية" : "Key Features"}
+                </Subheading>
+                <FeaturesList>
+                  {projectData.keyFeatures.map((feature, index) => (
+                    <FeatureItem key={index}>
+                      <FaCheckCircle /> <span>{feature}</span>
+                    </FeatureItem>
+                  ))}
+                </FeaturesList>
+              </KeyFeaturesSection>
+            )}
+          </LeftColumn>
+          <RightColumn as={motion.div} variants={itemVariants}>
+            <Stats>
+              <StatItem>
+                <span className="icon">
+                  <FaBed />
+                </span>
+                <div>
+                  <strong>{projectData.beds}</strong>
+                  <br />
+                  {lang === "ar" ? "غرف" : "Beds"}
+                </div>
+              </StatItem>
+              {projectData.floor && (
+                <StatItem>
+                  <span className="icon">
+                    <FaBuilding />
+                  </span>
+                  <div>
+                    <strong>{projectData.floor}</strong>
+                    <br />
+                    {lang === "ar" ? "طوابق" : "Floors"}
+                  </div>
+                </StatItem>
+              )}
+              <StatItem>
+                <span className="icon">
+                  <FaRulerCombined />
+                </span>
+                <div>
+                  <strong>{projectData.sqft}</strong>
+                  <br />
+                  {lang === "ar" ? "قدم مربع" : "SqFt"}
+                </div>
+              </StatItem>
+            </Stats>
+            {projectData.highlights && projectData.highlights.length > 0 && (
+              <>
+                <Subheading>
+                  {lang === "ar" ? "أبرز الميزات" : "Highlights"}
+                </Subheading>
+                <HighlightsTable>
+                  {projectData.highlights.map((item, i) => (
+                    <HighlightRow
+                      key={i}
+                      custom={i}
+                      initial="hidden"
+                      animate="visible"
+                      variants={itemVariants}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <span>{item.label}</span>
+                      <span>{item.value}</span>
+                    </HighlightRow>
+                  ))}
+                </HighlightsTable>
+              </>
+            )}
+            <ContactButton href={`/${lang}/booking`}>
+              {lang === "ar" ? "تواصل معنا" : "Contact us"}{" "}
+              <span className="arrow">→</span>
+            </ContactButton>
+          </RightColumn>
+        </DetailsGrid>
+      </ContentWrapper>
+    </SectionContainer>
+  );
+}

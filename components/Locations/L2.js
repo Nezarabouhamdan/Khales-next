@@ -1,17 +1,12 @@
-// components/OfficeLocationsFinal.jsx
+// components/Locations/L2.js
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { useLanguage } from "@/Context/Languagecontext"; // Adjust path if needed
-import { contactData } from "@/data/contactData";
 
-//================================================================
-// 1. DATA & KEYFRAME ANIMATIONS
-//================================================================
-
+// Static data that doesn't need translation
 const officeImageUrls = [
   "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1920",
   "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1920",
@@ -26,9 +21,7 @@ const kenBurns = keyframes`
   100% { transform: scale(1.1); }
 `;
 
-//================================================================
-// 2. STYLED COMPONENTS
-//================================================================
+// --- STYLED COMPONENTS (Your original code, unchanged) ---
 const rtlStyle = css`
   direction: rtl;
   unicode-bidi: plaintext;
@@ -36,7 +29,6 @@ const rtlStyle = css`
   font-family: "Cairo", sans-serif;
   font-feature-settings: "tnum";
 `;
-
 const SectionContainer = styled.section`
   width: 100%;
   padding: 6rem 2rem;
@@ -44,13 +36,10 @@ const SectionContainer = styled.section`
   position: relative;
   overflow: hidden;
   font-family: "Inter", sans-serif;
-  ${({ isArabic }) => isArabic && rtlStyle}
-
-  @media (max-width: 992px) {
+  ${({ isArabic }) => isArabic && rtlStyle}@media (max-width:992px) {
     padding: 4rem 1.5rem;
   }
 `;
-
 const ContentWrapper = styled(motion.div)`
   max-width: 1100px;
   margin: 0 auto;
@@ -61,7 +50,6 @@ const ContentWrapper = styled(motion.div)`
   align-items: center;
   gap: 3rem;
 `;
-
 const Header = styled.h1`
   font-size: 3.2rem;
   font-weight: 700;
@@ -74,22 +62,19 @@ const Header = styled.h1`
     font-size: 2.8rem;
   }
 `;
-
 const LocationsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   width: 100%;
 `;
-
 const LocationLink = styled.a`
   text-decoration: none;
   color: inherit;
   display: block;
 `;
-
 const LocationCard = styled(motion.div)`
-  background-color: #ffffff;
+  background-color: #fff;
   color: #1a1a1a;
   padding: 2rem;
   border-radius: 16px;
@@ -98,28 +83,22 @@ const LocationCard = styled(motion.div)`
   border: 2px solid #e9ecef;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   height: 100%;
-  ${({ isArabic }) => isArabic && rtlStyle}
-
-  &.active,
-  &:hover {
+  ${({ isArabic }) => isArabic && rtlStyle}&.active,&:hover {
     transform: translateY(-8px);
     border-color: #66a109;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
   }
 `;
-
 const IconWrapper = styled.div`
   font-size: 1.75rem;
   color: #66a109;
   margin-bottom: 1.5rem;
 `;
-
 const CityTitle = styled.h2`
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 `;
-
 const AddressText = styled.p`
   font-size: 0.95rem;
   line-height: 1.6;
@@ -127,7 +106,6 @@ const AddressText = styled.p`
   white-space: pre-wrap;
   ${({ isArabic }) => isArabic && rtlStyle}
 `;
-
 const ImageShowcase = styled(motion.div)`
   width: 100%;
   height: 500px;
@@ -135,7 +113,6 @@ const ImageShowcase = styled(motion.div)`
   overflow: hidden;
   position: relative;
 `;
-
 const ShowcaseImage = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -147,7 +124,6 @@ const ShowcaseImage = styled(motion.div)`
   background-image: url(${(props) => props.imageUrl});
   animation: ${kenBurns} 20s ease-in-out infinite alternate;
 `;
-
 const ImageCaption = styled(motion.div)`
   position: absolute;
   bottom: 0;
@@ -159,11 +135,9 @@ const ImageCaption = styled(motion.div)`
     rgba(0, 0, 0, 0.75) 0%,
     rgba(0, 0, 0, 0) 100%
   );
-  color: white;
+  color: #fff;
   z-index: 2;
-  ${({ isArabic }) => isArabic && rtlStyle}
-
-  h3 {
+  ${({ isArabic }) => isArabic && rtlStyle}h3 {
     font-size: 1.75rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
@@ -175,33 +149,35 @@ const ImageCaption = styled(motion.div)`
   }
 `;
 
-//================================================================
-// 3. MAIN COMPONENT
-//================================================================
-const OfficeLocationsFinal = () => {
-  const { language } = useLanguage();
-  const isArabic = language === "ar";
-  const currentLangData = contactData[language] || contactData.eng;
+// --- MAIN REFACTORED COMPONENT ---
+export default function OfficeLocationsFinal({ lang, content }) {
+  // Use the props passed from the parent ContactPage component
+  const isArabic = lang === "ar";
+  const locationsData = content?.offices || [];
 
   const processedLocations = useMemo(() => {
-    return currentLangData.map((loc, index) => ({
+    return locationsData.map((loc, index) => ({
       city: `${loc.titlePart1} ${loc.titlePart2}`,
       address: loc.description,
       link: loc.link,
       imageUrl: officeImageUrls[index % officeImageUrls.length],
     }));
-  }, [currentLangData]);
+  }, [locationsData]);
 
   const [activeLocation, setActiveLocation] = useState(processedLocations[0]);
 
-  const headerText = isArabic
-    ? { part1: "مكاتبنا ", part2: "حول العالم " }
-    : { part1: "Our ", part2: "Offices" };
+  // Update the active location when the language/data changes
+  useEffect(() => {
+    setActiveLocation(processedLocations[0]);
+  }, [processedLocations]);
+
+  if (!content || !activeLocation) {
+    return null;
+  }
 
   return (
     <SectionContainer isArabic={isArabic} dir={isArabic ? "rtl" : "ltr"}>
       <ContentWrapper
-        as={motion.div}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -214,11 +190,10 @@ const OfficeLocationsFinal = () => {
           }}
         >
           <Header>
-            {headerText.part1}
-            <span>{headerText.part2}</span>
+            {content.titlePart1}
+            <span>{content.titlePart2}</span>
           </Header>
         </motion.div>
-
         <LocationsGrid>
           {processedLocations.map((loc, index) => (
             <LocationLink
@@ -245,36 +220,31 @@ const OfficeLocationsFinal = () => {
             </LocationLink>
           ))}
         </LocationsGrid>
-
-        {activeLocation && (
-          <ImageShowcase>
-            <AnimatePresence mode="wait">
-              <ShowcaseImage
-                key={activeLocation.imageUrl}
-                imageUrl={activeLocation.imageUrl}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-              />
-            </AnimatePresence>
-            <AnimatePresence mode="wait">
-              <ImageCaption
-                key={activeLocation.city}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                isArabic={isArabic}
-              >
-                <h3>{activeLocation.city}</h3>
-              </ImageCaption>
-            </AnimatePresence>
-          </ImageShowcase>
-        )}
+        <ImageShowcase>
+          <AnimatePresence mode="wait">
+            <ShowcaseImage
+              key={activeLocation.imageUrl}
+              imageUrl={activeLocation.imageUrl}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            />
+          </AnimatePresence>
+          <AnimatePresence mode="wait">
+            <ImageCaption
+              key={activeLocation.city}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              isArabic={isArabic}
+            >
+              <h3>{activeLocation.city}</h3>
+            </ImageCaption>
+          </AnimatePresence>
+        </ImageShowcase>
       </ContentWrapper>
     </SectionContainer>
   );
-};
-
-export default OfficeLocationsFinal;
+}

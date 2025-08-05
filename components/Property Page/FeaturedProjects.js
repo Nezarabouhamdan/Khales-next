@@ -1,49 +1,185 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useLanguage } from "../../Context/Languagecontext";
 import Link from "next/link";
-import Image from "next/image"; // It's better to use next/image
+import Image from "next/image";
+import { categoryMap } from "@/lib/categoryMap";
 
-// --- FIX ---
-// Import the data and function from the new central file.
-import { projectsData, findProjectBySlug } from "./ProjectData";
+// --- STYLED COMPONENTS (Unchanged) ---
+const SectionWrapper = styled.section`
+  width: 100%;
+  padding: 5rem 0;
+  background-color: #fff;
+  font-family: "Inter", sans-serif;
+  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
+  overflow: hidden;
+`;
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
+const Header = styled.div`
+  margin: 0 auto 3rem auto;
+`;
+const Title = styled.h2`
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1a1a1a;
+`;
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+const FilterTabs = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
+const FilterButton = styled.button`
+  padding: 0.6rem 1.2rem;
+  border-radius: 99px;
+  border: 1px solid ${({ $active }) => ($active ? "#66a109" : "#e0e0e0")};
+  background-color: ${({ $active }) => ($active ? "#66a109" : "transparent")};
+  color: ${({ $active }) => ($active ? "#fff" : "#555")};
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: ${({ $active }) => ($active ? "#5a9008" : "#f5f5f5")};
+  }
+`;
+const ProjectsGrid = styled(motion.div)`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2.5rem;
+  align-items: stretch;
+`;
+const CardTitle = styled.h3`
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.75rem 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+`;
+const Description = styled.p`
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  text-decoration: none;
+`;
+const ProjectCard = styled(motion.div)`
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
 
-// Your component can now be exported on its own.
-// We also export findProjectBySlug again from here for any other client component that might need it.
-export { findProjectBySlug };
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    ${CardTitle}, ${Description} {
+      text-decoration: underline;
+      text-decoration-color: #a0a0a0;
+    }
+  }
+`;
+const ImageWrapper = styled.div`
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  position: relative;
+`;
+const ProjectImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  ${ProjectCard}:hover & {
+    transform: scale(1.05);
+  }
+`;
+const CardContent = styled.div`
+  padding: 1.5rem;
+  text-align: ${({ lang }) => (lang === "ar" ? "right" : "left")};
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+`;
+const Tags = styled.p`
+  color: #66a109;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem 0;
+`;
 
-const FeaturedProjects = () => {
-  const { language } = useLanguage();
-  const [activeTab, setActiveTab] = useState("Featured");
+// --- MAIN REFACTORED COMPONENT ---
+export default function FeaturedProjects({ lang, content }) {
+  const projects = content?.projectsData || [];
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
-  const tabs = {
-    eng: ["Featured", "Commerical", "Interior Design", "Villas"],
-    ar: ["مميز", "تجاري", "تصميم داخلي", "فلل"],
-  };
+  // ======================= THE NEW, SIMPLIFIED LOGIC =======================
+  const featuredTabLabel = lang === "ar" ? "مميز" : "Featured";
 
-  const filteredProjects = projectsData.filter((p) => {
-    if (activeTab === "Featured" || activeTab === "مميز") return true;
-    return p.category[language] === activeTab;
+  // Tabs are now generated here, directly from the official map. This cannot fail.
+  const tabs = [
+    featuredTabLabel,
+    ...Object.keys(categoryMap).map((key) => categoryMap[key][lang]),
+  ];
+
+  const [activeTab, setActiveTab] = useState(featuredTabLabel);
+
+  useEffect(() => {
+    // When language changes, reset the active tab to the new "Featured" label
+    setActiveTab(lang === "ar" ? "مميز" : "Featured");
+  }, [lang]);
+  // =========================================================================
+
+  if (projects.length === 0) {
+    return null;
+  }
+
+  const filteredProjects = projects.filter((p) => {
+    // If the active tab is "Featured", show all projects.
+    if (activeTab === featuredTabLabel) {
+      return true;
+    }
+
+    // Find the English key that corresponds to the active tab label.
+    const activeCategoryKey = Object.keys(categoryMap).find(
+      (key) => categoryMap[key][lang] === activeTab
+    );
+
+    // Filter projects based on the stable English key from ProjectData.js
+    return p.category === activeCategoryKey;
   });
 
   return (
-    <SectionWrapper ref={ref} lang={language}>
+    <SectionWrapper ref={ref} lang={lang}>
       <Container>
         <Header>
-          <Title>
-            {language === "ar" ? "مشاريع مميزة" : "Featured Projects"}
-          </Title>
+          <Title>{content.title}</Title>
           <FilterContainer>
             <FilterTabs>
-              {tabs[language].map((cat) => (
+              {tabs.map((cat) => (
                 <FilterButton
                   key={cat}
-                  active={activeTab === cat}
+                  $active={activeTab === cat}
                   onClick={() => setActiveTab(cat)}
                 >
                   {cat}
@@ -70,7 +206,7 @@ const FeaturedProjects = () => {
                 }}
               >
                 <Link
-                  href={`/projects/${project.slug}`}
+                  href={`/${lang}/projects/${project.slug}`}
                   passHref
                   style={{
                     display: "flex",
@@ -80,18 +216,17 @@ const FeaturedProjects = () => {
                   }}
                 >
                   <ImageWrapper>
-                    {/* The ProjectImage component now uses LazyImage */}
                     <ProjectImage
                       src={project.mainImage}
-                      alt={project[language].title}
-                      width={500}
-                      height={500}
+                      alt={project[lang]?.title || "Project Image"}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </ImageWrapper>
-                  <CardContent lang={language}>
-                    <Tags>{project[language].tags.join(" / ")}</Tags>
-                    <CardTitle>{project[language].title}</CardTitle>
-                    <Description>{project[language].description}</Description>
+                  <CardContent lang={lang}>
+                    <Tags>{project[lang]?.tags?.join(" / ")}</Tags>
+                    <CardTitle>{project[lang]?.title}</CardTitle>
+                    <Description>{project[lang]?.description}</Description>
                   </CardContent>
                 </Link>
               </ProjectCard>
@@ -101,140 +236,4 @@ const FeaturedProjects = () => {
       </Container>
     </SectionWrapper>
   );
-};
-
-// --- STYLED COMPONENTS ---
-const SectionWrapper = styled.section`
-  /* ... styles remain the same ... */
-  width: 100%;
-  padding: 5rem 2rem;
-  background-color: #fff;
-  font-family: "Inter", sans-serif;
-  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
-`;
-const Container = styled.div`
-  /* ... styles remain the same ... */
-  max-width: 1200px;
-  margin: 0 auto;
-`;
-const Header = styled.div`
-  /* ... styles remain the same ... */
-  margin: 0 auto 3rem auto;
-`;
-const Title = styled.h2`
-  /* ... styles remain the same ... */
-  text-align: center;
-  font-size: 2.8rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: #1a1a1a;
-`;
-const FilterContainer = styled.div`
-  /* ... styles remain the same ... */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-`;
-const FilterTabs = styled.div`
-  /* ... styles remain the same ... */
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-`;
-const FilterButton = styled.button`
-  /* ... styles remain the same ... */
-  padding: 0.6rem 1.2rem;
-  border-radius: 99px;
-  border: 1px solid ${({ active }) => (active ? "#66a109" : "#e0e0e0")};
-  background-color: ${({ active }) => (active ? "#66a109" : "transparent")};
-  color: ${({ active }) => (active ? "#fff" : "#555")};
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    background-color: ${({ active }) => (active ? "#5a9008" : "#f5f5f5")};
-  }
-`;
-const ProjectsGrid = styled(motion.div)`
-  /* ... styles remain the same ... */
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 2.5rem;
-  align-items: stretch;
-`;
-const CardTitle = styled.h3`
-  /* ... styles remain the same ... */
-  font-family: "Georgia", "Times New Roman", serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 0.75rem 0;
-  text-decoration: none;
-  transition: color 0.2s ease;
-`;
-const Description = styled.p`
-  /* ... styles remain the same ... */
-  color: #666;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0;
-  text-decoration: none;
-`;
-const ProjectCard = styled(motion.div)`
-  /* ... styles remain the same ... */
-  background: #fff;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    ${CardTitle}, ${Description} {
-      text-decoration: underline;
-      text-decoration-color: #a0a0a0;
-    }
-  }
-`;
-const ImageWrapper = styled.div`
-  /* ... styles remain the same ... */
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-`;
-
-// --- CHANGE 2: Base the styled component on LazyImage ---
-const ProjectImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  transition: transform 0.4s ease;
-  ${ProjectCard}:hover & {
-    transform: scale(1.05);
-  }
-`;
-
-const CardContent = styled.div`
-  /* ... styles remain the same ... */
-  padding: 1.5rem;
-  text-align: ${({ lang }) => (lang === "ar" ? "right" : "left")};
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-`;
-const Tags = styled.p`
-  /* ... styles remain the same ... */
-  color: #66a109;
-  font-weight: 500;
-  font-size: 0.9rem;
-  margin: 0 0 0.5rem 0;
-`;
-
-export default FeaturedProjects;
+}

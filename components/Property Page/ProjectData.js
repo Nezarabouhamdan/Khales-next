@@ -1,4 +1,4 @@
-// lib/projectsData.js
+// components/Property Page/ProjectData.js
 // This file is a "neutral" module. It has NO "use client".
 
 export const projectsData = [
@@ -19,7 +19,7 @@ export const projectsData = [
       "https://i.ibb.co/JjtJ6WhY/10.png",
       "https://i.ibb.co/spnHPwtG/11.png",
     ],
-    eng: {
+    en: {
       tags: ["Architectural Design", "Site Supervision"],
       title: "The Royal Villa",
       address: "Muscat, Oman",
@@ -67,14 +67,15 @@ export const projectsData = [
   {
     id: 2,
     slug: "TheCrownCentral",
-    category: { eng: "Commerical", ar: "تجاري" },
+    category: { eng: "Commercial", ar: "تجاري" },
     mainImage: "https://i.ibb.co/1Gn1hMNV/Landscape-Saudi-Arabia.png",
     galleryImages: [
       "https://i.ibb.co/1Gn1hMNV/Landscape-Saudi-Arabia.png",
       "https://i.ibb.co/Z6jRc9zm/Riyadh-1-sq.png",
       "https://i.ibb.co/Xxp72yFD/Riyadh-2-sq.png",
     ],
-    eng: {
+    en: {
+      // Changed from 'eng' to 'en'
       tags: ["Architectural Design", "Site Supervision"],
       title: "The Crown Central",
       address: "Riyadh, Saudi Arabia",
@@ -140,7 +141,7 @@ export const projectsData = [
       "https://i.ibb.co/KjswkzWT/DSC023721.jpg",
       "https://i.ibb.co/fYd1LY0C/panorama.jpg",
     ],
-    eng: {
+    en: {
       tags: ["Project Management", "Construction Oversight"],
       title: "The Organic Villa",
       address: "Al Wasl, Dubai",
@@ -164,7 +165,7 @@ export const projectsData = [
     },
     ar: {
       tags: ["إدارة المشاريع", "إشراف على البناء"],
-      title: "الفيلا العضوية",
+      title: "الفيلا الطبيعية",
       address: "الوصل، دبي",
       description: "ملاذ هادئ من الفخامة البسيطة.",
       longDescription:
@@ -187,7 +188,6 @@ export const projectsData = [
   },
 ];
 
-// This helper function can now be used on both the server and the client
 export const findProjectBySlug = (slug) => {
   return projectsData.find((p) => p.slug === slug) || null;
 };

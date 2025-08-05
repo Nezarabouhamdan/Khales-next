@@ -1,50 +1,12 @@
-// components/MissionVision.jsx
 "use client";
 
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { motion, useInView } from "framer-motion";
 import { FaStar, FaCheck } from "react-icons/fa";
-import { useLanguage } from "@/Context/Languagecontext"; // Adjust path if needed
+// REMOVED: import { useLanguage } from "@/Context/Languagecontext";
 
-//================================================================
-// 1. DYNAMIC CONTENT
-//================================================================
-const contentData = {
-  eng: {
-    mission: {
-      title: "Our Mission",
-      description:
-        "To deliver innovative, sustainable, and results-driven project management and consultancy solutions. We aim to exceed client expectations by combining strategic planning with professional execution, ensuring each project is delivered on time and within budget.",
-      tags: ["Strategic Planning", "Team Collaboration", "Innovation"],
-    },
-    vision: {
-      title: "Our Vision",
-      description:
-        "To be the leading project management consultancy that consistently turns visionary ideas into sustainable and successful projects, while fostering long-term relationships with our clients through trust and excellence.",
-      tags: ["Visionary Leadership", "Sustainable Growth", "Excellence"],
-    },
-  },
-  ar: {
-    mission: {
-      title: "مهمتنا",
-      description:
-        "تقديم حلول مبتكرة ومستدامة وموجهة نحو النتائج في إدارة المشاريع والاستشارات. نهدف إلى تجاوز توقعات العملاء من خلال الجمع بين التخطيط الاستراتيجي والتنفيذ الاحترافي، مما يضمن تسليم كل مشروع في الوقت المحدد وضمن الميزانية.",
-      tags: ["تخطيط استراتيجي", "تعاون الفريق", "ابتكار"],
-    },
-    vision: {
-      title: "رؤيتنا",
-      description:
-        "أن نكون الشركة الرائدة في استشارات إدارة المشاريع التي تحول الأفكار الطموحة باستمرار إلى مشاريع ناجحة ومستدامة، مع بناء علاقات طويلة الأمد مع عملائنا من خلال الثقة والتميز.",
-      tags: ["قيادة رؤيوية", "نمو مستدام", "التميز"],
-    },
-  },
-};
-
-//================================================================
-// 2. STYLED COMPONENTS (Corrected for RTL)
-//================================================================
-
+// STYLED COMPONENTS (Unchanged)
 const SectionWrapper = styled.section`
   display: flex;
   width: 100%;
@@ -169,12 +131,10 @@ const DecorativeShape = styled(motion.div)`
   position: absolute;
   z-index: 1;
   pointer-events: none;
-  transition: transform 0.4s ease-out; /* Added for smooth parallax */
+  transition: transform 0.4s ease-out;
 `;
 
-//================================================================
-// 3. FRAMER MOTION VARIANTS (RESTORED)
-//================================================================
+// FRAMER MOTION VARIANTS (Unchanged)
 const sectionVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -198,16 +158,13 @@ const itemVariants = {
   },
 };
 
-//================================================================
-// 4. THE MAIN COMPONENT
-//================================================================
-const MissionVision = () => {
-  const { language } = useLanguage();
-  const content = contentData[language] || contentData.eng;
-  const isRTL = language === "ar";
+// THE REFACTORED MAIN COMPONENT
+export default function MissionVision({ lang, content }) {
+  // All data now comes from props
+  const isRTL = lang === "ar";
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-  // Parallax effect handler
+
   const handleMouseMove = (e) => {
     const { currentTarget } = e;
     const shapes = currentTarget.querySelectorAll(".shape");
@@ -219,15 +176,21 @@ const MissionVision = () => {
       shape.style.transform = `translate(${x / factor}px, ${y / factor}px)`;
     });
   };
+
   const handleMouseLeave = (e) => {
     const shapes = e.currentTarget.querySelectorAll(".shape");
     shapes.forEach((shape) => {
       shape.style.transform = `translate(0px, 0px)`;
     });
   };
+
+  if (!content) {
+    return null; // Don't render if content is not available
+  }
+
   return (
     <SectionWrapper ref={sectionRef} dir={isRTL ? "rtl" : "ltr"}>
-      {/* -------------------- MISSION COLUMN -------------------- */}
+      {/* MISSION COLUMN */}
       <MissionColumn
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -295,7 +258,7 @@ const MissionVision = () => {
         </ContentWrapper>
       </MissionColumn>
 
-      {/* -------------------- VISION COLUMN -------------------- */}
+      {/* VISION COLUMN */}
       <VisionColumn
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -364,6 +327,4 @@ const MissionVision = () => {
       </VisionColumn>
     </SectionWrapper>
   );
-};
-
-export default MissionVision;
+}

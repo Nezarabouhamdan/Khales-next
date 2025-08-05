@@ -1,75 +1,92 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import MultiStepForm from "../components/Stepper/MultiStepForm";
-import { Title } from "../components/Whoweare/TextContent"; // Removed unused GreenText import
-import { useLanguage } from "../Context/Languagecontext";
+import { motion } from "framer-motion";
 import MultiStepFormnew from "@/components/New Stepper/MultiStepForm";
 
+// The main page wrapper that controls the background and top padding
 const Wrapper = styled.section`
-  position: relative;
+  position: relative; /* This is crucial for positioning the decorative shapes */
   width: 100%;
-  min-height: 100vh; /* Use min-height to ensure it fills the screen */
-  z-index: 2;
+  min-height: 100vh;
+  z-index: 1; /* Ensure wrapper is behind modals but in front of body */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Removed justify-content to allow content to start from the top */
-  padding-top: 100px; /* Use padding instead of margin on the Title */
+  padding-top: 100px; /* Restored original top padding */
   padding-bottom: 50px;
-  gap: 2rem; /* Add some gap between title and form */
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #f8f9fa;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.8;
-    z-index: -1;
-  }
+  background: #f8f9fa; /* The light gray background */
+  overflow: hidden; /* Prevents shapes from spilling out */
 `;
 
-const BookingPage = () => {
-  const { language } = useLanguage();
-  const [isClient, setIsClient] = useState(false);
+// The decorative shape component is moved here
+const DecorativeShape = ({ initialX, initialY, size, stiffness, rtl }) => {
+  const ref = useRef(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  // --- 1. Create a state variable for the page title ---
-  const [pageTitle, setPageTitle] = useState("");
+  // Use finalX to handle RTL layout correctly
+  const finalX = rtl ? `calc(100% - ${initialX} - ${size})` : initialX;
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // --- 2. Create an effect to update BOTH the state and document.title ---
-  useEffect(() => {
-    // Only run this logic on the client side
-    if (isClient) {
-      const newTitle = language === "ar" ? "احجز موعدك" : "Book an Appointment";
-
-      // Update the React state (this will cause the component to re-render)
-      setPageTitle(newTitle);
-
-      // Update the browser tab title
-      document.title = newTitle;
-    }
-  }, [language, isClient]); // This effect runs when language or isClient changes
-
-  // Don't render anything during SSR to avoid hydration errors
-  if (!isClient) {
-    return null;
-  }
+    const handleMouseMove = (e) => {
+      if (!ref.current) return;
+      const { clientX, clientY } = e;
+      const { left, top, width, height } = ref.current.getBoundingClientRect();
+      const x = (clientX - (left + width / 2)) / (width / 2);
+      const y = (clientY - (top + height / 2)) / (height / 2);
+      setPosition({ x: x * stiffness, y: y * stiffness });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [stiffness]);
 
   return (
-    <>
-      {/* --- 3. Use the state variable here for rendering --- */}
-      <MultiStepFormnew />
-    </>
+    <motion.div
+      ref={ref}
+      style={{
+        position: "absolute",
+        top: initialY,
+        left: finalX,
+        width: size,
+        height: size,
+        backgroundColor: "rgba(102, 161, 9, 0.08)", // Kept the subtle green
+        borderRadius: "50%",
+        zIndex: -1, // Places it behind the form content
+        x: position.x,
+        y: position.y,
+        transition: { type: "spring", stiffness: 200, damping: 30 },
+      }}
+    />
   );
 };
 
-export default BookingPage;
+export default function BookingPageClient({ lang, content }) {
+  if (!content) {
+    return null;
+  }
+  const isRTL = lang === "ar";
+
+  return (
+    <Wrapper>
+      {/* Decorative shapes are placed in the main wrapper to position correctly */}
+      <DecorativeShape
+        initialX="15%"
+        initialY="15%"
+        size="300px"
+        stiffness={15}
+        rtl={isRTL}
+      />
+      <DecorativeShape
+        initialX="65%"
+        initialY="50%"
+        size="450px"
+        stiffness={10}
+        rtl={isRTL}
+      />
+
+      {/* The form component no longer has its own wrapper, it's just the form itself */}
+      <MultiStepFormnew lang={lang} content={content} />
+    </Wrapper>
+  );
+}

@@ -1,15 +1,13 @@
-// src/components/Navbar/Navbar.js
-// --- CORRECTED CODE WITH MOBILE FIXES ---
+// components/Navbar/Navbar.jsx
 "use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styled, { css } from "styled-components";
 import { FaTimes, FaBars } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
-// --- 1. IMPORT YOUR LANGUAGE CONTEXT HOOK ---
-// Make sure this path is correct for your project structure
-import { useLanguage } from "../../Context/Languagecontext";
+
 // A custom hook to detect clicks outside of a component
 const useClickOutside = (ref, handler) => {
   useEffect(() => {
@@ -27,89 +25,10 @@ const useClickOutside = (ref, handler) => {
     };
   }, [ref, handler]);
 };
-// --- DATA-DRIVEN MENU ---
-const menuData = [
-  {
-    label: "Home",
-    labelAr: "الرئيسية",
-    isDropdown: true,
-    children: [
-      { label: "About Khales", labelAr: "نبذة عنا", path: "/ABOUTUS" },
-      { label: "Blogs", labelAr: "المدونة", path: "/Blogs" },
-    ],
-  },
-  {
-    label: "Project Management",
-    labelAr: "إدارة مشاريع",
-    isDropdown: true,
-    children: [
-      {
-        label: "360 Project Management",
-        labelAr: "خدمة إدارة المشروع الشاملة",
-        path: "/ProjectManagement",
-      },
-      {
-        label: "Project Manager",
-        labelAr: "مدير المشروع",
-        path: "/ProjectManager",
-      },
-      {
-        label: "Development Planning",
-        labelAr: "التخطيط التطويري",
-        path: "/Developmentplanning",
-      },
-      {
-        label: "Feasibility Study",
-        labelAr: "دراسة الجدوى",
-        path: "/Projectfeasability",
-      },
-    ],
-  },
-  {
-    label: "Engineering Consultancy",
-    labelAr: "استشارات هندسية",
-    isDropdown: true,
-    children: [
-      {
-        label: "Engineering Design",
-        labelAr: "التصميم الهندسي",
-        path: "/EngineeringDesign",
-      },
-      {
-        label: "Engineering Supervision",
-        labelAr: "الإشراف الهندسي",
-        path: "/EngineeringSupervision",
-      },
-      {
-        label: "Interior Designing",
-        labelAr: "التصميم الداخلي",
-        path: "/InteriorDesign",
-      },
-      {
-        label: "Landscaping",
-        labelAr: "تنسيق الحدائق",
-        path: "/LandscapingDesign",
-      },
-    ],
-  },
-  {
-    label: "Connect",
-    labelAr: "اتصل بنا",
-    path: "/Contact",
-    isDropdown: false,
-  },
-  {
-    label: "Language",
-    labelAr: "اللغة",
-    isDropdown: true,
-    children: [
-      { label: "English", labelAr: "الإنجليزية", langCode: "eng" },
-      { label: "Arabic", labelAr: "العربية", langCode: "ar" },
-    ],
-  },
-];
 
-// --- STYLED COMPONENTS (With modifications) ---
+// ===================================================================
+// STYLED COMPONENTS DEFINITIONS (THE MISSING PART)
+// ===================================================================
 
 const COLORS = {
   primary: "#66a109",
@@ -161,13 +80,10 @@ const NavbarContainer = styled.div`
     border-radius: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 254, 254, 0.6);
+    background: rgba(255, 254, 254, 0.8);
     border: none;
-    border-bottom: 1px solid
-      ${({ $isScrolled }) =>
-        $isScrolled ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)"};
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: none;
-    backdrop-filter: blur(10px);
   }
 `;
 
@@ -182,23 +98,15 @@ const NavIcon = styled.img`
   width: auto;
 `;
 
-// --- MODIFICATION 1 ---
-// Added an `$isMobileMenuOpen` prop to control the color of the close (FaTimes) icon.
 const MobileIcon = styled.div`
   display: none;
   @media screen and (max-width: 960px) {
     display: block;
     font-size: 1.8rem;
     cursor: pointer;
-    // When the menu is open, the background is white, so the icon must be dark.
-    color: ${({ $isMobileMenuOpen, $isScrolled }) =>
-      $isMobileMenuOpen
-        ? COLORS.darkText
-        : $isScrolled
-        ? COLORS.darkText
-        : COLORS.darkText};
+    color: ${COLORS.darkText};
     transition: color 0.3s ease-in-out;
-    z-index: 1001; // Ensure it's on top
+    z-index: 1001;
   }
 `;
 
@@ -220,7 +128,6 @@ const NavMenu = styled.ul`
     transition: all 0.5s ease;
     background: ${COLORS.white};
     padding: 100px 2rem 2rem 2rem;
-    // Add space for the button at the bottom
     justify-content: flex-start;
   }
 `;
@@ -249,14 +156,7 @@ const MenuLink = styled.a`
   cursor: pointer;
   position: relative;
   transition: color 0.3s ease;
-  color: ${({ $isScrolled, $isActive }) =>
-    $isActive
-      ? COLORS.primary
-      : $isScrolled
-      ? COLORS.darkText
-      : COLORS.darkText};
-  text-shadow: ${({ $isScrolled }) =>
-    $isScrolled ? "none" : "0 1px 3px rgba(0, 0, 0, 0.3)"};
+  color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
 
   &:hover {
     color: ${COLORS.primary};
@@ -268,7 +168,6 @@ const MenuLink = styled.a`
     padding: 1.5rem;
     justify-content: center;
     font-size: 1.2rem;
-    text-shadow: none;
     color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
 
     &:hover {
@@ -332,27 +231,7 @@ const SubMenuLink = styled(Link)`
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
   text-align: left;
-
-  &:hover {
-    background-color: #f4f4f4;
-    color: ${COLORS.primary};
-  }
-`;
-
-const SubMenuButton = styled.button`
-  display: block;
-  width: 100%;
-  padding: 0.75rem 1.25rem;
-  color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
-  font-weight: ${({ $isActive }) => ($isActive ? "600" : "500")};
   font-size: 1rem;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.2s ease-in-out;
-  text-align: left;
-  border: none;
-  background: transparent;
-  cursor: pointer;
 
   &:hover {
     background-color: #f4f4f4;
@@ -365,7 +244,7 @@ const NavActions = styled.div`
   align-items: center;
   gap: 1rem;
   @media screen and (max-width: 960px) {
-    display: none; // This hides the button on mobile in its original position
+    display: none;
   }
 `;
 
@@ -390,40 +269,22 @@ const CTAButton = styled(Link)`
   }
 `;
 
-// --- MODIFICATION 2 ---
-// A new styled component for the button when it's inside the mobile menu.
 const MobileCTAWrapper = styled.div`
-  display: none; // Hidden by default
+  display: none;
 
   @media screen and (max-width: 960px) {
     display: block;
     width: 100%;
-    margin-top: 2rem; // Add some space above the button
+    margin-top: auto; // Pushes button to the bottom
+    padding-top: 2rem;
   }
 `;
-const Section = styled.iframe`
-  display: flex;
-  flex-direction: coulmn;
-  justify-content: space-evenly;
-  align-content: spcae-evenly;
-  width: 100%;
-  align-items: space-between;
-  text-align: left;
-  grid: 3f2f;
-  color: red;
-  background-color: blue;
-  margin-left: 3rem;
-  margin-right: 3rem;
-  padding: 2px 30px 20px 30px;
-  border: 1px solid black;
-  border-radius: 8px;
-  flex-wrap: wrap;
-`;
 
-// --- MAIN NAVBAR COMPONENT ---
-const Navbar = () => {
-  const { language, changeLanguage } = useLanguage();
+// ===================================================================
+// MAIN NAVBAR COMPONENT LOGIC
+// ===================================================================
 
+export default function Navbar({ lang, navigation }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -440,87 +301,74 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    setMobileMenuOpen(false);
+    setMobileMenuOpen(false); // Close mobile menu on any navigation
   }, [pathname]);
 
   const handleDropdownToggle = (label) => {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
-  const handleLanguageChange = (langCode) => {
-    changeLanguage(langCode);
-    setOpenDropdown(null);
+  const redirectedPathName = (locale) => {
+    if (!pathname) return "/";
+    const segments = pathname.split("/");
+    segments[1] = locale;
+    return segments.join("/");
   };
 
-  const isDropdownActive = (children) => {
-    return children.some((child) => pathname === child.path);
-  };
+  // Use a fallback to prevent errors if navigation prop is not ready
+  const navItems = navigation?.items || [];
+  const ctaButtonText = navigation?.ctaButton || "Loading...";
+  const languageButtonText = navigation?.languageButton || "Language";
 
   return (
     <NavWrapper $isScrolled={isScrolled}>
       <NavbarContainer $isScrolled={isScrolled}>
-        <NavLogoLink href="/">
+        <NavLogoLink href={`/${lang}`}>
           <NavIcon src="/assets/Khales-Logo.png" alt="Khales Logo" />
         </NavLogoLink>
 
-        {/* --- MODIFICATION 1 (Applied) --- */}
-        {/* Pass the $isMobileMenuOpen prop to the MobileIcon styled component */}
-        <MobileIcon
-          $isScrolled={isScrolled}
-          $isMobileMenuOpen={isMobileMenuOpen}
-          onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-        >
+        <MobileIcon onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
         </MobileIcon>
 
         <NavMenu $isOpen={isMobileMenuOpen} ref={navRef}>
-          {menuData.map((item) => {
-            const label = language === "ar" ? item.labelAr : item.label;
-            const isActive = item.isDropdown
-              ? isDropdownActive(item.children)
-              : pathname === item.path;
+          {navItems.map((item) => {
+            const hasChildren = item.children && item.children.length > 0;
+            const isActive = hasChildren
+              ? item.children.some(
+                  (child) => pathname === `/${lang}${child.path}`
+                )
+              : pathname === `/${lang}${item.path}`;
 
             return (
               <MenuItem key={item.label}>
                 <MenuLink
-                  as={item.isDropdown ? "div" : Link}
-                  href={item.path || "#"}
+                  as={hasChildren ? "div" : Link}
+                  href={item.path ? `/${lang}${item.path}` : "#"}
                   $isActive={isActive}
-                  $isScrolled={isScrolled}
                   onClick={
-                    item.isDropdown
+                    hasChildren
                       ? () => handleDropdownToggle(item.label)
-                      : () => setMobileMenuOpen(false)
+                      : undefined
                   }
                 >
-                  {label}
-                  {item.isDropdown && (
+                  {item.label}
+                  {hasChildren && (
                     <ArrowIcon $isOpen={openDropdown === item.label} />
                   )}
                 </MenuLink>
 
-                {item.isDropdown && (
+                {hasChildren && (
                   <SubMenu $isOpen={openDropdown === item.label}>
                     {item.children.map((child) => (
                       <SubMenuItem key={child.label}>
-                        {child.path ? (
-                          <SubMenuLink
-                            href={child.path}
-                            $isActive={pathname === child.path}
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            {language === "ar" ? child.labelAr : child.label}
-                          </SubMenuLink>
-                        ) : (
-                          <SubMenuButton
-                            $isActive={language === child.langCode}
-                            onClick={() => handleLanguageChange(child.langCode)}
-                          >
-                            {language === "ar" && child.labelAr
-                              ? child.labelAr
-                              : child.label}
-                          </SubMenuButton>
-                        )}
+                        <SubMenuLink
+                          href={`/${lang}${child.path}`}
+                          $isActive={pathname === `/${lang}${child.path}`}
+                          onClick={() => setOpenDropdown(null)}
+                        >
+                          {child.label}
+                        </SubMenuLink>
                       </SubMenuItem>
                     ))}
                   </SubMenu>
@@ -529,23 +377,40 @@ const Navbar = () => {
             );
           })}
 
-          {/* --- MODIFICATION 2 (Applied) --- */}
-          {/* Add the CTA button inside a mobile-only wrapper within the NavMenu */}
+          <MenuItem>
+            <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
+              {languageButtonText}
+              <ArrowIcon $isOpen={openDropdown === "language"} />
+            </MenuLink>
+            <SubMenu $isOpen={openDropdown === "language"}>
+              <SubMenuItem>
+                <SubMenuLink
+                  href={redirectedPathName("en")}
+                  $isActive={lang === "en"}
+                >
+                  English
+                </SubMenuLink>
+              </SubMenuItem>
+              <SubMenuItem>
+                <SubMenuLink
+                  href={redirectedPathName("ar")}
+                  $isActive={lang === "ar"}
+                >
+                  العربية
+                </SubMenuLink>
+              </SubMenuItem>
+            </SubMenu>
+          </MenuItem>
+
           <MobileCTAWrapper>
-            <CTAButton href="/Landing/eng">
-              {language === "eng" ? "Book Consultation" : "أحجز موعدك الآن"}
-            </CTAButton>
+            <CTAButton href={`/${lang}/booking`}>{ctaButtonText}</CTAButton>
           </MobileCTAWrapper>
         </NavMenu>
 
         <NavActions>
-          <CTAButton href="/booking">
-            {language === "eng" ? "Book Consultation" : "أحجز موعدك الآن"}
-          </CTAButton>
+          <CTAButton href={`/${lang}/booking`}>{ctaButtonText}</CTAButton>
         </NavActions>
       </NavbarContainer>
     </NavWrapper>
   );
-};
-
-export default Navbar;
+}

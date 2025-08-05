@@ -1,8 +1,8 @@
-// components/ValuePropositionV2.jsx (Improved Performance)
+// components/Statics/Statics2.js
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components"; // Import keyframes
+import styled, { keyframes } from "styled-components";
 import {
   motion,
   useInView,
@@ -11,84 +11,27 @@ import {
   useTransform,
 } from "framer-motion";
 import { FaBuilding, FaRegThumbsUp, FaRegCalendarCheck } from "react-icons/fa";
-import { useLanguage } from "../../Context/Languagecontext";
 
-// --- 1. DATA (Unchanged) ---
-const content = {
-  eng: {
-    hero: {
-      title: "Unlocking Your Potential",
-      subtitle:
-        "We combine deep industry expertise with proven strategies to deliver tangible value and drive sustainable growth.",
-    },
-    stats: [
-      {
-        title: "Projects Completed",
-        description:
-          "Delivered across residential, architectural and interior scopes.",
-      },
-      {
-        title: "Client Satisfaction",
-        description:
-          "Measured through completed handovers and client feedback .",
-      },
-      {
-        title: "Years of Experience",
-        description:
-          "Delivering residential and architectural projects across the UAE ",
-      },
-    ],
-  },
-  ar: {
-    hero: {
-      title: "إطلاق العنان لإمكانياتك",
-      subtitle:
-        "نحن نجمع بين الخبرة العميقة في الصناعة والاستراتيجيات المثبتة لتقديم قيمة ملموسة ودفع النمو المستدام.",
-    },
-    stats: [
-      {
-        title: "مشروع ناجح",
-        description: "تنفيذ مشاريع معقدة تتجاوز التوقعات بأعلى المعايير.",
-      },
-      {
-        title: "رضا العملاء",
-        description: "التزامنا الراسخ بالتميز في كل شراكة وعمل نقوم به.",
-      },
-      {
-        title: "سنوات من الخبرة",
-        description: "فريق من الخبراء المتمرسين بمعرفة لا تقدر بثمن في المجال.",
-      },
-    ],
-  },
-};
-
+// Static data for icons and values can remain
 const statsData = [
   { icon: <FaBuilding />, value: 120, suffix: "+" },
   { icon: <FaRegThumbsUp />, value: 98, suffix: "%" },
   { icon: <FaRegCalendarCheck />, value: 15, suffix: "+" },
 ];
 
-// --- 2. STYLED COMPONENTS (Improved) ---
-
-// PERFORMANCE FIX: Define a CSS keyframe animation for the smoothest result.
+// --- STYLED COMPONENTS (Your original code, unchanged) ---
 const slowZoom = keyframes`
-  from {
-    transform: scale(1.05);
-  }
-  to {
-    transform: scale(1.2);
-  }
+  from { transform: scale(1.05); }
+  to { transform: scale(1.2); }
 `;
-
 const SectionContainer = styled.div`
   position: relative;
   background-color: #ffffff;
-  font-family: ${({ lang }) =>
-      lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
-    sans-serif;
+  font-family: ${(({ lang }) =>
+    lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)",
+  "sans-serif")};
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
 `;
-
 const StickyWrapper = styled.div`
   position: sticky;
   top: 0;
@@ -96,7 +39,6 @@ const StickyWrapper = styled.div`
   width: 100%;
   overflow: hidden;
 `;
-
 const ImageBackground = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -107,13 +49,9 @@ const ImageBackground = styled(motion.div)`
   background-size: cover;
   background-position: center;
   z-index: 1;
-
-  /* PERFORMANCE FIX: Apply the smooth CSS animation */
   animation: ${slowZoom} 25s linear infinite alternate;
-  /* Hint to the browser to use hardware acceleration */
   will-change: transform;
 `;
-
 const Overlay = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -123,7 +61,6 @@ const Overlay = styled(motion.div)`
   background-color: rgba(18, 18, 18, 0.5);
   z-index: 2;
 `;
-
 const HeroContent = styled(motion.div)`
   position: relative;
   z-index: 3;
@@ -135,7 +72,6 @@ const HeroContent = styled(motion.div)`
   align-items: center;
   text-align: center;
   padding: 2rem;
-
   h1 {
     font-size: 4.5rem;
     font-weight: 700;
@@ -155,14 +91,12 @@ const HeroContent = styled(motion.div)`
     }
   }
 `;
-
 const StatsPanel = styled.div`
   background-color: #ffffff;
   padding: 6rem 2rem;
   position: relative;
   z-index: 4;
 `;
-
 const StatsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -174,7 +108,6 @@ const StatsGrid = styled(motion.div)`
     gap: 4rem;
   }
 `;
-
 const IconWrapper = styled.div`
   display: inline-flex;
   align-items: center;
@@ -190,13 +123,11 @@ const IconWrapper = styled.div`
     color: #66a109;
   }
 `;
-
 const StatColumn = styled(motion.div)`
   text-align: center;
   padding: 2rem;
   border-radius: 24px;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
-
   .counter-container {
     margin-bottom: 0.5rem;
   }
@@ -214,19 +145,17 @@ const StatColumn = styled(motion.div)`
     margin: 0 auto;
   }
 `;
-
 const CounterText = styled.span`
   font-size: 4.5rem;
   font-weight: 700;
   line-height: 1;
   color: #1a1a1a;
 `;
-
 const Suffix = styled(CounterText)`
   color: #66a109;
 `;
 
-// --- 3. ANIMATED NUMBER COMPONENT (Unchanged) ---
+// --- ANIMATED NUMBER SUB-COMPONENT (Unchanged) ---
 const AnimatedNumber = ({ value }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
@@ -246,10 +175,17 @@ const AnimatedNumber = ({ value }) => {
   return <CounterText ref={ref}></CounterText>;
 };
 
-// --- 4. MAIN COMPONENT ---
-const ValuePropositionV2 = () => {
-  const { language } = useLanguage();
-  const currentContent = content[language] || content.eng;
+// --- MAIN REFACTORED COMPONENT ---
+export default function ValuePropositionV2({ lang, content }) {
+  // Robust checks for content object and its nested properties
+  if (
+    !content ||
+    !content.hero ||
+    !Array.isArray(content.stats) ||
+    content.stats.length === 0
+  ) {
+    return null;
+  }
 
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -263,12 +199,7 @@ const ValuePropositionV2 = () => {
 
   const gridContainerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
   };
 
   const gridItemVariants = {
@@ -281,14 +212,13 @@ const ValuePropositionV2 = () => {
   };
 
   return (
-    <SectionContainer lang={language} ref={targetRef}>
+    <SectionContainer lang={lang} ref={targetRef}>
       <StickyWrapper>
-        {/* PERFORMANCE FIX: Removed the Framer Motion animate props */}
         <ImageBackground />
         <Overlay style={{ opacity: overlayOpacity }} />
         <HeroContent style={{ opacity: heroOpacity, scale: heroScale }}>
-          <h1>{currentContent.hero.title}</h1>
-          <p>{currentContent.hero.subtitle}</p>
+          <h1>{content.hero.title}</h1>
+          <p>{content.hero.subtitle}</p>
         </HeroContent>
       </StickyWrapper>
 
@@ -299,31 +229,35 @@ const ValuePropositionV2 = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {statsData.map((stat, index) => (
-            <StatColumn
-              key={index}
-              variants={gridItemVariants}
-              whileHover={{
-                y: -10,
-                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)",
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              <IconWrapper>
-                <div className="icon">{stat.icon}</div>
-              </IconWrapper>
-              <div className="counter-container">
-                <AnimatedNumber value={stat.value} />
-                <Suffix>{stat.suffix}</Suffix>
-              </div>
-              <h3>{currentContent.stats[index].title}</h3>
-              <p>{currentContent.stats[index].description}</p>
-            </StatColumn>
-          ))}
+          {statsData.map((stat, index) => {
+            // Check if the corresponding text content exists before rendering
+            const statContent = content.stats[index];
+            if (!statContent) return null;
+
+            return (
+              <StatColumn
+                key={index}
+                variants={gridItemVariants}
+                whileHover={{
+                  y: -10,
+                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)",
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <IconWrapper>
+                  <div className="icon">{stat.icon}</div>
+                </IconWrapper>
+                <div className="counter-container">
+                  <AnimatedNumber value={stat.value} />
+                  <Suffix>{stat.suffix}</Suffix>
+                </div>
+                <h3>{statContent.title}</h3>
+                <p>{statContent.description}</p>
+              </StatColumn>
+            );
+          })}
         </StatsGrid>
       </StatsPanel>
     </SectionContainer>
   );
-};
-
-export default ValuePropositionV2;
+}

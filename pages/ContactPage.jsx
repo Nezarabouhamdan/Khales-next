@@ -1,45 +1,49 @@
+// components/PageSpecific/ContactPage.js
 "use client";
-import { useLanguage } from "@/Context/Languagecontext";
-import { contactData } from "@/data/contactData";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
+import styled from "styled-components";
+
+// Import your existing UI components
 import ContactUs from "@/components/ContactForm/ContactUs";
 import CTASection from "@/components/Homecontact/CTASection";
 import OfficeLocationsFinal from "@/components/Locations/L2";
-const ContactPage = () => {
-  const { language } = useLanguage();
-  const [isLoading, setIsLoading] = useState(true);
 
-  // change metadata from client side
-  useEffect(() => {
-    document.title = `${language === "ar" ? "تواصل معنا" : "Contact us"}`;
-  }, [language]);
+const PageWrapper = styled.div`
+  /* Add padding to the top to account for the fixed navbar */
+  padding-top: 90px;
+`;
 
-  // Get translated services data array (flat list)
-  const services = contactData[language] || contactData["eng"];
+const FormContainer = styled.div`
+  /* The original ContactSection styling is moved here */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  font-family: "Inter", sans-serif;
+  padding: 80px 24px;
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  @media (max-width: 991px) {
+    padding: 60px 20px;
+  }
+`;
 
-  // Create chunks of 3 items for each row
-  const chunkArray = (arr, size) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
-      arr.slice(i * size, i * size + size)
-    );
-
-  const serviceChunks = chunkArray(services, 3);
+export default function ContactPage({ lang, content, ctaContent }) {
+  if (!content || !ctaContent) {
+    return null; // Or a loading skeleton
+  }
 
   return (
-    <>
-      {" "}
-      <div style={{ display: "grid", placeItems: "center", margin: "70px" }}>
-        <ContactUs />{" "}
-      </div>
-      <OfficeLocationsFinal />
-      <CTASection />
-    </>
-  );
-};
+    <PageWrapper>
+      <FormContainer>
+        {/* Pass the specific 'form' and 'info' content to the ContactUs component */}
+        <ContactUs lang={lang} content={content} />
+      </FormContainer>
 
-export default ContactPage;
+      <OfficeLocationsFinal lang={lang} content={content.locations} />
+
+      <CTASection lang={lang} content={ctaContent} />
+    </PageWrapper>
+  );
+}

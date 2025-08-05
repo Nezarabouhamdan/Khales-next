@@ -2,7 +2,6 @@
 import * as React from "react";
 import { useState } from "react";
 import { GreenText, Title } from "../Whoweare/TextContent";
-import { useLanguage } from "../../Context/Languagecontext";
 import { styled, keyframes } from "styled-components";
 
 // --- SVG ICONS ---
@@ -22,7 +21,6 @@ const EmailIcon = () => (
     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
   </svg>
 );
-
 const PhoneIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +36,6 @@ const PhoneIcon = () => (
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
   </svg>
 );
-
 const ClockIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -56,90 +53,18 @@ const ClockIcon = () => (
   </svg>
 );
 
-// Content data for both languages (unchanged)
-const contactData = {
-  eng: {
-    header: {
-      title: ["Contact", "Us"],
-      description:
-        "Have a question or need expert guidance? Contact us for consultations, project inquiries, and bookings.",
-    },
-    info: {
-      general: {
-        title: "General Inquiries",
-        email: "info@khales.ae",
-        phone: "+971 4 557 1184",
-      },
-      customer: {
-        title: "24/7 Customer Service",
-        phone: "+971 55 129 9880",
-      },
-      hours: {
-        title: "Working Hours",
-        text: "Sunday to Thursday - 9:00AM - 06:00PM",
-      },
-    },
-    form: {
-      inquiryPlaceholder: "Type of Inquiry",
-      namePlaceholder: "Full Name",
-      emailPlaceholder: "Email",
-      phonePlaceholder: "Phone",
-      messagePlaceholder: "Message",
-      submitText: "Submit",
-      inquiryOptions: [
-        "General Question",
-        "Project Inquiry",
-        "Consultation Request",
-        "Booking",
-        "Other",
-      ],
-    },
-  },
-  ar: {
-    header: {
-      title: ["اتصل", "بنا"],
-      description:
-        "هل لديك سؤال أو تحتاج إلى إرشادات خبراء؟ تواصل معنا للاستشارات واستفسارات المشاريع والحجوزات.",
-    },
-    info: {
-      general: {
-        title: "استفسارات عامة",
-        email: "info@khales.ae",
-        phone: "+971 4 557 1184",
-      },
-      customer: {
-        title: "خدمة العملاء على مدار الساعة",
-        phone: "+971 55 129 9880",
-      },
-      hours: {
-        title: "ساعات العمل",
-        text: "من الأحد إلى الخميس - 9:00 صباحًا - 6:00 مساءً",
-      },
-    },
-    form: {
-      inquiryPlaceholder: "نوع الاستفسار",
-      namePlaceholder: "الاسم الكامل",
-      phonePlaceholder: "رقم الهاتف",
-      emailPlaceholder: "البريد الإلكتروني",
-      messagePlaceholder: "الرسالة",
-      submitText: "إرسال",
-      inquiryOptions: [
-        "سؤال عام",
-        "استفسار عن المشروع",
-        "طلب استشارة",
-        "حجز",
-        "أخرى",
-      ],
-    },
-  },
-};
-
-function ContactUs() {
-  const { language } = useLanguage();
-  const content = contactData[language] || contactData.eng;
+// --- MAIN ContactUs COMPONENT ---
+// It now receives lang and the entire contactPage content object as props
+export default function ContactUs({ lang, content }) {
+  // Robust check for content
+  if (!content || !content.header || !content.info || !content.form) {
+    return <div>Loading...</div>; // Or a loading skeleton
+  }
 
   return (
-    <ContactSection $dir={language === "ar" ? "rtl" : "ltr"}>
+    <>
+      {" "}
+      {/* Removed ContactSection to avoid double padding */}
       <ContactHeader>
         <Title>
           {content.header.title[0]}{" "}
@@ -148,7 +73,7 @@ function ContactUs() {
         <ContactDescription>{content.header.description}</ContactDescription>
       </ContactHeader>
       <ContactCard>
-        <ContactLayout $dir={language === "ar" ? "rtl" : "ltr"}>
+        <ContactLayout $dir={lang === "ar" ? "rtl" : "ltr"}>
           <ContactInfo>
             <InfoGroup>
               <IconWrapper>
@@ -184,14 +109,15 @@ function ContactUs() {
             </InfoGroup>
           </ContactInfo>
           <ContactFormContainer>
-            <ContactForm content={content.form} rtl={language === "ar"} />
+            <ContactForm content={content.form} rtl={lang === "ar"} />
           </ContactFormContainer>
         </ContactLayout>
       </ContactCard>
-    </ContactSection>
+    </>
   );
 }
 
+// --- ContactForm SUB-COMPONENT (Your original code, unchanged) ---
 const ContactForm = ({ content, rtl }) => {
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [selectedInquiry, setSelectedInquiry] = useState("");
@@ -220,7 +146,6 @@ const ContactForm = ({ content, rtl }) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
-
     try {
       const response = await fetch("/api/Contact-us", {
         method: "POST",
@@ -234,7 +159,6 @@ const ContactForm = ({ content, rtl }) => {
           inquiry: formData.inquiry,
         }),
       });
-
       const data = await response.json();
       if (data.success) {
         setSubmitStatus("success");
@@ -256,9 +180,7 @@ const ContactForm = ({ content, rtl }) => {
     }
   };
 
-  const closePopup = () => {
-    setSubmitStatus(null);
-  };
+  const closePopup = () => setSubmitStatus(null);
 
   return (
     <>
@@ -294,7 +216,6 @@ const ContactForm = ({ content, rtl }) => {
             )}
           </DropdownContainer>
         </FormGroup>
-
         <FormGroup>
           <FormInput
             type="text"
@@ -414,24 +335,7 @@ const ContactForm = ({ content, rtl }) => {
   );
 };
 
-// --- STYLED COMPONENTS ---
-
-const ContactSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
-  background-color: rgb(255, 255, 255);
-  font-family: "Inter", sans-serif;
-  padding: 80px 24px;
-  direction: ${(props) => props.$dir};
-
-  @media (max-width: 991px) {
-    padding: 60px 20px;
-  }
-`;
-
+// --- STYLED COMPONENTS (Your original code, unchanged) ---
 const ContactHeader = styled.header`
   display: flex;
   flex-direction: column;
@@ -439,39 +343,33 @@ const ContactHeader = styled.header`
   text-align: center;
   margin-bottom: 48px;
 `;
-
 const ContactDescription = styled.p`
   font-size: 18px;
   color: #555;
   max-width: 600px;
   margin-top: 16px;
   line-height: 1.6;
-
   @media (max-width: 640px) {
     font-size: 16px;
   }
 `;
-
 const ContactCard = styled.div`
   width: 100%;
   max-width: 1200px;
-  background: #ffffff;
+  background: #fff;
   border-radius: 24px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   padding: 56px;
   overflow: hidden;
-  /* Add a small margin for desktop view */
   margin: 0 24px;
-
   @media (max-width: 991px) {
     padding: 40px;
-    margin: 0 20px; /* Adjust margin for tablet view */
+    margin: 0 20px;
   }
-
   @media (max-width: 640px) {
-    padding: 32px 24px; /* More standard mobile padding */
-    margin: 0; /* No margin on mobile, allowing it to be full-width */
-    border-radius: 0; /* Optional: Make it a flat card on mobile */
+    padding: 32px 24px;
+    margin: 0;
+    border-radius: 0;
   }
 `;
 const ContactLayout = styled.div`
@@ -479,82 +377,65 @@ const ContactLayout = styled.div`
   width: 100%;
   gap: 80px;
   flex-direction: ${(props) => (props.$dir === "rtl" ? "row-reverse" : "row")};
-
   @media (max-width: 991px) {
     flex-direction: column;
     gap: 56px;
   }
 `;
-
 const LtrText = styled.span`
   direction: ltr;
   unicode-bidi: embed;
 `;
-
-// --- Contact Info Section ---
 const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
   flex: 1;
 `;
-
 const InfoGroup = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 20px;
 `;
-
 const IconWrapper = styled.div`
   flex-shrink: 0;
   color: #66a109;
   margin-top: 4px;
 `;
-
 const InfoContent = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 const InfoTitle = styled.h3`
   font-size: 22px;
   font-weight: 600;
   color: #333;
   margin-bottom: 8px;
-
   @media (max-width: 640px) {
     font-size: 20px;
   }
 `;
-
 const InfoText = styled.p`
   font-size: 16px;
   color: #666;
   line-height: 1.5;
 `;
-
-// --- Form Section ---
-
 const ContactFormContainer = styled.div`
   flex: 1.5;
 `;
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;
-
 const FormLabel = styled.label`
   position: absolute;
   top: 15px;
-  ${(props) => (props.$rtl ? "right: 16px;" : "left: 16px;")}
-  color: #888;
+  ${(props) => (props.$rtl ? "right: 16px;" : "left: 16px;")}color:#888;
   pointer-events: none;
   transition: all 0.2s ease-out;
   background-color: #fff;
   padding: 0 4px;
 `;
-
 const FormInput = styled.input`
   width: 100%;
   padding: 14px 16px;
@@ -565,48 +446,40 @@ const FormInput = styled.input`
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   text-align: ${(props) => (props.$rtl ? "right" : "left")};
-
   &:focus {
     border-color: #66a109;
     box-shadow: 0 0 0 3px rgba(102, 161, 9, 0.15);
   }
-
-  &:focus ~ ${FormLabel}, &:not(:placeholder-shown) ~ ${FormLabel} {
+  &:focus ~ ${FormLabel},&:not(:placeholder-shown) ~ ${FormLabel} {
     top: -10px;
     font-size: 13px;
     color: #66a109;
   }
 `;
-
 const FormTextarea = styled(FormInput)`
   min-height: 120px;
   resize: vertical;
 `;
-
 const FormGroup = styled.div`
   position: relative;
   margin-bottom: 28px;
 `;
-
-// --- Custom Dropdown ---
-
 const DropdownContainer = styled.div`
   position: relative;
   width: 100%;
 `;
-
 const DropdownInput = styled(FormInput)`
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
 `;
-
 const ChevronDown = styled.div`
   position: absolute;
   top: 50%;
-  ${(props) => (props.$rtl ? "left: 16px;" : "right: 16px;")}
-  transform: translateY(-50%) ${(props) =>
-    props.$isOpen ? "rotate(180deg)" : "rotate(0)"};
+  ${(props) =>
+    props.$rtl ? "left: 16px;" : "right: 16px;"}transform:translatey(-50%) ${(
+    props
+  ) => (props.$isOpen ? "rotate(180deg)" : "rotate(0)")};
   width: 0;
   height: 0;
   border-left: 6px solid transparent;
@@ -615,14 +488,13 @@ const ChevronDown = styled.div`
   pointer-events: none;
   transition: transform 0.2s ease;
 `;
-
 const DropdownMenu = styled.ul`
   position: absolute;
   top: 110%;
   left: 0;
   right: 0;
   width: 100%;
-  background-color: white;
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -634,19 +506,16 @@ const DropdownMenu = styled.ul`
   overflow-y: auto;
   text-align: ${(props) => (props.$rtl ? "right" : "left")};
 `;
-
 const DropdownItem = styled.li`
   padding: 12px 20px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.2s ease;
-
   &:hover {
     background-color: #f5f5f5;
     color: #66a109;
   }
 `;
-
 const SubmitButton = styled.button`
   background-color: #66a109;
   color: #fff;
@@ -661,38 +530,23 @@ const SubmitButton = styled.button`
   cursor: pointer;
   min-width: 150px;
   text-align: center;
-
   &:hover:not(:disabled) {
     background-color: #538307;
     box-shadow: 0 4px 15px rgba(102, 161, 9, 0.25);
     transform: translateY(-2px);
   }
-
   &:disabled {
     background-color: #ccc;
     cursor: not-allowed;
   }
-
   @media (max-width: 480px) {
     width: 100%;
   }
 `;
-
-// Modal and status messages (mostly unchanged, minor style tweaks for consistency if needed)
-const scaleUp = keyframes`
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-`;
-const checkAnimation = keyframes`
-  0% { stroke-dashoffset: 80; } 100% { stroke-dashoffset: 0; }
-`;
-const circleAnimation = keyframes`
-  0% { stroke-dashoffset: 166; } 100% { stroke-dashoffset: 0; }
-`;
-const bounce = keyframes`
-  0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-6px); }
-`;
-
+const scaleUp = keyframes`from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}`;
+const checkAnimation = keyframes`0%{stroke-dashoffset:80}100%{stroke-dashoffset:0}`;
+const circleAnimation = keyframes`0%{stroke-dashoffset:166}100%{stroke-dashoffset:0}`;
+const bounce = keyframes`0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}`;
 const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -704,10 +558,11 @@ const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2000;
+  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 `;
 const ModalContent = styled.div`
-  background: white;
+  background: #fff;
   padding: 2.5rem;
   border-radius: 16px;
   text-align: center;
@@ -795,7 +650,7 @@ const ModalText = styled.p`
 `;
 const CloseButton = styled.button`
   background: #6c757d;
-  color: white;
+  color: #fff;
   border: none;
   padding: 0.75rem 2rem;
   border-radius: 8px;
@@ -807,5 +662,3 @@ const CloseButton = styled.button`
     background: #5a6268;
   }
 `;
-
-export default ContactUs;

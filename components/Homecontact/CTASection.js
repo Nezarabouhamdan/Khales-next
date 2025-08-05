@@ -1,38 +1,14 @@
-// components/CTASection.js
-// --- ENHANCED STYLES APPLIED TO YOUR WORKING CODE ---
-
+// components/Homecontact/CTASection.js
 "use client";
 
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { CTAButton } from "./CTAButton";
-import { useLanguage } from "../../Context/Languagecontext";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-// This is your original, working import statement.
 import img from "../../public/assets/Porjects/1f5a52c5-139a-4684-a5ee-44d694eb301a.jpeg";
 
-// --- Framer Motion Animation Variants ---
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.25 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-  },
-};
-
-// --- Styled Component Definitions (Updated) ---
-
+// --- STYLED COMPONENTS (Your original code, with one change) ---
 const Section = styled(motion.section)`
   position: relative;
   width: 100%;
@@ -49,11 +25,9 @@ const BackgroundContainer = styled(motion.div)`
   top: 0;
   left: 0;
   width: 100%;
-  height: 110%; /* Taller to allow for parallax scroll */
+  height: 110%;
   z-index: 1;
 
-  /* Ken Burns Effect */
-  animation: kenBurns 40s ease-in-out infinite alternate;
   @keyframes kenBurns {
     from {
       transform: scale(1);
@@ -62,6 +36,7 @@ const BackgroundContainer = styled(motion.div)`
       transform: scale(1.1);
     }
   }
+  animation: kenBurns 40s ease-in-out infinite alternate;
 `;
 
 const BackgroundImage = styled(Image)`
@@ -87,11 +62,8 @@ const ContentWrapper = styled.div`
   padding: 0 4rem;
   display: flex;
   flex-direction: column;
-
-  /* RTL Support */
   align-items: ${({ $rtl }) => ($rtl ? "flex-end" : "flex-start")};
   text-align: ${({ $rtl }) => ($rtl ? "right" : "left")};
-
   @media (max-width: 991px) {
     padding: 0 2rem;
   }
@@ -110,7 +82,6 @@ const Heading = styled(motion.h2)`
   max-width: 600px;
   margin-bottom: 2rem;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
-
   @media (max-width: 991px) {
     font-size: 2.8rem;
   }
@@ -120,11 +91,49 @@ const Heading = styled(motion.h2)`
   }
 `;
 
-// --- Main Component (Your original logic with new styled-components) ---
+// This replaces the separate CTAButton component for clean HTML
+const StyledCTAButton = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #66a109;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  &:hover {
+    transform: translateY(-3px);
+    background: #5a9008;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  }
+`;
 
-export default function CTASection() {
-  const { language } = useLanguage();
-  const isRTL = language === "ar";
+// --- ANIMATION VARIANTS (Unchanged) ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.25 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+// --- MAIN REFACTORED COMPONENT ---
+export default function CTASection({ lang, content }) {
+  if (!content) {
+    return null;
+  }
+
+  const isRTL = lang === "ar";
   const sectionRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -132,19 +141,6 @@ export default function CTASection() {
     offset: ["start end", "end start"],
   });
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
-
-  const content = {
-    eng: {
-      heading: "Looking for expert solutions? Let’s talk!",
-      buttonText: "Book Your Consultation",
-    },
-    ar: {
-      heading: "تبحث عن حلول خبراء؟ لنتحدث",
-      buttonText: "احجز استشارتك",
-    },
-  };
-
-  const currentContent = content[language] || content.eng;
 
   return (
     <Section
@@ -156,20 +152,20 @@ export default function CTASection() {
     >
       <BackgroundContainer style={{ y: backgroundY }}>
         <BackgroundImage
-          src={img} // Your working import
+          src={img}
           alt="Luxury resort patio with palm trees"
           fill
           priority
         />
       </BackgroundContainer>
-
       <Overlay />
-
       <ContentWrapper $rtl={isRTL}>
-        <Heading variants={itemVariants}>{currentContent.heading}</Heading>
-        {/* We wrap the button in a motion.div to animate it */}
+        <Heading variants={itemVariants}>{content.heading}</Heading>
         <motion.div variants={itemVariants}>
-          <CTAButton>{currentContent.buttonText}</CTAButton>
+          {/* The button is now a styled Link component */}
+          <StyledCTAButton href={`/${lang}/booking`}>
+            {content.buttonText}
+          </StyledCTAButton>
         </motion.div>
       </ContentWrapper>
     </Section>

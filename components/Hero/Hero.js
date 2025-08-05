@@ -1,8 +1,10 @@
-"use client"; // REQUIRED: Uses state, refs, and event handlers for interactivity
+// components/Hero/Hero.js
+"use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link"; // Link is still needed for the styled-component
 import {
   FaVolumeMute,
   FaVolumeUp,
@@ -12,21 +14,26 @@ import {
 } from "react-icons/fa";
 
 // --- MAIN ENHANCED HERO COMPONENT ---
-export default function Hero({ children, lang }) {
+export default function Hero({ slides = [], lang }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
-  // State to track if the video fails to load, for graceful fallback
   const [isVideoError, setIsVideoError] = useState(false);
   const videoRef = useRef(null);
 
-  const toggleMute = () => setIsMuted((prev) => !prev);
+  useEffect(() => {
+    if (slides.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
 
+  const toggleMute = () => setIsMuted((prev) => !prev);
   const togglePlay = () => {
     const video = videoRef.current;
     if (!video) return;
-
     if (video.paused) {
-      // play() returns a promise which can reject if interrupted
       video.play().catch(() => setIsVideoError(true));
       setIsPlaying(true);
     } else {
@@ -34,7 +41,6 @@ export default function Hero({ children, lang }) {
       setIsPlaying(false);
     }
   };
-
   const handleReplay = () => {
     const video = videoRef.current;
     if (!video) return;
@@ -42,20 +48,18 @@ export default function Hero({ children, lang }) {
     video.play().catch(() => setIsVideoError(true));
     setIsPlaying(true);
   };
+  const handleVideoError = () => setIsVideoError(true);
 
-  // This function is triggered by the <video> element's onError event
-  const handleVideoError = () => {
-    setIsVideoError(true);
-  };
+  const currentSlide = slides[currentIndex] || slides[0];
+  const textContainerVariants =
+    lang === "ar" ? rtlTextContainerVariants : ltrTextContainerVariants;
+
+  if (!currentSlide) return null;
+
+  const buttonLink = `/${lang}${currentSlide.buttonLink || ""}`;
 
   return (
-    // Pass the language and error state to the styled component
     <Herosection lang={lang}>
-      {/*
-        The video is now conditionally rendered.
-        If it fails to load, it will be removed from the DOM,
-        leaving only the fast-loading poster image (set via CSS background).
-      */}
       {!isVideoError && (
         <VideoBackground
           ref={videoRef}
@@ -64,25 +68,36 @@ export default function Hero({ children, lang }) {
           loop
           muted={isMuted}
           playsInline
-          // The poster attribute helps the browser display an image while the video loads.
           poster="/assets/hero-poster.jpg"
-          // This error handler is key to our fallback strategy.
           onError={handleVideoError}
         />
       )}
-
       <VideoOverlay />
+      <ContentContainer>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            variants={textContainerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <MainTitle>{currentSlide.title}</MainTitle>
+            <Subtitle>{currentSlide.subtitle}</Subtitle>
 
-      <ContentContainer
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Renders the SEO-friendly content from the parent */}
-        {children}
+            {/* ======================= THE NEW FIX IS HERE ======================= */}
+            {/* The CTAButton is now a Link itself. We pass the 'href' directly to it. */}
+            {/* We no longer need the extra <Link> wrapper. */}
+            <CTAButton href={buttonLink}>{currentSlide.buttonText}</CTAButton>
+            {/* ==================================================================== */}
+          </motion.div>
+        </AnimatePresence>
       </ContentContainer>
-
-      {/* Video controls are also hidden if the video fails, preventing user confusion */}
       {!isVideoError && (
         <ControlsWrapper>
           <IconButton onClick={toggleMute} aria-label="Toggle Sound">
@@ -100,25 +115,8 @@ export default function Hero({ children, lang }) {
   );
 }
 
-// --- ANIMATION VARIANTS (Exported for reuse) ---
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.5 },
-  },
-};
+// --- STYLED COMPONENTS (WITH THE CRITICAL CHANGE) ---
 
-export const fadeInUp = {
-  hidden: { y: 30, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { type: "spring", stiffness: 100, damping: 20 },
-  },
-};
-
-// --- STYLED COMPONENTS (Exported for reuse) ---
 const Herosection = styled.section`
   height: 90vh;
   width: 100%;
@@ -126,23 +124,14 @@ const Herosection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   color: white;
   font-family: ${({ lang }) =>
       lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
     sans-serif;
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
-
-  /*
-    CRITICAL LCP ENHANCEMENT:
-    The poster is applied as a background image on the main section.
-    This ensures it's always visible, even if the <video> tag fails or is removed.
-    This makes the visual experience seamless and provides a reliable fallback.
-  */
   background-image: url("/assets/hero-poster.jpg");
   background-size: cover;
   background-position: center;
-
   @media (max-width: 768px) {
     height: 85vh;
   }
@@ -165,7 +154,7 @@ const VideoOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 2;
 `;
 
@@ -178,38 +167,30 @@ const ContentContainer = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   max-width: 900px;
+  overflow: hidden;
 `;
 
 export const MainTitle = styled(motion.h1)`
-  font-size: 3.2rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
   line-height: 1.25;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 1rem;
-
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-  @media (max-width: 480px) {
-    font-size: 2rem;
-  }
 `;
 
 export const Subtitle = styled(motion.p)`
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
   max-width: 650px;
   margin-bottom: 2.5rem;
   line-height: 1.6;
   opacity: 0.9;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
 `;
 
-export const CTAButton = styled(motion.a)`
+// ======================= THE SECOND FIX IS HERE =======================
+// We are now styling the Next.js Link component directly.
+// This is the recommended and modern approach.
+export const CTAButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -223,18 +204,13 @@ export const CTAButton = styled(motion.a)`
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
   border: 2px solid transparent;
-
   &:hover {
     transform: translateY(-3px);
     background: #5a9008;
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
   }
-
-  @media (max-width: 768px) {
-    padding: 0.8rem 1.8rem;
-    font-size: 1rem;
-  }
 `;
+// =======================================================================
 
 const ControlsWrapper = styled.div`
   position: absolute;
@@ -262,10 +238,41 @@ const IconButton = styled.button`
   justify-content: center;
   opacity: 0.8;
   transition: all 0.2s ease;
-
   &:hover {
     opacity: 1;
     transform: scale(1.15);
     color: #66a109;
   }
 `;
+
+// --- ALL ANIMATION VARIANTS (NO CHANGES NEEDED) ---
+const commonTransition = {
+  ease: "easeInOut",
+  duration: 0.8,
+};
+const ltrTextContainerVariants = {
+  hidden: { opacity: 0, x: -200 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { ...commonTransition, staggerChildren: 0.1 },
+  },
+  exit: {
+    opacity: 0,
+    x: 200,
+    transition: commonTransition,
+  },
+};
+const rtlTextContainerVariants = {
+  hidden: { opacity: 0, x: 100 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { ...commonTransition, staggerChildren: 0.1 },
+  },
+  exit: {
+    opacity: 0,
+    x: -100,
+    transition: commonTransition,
+  },
+};

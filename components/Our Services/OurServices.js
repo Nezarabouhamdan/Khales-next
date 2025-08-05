@@ -1,9 +1,10 @@
+// components/Our Services/OurServices.js
 "use client";
 
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import Link from "next/link"; // <-- IMPORT NEXT.JS LINK
+import Link from "next/link";
 import {
   FaArrowRight,
   FaStar,
@@ -12,94 +13,7 @@ import {
   FaClipboardCheck,
   FaTasks,
 } from "react-icons/fa";
-import { useLanguage } from "../../Context/Languagecontext"; // Assuming this path is correct
-import LazyImage from "../LazyImage";
-
-// --- UPDATED DATA (with 'slug' for linking) ---
-const content = {
-  eng: {
-    header: {
-      title: "Our Services",
-      subtitle:
-        "Transforming complex challenges into strategic opportunities...",
-    },
-    services: [
-      {
-        slug: "engineering-consultancy", // <-- ADDED SLUG
-        title: "Engineering",
-        highlight: "Consultancy",
-        description:
-          "Our engineering team supports each project with clear, code-compliant...",
-        showcaseSubtitle:
-          "Technical solutions that support design intent and buildability.",
-        features: [
-          {
-            title: "Structural Analysis",
-            description: "Detailed engineering checks tailored...",
-          },
-          {
-            title: "Quality Assurance",
-            description: "Technical reviews and verification processes...",
-          },
-        ],
-        linkText: "Explore Engineering Solutions",
-      },
-      {
-        slug: "project-management", // <-- ADDED SLUG
-        title: "Project",
-        highlight: "Management",
-        description:
-          "Managing projects with a clear structure, defined responsibilities...",
-        showcaseSubtitle:
-          "Complete oversight from design approvals to handover.",
-        features: [
-          {
-            title: "Resource Planning",
-            description: "Efficient allocation of personnel...",
-          },
-          {
-            title: "Risk Management",
-            description:
-              "Early detection of design, site, or execution risks...",
-          },
-        ],
-        linkText: "Discover Project Excellence",
-      },
-    ],
-  },
-  ar: {
-    header: {
-      title: "خدماتنا",
-      subtitle: "نحوّل التحديات المعقدة إلى فرص استراتيجية...",
-    },
-    services: [
-      {
-        slug: "engineering-consultancy", // <-- ADDED SLUG
-        title: "الاستشارات",
-        highlight: "الهندسية",
-        description: "نقدم حلولاً هندسية شاملة عبر التحليل الاستراتيجي...",
-        showcaseSubtitle: "تصميم وهيكلة أنظمة فيزيائية قابلة للتكوين والتركيب.",
-        features: [
-          { title: "التحليل الإنشائي", description: "تحليل حسابي متقدم..." },
-          { title: "ضمان الجودة", description: "بروتوكولات اختبار صارمة..." },
-        ],
-        linkText: "اكتشف الحلول الهندسية",
-      },
-      {
-        slug: "project-management", // <-- ADDED SLUG
-        title: "إدارة",
-        highlight: "المشاريع",
-        description: "ننظم المشاريع المعقدة بدقة وشفافية...",
-        showcaseSubtitle: "إشراف استراتيجي",
-        features: [
-          { title: "تخطيط الموارد", description: "تحسين تخصيص الموارد..." },
-          { title: "إدارة المخاطر", description: "استراتيجيات استباقية..." },
-        ],
-        linkText: "اكتشف تميز المشاريع",
-      },
-    ],
-  },
-};
+import LazyImage from "../LazyImage"; // Assuming this path is correct
 
 const servicesConfig = [
   {
@@ -118,7 +32,39 @@ const servicesConfig = [
   },
 ];
 
-// --- STYLED COMPONENTS (No changes needed here) ---
+// --- STYLED COMPONENTS (WITH LAYOUT FIX) ---
+const ServicesContainer = styled.section`
+  width: 100%;
+  padding: 6rem 0; /* Vertical padding only */
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem;
+  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
+  overflow: hidden; /* Prevent any accidental overflow */
+
+  @media (max-width: 992px) {
+    padding: 4rem 0;
+    gap: 4rem;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 2rem; /* Horizontal padding is now contained */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem;
+
+  @media (max-width: 992px) {
+    gap: 4rem;
+    padding: 0 1.5rem;
+  }
+`;
+
 const BackgroundImageWrapper = styled.div`
   position: absolute;
   top: 0;
@@ -130,6 +76,7 @@ const BackgroundImageWrapper = styled.div`
   border-radius: 20px;
   overflow: hidden;
 `;
+
 const ShowcaseCard = styled.div`
   position: relative;
   border-radius: 20px;
@@ -141,6 +88,7 @@ const ShowcaseCard = styled.div`
   color: white;
   overflow: hidden;
   isolation: isolate;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   &::after {
     content: "";
     position: absolute;
@@ -163,20 +111,7 @@ const ShowcaseCard = styled.div`
     }
   }
 `;
-const ServicesContainer = styled.section`
-  width: 100%;
-  padding: 6rem 2rem;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6rem;
-  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
-  @media (max-width: 992px) {
-    padding: 4rem 1.5rem;
-    gap: 4rem;
-  }
-`;
+
 const SectionHeader = styled(motion.div)`
   text-align: center;
   max-width: 700px;
@@ -197,21 +132,25 @@ const SectionHeader = styled(motion.div)`
     }
   }
 `;
+
 const ServiceRow = styled(motion.div)`
   display: flex;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1100px; /* Ensures content doesn't stretch too wide */
   gap: 3rem;
   align-items: center;
-  flex-direction: ${(props) => (props.isReversed ? "row-reverse" : "row")};
+  flex-direction: ${(props) => (props.$isReversed ? "row-reverse" : "row")};
   @media (max-width: 992px) {
     flex-direction: column;
   }
 `;
+
 const ShowcaseColumn = styled(motion.div)`
   flex: 1;
   min-width: 300px;
+  width: 100%;
 `;
+
 const ShowcaseIcon = styled.div`
   width: 50px;
   height: 50px;
@@ -224,11 +163,7 @@ const ShowcaseIcon = styled.div`
   backdrop-filter: blur(5px);
   color: #fff;
 `;
-const ShowcaseTitle = styled.h3`
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin-top: auto;
-`;
+
 const ShowcaseSubCard = styled.div`
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
@@ -237,9 +172,11 @@ const ShowcaseSubCard = styled.div`
   margin-top: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
 `;
+
 const TextColumn = styled(motion.div)`
   flex: 1.2;
 `;
+
 const ServiceTitle = styled.h2`
   font-size: 2.2rem;
   font-weight: 600;
@@ -249,11 +186,13 @@ const ServiceTitle = styled.h2`
     color: #66a109;
   }
 `;
+
 const ServiceDescription = styled.p`
   color: #555;
   line-height: 1.8;
   margin-bottom: 2rem;
 `;
+
 const FeaturesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -263,6 +202,7 @@ const FeaturesGrid = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+
 const FeatureCard = styled.div`
   h4 {
     font-size: 1rem;
@@ -282,14 +222,15 @@ const FeatureCard = styled.div`
     color: #66a109;
   }
 `;
-const ExploreLink = styled.a`
-  /* Can stay as 'a' for styling */
+
+const ExploreLink = styled(Link)`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   color: #66a109;
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
   transition: gap 0.3s ease;
   .arrow-icon {
     transition: transform 0.3s ease;
@@ -300,110 +241,92 @@ const ExploreLink = styled.a`
   }
 `;
 
-// --- FRAMER MOTION VARIANTS ---
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-};
-const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.7 } },
-};
-
-// --- THE MAIN COMPONENT ---
-const OurServices = () => {
-  const { language } = useLanguage();
-  const currentContent = content[language] || content.eng;
+// --- MAIN COMPONENT (Refactored Logic) ---
+export default function OurServices({ lang, content }) {
+  if (!content || !content.header || !content.items) {
+    return null;
+  }
 
   return (
-    <ServicesContainer lang={language}>
-      <SectionHeader
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h1>{currentContent.header.title}</h1>
-        <p>{currentContent.header.subtitle}</p>
-      </SectionHeader>
+    <ServicesContainer lang={lang}>
+      <ContentWrapper>
+        <SectionHeader
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1>{content.header.title}</h1>
+          <p>{content.header.subtitle}</p>
+        </SectionHeader>
 
-      {servicesConfig.map((serviceConfig, index) => {
-        const serviceText = currentContent.services[index];
-        const serviceUrl = `/services/${serviceText.slug}`; // <-- Dynamically create the URL
+        {content.items.map((serviceText, index) => {
+          const serviceConfig = servicesConfig[index];
+          const serviceUrl = `/${lang}/services/${serviceText.slug}`;
 
-        return (
-          <ServiceRow
-            key={serviceText.title}
-            isReversed={index % 2 !== 0}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-          >
-            <ShowcaseColumn variants={itemVariants}>
-              <ShowcaseCard>
-                <BackgroundImageWrapper>
-                  <LazyImage
-                    src={serviceConfig.showcase.image}
-                    alt={`Showcase for ${serviceText.title}`}
-                    fill
-                    sizes="(max-width: 992px) 90vw, 45vw"
-                  />
-                </BackgroundImageWrapper>
-                <ShowcaseIcon>{serviceConfig.showcase.icon}</ShowcaseIcon>
-                <div>
-                  <ShowcaseSubCard>
-                    {serviceText.showcaseSubtitle}
-                  </ShowcaseSubCard>
-                </div>
-              </ShowcaseCard>
-            </ShowcaseColumn>
+          return (
+            <ServiceRow key={serviceText.title} $isReversed={index % 2 !== 0}>
+              <ShowcaseColumn>
+                <ShowcaseCard>
+                  <BackgroundImageWrapper>
+                    <LazyImage
+                      src={serviceConfig.showcase.image}
+                      alt={`Showcase for ${serviceText.title}`}
+                      fill
+                      sizes="(max-width: 992px) 90vw, 45vw"
+                    />
+                  </BackgroundImageWrapper>
+                  <ShowcaseIcon>{serviceConfig.showcase.icon}</ShowcaseIcon>
+                  <div>
+                    <ShowcaseSubCard>
+                      {serviceText.showcaseSubtitle}
+                    </ShowcaseSubCard>
+                  </div>
+                </ShowcaseCard>
+              </ShowcaseColumn>
 
-            <TextColumn variants={containerVariants}>
-              <motion.div variants={itemVariants}>
-                <ServiceTitle>
-                  {serviceText.title} <span>{serviceText.highlight}</span>
-                </ServiceTitle>
-                <ServiceDescription>
-                  {serviceText.description}
-                </ServiceDescription>
-              </motion.div>
-              <FeaturesGrid>
-                {serviceText.features.map((feature, featureIndex) => (
-                  <motion.div key={feature.title} variants={itemVariants}>
-                    <FeatureCard>
-                      <h4>
-                        <span className="icon">
-                          {serviceConfig.features[featureIndex].icon}
-                        </span>
-                        {feature.title}
-                      </h4>
-                      <p>{feature.description}</p>
-                    </FeatureCard>
-                  </motion.div>
-                ))}
-              </FeaturesGrid>
-              <motion.div variants={itemVariants}>
-                {/* ▼▼▼ UPDATED LINK ▼▼▼ */}
-                <Link href={serviceUrl} passHref>
-                  <ExploreLink lang={language}>
+              <TextColumn>
+                <motion.div>
+                  <ServiceTitle>
+                    {serviceText.title} <span>{serviceText.highlight}</span>
+                  </ServiceTitle>
+                  <ServiceDescription>
+                    {serviceText.description}
+                  </ServiceDescription>
+                </motion.div>
+                {Array.isArray(serviceText.features) && (
+                  <FeaturesGrid>
+                    {serviceText.features.map((feature, featureIndex) => (
+                      <motion.div key={feature.title}>
+                        <FeatureCard>
+                          <h4>
+                            <span className="icon">
+                              {serviceConfig.features[featureIndex]?.icon}
+                            </span>
+                            {feature.title}
+                          </h4>
+                          <p>{feature.description}</p>
+                        </FeatureCard>
+                      </motion.div>
+                    ))}
+                  </FeaturesGrid>
+                )}
+                <motion.div>
+                  <ExploreLink href={serviceUrl} lang={lang}>
                     {serviceText.linkText}
                     <FaArrowRight
                       className="arrow-icon"
                       style={{
-                        transform:
-                          language === "ar" ? "scaleX(-1)" : "scaleX(1)",
+                        transform: lang === "ar" ? "scaleX(-1)" : "scaleX(1)",
                       }}
                     />
                   </ExploreLink>
-                </Link>
-              </motion.div>
-            </TextColumn>
-          </ServiceRow>
-        );
-      })}
+                </motion.div>
+              </TextColumn>
+            </ServiceRow>
+          );
+        })}
+      </ContentWrapper>
     </ServicesContainer>
   );
-};
-
-export default OurServices;
+}
