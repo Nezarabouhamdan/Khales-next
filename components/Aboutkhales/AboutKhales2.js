@@ -1,3 +1,4 @@
+// components/Aboutkhales/AboutKhales2.js
 "use client";
 
 import React, { useState } from "react";
@@ -88,8 +89,8 @@ const TextBlock = styled(motion.div)`
   color: #1a1a1a;
 `;
 
-// IMPROVED: Changed from h2 to h3 for better hierarchy (since page already has H1 and H2)
-const Title = styled(motion.h3)`
+// FIXED: Changed from h3 to h2 for proper section hierarchy
+const Title = styled(motion.h2)`
   font-size: clamp(2.2rem, 4.5vw, 3.2rem);
   font-weight: 700;
   line-height: 1.2;

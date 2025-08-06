@@ -160,13 +160,13 @@ const getHomePageSchema = (lang) => {
 export async function generateMetadata({ params: { lang } }) {
   const title =
     lang === "ar"
-      ? "خالص | رواد الهندسة المعمارية والتصميم الداخلي في دبي، الإمارات"
-      : "Khales | Premier Architecture & Interior Design Company Dubai, UAE";
+      ? "خالص | شركة هندسة معمارية وتصميم داخلي رائدة في دبي"
+      : "Khales | Premier Architecture & Design Firm in Dubai, UAE";
 
   const description =
     lang === "ar"
-      ? "خالص هي شركة رائدة في مجال الهندسة المعمارية والتصميم الداخلي في دبي. نحن متخصصون في المشاريع السكنية والتجارية الفاخرة، إدارة المشاريع، والاستشارات الهندسية في جميع أنحاء الإمارات العربية المتحدة. خدماتنا تشمل تصميم الفلل، المكاتب، الفنادق، والمجمعات السكنية بأعلى معايير الجودة والاستدامة."
-      : "Khales is Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across the UAE. We offer comprehensive services including architectural design, interior design, landscape design, project management, and engineering consultancy. Our expert team delivers innovative solutions for villas, offices, hotels, and residential complexes throughout Dubai, Abu Dhabi, and Sharjah with the highest standards of quality and sustainability.";
+      ? "اكتشف خالص، شركة الهندسة المعمارية والتصميم الداخلي الرائدة في دبي. متخصصون في بناء الفلل الفاخرة والمكاتب العصرية والمشاريع التجارية المخصصة في جميع أنحاء الإمارات."
+      : "Discover Khales, Dubai's leading architecture & interior design firm. We craft luxury villas, modern offices, and bespoke commercial projects across the UAE.";
 
   const keywords =
     lang === "ar"

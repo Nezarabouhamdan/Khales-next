@@ -115,7 +115,8 @@ const ShowcaseCard = styled.div`
 const SectionHeader = styled(motion.div)`
   text-align: center;
   max-width: 700px;
-  h1 {
+  /* FIXED: Changed from h1 to h2 */
+  h2 {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -127,7 +128,7 @@ const SectionHeader = styled(motion.div)`
     color: #555;
   }
   @media (max-width: 768px) {
-    h1 {
+    h2 {
       font-size: 2.5rem;
     }
   }
@@ -177,7 +178,7 @@ const TextColumn = styled(motion.div)`
   flex: 1.2;
 `;
 
-const ServiceTitle = styled.h2`
+const ServiceTitle = styled.h3`
   font-size: 2.2rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -256,7 +257,8 @@ export default function OurServices({ lang, content }) {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
         >
-          <h1>{content.header.title}</h1>
+          {/* FIXED: Changed h1 to h2 */}
+          <h2>{content.header.title}</h2>
           <p>{content.header.subtitle}</p>
         </SectionHeader>
 
@@ -287,7 +289,8 @@ export default function OurServices({ lang, content }) {
 
               <TextColumn>
                 <motion.div>
-                  <ServiceTitle>
+                  {/* FIXED: Changed ServiceTitle to h3 for better hierarchy */}
+                  <ServiceTitle as="h3">
                     {serviceText.title} <span>{serviceText.highlight}</span>
                   </ServiceTitle>
                   <ServiceDescription>
