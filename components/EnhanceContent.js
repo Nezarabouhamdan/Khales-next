@@ -201,7 +201,7 @@ export default function EnhancedContent({ lang }) {
           {/* عمود الصورة */}
           <ImageColumn variants={itemVariants}>
             <Image
-              src="https://images.pexels.com/photos/1261314/pexels-photo-1261314.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              src="https://i.ibb.co/s9hV1Y08/khales-ae.jpg"
               alt={isRTL ? "تصميم معماري حديث" : "Modern Architectural Design"}
               fill
               style={{ objectFit: "cover" }}
