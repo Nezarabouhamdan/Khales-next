@@ -286,7 +286,7 @@ export const dictionary = {
     },
     faq: {
       // FIX: Changed title to be unique and avoid duplication.
-      title: "Questions About Development Planning",
+      title: " Development Planning",
       highlight: "FAQ",
       questions: [
         {
@@ -420,8 +420,8 @@ export const dictionary = {
     },
     faq: {
       // FIX: Changed title to be unique.
-      title: "Engineering Design FAQ",
-      highlight: "Questions",
+      title: "Engineering Design ",
+      highlight: "FAQ",
       questions: [
         {
           title:
@@ -512,7 +512,7 @@ export const dictionary = {
     },
     faq: {
       // FIX: Changed title to be unique.
-      title: "Questions on Engineering Supervision",
+      title: " Engineering Supervision",
       highlight: "FAQ",
       questions: [
         {
@@ -602,8 +602,8 @@ export const dictionary = {
     },
     faq: {
       // FIX: Changed title to be unique.
-      title: "Interior Design FAQ",
-      highlight: "Questions",
+      title: "Interior Design ",
+      highlight: "FAQ",
       questions: [
         {
           title:
@@ -713,8 +713,8 @@ export const dictionary = {
     },
     faq: {
       // FIX: Changed title to be unique.
-      title: "Landscape Design FAQ",
-      highlight: "Questions",
+      title: "Landscape Design ",
+      highlight: "FAQ",
       questions: [
         {
           title: "Do you design small gardens or only full landscapes?",
@@ -821,8 +821,8 @@ export const dictionary = {
     },
     faq: {
       // FIX: Changed title to be unique.
-      title: "360 Project Management FAQ",
-      highlight: "Questions",
+      title: "360 Project Management ",
+      highlight: "FAQ",
       questions: [
         {
           title:
@@ -911,8 +911,8 @@ export const dictionary = {
     },
     faq: {
       // FIX: Changed title to be unique.
-      title: "Project Manager Service FAQ",
-      highlight: "Questions",
+      title: "Project Manager Service ",
+      highlight: "FAQ",
       questions: [
         {
           title: "How is this different from full 360 Project Management?",
@@ -1018,8 +1018,8 @@ export const dictionary = {
     },
     faq: {
       // FIX: Changed title to be unique.
-      title: "Feasibility Study FAQ",
-      highlight: "Questions",
+      title: "Feasibility Study ",
+      highlight: "FAQ",
       questions: [
         {
           title: "Who needs a feasibility study?",
