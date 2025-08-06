@@ -25,7 +25,7 @@ const useClickOutside = (ref, handler) => {
 };
 
 // ===================================================================
-// STYLED COMPONENTS
+// STYLED COMPONENTS (No changes needed here)
 // ===================================================================
 const COLORS = {
   primary: "#66a109",
@@ -123,6 +123,7 @@ const NavMenu = styled.ul`
     background: ${COLORS.white};
     padding: 100px 2rem 2rem 2rem;
     justify-content: flex-start;
+    overflow-y: auto;
   }
 `;
 
@@ -270,11 +271,9 @@ const MobileCTAWrapper = styled.div`
 `;
 
 const LanguageButton = styled.div`
-  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 0.5rem;
 `;
 
 const CurrentFlag = styled.img`
@@ -330,64 +329,59 @@ export default function Navbar({ lang, navigation }) {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
-  // ======================= THE FIX IS HERE =======================
-  // This is your original, working function. It correctly splits the full
-  // pathname (e.g., /en/about-us) and replaces the locale part.
+  // This is your original, working function that correctly replaces the locale.
   const redirectedPathName = (locale) => {
     if (!pathname) return "/";
     const segments = pathname.split("/");
     segments[1] = locale;
     return segments.join("/");
   };
-  // ===============================================================
 
   const navItems = navigation?.items || [];
   const ctaButtonText = navigation?.ctaButton || "Loading...";
 
-  const LanguageSwitcher = ({ isMobile = false }) => (
-    <div style={{ position: "relative" }}>
-      <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
-        <LanguageButton>
-          <CurrentFlag
-            src={
-              lang === "en"
-                ? "https://flagcdn.com/w40/us.png"
-                : "https://flagcdn.com/w40/sa.png"
-            }
-            alt="Current language"
-          />
-          {isMobile && <span>{lang === "en" ? "Language" : "اللغة"}</span>}
-        </LanguageButton>
-        <ArrowIcon $isOpen={openDropdown === "language"} />
-      </MenuLink>
-      <SubMenu
-        $isOpen={openDropdown === "language"}
-        style={!isMobile ? { left: "50%", transform: "translateX(-50%)" } : {}}
-      >
-        <SubMenuItem>
-          <SubMenuLink
-            href={redirectedPathName("en")}
-            $isActive={lang === "en"}
-          >
-            <LanguageOption>
-              <FlagIcon src="https://flagcdn.com/w40/us.png" alt="USA Flag" />
-              <span>English</span>
-            </LanguageOption>
-          </SubMenuLink>
-        </SubMenuItem>
-        <SubMenuItem>
-          <SubMenuLink
-            href={redirectedPathName("ar")}
-            $isActive={lang === "ar"}
-          >
-            <LanguageOption>
-              <FlagIcon src="https://flagcdn.com/w40/sa.png" alt="KSA Flag" />
-              <span>العربية</span>
-            </LanguageOption>
-          </SubMenuLink>
-        </SubMenuItem>
-      </SubMenu>
-    </div>
+  const MainNavLinks = () => (
+    <>
+      {navItems.map((item) => {
+        const hasChildren = item.isDropdown;
+        const fullPath = item.path ? `/${lang}${item.path}` : "#";
+        const isActive = hasChildren
+          ? item.children.some((child) => pathname === `/${lang}${child.path}`)
+          : pathname === `/${lang}${item.path}`;
+
+        return (
+          <MenuItem key={item.label}>
+            <MenuLink
+              as={hasChildren ? "div" : Link}
+              href={fullPath}
+              $isActive={isActive}
+              onClick={
+                hasChildren ? () => handleDropdownToggle(item.label) : undefined
+              }
+            >
+              {item.label}
+              {hasChildren && (
+                <ArrowIcon $isOpen={openDropdown === item.label} />
+              )}
+            </MenuLink>
+            {hasChildren && (
+              <SubMenu $isOpen={openDropdown === item.label}>
+                {item.children.map((child) => (
+                  <SubMenuItem key={child.label}>
+                    <SubMenuLink
+                      href={`/${lang}${child.path}`}
+                      $isActive={pathname === `/${lang}${child.path}`}
+                    >
+                      {child.label}
+                    </SubMenuLink>
+                  </SubMenuItem>
+                ))}
+              </SubMenu>
+            )}
+          </MenuItem>
+        );
+      })}
+    </>
   );
 
   return (
@@ -402,52 +396,53 @@ export default function Navbar({ lang, navigation }) {
         </MobileIcon>
 
         <NavMenu $isOpen={isMobileMenuOpen} ref={navRef}>
-          {navItems.map((item) => {
-            const hasChildren = item.isDropdown;
-            const fullPath = item.path ? `/${lang}${item.path}` : "#";
-            const isActive = hasChildren
-              ? item.children.some(
-                  (child) => pathname === `/${lang}${child.path}`
-                )
-              : pathname === `/${lang}${item.path}`;
-
-            return (
-              <MenuItem key={item.label}>
-                <MenuLink
-                  as={hasChildren ? "div" : Link}
-                  href={fullPath}
-                  $isActive={isActive}
-                  onClick={
-                    hasChildren
-                      ? () => handleDropdownToggle(item.label)
-                      : undefined
-                  }
-                >
-                  {item.label}
-                  {hasChildren && (
-                    <ArrowIcon $isOpen={openDropdown === item.label} />
-                  )}
-                </MenuLink>
-                {hasChildren && (
-                  <SubMenu $isOpen={openDropdown === item.label}>
-                    {item.children.map((child) => (
-                      <SubMenuItem key={child.label}>
-                        <SubMenuLink
-                          href={`/${lang}${child.path}`}
-                          $isActive={pathname === `/${lang}${child.path}`}
-                        >
-                          {child.label}
-                        </SubMenuLink>
-                      </SubMenuItem>
-                    ))}
-                  </SubMenu>
-                )}
-              </MenuItem>
-            );
-          })}
+          <MainNavLinks />
 
           <MenuItem className="mobile-only-lang">
-            <LanguageSwitcher isMobile={true} />
+            <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
+              <LanguageButton>
+                <CurrentFlag
+                  src={
+                    lang === "en"
+                      ? "https://flagcdn.com/w40/us.png"
+                      : "https://flagcdn.com/w40/sa.png"
+                  }
+                  alt="Current language"
+                />
+                <span>{lang === "en" ? "Language" : "اللغة"}</span>
+              </LanguageButton>
+              <ArrowIcon $isOpen={openDropdown === "language"} />
+            </MenuLink>
+            <SubMenu $isOpen={openDropdown === "language"}>
+              <SubMenuItem>
+                <SubMenuLink
+                  href={redirectedPathName("en")}
+                  $isActive={lang === "en"}
+                >
+                  <LanguageOption>
+                    <FlagIcon
+                      src="https://flagcdn.com/w40/us.png"
+                      alt="USA Flag"
+                    />
+                    <span>English</span>
+                  </LanguageOption>
+                </SubMenuLink>
+              </SubMenuItem>
+              <SubMenuItem>
+                <SubMenuLink
+                  href={redirectedPathName("ar")}
+                  $isActive={lang === "ar"}
+                >
+                  <LanguageOption>
+                    <FlagIcon
+                      src="https://flagcdn.com/w40/sa.png"
+                      alt="KSA Flag"
+                    />
+                    <span>العربية</span>
+                  </LanguageOption>
+                </SubMenuLink>
+              </SubMenuItem>
+            </SubMenu>
           </MenuItem>
           <style jsx global>{`
             .mobile-only-lang {
@@ -468,7 +463,55 @@ export default function Navbar({ lang, navigation }) {
         </NavMenu>
 
         <NavActions>
-          <LanguageSwitcher />
+          {/* ======================= THE FIX IS HERE ======================= */}
+          {/* This language switcher now uses the same <MenuItem> structure as everything else, */}
+          {/* which guarantees clicks on the links inside will work correctly. */}
+          <MenuItem>
+            <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
+              <LanguageButton>
+                <CurrentFlag
+                  src={
+                    lang === "en"
+                      ? "https://flagcdn.com/w40/us.png"
+                      : "https://flagcdn.com/w40/sa.png"
+                  }
+                  alt="Current language"
+                />
+              </LanguageButton>
+              <ArrowIcon $isOpen={openDropdown === "language"} />
+            </MenuLink>
+            <SubMenu $isOpen={openDropdown === "language"}>
+              <SubMenuItem>
+                <SubMenuLink
+                  href={redirectedPathName("en")}
+                  $isActive={lang === "en"}
+                >
+                  <LanguageOption>
+                    <FlagIcon
+                      src="https://flagcdn.com/w40/us.png"
+                      alt="USA Flag"
+                    />
+                    <span>English</span>
+                  </LanguageOption>
+                </SubMenuLink>
+              </SubMenuItem>
+              <SubMenuItem>
+                <SubMenuLink
+                  href={redirectedPathName("ar")}
+                  $isActive={lang === "ar"}
+                >
+                  <LanguageOption>
+                    <FlagIcon
+                      src="https://flagcdn.com/w40/sa.png"
+                      alt="KSA Flag"
+                    />
+                    <span>العربية</span>
+                  </LanguageOption>
+                </SubMenuLink>
+              </SubMenuItem>
+            </SubMenu>
+          </MenuItem>
+          {/* =============================================================== */}
           <CTAButton href={`/${lang}/booking`}>{ctaButtonText}</CTAButton>
         </NavActions>
       </NavbarContainer>
