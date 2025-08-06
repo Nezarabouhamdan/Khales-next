@@ -19,7 +19,7 @@ const statsData = [
   { icon: <FaRegCalendarCheck />, value: 15, suffix: "+" },
 ];
 
-// --- STYLED COMPONENTS (Your original code, unchanged) ---
+// --- STYLED COMPONENTS (IMPROVED HEADING STRUCTURE) ---
 const slowZoom = keyframes`
   from { transform: scale(1.05); }
   to { transform: scale(1.2); }
@@ -72,190 +72,217 @@ const HeroContent = styled(motion.div)`
   align-items: center;
   text-align: center;
   padding: 2rem;
-  h1 {
-    font-size: 4.5rem;
-    font-weight: 700;
-    max-width: 900px;
-    line-height: 1.2;
-  }
-  p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin-top: 1.5rem;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.7;
-  }
+
   @media (max-width: 768px) {
-    h1 {
-      font-size: 2.8rem;
-    }
+    padding: 1rem;
   }
 `;
+
+// IMPROVED: Changed from h1 to h2 to avoid multiple H1s on page
+const MainHeading = styled.h2`
+  font-size: 4.5rem;
+  font-weight: 700;
+  max-width: 900px;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 2.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
+  }
+`;
+
+const MainDescription = styled.p`
+  font-size: 1.2rem;
+  max-width: 600px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
 const StatsPanel = styled.div`
   background-color: #ffffff;
   padding: 6rem 2rem;
   position: relative;
   z-index: 4;
+
+  @media (max-width: 768px) {
+    padding: 4rem 1rem;
+  }
 `;
+
 const StatsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
-  @media (max-width: 992px) {
+
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 2rem;
   }
-`;
-const IconWrapper = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #f0f7e6;
-  margin-bottom: 2rem;
-  transition: all 0.4s ease;
-  .icon {
-    font-size: 2.5rem;
-    color: #66a109;
-  }
-`;
-const StatColumn = styled(motion.div)`
-  text-align: center;
-  padding: 2rem;
-  border-radius: 24px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  .counter-container {
-    margin-bottom: 0.5rem;
-  }
-  h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-  }
-  p {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.6;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-`;
-const CounterText = styled.span`
-  font-size: 4.5rem;
-  font-weight: 700;
-  line-height: 1;
-  color: #1a1a1a;
-`;
-const Suffix = styled(CounterText)`
-  color: #66a109;
 `;
 
-// --- ANIMATED NUMBER SUB-COMPONENT (Unchanged) ---
-const AnimatedNumber = ({ value }) => {
+const StatCard = styled(motion.div)`
+  text-align: center;
+  padding: 2rem;
+  border-radius: 16px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: #66a109;
+  }
+`;
+
+const StatIcon = styled.div`
+  font-size: 3rem;
+  color: #66a109;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+`;
+
+const StatNumber = styled.div`
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 2.8rem;
+  }
+`;
+
+// IMPROVED: Changed from h3 to h4 for better hierarchy
+const StatLabel = styled.h4`
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #6c757d;
+  margin: 0;
+  line-height: 1.4;
+`;
+
+// Counter component for animated numbers
+const AnimatedCounter = ({ value, suffix = "", duration = 2 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (isInView) {
       animate(0, value, {
-        duration: 2.5,
-        ease: "easeOut",
+        duration,
         onUpdate: (latest) => {
-          if (ref.current) ref.current.textContent = Math.round(latest);
+          if (ref.current) {
+            ref.current.textContent = Math.floor(latest) + suffix;
+          }
         },
       });
     }
-  }, [isInView, value]);
+  }, [isInView, value, suffix, duration]);
 
-  return <CounterText ref={ref}></CounterText>;
+  return <StatNumber ref={ref}>0{suffix}</StatNumber>;
 };
 
-// --- MAIN REFACTORED COMPONENT ---
-export default function ValuePropositionV2({ lang, content }) {
-  // Robust checks for content object and its nested properties
-  if (
-    !content ||
-    !content.hero ||
-    !Array.isArray(content.stats) ||
-    content.stats.length === 0
-  ) {
-    return null;
-  }
+// --- MAIN COMPONENT ---
+export default function ValuePropositionV2({ content = {}, lang = "en" }) {
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
 
-  const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end start"],
-  });
-
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.5, 0.9]);
-
-  const gridContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  // Fallback content
+  const fallbackContent = {
+    title: lang === "ar" ? "إطلاق إمكاناتك" : "Unlocking Your Potential",
+    description:
+      lang === "ar"
+        ? "نحن نجمع بين الخبرة العميقة في الصناعة والحلول المبتكرة لتحقيق رؤيتك المعمارية."
+        : "We combine deep industry expertise with innovative solutions to bring your architectural vision to life.",
+    stats: [
+      {
+        label: lang === "ar" ? "مشاريع مكتملة" : "Projects Completed",
+        description:
+          lang === "ar"
+            ? "تم تسليمها عبر النطاقات السكنية والمعمارية والداخلية."
+            : "Delivered across residential, architectural and interior scopes.",
+      },
+      {
+        label: lang === "ar" ? "رضا العملاء" : "Client Satisfaction",
+        description:
+          lang === "ar"
+            ? "تم قياسها من خلال التسليمات المكتملة وتعليقات العملاء."
+            : "Measured through completed handovers and client feedback.",
+      },
+      {
+        label: lang === "ar" ? "سنوات من الخبرة" : "Years of Experience",
+        description:
+          lang === "ar"
+            ? "تسليم المشاريع في جميع أنحاء الإمارات العربية المتحدة."
+            : "Delivering projects across the UAE.",
+      },
+    ],
   };
 
-  const gridItemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
+  const displayContent = { ...fallbackContent, ...content };
 
   return (
-    <SectionContainer lang={lang} ref={targetRef}>
+    <SectionContainer lang={lang}>
       <StickyWrapper>
-        <ImageBackground />
-        <Overlay style={{ opacity: overlayOpacity }} />
-        <HeroContent style={{ opacity: heroOpacity, scale: heroScale }}>
-          <h1>{content.hero.title}</h1>
-          <p>{content.hero.subtitle}</p>
+        <ImageBackground style={{ scale }} />
+        <Overlay />
+        <HeroContent
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
+          <MainHeading>{displayContent.title}</MainHeading>
+          <MainDescription>{displayContent.description}</MainDescription>
         </HeroContent>
       </StickyWrapper>
 
       <StatsPanel>
         <StatsGrid
-          variants={gridContainerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, staggerChildren: 0.2 }}
+          viewport={{ once: true }}
         >
-          {statsData.map((stat, index) => {
-            // Check if the corresponding text content exists before rendering
-            const statContent = content.stats[index];
-            if (!statContent) return null;
-
-            return (
-              <StatColumn
-                key={index}
-                variants={gridItemVariants}
-                whileHover={{
-                  y: -10,
-                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)",
+          {statsData.map((stat, index) => (
+            <StatCard
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <StatIcon>{stat.icon}</StatIcon>
+              <AnimatedCounter
+                value={stat.value}
+                suffix={stat.suffix}
+                duration={2 + index * 0.2}
+              />
+              <StatLabel>{displayContent.stats[index]?.label}</StatLabel>
+              <p
+                style={{
+                  fontSize: "0.9rem",
+                  color: "#6c757d",
+                  marginTop: "0.5rem",
+                  lineHeight: "1.5",
                 }}
-                transition={{ duration: 0.3 }}
               >
-                <IconWrapper>
-                  <div className="icon">{stat.icon}</div>
-                </IconWrapper>
-                <div className="counter-container">
-                  <AnimatedNumber value={stat.value} />
-                  <Suffix>{stat.suffix}</Suffix>
-                </div>
-                <h3>{statContent.title}</h3>
-                <p>{statContent.description}</p>
-              </StatColumn>
-            );
-          })}
+                {displayContent.stats[index]?.description}
+              </p>
+            </StatCard>
+          ))}
         </StatsGrid>
       </StatsPanel>
     </SectionContainer>

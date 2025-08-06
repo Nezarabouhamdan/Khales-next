@@ -55,7 +55,7 @@ export const dictionary = {
         title: "رواد الهندسة المعمارية والتصميم الداخلي في دبي",
         subtitle: "نحوّل الرؤى إلى واقع...",
         buttonText: "تواصل معنا",
-        buttonLink: "/connect",
+        buttonLink: "/Contact",
       },
       {
         title: "هندسة مبتكرة، تنفيذ لا تشوبه شائبة",

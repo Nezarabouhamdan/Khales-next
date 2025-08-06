@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import LazyImage from "../LazyImage"; // Assuming this path is correct
+import LazyImage from "../LazyImage";
 
 // Static data can remain here
 const galleryImages = [
@@ -14,7 +14,7 @@ const galleryImages = [
   "https://i.ibb.co/jPgtTSzr/aboutus3.jpg",
 ];
 
-// --- FRAMER MOTION VARIANTS (Your original code) ---
+// --- FRAMER MOTION VARIANTS ---
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
@@ -28,11 +28,11 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-// --- STYLED COMPONENTS (Your original code, with layout fixes) ---
+// --- STYLED COMPONENTS (IMPROVED HEADING STRUCTURE) ---
 const SectionWrapper = styled(motion.section)`
   width: 100%;
   min-height: 100vh;
-  padding: 5rem 0; /* REMOVED horizontal padding here */
+  padding: 5rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,16 +41,15 @@ const SectionWrapper = styled(motion.section)`
   font-family: ${(({ lang }) =>
     lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)",
   "sans-serif")};
-  overflow: hidden; /* This is the key fix */
+  overflow: hidden;
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
 `;
 
-// NEW CONTAINER TO MANAGE PADDING AND SHAPES
 const Container = styled.div`
   width: 100%;
   max-width: 1200px;
-  padding: 0 5%; /* MOVED horizontal padding here */
-  position: relative; /* Shapes will be positioned relative to this */
+  padding: 0 5%;
+  position: relative;
   z-index: 5;
 
   @media (max-width: 992px) {
@@ -81,14 +80,17 @@ const ContentCard = styled(motion.div)`
     padding: 2rem 1.5rem;
   }
 `;
+
 const TextBlock = styled(motion.div)`
   display: flex;
   flex-direction: column;
   text-align: ${({ lang }) => (lang === "ar" ? "right" : "left")};
   color: #1a1a1a;
 `;
-const Title = styled(motion.h2)`
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+
+// IMPROVED: Changed from h2 to h3 for better hierarchy (since page already has H1 and H2)
+const Title = styled(motion.h3)`
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1.5rem;
@@ -97,162 +99,197 @@ const Title = styled(motion.h2)`
     color: #66a109;
   }
 `;
+
 const Paragraph = styled(motion.p)`
   font-size: clamp(1rem, 2.5vw, 1.1rem);
   line-height: 1.8;
   margin-bottom: 2.5rem;
   color: #555;
 `;
-const MotionLinkWrapper = styled(motion.div)`
-  display: inline-block;
-  text-decoration: none;
-  width: fit-content;
-  align-self: ${({ lang }) => (lang === "ar" ? "flex-end" : "flex-start")};
-`;
-const LearnMoreButton = styled.button`
-  background: linear-gradient(135deg, #66a109, #66a109);
+
+const CTAButton = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #66a109, #7cb342);
   color: white;
-  border: none;
   padding: 1rem 2.5rem;
   border-radius: 50px;
-  font-size: 1rem;
+  text-decoration: none;
   font-weight: 600;
-  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 8px 25px rgba(102, 161, 9, 0.3);
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 161, 9, 0.3);
+  align-self: ${({ lang }) => (lang === "ar" ? "flex-end" : "flex-start")};
+
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(102, 161, 9, 0.4);
+    box-shadow: 0 12px 35px rgba(102, 161, 9, 0.4);
+    background: linear-gradient(135deg, #5a9008, #689f38);
   }
 `;
-const GalleryGrid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 1rem;
-`;
-const ImageWrapper = styled(motion.div)`
+
+const ImageGallery = styled(motion.div)`
   position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 12px;
+  height: 450px;
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+`;
+
+const GalleryImage = styled(motion.img)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   cursor: pointer;
   transition: transform 0.3s ease;
+
   &:hover {
     transform: scale(1.05);
-    z-index: 5;
   }
 `;
-const DecorativeShape = styled.div`
+
+const ImageIndicators = styled.div`
   position: absolute;
-  border-radius: 50%;
-  background: rgba(102, 161, 9, 0.05);
-  z-index: 1; /* Behind the content card */
-  pointer-events: none;
-  @media (max-width: 992px) {
-    display: none;
-  }
-`;
-const LightboxOverlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  gap: 0.5rem;
+  z-index: 10;
+`;
+
+const Indicator = styled.button`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: ${({ active }) =>
+    active ? "#66a109" : "rgba(255, 255, 255, 0.5)"};
   cursor: pointer;
-`;
-const LightboxImage = styled(motion.img)`
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
-  cursor: default;
-`;
+  transition: all 0.3s ease;
 
-// --- MAIN REFACTORED COMPONENT ---
-export default function AboutKhalesUltimate({ lang, content }) {
-  const [selectedImg, setSelectedImg] = useState(null);
-
-  if (!content) {
-    return null; // Or a loading skeleton
+  &:hover {
+    background-color: #66a109;
+    transform: scale(1.2);
   }
+`;
+
+// Decorative shapes
+const DecorativeShape1 = styled.div`
+  position: absolute;
+  top: 10%;
+  right: -5%;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #66a109, #8bc34a);
+  border-radius: 50%;
+  opacity: 0.1;
+  z-index: 1;
+`;
+
+const DecorativeShape2 = styled.div`
+  position: absolute;
+  bottom: 15%;
+  left: -8%;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(45deg, #66a109, #4caf50);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  opacity: 0.08;
+  z-index: 1;
+`;
+
+// --- MAIN COMPONENT ---
+export default function AboutKhalesUltimate({ content = {}, lang = "en" }) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Auto-cycle through images
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Fallback content
+  const fallbackContent = {
+    title: lang === "ar" ? "عن خالص" : "About Khales",
+    subtitle: lang === "ar" ? "بناء التميز" : "Building Excellence",
+    description:
+      lang === "ar"
+        ? "نحن في خالص نؤمن بأن كل مشروع هو فرصة لخلق شيء استثنائي. مع خبرة تزيد عن عقد من الزمن في مجال الهندسة المعمارية والتصميم الداخلي، نحن نجمع بين الإبداع والخبرة التقنية لتحويل رؤى عملائنا إلى واقع ملموس. فريقنا من المهندسين والمصممين المحترفين يعمل بشغف لتقديم حلول مبتكرة تتجاوز التوقعات وتحقق أعلى معايير الجودة والاستدامة."
+        : "At Khales, we believe that every project is an opportunity to create something exceptional. With over a decade of experience in architecture and interior design, we combine creativity with technical expertise to transform our clients' visions into tangible reality. Our team of professional engineers and designers works passionately to deliver innovative solutions that exceed expectations and achieve the highest standards of quality and sustainability.",
+    buttonText: lang === "ar" ? "اعرف المزيد عنا" : "Learn More About Us",
+    buttonLink: "/About-Us",
+  };
+
+  const displayContent = { ...fallbackContent, ...content };
 
   return (
-    <>
-      <SectionWrapper lang={lang}>
-        {/* Decorative shapes are now positioned relative to the full-width SectionWrapper */}
-        <DecorativeShape
-          style={{ top: "15%", left: "5%", width: "250px", height: "250px" }}
-        />
-        <DecorativeShape
-          style={{
-            bottom: "10%",
-            right: "8%",
-            width: "180px",
-            height: "180px",
-          }}
-        />
+    <SectionWrapper
+      lang={lang}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={cardVariants}
+    >
+      <DecorativeShape1 />
+      <DecorativeShape2 />
 
-        <Container>
-          <ContentCard
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <TextBlock lang={lang}>
-              <Title variants={itemVariants}>{content.title}</Title>
-              <Paragraph variants={itemVariants}>{content.paragraph}</Paragraph>
-              <MotionLinkWrapper lang={lang} variants={itemVariants}>
-                <Link href={`/${lang}/about-us`} passHref>
-                  <LearnMoreButton>{content.button}</LearnMoreButton>
-                </Link>
-              </MotionLinkWrapper>
-            </TextBlock>
+      <Container>
+        <ContentCard variants={itemVariants}>
+          <TextBlock lang={lang} variants={itemVariants}>
+            <Title variants={itemVariants} lang={lang}>
+              {displayContent.title}
+              {displayContent.subtitle && (
+                <>
+                  <br />
+                  <span>{displayContent.subtitle}</span>
+                </>
+              )}
+            </Title>
+            <Paragraph variants={itemVariants}>
+              {displayContent.description}
+            </Paragraph>
+            <CTAButton
+              href={`/${lang}${displayContent.buttonLink}`}
+              lang={lang}
+            >
+              {displayContent.buttonText}
+            </CTAButton>
+          </TextBlock>
 
-            <GalleryGrid>
-              {galleryImages.map((url, index) => (
-                <ImageWrapper
-                  key={url}
-                  variants={itemVariants}
-                  onClick={() => setSelectedImg(url)}
-                  whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                >
-                  <LazyImage
-                    src={url}
-                    alt={`Khales Group showcase ${index + 1}`}
-                    fill
-                    sizes="(max-width: 992px) 45vw, 22vw"
-                  />
-                </ImageWrapper>
+          <ImageGallery variants={itemVariants}>
+            <AnimatePresence mode="wait">
+              <GalleryImage
+                key={currentImageIndex}
+                src={galleryImages[currentImageIndex]}
+                alt={`${displayContent.title} ${currentImageIndex + 1}`}
+                initial={{ opacity: 0, scale: 1.1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.8 }}
+                onClick={() =>
+                  setCurrentImageIndex(
+                    (prev) => (prev + 1) % galleryImages.length
+                  )
+                }
+              />
+            </AnimatePresence>
+
+            <ImageIndicators>
+              {galleryImages.map((_, index) => (
+                <Indicator
+                  key={index}
+                  active={index === currentImageIndex}
+                  onClick={() => setCurrentImageIndex(index)}
+                />
               ))}
-            </GalleryGrid>
-          </ContentCard>
-        </Container>
-      </SectionWrapper>
-
-      <AnimatePresence>
-        {selectedImg && (
-          <LightboxOverlay
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedImg(null)}
-          >
-            <LightboxImage
-              src={selectedImg}
-              alt="Enlarged view of Khales Group project"
-              layoutId={selectedImg}
-              onClick={(e) => e.stopPropagation()}
-            />
-          </LightboxOverlay>
-        )}
-      </AnimatePresence>
-    </>
+            </ImageIndicators>
+          </ImageGallery>
+        </ContentCard>
+      </Container>
+    </SectionWrapper>
   );
 }

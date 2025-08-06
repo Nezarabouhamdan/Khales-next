@@ -59,7 +59,7 @@ export const dictionary = {
         title: "Premier Architecture & Interior Design in Dubai",
         subtitle: "Transforming visions into reality...",
         buttonText: "Get in Touch",
-        buttonLink: "/connect",
+        buttonLink: "/Contact",
       },
       {
         title: "Innovative Engineering, Flawless Execution",

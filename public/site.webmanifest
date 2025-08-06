@@ -1,0 +1,23 @@
+{
+  "name": "Khales - Premier Architecture & Interior Design Dubai",
+  "short_name": "Khales",
+  "description": "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across UAE.",
+  "icons": [
+    {
+      "src": "/assets/Khales Logo K - favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/Khales Logo K - favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#66a109",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait-primary"
+}

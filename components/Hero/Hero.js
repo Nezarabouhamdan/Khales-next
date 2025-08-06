@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link"; // Link is still needed for the styled-component
+import Link from "next/link";
 import {
   FaVolumeMute,
   FaVolumeUp,
@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 
 // --- MAIN ENHANCED HERO COMPONENT ---
-export default function Hero({ slides = [], lang }) {
+export default function Hero({ slides = [], lang, isHomePage = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -87,14 +87,14 @@ export default function Hero({ slides = [], lang }) {
               alignItems: "center",
             }}
           >
-            <MainTitle>{currentSlide.title}</MainTitle>
+            {/* FIXED: Only use H1 on homepage, H2 on other pages */}
+            {isHomePage ? (
+              <MainTitle as="h1">{currentSlide.title}</MainTitle>
+            ) : (
+              <MainTitle as="h2">{currentSlide.title}</MainTitle>
+            )}
             <Subtitle>{currentSlide.subtitle}</Subtitle>
-
-            {/* ======================= THE NEW FIX IS HERE ======================= */}
-            {/* The CTAButton is now a Link itself. We pass the 'href' directly to it. */}
-            {/* We no longer need the extra <Link> wrapper. */}
             <CTAButton href={buttonLink}>{currentSlide.buttonText}</CTAButton>
-            {/* ==================================================================== */}
           </motion.div>
         </AnimatePresence>
       </ContentContainer>
@@ -115,7 +115,7 @@ export default function Hero({ slides = [], lang }) {
   );
 }
 
-// --- STYLED COMPONENTS (WITH THE CRITICAL CHANGE) ---
+// --- STYLED COMPONENTS ---
 
 const Herosection = styled.section`
   height: 90vh;
@@ -170,6 +170,7 @@ const ContentContainer = styled(motion.div)`
   overflow: hidden;
 `;
 
+// FIXED: Now supports both h1 and h2 via 'as' prop
 export const MainTitle = styled(motion.h1)`
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
@@ -187,9 +188,6 @@ export const Subtitle = styled(motion.p)`
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 `;
 
-// ======================= THE SECOND FIX IS HERE =======================
-// We are now styling the Next.js Link component directly.
-// This is the recommended and modern approach.
 export const CTAButton = styled(Link)`
   display: inline-flex;
   align-items: center;
@@ -210,7 +208,6 @@ export const CTAButton = styled(Link)`
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
   }
 `;
-// =======================================================================
 
 const ControlsWrapper = styled.div`
   position: absolute;
@@ -245,7 +242,7 @@ const IconButton = styled.button`
   }
 `;
 
-// --- ALL ANIMATION VARIANTS (NO CHANGES NEEDED) ---
+// --- ANIMATION VARIANTS ---
 const commonTransition = {
   ease: "easeInOut",
   duration: 0.8,

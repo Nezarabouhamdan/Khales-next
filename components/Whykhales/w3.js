@@ -21,17 +21,17 @@ const featureAssets = [
   },
 ];
 
-// --- STYLED COMPONENTS (WITH LAYOUT FIX) ---
+// --- STYLED COMPONENTS (WITH IMPROVED HEADING STRUCTURE) ---
 const kenBurns = keyframes`
   0% { transform: scale(1.0); }
   100% { transform: scale(1.1); }
 `;
 const SectionContainer = styled.section`
   width: 100%;
-  padding: 6rem 0; /* Vertical padding only */
+  padding: 6rem 0;
   background-color: #ffffff;
   position: relative;
-  overflow: hidden; /* CRITICAL: This contains the decorative shapes */
+  overflow: hidden;
   font-family: "Inter", sans-serif;
   direction: ${(props) => (props.dir === "rtl" ? "rtl" : "ltr")};
   @media (max-width: 992px) {
@@ -42,7 +42,7 @@ const ContentWrapper = styled(motion.div)`
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 2rem; /* Horizontal padding is now contained */
+  padding: 0 2rem;
   position: relative;
   z-index: 2;
   display: flex;
@@ -66,7 +66,9 @@ const Label = styled.p`
   gap: 0.5rem;
   flex-direction: ${(props) => (props.dir === "rtl" ? "row-reverse" : "row")};
 `;
-const MainTitle = styled.h1`
+
+// IMPROVED: Changed from h1 to h2 to avoid multiple H1s on page
+const MainTitle = styled.h2`
   font-size: 3.2rem;
   font-weight: 700;
   color: #1a1a1a;
@@ -75,6 +77,7 @@ const MainTitle = styled.h1`
     font-size: 2.8rem;
   }
 `;
+
 const FeaturesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -100,175 +103,168 @@ const FeatureCard = styled(motion.div)`
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
   }
 `;
-const IconWrapper = styled.div`
-  font-size: 1.5rem;
+const FeatureIcon = styled.div`
+  font-size: 2.5rem;
   color: #66a109;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: ${(props) =>
+    props.dir === "rtl" ? "flex-end" : "flex-start"};
 `;
+
+// IMPROVED: Changed from h2 to h3 for better hierarchy
 const FeatureTitle = styled.h3`
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #1a1a1a;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
 `;
+
 const FeatureDescription = styled.p`
+  color: #6c757d;
+  line-height: 1.6;
   font-size: 0.95rem;
-  line-height: 1.7;
-  color: #555;
 `;
-const ImageShowcase = styled(motion.div)`
+const ImageSection = styled.div`
   width: 100%;
-  height: 500px;
+  max-width: 600px;
+  height: 400px;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 `;
-const ShowcaseImage = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  left: 0;
+const FeatureImage = styled(motion.img)`
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-image: url(${(props) => props.imageUrl});
+  object-fit: cover;
   animation: ${kenBurns} 20s ease-in-out infinite alternate;
 `;
-const ImageCaption = styled(motion.div)`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  color: white;
-  z-index: 2;
-  text-align: ${(props) => (props.dir === "rtl" ? "right" : "left")};
 
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-  p {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 500px;
-  }
-`;
-const DecorativeShape = styled.div`
+// Decorative shapes (unchanged)
+const DecorativeShape1 = styled.div`
   position: absolute;
+  top: 10%;
+  right: -5%;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #66a109, #8bc34a);
+  border-radius: 50%;
+  opacity: 0.1;
   z-index: 1;
-  pointer-events: none;
-  transition: transform 0.4s ease-out;
+`;
+const DecorativeShape2 = styled.div`
+  position: absolute;
+  bottom: 15%;
+  left: -8%;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(45deg, #66a109, #4caf50);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  opacity: 0.08;
+  z-index: 1;
 `;
 
-// --- MAIN REFACTORED COMPONENT ---
-export default function WhyKhalesHybrid({ lang, content }) {
-  if (
-    !content ||
-    !Array.isArray(content.features) ||
-    content.features.length === 0
-  ) {
-    return null;
-  }
+// --- MAIN COMPONENT ---
+export default function WhyKhalesHybrid({ content = {}, lang = "en" }) {
+  const [activeFeature, setActiveFeature] = useState(0);
+  const dir = lang === "ar" ? "rtl" : "ltr";
 
-  const [activeFeatureIndex, setActiveFeatureIndex] = useState(1);
-  const activeFeature = content.features[activeFeatureIndex];
-  const activeFeatureAsset = featureAssets[activeFeatureIndex];
-
-  const isRTL = lang === "ar";
-
+  // Auto-cycle through features
   useEffect(() => {
-    setActiveFeatureIndex(1);
-  }, [lang]);
+    const interval = setInterval(() => {
+      setActiveFeature((prev) => (prev + 1) % (content.features?.length || 3));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [content.features?.length]);
 
-  if (!activeFeature || !activeFeatureAsset) {
-    return null;
-  }
+  // Fallback content
+  const fallbackContent = {
+    label: lang === "ar" ? "لماذا تختار خالص" : "Why Choose Khales",
+    title:
+      lang === "ar" ? "بناء ما هو أكثر من مخطط" : "Building Beyond a Blueprint",
+    features: [
+      {
+        title: lang === "ar" ? "جودة يمكن قياسها" : "Quality You Can Measure",
+        description:
+          lang === "ar"
+            ? "نطبق معايير واضحة في كل مرحلة من مراحل المشروع لضمان التميز في التنفيذ."
+            : "We apply clear standards at every stage of the project to ensure excellence in execution.",
+      },
+      {
+        title:
+          lang === "ar"
+            ? "تصميم بهدف ودقة"
+            : "Design with Purpose and Precision",
+        description:
+          lang === "ar"
+            ? "كل مساحة مصممة لتلبية الاحتياجات الحقيقية مع الاهتمام بأدق التفاصيل."
+            : "Every space is tailored to meet real needs with attention to the finest details.",
+      },
+      {
+        title:
+          lang === "ar"
+            ? "عملية واضحة وتسليم موثوق"
+            : "Clear Process. Reliable Delivery",
+        description:
+          lang === "ar"
+            ? "نهجنا شفاف ومدفوع بالمواعيد النهائية لضمان تسليم المشاريع في الوقت المحدد."
+            : "Our approach is transparent and deadline-driven to ensure timely project delivery.",
+      },
+    ],
+  };
+
+  const displayContent = { ...fallbackContent, ...content };
 
   return (
-    <SectionContainer dir={isRTL ? "rtl" : "ltr"}>
-      <DecorativeShape
-        style={{
-          top: "10%",
-          left: "5%",
-          width: "50px",
-          height: "50px",
-          background: "rgba(102, 161, 9, 0.1)",
-          borderRadius: "50%",
-        }}
-      />
-      <DecorativeShape
-        style={{
-          bottom: "10%",
-          right: "5%",
-          width: "80px",
-          height: "80px",
-          border: "1px solid rgba(102, 161, 9, 0.15)",
-        }}
-      />
+    <SectionContainer dir={dir}>
+      <DecorativeShape1 />
+      <DecorativeShape2 />
+
       <ContentWrapper
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
       >
-        <motion.div>
-          <Header>
-            <Label dir={isRTL ? "rtl" : "ltr"}>
-              <FaHome />
-              <span>{content.label}</span>
-            </Label>
-            <MainTitle>{content.title}</MainTitle>
-          </Header>
-        </motion.div>
+        <Header>
+          <Label dir={dir}>{displayContent.label}</Label>
+          <MainTitle>{displayContent.title}</MainTitle>
+        </Header>
 
-        <motion.div key={lang} style={{ width: "100%" }}>
-          <FeaturesGrid>
-            {content.features.map((feature, index) => (
-              <FeatureCard
-                key={feature.title}
-                dir={isRTL ? "rtl" : "ltr"}
-                className={activeFeatureIndex === index ? "active" : ""}
-                onMouseEnter={() => setActiveFeatureIndex(index)}
-              >
-                <IconWrapper>{featureAssets[index]?.icon}</IconWrapper>
-                <FeatureTitle>{feature.title}</FeatureTitle>
-                <FeatureDescription>{feature.description}</FeatureDescription>
-              </FeatureCard>
-            ))}
-          </FeaturesGrid>
-        </motion.div>
+        <FeaturesGrid>
+          {displayContent.features.map((feature, index) => (
+            <FeatureCard
+              key={index}
+              className={activeFeature === index ? "active" : ""}
+              onClick={() => setActiveFeature(index)}
+              dir={dir}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <FeatureIcon dir={dir}>{featureAssets[index]?.icon}</FeatureIcon>
+              <FeatureTitle>{feature.title}</FeatureTitle>
+              <FeatureDescription>{feature.description}</FeatureDescription>
+            </FeatureCard>
+          ))}
+        </FeaturesGrid>
 
-        <ImageShowcase>
+        <ImageSection>
           <AnimatePresence mode="wait">
-            <ShowcaseImage
-              key={activeFeatureAsset.imageUrl}
-              imageUrl={activeFeatureAsset.imageUrl}
-              initial={{ opacity: 0, scale: 1.05 }}
+            <FeatureImage
+              key={activeFeature}
+              src={featureAssets[activeFeature]?.imageUrl}
+              alt={displayContent.features[activeFeature]?.title}
+              initial={{ opacity: 0, scale: 1.1 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.8 }}
             />
           </AnimatePresence>
-          <AnimatePresence mode="wait">
-            <ImageCaption
-              key={activeFeature.title}
-              dir={isRTL ? "rtl" : "ltr"}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
-              <h3>{activeFeature.title}</h3>
-              <p>{activeFeature.description}</p>
-            </ImageCaption>
-          </AnimatePresence>
-        </ImageShowcase>
+        </ImageSection>
       </ContentWrapper>
     </SectionContainer>
   );

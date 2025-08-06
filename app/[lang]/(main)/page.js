@@ -1,9 +1,7 @@
-// app/[lang]/page.js
-
 import { getDictionary } from "@/get-dictionary";
 import Script from "next/script";
 
-// Import all your actual, existing section components
+// Import all section components
 import Hero from "@/components/Hero/Hero";
 import OurServices from "@/components/Our Services/OurServices";
 import AboutKhalesUltimate from "@/components/Aboutkhales/AboutKhales2";
@@ -13,7 +11,11 @@ import TestimonialSlider from "@/components/Reviews/TestimonialSlider";
 import ValuePropositionV2 from "@/components/Statics/Statics2";
 import CTASection from "@/components/Homecontact/CTASection";
 
-// --- This is your original structured data, now in a function ---
+// Import the new Client Components
+import EnhancedContent from "@/components/EnhanceContent";
+import FAQSection from "@/components/FAQ/FAQSection";
+
+// --- STRUCTURED DATA --- (No changes needed)
 const getHomePageSchema = (lang) => {
   const name =
     lang === "ar"
@@ -25,7 +27,6 @@ const getHomePageSchema = (lang) => {
       ? "شركة رائدة في الهندسة المعمارية والتصميم الداخلي في دبي متخصصة في المشاريع السكنية والتجارية الفاخرة في جميع أنحاء الإمارات."
       : "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across UAE.";
 
-  // ======================= YOUR FULL SCHEMA OBJECT IS HERE =======================
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -153,20 +154,19 @@ const getHomePageSchema = (lang) => {
       ],
     },
   };
-  // ==============================================================================
 };
 
-// --- METADATA (You can still use the helper if you created it, or define it fully here) ---
+// --- METADATA --- (No changes needed)
 export async function generateMetadata({ params: { lang } }) {
   const title =
     lang === "ar"
-      ? "خالص | رواد الهندسة المعمارية والتصميم الداخلي في دبي"
-      : "Khales | Architecture & Interior Design Dubai, UAE";
+      ? "خالص | رواد الهندسة المعمارية والتصميم الداخلي في دبي، الإمارات"
+      : "Khales | Premier Architecture & Interior Design Company Dubai, UAE";
 
   const description =
     lang === "ar"
-      ? "خالص هي شركة رائدة في مجال الهندسة المعمارية والتصميم الداخلي في دبي. نحن متخصصون في المشاريع السكنية والتجارية الفاخرة، إدارة المشاريع، والاستشارات الهندسية في جميع أنحاء الإمارات."
-      : "Khales is Dubai's premier architecture and interior design company. We specialize in luxury residential and commercial projects, project management, and engineering consultancy across the UAE.";
+      ? "خالص هي شركة رائدة في مجال الهندسة المعمارية والتصميم الداخلي في دبي. نحن متخصصون في المشاريع السكنية والتجارية الفاخرة، إدارة المشاريع، والاستشارات الهندسية في جميع أنحاء الإمارات العربية المتحدة. خدماتنا تشمل تصميم الفلل، المكاتب، الفنادق، والمجمعات السكنية بأعلى معايير الجودة والاستدامة."
+      : "Khales is Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across the UAE. We offer comprehensive services including architectural design, interior design, landscape design, project management, and engineering consultancy. Our expert team delivers innovative solutions for villas, offices, hotels, and residential complexes throughout Dubai, Abu Dhabi, and Sharjah with the highest standards of quality and sustainability.";
 
   const keywords =
     lang === "ar"
@@ -174,39 +174,26 @@ export async function generateMetadata({ params: { lang } }) {
           "هندسة معمارية دبي",
           "تصميم داخلي دبي",
           "تصميم فاخر الإمارات",
-          "هندسة معمارية تجارية دبي",
-          "تصميم سكني دبي",
-          "إدارة مشاريع الإمارات",
-          "استشارات هندسية دبي",
-          "تخطيط التطوير الإمارات",
-          "شركات تجهيز داخلي دبي",
+          "شركة خالص",
+          "مهندسين معماريين دبي",
+          "مصممين داخليين الإمارات",
           "تصميم فلل دبي",
           "تصميم مكاتب دبي",
-          "هندسة معمارية مستدامة الإمارات",
-          "مقاولون بناء دبي",
-          "تصميم المناظر الطبيعية دبي",
-          "خالص دبي",
-          "أفضل المهندسين المعماريين في دبي",
-          "أفضل مصممي الديكور الداخلي في الإمارات",
+          "إدارة مشاريع الإمارات",
         ]
       : [
           "architecture Dubai",
           "interior design Dubai",
           "luxury design UAE",
-          "commercial architecture Dubai",
-          "residential design Dubai",
-          "project management UAE",
-          "engineering consultancy Dubai",
-          "development planning UAE",
-          "fit-out companies Dubai",
+          "Khales company",
+          "architects Dubai",
+          "interior designers UAE",
           "villa design Dubai",
           "office design Dubai",
-          "sustainable architecture UAE",
-          "building contractors Dubai",
-          "landscape design Dubai",
-          "Khales Dubai",
-          "best architects Dubai",
-          "top interior designers UAE",
+          "project management UAE",
+          "commercial architecture Dubai",
+          "residential design Dubai",
+          "engineering consultancy Dubai",
         ];
 
   const baseUrl = "https://www.khales.ae";
@@ -262,46 +249,62 @@ export default async function Home({ params: { lang } }) {
         }}
       />
 
-      {/* Your existing page sections */}
       <section
         id="hero"
         aria-label="Premier Architecture & Interior Design Company Dubai"
       >
-        <Hero slides={dictionary.hero?.slides || []} lang={lang} />
+        <Hero
+          slides={dictionary.hero?.slides || []}
+          lang={lang}
+          isHomePage={true}
+        />
       </section>
+
+      {/* Use the new Client Component */}
+      <EnhancedContent lang={lang} />
+
       <section id="about" aria-label="About Khales - Building Excellence">
         <AboutKhalesUltimate content={dictionary.about || {}} lang={lang} />
       </section>
+
       <section
         id="services"
         aria-label="Our Architecture and Interior Design Services"
       >
         <OurServices content={dictionary.services || {}} lang={lang} />
       </section>
+
       <section
         id="projects"
         aria-label="Featured Architecture and Interior Design Projects"
       >
         <FeaturedProjects content={dictionary.projects || {}} lang={lang} />
       </section>
+
       <section
         id="why-choose-us"
         aria-label="Why Choose Khales for Your Project"
       >
         <WhyKhalesHybrid content={dictionary.whyUs || {}} lang={lang} />
       </section>
+
       <section id="testimonials" aria-label="Client Reviews and Testimonials">
         <TestimonialSlider
           content={dictionary.testimonials || {}}
           lang={lang}
         />
       </section>
+
       <section
         id="statistics"
         aria-label="Our Achievements and Success Stories"
       >
         <ValuePropositionV2 content={dictionary.stats || {}} lang={lang} />
       </section>
+
+      {/* Use the new Client Component */}
+      <FAQSection lang={lang} />
+
       <section id="contact" aria-label="Contact Khales for Your Next Project">
         <CTASection content={dictionary.cta || {}} lang={lang} />
       </section>
