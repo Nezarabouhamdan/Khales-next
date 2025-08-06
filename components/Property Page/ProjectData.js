@@ -7,18 +7,21 @@ export const projectsData = [
     slug: "The-Royal-Villa",
     category: { eng: "Villas", ar: "فلل" },
     mainImage: "https://i.ibb.co/k69GLvRT/2.png",
+    // ======================= THE FIX IS HERE =======================
+    // Updated the gallery images with the new links provided.
     galleryImages: [
-      "https://i.ibb.co/k69GLvRT/2.png",
-      "https://i.ibb.co/5h2krDmw/1.png",
-      "https://i.ibb.co/qLmR8MpK/3.png",
-      "https://i.ibb.co/hFX56DBK/4.png",
-      "https://i.ibb.co/N2w6syYQ/5.png",
-      "https://i.ibb.co/7xLwfjnn/7.png",
-      "https://i.ibb.co/9HxWgYVG/8.png",
-      "https://i.ibb.co/G4Dn2N05/9.png",
-      "https://i.ibb.co/JjtJ6WhY/10.png",
-      "https://i.ibb.co/spnHPwtG/11.png",
+      "https://i.ibb.co/Z1GsRkFF/Screenshot-2025-08-06-134653.png",
+      "https://i.ibb.co/rGMMdMbr/Screenshot-2025-08-06-134836.png",
+      "https://i.ibb.co/XZL7n0y4/Screenshot-2025-08-06-134848.png",
+      "https://i.ibb.co/1S2vShg/Screenshot-2025-08-06-134858.png",
+      "https://i.ibb.co/DypDCGD/Screenshot-2025-08-06-134907.png",
+      "https://i.ibb.co/v6sBCRHj/Screenshot-2025-08-06-134917.png",
+      "https://i.ibb.co/V0cDtSmW/Screenshot-2025-08-06-134926.png",
+      "https://i.ibb.co/BVDc1Msr/Screenshot-2025-08-06-134937.png",
+      "https://i.ibb.co/n8rkyLkQ/Screenshot-2025-08-06-134945.png",
+      "https://i.ibb.co/qY8yWfyy/Screenshot-2025-08-06-134958.png",
     ],
+    // ===============================================================
     en: {
       tags: ["Architectural Design", "Site Supervision"],
       title: "The Royal Villa",
@@ -75,7 +78,6 @@ export const projectsData = [
       "https://i.ibb.co/Xxp72yFD/Riyadh-2-sq.png",
     ],
     en: {
-      // Changed from 'eng' to 'en'
       tags: ["Architectural Design", "Site Supervision"],
       title: "The Crown Central",
       address: "Riyadh, Saudi Arabia",

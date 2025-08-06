@@ -66,7 +66,7 @@ export default function DevelopmentplanningPage({ lang, content, ctaContent }) {
           <OurProcessWork panels={content.process.steps || []} />
           <img
             width={"300px"}
-            src={"https://i.ibb.co/qMyChkJ5/6-Process-Development.jpg"}
+            src={"https://i.ibb.co/n8MhvvCT/PROCESS-DEV.png"}
             alt="Process Work"
           />
         </Row2>

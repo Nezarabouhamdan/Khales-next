@@ -65,7 +65,7 @@ export default function EngineeringDesignPage({ lang, content, ctaContent }) {
           <OurProcessWork panels={content.process.steps || []} />
           <img
             width={"300px"}
-            src={"https://i.ibb.co/jk0vmwPk/2-Process-Engineering-Design.jpg"}
+            src={"https://i.ibb.co/p6JyQkXH/process-eng-design.png"}
             alt="Process Work"
           />
         </Row2>

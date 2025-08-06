@@ -202,7 +202,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/j93MLS7t/5-Banner-Development.jpg",
+        image: "https://i.ibb.co/ymhSpp0t/BAN-DEV.png",
         title: "حوّل أرضك إلى مشروع — بخطة واضحة",
         content: "استراتيجية المشروع المبكرة",
         button: "احجز موعدك الآن",
@@ -334,7 +334,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/DHxsg44Y/1-Banner-Engineering-Design.jpg",
+        image: "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
         title: "تصميم دقيق يبني الثقة",
         content: "الهندسة من أجل البناء",
         button: "احجز موعدك الآن",
@@ -417,7 +417,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/fGNXpJH0/3-Banner-Site-Supervision.jpg",
+        image: "https://i.ibb.co/MkyXq4d1/ban-engsupre.png",
         title: "إشراف فني يضمن الجودة في الموقع",
         content: "تدقيق جودة الإنشاءات",
         button: "احجز موعدك الآن",
@@ -507,7 +507,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/zHxNY5Fp/5-Banner-Interior-Design.png",
+        image: "https://i.ibb.co/wrzKMJRz/interior.png",
         title: "تصاميم داخلية أنيقة مصممة لغرض",
         content: "حلول التصميم الداخلي الفاخرة",
         button: "احجز موعدك الآن",
@@ -709,7 +709,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/jZBcL9d6/1-Banner-360.jpg",
+        image: "https://i.ibb.co/FL5BsmnZ/BAN-360.png",
         title: "تسليم كامل للمشروع: من الفكرة إلى التسليم",
         content: "تسليم كامل للمشروع",
         button: "احجز موعدك الآن",
@@ -829,7 +829,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/zWKzr7cR/3-Banner-PM.jpg",
+        image: "https://i.ibb.co/8JfxX3q/BAN-PM.png",
         title: "خدمة ممثل العميل",
         content:
           "نمثلك طوال فترة المشروع، وندير التقدم والتواصل والقرارات بتوجيه من الخبراء.",
@@ -917,7 +917,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/WWw0FNK7/7-Banner-Feasibility.jpg",
+        image: "https://i.ibb.co/39sLhVqb/BANNER-STUDY.png",
         title: "اعرف إمكانيات مشروعك قبل أن تبدأ بالبناء",
         content: "تحليل جدوى المشروع ",
         button: "ابدأ مشروعك اليوم",

@@ -71,7 +71,7 @@ export default function FeasibilityStudyPage({ lang, content, ctaContent }) {
           <OurProcessWork panels={content.process.steps || []} />
           <img
             width={"300px"}
-            src={"https://i.ibb.co/YB8KsmD5/8-Process-Feasibility.jpg"}
+            src={"https://i.ibb.co/mCJbZv7K/PROCESS-STUJDY.png"}
             alt="Process Work"
           />
         </Row2>

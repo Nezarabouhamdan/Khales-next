@@ -19,14 +19,14 @@ const servicesConfig = [
   {
     showcase: {
       icon: <FaStar />,
-      image: "https://i.ibb.co/pvsmTgg6/Engineering-Consultancy.jpg",
+      image: "https://i.ibb.co/pGxx8cp/ENG.png",
     },
     features: [{ icon: <FaProjectDiagram /> }, { icon: <FaClipboardCheck /> }],
   },
   {
     showcase: {
       icon: <FaTasks />,
-      image: "https://i.ibb.co/277qKX62/Project-Management.jpg",
+      image: "https://i.ibb.co/SwLmzSCw/PM.png",
     },
     features: [{ icon: <FaBullseye /> }, { icon: <FaClipboardCheck /> }],
   },

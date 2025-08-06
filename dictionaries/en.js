@@ -217,7 +217,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/j93MLS7t/5-Banner-Development.jpg",
+        image: "https://i.ibb.co/ymhSpp0t/BAN-DEV.png",
         title: "Turn Land into a Project — With a Clear Plan",
         content: "Early Project Strategy",
         button: "Book Appointment",
@@ -356,7 +356,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/DHxsg44Y/1-Banner-Engineering-Design.jpg",
+        image: "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
         title: "Precision-Driven Design That Builds with Confidence",
         content: "Engineering for Construction",
         button: "Book Appointment",
@@ -443,7 +443,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/fGNXpJH0/3-Banner-Site-Supervision.jpg",
+        image: "https://i.ibb.co/MkyXq4d1/ban-engsupre.png",
         title: "Technical Oversight That Safeguards Quality On-Site",
         content: "Construction Quality Checks",
         button: "Book Appointment",
@@ -533,7 +533,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/zHxNY5Fp/5-Banner-Interior-Design.png",
+        image: "https://i.ibb.co/wrzKMJRz/interior.png",
         title: "Elegant Interiors Designed with Purpose",
         content: "Luxury Interior Solutions",
         button: "Book Appointment",
@@ -733,7 +733,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/jZBcL9d6/1-Banner-360.jpg",
+        image: "https://i.ibb.co/FL5BsmnZ/BAN-360.png",
         title: "Complete Project Delivery: From Concept to Handover",
         content: "Full Project Delivery",
         button: "Book Appointment",
@@ -842,7 +842,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/zWKzr7cR/3-Banner-PM.jpg",
+        image: "https://i.ibb.co/8JfxX3q/BAN-PM.png",
         title: "Professional Representation for Your Project",
         content: "Expert guidance from start to finish.",
         button: "Book Appointment",
@@ -931,7 +931,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/WWw0FNK7/7-Banner-Feasibility.jpg",
+        image: "https://i.ibb.co/39sLhVqb/BANNER-STUDY.png",
         title: "Know the Potential Before You Build",
         content: "Project Viability Analysis",
         button: "Start Your Project Today",
@@ -1783,7 +1783,7 @@ export const dictionary = {
       "360-project-management": {
         categorySlug: "project-management",
         path: "/services/ProjectManagement",
-        image: "https://i.ibb.co/jZBcL9d6/1-Banner-360.jpg",
+        image: "https://i.ibb.co/FL5BsmnZ/BAN-360.png",
         title: "360° Project Management",
         description:
           "A complete, end-to-end solution managing your project from initial concept to final handover.",
@@ -1791,7 +1791,7 @@ export const dictionary = {
       "project-manager-service": {
         categorySlug: "project-management",
         path: "/services/ProjectManager",
-        image: "https://i.ibb.co/zWKzr7cR/3-Banner-PM.jpg",
+        image: "https://i.ibb.co/8JfxX3q/BAN-PM.png",
         title: "Project Manager Service",
         description:
           "Your official representative, overseeing all teams to ensure your project stays on track.",
@@ -1799,7 +1799,7 @@ export const dictionary = {
       "feasibility-study": {
         categorySlug: "project-management",
         path: "/services/Projectfeasability",
-        image: "https://i.ibb.co/WWw0FNK7/7-Banner-Feasibility.jpg",
+        image: "https://i.ibb.co/39sLhVqb/BANNER-STUDY.png",
         title: "Feasibility Study",
         description:
           "Evaluating if your project is achievable, profitable, and aligned with budget and regulations.",
@@ -1807,7 +1807,7 @@ export const dictionary = {
       "development-planning": {
         categorySlug: "project-management",
         path: "/services/development-planning",
-        image: "https://i.ibb.co/j93MLS7t/5-Banner-Development.jpg",
+        image: "https://i.ibb.co/ymhSpp0t/BAN-DEV.png",
         title: "Development Planning",
         description:
           "Turning a raw plot of land into a viable project with a clear, regulation-aligned plan.",
@@ -1815,7 +1815,7 @@ export const dictionary = {
       "engineering-design": {
         categorySlug: "engineering-consultancy",
         path: "/services/EngineeringDesign",
-        image: "https://i.ibb.co/1f92NM3V/eng.jpg",
+        image: "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
         title: "Engineering Design",
         description:
           "Providing all technical documents and calculations to take your project from vision to construction.",
@@ -1823,7 +1823,7 @@ export const dictionary = {
       "engineering-supervision": {
         categorySlug: "engineering-consultancy",
         path: "/services/EngineeringSupervision",
-        image: "https://i.ibb.co/fGNXpJH0/3-Banner-Site-Supervision.jpg",
+        image: "https://i.ibb.co/MkyXq4d1/ban-engsupre.png",
         title: "Engineering Supervision",
         description:
           "Hands-on technical monitoring to ensure work is executed per approved drawings and regulations.",
@@ -1831,7 +1831,7 @@ export const dictionary = {
       "interior-design": {
         categorySlug: "engineering-consultancy",
         path: "/services/InteriorDesign",
-        image: "https://i.ibb.co/zHxNY5Fp/5-Banner-Interior-Design.png",
+        image: "https://i.ibb.co/wrzKMJRz/interior.png",
         title: "Interior Design",
         description:
           "Shaping how people live and experience a space with functional and refined interiors.",

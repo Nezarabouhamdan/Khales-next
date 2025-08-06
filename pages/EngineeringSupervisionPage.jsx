@@ -68,7 +68,7 @@ export default function EngineeringSupervisionPage({
           <OurProcessWork panels={content.process.steps || []} />
           <img
             width={"300px"}
-            src={"https://i.ibb.co/5XnVB1pt/4-Process-Site-Supervision.jpg"}
+            src={"https://i.ibb.co/hRTF78n3/PROCESS-SITE.png"}
             alt="Process Work"
           />
         </Row2>

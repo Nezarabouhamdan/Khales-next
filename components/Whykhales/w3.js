@@ -9,15 +9,15 @@ import { FaHammer, FaSlidersH, FaClock, FaHome } from "react-icons/fa";
 const featureAssets = [
   {
     icon: <FaHammer />,
-    imageUrl: "https://i.ibb.co/n80MKYz4/Quality-you-can-measure.jpg",
+    imageUrl: "https://i.ibb.co/vvqTFHVf/QUA.png",
   },
   {
     icon: <FaSlidersH />,
-    imageUrl: "https://i.ibb.co/s95K2LPZ/Design-with-Purpose.jpg",
+    imageUrl: "https://i.ibb.co/8LXtFg73/DES.png",
   },
   {
     icon: <FaClock />,
-    imageUrl: "https://i.ibb.co/x8jx7JPG/Clear-Process-Reliable-Delivery.jpg",
+    imageUrl: "https://i.ibb.co/7xJBNrH5/CLEAR.png",
   },
 ];
 
