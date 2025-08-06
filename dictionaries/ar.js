@@ -6,15 +6,15 @@ import { projectsData as allProjects } from "@/components/Property Page/ProjectD
 // ===============================================================
 
 export const dictionary = {
+  // dictionaries/ar.js
+
   navigation: {
     items: [
+      // FIX: الرئيسية is now a standalone link
       {
         label: "الرئيسية",
-        isDropdown: true,
-        children: [
-          { label: "نبذة عنا", path: "/about-us" },
-          { label: "المدونة", path: "/blog" },
-        ],
+        path: "/",
+        isDropdown: false,
       },
       {
         label: "إدارة مشاريع",
@@ -24,7 +24,6 @@ export const dictionary = {
             label: "خدمة إدارة المشروع الشاملة",
             path: "/services/ProjectManagement",
           },
-          // ======================= ADDED MISSING LINK =======================
           { label: "مدير المشروع", path: "/services/ProjectManager" },
           { label: "التخطيط التطويري", path: "/services/development-planning" },
           { label: "دراسة الجدوى", path: "/services/Projectfeasability" },
@@ -35,7 +34,6 @@ export const dictionary = {
         isDropdown: true,
         children: [
           { label: "التصميم الهندسي", path: "/services/EngineeringDesign" },
-          // ======================= ADDED MISSING LINK =======================
           {
             label: "الإشراف الهندسي",
             path: "/services/EngineeringSupervision",
@@ -44,9 +42,19 @@ export const dictionary = {
           { label: "تنسيق الحدائق", path: "/services/LandscapingDesign" },
         ],
       },
-      { label: "اتصل بنا", path: "/Contact", isDropdown: false },
+      // FIX: New "الشركة" dropdown containing About, Blogs, and Connect
+      {
+        label: "الشركة",
+        isDropdown: true,
+        children: [
+          { label: "نبذة عنا", path: "/about-us" },
+          { label: "المدونة", path: "/blog" },
+          { label: "اتصل بنا", path: "/Contact" },
+        ],
+      },
     ],
     ctaButton: "أحجز موعدك الآن",
+    // FIX: Changed label to be more generic for an icon
     languageButton: "اللغة",
   },
   hero: {

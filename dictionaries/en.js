@@ -6,15 +6,15 @@ import { projectsData as allProjects } from "@/components/Property Page/ProjectD
 // ===============================================================
 
 export const dictionary = {
+  // dictionaries/en.js
+
   navigation: {
     items: [
+      // FIX: Home is now a standalone link
       {
         label: "Home",
-        isDropdown: true,
-        children: [
-          { label: "About Khales", path: "/About-Us" },
-          { label: "Blogs", path: "/blog" },
-        ],
+        path: "/",
+        isDropdown: false,
       },
       {
         label: "Project Management",
@@ -45,9 +45,19 @@ export const dictionary = {
           { label: "Landscaping", path: "/services/LandscapingDesign" },
         ],
       },
-      { label: "Connect", path: "/Contact", isDropdown: false },
+      // FIX: New "Company" dropdown containing About, Blogs, and Connect
+      {
+        label: "Company",
+        isDropdown: true,
+        children: [
+          { label: "About Khales", path: "/about-us" },
+          { label: "Blogs", path: "/blog" },
+          { label: "Connect", path: "/Contact" },
+        ],
+      },
     ],
     ctaButton: "Book Consultation",
+    // FIX: Changed label to be more generic for an icon
     languageButton: "Language",
   },
   hero: {

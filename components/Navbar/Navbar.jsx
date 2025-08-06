@@ -8,13 +8,11 @@ import styled, { css } from "styled-components";
 import { FaTimes, FaBars } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-// A custom hook to detect clicks outside of a component
+// Custom hook to detect clicks outside of a component
 const useClickOutside = (ref, handler) => {
   useEffect(() => {
     const listener = (event) => {
-      if (!ref.current || ref.current.contains(event.target)) {
-        return;
-      }
+      if (!ref.current || ref.current.contains(event.target)) return;
       handler(event);
     };
     document.addEventListener("mousedown", listener);
@@ -27,15 +25,13 @@ const useClickOutside = (ref, handler) => {
 };
 
 // ===================================================================
-// STYLED COMPONENTS DEFINITIONS (THE MISSING PART)
+// STYLED COMPONENTS
 // ===================================================================
-
 const COLORS = {
   primary: "#66a109",
   primaryDarker: "#5a8f08",
   white: "#ffffff",
   darkText: "#1a1a1a",
-  darkBg: "#222222",
 };
 
 const NavWrapper = styled.nav`
@@ -49,7 +45,6 @@ const NavWrapper = styled.nav`
   left: 0;
   z-index: 999;
   transition: height 0.3s ease-in-out;
-
   ${({ $isScrolled }) =>
     $isScrolled &&
     css`
@@ -105,7 +100,6 @@ const MobileIcon = styled.div`
     font-size: 1.8rem;
     cursor: pointer;
     color: ${COLORS.darkText};
-    transition: color 0.3s ease-in-out;
     z-index: 1001;
   }
 `;
@@ -168,8 +162,6 @@ const MenuLink = styled.a`
     padding: 1.5rem;
     justify-content: center;
     font-size: 1.2rem;
-    color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
-
     &:hover {
       background-color: #f4f4f4;
       border-radius: 8px;
@@ -187,7 +179,7 @@ const SubMenu = styled.ul`
   position: absolute;
   top: 65px;
   left: 50%;
-  width: 260px;
+  width: 220px;
   background-color: ${COLORS.white};
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
@@ -197,7 +189,6 @@ const SubMenu = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-
   opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
   visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
   transform: ${({ $isOpen }) =>
@@ -223,7 +214,8 @@ const SubMenuItem = styled.li`
 `;
 
 const SubMenuLink = styled(Link)`
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 0.75rem 1.25rem;
   color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
   font-weight: ${({ $isActive }) => ($isActive ? "600" : "500")};
@@ -232,7 +224,6 @@ const SubMenuLink = styled(Link)`
   transition: all 0.2s ease-in-out;
   text-align: left;
   font-size: 1rem;
-
   &:hover {
     background-color: #f4f4f4;
     color: ${COLORS.primary};
@@ -242,7 +233,7 @@ const SubMenuLink = styled(Link)`
 const NavActions = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   @media screen and (max-width: 960px) {
     display: none;
   }
@@ -261,7 +252,6 @@ const CTAButton = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   transition: all 0.3s ease;
-
   &:hover {
     background-color: ${COLORS.primaryDarker};
     transform: translateY(-2px);
@@ -271,19 +261,44 @@ const CTAButton = styled(Link)`
 
 const MobileCTAWrapper = styled.div`
   display: none;
-
   @media screen and (max-width: 960px) {
     display: block;
     width: 100%;
-    margin-top: auto; // Pushes button to the bottom
+    margin-top: auto;
     padding-top: 2rem;
   }
 `;
 
-// ===================================================================
-// MAIN NAVBAR COMPONENT LOGIC
-// ===================================================================
+const LanguageButton = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem;
+`;
 
+const CurrentFlag = styled.img`
+  width: 28px;
+  height: auto;
+  border-radius: 4px;
+`;
+
+const LanguageOption = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const FlagIcon = styled.img`
+  width: 24px;
+  height: auto;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+`;
+
+// ===================================================================
+// MAIN NAVBAR COMPONENT
+// ===================================================================
 export default function Navbar({ lang, navigation }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -292,7 +307,9 @@ export default function Navbar({ lang, navigation }) {
   const pathname = usePathname();
   const navRef = useRef();
 
-  useClickOutside(navRef, () => setOpenDropdown(null));
+  useClickOutside(navRef, () => {
+    setOpenDropdown(null);
+  });
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -301,24 +318,77 @@ export default function Navbar({ lang, navigation }) {
   }, []);
 
   useEffect(() => {
-    setMobileMenuOpen(false); // Close mobile menu on any navigation
-  }, [pathname]);
+    setMobileMenuOpen(false);
+    setOpenDropdown(null);
+  }, [pathname, lang]);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
+  }, [isMobileMenuOpen]);
 
   const handleDropdownToggle = (label) => {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
+  // ======================= THE FIX IS HERE =======================
+  // This is your original, working function. It correctly splits the full
+  // pathname (e.g., /en/about-us) and replaces the locale part.
   const redirectedPathName = (locale) => {
     if (!pathname) return "/";
     const segments = pathname.split("/");
     segments[1] = locale;
     return segments.join("/");
   };
+  // ===============================================================
 
-  // Use a fallback to prevent errors if navigation prop is not ready
   const navItems = navigation?.items || [];
   const ctaButtonText = navigation?.ctaButton || "Loading...";
-  const languageButtonText = navigation?.languageButton || "Language";
+
+  const LanguageSwitcher = ({ isMobile = false }) => (
+    <div style={{ position: "relative" }}>
+      <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
+        <LanguageButton>
+          <CurrentFlag
+            src={
+              lang === "en"
+                ? "https://flagcdn.com/w40/us.png"
+                : "https://flagcdn.com/w40/sa.png"
+            }
+            alt="Current language"
+          />
+          {isMobile && <span>{lang === "en" ? "Language" : "اللغة"}</span>}
+        </LanguageButton>
+        <ArrowIcon $isOpen={openDropdown === "language"} />
+      </MenuLink>
+      <SubMenu
+        $isOpen={openDropdown === "language"}
+        style={!isMobile ? { left: "50%", transform: "translateX(-50%)" } : {}}
+      >
+        <SubMenuItem>
+          <SubMenuLink
+            href={redirectedPathName("en")}
+            $isActive={lang === "en"}
+          >
+            <LanguageOption>
+              <FlagIcon src="https://flagcdn.com/w40/us.png" alt="USA Flag" />
+              <span>English</span>
+            </LanguageOption>
+          </SubMenuLink>
+        </SubMenuItem>
+        <SubMenuItem>
+          <SubMenuLink
+            href={redirectedPathName("ar")}
+            $isActive={lang === "ar"}
+          >
+            <LanguageOption>
+              <FlagIcon src="https://flagcdn.com/w40/sa.png" alt="KSA Flag" />
+              <span>العربية</span>
+            </LanguageOption>
+          </SubMenuLink>
+        </SubMenuItem>
+      </SubMenu>
+    </div>
+  );
 
   return (
     <NavWrapper $isScrolled={isScrolled}>
@@ -333,7 +403,8 @@ export default function Navbar({ lang, navigation }) {
 
         <NavMenu $isOpen={isMobileMenuOpen} ref={navRef}>
           {navItems.map((item) => {
-            const hasChildren = item.children && item.children.length > 0;
+            const hasChildren = item.isDropdown;
+            const fullPath = item.path ? `/${lang}${item.path}` : "#";
             const isActive = hasChildren
               ? item.children.some(
                   (child) => pathname === `/${lang}${child.path}`
@@ -344,7 +415,7 @@ export default function Navbar({ lang, navigation }) {
               <MenuItem key={item.label}>
                 <MenuLink
                   as={hasChildren ? "div" : Link}
-                  href={item.path ? `/${lang}${item.path}` : "#"}
+                  href={fullPath}
                   $isActive={isActive}
                   onClick={
                     hasChildren
@@ -357,7 +428,6 @@ export default function Navbar({ lang, navigation }) {
                     <ArrowIcon $isOpen={openDropdown === item.label} />
                   )}
                 </MenuLink>
-
                 {hasChildren && (
                   <SubMenu $isOpen={openDropdown === item.label}>
                     {item.children.map((child) => (
@@ -365,7 +435,6 @@ export default function Navbar({ lang, navigation }) {
                         <SubMenuLink
                           href={`/${lang}${child.path}`}
                           $isActive={pathname === `/${lang}${child.path}`}
-                          onClick={() => setOpenDropdown(null)}
                         >
                           {child.label}
                         </SubMenuLink>
@@ -377,30 +446,21 @@ export default function Navbar({ lang, navigation }) {
             );
           })}
 
-          <MenuItem>
-            <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
-              {languageButtonText}
-              <ArrowIcon $isOpen={openDropdown === "language"} />
-            </MenuLink>
-            <SubMenu $isOpen={openDropdown === "language"}>
-              <SubMenuItem>
-                <SubMenuLink
-                  href={redirectedPathName("en")}
-                  $isActive={lang === "en"}
-                >
-                  English
-                </SubMenuLink>
-              </SubMenuItem>
-              <SubMenuItem>
-                <SubMenuLink
-                  href={redirectedPathName("ar")}
-                  $isActive={lang === "ar"}
-                >
-                  العربية
-                </SubMenuLink>
-              </SubMenuItem>
-            </SubMenu>
+          <MenuItem className="mobile-only-lang">
+            <LanguageSwitcher isMobile={true} />
           </MenuItem>
+          <style jsx global>{`
+            .mobile-only-lang {
+              display: none;
+            }
+            @media screen and (max-width: 960px) {
+              .mobile-only-lang {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+              }
+            }
+          `}</style>
 
           <MobileCTAWrapper>
             <CTAButton href={`/${lang}/booking`}>{ctaButtonText}</CTAButton>
@@ -408,6 +468,7 @@ export default function Navbar({ lang, navigation }) {
         </NavMenu>
 
         <NavActions>
+          <LanguageSwitcher />
           <CTAButton href={`/${lang}/booking`}>{ctaButtonText}</CTAButton>
         </NavActions>
       </NavbarContainer>
