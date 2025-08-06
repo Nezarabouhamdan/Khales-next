@@ -11,6 +11,7 @@ const nextConfig = {
       "upload.wikimedia.org",
       "gulfvisiongov.com",
       "www.tsilimited.com",
+      "images.pexels.com",
     ],
     remotePatterns: [
       {
