@@ -128,8 +128,8 @@ const FeatureDescription = styled.p`
 `;
 const ImageSection = styled.div`
   width: 100%;
-  max-width: 600px;
-  height: 400px;
+  max-width: 1100px;
+  height: 500px;
   border-radius: 16px;
   overflow: hidden;
   position: relative;

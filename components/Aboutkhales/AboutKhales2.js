@@ -48,7 +48,7 @@ const SectionWrapper = styled(motion.section)`
 
 const Container = styled.div`
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   padding: 0 5%;
   position: relative;
   z-index: 5;
@@ -91,7 +91,9 @@ const TextBlock = styled(motion.div)`
 
 // FIXED: Changed from h3 to h2 for proper section hierarchy
 const Title = styled(motion.h2)`
-  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  /* Original: clamp(2.2rem, 4.5vw, 3.2rem) */
+  /* Reduced by 15% (multiplied by 0.85) */
+  font-size: clamp(1.9rem, 3.8vw, 2.7rem);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1.5rem;
@@ -102,7 +104,9 @@ const Title = styled(motion.h2)`
 `;
 
 const Paragraph = styled(motion.p)`
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  /* Original: clamp(1rem, 2.5vw, 1.1rem) */
+  /* Reduced by 15% (multiplied by 0.85) */
+  font-size: clamp(0.85rem, 2.1vw, 0.94rem);
   line-height: 1.8;
   margin-bottom: 2.5rem;
   color: #555;
