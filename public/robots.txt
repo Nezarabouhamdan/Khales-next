@@ -1,28 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
+# Host
+Host: http://www.khales.ae/
+
 # Sitemaps
-Sitemap: https://www.khales.ae/sitemap.xml
-Sitemap: https://www.khales.ae/sitemap-0.xml
-
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-
-# Allow important pages
-Allow: /en/
-Allow: /ar/
-Allow: /services/
-Allow: /projects/
-Allow: /blog/
-Allow: /contact/
-Allow: /about-us/
-
-# Crawl delay (optional)
-Crawl-delay: 1
-
-# Host directive
-Host: https://www.khales.ae
-
+Sitemap: http://www.khales.ae/sitemap.xml
