@@ -6,7 +6,7 @@ export const projectsData = [
     id: 1,
     slug: "The-Royal-Villa",
     category: { eng: "Villas", ar: "فلل" },
-    mainImage: "https://i.ibb.co/k69GLvRT/2.png",
+    mainImage: "https://i.ibb.co/n8rkyLkQ/Screenshot-2025-08-06-134945.png",
     // ======================= THE FIX IS HERE =======================
     // Updated the gallery images with the new links provided.
     galleryImages: [

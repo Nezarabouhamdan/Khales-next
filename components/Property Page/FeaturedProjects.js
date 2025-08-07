@@ -128,15 +128,12 @@ const Tags = styled.p`
   margin: 0 0 0.5rem 0;
 `;
 
-// --- MAIN REFACTORED COMPONENT ---
+// --- MAIN COMPONENT ---
 export default function FeaturedProjects({ lang, content }) {
   const projects = content?.projectsData || [];
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
-  // ======================= THE NEW, SIMPLIFIED LOGIC =======================
   const featuredTabLabel = lang === "ar" ? "مميز" : "Featured";
-
-  // Tabs are now generated here, directly from the official map. This cannot fail.
   const tabs = [
     featuredTabLabel,
     ...Object.keys(categoryMap).map((key) => categoryMap[key][lang]),
@@ -145,28 +142,26 @@ export default function FeaturedProjects({ lang, content }) {
   const [activeTab, setActiveTab] = useState(featuredTabLabel);
 
   useEffect(() => {
-    // When language changes, reset the active tab to the new "Featured" label
     setActiveTab(lang === "ar" ? "مميز" : "Featured");
   }, [lang]);
-  // =========================================================================
 
   if (projects.length === 0) {
     return null;
   }
 
   const filteredProjects = projects.filter((p) => {
-    // If the active tab is "Featured", show all projects.
     if (activeTab === featuredTabLabel) {
       return true;
     }
 
-    // Find the English key that corresponds to the active tab label.
     const activeCategoryKey = Object.keys(categoryMap).find(
       (key) => categoryMap[key][lang] === activeTab
     );
 
-    // Filter projects based on the stable English key from ProjectData.js
-    return p.category === activeCategoryKey;
+    // ======================= THE FIX IS HERE =======================
+    // Compare the English key from the project's category object.
+    return p.category.eng === activeCategoryKey;
+    // ===============================================================
   });
 
   return (
