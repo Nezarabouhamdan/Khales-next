@@ -1119,7 +1119,7 @@ export const dictionary = {
           link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8",
         },
         {
-          titlePart1: "London", // FIX: Combined title parts.
+          titlePart1: "London, UK Branch", // FIX: Combined title parts.
           titlePart2: " UK Branch", // FIX: Combined title parts.
 
           description: "London, UK\n\n+971 56 189 9918",
