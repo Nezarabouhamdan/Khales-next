@@ -18,7 +18,7 @@ export default function BlogsPageClient({ lang, posts, ctaSectionContent }) {
             content: posts[0].description,
             // Pass the correct button link
             buttonLink: `/${lang}/blog/${posts[0].slug}`,
-            buttonText: "Read More",
+            button: "Read More",
           },
         ]
       : [];

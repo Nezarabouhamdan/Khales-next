@@ -1081,36 +1081,47 @@ export const dictionary = {
       title: "Our Offices", // FIX: Combined title parts into a single heading.
       offices: [
         {
-          title: "Dubai Majlis", // FIX: Combined title parts.
+          titlePart1: "Dubai ", // FIX: Combined title parts.
+          titlePart2: " Majlis", // FIX: Combined title parts.
           description:
             "Office M03, Building 5 Block B, Design District, Dubai, UAE\n\n+971 4 580 6307",
           link: "https://maps.app.goo.gl/mJ2i9EfLTbooABVM9",
         },
         {
-          title: "Dubai Branch", // FIX: Combined title parts.
+          titlePart1: "Dubai ", // FIX: Combined title parts.
+          titlePart2: " Branch", // FIX: Combined title parts.
+
           description:
             "Office 113, SIT Tower, Dubai Silicon Oasis, Dubai, UAE\n\n+971 4 557 1184",
           link: "https://maps.app.goo.gl/2Rgo7ZE5KSgVNDD37",
         },
         {
-          title: "Fujairah Branch", // FIX: Combined title parts.
+          titlePart1: "Fujairah ", // FIX: Combined title parts.
+          titlePart2: " Branch", // FIX: Combined title parts.
+
           description:
             "Office 202, Creative Tower, Hamad Bin Abdulla St., Fujairah, UAE\n\n+971 9 501 0762",
           link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
         },
         {
-          title: "Sharjah Branch", // FIX: Combined title parts.
+          titlePart1: "Sharjah ", // FIX: Combined title parts.
+          titlePart2: " Branch", // FIX: Combined title parts.
+
           description:
             "Shop 11, Block C, Al Saud Head Office, Muwaileh, Sharjah, UAE\n\n+971 6 551 8070",
           link: "https://maps.app.goo.gl/SD2R8ZKmym2NPLUu7",
         },
         {
-          title: "Abu Dhabi Branch", // FIX: Combined title parts.
+          titlePart1: "Abu Dhabi ", // FIX: Combined title parts.
+          titlePart2: " Branch", // FIX: Combined title parts.
+
           description: "Al Qana, Rabdan, Abu Dhabi, UAE\n\n+971 56 189 9918",
           link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8",
         },
         {
-          title: "London, UK Branch", // FIX: Combined title parts.
+          titlePart1: "London, UK Branch", // FIX: Combined title parts.
+          titlePart2: " UK Branch", // FIX: Combined title parts.
+
           description: "London, UK\n\n+971 56 189 9918",
           link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8",
         },
