@@ -704,7 +704,7 @@ export const dictionary = {
         "The landscape was completed in six weeks with long-term durability and low maintenance in mind.",
         "The service covered full landscape design, plant selection, lighting, water elements, and execution with a practical and elegant approach.",
       ],
-      mainimage: "https://placehold.co/400x300/aaaaaa/aaaaaa",
+      mainimage: "https://i.ibb.co/qLpSLzr9/7-Landscape.jpg",
       images: [
         "https://placehold.co/400x300/aaaaaa/aaaaaa",
         "https://placehold.co/400x300/bbbbbb/bbbbbb",
