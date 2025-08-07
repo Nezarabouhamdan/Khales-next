@@ -633,7 +633,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
+        image: "https://i.ibb.co/qLpSLzr9/7-Landscape.jpg",
         title: "Thoughtfully Designed Outdoor Spaces That Endure",
         content: "Softscape & Hardscape Plans",
         button: "Start Your Project Today",
