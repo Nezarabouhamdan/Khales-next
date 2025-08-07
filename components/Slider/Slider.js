@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 // --- Styled Components (with Centering Logic) ---
 
@@ -217,6 +218,11 @@ const itemVariants = {
 // --- The Main Component ---
 export default function HeroSlider({ slides, rtl, lang }) {
   const sectionRef = useRef(null);
+  const pathname = usePathname();
+
+  // 3. Create a boolean to check if the current page is the blog page
+  // The .includes() check will work for both `/en/blog` and `/ar/blog`
+  const isBlogPage = pathname.includes("/blog");
 
   const slide = slides && slides.length > 0 ? slides[0] : null;
 
