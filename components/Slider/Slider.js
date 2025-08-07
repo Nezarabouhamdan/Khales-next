@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { usePathname } from "next/navigation";
+
 // --- Styled Components (with Centering Logic) ---
 
 const HeroSection = styled.section`
@@ -225,7 +225,6 @@ export default function HeroSlider({ slides, rtl, lang }) {
     offset: ["start start", "end start"],
   });
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const isBlogPage = pathname.includes("/blog");
 
   if (!slide) {
     return null;
@@ -274,13 +273,11 @@ export default function HeroSlider({ slides, rtl, lang }) {
       >
         <Headline variants={itemVariants}>{slide.title}</Headline>
         <Subline variants={itemVariants}>{slide.content}</Subline>
-        {!isBlogPage && (
-          <motion.div variants={itemVariants}>
-            <Link href={`/booking`} passHref legacyBehavior>
-              <CTAButton $rtl={rtl}>{slide.button}</CTAButton>
-            </Link>
-          </motion.div>
-        )}
+        <motion.div variants={itemVariants}>
+          <Link href={`/booking`} passHref legacyBehavior>
+            <CTAButton $rtl={rtl}>{slide.button}</CTAButton>
+          </Link>
+        </motion.div>
       </ContentContainer>
     </HeroSection>
   );
