@@ -1081,8 +1081,8 @@ export const dictionary = {
       ],
     },
     locations: {
-      titlePart1: "Our Offices",
-      titlePart2: "Around the World",
+      titlePart1: "Our ",
+      titlePart2: " Offices",
       offices: [
         {
           titlePart1: "Dubai",
