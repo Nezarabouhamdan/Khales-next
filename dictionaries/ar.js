@@ -179,6 +179,8 @@ export const dictionary = {
   },
   cta: {
     heading: "تبحث عن حلول خبراء؟ لنتحدث",
+    subheading:
+      "هل أنت مستعد لاتخاذ الخطوة التالية؟ فريقنا هنا لمساعدتك في تحويل رؤيتك إلى حقيقة. فلنبني شيئًا استثنائيًا معًا.",
     buttonText: "احجز استشارتك",
   },
   footer: {
@@ -606,7 +608,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
+        image: "https://i.ibb.co/qLpSLzr9/7-Landscape.jpg",
         title: "مساحات خارجية مصممة بعناية لتدوم طويلاً",
         content: "مخططات العناصر الطبيعية والصلبة (سوفت سكيب وهارد سكيب)",
         button: "ابدأ مشروعك اليوم",
@@ -1791,7 +1793,7 @@ export const dictionary = {
       "360-project-management": {
         categorySlug: "project-management",
         path: "/services/ProjectManagement",
-        image: "https://i.ibb.co/jZBcL9d6/1-Banner-360.jpg",
+        image: "https://i.ibb.co/FL5BsmnZ/BAN-360.png",
         title: "إدارة المشاريع الشاملة (360°)",
         description:
           "حل متكامل وشامل لإدارة مشروعك من الفكرة الأولية حتى التسليم النهائي.",
@@ -1799,7 +1801,7 @@ export const dictionary = {
       "project-manager-service": {
         categorySlug: "project-management",
         path: "/services/ProjectManager",
-        image: "https://i.ibb.co/zWKzr7cR/3-Banner-PM.jpg",
+        image: "https://i.ibb.co/8JfxX3q/BAN-PM.png",
         title: "خدمة مدير المشروع",
         description:
           "ممثلكم الرسمي، يشرف على جميع الفرق لضمان بقاء مشروعكم على المسار الصحيح.",
@@ -1807,7 +1809,7 @@ export const dictionary = {
       "feasibility-study": {
         categorySlug: "project-management",
         path: "/services/Projectfeasability",
-        image: "https://i.ibb.co/WWw0FNK7/7-Banner-Feasibility.jpg",
+        image: "https://i.ibb.co/39sLhVqb/BANNER-STUDY.png",
         title: "دراسة الجدوى",
         description:
           "تقييم ما إذا كان مشروعك قابلاً للتحقيق ومربحًا ومتوافقًا مع الميزانية واللوائح.",
@@ -1815,7 +1817,7 @@ export const dictionary = {
       "development-planning": {
         categorySlug: "project-management",
         path: "/services/development-planning",
-        image: "https://i.ibb.co/j93MLS7t/5-Banner-Development.jpg",
+        image: "https://i.ibb.co/ymhSpp0t/BAN-DEV.png",
         title: "التخطيط التطويري",
         description:
           "تحويل قطعة أرض خام إلى مشروع قابل للتطبيق بخطة واضحة ومتوافقة مع الأنظمة.",
@@ -1823,7 +1825,7 @@ export const dictionary = {
       "engineering-design": {
         categorySlug: "engineering-consultancy",
         path: "/services/EngineeringDesign",
-        image: "https://i.ibb.co/1f92NM3V/eng.jpg",
+        image: "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
         title: "التصميم الهندسي",
         description:
           "توفير جميع المستندات الفنية والحسابات اللازمة لنقل مشروعك من الرؤية إلى البناء.",
@@ -1831,7 +1833,7 @@ export const dictionary = {
       "engineering-supervision": {
         categorySlug: "engineering-consultancy",
         path: "/services/EngineeringSupervision",
-        image: "https://i.ibb.co/fGNXpJH0/3-Banner-Site-Supervision.jpg",
+        image: "https://i.ibb.co/MkyXq4d1/ban-engsupre.png",
         title: "الإشراف الهندسي",
         description:
           "مراقبة فنية عملية لضمان تنفيذ العمل وفقًا للمخططات المعتمدة واللوائح التنظيمية.",
@@ -1839,7 +1841,7 @@ export const dictionary = {
       "interior-design": {
         categorySlug: "engineering-consultancy",
         path: "/services/InteriorDesign",
-        image: "https://i.ibb.co/zHxNY5Fp/5-Banner-Interior-Design.png",
+        image: "https://i.ibb.co/wrzKMJRz/interior.png",
         title: "التصميم الداخلي",
         description:
           "تشكيل كيفية عيش الناس وتجربتهم للمساحة بتصميمات داخلية وظيفية ومصقولة.",
@@ -1847,7 +1849,7 @@ export const dictionary = {
       "landscape-design": {
         categorySlug: "engineering-consultancy",
         path: "/services/LandscapingDesign",
-        image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
+        image: "https://i.ibb.co/qLpSLzr9/7-Landscape.jpg",
         title: "تصميم المناظر الطبيعية",
         description:
           "تصميم مساحات خارجية أنيقة وعملية توازن بين الطبيعة والعناصر المبنية.",

@@ -1,4 +1,3 @@
-// components/Homecontact/CTASection.js
 "use client";
 
 import React from "react";
@@ -6,7 +5,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-// --- STYLED COMPONENTS ---
+// --- STYLED COMPONENTS (Your original code, with RTL direction added) ---
 
 const Section = styled.section`
   width: 100%;
@@ -14,7 +13,7 @@ const Section = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff; /* Or any background you prefer */
+  background-color: #ffffff;
 `;
 
 const CTAContainer = styled(motion.div)`
@@ -29,10 +28,10 @@ const CTAContainer = styled(motion.div)`
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  /* ======================= THE FIX IS HERE ======================= */
-  /* Replaced blue colors with a sleek black-to-green gradient */
+  /* This is now language-aware */
+  direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
+
   background: linear-gradient(90deg, #414141ff, #4a7c07, #66a109);
-  /* =============================================================== */
   background-size: 200% 200%;
   animation: gradientAnimation 10s ease infinite;
 
@@ -79,12 +78,7 @@ const Paragraph = styled.p`
 const StyledCTAButton = styled(Link)`
   display: inline-block;
   background: rgba(255, 255, 255, 0.95);
-
-  /* ======================= THE FIX IS HERE ======================= */
-  /* Replaced blue text color with black for brand consistency */
   color: #1a1a1a;
-  /* =============================================================== */
-
   padding: 1rem 3rem;
   border-radius: 50px;
   text-decoration: none;
@@ -101,7 +95,7 @@ const StyledCTAButton = styled(Link)`
   }
 `;
 
-// --- ANIMATION VARIANTS ---
+// --- ANIMATION VARIANTS (Unchanged) ---
 const cardVariants = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
   show: {
@@ -115,9 +109,10 @@ const cardVariants = {
   },
 };
 
-// --- MAIN COMPONENT ---
+// --- MAIN COMPONENT (Corrected Logic) ---
 export default function CTASection({ lang, content }) {
-  if (!content) {
+  // Robust check to prevent errors
+  if (!content || !content.heading || !content.buttonText) {
     return null;
   }
 
@@ -128,12 +123,11 @@ export default function CTASection({ lang, content }) {
         whileInView="show"
         viewport={{ once: true, amount: 0.5 }}
         variants={cardVariants}
+        lang={lang} // Pass lang prop for styling
       >
         <Heading>{content.heading}</Heading>
-        <Paragraph>
-          {content.subheading ||
-            "Ready to take the next step? Our team is here to help you turn your vision into a reality. Let's build something extraordinary together."}
-        </Paragraph>
+        {/* Use the new 'subheading' from the dictionary */}
+        <Paragraph>{content.subheading}</Paragraph>
         <StyledCTAButton href={`/${lang}/booking`}>
           {content.buttonText}
         </StyledCTAButton>

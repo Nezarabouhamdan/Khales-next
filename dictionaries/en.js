@@ -196,6 +196,8 @@ export const dictionary = {
   },
   cta: {
     heading: "Looking for expert solutions? Let’s talk!",
+    subheading:
+      "Ready to take the next step? Our team is here to help you turn your vision into a reality. Let's build something extraordinary together.",
     buttonText: "Book Your Consultation",
   },
   footer: {
@@ -1859,7 +1861,7 @@ export const dictionary = {
       "landscape-design": {
         categorySlug: "engineering-consultancy",
         path: "/services/LandscapingDesign",
-        image: "https://i.ibb.co/kgQP8qQM/landsacpe.jpg",
+        image: "https://i.ibb.co/qLpSLzr9/7-Landscape.jpg",
         title: "Landscape Design",
         description:
           "Designing elegant and functional outdoor spaces that balance nature with built features.",

@@ -75,7 +75,7 @@ const NavbarContainer = styled.div`
     border-radius: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 254, 254, 0.8);
+    background: rgba(255, 254, 254, 0.3);
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: none;
