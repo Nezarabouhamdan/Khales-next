@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaHammer, FaSlidersH, FaClock, FaHome } from "react-icons/fa";
+import ImageWithSkeleton from "../ImageSkeleton";
 
 const featureAssets = [
   {
@@ -165,7 +166,9 @@ const DecorativeShape2 = styled.div`
   opacity: 0.08;
   z-index: 1;
 `;
-
+const AnimatedImage = styled(ImageWithSkeleton)`
+  animation: ${kenBurns} 20s ease-in-out infinite alternate;
+`;
 // --- MAIN COMPONENT ---
 export default function WhyKhalesHybrid({ content = {}, lang = "en" }) {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -254,7 +257,13 @@ export default function WhyKhalesHybrid({ content = {}, lang = "en" }) {
 
         <ImageSection>
           <AnimatePresence mode="wait">
-            <FeatureImage
+            {/* 
+              MODIFIED: Replaced the old FeatureImage with our new AnimatedImage.
+              Framer Motion animates this component directly. The component handles
+              the skeleton loading, and its styled-component wrapper handles the
+              Ken Burns effect.
+            */}
+            <AnimatedImage
               key={activeFeature}
               src={featureAssets[activeFeature]?.imageUrl}
               alt={displayContent.features[activeFeature]?.title}

@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-
+import ImageWithSkeleton from "../ImageSkeleton";
 // Static data (logos) can remain here
 const partners = [
   { logo: "/assets/Partners/1.png" },
@@ -141,6 +141,15 @@ const PartnersMarquee = styled.div`
     width: auto;
   }
 `;
+const PartnerLogo = styled(ImageWithSkeleton)`
+  width: 300px; /* Was 160px */
+  height: 200px; /* Was 80px */
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+`;
+
+// MODIFIED: Update PartnerCard to use the new component
 const PartnerCard = styled.div`
   background: transparent;
   display: flex;
@@ -148,21 +157,15 @@ const PartnerCard = styled.div`
   justify-content: center;
   height: 120px;
   padding: 0 2.5rem;
-  img {
-    max-width: 200px;
-    max-height: 250px;
-    object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.5;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  }
-  &:hover img {
+
+  /* The old 'img' styles are now in the PartnerLogo component. */
+  /* This hover effect now targets the PartnerLogo component. */
+  &:hover ${PartnerLogo} {
     filter: grayscale(0%);
     opacity: 1;
     transform: scale(1.1);
   }
 `;
-
 // --- ANIMATION VARIANTS (Unchanged) ---
 const testimonialVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -242,7 +245,15 @@ export default function TestimonialSlider({ lang, content }) {
           {loopedPartners.map((partner, index) => (
             <SwiperSlide key={index}>
               <PartnerCard>
-                <img src={partner.logo} alt={`Partner logo ${index + 1}`} />
+                {/* 
+                  MODIFIED: Replaced the standard <img> tag with our new PartnerLogo component.
+                  We pass objectFit="contain" to ensure logos are not stretched or cropped.
+                */}
+                <PartnerLogo
+                  src={partner.logo}
+                  alt={`Partner logo ${index + 1}`}
+                  objectFit="contain" // This is important for logos
+                />
               </PartnerCard>
             </SwiperSlide>
           ))}

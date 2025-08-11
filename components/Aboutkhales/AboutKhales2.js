@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import LazyImage from "../LazyImage";
-
+import ImageWithSkeleton from "../ImageSkeleton";
 // Static data can remain here
 const galleryImages = [
   "https://i.ibb.co/7tKV3xP1/aboutus5.jpg",
@@ -264,13 +264,21 @@ export default function AboutKhalesUltimate({ content = {}, lang = "en" }) {
               {displayContent.buttonText}
             </CTAButton>
           </TextBlock>
-
           <ImageGallery variants={itemVariants}>
             <AnimatePresence mode="wait">
-              <GalleryImage
+              {/* 
+                MODIFIED: We now wrap our ImageWithSkeleton in a motion.div.
+                This div handles all the animations and click events, while the
+                inner component handles the image loading and skeleton state.
+              */}
+              <motion.div
                 key={currentImageIndex}
-                src={galleryImages[currentImageIndex]}
-                alt={`${displayContent.title} ${currentImageIndex + 1}`}
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  height: "100%",
+                  cursor: "pointer",
+                }}
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
@@ -280,7 +288,12 @@ export default function AboutKhalesUltimate({ content = {}, lang = "en" }) {
                     (prev) => (prev + 1) % galleryImages.length
                   )
                 }
-              />
+              >
+                <ImageWithSkeleton
+                  src={galleryImages[currentImageIndex]}
+                  alt={`${displayContent.title} ${currentImageIndex + 1}`}
+                />
+              </motion.div>
             </AnimatePresence>
 
             <ImageIndicators>

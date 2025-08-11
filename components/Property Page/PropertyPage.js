@@ -276,7 +276,7 @@ export default function PropertyPage({ project, lang }) {
     if (gallery.length > 1) {
       const timer = setInterval(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % gallery.length);
-      }, 5000);
+      }, 8000);
       return () => clearInterval(timer);
     }
   }, [gallery.length]);
@@ -360,7 +360,7 @@ export default function PropertyPage({ project, lang }) {
                 spaceBetween={10}
                 navigation
                 pagination={{ clickable: true }}
-                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                autoplay={{ delay: 8000, disableOnInteraction: false }}
                 loop={gallery.length > 1}
               >
                 {gallery.map((imgSrc, i) => (

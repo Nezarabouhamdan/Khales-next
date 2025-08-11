@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import Link from "next/link";
 import Image from "next/image";
 import { categoryMap } from "@/lib/categoryMap";
-
+import ImageWithSkeleton from "../ImageSkeleton";
 // --- STYLED COMPONENTS (Unchanged) ---
 const SectionWrapper = styled.section`
   width: 100%;
@@ -81,6 +81,18 @@ const Description = styled.p`
   margin: 0;
   text-decoration: none;
 `;
+const ImageWrapper = styled.div`
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  position: relative;
+
+  /* This applies the transition to any direct child (our skeleton component) */
+  & > * {
+    transition: transform 0.4s ease;
+  }
+`;
+
 const ProjectCard = styled(motion.div)`
   background: #fff;
   border-radius: 20px;
@@ -97,14 +109,14 @@ const ProjectCard = styled(motion.div)`
       text-decoration: underline;
       text-decoration-color: #a0a0a0;
     }
+
+    /* MODIFIED: This now targets any direct child of ImageWrapper */
+    ${ImageWrapper} > * {
+      transform: scale(1.05);
+    }
   }
 `;
-const ImageWrapper = styled.div`
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  position: relative;
-`;
+
 const ProjectImage = styled(Image)`
   width: 100%;
   height: 100%;
@@ -211,10 +223,10 @@ export default function FeaturedProjects({ lang, content }) {
                   }}
                 >
                   <ImageWrapper>
-                    <ProjectImage
+                    {/* MODIFIED: Replaced ProjectImage with our new component */}
+                    <ImageWithSkeleton
                       src={project.mainImage}
                       alt={project[lang]?.title || "Project Image"}
-                      fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </ImageWrapper>

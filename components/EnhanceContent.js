@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { motion } from "framer-motion"; // لإضافة الحركة
 import { FaCogs, FaStar } from "react-icons/fa"; // أيقونات احترافية
+import ImageWithSkeleton from "./ImageSkeleton";
 
 // ========================================================================
 // STYLED COMPONENTS (المكونات المصممة)
@@ -200,11 +201,9 @@ export default function EnhancedContent({ lang }) {
 
           {/* عمود الصورة */}
           <ImageColumn variants={itemVariants}>
-            <Image
+            <ImageWithSkeleton
               src="https://i.ibb.co/s9hV1Y08/khales-ae.jpg"
               alt={isRTL ? "تصميم معماري حديث" : "Modern Architectural Design"}
-              fill
-              style={{ objectFit: "cover" }}
               sizes="(max-width: 992px) 100vw, 33vw"
             />
           </ImageColumn>

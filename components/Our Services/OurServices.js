@@ -14,7 +14,7 @@ import {
   FaTasks,
 } from "react-icons/fa";
 import LazyImage from "../LazyImage"; // Assuming this path is correct
-
+import ImageWithSkeleton from "../ImageSkeleton";
 const servicesConfig = [
   {
     showcase: {
@@ -269,22 +269,27 @@ export default function OurServices({ lang, content }) {
           return (
             <ServiceRow key={serviceText.title} $isReversed={index % 2 !== 0}>
               <ShowcaseColumn>
-                <ShowcaseCard>
-                  <BackgroundImageWrapper>
-                    <LazyImage
-                      src={serviceConfig.showcase.image}
-                      alt={`Showcase for ${serviceText.title}`}
-                      fill
-                      sizes="(max-width: 992px) 90vw, 45vw"
-                    />
-                  </BackgroundImageWrapper>
-                  <ShowcaseIcon>{serviceConfig.showcase.icon}</ShowcaseIcon>
-                  <div>
-                    <ShowcaseSubCard>
-                      {serviceText.showcaseSubtitle}
-                    </ShowcaseSubCard>
-                  </div>
-                </ShowcaseCard>
+                <ShowcaseColumn>
+                  <ShowcaseCard>
+                    <BackgroundImageWrapper>
+                      {/* 
+                      MODIFIED: Replaced LazyImage with ImageWithSkeleton.
+                      The props are passed in exactly the same way.
+                    */}
+                      <ImageWithSkeleton
+                        src={serviceConfig.showcase.image}
+                        alt={`Showcase for ${serviceText.title}`}
+                        sizes="(max-width: 992px) 90vw, 45vw"
+                      />
+                    </BackgroundImageWrapper>
+                    <ShowcaseIcon>{serviceConfig.showcase.icon}</ShowcaseIcon>
+                    <div>
+                      <ShowcaseSubCard>
+                        {serviceText.showcaseSubtitle}
+                      </ShowcaseSubCard>
+                    </div>
+                  </ShowcaseCard>
+                </ShowcaseColumn>
               </ShowcaseColumn>
 
               <TextColumn>

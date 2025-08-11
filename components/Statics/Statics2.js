@@ -1,7 +1,7 @@
 // components/Statics/Statics2.js
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import {
   motion,
@@ -39,19 +39,7 @@ const StickyWrapper = styled.div`
   width: 100%;
   overflow: hidden;
 `;
-const ImageBackground = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80");
-  background-size: cover;
-  background-position: center;
-  z-index: 1;
-  animation: ${slowZoom} 25s linear infinite alternate;
-  will-change: transform;
-`;
+
 const Overlay = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -77,7 +65,46 @@ const HeroContent = styled(motion.div)`
     padding: 1rem;
   }
 `;
-
+const shimmer = keyframes`
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+`;
+const SkeletonOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: #282828;
+  background-image: linear-gradient(
+    to right,
+    #282828 8%,
+    #4d4d4d 38%,
+    #282828 54%
+  );
+  background-size: 2000px 100%;
+  animation: ${shimmer} 1.5s linear infinite;
+`;
+const ImageBackground = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: ${(props) =>
+    props.$isLoaded
+      ? `url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80")`
+      : "none"};
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  animation: ${slowZoom} 25s linear infinite alternate;
+  will-change: transform;
+  /* Add a smooth transition for opacity */
+  transition: opacity 0.8s ease-in-out;
+  opacity: ${(props) => (props.$isLoaded ? 1 : 0)};
+`;
 // IMPROVED: Changed from h1 to h2 to avoid multiple H1s on page
 const MainHeading = styled.h2`
   font-size: 4.5rem;
@@ -198,7 +225,18 @@ const AnimatedCounter = ({ value, suffix = "", duration = 2 }) => {
 export default function ValuePropositionV2({ content = {}, lang = "en" }) {
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
+  // MODIFIED: Effect to preload the background image
+  useEffect(() => {
+    const imageUrl =
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80";
+    const img = new window.Image();
+    img.src = imageUrl;
+    img.onload = () => {
+      setIsImageLoaded(true);
+    };
+  }, []); // Run only once on component mount
   // Fallback content
   const fallbackContent = {
     title: lang === "ar" ? "إطلاق إمكاناتك" : "Unlocking Your Potential",
@@ -236,7 +274,9 @@ export default function ValuePropositionV2({ content = {}, lang = "en" }) {
   return (
     <SectionContainer lang={lang}>
       <StickyWrapper>
-        <ImageBackground style={{ scale }} />
+        {!isImageLoaded && <SkeletonOverlay />}
+
+        <ImageBackground style={{ scale }} $isLoaded={isImageLoaded} />
         <Overlay />
         <HeroContent
           initial={{ opacity: 0, y: 50 }}

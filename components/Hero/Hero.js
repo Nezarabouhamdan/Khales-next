@@ -1,8 +1,7 @@
-// components/Hero/Hero.js
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components"; // NEW: Import keyframes
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
@@ -19,6 +18,7 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoError, setIsVideoError] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false); // NEW: State to track video loading
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -50,6 +50,11 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
   };
   const handleVideoError = () => setIsVideoError(true);
 
+  // NEW: Handler for when video can start playing
+  const handleCanPlay = () => {
+    setIsVideoLoaded(true);
+  };
+
   const currentSlide = slides[currentIndex] || slides[0];
   const textContainerVariants =
     lang === "ar" ? rtlTextContainerVariants : ltrTextContainerVariants;
@@ -60,6 +65,9 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
 
   return (
     <Herosection lang={lang}>
+      {/* NEW: Conditionally render skeleton loader */}
+      {!isVideoLoaded && !isVideoError && <SkeletonOverlay />}
+
       {!isVideoError && (
         <VideoBackground
           ref={videoRef}
@@ -70,6 +78,9 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
           playsInline
           poster="/assets/hero-poster.jpg"
           onError={handleVideoError}
+          onCanPlay={handleCanPlay} // NEW: Event listener for loading
+          // MODIFIED: Hide video until it's loaded to prevent flash of unstyled content
+          style={{ opacity: isVideoLoaded ? 1 : 0 }}
         />
       )}
       <VideoOverlay />
@@ -87,7 +98,6 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
               alignItems: "center",
             }}
           >
-            {/* FIXED: Only use H1 on homepage, H2 on other pages */}
             {isHomePage ? (
               <MainTitle as="h1">{currentSlide.title}</MainTitle>
             ) : (
@@ -99,7 +109,7 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
         </AnimatePresence>
       </ContentContainer>
       {!isVideoError && (
-        <ControlsWrapper>
+        <ControlsWrapper style={{ opacity: isVideoLoaded ? 1 : 0 }}>
           <IconButton onClick={toggleMute} aria-label="Toggle Sound">
             {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
           </IconButton>
@@ -116,6 +126,33 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
 }
 
 // --- STYLED COMPONENTS ---
+
+// NEW: Keyframes for the shimmer animation
+const shimmer = keyframes`
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+`;
+
+// NEW: Styled component for the skeleton overlay
+const SkeletonOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Sits below the dark overlay but above the base background */
+  background: #282828; // A dark base color
+  background-image: linear-gradient(
+    to right,
+    #282828 8%,
+    #4d4d4d 38%,
+    /* Was #3c3c3c. This is a significantly lighter grey. */ #282828 54%
+  );
+
+  background-repeat: no-repeat;
+  background-size: 2000px 100%;
+  animation: ${shimmer} 2s linear infinite;
+`;
 
 const Herosection = styled.section`
   height: 90vh;
