@@ -121,7 +121,7 @@ export default async function RootLayout({ children, params }) {
             <ScrollToTop />
             <Link
               id="whatsapp"
-              href="https://api.whatsapp.com/send?phone=+971551299880"
+              href="https://api.whatsapp.com/send?phone=971551299880"
               className="float"
               target="_blank"
               rel="noopener noreferrer"

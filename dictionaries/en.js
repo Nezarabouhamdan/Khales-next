@@ -2070,4 +2070,10 @@ export const dictionary = {
       "Your submission has been received successfully. A member of our team will be in touch with you shortly to discuss your project.",
     buttonText: "Return to Homepage",
   },
+  notFoundPage: {
+    title: "Page Not Found",
+    description:
+      "Oops! The page you are looking for does not exist. It might have been moved or deleted.",
+    buttonText: "Go to Homepage",
+  },
 };
