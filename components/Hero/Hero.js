@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components"; // NEW: Import keyframes
+import styled, { keyframes } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image"; // IMPORT: Next.js Image component for optimization
 import {
   FaVolumeMute,
   FaVolumeUp,
@@ -18,7 +19,6 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoError, setIsVideoError] = useState(false);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false); // NEW: State to track video loading
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -50,11 +50,6 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
   };
   const handleVideoError = () => setIsVideoError(true);
 
-  // NEW: Handler for when video can start playing
-  const handleCanPlay = () => {
-    setIsVideoLoaded(true);
-  };
-
   const currentSlide = slides[currentIndex] || slides[0];
   const textContainerVariants =
     lang === "ar" ? rtlTextContainerVariants : ltrTextContainerVariants;
@@ -65,8 +60,21 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
 
   return (
     <Herosection lang={lang}>
-      {/* NEW: Conditionally render skeleton loader */}
-      {!isVideoLoaded && !isVideoError && <SkeletonOverlay />}
+      {/* PERFORMANCE FIX: Use Next.js Image for the poster.
+          - 'priority' tells Next.js to preload this image, making it a fast LCP element.
+          - It's automatically optimized, compressed, and served in a modern format (WebP).
+          - It sits behind the video, providing an instant visual.
+      */}
+      <Image
+        src="/assets/hero-poster.jpg"
+        alt="Khales architectural design poster" // SEO: Descriptive alt text
+        fill
+        style={{ objectFit: "cover", zIndex: 1 }}
+        quality={85} // Adjust quality for balance
+        priority // CRUCIAL for LCP
+      />
+
+      <VideoOverlay />
 
       {!isVideoError && (
         <VideoBackground
@@ -76,14 +84,11 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
           loop
           muted={isMuted}
           playsInline
-          poster="/assets/hero-poster.jpg"
           onError={handleVideoError}
-          onCanPlay={handleCanPlay} // NEW: Event listener for loading
-          // MODIFIED: Hide video until it's loaded to prevent flash of unstyled content
-          style={{ opacity: isVideoLoaded ? 1 : 0 }}
+          // The poster attribute is no longer needed as the <Image> component handles the initial view
         />
       )}
-      <VideoOverlay />
+
       <ContentContainer>
         <AnimatePresence mode="wait">
           <motion.div
@@ -109,7 +114,7 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
         </AnimatePresence>
       </ContentContainer>
       {!isVideoError && (
-        <ControlsWrapper style={{ opacity: isVideoLoaded ? 1 : 0 }}>
+        <ControlsWrapper>
           <IconButton onClick={toggleMute} aria-label="Toggle Sound">
             {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
           </IconButton>
@@ -125,34 +130,7 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
   );
 }
 
-// --- STYLED COMPONENTS ---
-
-// NEW: Keyframes for the shimmer animation
-const shimmer = keyframes`
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
-`;
-
-// NEW: Styled component for the skeleton overlay
-const SkeletonOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1; /* Sits below the dark overlay but above the base background */
-  background: #282828; // A dark base color
-  background-image: linear-gradient(
-    to right,
-    #282828 8%,
-    #4d4d4d 38%,
-    /* Was #3c3c3c. This is a significantly lighter grey. */ #282828 54%
-  );
-
-  background-repeat: no-repeat;
-  background-size: 2000px 100%;
-  animation: ${shimmer} 2s linear infinite;
-`;
+// --- STYLED COMPONENTS (No changes made) ---
 
 const Herosection = styled.section`
   height: 90vh;
@@ -166,14 +144,15 @@ const Herosection = styled.section`
       lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)"},
     sans-serif;
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
-  background-image: url("/assets/hero-poster.jpg");
-  background-size: cover;
-  background-position: center;
+  background-color: #282828; // Fallback for when image is loading
+  overflow: hidden;
+
   @media (max-width: 768px) {
     height: 85vh;
   }
 `;
 
+// MODIFIED: Ensure video sits on top of the Image component
 const VideoBackground = styled.video`
   position: absolute;
   top: 50%;
@@ -182,9 +161,10 @@ const VideoBackground = styled.video`
   height: 100%;
   object-fit: cover;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 2; // Above the poster image
 `;
 
+// MODIFIED: Ensure overlay sits on top of the video
 const VideoOverlay = styled.div`
   position: absolute;
   top: 0;
@@ -192,22 +172,21 @@ const VideoOverlay = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 3; // Above the video
 `;
 
+// MODIFIED: Ensure content sits on top of the overlay
 const ContentContainer = styled(motion.div)`
   position: relative;
-  z-index: 3;
+  z-index: 4; // Above the overlay
   text-align: center;
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 900px;
-  overflow: hidden;
 `;
 
-// FIXED: Now supports both h1 and h2 via 'as' prop
 export const MainTitle = styled(motion.h1)`
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
@@ -253,7 +232,7 @@ const ControlsWrapper = styled.div`
   transform: translateX(-50%);
   display: flex;
   gap: 1rem;
-  z-index: 10;
+  z-index: 10; // On top of everything
   background: rgba(0, 0, 0, 0.3);
   padding: 0.5rem 1rem;
   border-radius: 30px;
@@ -279,7 +258,7 @@ const IconButton = styled.button`
   }
 `;
 
-// --- ANIMATION VARIANTS ---
+// --- ANIMATION VARIANTS (No changes made) ---
 const commonTransition = {
   ease: "easeInOut",
   duration: 0.8,

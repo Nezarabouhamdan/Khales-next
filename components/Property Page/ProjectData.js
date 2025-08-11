@@ -124,13 +124,13 @@ export const projectsData = [
     id: 3,
     slug: "TheOrganicVilla",
     category: { eng: "Villas", ar: "فلل" },
-    mainImage: "https://i.ibb.co/pBRN1QnW/IMG-20250811-WA0008.jpg",
+    mainImage: "https://i.ibb.co/hFHH248S/IMG-20250811-WA0020.jpg",
 
     galleryImages: [
-      "https://i.ibb.co/G4ssHws9/IMG-20250811-WA0006.jpg",
-      "https://i.ibb.co/DPh5pnYs/IMG-20250811-WA0007.jpg",
-      "https://i.ibb.co/pBRN1QnW/IMG-20250811-WA0008.jpg",
-      "https://i.ibb.co/21YgBMdF/IMG-20250811-WA0009.jpg",
+      "https://i.ibb.co/S44GR5MS/IMG-20250811-WA0018.jpg",
+      "https://i.ibb.co/MxTqt5Yg/IMG-20250811-WA0019.jpg",
+      "https://i.ibb.co/hFHH248S/IMG-20250811-WA0020.jpg",
+      "https://i.ibb.co/sdWQ1Ggx/IMG-20250811-WA0021.jpg",
       "https://i.ibb.co/5xcrL6RS/IMG-20250811-WA0010.jpg",
       "https://i.ibb.co/2Yf2ym33/IMG-20250811-WA0011.jpg",
       "https://i.ibb.co/B2DKscNF/IMG-20250811-WA0012.jpg",

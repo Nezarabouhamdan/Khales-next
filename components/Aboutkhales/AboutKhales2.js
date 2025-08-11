@@ -1,12 +1,11 @@
-// components/Aboutkhales/AboutKhales2.js
 "use client";
 
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import LazyImage from "../LazyImage";
-import ImageWithSkeleton from "../ImageSkeleton";
+import Image from "next/image"; // IMPORT: Next.js Image component for optimization
+
 // Static data can remain here
 const galleryImages = [
   "https://i.ibb.co/7tKV3xP1/aboutus5.jpg",
@@ -15,7 +14,7 @@ const galleryImages = [
   "https://i.ibb.co/jPgtTSzr/aboutus3.jpg",
 ];
 
-// --- FRAMER MOTION VARIANTS ---
+// --- FRAMER MOTION VARIANTS (No changes made) ---
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
@@ -29,7 +28,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-// --- STYLED COMPONENTS (IMPROVED HEADING STRUCTURE) ---
+// --- STYLED COMPONENTS (No changes made) ---
 const SectionWrapper = styled(motion.section)`
   width: 100%;
   min-height: 100vh;
@@ -89,10 +88,7 @@ const TextBlock = styled(motion.div)`
   color: #1a1a1a;
 `;
 
-// FIXED: Changed from h3 to h2 for proper section hierarchy
 const Title = styled(motion.h2)`
-  /* Original: clamp(2.2rem, 4.5vw, 3.2rem) */
-  /* Reduced by 15% (multiplied by 0.85) */
   font-size: clamp(1.9rem, 3.8vw, 2.7rem);
   font-weight: 700;
   line-height: 1.2;
@@ -104,8 +100,6 @@ const Title = styled(motion.h2)`
 `;
 
 const Paragraph = styled(motion.p)`
-  /* Original: clamp(1rem, 2.5vw, 1.1rem) */
-  /* Reduced by 15% (multiplied by 0.85) */
   font-size: clamp(0.85rem, 2.1vw, 0.94rem);
   line-height: 1.8;
   margin-bottom: 2.5rem;
@@ -140,18 +134,8 @@ const ImageGallery = styled(motion.div)`
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-`;
-
-const GalleryImage = styled(motion.img)`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  // Add a background color as a placeholder
+  background-color: #e0e0e0;
 `;
 
 const ImageIndicators = styled.div`
@@ -180,7 +164,6 @@ const Indicator = styled.button`
   }
 `;
 
-// Decorative shapes
 const DecorativeShape1 = styled.div`
   position: absolute;
   top: 10%;
@@ -209,7 +192,6 @@ const DecorativeShape2 = styled.div`
 export default function AboutKhalesUltimate({ content = {}, lang = "en" }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Auto-cycle through images
   React.useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
@@ -217,7 +199,6 @@ export default function AboutKhalesUltimate({ content = {}, lang = "en" }) {
     return () => clearInterval(interval);
   }, []);
 
-  // Fallback content
   const fallbackContent = {
     title: lang === "ar" ? "عن خالص" : "About Khales",
     subtitle: lang === "ar" ? "بناء التميز" : "Building Excellence",
@@ -230,6 +211,10 @@ export default function AboutKhalesUltimate({ content = {}, lang = "en" }) {
   };
 
   const displayContent = { ...fallbackContent, ...content };
+
+  const handleImageClick = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
 
   return (
     <SectionWrapper
@@ -264,12 +249,11 @@ export default function AboutKhalesUltimate({ content = {}, lang = "en" }) {
               {displayContent.buttonText}
             </CTAButton>
           </TextBlock>
-          <ImageGallery variants={itemVariants}>
+          <ImageGallery variants={itemVariants} onClick={handleImageClick}>
             <AnimatePresence mode="wait">
-              {/* 
-                MODIFIED: We now wrap our ImageWithSkeleton in a motion.div.
-                This div handles all the animations and click events, while the
-                inner component handles the image loading and skeleton state.
+              {/* PERFORMANCE FIX: Replace custom image component with next/image.
+                  - This handles automatic optimization, resizing, and lazy loading.
+                  - `priority` is set on the first image to ensure it loads fast if it's the LCP element.
               */}
               <motion.div
                 key={currentImageIndex}
@@ -279,19 +263,20 @@ export default function AboutKhalesUltimate({ content = {}, lang = "en" }) {
                   height: "100%",
                   cursor: "pointer",
                 }}
-                initial={{ opacity: 0, scale: 1.1 }}
+                initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.8 }}
-                onClick={() =>
-                  setCurrentImageIndex(
-                    (prev) => (prev + 1) % galleryImages.length
-                  )
-                }
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
               >
-                <ImageWithSkeleton
+                <Image
                   src={galleryImages[currentImageIndex]}
-                  alt={`${displayContent.title} ${currentImageIndex + 1}`}
+                  alt={`${displayContent.title} gallery image ${
+                    currentImageIndex + 1
+                  }`} // SEO: More descriptive alt text
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 992px) 100vw, 50vw" // Helps Next.js select the right image size
+                  priority={currentImageIndex === 0} // CRUCIAL for LCP on first image
                 />
               </motion.div>
             </AnimatePresence>
@@ -301,7 +286,10 @@ export default function AboutKhalesUltimate({ content = {}, lang = "en" }) {
                 <Indicator
                   key={index}
                   active={index === currentImageIndex}
-                  onClick={() => setCurrentImageIndex(index)}
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent gallery click event from firing
+                    setCurrentImageIndex(index);
+                  }}
                 />
               ))}
             </ImageIndicators>
