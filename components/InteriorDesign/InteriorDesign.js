@@ -1,19 +1,16 @@
 // components/InteriorDesign/InteriorDesign.js
-// --- CORRECTED WITH FULL RTL SUPPORT FOR TEXT AND DECORATIONS ---
-
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 import { useLanguage } from "../../Context/Languagecontext";
+import ImageWithSkeleton from "../ImageSkeleton";
 
-// --- Parallax Shape Component (Signature Atmosphere) ---
+// --- Parallax Shape Component ---
 const DecorativeShape = ({ initialX, initialY, size, stiffness, rtl }) => {
   const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  // Determine the correct horizontal position based on RTL state
   const finalX = rtl ? `calc(100% - ${initialX} - ${size})` : initialX;
 
   useEffect(() => {
@@ -35,7 +32,7 @@ const DecorativeShape = ({ initialX, initialY, size, stiffness, rtl }) => {
       style={{
         position: "absolute",
         top: initialY,
-        left: finalX, // Use the RTL-aware position
+        left: finalX,
         width: size,
         height: size,
         backgroundColor: "rgba(102, 161, 9, 0.05)",
@@ -65,7 +62,6 @@ const InteriorDesign = ({ data }) => {
       viewport={{ once: true, amount: 0.2 }}
       variants={{ show: { transition: { staggerChildren: 0.2 } } }}
     >
-      {/* Pass the RTL prop to the decorative shapes */}
       <DecorativeShape
         initialX="80%"
         initialY="10%"
@@ -110,13 +106,13 @@ const InteriorDesign = ({ data }) => {
           }}
         >
           <ImageWrapper $rtl={rtl} $isFirst variants={itemVariants}>
-            <StyledImage
+            <ImageWithSkeleton
               src={content.images[0]}
               alt={`${content.title} illustration 1`}
             />
           </ImageWrapper>
           <ImageWrapper $rtl={rtl} $isFirst={false} variants={itemVariants}>
-            <StyledImage
+            <ImageWithSkeleton
               src={content.images[1]}
               alt={`${content.title} illustration 2`}
             />
@@ -156,7 +152,6 @@ const TextColumn = styled(motion.div)`
   flex: 1.2;
   display: flex;
   flex-direction: column;
-  /* FIX: Align items to the end (right) in RTL mode */
   align-items: ${({ $rtl }) => ($rtl ? "flex-end" : "flex-start")};
 `;
 
@@ -166,7 +161,6 @@ const Title = styled(motion.h2)`
   line-height: 1.2;
   margin-bottom: 1.5rem;
   color: #1a1a1a;
-  /* FIX: Align text to the right in RTL mode */
   text-align: ${({ $rtl }) => ($rtl ? "right" : "left")};
 
   @media (max-width: 991px) {
@@ -179,7 +173,6 @@ const Description = styled(motion.p)`
   color: #545454;
   line-height: 1.8;
   max-width: 580px;
-  /* FIX: Align text to the right in RTL mode */
   text-align: ${({ $rtl }) => ($rtl ? "right" : "left")};
 
   &:not(:last-child) {
@@ -202,26 +195,34 @@ const ImageColumn = styled(motion.div)`
   }
 `;
 
+// ====================================================================
+// ======================= THE FIX IS HERE ============================
+// ====================================================================
 const ImageWrapper = styled(motion.div)`
   position: absolute;
-  width: 70%;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 4px solid white;
 
+  /* MODIFIED: Changed aspect ratio to be landscape (wider) */
+  aspect-ratio: 4 / 3;
+
+  /* This block styles the TOP image */
   ${({ $isFirst, $rtl }) =>
     $isFirst
       ? css`
+          width: 75%; /* MODIFIED: Adjusted width */
           top: 0;
           ${$rtl ? "left: 0;" : "right: 0;"}
           z-index: 2;
         `
-      : css`
+      : /* This block styles the BOTTOM image */
+        css`
+          width: 75%; /* MODIFIED: Adjusted width */
           bottom: 0;
           ${$rtl ? "right: 0;" : "left: 0;"}
           z-index: 1;
-          width: 80%;
         `}
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -230,6 +231,7 @@ const ImageWrapper = styled(motion.div)`
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   }
 
+  /* Responsive styles for mobile */
   @media (max-width: 991px) {
     position: relative;
     width: 50%;
@@ -241,13 +243,6 @@ const ImageWrapper = styled(motion.div)`
   @media (max-width: 640px) {
     width: 100%;
   }
-`;
-
-const StyledImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 `;
 
 export default InteriorDesign;
