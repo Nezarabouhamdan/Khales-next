@@ -8,10 +8,14 @@ import Image from "next/image";
 const BlogGrid = ({ cardsData, lang }) => {
   const isRTL = lang === "ar";
 
+  // If cardsData is not available, return null to prevent errors
+  if (!cardsData) {
+    return null;
+  }
+
   return (
     <GridContainer dir={isRTL ? "rtl" : "ltr"}>
-      {cardsData?.map((cardData) => (
-        // The Link component itself is what needs styling to remove the underline
+      {cardsData.map((cardData) => (
         <StyledLink
           key={cardData.id}
           href={`/${lang}/blog/${cardData.slug}`}
@@ -33,10 +37,12 @@ const BlogGrid = ({ cardsData, lang }) => {
                 <Author>
                   <AuthorImage
                     src={cardData.authorImage}
+                    // This alt text now correctly uses the department name
                     alt={cardData.authorName}
                     width={32}
                     height={32}
                   />
+                  {/* This line now correctly displays the department name */}
                   <AuthorName>{cardData.authorName}</AuthorName>
                 </Author>
                 <PostDate>{cardData.date}</PostDate>
@@ -49,7 +55,7 @@ const BlogGrid = ({ cardsData, lang }) => {
   );
 };
 
-// --- All your original styled-components are below, with the fix applied ---
+// --- Styled Components (No changes needed) ---
 const GridContainer = styled.section`
   margin: 15vh auto;
   display: grid;
@@ -68,11 +74,9 @@ const GridContainer = styled.section`
   }
 `;
 
-// ================= THE FIX IS HERE =================
-// 1. Create a styled version of the Next.js Link component
 const StyledLink = styled(Link)`
-  text-decoration: none; /* This removes the underline from everything inside the link */
-  color: inherit; /* Ensures text color is inherited from parent elements */
+  text-decoration: none;
+  color: inherit;
 
   &:focus,
   &:hover,
@@ -83,7 +87,6 @@ const StyledLink = styled(Link)`
   }
 `;
 
-// 2. The CardContainer is now just a div, not a clickable `a` tag
 const CardContainer = styled.div`
   background-color: #fff;
   border-radius: 12px;
@@ -95,7 +98,6 @@ const CardContainer = styled.div`
   height: 100%;
   cursor: pointer;
 
-  /* Apply hover effect to the container when the parent Link is hovered */
   ${StyledLink}:hover & {
     transform: translateY(-8px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
@@ -108,15 +110,13 @@ const Title = styled.h3`
   margin-bottom: 0.75rem;
   color: #1a1a1a;
   line-height: 1.4;
-  transition: color 0.3s ease; /* Smooth color transition on hover */
+  transition: color 0.3s ease;
 
-  /* Optional: Add underline back ONLY to the title on hover */
   ${StyledLink}:hover & {
     text-decoration: underline;
-    color: #66a109; /* Example hover color */
+    color: #66a109;
   }
 `;
-// ======================================================
 
 const ImageWrapper = styled.div`
   position: relative;

@@ -30,7 +30,7 @@ const kenBurns = keyframes`
 const SectionContainer = styled.section`
   width: 100%;
   padding: 6rem 0;
-  background-color: #ffffff;
+  background-color: #f8f9fa; // خلفية بلون رمادي فاتح لكسر الروتين
   position: relative;
   overflow: hidden;
   font-family: "Inter", sans-serif;

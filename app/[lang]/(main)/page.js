@@ -14,8 +14,9 @@ import CTASection from "@/components/Homecontact/CTASection";
 // Import the new Client Components
 import EnhancedContent from "@/components/EnhanceContent";
 import FAQSection from "@/components/FAQ/FAQSection";
+import FeaturedBlogs from "@/components/FeaturedBlogs/FeaturedBlogs";
 
-// --- STRUCTURED DATA --- (No changes needed)
+// --- STRUCTURED DATA --- (Updated with Blog Section)
 const getHomePageSchema = (lang) => {
   const name =
     lang === "ar"
@@ -140,6 +141,11 @@ const getHomePageSchema = (lang) => {
           position: 5,
           item: { "@type": "WebPageElement", name: "Client Testimonials" },
         },
+        {
+          "@type": "ListItem",
+          position: 6, // New position
+          item: { "@type": "WebPageElement", name: "Our Blogs" }, // New blog section
+        },
       ],
     },
     breadcrumb: {
@@ -180,6 +186,7 @@ export async function generateMetadata({ params: { lang } }) {
           "تصميم فلل دبي",
           "تصميم مكاتب دبي",
           "إدارة مشاريع الإمارات",
+          "مدونة هندسة معمارية", // Added keyword
         ]
       : [
           "architecture Dubai",
@@ -194,6 +201,7 @@ export async function generateMetadata({ params: { lang } }) {
           "commercial architecture Dubai",
           "residential design Dubai",
           "engineering consultancy Dubai",
+          "architecture blog", // Added keyword
         ];
 
   const baseUrl = "https://www.khales.ae";
@@ -234,7 +242,7 @@ export async function generateMetadata({ params: { lang } }) {
   };
 }
 
-// --- PAGE COMPONENT ---
+// --- PAGE COMPONENT --- (Updated with Blog Section)
 export default async function Home({ params: { lang } }) {
   const dictionary = await getDictionary(lang);
   const homePageSchema = getHomePageSchema(lang);
@@ -259,6 +267,7 @@ export default async function Home({ params: { lang } }) {
           isHomePage={true}
         />
       </section>
+      {/* New Blog Section */}
 
       {/* Use the new Client Component */}
       <EnhancedContent lang={lang} />
@@ -287,7 +296,9 @@ export default async function Home({ params: { lang } }) {
       >
         <WhyKhalesHybrid content={dictionary.whyUs || {}} lang={lang} />
       </section>
-
+      <section id="blogs" aria-label="Our Latest Blog Articles">
+        <FeaturedBlogs content={dictionary.blogsPage || {}} lang={lang} />
+      </section>
       <section id="testimonials" aria-label="Client Reviews and Testimonials">
         <TestimonialSlider
           content={dictionary.testimonials || {}}

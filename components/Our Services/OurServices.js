@@ -36,7 +36,7 @@ const servicesConfig = [
 const ServicesContainer = styled.section`
   width: 100%;
   padding: 6rem 0; /* Vertical padding only */
-  background-color: #ffffff;
+  background-color: #f8f9fa; // خلفية بلون رمادي فاتح لكسر الروتين
   display: flex;
   flex-direction: column;
   align-items: center;

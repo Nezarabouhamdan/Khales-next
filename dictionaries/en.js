@@ -1232,6 +1232,7 @@ export const dictionary = {
       },
     },
   },
+
   blogsPage: {
     metaTitle: "Khales Group Blog | Architecture & Design Insights",
     metaDescription:
@@ -1255,7 +1256,7 @@ export const dictionary = {
         slug: "modern-architectural-trends-residential-design",
         coverImage: "/assets/blog1.png",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "Jonin Garcia",
+        authorName: "Architecture Department",
         date: "June 28, 2023",
         tags: ["Design", "Architecture"],
         title: "Modern Architectural Trends in Residential Design",
@@ -1312,7 +1313,7 @@ export const dictionary = {
         slug: "advancements-structural-steel-design-villas",
         coverImage: "/assets/blog2.png",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "Nezar Saab",
+        authorName: "Engineering Department",
         date: "July 15, 2023",
         tags: ["Construction", "Engineering"],
         title: "Advancements in Structural Steel Design for Villas",
@@ -1371,7 +1372,7 @@ export const dictionary = {
         tags: ["Construction", "Engineering"],
         title: "Innovative Approaches to High-Rise Building Structures",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "Alex Morgan",
+        authorName: "Engineering Department",
         date: "August 5, 2023",
         description:
           "In the dynamic landscape of construction, the demand for high-rise buildings continues to soar...",
@@ -1428,7 +1429,7 @@ export const dictionary = {
         tags: ["Interior", "Design"],
         title: "Eco-Friendly Materials in Modern Interior Design",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "Sara Johnson",
+        authorName: "Interior Design Department",
         date: "August 20, 2023",
         description:
           "As we strive to create spaces that marry aesthetics with ethical responsibility...",
@@ -1486,7 +1487,7 @@ export const dictionary = {
         tags: ["Management", "Communication"],
         title: "Effective Stakeholder Communication in Project Management",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "Michael Brown",
+        authorName: "Project Management Department",
         date: "September 3, 2023",
         description:
           "In the intricate tapestry of project management, effective communication with stakeholders stands as a linchpin for success...",
@@ -1544,7 +1545,7 @@ export const dictionary = {
         title:
           "Achieving Balance Between Aesthetics and Functionality in Interior Design",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "Emily Davis",
+        authorName: "Interior Design Department",
         date: "September 18, 2023",
         description:
           "In the realm of interior design, striking the delicate balance between aesthetics and functionality is an art form...",
@@ -1601,7 +1602,7 @@ export const dictionary = {
         tags: ["Architecture", "Sustainability"],
         title: "Sustainable Architecture Practices",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "David Wilson",
+        authorName: "Architecture Department",
         date: "October 2, 2023",
         description:
           "In the contemporary era, with increasing global focus on environmental sustainability...",
@@ -1658,7 +1659,7 @@ export const dictionary = {
         tags: ["Management", "Agile"],
         title: "The Importance of Agile Project Management",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "Jessica Lee",
+        authorName: "Project Management Department",
         date: "October 17, 2023",
         description:
           "In the fast-paced world of construction, agility isn't just a desirable trait; it's a game-changer...",
@@ -1717,7 +1718,7 @@ export const dictionary = {
         title:
           "AI on the Job Site: How Predictive Tech Is Reducing Construction Risk",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "Tech Team",
+        authorName: "Khales Tech Division",
         date: "November 5, 2023",
         description:
           "Smart cameras, digital twins and talking sensors are rewriting the site-safety rulebook.",

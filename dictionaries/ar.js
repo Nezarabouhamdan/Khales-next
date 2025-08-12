@@ -1224,6 +1224,7 @@ export const dictionary = {
       },
     },
   },
+
   blogsPage: {
     metaTitle: "مدونة مجموعة خالص | رؤى في الهندسة المعمارية والتصميم",
     metaDescription:
@@ -1247,7 +1248,7 @@ export const dictionary = {
         slug: "modern-architectural-trends-residential-design",
         coverImage: "/assets/blog1.png",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "جونين جارسيا",
+        authorName: "قسم الهندسة المعمارية",
         date: "٢٨ يونيو ٢٠٢٣",
         tags: ["تصميم", "عمارة"],
         title: "الاتجاهات المعمارية الحديثة في التصميم السكني",
@@ -1303,7 +1304,7 @@ export const dictionary = {
         slug: "advancements-structural-steel-design-villas",
         coverImage: "/assets/blog2.png",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "نزار صعب",
+        authorName: "قسم الهندسة",
         date: "١٥ يوليو ٢٠٢٣",
         tags: ["بناء", "هندسة"],
         title: "التطورات في التصميم الفولاذي الإنشائي للفلل",
@@ -1354,7 +1355,6 @@ export const dictionary = {
             "كفاءة التكلفة وتوفير الوقت: يتم تسريع البناء من خلال التصنيع المسبق الدقيق. بالنظر إلى المستقبل، نتوقع ابتكارات في المواد المركبة وتقنيات الفولاذ الذكية التي تستجيب ديناميكيًا للظروف البيئية.",
         },
       },
-      // ... All other 7 blog posts translated and structured similarly
       {
         id: 3,
         slug: "innovative-approaches-high-rise-building-structures",
@@ -1362,7 +1362,7 @@ export const dictionary = {
         tags: ["بناء", "هندسة"],
         title: "أساليب مبتكرة لهياكل المباني الشاهقة",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "أليكس مورغان",
+        authorName: "قسم الهندسة",
         date: "٥ أغسطس ٢٠٢٣",
         description:
           "في المشهد الديناميكي للبناء، يستمر الطلب على المباني الشاهقة في الارتفاع...",
@@ -1418,7 +1418,7 @@ export const dictionary = {
         tags: ["داخلي", "تصميم"],
         title: "مواد صديقة للبيئة في التصميم الداخلي الحديث",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "سارة جونسون",
+        authorName: "قسم التصميم الداخلي",
         date: "٢٠ أغسطس ٢٠٢٣",
         description:
           "وبينما نسعى جاهدين لإنشاء مساحات تجمع بين الجماليات والمسؤولية الأخلاقية...",
@@ -1474,7 +1474,7 @@ export const dictionary = {
         tags: ["إدارة", "تواصل"],
         title: "التواصل الفعال مع أصحاب المصلحة في إدارة المشاريع",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "مايكل براون",
+        authorName: "قسم إدارة المشاريع",
         date: "٣ سبتمبر ٢٠٢٣",
         description:
           "في النسيج المعقد لإدارة المشاريع، يعد التواصل الفعال مع أصحاب المصلحة بمثابة العمود الفقري للنجاح...",
@@ -1531,7 +1531,7 @@ export const dictionary = {
         tags: ["داخلي", "تصميم"],
         title: "تحقيق التوازن بين الجماليات والوظيفة في التصميم الداخلي",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "إيميلي ديفيس",
+        authorName: "قسم التصميم الداخلي",
         date: "١٨ سبتمبر ٢٠٢٣",
         description:
           "في عالم التصميم الداخلي، يعد تحقيق التوازن الدقيق بين الجماليات والوظائف شكلاً من أشكال الفن...",
@@ -1587,7 +1587,7 @@ export const dictionary = {
         tags: ["عمارة", "استدامة"],
         title: "ممارسات الهندسة المعمارية المستدامة",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "ديفيد ويلسون",
+        authorName: "قسم الهندسة المعمارية",
         date: "٢ أكتوبر ٢٠٢٣",
         description:
           "في عصر يحتل فيه الوعي البيئي مركز الصدارة، ظهرت الهندسة المعمارية المستدامة كمبدأ توجيهي...",
@@ -1644,7 +1644,7 @@ export const dictionary = {
         tags: ["إدارة", "مرونة"],
         title: "أهمية إدارة المشاريع الرشيقة",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "جيسيكا لي",
+        authorName: "قسم إدارة المشاريع",
         date: "١٧ أكتوبر ٢٠٢٣",
         description:
           "في عالم البناء سريع الخطى، لا تعد خفة الحركة مجرد سمة مرغوبة؛ إنها تغير قواعد اللعبة...",
@@ -1702,7 +1702,7 @@ export const dictionary = {
         title:
           "الذكاء الاصطناعي في مواقع العمل: كيف تقلل التقنيات التنبؤية مخاطر البناء",
         authorImage: "/assets/Khales Logo K - favicon.png",
-        authorName: "فريق التكنولوجيا",
+        authorName: "قسم التكنولوجيا في خالص",
         date: "٥ نوفمبر ٢٠٢٣",
         description:
           "كاميرات ذكية، توائم رقمية، ومستشعرات ناطقة تعيد صياغة قواعد السلامة في المواقع.",
@@ -1753,8 +1753,7 @@ export const dictionary = {
         },
       },
     ],
-  }, // ... (inside the export const dictionary = { ... })
-
+  },
   servicesPage: {
     "project-management": {
       metaTitle: "خدمات إدارة المشاريع في دبي | مجموعة خالص",

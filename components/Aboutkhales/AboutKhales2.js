@@ -37,7 +37,7 @@ const SectionWrapper = styled(motion.section)`
   align-items: center;
   justify-content: center;
   position: relative;
-  background-color: #f9fafb;
+  background-color: #ffffffff; // خلفية بلون رمادي فاتح لكسر الروتين
   font-family: ${(({ lang }) =>
     lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)",
   "sans-serif")};
