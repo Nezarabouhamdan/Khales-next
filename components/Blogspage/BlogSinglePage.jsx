@@ -1,8 +1,56 @@
 "use client";
-import * as React from "react";
-import styled from "styled-components";
-import Image from "next/image";
 
+import React from "react";
+import styled, { css } from "styled-components";
+import Image from "next/image";
+import Link from "next/link";
+
+// --- HELPER ICONS & FUNCTIONS ---
+
+const SocialIcon = ({ name, ...props }) => {
+  const icons = {
+    facebook: (
+      <svg {...props} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.67 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.32 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
+      </svg>
+    ),
+    twitter: (
+      <svg {...props} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    ),
+    instagram: (
+      <svg {...props} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+      </svg>
+    ),
+    linkedin: (
+      <svg {...props} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-3.06v8.37h3.06v-4.93c0-.83.06-1.66.57-2.12.51-.46 1.28-.48 1.76 0 .5.48.47 1.3.47 2.12v4.93h3.06zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37h2.77z" />
+      </svg>
+    ),
+  };
+  return icons[name.toLowerCase()] || null;
+};
+
+const QuoteIcon = () => (
+  <svg
+    width="48"
+    height="34"
+    viewBox="0 0 48 34"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M18.864 34H0L9.432 0H23.58L18.864 34ZM43.432 34H24.568L34 0H48L43.432 34Z"
+      fill="#EAF7E0"
+    />
+  </svg>
+);
+const formatSocialCount = (num) =>
+  num >= 1000 ? (num / 1000).toFixed(1).replace(".0", "") + "k" : num;
+
+// --- MAIN COMPONENT ---
 function BlogSinglePage({ blogData, lang, followUsText }) {
   const isRTL = lang === "ar";
 
@@ -15,534 +63,391 @@ function BlogSinglePage({ blogData, lang, followUsText }) {
     );
   }
 
-  const { fullContent } = blogData;
+  const { fullContent, title, coverImage, authorName, date } = blogData;
+  const socialLinks = {
+    facebook: "https://facebook.com/Khales.ae",
+    twitter: "https://x.com/Khales_ae",
+    instagram: "https://instagram.com/khales.ae",
+    linkedin: "https://linkedin.com/company/khales-ae",
+  };
+
+  // UPDATED: Added translation for "Followers"
+  const followersText = isRTL ? "متابع" : "Followers";
+
+  const socialData = [
+    {
+      name: "Facebook",
+      count: fullContent.socialCounts?.[0] || 0,
+      url: socialLinks.facebook,
+    },
+    {
+      name: "Twitter",
+      count: fullContent.socialCounts?.[1] || 0,
+      url: socialLinks.twitter,
+    },
+    {
+      name: "Instagram",
+      count: fullContent.socialCounts?.[2] || 0,
+      url: socialLinks.instagram,
+    },
+    {
+      name: "LinkedIn",
+      count: fullContent.socialCounts?.[3] || 0,
+      url: socialLinks.linkedin,
+    },
+  ];
 
   return (
-    <BlogContainer rtl={isRTL}>
+    <BlogContainer dir={isRTL ? "rtl" : "ltr"}>
       <HeroSection>
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            overflow: "hidden",
-          }}
-        >
+        <HeroBackground>
           <Image
-            src={blogData.coverImage}
-            alt={blogData.title}
+            src={coverImage}
+            alt={title}
             layout="fill"
             objectFit="cover"
             quality={100}
             priority
-            style={{
-              filter: "blur(1px) brightness(0.7)",
-              transform: "scale(1.1)",
-            }}
           />
-        </div>
+          <Overlay />
+        </HeroBackground>
         <HeroContent>
-          <ContentWrapper>
-            <TitleWrapper>
-              <MainTitle rtl={isRTL}>{blogData.title}</MainTitle>
-              <Subtitle rtl={isRTL}>{fullContent.subtitle}</Subtitle>
-            </TitleWrapper>
-          </ContentWrapper>
+          <MainTitle>{title}</MainTitle>
+          <Subtitle>{fullContent.subtitle}</Subtitle>
         </HeroContent>
       </HeroSection>
-
-      <ContentSection>
-        <ContentLayout space={220}>
-          <TwoColumnLayout rtl={isRTL}>
-            <MainColumn>
-              <ArticleContent>
-                <TextContent>
-                  {fullContent.paragraphs?.map((para, i) => (
-                    <Paragraph key={i} rtl={isRTL}>
-                      {para}
-                    </Paragraph>
-                  ))}
-                  <QuoteBlock rtl={isRTL}>
-                    <QuoteIcon
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/5626f45df99f1434dc2edae72652a2e32e076fc2?placeholderIfAbsent=true&apiKey=934bdeb679ca4a59ae6868dceb8afdbf"
-                      alt="Quote icon"
-                      width={41}
-                      height={44}
-                    />
-                    <QuoteText rtl={isRTL}>{fullContent.quote}</QuoteText>
-                  </QuoteBlock>
-                  <SecondParagraph rtl={isRTL}>
-                    {fullContent.paragraphAfterQuote}
-                  </SecondParagraph>
-                </TextContent>
-              </ArticleContent>
-            </MainColumn>
-            <SidebarColumn>
-              <SidebarContent>
-                <div>
-                  <SidebarHeading rtl={isRTL}>{followUsText}</SidebarHeading>
-                  <SocialIconsWrapper>
-                    {fullContent.socialCounts?.map((count, index) => (
-                      <SocialIconContainer key={index}>
-                        <SocialIcon
-                          width={28}
-                          height={28}
-                          src={
-                            [
-                              "/assets/social/facebook.svg",
-                              "/assets/social/twitter.svg",
-                              "/assets/social/instagram.svg",
-                              "/assets/social/linkedin.svg",
-                            ][index]
-                          }
-                          alt="Social media icon"
-                        />
-                        <SocialCount>{count}</SocialCount>
-                      </SocialIconContainer>
-                    ))}
-                  </SocialIconsWrapper>
-                </div>
-              </SidebarContent>
-            </SidebarColumn>
-          </TwoColumnLayout>
-        </ContentLayout>
-        <SectionTitle rtl={isRTL}>{fullContent.sectionTitle}</SectionTitle>
-        <ThirdParagraph rtl={isRTL}>
-          {fullContent.thirdParagraph}
-        </ThirdParagraph>
-        <ListSection as="ul" rtl={isRTL}>
-          {fullContent.listItems?.map((item, index) => (
-            <li key={index}>{item}</li>
+      <ContentGrid>
+        <MainContent>
+          <ArticleHeader>
+            <AuthorInfo>
+              <AuthorImageWrapper>
+                <Image
+                  src={blogData.authorImage}
+                  alt={authorName}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </AuthorImageWrapper>
+              <AuthorDetails>
+                <AuthorName>{authorName}</AuthorName>
+                <PostDate>{date}</PostDate>
+              </AuthorDetails>
+            </AuthorInfo>
+          </ArticleHeader>
+          {fullContent.paragraphs?.map((para, i) => (
+            <Paragraph key={i}>{para}</Paragraph>
           ))}
-        </ListSection>
-        <FourthParagraph rtl={isRTL}>
-          {fullContent.fourthParagraph}
-        </FourthParagraph>
-      </ContentSection>
+          <QuoteBlock>
+            <QuoteIconWrapper>
+              <QuoteIcon />
+            </QuoteIconWrapper>
+            <QuoteText>{fullContent.quote}</QuoteText>
+          </QuoteBlock>
+          <Paragraph>{fullContent.paragraphAfterQuote}</Paragraph>
+          <SectionTitle>{fullContent.sectionTitle}</SectionTitle>
+          <Paragraph>{fullContent.thirdParagraph}</Paragraph>
+          <List>
+            {fullContent.listItems?.map((item, index) => (
+              <ListItem key={index}>{item}</ListItem>
+            ))}
+          </List>
+          <Paragraph>{fullContent.fourthParagraph}</Paragraph>
+        </MainContent>
+        <Sidebar>
+          <SidebarSticky>
+            <SocialLinksGrid>
+              {socialData.map((social) => (
+                // UPDATED: Passed the `isRTL` prop for styling
+                <SocialLink
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={social.name}
+                  isRTL={isRTL}
+                >
+                  {/* UPDATED: The info and icon now swap places based on language */}
+                  <SocialInfo isRTL={isRTL}>
+                    <SocialName>{social.name}</SocialName>
+                    <SocialCount>
+                      {formatSocialCount(social.count)} {followersText}
+                    </SocialCount>
+                  </SocialInfo>
+                  <SocialIconWrapper>
+                    <SocialIcon name={social.name} width="22" height="22" />
+                  </SocialIconWrapper>
+                </SocialLink>
+              ))}
+            </SocialLinksGrid>
+          </SidebarSticky>
+        </Sidebar>
+      </ContentGrid>
     </BlogContainer>
   );
 }
 
-// Loading components
+// --- STYLED COMPONENTS (with RTL enhancements) ---
+
 const LoadingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: #fafafa;
+  background: #fff;
 `;
-
 const Spinner = styled.div`
   width: 50px;
   height: 50px;
   border: 5px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  border-top-color: #0070f3;
+  border-top-color: #66a109;
   animation: spin 1s ease-in-out infinite;
-
   @keyframes spin {
     to {
       transform: rotate(360deg);
     }
   }
 `;
-
 const LoadingText = styled.p`
   margin-top: 20px;
   font-size: 18px;
   color: #333;
 `;
-
-// Styled components with RTL support
 const BlogContainer = styled.article`
-  background-color: rgba(250, 250, 250, 1);
-  display: flex;
-  padding-bottom: 55px;
-  flex-direction: column;
-  overflow: hidden;
-  align-items: stretch;
-  direction: ${(props) => (props.rtl ? "rtl" : "ltr")};
-
-  @media (max-width: 991px) {
-    padding-bottom: 100px;
-  }
+  background-color: #ffffff;
+  color: #1a1a1a;
 `;
-
 const HeroSection = styled.header`
-  display: flex;
-  flex-direction: column;
   position: relative;
-  min-height: 800px;
-  width: 100%;
-  padding: 434px 80px 120px;
-
-  @media (max-width: 991px) {
-    padding: 100px 20px;
-  }
+  height: 60vh;
+  min-height: 400px;
+  max-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
 `;
-
-const HeroBackground = styled.img`
+const HeroBackground = styled.div`
   position: absolute;
   inset: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
+  overflow: hidden;
+  img {
+    transform: scale(1.05);
+  }
 `;
-
+const Overlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+`;
 const HeroContent = styled.div`
   position: relative;
-  margin-bottom: -24px;
-  width: 1084px;
-  max-width: 100%;
-
-  @media (max-width: 991px) {
-    margin-bottom: 10px;
-  }
+  max-width: 900px;
+  z-index: 2;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 `;
-
-const ContentWrapper = styled.div`
-  width: 100%;
-`;
-
-const TitleWrapper = styled.div`
-  width: 100%;
-`;
-
 const MainTitle = styled.h1`
-  text-shadow: 4px 10px 48px rgba(0, 0, 0, 0.37);
-  font-size: 44px;
-  font-family: "Inter", sans-serif;
+  font-size: 3.5rem;
   font-weight: 700;
-  line-height: 66px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-  color: white;
-  @media (max-width: 991px) {
-    margin-top: 75%;
-    font-size: 25px;
-    line-height: 32px;
+  line-height: 1.2;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
   }
 `;
-
 const Subtitle = styled.h2`
-  font-size: 48px;
-  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
   font-weight: 400;
-  letter-spacing: -1.2px;
-  margin-top: 16px;
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-  color: white;
-
-  @media (max-width: 991px) {
-    font-size: 20px;
+  opacity: 0.9;
+  margin-top: 1rem;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
   }
 `;
-
-const ContentSection = styled.section`
-  align-self: center;
-  display: flex;
-  margin-top: 80px;
-  width: 100%;
-  max-width: 1643px;
-  flex-direction: column;
-  align-items: start;
-  padding: 0 58px;
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-    margin-top: 40px;
-    padding: 0 20px;
-  }
-`;
-
-const ContentLayout = styled.div`
-  align-self: stretch;
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
-`;
-
-const TwoColumnLayout = styled.div`
-  gap: 20px;
-  display: flex;
-  flex-direction: ${(props) => (props.rtl ? "row-reverse" : "row")};
-
-  @media (max-width: 991px) {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-`;
-
-const MainColumn = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  line-height: normal;
-  width: 76%;
-
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
-
-const ArticleContent = styled.div`
-  flex-grow: 1;
-  color: rgba(18, 20, 22, 1);
-
-  @media (max-width: 991px) {
-    max-width: 100%;
+const ContentGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 80px;
+  max-width: 1200px;
+  margin: -80px auto 80px;
+  padding: 0 2rem;
+  align-items: flex-start;
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
     margin-top: 40px;
   }
 `;
-
-const TextContent = styled.div`
-  width: 100%;
-  max-width: 1080px;
-
-  @media (max-width: 991px) {
-    max-width: 100%;
+const MainContent = styled.main`
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+  @media (max-width: 768px) {
+    padding: 24px;
   }
 `;
-
-const Paragraph = styled.p`
-  font-size: 18px;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  line-height: 33px;
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
+const ArticleHeader = styled.div`
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #f0f0f0;
 `;
-
-const QuoteBlock = styled.blockquote`
+const AuthorInfo = styled.div`
   display: flex;
-  margin-top: 80px;
-  width: 100%;
-  padding-bottom: 31px;
-  align-items: stretch;
-  gap: 36px;
-  font-family: "Inter", sans-serif;
-  font-size: 48px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  flex-wrap: wrap;
-  flex-direction: ${(props) => (props.rtl ? "row-reverse" : "row")};
-
-  @media (max-width: 991px) {
-    margin-top: 40px;
-    font-size: 40px;
-  }
-`;
-
-const QuoteIcon = styled.img`
-  aspect-ratio: 1.08;
-  object-fit: contain;
-  object-position: center;
-  width: 41px;
-  align-self: start;
-  margin-top: 17px;
-  flex-shrink: 0;
-`;
-
-const QuoteText = styled.p`
-  flex-grow: 1;
-  flex-shrink: 1;
-  width: 990px;
-  flex-basis: auto;
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-    font-size: 40px;
-  }
-`;
-
-const SecondParagraph = styled.p`
-  font-size: 18px;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  line-height: 33px;
-  margin-top: 40px;
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
-`;
-
-const SidebarColumn = styled.aside`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  line-height: normal;
-  width: 24%;
-
-  @media (max-width: 991px) {
-    width: 100%;
-  }
-`;
-
-const SidebarContent = styled.div`
-  color: rgba(18, 20, 22, 1);
-  font-weight: 400;
-
-  @media (max-width: 991px) {
-    margin-top: 40px;
-  }
-`;
-
-const SidebarHeading = styled.h3`
-  font-size: 25px;
-  font-family: EuropaNuova-Bold, -apple-system, Roboto, Helvetica, sans-serif;
-  line-height: 1;
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-`;
-
-const SocialIconsWrapper = styled.div`
-  display: flex;
-  margin-top: 40px;
-  align-items: start;
-  gap: 40px 49px;
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-  white-space: nowrap;
-  line-height: 1;
-  justify-content: start;
-
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
-`;
-
-const SocialIconContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: start;
-  width: 28px;
-
-  @media (max-width: 991px) {
-    white-space: initial;
-  }
 `;
-
-const SocialIcon = styled.img`
-  aspect-ratio: 1;
-  object-fit: contain;
-  object-position: center;
-  width: 28px;
+const AuthorImageWrapper = styled.div`
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
 `;
-
-const SocialCount = styled.span`
-  margin-top: 16px;
+const AuthorDetails = styled.div`
+  line-height: 1.4;
 `;
-
-const SectionTitle = styled.h2`
-  color: rgba(18, 20, 22, 1);
-  font-size: 40px;
-  font-family: "Inter", sans-serif;
+const AuthorName = styled.p`
+  font-weight: 600;
+  color: #1a1a1a;
+`;
+const PostDate = styled.p`
+  font-size: 0.9rem;
+  color: #777;
+`;
+const Paragraph = styled.p`
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 1.5em;
+`;
+const QuoteBlock = styled.blockquote`
+  margin: 40px 0;
+  padding-left: 30px;
+  border-left: 4px solid #66a109;
+  position: relative;
+`;
+const QuoteIconWrapper = styled.div`
+  position: absolute;
+  left: -24px;
+  top: -16px;
+  opacity: 0.3;
+  transform: translateX(-100%) rotate(-5deg);
+`;
+const QuoteText = styled.p`
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.5;
+`;
+const SectionTitle = styled.h3`
+  font-size: 1.8rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 80px;
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-    margin-top: 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  line-height: 1.3;
+`;
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+`;
+const ListItem = styled.li`
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #333;
+  padding-left: 25px;
+  position: relative;
+  margin-bottom: 10px;
+  &:before {
+    content: "✔";
+    color: #66a109;
+    position: absolute;
+    left: 0;
+    top: 2px;
   }
 `;
-
-const ThirdParagraph = styled.p`
-  color: rgba(18, 20, 22, 1);
-  font-size: 18px;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  line-height: 33px;
-  margin-top: 20px;
-  width: 100%;
-  align-self: stretch;
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-
-  @media (max-width: 991px) {
-    max-width: 100%;
+const Sidebar = styled.aside`
+  @media (max-width: 992px) {
+    order: -1;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 24px;
   }
 `;
-
-const ListSection = styled.div`
-  color: rgba(18, 20, 22, 1);
-  font-size: 18px;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  line-height: 33px;
-  margin-top: 42px;
-  padding: 0 ${(props) => (props.rtl ? "64px 0 0" : "0 0 0 64px")};
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-    margin-top: 40px;
-    padding: 0 ${(props) => (props.rtl ? "20px 0 0" : "0 0 0 20px")};
-  }
+const SidebarSticky = styled.div`
+  position: sticky;
+  top: 100px;
 `;
-
-const FourthParagraph = styled.p`
-  color: rgba(18, 20, 22, 1);
-  font-size: 18px;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  line-height: 33px;
-  margin-top: 24px;
-  text-align: ${(props) => (props.rtl ? "right" : "left")};
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
+const SidebarHeading = styled.h4`
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 20px;
 `;
+const SocialLinksGrid = styled.div`
+  display: grid;
+  gap: 10px;
+`; // Reduced gap for a tighter look
 
-const FooterSection = styled.footer`
-  margin-top: 303px;
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-    margin-top: 40px;
-  }
-`;
-
-const FooterContent = styled.div`
+// UPDATED: SocialLink now handles the RTL layout change
+const SocialLink = styled(Link)`
   display: flex;
-  margin-top: 27px;
-  align-items: start;
-  gap: 40px 54px;
-  justify-content: start;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between; // This helps push items to the ends
+  padding: 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
-  @media (max-width: 991px) {
-    max-width: 100%;
+  &:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.03);
+  }
+
+  @media (max-width: 992px) {
+    background-color: #fff;
   }
 `;
 
-const FooterDivider = styled.div`
+// UPDATED: SocialIconWrapper is now simpler
+const SocialIconWrapper = styled.div`
+  flex-shrink: 0;
   display: flex;
-  margin-top: 57px;
-  align-items: start;
-  gap: 40px 54px;
-  justify-content: start;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  color: #66a109; // Use accent color for icons
+  transition: transform 0.3s;
 
-  @media (max-width: 991px) {
-    max-width: 100%;
-    margin-top: 40px;
+  ${SocialLink}:hover & {
+    transform: rotate(10deg) scale(1.1);
   }
+`;
+
+// UPDATED: SocialInfo handles text alignment for RTL
+const SocialInfo = styled.div`
+  line-height: 1.3;
+  text-align: ${({ isRTL }) => (isRTL ? "right" : "left")};
+`;
+
+const SocialName = styled.p`
+  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 1rem;
+`;
+
+const SocialCount = styled.p`
+  font-size: 0.85rem;
+  color: #777;
 `;
 
 export default BlogSinglePage;

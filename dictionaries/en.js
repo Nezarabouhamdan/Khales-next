@@ -1295,7 +1295,7 @@ export const dictionary = {
             "In the pursuit of modern architectural excellence, Khales Project Management invites you to explore a world where innovation meets elegance.",
           paragraphAfterQuote:
             "Our commitment to staying at the forefront of residential design trends ensures that your home is not just a place to live but a testament to the artistry of contemporary living. Welcome to a new era of residential luxury.",
-          socialCounts: [1816, 47500, 13271, 571],
+          socialCounts: [1816, 37, 47000, 15000],
           sectionTitle: "Key Trends in Modern Residential Design",
           thirdParagraph:
             "Sustainable and Eco-Friendly Practices: Khales leads the way in integrating sustainable and eco-friendly practices into residential design. From energy-efficient appliances to eco-conscious building materials, our commitment to environmentally responsible design ensures homes that are both luxurious and sustainable.",
@@ -1352,7 +1352,7 @@ export const dictionary = {
             "Steel is not just a material, it's a design philosophy that enables architectural freedom.",
           paragraphAfterQuote:
             "The integration of steel structures in luxury villas has opened new possibilities for open floor plans and expansive glass facades. Architects can now create cantilevers and large spans previously impossible with traditional materials.",
-          socialCounts: [1816, 47500, 13271, 571],
+          socialCounts: [1816, 37, 47000, 15000],
           sectionTitle: "The Future of Villa Construction",
           thirdParagraph:
             "As urbanization increases and land becomes more valuable, steel structures allow for taller, more efficient villa designs. These designs maximize space while minimizing environmental impact through efficient material usage.",
@@ -1409,7 +1409,7 @@ export const dictionary = {
             "As Khales Project Management delves into the future of high-rise construction, innovative approaches pave the way for safer, more efficient structures.",
           paragraphAfterQuote:
             "We are committed to staying at the forefront of these advancements, ensuring our projects not only reach new heights but stand firmly on foundations engineered for excellence.",
-          socialCounts: [1816, 47500, 13271, 571],
+          socialCounts: [1816, 37, 47000, 15000],
           sectionTitle: "Cutting-Edge Foundation Technologies",
           thirdParagraph:
             "Soil-Structure Interaction Studies: Modern geotechnical engineering utilizes sophisticated studies to analyze soil-structure interaction, enabling optimized foundation design based on specific site conditions.",
@@ -1467,7 +1467,7 @@ export const dictionary = {
             "Embracing sustainable materials in interior design is not merely a trend; it's a commitment to a more harmonious relationship with our planet.",
           paragraphAfterQuote:
             "As designers and homeowners tread the path of sustainable living, each material choice becomes a step towards a greener, more beautiful future.",
-          socialCounts: [1816, 47500, 13271, 571],
+          socialCounts: [1816, 37, 47000, 15000],
           sectionTitle: "Sustainable Design Elements",
           thirdParagraph:
             "Low VOC, High Impact: Sustainable design prioritizes indoor air quality. Low Volatile Organic Compound paints ensure spaces are visually appealing while contributing to healthier environments.",
@@ -1524,7 +1524,7 @@ export const dictionary = {
             "Our team looks forward to creating a project management ecosystem where strategic communication is the driving force behind successful outcomes.",
           paragraphAfterQuote:
             "The next project will be with you, guided by clear, consistent communication that meets and exceeds expectations.",
-          socialCounts: [1816, 47500, 13271, 571],
+          socialCounts: [1816, 37, 47000, 15000],
           sectionTitle: "Key Communication Strategies",
           thirdParagraph:
             "At Khales, we implement proven strategies that ensure project success through effective stakeholder engagement:",
@@ -1582,7 +1582,7 @@ export const dictionary = {
             "Khales Project Management strives for a synthesis of aesthetics and functionality, creating spaces that resonate with beauty and purpose.",
           paragraphAfterQuote:
             "Join our pursuit of harmonious design where every element serves a purpose, and every purpose is infused with elegance.",
-          socialCounts: [1816, 47500, 13271, 571],
+          socialCounts: [1816, 37, 47000, 15000],
           sectionTitle: "Principles of Balanced Design",
           thirdParagraph:
             "Tailored Design Solutions: Rejecting one-size-fits-all approaches. Crafting solutions to unique needs ensures aesthetic choices complement required functionality.",
@@ -1639,7 +1639,7 @@ export const dictionary = {
             "As we look towards the future, Khales invites you to join our journey towards sustainable architecture.",
           paragraphAfterQuote:
             "Every project is not just a testament to architectural excellence but a declaration to build a greener, more sustainable tomorrow.",
-          socialCounts: [1816, 47500, 13271, 571],
+          socialCounts: [1816, 37, 47000, 15000],
           sectionTitle: "Core Sustainable Practices",
           thirdParagraph:
             "Green Building Materials: We meticulously select materials like recycled steel and reclaimed wood to minimize environmental impact.",
@@ -1696,7 +1696,7 @@ export const dictionary = {
             "As we navigate the construction landscape, Agile Project Management emerges as a cornerstone for success.",
           paragraphAfterQuote:
             "At Khales Project Management, we don't just build structures; we build with agility, adaptability, and excellence.",
-          socialCounts: [1816, 47500, 13271, 571],
+          socialCounts: [1816, 37, 47000, 15000],
           sectionTitle: "Agile Principles in Action",
           thirdParagraph:
             "Enhancing Collaboration: Regular team meetings and open communication ensure all stakeholders are aligned, fostering transparency and teamwork.",
@@ -1754,7 +1754,7 @@ export const dictionary = {
           quote: "Tech that protects workers also protects the bottom line.",
           paragraphAfterQuote:
             "Projects that roll out even one of these AI tools enjoy tighter budgets, smoother audits and friendlier insurance premiums. Lower incident rates also boost a contractor's pre-qualification score—pure gold when bidding on the next mega-development.",
-          socialCounts: [1816, 47500, 13271, 571],
+          socialCounts: [1816, 37, 47000, 15000],
           sectionTitle: "Three Predictive Tools Making the Difference",
           thirdParagraph:
             "These AI-powered solutions are transforming construction site management:",
