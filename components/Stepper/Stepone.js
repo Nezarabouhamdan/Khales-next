@@ -64,7 +64,12 @@ export default function StepOne({ formData, updateFormData, isRTL }) {
 
   return (
     <StepContainer $rtl={isRTL}>
-      <h2 style={{ marginTop: "30px", color: "#545454" }}>{content.title}</h2>
+      <h2
+        className="step-one-title"
+        style={{ marginTop: "30px", color: "#545454" }}
+      >
+        {content.title}
+      </h2>
 
       <TextInput
         placeholder={content.servicePlaceholder}

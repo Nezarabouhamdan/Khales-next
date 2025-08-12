@@ -27,14 +27,22 @@ const ImageWrapper = styled.div`
     height: auto; // Adjust height for responsiveness
   }
 `;
+
+// --- FIX APPLIED HERE ---
 const StyledAccordion = styled(Accordion)`
   width: 100%;
+
+  /* This rule targets the header of each panel from the rsuite library */
+  /* and forces its content to be centered. */
+  .rs-panel-header {
+    justify-content: center !important; /* Use !important to ensure override */
+    text-align: center;
+  }
 `;
 
 const HeaderRow = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.$rtl ? "row-reverse" : "row")};
-
   align-items: center;
 `;
 
@@ -63,26 +71,20 @@ const PanelContent = styled.div`
   font-size: 16px;
   unicode-bidi: isolate;
   direction: ${(props) => (props.$rtl ? "rtl" : "rlt")};
-
   white-space: pre-line;
+
   @media (max-width: 968px) {
     font-size: 14px;
   }
 `;
 
-const HeaderComponent = ({ isActive, eventKey, title, language, ...rest }) => (
-  <HeaderContainer
-    spacing={10}
-    alignItems="flex-start"
-    direction="row"
-    justifyContent="space-between"
-    {...rest}
-  >
-    <Stack spacing={2} direction="column" alignItems="flex-start">
-      <HeaderRow $rtl={language === "ar"}>
-        <HeaderTitle $isActive={isActive}>{title}</HeaderTitle>
-      </HeaderRow>
-    </Stack>
+// --- SIMPLIFIED THIS COMPONENT ---
+// The complex Stack layout is no longer needed as the CSS fix handles centering.
+const HeaderComponent = ({ isActive, title, language, ...rest }) => (
+  <HeaderContainer {...rest}>
+    <HeaderRow $rtl={language === "ar"}>
+      <HeaderTitle $isActive={isActive}>{title}</HeaderTitle>
+    </HeaderRow>
   </HeaderContainer>
 );
 

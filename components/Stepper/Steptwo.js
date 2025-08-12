@@ -85,7 +85,12 @@ export default function StepTwo({ formData, updateFormData }) {
 
   return (
     <StepContainer $rtl={isRTL}>
-      <h2 style={{ marginTop: "30px", color: "#545454" }}>{content.title}</h2>
+      <h2
+        className="step-two-title"
+        style={{ marginTop: "30px", color: "#545454" }}
+      >
+        {content.title}
+      </h2>
       {/* Full Name Input */}
       <Label htmlFor="name" $rtl={isRTL}>
         {content.labels.name}

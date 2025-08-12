@@ -27,7 +27,7 @@ export const metadata = {
   creator: "Khales",
   metadataBase: new URL("http://www.khales.ae/"),
   openGraph: {
-    title: "Services",
+    title: "Thank you",
     description:
       "Welcome to Khales. Explore our luxury design and project management solutions.",
     url: "http://www.khales.ae/",
@@ -37,7 +37,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Services",
+    title: "Thank you",
     description:
       "Welcome to Khales. Explore our luxury design and project management solutions.",
   },

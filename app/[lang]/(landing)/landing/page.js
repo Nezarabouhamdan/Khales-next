@@ -21,7 +21,7 @@ export async function generateMetadata({ params: { lang } }) {
     keywords: content.metaKeywords,
     metadataBase: new URL("https://www.khales.ae"),
     alternates: {
-      canonical: `/landing`,
+      canonical: `/${lang}/landing`,
       languages: {
         "en-US": "/en/landing",
         "ar-AE": "/ar/landing",
