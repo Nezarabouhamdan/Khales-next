@@ -11,7 +11,7 @@ export async function generateMetadata({ params: { lang } }) {
     title: pageData.metaTitle,
     description: pageData.metaDescription,
     lang: lang,
-    alternatesUrl: "/careers", // Make sure this matches the route folder name
+    alternatesUrl: "/terms-and-conditions", // Make sure this matches the route folder name
   });
 }
 

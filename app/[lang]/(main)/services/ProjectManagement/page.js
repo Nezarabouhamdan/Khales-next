@@ -54,7 +54,7 @@ export async function generateMetadata({ params: { lang } }) {
     description: description,
     keywords: keywords,
     lang: lang,
-    alternatesUrl: "/services/project-management",
+    alternatesUrl: "/services/ProjectManagement",
   });
 }
 

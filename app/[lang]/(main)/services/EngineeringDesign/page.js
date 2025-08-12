@@ -40,7 +40,7 @@ export async function generateMetadata({ params: { lang } }) {
     description,
     keywords,
     lang,
-    alternatesUrl: "/services/engineering-design",
+    alternatesUrl: "/services/EngineeringDesign",
   });
 }
 

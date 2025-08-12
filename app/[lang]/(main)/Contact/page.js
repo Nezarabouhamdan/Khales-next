@@ -17,7 +17,7 @@ const getContactPageSchema = (lang) => {
     "@type": "ContactPage",
     name: name,
     description: description,
-    url: `https://www.khales.ae/${lang}/connect`,
+    url: `https://www.khales.ae/${lang}/Contact`,
   };
 };
 
