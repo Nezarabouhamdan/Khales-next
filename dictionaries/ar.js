@@ -92,7 +92,7 @@ export const dictionary = {
     },
     items: [
       {
-        slug: "engineering-consultancy",
+        slug: "EngineeringConsultancy",
         title: "الاستشارات",
         highlight: "الهندسية",
         description: "نقدم حلولاً هندسية شاملة...",
@@ -190,7 +190,7 @@ export const dictionary = {
       { text: "إدارة المشاريع", href: "/services/project-management" },
       {
         text: "الاستشارات الهندسية",
-        href: "/services/engineering-consultancy",
+        href: "/services/EngineeringConsultancy",
       },
     ],
     companyTitle: "الشركة",
@@ -1771,7 +1771,7 @@ export const dictionary = {
       intro:
         "تضمن خدماتنا في إدارة المشاريع تحقيق رؤيتك بوضوح وكفاءة ومساءلة. من التخطيط الأولي إلى التسليم النهائي، نقدم إشرافًا متخصصًا للحفاظ على مشروعك ضمن الجدول الزمني والميزانية المحددة، وبأعلى معايير الجودة.",
     },
-    "engineering-consultancy": {
+    EngineeringConsultancy: {
       metaTitle: "خدمات الاستشارات الهندسية في الإمارات | مجموعة خالص",
       metaDescription:
         "اكتشف خدمات الاستشارات الهندسية المتخصصة بما في ذلك التصميم والإشراف الموقعي والتصميم الداخلي وتنسيق الحدائق. نحول الرؤى الإبداعية إلى حلول قابلة للتنفيذ.",
@@ -1822,7 +1822,7 @@ export const dictionary = {
           "تحويل قطعة أرض خام إلى مشروع قابل للتطبيق بخطة واضحة ومتوافقة مع الأنظمة.",
       },
       "engineering-design": {
-        categorySlug: "engineering-consultancy",
+        categorySlug: "EngineeringConsultancy",
         path: "/services/EngineeringDesign",
         image: "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
         title: "التصميم الهندسي",
@@ -1830,7 +1830,7 @@ export const dictionary = {
           "توفير جميع المستندات الفنية والحسابات اللازمة لنقل مشروعك من الرؤية إلى البناء.",
       },
       "engineering-supervision": {
-        categorySlug: "engineering-consultancy",
+        categorySlug: "EngineeringConsultancy",
         path: "/services/EngineeringSupervision",
         image: "https://i.ibb.co/MkyXq4d1/ban-engsupre.png",
         title: "الإشراف الهندسي",
@@ -1838,7 +1838,7 @@ export const dictionary = {
           "مراقبة فنية عملية لضمان تنفيذ العمل وفقًا للمخططات المعتمدة واللوائح التنظيمية.",
       },
       "interior-design": {
-        categorySlug: "engineering-consultancy",
+        categorySlug: "EngineeringConsultancy",
         path: "/services/InteriorDesign",
         image: "https://i.ibb.co/wrzKMJRz/interior.png",
         title: "التصميم الداخلي",
@@ -1846,7 +1846,7 @@ export const dictionary = {
           "تشكيل كيفية عيش الناس وتجربتهم للمساحة بتصميمات داخلية وظيفية ومصقولة.",
       },
       "landscape-design": {
-        categorySlug: "engineering-consultancy",
+        categorySlug: "EngineeringConsultancy",
         path: "/services/LandscapingDesign",
         image: "https://i.ibb.co/qLpSLzr9/7-Landscape.jpg",
         title: "تصميم المناظر الطبيعية",

@@ -98,7 +98,7 @@ export const dictionary = {
     },
     items: [
       {
-        slug: "engineering-consultancy",
+        slug: "EngineeringConsultancy",
         title: "Engineering",
         highlight: "Consultancy",
         description:
@@ -207,7 +207,7 @@ export const dictionary = {
       { text: "Project Management", href: "/services/project-management" },
       {
         text: "Engineering Consultancy",
-        href: "/services/engineering-consultancy",
+        href: "/services/EngineeringConsultancy",
       },
     ],
     companyTitle: "Company",
@@ -1786,7 +1786,7 @@ export const dictionary = {
       intro:
         "Our project management services ensure your vision is realized with clarity, efficiency, and accountability. From initial planning to final handover, we provide expert oversight to keep your project on schedule, within budget, and to the highest standards of quality.",
     },
-    "engineering-consultancy": {
+    EngineeringConsultancy: {
       metaTitle: "Engineering Consultancy Services in UAE | Khales Group",
       metaDescription:
         "Discover expert engineering consultancy services including design, site supervision, interior design, and landscaping. We turn creative visions into buildable solutions.",
@@ -1836,7 +1836,7 @@ export const dictionary = {
           "Turning a raw plot of land into a viable project with a clear, regulation-aligned plan.",
       },
       "engineering-design": {
-        categorySlug: "engineering-consultancy",
+        categorySlug: "EngineeringConsultancy",
         path: "/services/EngineeringDesign",
         image: "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
         title: "Engineering Design",
@@ -1844,7 +1844,7 @@ export const dictionary = {
           "Providing all technical documents and calculations to take your project from vision to construction.",
       },
       "engineering-supervision": {
-        categorySlug: "engineering-consultancy",
+        categorySlug: "EngineeringConsultancy",
         path: "/services/EngineeringSupervision",
         image: "https://i.ibb.co/MkyXq4d1/ban-engsupre.png",
         title: "Engineering Supervision",
@@ -1852,7 +1852,7 @@ export const dictionary = {
           "Hands-on technical monitoring to ensure work is executed per approved drawings and regulations.",
       },
       "interior-design": {
-        categorySlug: "engineering-consultancy",
+        categorySlug: "EngineeringConsultancy",
         path: "/services/InteriorDesign",
         image: "https://i.ibb.co/wrzKMJRz/interior.png",
         title: "Interior Design",
@@ -1860,7 +1860,7 @@ export const dictionary = {
           "Shaping how people live and experience a space with functional and refined interiors.",
       },
       "landscape-design": {
-        categorySlug: "engineering-consultancy",
+        categorySlug: "EngineeringConsultancy",
         path: "/services/LandscapingDesign",
         image: "https://i.ibb.co/qLpSLzr9/7-Landscape.jpg",
         title: "Landscape Design",
