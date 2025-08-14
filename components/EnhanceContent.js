@@ -2,24 +2,25 @@
 
 import React from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
-import { FaCheckCircle } from "react-icons/fa"; // Using check circle for the list
+import Image from "next/image";
+import { motion } from "framer-motion"; // لإضافة الحركة
+import { FaCogs, FaStar } from "react-icons/fa"; // أيقونات احترافية
 import ImageWithSkeleton from "./ImageSkeleton";
 
 // ========================================================================
-// STYLED COMPONENTS (with new additions for article layout)
+// STYLED COMPONENTS (المكونات المصممة)
 // ========================================================================
 
 const StyledEnhancedContent = styled.section`
   padding: 6rem 2rem;
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; // خلفية بلون رمادي فاتح لكسر الروتين
   position: relative;
   overflow: hidden;
   direction: ${(props) => (props.$isRTL ? "rtl" : "ltr")};
 `;
 
 const ContentContainer = styled(motion.div)`
-  max-width: 1200px;
+  max-width: 1200px; // مساحة أعرض للمحتوى
   margin: 0 auto;
   position: relative;
   z-index: 2;
@@ -27,9 +28,10 @@ const ContentContainer = styled(motion.div)`
 
 const GridContainer = styled.div`
   display: grid;
+  // إعطاء النص مساحة أكبر (ثلثين) والصورة (ثلث)
   grid-template-columns: 2fr 1fr;
   gap: 4rem;
-  align-items: flex-start; // Changed to flex-start for better alignment
+  align-items: center;
 
   @media (max-width: 992px) {
     grid-template-columns: 1fr;
@@ -39,136 +41,119 @@ const GridContainer = styled.div`
 
 const TextColumn = styled.div`
   h2 {
-    font-size: 2.8rem;
+    font-size: 2.8rem; // عنوان أكبر وأكثر تأثيراً
     font-weight: 700;
-    color: #1a1a1a; // Darker color for better contrast
-    margin-bottom: 1.5rem;
+    color: #333;
+    margin-bottom: 2rem;
     line-height: 1.4;
   }
+  // الفقرة الرئيسية (المقدمة)
   .intro-paragraph {
     font-size: 1.1rem;
     line-height: 1.9;
     color: #555;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 `;
 
 const ImageColumn = styled(motion.div)`
   border-radius: 16px;
   overflow: hidden;
-  height: 550px;
-  position: sticky; // Make image sticky on scroll for a modern effect
-  top: 100px; // Start sticking 100px from the top
+  height: 550px; // زيادة ارتفاع الصورة لتوازن أفضل
+  position: relative;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 
   @media (max-width: 992px) {
     height: 350px;
     order: -1;
-    position: relative; // Remove stickiness on mobile
-    top: 0;
   }
 `;
 
-// --- NEW STYLED COMPONENTS FOR ARTICLE LAYOUT ---
-
-const StyledBlockquote = styled.blockquote`
-  margin: 2.5rem 0;
-  padding-inline-start: 1.5rem; // Use logical properties for RTL support
-  border-inline-start: 4px solid #66a109; /* Your brand's green color */
-  font-style: italic;
-  font-size: 1.2rem;
-  line-height: 1.7;
-  color: #444;
-  font-weight: 500;
-`;
-
-const SectionSubtitle = styled.h3`
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
-`;
-
-const FeatureList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0 0 0;
+// حاوية الأقسام الفرعية
+const SubsectionsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 `;
 
-const FeatureListItem = styled.li`
+// تصميم كل قسم فرعي على حدة (أيقونة + عنوان + نص)
+const Subsection = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #555;
+  gap: 1.5rem;
 
-  .icon {
-    color: #66a109; /* Your brand's green color */
-    font-size: 1.2rem;
-    margin-top: 4px; // Better alignment with the first line of text
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 0.5rem 0;
   }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #666;
+    margin: 0;
+  }
+`;
+
+// تصميم حاوية الأيقونة
+const IconWrapper = styled.div`
+  color: #66a109; // لونكم الأخضر
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  margin-top: 5px;
 `;
 
 // ========================================================================
-// THE COMPONENT ITSELF (with updated structure)
+// THE COMPONENT ITSELF (المكون نفسه)
 // ========================================================================
 
 export default function EnhancedContent({ lang }) {
   const isRTL = lang === "ar";
 
-  // --- UPDATED CONTENT STRUCTURE ---
   const content =
     lang === "ar"
       ? {
-          title: "ريادة مستقبل التصميم والبناء",
+          title: "خالص - رواد الهندسة المعمارية والتصميم الداخلي في دبي",
           intro:
-            "في خالص، ندمج أكثر من عقد من الخبرة بشغف للابتكار. نحن متخصصون في تحويل الرؤى المعقدة إلى واقع ملموس من خلال التصميم المتطور وإدارة المشاريع الدقيقة، متجاوزين باستمرار توقعات العملاء.",
-          quote:
-            "الفولاذ ليس مجرد مادة، بل هو فلسفة تصميم تطلق العنان للحرية المعمارية.",
-          sectionTitle: "جوهر نهجنا",
-          features: [
-            "خدمات متكاملة: من التصميم المعماري إلى الاستشارات الهندسية.",
-            "الخبرة والإبداع: فريق يمزج بين المهارة التقنية والرؤية الفنية.",
-            "مواد عالية القوة: استخدام الفولاذ المتقدم لقوة وتنوع استثنائيين.",
-            "هندسة دقيقة: الاستفادة من النمذجة ثلاثية الأبعاد و BIM لتنفيذ لا تشوبه شائبة.",
-          ],
+            "مع خبرة تزيد عن عقد من الزمن، نحن في خالص متخصصون في تحويل الرؤى إلى واقع ملموس من خلال حلول تصميمية مبتكرة ومتطورة تلبي وتتجاوز توقعات عملائنا.",
+          services: {
+            title: "خدماتنا المتكاملة",
+            text: "تشمل خدماتنا التصميم المعماري، التصميم الداخلي الفاخر، تصميم المناظر الطبيعية، إدارة المشاريع الشاملة، والاستشارات الهندسية المتخصصة في جميع أنحاء الإمارات.",
+          },
+          expertise: {
+            title: "خبرة وإبداع",
+            text: "يجمع فريقنا من المحترفين بين الخبرة التقنية والإبداع الفني لتقديم مشاريع استثنائية تلبي أعلى معايير الجودة والاستدامة، من الفلل الفاخرة إلى المجمعات التجارية.",
+          },
         }
       : {
-          title: "Pioneering the Future of Design and Construction",
+          title:
+            "Khales - Premier Architecture & Interior Design Company in Dubai",
           intro:
-            "At Khales, we merge over a decade of experience with a passion for innovation. We specialize in transforming complex visions into tangible realities through sophisticated design and meticulous project management.",
-          quote:
-            "Steel is not just a material, it's a design philosophy that enables architectural freedom.",
-          sectionTitle: "The Core of Our Approach",
-          features: [
-            "Integrated Services: From architectural design to engineering consultancy.",
-            "Expertise and Creativity: A team that blends technical skill with artistic vision.",
-            "High-Strength Materials: Utilizing advanced steels for exceptional strength.",
-            "Precision Engineering: Leveraging 3D Modeling & BIM for flawless execution.",
-          ],
+            "With over a decade of experience, we at Khales specialize in transforming visions into reality through innovative and sophisticated design solutions that exceed client expectations.",
+          services: {
+            title: "Our Integrated Services",
+            text: "Our services encompass architectural design, luxury interior design, landscape design, comprehensive project management, and specialized engineering consultancy across the UAE.",
+          },
+          expertise: {
+            title: "Expertise and Creativity",
+            text: "Our team of professionals combines technical expertise with artistic creativity to deliver outstanding projects that meet the highest standards of quality and sustainability, from luxury villas to commercial complexes.",
+          },
         };
 
-  // --- ANIMATION SETTINGS ---
+  // إعدادات الحركة
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+      transition: { staggerChildren: 0.2 },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
   return (
@@ -180,38 +165,44 @@ export default function EnhancedContent({ lang }) {
         viewport={{ once: true, amount: 0.2 }}
       >
         <GridContainer>
-          {/* === UPDATED TEXT COLUMN === */}
+          {/* عمود النص */}
           <TextColumn>
             <motion.h2 variants={itemVariants}>{content.title}</motion.h2>
-
             <motion.p variants={itemVariants} className="intro-paragraph">
               {content.intro}
             </motion.p>
 
-            <motion.div variants={itemVariants}>
-              <StyledBlockquote>{content.quote}</StyledBlockquote>
-            </motion.div>
+            <SubsectionsWrapper>
+              <motion.div variants={itemVariants}>
+                <Subsection>
+                  <IconWrapper>
+                    <FaCogs />
+                  </IconWrapper>
+                  <div>
+                    <h3>{content.services.title}</h3>
+                    <p>{content.services.text}</p>
+                  </div>
+                </Subsection>
+              </motion.div>
 
-            <motion.div variants={itemVariants}>
-              <SectionSubtitle>{content.sectionTitle}</SectionSubtitle>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <FeatureList>
-                {content.features.map((feature, i) => (
-                  <FeatureListItem key={i}>
-                    <FaCheckCircle className="icon" />
-                    <span>{feature}</span>
-                  </FeatureListItem>
-                ))}
-              </FeatureList>
-            </motion.div>
+              <motion.div variants={itemVariants}>
+                <Subsection>
+                  <IconWrapper>
+                    <FaStar />
+                  </IconWrapper>
+                  <div>
+                    <h3>{content.expertise.title}</h3>
+                    <p>{content.expertise.text}</p>
+                  </div>
+                </Subsection>
+              </motion.div>
+            </SubsectionsWrapper>
           </TextColumn>
 
-          {/* Image Column (No changes needed) */}
+          {/* عمود الصورة */}
           <ImageColumn variants={itemVariants}>
             <ImageWithSkeleton
-              src="https://i.ibb.co/s9hV1Y0/khales-ae.jpg"
+              src="https://i.ibb.co/s9hV1Y08/khales-ae.jpg"
               alt={isRTL ? "تصميم معماري حديث" : "Modern Architectural Design"}
               sizes="(max-width: 992px) 100vw, 33vw"
             />
