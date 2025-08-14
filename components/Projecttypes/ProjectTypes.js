@@ -11,14 +11,16 @@ const projectTypesConfig = [
     // Residential
     showcase: {
       icon: <FaHome />,
-      image: "https://i.ibb.co/yY1hC1x/resdintal.jpg", // A high-quality image of a residential project
+      image:
+        "https://i.ibb.co/svbRT4PJ/Whats-App-Image-2025-08-14-at-11-39-54-237f6213.jpg", // A high-quality image of a residential project
     },
   },
   {
     // Commercial
     showcase: {
       icon: <FaBuilding />,
-      image: "https://i.ibb.co/mHkC7dC/commerical.jpg", // A high-quality image of a commercial project
+      image:
+        "https://i.ibb.co/230kjT1y/Whats-App-Image-2025-08-14-at-11-55-30-589f6c94.jpg", // A high-quality image of a commercial project
     },
   },
 ];
@@ -99,8 +101,8 @@ const ShowcaseCard = styled.div`
     bottom: 0;
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.3) 100%
     );
     z-index: -1;
   }

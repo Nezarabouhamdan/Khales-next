@@ -98,8 +98,8 @@ const ShowcaseCard = styled.div`
     bottom: 0;
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.5) 100%
     );
     z-index: -1;
   }

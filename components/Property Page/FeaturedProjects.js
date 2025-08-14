@@ -12,7 +12,7 @@ import ImageWithSkeleton from "../ImageSkeleton";
 const SectionWrapper = styled.section`
   width: 100%;
   padding: 5rem 0;
-  background-color: #fff;
+  background-color: #f8f9fa; // خلفية بلون رمادي فاتح لكسر الروتين
   font-family: "Inter", sans-serif;
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
   overflow: hidden;

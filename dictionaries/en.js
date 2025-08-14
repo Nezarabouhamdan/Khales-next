@@ -2104,4 +2104,112 @@ export const dictionary = {
       },
     ],
   },
+  residentialPage: {
+    meta: {
+      title: "Residential Projects | Khales",
+      description:
+        "Discover our portfolio of bespoke residential spaces that blend luxury, comfort, and functionality, tailored to the unique lifestyles of our clients.",
+    },
+    header: {
+      tag: "RESIDENTIAL ARCHITECTURE",
+      title: "Crafting Homes, Building Dreams",
+      year: "2020-2024",
+      location: "Across the UAE",
+      services: "Full-Cycle Design & Build",
+      bgImage:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+    },
+    gallery: {
+      title: "Residential Showcase",
+      images: [
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80",
+      ],
+    },
+    overview: {
+      title: "The Art of Living",
+      text: [
+        "Our residential projects are more than just buildings; they are sanctuaries of personal expression. We focus on creating homes that are a true reflection of our clients' personalities and aspirations, blending timeless aesthetics with modern functionality.",
+        "From luxurious villas to contemporary family homes, our attention to detail in every phase ensures a living space that is both beautiful and built to last.",
+      ],
+      tag: "ELEGANCE & FUNCTIONALITY",
+      image:
+        "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80",
+    },
+    challenges: {
+      title: "Client-Centric Solutions",
+      text: "The primary challenge in residential design is translating a client's unique vision into a functional, beautiful, and compliant architectural reality. We excel at this through deep collaboration and iterative design.",
+      solutions: [
+        "Personalized design workshops to capture client needs.",
+        "Advanced 3D visualization for immersive previews.",
+        "Sustainable material sourcing for healthier living environments.",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80",
+    },
+    labels: {
+      year: "Year",
+      location: "Location",
+      services: "Services",
+      scrollLeft: "Scroll Left",
+      scrollRight: "Scroll Right",
+    },
+  },
+  commercialPage: {
+    meta: {
+      title: "Commercial Projects | Khales",
+      description:
+        "Explore our commercial architecture projects, designed to drive business success, enhance brand identities, and create lasting value.",
+    },
+    header: {
+      tag: "COMMERCIAL ARCHITECTURE",
+      title: "Building Structures for Success",
+      year: "2018-2024",
+      location: "Dubai, Abu Dhabi",
+      services: "Structural Design & Project Management",
+      bgImage:
+        "https://images.unsplash.com/photo-1599693351227-7729be15b84c?auto=format&fit=crop&q=80",
+    },
+    gallery: {
+      title: "Commercial Portfolio",
+      images: [
+        "https://images.unsplash.com/photo-1549492423-400259a4563b?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1581351639922-c31325154333?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1542372403-995f57a6b338?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1582211516195-2f949c812165?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80",
+      ],
+    },
+    overview: {
+      title: "Engineering for Enterprise",
+      text: [
+        "Our commercial projects are designed to be landmark structures that are both aesthetically impressive and highly functional. We focus on creating spaces that enhance productivity, reflect brand identity, and provide a return on investment.",
+        "From corporate headquarters to retail spaces, we deliver innovative solutions that meet the complex demands of the modern business world.",
+      ],
+      tag: "INNOVATION & EFFICIENCY",
+      image:
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+    },
+    challenges: {
+      title: "Navigating Complexity",
+      text: "Commercial projects involve complex regulatory, structural, and stakeholder requirements. Our integrated approach ensures all aspects are managed efficiently from start to finish.",
+      solutions: [
+        "BIM modeling for clash detection and efficiency.",
+        "Strict adherence to commercial building codes and safety standards.",
+        "Value engineering to optimize cost without compromising quality.",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit=crop&q=80",
+    },
+    labels: {
+      year: "Year",
+      location: "Location",
+      services: "Services",
+      scrollLeft: "Scroll Left",
+      scrollRight: "Scroll Right",
+    },
+  },
 };

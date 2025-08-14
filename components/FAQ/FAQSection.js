@@ -8,7 +8,8 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 // STYLED COMPONENTS for this section
 const StyledFAQSection = styled.section`
   padding: 6rem 2rem;
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; // خلفية بلون رمادي فاتح لكسر الروتين
+
   direction: ${(props) => (props.$isRTL ? "rtl" : "ltr")};
 
   .faq-container {

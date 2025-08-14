@@ -2095,4 +2095,112 @@ export const dictionary = {
       },
     ],
   },
+  residentialPage: {
+    meta: {
+      title: "مشاريع سكنية | خالص",
+      description:
+        "اكتشف مجموعتنا من المساحات السكنية المخصصة التي تمزج بين الفخامة والراحة والوظائف العملية، والمصممة خصيصًا لتناسب أنماط حياة عملائنا الفريدة.",
+    },
+    header: {
+      tag: "الهندسة المعمارية السكنية",
+      title: "نصنع المنازل، ونبني الأحلام",
+      year: "٢٠٢٠-٢٠٢٤",
+      location: "في جميع أنحاء الإمارات",
+      services: "تصميم وبناء متكامل",
+      bgImage:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+    },
+    gallery: {
+      title: "أعمالنا السكنية",
+      images: [
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit&crop&q=80",
+      ],
+    },
+    overview: {
+      title: "فن العيش",
+      text: [
+        "مشاريعنا السكنية هي أكثر من مجرد مبانٍ؛ إنها ملاذات للتعبير الشخصي. نحن نركز على إنشاء منازل تكون انعكاسًا حقيقيًا لشخصيات وتطلعات عملائنا، حيث نمزج بين الجماليات الخالدة والوظائف الحديثة.",
+        "من الفلل الفاخرة إلى المنازل العائلية المعاصرة، يضمن اهتمامنا بالتفاصيل في كل مرحلة مساحة معيشة جميلة ومبنية لتدوم.",
+      ],
+      tag: "الأناقة والوظائف العملية",
+      image:
+        "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit&crop&q=80",
+    },
+    challenges: {
+      title: "حلول تتمحور حول العميل",
+      text: "يكمن التحدي الأساسي في التصميم السكني في ترجمة رؤية العميل الفريدة إلى واقع معماري عملي وجميل ومتوافق مع الأنظمة. نحن نتفوق في ذلك من خلال التعاون العميق والتصميم التكراري.",
+      solutions: [
+        "ورش عمل تصميم مخصصة لفهم احتياجات العميل.",
+        "تصور ثلاثي الأبعاد متقدم لمعاينات غامرة.",
+        "توفير مواد مستدامة لبيئات معيشية صحية.",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit&crop&q=80",
+    },
+    labels: {
+      year: "السنة",
+      location: "الموقع",
+      services: "الخدمات",
+      scrollLeft: "التمرير لليسار",
+      scrollRight: "التمرير لليمين",
+    },
+  },
+  commercialPage: {
+    meta: {
+      title: "مشاريع تجارية | خالص",
+      description:
+        "استكشف مشاريعنا المعمارية التجارية، المصممة لدفع نجاح الأعمال وتعزيز الهويات التجارية وخلق قيمة دائمة.",
+    },
+    header: {
+      tag: "الهندسة المعمارية التجارية",
+      title: "بناء هياكل للنجاح",
+      year: "٢٠١٨-٢٠٢٤",
+      location: "دبي، أبوظبي",
+      services: "تصميم إنشائي وإدارة مشاريع",
+      bgImage:
+        "https://images.unsplash.com/photo-1599693351227-7729be15b84c?auto=format&fit&crop&q=80",
+    },
+    gallery: {
+      title: "أعمالنا التجارية",
+      images: [
+        "https://images.unsplash.com/photo-1549492423-400259a4563b?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1581351639922-c31325154333?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1542372403-995f57a6b338?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1582211516195-2f949c812165?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit&crop&q=80",
+      ],
+    },
+    overview: {
+      title: "هندسة للمؤسسات",
+      text: [
+        "تم تصميم مشاريعنا التجارية لتكون هياكل بارزة تتميز بالجمال والوظائف العالية. نركز على خلق مساحات تعزز الإنتاجية، وتعكس هوية العلامة التجارية، وتوفر عائدًا على الاستثمار.",
+        "من المقرات الرئيسية للشركات إلى مساحات البيع بالتجزئة، نقدم حلولاً مبتكرة تلبي المتطلبات المعقدة لعالم الأعمال الحديث.",
+      ],
+      tag: "الابتكار والكفاءة",
+      image:
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit&crop&q=80",
+    },
+    challenges: {
+      title: "التعامل مع التعقيد",
+      text: "تنطوي المشاريع التجارية على متطلبات تنظيمية وهيكلية معقدة ومتطلبات لأصحاب المصلحة. يضمن نهجنا المتكامل إدارة جميع الجوانب بكفاءة من البداية إلى النهاية.",
+      solutions: [
+        "نمذجة معلومات البناء (BIM) لكشف التضارب والكفاءة.",
+        "الالتزام الصارم بقوانين البناء التجارية ومعايير السلامة.",
+        "الهندسة القيمية لتحسين التكلفة دون المساس بالجودة.",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit&crop&q=80",
+    },
+    labels: {
+      year: "السنة",
+      location: "الموقع",
+      services: "الخدمات",
+      scrollLeft: "التمرير لليسار",
+      scrollRight: "التمرير لليمين",
+    },
+  },
 };
