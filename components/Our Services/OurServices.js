@@ -19,7 +19,7 @@ const servicesConfig = [
   {
     showcase: {
       icon: <FaStar />,
-      image: "https://i.ibb.co/pGxx8cp/ENG.png",
+      image: "https://i.ibb.co/27vKcS6W/Screenshot-2025-08-14-165427.png",
     },
     features: [{ icon: <FaProjectDiagram /> }, { icon: <FaClipboardCheck /> }],
   },

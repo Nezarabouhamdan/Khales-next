@@ -766,8 +766,8 @@ export const dictionary = {
       description2:
         "This service is ideal for clients who want peace of mind, fewer headaches, and a professional team ensuring that the work is done right — on time, on budget, and to the standard you expect.",
       images: [
-        "https://i.ibb.co/0p4fvRvH/Whats-App-Image-2025-08-14-at-16-06-36-b6ec4887.jpg",
-        "https://i.ibb.co/CKYCGpZX/Whats-App-Image-2025-08-14-at-16-09-02-fe6bd419.jpg",
+        "https://i.ibb.co/1frFMZZw/Screenshot-2025-08-14-165439.png",
+        "https://i.ibb.co/vCXdS2Zt/Screenshot-2025-08-14-165411.png",
       ],
     },
     process: {
