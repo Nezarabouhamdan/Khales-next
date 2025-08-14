@@ -4,9 +4,8 @@ import React, { useRef, useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
 import { FaCheckCircle, FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import Image from "next/image"; // PERF: Import Next.js Image component
+import Image from "next/image";
 
-// PERF: Define variants outside the component to prevent re-creation on every render.
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15, duration: 0.5 } },
@@ -20,9 +19,6 @@ const itemVariants = {
   },
 };
 
-// --- STYLED COMPONENTS (With Performance Enhancements) ---
-
-// PERF: Applying will-change tells the browser to optimize for this animation
 const kenBurns = keyframes`
   0% { transform: scale(1.0); } 100% { transform: scale(1.1); }
 `;
@@ -43,8 +39,6 @@ const HeaderSection = styled.header`
   text-align: center;
   position: relative;
   overflow: hidden;
-
-  /* PERF: Isolate the animated image to its own layer and hint browser for optimization */
   .bg-image-wrapper {
     position: absolute;
     top: 0;
@@ -53,12 +47,10 @@ const HeaderSection = styled.header`
     height: 100%;
     overflow: hidden;
     z-index: 1;
-    opacity: 0.15; /* A bit more visible */
-    will-change: transform, opacity; /* Hint for GPU acceleration */
+    opacity: 0.15;
+    will-change: transform, opacity;
     animation: ${kenBurns} 25s ease-in-out infinite alternate;
   }
-
-  /* FIX: Added a semi-transparent gradient so text is always readable */
   &::before {
     content: "";
     position: absolute;
@@ -78,7 +70,7 @@ const HeaderSection = styled.header`
 
 const HeaderContentContainer = styled(motion.div)`
   position: relative;
-  z-index: 3; /* Must be above the overlay */
+  z-index: 3;
   max-width: 800px;
   margin: 0 auto;
 `;
@@ -121,9 +113,7 @@ const GalleryImage = styled(motion.div)`
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   position: relative;
-  /* PERF: GPU acceleration hint for hover effect */
   will-change: transform;
-
   @media (max-width: 768px) {
     width: 300px;
     height: 200px;
@@ -144,17 +134,14 @@ const ContentBlock = styled(motion.div)`
 
 const ImageWrapper = styled(motion.div)`
   flex: 1;
-  position: relative; /* Required for Next/Image fill */
-  min-height: 400px; /* Give it a default height */
-
+  position: relative;
+  min-height: 400px;
   img {
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
 `;
 
-// (Other styled-components like TextWrapper, MetaGrid, etc., can remain the same)
-// ... all other styled-components go here ...
 const HeaderTag = styled(motion.p)`
   color: #66a109;
   font-weight: 600;
@@ -204,7 +191,6 @@ const SectionHeader = styled(motion.div)`
   align-items: center;
   margin-bottom: 2rem;
   padding-top: 5rem;
-
   .title-container {
     text-align: ${({ lang }) => (lang === "ar" ? "right" : "left")};
     h2 {
@@ -238,7 +224,6 @@ const ArrowButton = styled.button`
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-
   &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
@@ -294,9 +279,11 @@ const StyledList = styled(motion.ul)`
   }
 `;
 
-// --- MAIN COMPONENT (Optimized) ---
-
 const ProjectTypePageClient = ({ lang, content }) => {
+  if (!content) {
+    return null;
+  }
+
   const { header, gallery, overview, challenges, labels } = content;
 
   const galleryRef = useRef(null);
@@ -306,7 +293,6 @@ const ProjectTypePageClient = ({ lang, content }) => {
   const LeftArrowIcon = lang === "ar" ? FaArrowRight : FaArrowLeft;
   const RightArrowIcon = lang === "ar" ? FaArrowLeft : FaArrowRight;
 
-  // This logic is fine, no changes needed here.
   const checkScrollability = () => {
     const el = galleryRef.current;
     if (el) {
@@ -320,7 +306,7 @@ const ProjectTypePageClient = ({ lang, content }) => {
     const el = galleryRef.current;
     if (el) {
       checkScrollability();
-      el.addEventListener("scroll", checkScrollability, { passive: true }); // PERF: Use passive listener
+      el.addEventListener("scroll", checkScrollability, { passive: true });
       window.addEventListener("resize", checkScrollability, { passive: true });
       return () => {
         el.removeEventListener("scroll", checkScrollability);
@@ -341,14 +327,13 @@ const ProjectTypePageClient = ({ lang, content }) => {
   return (
     <PageWrapper lang={lang}>
       <HeaderSection>
-        {/* PERF: Use Next/Image for optimization, lazy loading, and priority loading */}
         <div className="bg-image-wrapper">
           <Image
             src={header.bgImage}
             alt={header.title}
             fill
             style={{ objectFit: "cover" }}
-            priority={true} // PERF: Load this image first for good LCP
+            priority={true}
             sizes="100vw"
           />
         </div>
@@ -423,13 +408,12 @@ const ProjectTypePageClient = ({ lang, content }) => {
                 key={i}
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
               >
-                {/* PERF: Use Next/Image for all images */}
                 <Image
                   src={src}
                   alt={`${gallery.title} ${i + 1}`}
                   fill
                   style={{ objectFit: "cover" }}
-                  sizes="(max-width: 768px) 300px, 400px" // PERF: Tell browser how big image will be
+                  sizes="(max-width: 768px) 300px, 400px"
                 />
               </GalleryImage>
             ))}
@@ -452,7 +436,6 @@ const ProjectTypePageClient = ({ lang, content }) => {
               <p className="tag">{overview.tag}</p>
             </TextWrapper>
             <ImageWrapper variants={itemVariants}>
-              {/* PERF: Use Next/Image here too */}
               <Image
                 src={overview.image}
                 alt={overview.title}
@@ -483,7 +466,6 @@ const ProjectTypePageClient = ({ lang, content }) => {
               </StyledList>
             </TextWrapper>
             <ImageWrapper variants={itemVariants}>
-              {/* PERF: And here */}
               <Image
                 src={challenges.image}
                 alt={challenges.title}
