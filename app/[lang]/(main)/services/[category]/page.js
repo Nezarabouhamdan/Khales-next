@@ -7,7 +7,7 @@ import ServiceCategoryClientPage from "@/pages/ServiceCategoryClientPage";
 export async function generateStaticParams() {
   return [
     { category: "project-management" },
-    { category: "engineering-consultancy" },
+    { category: "EngineeringConsultancy" },
   ];
 }
 
