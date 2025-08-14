@@ -283,12 +283,6 @@ export default async function Home({ params: { lang } }) {
       >
         <OurServices content={dictionary.services || {}} lang={lang} />
       </section>
-      <section
-        id="project-types"
-        aria-label="Our Residential and Commercial Project Types"
-      >
-        <ProjectTypes content={dictionary.projectTypes || {}} lang={lang} />
-      </section>
 
       <section
         id="projects"
