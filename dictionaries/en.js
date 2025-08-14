@@ -47,12 +47,12 @@ export const dictionary = {
       },
       // FIX: New "Company" dropdown containing About, Blogs, and Connect
       {
-        label: "Company",
+        label: "About us",
         isDropdown: true,
         children: [
           { label: "About Khales", path: "/about-us" },
           { label: "Blogs", path: "/blog" },
-          { label: "Connect", path: "/Contact" },
+          { label: "Contact us", path: "/Contact" },
         ],
       },
     ],
@@ -2076,5 +2076,32 @@ export const dictionary = {
     description:
       "Oops! The page you are looking for does not exist. It might have been moved or deleted.",
     buttonText: "Go to Homepage",
+  },
+  projectTypes: {
+    header: {
+      title: "Projects Types",
+      subtitle:
+        "From visionary residential designs to landmark commercial structures, our portfolio showcases our commitment to excellence across all sectors.",
+    },
+    items: [
+      {
+        title: "Residential",
+        highlight: "Spaces",
+        description:
+          "We craft bespoke living spaces that blend luxury, comfort, and functionality, tailored to the unique lifestyles of our clients. Every home we design is a sanctuary of personal expression.",
+        showcaseSubtitle: "Homes that inspire...",
+        linkText: "Explore Residential Work",
+        slug: "residential",
+      },
+      {
+        title: "Commercial",
+        highlight: "Properties",
+        description:
+          "Our expertise in commercial architecture delivers innovative and efficient structures that drive business success, enhance brand identities, and create lasting value for stakeholders.",
+        showcaseSubtitle: "Structures that perform...",
+        linkText: "Explore Commercial Work",
+        slug: "commercial",
+      },
+    ],
   },
 };

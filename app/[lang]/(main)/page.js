@@ -15,6 +15,7 @@ import CTASection from "@/components/Homecontact/CTASection";
 import EnhancedContent from "@/components/EnhanceContent";
 import FAQSection from "@/components/FAQ/FAQSection";
 import FeaturedBlogs from "@/components/FeaturedBlogs/FeaturedBlogs";
+import ProjectTypes from "@/components/Projecttypes/ProjectTypes";
 
 // --- STRUCTURED DATA --- (Updated with Blog Section)
 const getHomePageSchema = (lang) => {
@@ -281,6 +282,12 @@ export default async function Home({ params: { lang } }) {
         aria-label="Our Architecture and Interior Design Services"
       >
         <OurServices content={dictionary.services || {}} lang={lang} />
+      </section>
+      <section
+        id="project-types"
+        aria-label="Our Residential and Commercial Project Types"
+      >
+        <ProjectTypes content={dictionary.projectTypes || {}} lang={lang} />
       </section>
 
       <section

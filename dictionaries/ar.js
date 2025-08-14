@@ -44,12 +44,12 @@ export const dictionary = {
       },
       // FIX: New "الشركة" dropdown containing About, Blogs, and Connect
       {
-        label: "الشركة",
+        label: "نبذة عنا",
         isDropdown: true,
         children: [
-          { label: "نبذة عنا", path: "/about-us" },
+          { label: "نبذة عن خالص", path: "/about-us" },
           { label: "المدونة", path: "/blog" },
-          { label: "اتصل بنا", path: "/Contact" },
+          { label: "تواصل معنا", path: "/Contact" },
         ],
       },
     ],
