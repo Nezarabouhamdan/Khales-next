@@ -66,7 +66,7 @@ export default function Hero({ slides = [], lang, isHomePage = false }) {
           - It sits behind the video, providing an instant visual.
       */}
       <Image
-        src="/assets/hero-poster.jpg"
+        src="https://i.ibb.co/5WF79tJr/ezgif-frame-048.jpg"
         alt="Khales architectural design poster" // SEO: Descriptive alt text
         fill
         style={{ objectFit: "cover", zIndex: 1 }}

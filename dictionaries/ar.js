@@ -509,10 +509,8 @@ export const dictionary = {
         },
       ],
     },
-  }, // dictionaries/ar.js
-  // ... (all your existing dictionary objects in Arabic)
+  },
 
-  // ======================= ADD THIS ENTIRE NEW OBJECT =======================
   interiorDesignPage: {
     slides: [
       {
@@ -600,10 +598,8 @@ export const dictionary = {
         },
       ],
     },
-  }, // dictionaries/ar.js
-  // ... (all your existing dictionary objects in Arabic)
+  },
 
-  // ======================= ADD THIS ENTIRE NEW OBJECT =======================
   landscapeDesignPage: {
     slides: [
       {
@@ -711,10 +707,7 @@ export const dictionary = {
       ],
     },
   },
-  // dictionaries/ar.js
-  // ... (all your existing dictionary objects in Arabic)
 
-  // ======================= ADD THIS ENTIRE NEW OBJECT =======================
   projectManagementPage: {
     slides: [
       {
@@ -831,10 +824,7 @@ export const dictionary = {
       ],
     },
   },
-  // dictionaries/ar.js
-  // ... (all your existing dictionary objects in Arabic)
 
-  // ======================= ADD THIS ENTIRE NEW OBJECT =======================
   projectManagerPage: {
     slides: [
       {
@@ -1965,8 +1955,7 @@ export const dictionary = {
       successMessage: "تم الإرسال بنجاح! سنتواصل معك قريباً.",
       errorMessage: "حدث خطأ: يرجى المحاولة مرة أخرى.",
     },
-  }, // ... (inside the export const dictionary = { ... })
-
+  },
   privacyPolicyPage: {
     // For Metadata
     metaTitle: "سياسة الخصوصية | مجموعة خالص",
@@ -2078,5 +2067,32 @@ export const dictionary = {
     description:
       "عفوًا! الصفحة التي تبحث عنها غير موجودة. ربما تم نقلها أو حذفها.",
     buttonText: "العودة إلى الصفحة الرئيسية",
+  },
+  projectTypes: {
+    header: {
+      title: "أنواع المشاريع",
+      subtitle:
+        "من التصاميم السكنية ذات الرؤية المستقبلية إلى المباني التجارية البارزة، تعرض محفظة أعمالنا التزامنا بالتميز في جميع القطاعات.",
+    },
+    items: [
+      {
+        title: "المشاريع ",
+        highlight: "السكنية",
+        description:
+          "نحن نصنع مساحات معيشية مخصصة تمزج بين الفخامة والراحة والوظائف العملية، ومصممة خصيصًا لتناسب أنماط حياة عملائنا الفريدة. كل منزل نصممه هو ملاذ للتعبير الشخصي.",
+        showcaseSubtitle: "منازل تُلهم...",
+        linkText: "استكشف المشاريع السكنية",
+        slug: "residential",
+      },
+      {
+        title: "المشاريع ",
+        highlight: "التجارية",
+        description:
+          "تقدم خبرتنا في الهندسة المعمارية التجارية هياكل مبتكرة وفعالة تدفع نجاح الأعمال، وتعزز الهويات التجارية، وتخلق قيمة دائمة لأصحاب المصلحة.",
+        showcaseSubtitle: "مبانٍ ذات أداء...",
+        linkText: "استكشف المشاريع التجارية",
+        slug: "commercial",
+      },
+    ],
   },
 };
