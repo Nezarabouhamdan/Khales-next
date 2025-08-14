@@ -2,7 +2,7 @@
 
 import React from "react";
 import { getDictionary } from "@/get-dictionary";
-import EngineeringSupervisionPage from "@/Pages/EngineeringSupervisionPage";
+import EngineeringSupervisionPage from "@/pages/EngineeringSupervisionPage";
 import FaqSchema from "@/components/FaqSchema/FaqSchema"; // <-- 1. IMPORT
 import { generatePageMetadata } from "@/lib/metadata";
 

@@ -1,6 +1,6 @@
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata"; // Your metadata utility
-import BookingPageClient from "@/Pages/BookingPage";
+import BookingPageClient from "@/pages/BookingPage";
 
 // Helper component to render JSON-LD schema
 const JsonLdSchema = ({ data }) => (

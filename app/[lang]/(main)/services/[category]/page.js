@@ -1,7 +1,7 @@
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
-import ServiceCategoryClientPage from "@/Pages/ServiceCategoryClientPage";
+import ServiceCategoryClientPage from "@/pages/ServiceCategoryClientPage";
 
 // This tells Next.js which category pages to pre-build
 export async function generateStaticParams() {

@@ -1,6 +1,6 @@
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
-import BlogsPageClient from "@/Pages/BlogsPage";
+import BlogsPageClient from "@/pages/BlogsPage";
 
 // THE FIX IS HERE: Define the helper component before using it.
 const JsonLdSchema = ({ data }) => (
