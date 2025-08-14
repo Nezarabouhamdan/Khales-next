@@ -2104,6 +2104,7 @@ export const dictionary = {
       },
     ],
   },
+
   residentialPage: {
     meta: {
       title: "Residential Projects | Khales",
@@ -2125,8 +2126,8 @@ export const dictionary = {
         "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit&crop&q=80",
       ],
     },
     overview: {
@@ -2177,9 +2178,9 @@ export const dictionary = {
       title: "Commercial Portfolio",
       images: [
         "https://images.unsplash.com/photo-1549492423-400259a4563b?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1581351639922-c31325154333?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1542372403-995f57a6b338?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1582211516195-2f949c812165?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1581351639922-c31325154333?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1542372403-995f57a6b338?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1582211516195-2f949c812165?auto=format&fit&crop&q=80",
         "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80",
       ],
     },

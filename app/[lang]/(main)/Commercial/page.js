@@ -1,6 +1,6 @@
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
-import ProjectTypePageClient from "@/pages/ProjectTypePageClient";
+import ProjectTypePageClient from "@/Pages/ProjectTypePageClient";
 
 // Generate dynamic, translated metadata for this page
 export async function generateMetadata({ params: { lang } }) {

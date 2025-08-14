@@ -3,7 +3,7 @@
 import React from "react";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
-import DevelopmentplanningPage from "@/pages/DevelopmentplanningPage";
+import DevelopmentplanningPage from "@/Pages/DevelopmentplanningPage";
 import FaqSchema from "@/components/FaqSchema/FaqSchema";
 
 export async function generateMetadata({ params: { lang } }) {

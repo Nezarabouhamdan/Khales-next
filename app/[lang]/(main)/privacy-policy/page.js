@@ -1,6 +1,6 @@
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
-import PrivacyPolicyClientPage from "@/pages/PrivacyPolicyClientPage";
+import PrivacyPolicyClientPage from "@/Pages/PrivacyPolicyClientPage";
 
 // Generate dynamic metadata for the privacy policy page
 export async function generateMetadata({ params: { lang } }) {

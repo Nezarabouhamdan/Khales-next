@@ -2,7 +2,7 @@
 
 import React from "react";
 import { getDictionary } from "@/get-dictionary";
-import FeasibilityStudyPage from "@/pages/Projectstudy";
+import FeasibilityStudyPage from "@/Pages/Projectstudy";
 
 // ======================= THE FIX IS HERE =======================
 // The metadata function now correctly uses the dictionary to get the title

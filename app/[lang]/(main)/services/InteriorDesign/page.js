@@ -3,7 +3,7 @@
 import React from "react";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
-import InteriorDesignPage from "@/pages/InteriorDesignPage";
+import InteriorDesignPage from "@/Pages/InteriorDesignPage";
 import FaqSchema from "@/components/FaqSchema/FaqSchema";
 import Script from "next/script";
 

@@ -2128,7 +2128,7 @@ export const dictionary = {
       ],
       tag: "الأناقة والوظائف العملية",
       image:
-        "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80",
     },
     challenges: {
       title: "حلول تتمحور حول العميل",

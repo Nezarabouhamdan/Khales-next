@@ -1,6 +1,6 @@
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
-import AboutUsPageClient from "@/pages/AboutsusPage";
+import AboutUsPageClient from "@/Pages/AboutsusPage";
 
 // Helper component to render JSON-LD schema cleanly
 const JsonLdSchema = ({ data }) => (

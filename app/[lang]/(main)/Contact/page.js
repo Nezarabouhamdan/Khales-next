@@ -4,7 +4,7 @@ import React from "react";
 import Script from "next/script";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
-import ContactPage from "@/pages/ContactPage";
+import ContactPage from "@/Pages/ContactPage";
 
 const getContactPageSchema = (lang) => {
   const name = lang === "ar" ? "تواصل مع خالص" : "Contact Khales";
