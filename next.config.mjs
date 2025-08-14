@@ -13,6 +13,7 @@ const nextConfig = {
       "www.tsilimited.com",
       "images.pexels.com",
       "cdn.builder.io", // And add the new one
+      "images.unsplash.com",
     ],
     remotePatterns: [
       {

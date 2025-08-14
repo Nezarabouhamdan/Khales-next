@@ -4,11 +4,25 @@ import React, { useRef, useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
 import { FaCheckCircle, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Image from "next/image"; // PERF: Import Next.js Image component
 
-// Keyframes and most styled-components remain the same.
-// Only the components that depend on `lang` for direction are shown for brevity.
-// The full code is provided at the end.
+// PERF: Define variants outside the component to prevent re-creation on every render.
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15, duration: 0.5 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 
+// --- STYLED COMPONENTS (With Performance Enhancements) ---
+
+// PERF: Applying will-change tells the browser to optimize for this animation
 const kenBurns = keyframes`
   0% { transform: scale(1.0); } 100% { transform: scale(1.1); }
 `;
@@ -22,8 +36,6 @@ const PageWrapper = styled.div`
   overflow-x: hidden;
 `;
 
-// --- (Include all other styled components from your original code here) ---
-// --- Hero Banner Styles ---
 const HeaderSection = styled.header`
   background-color: #121212;
   color: #fff;
@@ -31,16 +43,22 @@ const HeaderSection = styled.header`
   text-align: center;
   position: relative;
   overflow: hidden;
-  .bg-image {
+
+  /* PERF: Isolate the animated image to its own layer and hint browser for optimization */
+  .bg-image-wrapper {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0.1;
-    animation: ${kenBurns} 20s ease-in-out infinite alternate;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0.15; /* A bit more visible */
+    will-change: transform, opacity; /* Hint for GPU acceleration */
+    animation: ${kenBurns} 25s ease-in-out infinite alternate;
   }
+
+  /* FIX: Added a semi-transparent gradient so text is always readable */
   &::before {
     content: "";
     position: absolute;
@@ -48,27 +66,21 @@ const HeaderSection = styled.header`
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 2;
     background: linear-gradient(
       to top,
-      rgba(18, 18, 18, 0) 0%,
-      rgba(18, 18, 18, 0) 50%,
-      rgba(18, 18, 18, 0) 100%
+      rgba(18, 18, 18, 0.8) 0%,
+      rgba(18, 18, 18, 0.4) 50%,
+      rgba(18, 18, 18, 0.8) 100%
     );
   }
 `;
 
 const HeaderContentContainer = styled(motion.div)`
   position: relative;
-  z-index: 2;
+  z-index: 3; /* Must be above the overlay */
   max-width: 800px;
   margin: 0 auto;
-`;
-
-const HeaderTag = styled(motion.p)`
-  color: #66a109;
-  font-weight: 600;
-  margin-bottom: 1rem;
 `;
 
 const MainTitle = styled(motion.h1)`
@@ -81,13 +93,79 @@ const MainTitle = styled(motion.h1)`
   }
 `;
 
+const GalleryWrapper = styled.div`
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
+  margin: 0 -2rem 10rem -2rem;
+`;
+
+const GalleryScrollContainer = styled(motion.div)`
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  width: max-content;
+`;
+
+const GalleryImage = styled(motion.div)`
+  flex-shrink: 0;
+  width: 400px;
+  height: 250px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  /* PERF: GPU acceleration hint for hover effect */
+  will-change: transform;
+
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 200px;
+  }
+`;
+
+const ContentBlock = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  margin-bottom: 10rem;
+  flex-direction: ${(props) => (props.reverse ? "row-reverse" : "row")};
+  @media (max-width: 992px) {
+    flex-direction: column-reverse;
+    gap: 3rem;
+  }
+`;
+
+const ImageWrapper = styled(motion.div)`
+  flex: 1;
+  position: relative; /* Required for Next/Image fill */
+  min-height: 400px; /* Give it a default height */
+
+  img {
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+// (Other styled-components like TextWrapper, MetaGrid, etc., can remain the same)
+// ... all other styled-components go here ...
+const HeaderTag = styled(motion.p)`
+  color: #66a109;
+  font-weight: 600;
+  margin-bottom: 1rem;
+`;
 const TitleUnderline = styled(motion.div)`
   width: 80px;
   height: 3px;
   background-color: #66a109;
   margin: 0 auto 2.5rem;
 `;
-
 const MetaGrid = styled(motion.div)`
   display: flex;
   justify-content: center;
@@ -112,18 +190,14 @@ const MetaGrid = styled(motion.div)`
     }
   }
 `;
-
-// --- Main Content Styles ---
 const MainContentSection = styled.section`
   padding-bottom: 5rem;
 `;
-
 const MaxWidthContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 `;
-
 const SectionHeader = styled(motion.div)`
   display: flex;
   justify-content: space-between;
@@ -148,12 +222,10 @@ const SectionHeader = styled(motion.div)`
     }
   }
 `;
-
 const NavArrows = styled.div`
   display: flex;
   gap: 1rem;
 `;
-
 const ArrowButton = styled.button`
   width: 50px;
   height: 50px;
@@ -179,59 +251,6 @@ const ArrowButton = styled.button`
     transform: scale(1.05);
   }
 `;
-
-const GalleryWrapper = styled.div`
-  overflow-x: auto;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  cursor: grab;
-  &:active {
-    cursor: grabbing;
-  }
-  margin: 0 -2rem 10rem -2rem; /* Allow gallery to bleed out */
-`;
-
-const GalleryScrollContainer = styled(motion.div)`
-  display: flex;
-  gap: 2rem;
-  padding: 1rem 2rem;
-  width: max-content;
-`;
-
-const GalleryImage = styled(motion.div)`
-  flex-shrink: 0;
-  width: 400px;
-  height: 250px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  position: relative;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-  }
-  @media (max-width: 768px) {
-    width: 300px;
-    height: 200px;
-  }
-`;
-
-const ContentBlock = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  gap: 5rem;
-  margin-bottom: 10rem;
-  flex-direction: ${(props) => (props.reverse ? "row-reverse" : "row")};
-  @media (max-width: 992px) {
-    flex-direction: column-reverse;
-    gap: 3rem;
-  }
-`;
-
 const TextWrapper = styled(motion.div)`
   flex: 1.2;
   h3 {
@@ -253,16 +272,6 @@ const TextWrapper = styled(motion.div)`
     display: inline-block;
   }
 `;
-
-const ImageWrapper = styled(motion.div)`
-  flex: 1;
-  img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
-`;
-
 const StyledList = styled(motion.ul)`
   list-style: none;
   padding: 0;
@@ -285,22 +294,22 @@ const StyledList = styled(motion.ul)`
   }
 `;
 
+// --- MAIN COMPONENT (Optimized) ---
+
 const ProjectTypePageClient = ({ lang, content }) => {
-  // Destructure content from props, not a static object
   const { header, gallery, overview, challenges, labels } = content;
 
   const galleryRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // Define arrows based on language direction
   const LeftArrowIcon = lang === "ar" ? FaArrowRight : FaArrowLeft;
   const RightArrowIcon = lang === "ar" ? FaArrowLeft : FaArrowRight;
 
+  // This logic is fine, no changes needed here.
   const checkScrollability = () => {
     const el = galleryRef.current;
     if (el) {
-      // Consistent logic regardless of RTL
       const { scrollLeft, scrollWidth, clientWidth } = el;
       setCanScrollLeft(scrollLeft > 10);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
@@ -311,8 +320,8 @@ const ProjectTypePageClient = ({ lang, content }) => {
     const el = galleryRef.current;
     if (el) {
       checkScrollability();
-      el.addEventListener("scroll", checkScrollability);
-      window.addEventListener("resize", checkScrollability);
+      el.addEventListener("scroll", checkScrollability, { passive: true }); // PERF: Use passive listener
+      window.addEventListener("resize", checkScrollability, { passive: true });
       return () => {
         el.removeEventListener("scroll", checkScrollability);
         window.removeEventListener("resize", checkScrollability);
@@ -324,33 +333,25 @@ const ProjectTypePageClient = ({ lang, content }) => {
     const el = galleryRef.current;
     if (el) {
       const scrollAmount = el.clientWidth * 0.8;
-      // Invert scroll direction for RTL
       const scrollValue = direction === "left" ? -scrollAmount : scrollAmount;
-
-      el.scrollBy({
-        left: scrollValue,
-        behavior: "smooth",
-      });
+      el.scrollBy({ left: scrollValue, behavior: "smooth" });
     }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
   };
 
   return (
     <PageWrapper lang={lang}>
       <HeaderSection>
-        <img src={header.bgImage} alt={header.title} className="bg-image" />
+        {/* PERF: Use Next/Image for optimization, lazy loading, and priority loading */}
+        <div className="bg-image-wrapper">
+          <Image
+            src={header.bgImage}
+            alt={header.title}
+            fill
+            style={{ objectFit: "cover" }}
+            priority={true} // PERF: Load this image first for good LCP
+            sizes="100vw"
+          />
+        </div>
         <HeaderContentContainer
           initial="hidden"
           animate="visible"
@@ -418,8 +419,18 @@ const ProjectTypePageClient = ({ lang, content }) => {
         >
           <GalleryScrollContainer>
             {gallery.images.map((src, i) => (
-              <GalleryImage key={i} whileHover={{ y: -10 }}>
-                <img src={src} alt={`${gallery.title} ${i + 1}`} />
+              <GalleryImage
+                key={i}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              >
+                {/* PERF: Use Next/Image for all images */}
+                <Image
+                  src={src}
+                  alt={`${gallery.title} ${i + 1}`}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 768px) 300px, 400px" // PERF: Tell browser how big image will be
+                />
               </GalleryImage>
             ))}
           </GalleryScrollContainer>
@@ -441,7 +452,14 @@ const ProjectTypePageClient = ({ lang, content }) => {
               <p className="tag">{overview.tag}</p>
             </TextWrapper>
             <ImageWrapper variants={itemVariants}>
-              <img src={overview.image} alt={overview.title} />
+              {/* PERF: Use Next/Image here too */}
+              <Image
+                src={overview.image}
+                alt={overview.title}
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 992px) 100vw, 50vw"
+              />
             </ImageWrapper>
           </ContentBlock>
 
@@ -465,7 +483,14 @@ const ProjectTypePageClient = ({ lang, content }) => {
               </StyledList>
             </TextWrapper>
             <ImageWrapper variants={itemVariants}>
-              <img src={challenges.image} alt={challenges.title} />
+              {/* PERF: And here */}
+              <Image
+                src={challenges.image}
+                alt={challenges.title}
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 992px) 100vw, 50vw"
+              />
             </ImageWrapper>
           </ContentBlock>
         </MaxWidthContainer>
