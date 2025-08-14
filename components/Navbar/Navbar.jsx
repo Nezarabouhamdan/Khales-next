@@ -1,4 +1,3 @@
-// components/Navbar/Navbar.jsx
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -25,7 +24,7 @@ const useClickOutside = (ref, handler) => {
 };
 
 // ===================================================================
-// STYLED COMPONENTS (No changes needed here)
+// STYLED COMPONENTS (No changes needed here, copy as is)
 // ===================================================================
 const COLORS = {
   primary: "#66a109",
@@ -240,36 +239,6 @@ const NavActions = styled.div`
   }
 `;
 
-const CTAButton = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  background-color: ${COLORS.primary};
-  color: ${COLORS.white};
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  &:hover {
-    background-color: ${COLORS.primaryDarker};
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(102, 161, 9, 0.3);
-  }
-`;
-
-const MobileCTAWrapper = styled.div`
-  display: none;
-  @media screen and (max-width: 960px) {
-    display: block;
-    width: 100%;
-    margin-top: auto;
-    padding-top: 2rem;
-  }
-`;
-
 const LanguageButton = styled.div`
   display: flex;
   align-items: center;
@@ -329,7 +298,6 @@ export default function Navbar({ lang, navigation }) {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
-  // This is your original, working function that correctly replaces the locale.
   const redirectedPathName = (locale) => {
     if (!pathname) return "/";
     const segments = pathname.split("/");
@@ -338,7 +306,6 @@ export default function Navbar({ lang, navigation }) {
   };
 
   const navItems = navigation?.items || [];
-  const ctaButtonText = navigation?.ctaButton || "Loading...";
 
   const MainNavLinks = () => (
     <>
@@ -397,7 +364,6 @@ export default function Navbar({ lang, navigation }) {
 
         <NavMenu $isOpen={isMobileMenuOpen} ref={navRef}>
           <MainNavLinks />
-
           <MenuItem className="mobile-only-lang">
             <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
               <LanguageButton>
@@ -456,16 +422,9 @@ export default function Navbar({ lang, navigation }) {
               }
             }
           `}</style>
-
-          <MobileCTAWrapper>
-            <CTAButton href={`/${lang}/booking`}>{ctaButtonText}</CTAButton>
-          </MobileCTAWrapper>
         </NavMenu>
 
         <NavActions>
-          {/* ======================= THE FIX IS HERE ======================= */}
-          {/* This language switcher now uses the same <MenuItem> structure as everything else, */}
-          {/* which guarantees clicks on the links inside will work correctly. */}
           <MenuItem>
             <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
               <LanguageButton>
@@ -511,8 +470,10 @@ export default function Navbar({ lang, navigation }) {
               </SubMenuItem>
             </SubMenu>
           </MenuItem>
+
+          {/* ======================= THE FIX IS HERE ======================= */}
+          {/* The CTAButton has been completely removed from here */}
           {/* =============================================================== */}
-          <CTAButton href={`/${lang}/booking`}>{ctaButtonText}</CTAButton>
         </NavActions>
       </NavbarContainer>
     </NavWrapper>

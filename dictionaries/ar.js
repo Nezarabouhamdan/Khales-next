@@ -17,6 +17,14 @@ export const dictionary = {
         isDropdown: false,
       },
       {
+        label: "أنواع المشاريع",
+        isDropdown: true,
+        children: [
+          { label: "سكني", path: "/Residential" },
+          { label: "تجاري", path: "/Commercial" },
+        ],
+      },
+      {
         label: "إدارة مشاريع",
         isDropdown: true,
         children: [

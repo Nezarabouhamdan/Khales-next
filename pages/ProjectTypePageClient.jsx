@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
 import { FaCheckCircle, FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import Image from "next/image";
+import ImageWithSkeleton from "@/components/ImageSkeleton";
+// 1. IMPORT THE CTA SECTION COMPONENT
+import CTASection from "@/components/Homecontact/CTASection";
 
+// ... All styled-components and variants remain the same ...
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15, duration: 0.5 } },
@@ -18,11 +21,9 @@ const itemVariants = {
     transition: { duration: 0.5, ease: "easeOut" },
   },
 };
-
 const kenBurns = keyframes`
   0% { transform: scale(1.0); } 100% { transform: scale(1.1); }
 `;
-
 const PageWrapper = styled.div`
   background-color: #ffffff;
   font-family: ${({ lang }) =>
@@ -31,7 +32,6 @@ const PageWrapper = styled.div`
   position: relative;
   overflow-x: hidden;
 `;
-
 const HeaderSection = styled.header`
   background-color: #121212;
   color: #fff;
@@ -67,14 +67,12 @@ const HeaderSection = styled.header`
     );
   }
 `;
-
 const HeaderContentContainer = styled(motion.div)`
   position: relative;
   z-index: 3;
   max-width: 800px;
   margin: 0 auto;
 `;
-
 const MainTitle = styled(motion.h1)`
   font-size: 3.5rem;
   line-height: 1.4;
@@ -84,7 +82,6 @@ const MainTitle = styled(motion.h1)`
     font-size: 2.5rem;
   }
 `;
-
 const GalleryWrapper = styled.div`
   overflow-x: auto;
   scrollbar-width: none;
@@ -97,14 +94,12 @@ const GalleryWrapper = styled.div`
   }
   margin: 0 -2rem 10rem -2rem;
 `;
-
 const GalleryScrollContainer = styled(motion.div)`
   display: flex;
   gap: 2rem;
   padding: 1rem 2rem;
   width: max-content;
 `;
-
 const GalleryImage = styled(motion.div)`
   flex-shrink: 0;
   width: 400px;
@@ -119,7 +114,6 @@ const GalleryImage = styled(motion.div)`
     height: 200px;
   }
 `;
-
 const ContentBlock = styled(motion.div)`
   display: flex;
   align-items: center;
@@ -131,17 +125,19 @@ const ContentBlock = styled(motion.div)`
     gap: 3rem;
   }
 `;
-
 const ImageWrapper = styled(motion.div)`
   flex: 1;
   position: relative;
-  min-height: 400px;
-  img {
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  height: auto;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  @media (max-width: 992px) {
+    width: 100%;
+    aspect-ratio: 16 / 10;
   }
 `;
-
 const HeaderTag = styled(motion.p)`
   color: #66a109;
   font-weight: 600;
@@ -279,8 +275,9 @@ const StyledList = styled(motion.ul)`
   }
 `;
 
-const ProjectTypePageClient = ({ lang, content }) => {
-  if (!content) {
+// 2. ACCEPT THE ctaContent PROP
+const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
+  if (!content || !ctaContent) {
     return null;
   }
 
@@ -293,27 +290,45 @@ const ProjectTypePageClient = ({ lang, content }) => {
   const LeftArrowIcon = lang === "ar" ? FaArrowRight : FaArrowLeft;
   const RightArrowIcon = lang === "ar" ? FaArrowLeft : FaArrowRight;
 
-  const checkScrollability = () => {
+  const checkScrollability = useCallback(() => {
     const el = galleryRef.current;
     if (el) {
-      const { scrollLeft, scrollWidth, clientWidth } = el;
+      const scrollLeft = Math.ceil(el.scrollLeft);
+      const scrollWidth = el.scrollWidth;
+      const clientWidth = el.clientWidth;
+
       setCanScrollLeft(scrollLeft > 10);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
-  };
+  }, []);
+
+  const debounceTimeout = useRef(null);
 
   useEffect(() => {
     const el = galleryRef.current;
-    if (el) {
-      checkScrollability();
-      el.addEventListener("scroll", checkScrollability, { passive: true });
-      window.addEventListener("resize", checkScrollability, { passive: true });
-      return () => {
-        el.removeEventListener("scroll", checkScrollability);
-        window.removeEventListener("resize", checkScrollability);
-      };
-    }
-  }, []);
+    if (!el) return;
+
+    const debouncedCheck = () => {
+      if (debounceTimeout.current) {
+        clearTimeout(debounceTimeout.current);
+      }
+      debounceTimeout.current = setTimeout(() => {
+        checkScrollability();
+      }, 150);
+    };
+
+    checkScrollability();
+    el.addEventListener("scroll", debouncedCheck, { passive: true });
+    window.addEventListener("resize", debouncedCheck, { passive: true });
+
+    return () => {
+      el.removeEventListener("scroll", debouncedCheck);
+      window.removeEventListener("resize", debouncedCheck);
+      if (debounceTimeout.current) {
+        clearTimeout(debounceTimeout.current);
+      }
+    };
+  }, [checkScrollability]);
 
   const handleNavClick = (direction) => {
     const el = galleryRef.current;
@@ -328,11 +343,9 @@ const ProjectTypePageClient = ({ lang, content }) => {
     <PageWrapper lang={lang}>
       <HeaderSection>
         <div className="bg-image-wrapper">
-          <Image
+          <ImageWithSkeleton
             src={header.bgImage}
             alt={header.title}
-            fill
-            style={{ objectFit: "cover" }}
             priority={true}
             sizes="100vw"
           />
@@ -408,11 +421,9 @@ const ProjectTypePageClient = ({ lang, content }) => {
                 key={i}
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
               >
-                <Image
+                <ImageWithSkeleton
                   src={src}
                   alt={`${gallery.title} ${i + 1}`}
-                  fill
-                  style={{ objectFit: "cover" }}
                   sizes="(max-width: 768px) 300px, 400px"
                 />
               </GalleryImage>
@@ -436,11 +447,9 @@ const ProjectTypePageClient = ({ lang, content }) => {
               <p className="tag">{overview.tag}</p>
             </TextWrapper>
             <ImageWrapper variants={itemVariants}>
-              <Image
+              <ImageWithSkeleton
                 src={overview.image}
                 alt={overview.title}
-                fill
-                style={{ objectFit: "cover" }}
                 sizes="(max-width: 992px) 100vw, 50vw"
               />
             </ImageWrapper>
@@ -466,17 +475,18 @@ const ProjectTypePageClient = ({ lang, content }) => {
               </StyledList>
             </TextWrapper>
             <ImageWrapper variants={itemVariants}>
-              <Image
+              <ImageWithSkeleton
                 src={challenges.image}
                 alt={challenges.title}
-                fill
-                style={{ objectFit: "cover" }}
                 sizes="(max-width: 992px) 100vw, 50vw"
               />
             </ImageWrapper>
           </ContentBlock>
         </MaxWidthContainer>
       </MainContentSection>
+
+      {/* 3. RENDER THE CTA SECTION AT THE END OF THE PAGE */}
+      <CTASection lang={lang} content={ctaContent} />
     </PageWrapper>
   );
 };

@@ -16,6 +16,7 @@ export const dictionary = {
         path: "/",
         isDropdown: false,
       },
+
       {
         label: "Project Management",
         isDropdown: true,
@@ -43,6 +44,14 @@ export const dictionary = {
           },
           { label: "Interior Designing", path: "/services/InteriorDesign" },
           { label: "Landscaping", path: "/services/LandscapingDesign" },
+        ],
+      },
+      {
+        label: "Project Types",
+        isDropdown: true,
+        children: [
+          { label: "Residential", path: "/Residential" },
+          { label: "Commercial", path: "/Commercial" },
         ],
       },
       // FIX: New "Company" dropdown containing About, Blogs, and Connect

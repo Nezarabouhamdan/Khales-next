@@ -2,10 +2,13 @@ import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
 import ProjectTypePageClient from "@/pages/ProjectTypePageClient";
 
-// Generate dynamic, translated metadata for this page
 export async function generateMetadata({ params: { lang } }) {
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.commercialPage;
+
+  if (!pageData) {
+    return { title: "Page Not Found" };
+  }
 
   return generatePageMetadata({
     title: pageData.meta.title,
@@ -15,10 +18,20 @@ export async function generateMetadata({ params: { lang } }) {
   });
 }
 
-// This is the main server component for the commercial route
 export default async function CommercialPage({ params: { lang } }) {
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.commercialPage;
+  const ctaContent = dictionary.cta;
 
-  return <ProjectTypePageClient lang={lang} content={pageData} />;
+  if (!pageData || !ctaContent) {
+    notFound();
+  }
+
+  return (
+    <ProjectTypePageClient
+      lang={lang}
+      content={pageData}
+      ctaContent={ctaContent}
+    />
+  );
 }
