@@ -269,7 +269,7 @@ export default function ProjectTypes({ lang, content }) {
         </SectionHeader>
         {content.items.map((project, index) => {
           const projectConfig = projectTypesConfig[index];
-          const projectUrl = `/${lang}/projects#${project.slug}`; // Link to a section on the projects page
+          const projectUrl = `/${lang}/${project.slug}`; // Link to a section on the projects page
 
           return (
             <ProjectRow key={project.title} $isReversed={index % 2 !== 0}>

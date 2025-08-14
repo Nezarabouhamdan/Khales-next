@@ -252,10 +252,8 @@ export const dictionary = {
       description2:
         "Khales guides you through zoning laws, land use restrictions, authority procedures, and development options, turning a raw plot into a viable project direction. This service helps avoid delays, wasted costs, or design mistakes by making sure your vision is feasible and aligned from the start.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/HTw0dm03/Whats-App-Image-2025-08-14-at-16-23-14-127b4151.jpg",
+        "https://i.ibb.co/Vpb0LnMG/Whats-App-Image-2025-08-14-at-16-23-44-66fcc5f6.jpg",
       ],
     },
     process: {
@@ -768,10 +766,8 @@ export const dictionary = {
       description2:
         "This service is ideal for clients who want peace of mind, fewer headaches, and a professional team ensuring that the work is done right — on time, on budget, and to the standard you expect.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/0p4fvRvH/Whats-App-Image-2025-08-14-at-16-06-36-b6ec4887.jpg",
+        "https://i.ibb.co/CKYCGpZX/Whats-App-Image-2025-08-14-at-16-09-02-fe6bd419.jpg",
       ],
     },
     process: {
@@ -877,10 +873,8 @@ export const dictionary = {
       description2:
         "We handle the complexities, site meetings, document reviews, progress tracking, and approvals, while keeping you informed and supported at every step. You make the final decisions. We make sure everything else moves forward smoothly, with clarity and accountability.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/fdgYgxYc/Whats-App-Image-2025-08-14-at-16-20-22-b6bc1ffa.jpg",
+        "https://i.ibb.co/hxXGS82B/Whats-App-Image-2025-08-14-at-16-21-14-49744c17.jpg",
       ],
     },
     process: {
@@ -966,8 +960,8 @@ export const dictionary = {
       description2:
         "Khales' team reviews all key factors: land potential, design requirements, authority constraints, estimated costs, and timeframes. We then prepare a clear, data-backed summary of your project’s risks, strengths, and practical next steps, so you can move forward with clarity and confidence.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
+        "https://i.ibb.co/BX4wndc/Whats-App-Image-2025-08-14-at-16-25-30-15956dbe.jpg",
+        "https://i.ibb.co/BH2XX2hF/Whats-App-Image-2025-08-14-at-16-33-19-dd217380.jpg",
         "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
         "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
       ],
@@ -2088,41 +2082,41 @@ export const dictionary = {
   },
   projectTypes: {
     header: {
-      title: "Projects Types",
+      title: "Projects Categories",
       subtitle:
-        "From visionary residential designs to landmark commercial structures, our portfolio showcases our commitment to excellence across all sectors.",
+        "From intimate sanctuaries to the cornerstones of community life, we transform ambitious ideas into tangible landmarks.",
     },
     items: [
       {
         title: "Residential",
-        highlight: "Spaces",
+        highlight: "Legacies",
         description:
-          "We craft bespoke living spaces that blend luxury, comfort, and functionality, tailored to the unique lifestyles of our clients. Every home we design is a sanctuary of personal expression.",
-        showcaseSubtitle: "Homes that inspire...",
-        linkText: "Explore Residential Work",
-        slug: "residential",
+          "We shape skylines with landmark residential buildings, craft generational legacies with exclusive mansions, and design serene escapes with bespoke luxury villas. Your vision, built to last.",
+        showcaseSubtitle: "Homes that define generations...",
+        linkText: "Explore Residential Worlds",
+        slug: "Residential",
       },
       {
         title: "Commercial",
-        highlight: "Properties",
+        highlight: "Destinations",
         description:
-          "Our expertise in commercial architecture delivers innovative and efficient structures that drive business success, enhance brand identities, and create lasting value for stakeholders.",
-        showcaseSubtitle: "Structures that perform...",
-        linkText: "Explore Commercial Work",
-        slug: "commercial",
+          "We build the cornerstones of community: from bustling shopping malls and state-of-the-art hospitals to inspiring schools and university campuses where the future is shaped.",
+        showcaseSubtitle: "Engineering the landmarks of tomorrow...",
+        linkText: "Explore Commercial Destinations",
+        slug: "Commercial",
       },
     ],
   },
-
   residentialPage: {
     meta: {
-      title: "Residential Projects | Khales",
+      title:
+        "Luxury Residential Architecture: Buildings, Mansions, Villas | Khales",
       description:
-        "Discover our portfolio of bespoke residential spaces that blend luxury, comfort, and functionality, tailored to the unique lifestyles of our clients.",
+        "From iconic residential buildings that redefine skylines to exclusive mansions and serene villas, discover our portfolio of luxury living spaces tailored for you.",
     },
     header: {
-      tag: "RESIDENTIAL ARCHITECTURE",
-      title: "Crafting Homes, Building Dreams",
+      tag: "LEGACY-DEFINING RESIDENTIAL ARCHITECTURE",
+      title: "From Skyline to Sanctuary",
       year: "2020-2024",
       location: "Across the UAE",
       services: "Full-Cycle Design & Build",
@@ -2132,33 +2126,33 @@ export const dictionary = {
     gallery: {
       title: "Residential Showcase",
       images: [
-        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit&crop&q=80",
         "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit&crop&q=80",
         "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80",
       ],
     },
     overview: {
-      title: "The Art of Living",
+      title: "Crafting Your World, at Every Scale",
       text: [
-        "Our residential projects are more than just buildings; they are sanctuaries of personal expression. We focus on creating homes that are a true reflection of our clients' personalities and aspirations, blending timeless aesthetics with modern functionality.",
-        "From luxurious villas to contemporary family homes, our attention to detail in every phase ensures a living space that is both beautiful and built to last.",
+        "Our vision begins with the skyline itself, where we design iconic **residential buildings** that become city landmarks, offering an unparalleled lifestyle. We merge innovative engineering with timeless aesthetics to create unique vertical communities.",
+        "This same commitment to excellence extends to the creation of sprawling **mansions** that tell the story of a family's legacy, and is perfected in the intimate details of our bespoke **luxury villas**, designed to be your private, secure sanctuary.",
       ],
-      tag: "ELEGANCE & FUNCTIONALITY",
+      tag: "BUILDINGS | MANSIONS | VILLAS",
       image:
         "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80",
     },
     challenges: {
-      title: "Client-Centric Solutions",
-      text: "The primary challenge in residential design is translating a client's unique vision into a functional, beautiful, and compliant architectural reality. We excel at this through deep collaboration and iterative design.",
+      title: "From Grand Vision to Personal Detail",
+      text: "Our mastery lies in adapting to scale, from the complex structural requirements of high-rise buildings to the deeply personal finishing touches of private villas and mansions.",
       solutions: [
-        "Personalized design workshops to capture client needs.",
-        "Advanced 3D visualization for immersive previews.",
-        "Sustainable material sourcing for healthier living environments.",
+        "Advanced structural engineering for high-rise residential buildings.",
+        "Exclusive material sourcing for bespoke luxury mansions.",
+        "Privacy-focused landscape architecture for serene villa integration.",
       ],
       image:
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit&crop&q=80",
     },
     labels: {
       year: "Year",
@@ -2170,49 +2164,49 @@ export const dictionary = {
   },
   commercialPage: {
     meta: {
-      title: "Commercial Projects | Khales",
+      title: "Commercial Project Management & Reinvention | Khales",
       description:
-        "Explore our commercial architecture projects, designed to drive business success, enhance brand identities, and create lasting value.",
+        "Khales specializes in commercial reinvention through expert project management. We transform and deliver commercial projects, from malls to hospitals, on time and on budget.",
     },
     header: {
-      tag: "COMMERCIAL ARCHITECTURE",
-      title: "Building Structures for Success",
+      tag: "COMMERCIAL REINVENTION & PROJECT MANAGEMENT",
+      title: "Transforming Assets, Maximizing Value",
       year: "2018-2024",
       location: "Dubai, Abu Dhabi",
-      services: "Structural Design & Project Management",
+      services: "End-to-End Project Management",
       bgImage:
-        "https://images.unsplash.com/photo-1599693351227-7729be15b84c?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1599693351227-7729be15b84c?auto=format&fit&crop&q=80",
     },
     gallery: {
       title: "Commercial Portfolio",
       images: [
-        "https://images.unsplash.com/photo-1549492423-400259a4563b?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1581351639922-c31325154333?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1549492423-400259a4563b?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1581351639922-c31325154333?auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1542372403-995f57a6b338?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1582211516195-2f949c812165?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1582211516195-2f949c812165?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit&crop&q=80",
       ],
     },
     overview: {
-      title: "Engineering for Enterprise",
+      title: "The Art of Commercial Reinvention",
       text: [
-        "Our commercial projects are designed to be landmark structures that are both aesthetically impressive and highly functional. We focus on creating spaces that enhance productivity, reflect brand identity, and provide a return on investment.",
-        "From corporate headquarters to retail spaces, we deliver innovative solutions that meet the complex demands of the modern business world.",
+        "We don't just build commercial spaces; we practice **commercial reinvention**. This means revitalizing existing assets or creating new ones with a forward-thinking vision, focusing on maximizing value and ensuring long-term sustainability.",
+        "This is achieved through rigorous **project management**. Our team provides complete oversight from the initial feasibility study to final handover, ensuring every facet of the project is executed with precision and efficiency.",
       ],
-      tag: "INNOVATION & EFFICIENCY",
+      tag: "EXPERT PROJECT MANAGEMENT",
       image:
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit&crop&q=80",
     },
     challenges: {
-      title: "Navigating Complexity",
-      text: "Commercial projects involve complex regulatory, structural, and stakeholder requirements. Our integrated approach ensures all aspects are managed efficiently from start to finish.",
+      title: "Mastering Complexity with Project Management",
+      text: "Large-scale commercial ventures require more than just construction. They demand strategic **project management** to navigate complex regulatory and financial landscapes—this is the core of our expertise.",
       solutions: [
-        "BIM modeling for clash detection and efficiency.",
-        "Strict adherence to commercial building codes and safety standards.",
-        "Value engineering to optimize cost without compromising quality.",
+        "Strategic **project management** for complex **commercial reinvention** initiatives.",
+        "Lifecycle financial planning to ensure project viability and ROI.",
+        "Agile methodologies to adapt to changing market demands during development.",
       ],
       image:
-        "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit&crop&q=80",
     },
     labels: {
       year: "Year",
