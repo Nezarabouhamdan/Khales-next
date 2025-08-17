@@ -119,8 +119,12 @@ export default function ContactUs({ lang, content }) {
 }
 
 // --- ContactForm SUB-COMPONENT (Your original code, unchanged) ---
+// --- Make sure 'useRouter' is imported at the top of your Contact Us file ---
+// import { useRouter } from "next/navigation";
+
+// --- ContactForm SUB-COMPONENT ---
 const ContactForm = ({ content, rtl }) => {
-  const router = useRouter(); // 1. Get the router instance
+  const router = useRouter(); // Import the router
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [selectedInquiry, setSelectedInquiry] = useState("");
   const [formData, setFormData] = useState({
@@ -144,13 +148,26 @@ const ContactForm = ({ content, rtl }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ======================================================
-  // UPDATED HANDLE SUBMIT FUNCTION
-  // ======================================================
+  // =================================================================
+  // 🎯 FINAL FIX: UPDATED handleSubmit to match the Landing Page
+  // =================================================================
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
+
+    // Basic validation (optional, but good practice)
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.email ||
+      !selectedInquiry
+    ) {
+      // You can add more specific error handling here if you want
+      setIsSubmitting(false);
+      setSubmitStatus("error");
+      return;
+    }
 
     try {
       const response = await fetch("/api/Contact-us", {
@@ -166,38 +183,48 @@ const ContactForm = ({ content, rtl }) => {
         }),
       });
 
-      // 2. Add robust error checking. This was the source of the problem.
       if (!response.ok) {
-        // If the server responded with an error (e.g., 500), throw an error
-        // to be caught by the catch block.
         throw new Error(`Server error: ${response.status}`);
       }
 
       const data = await response.json();
 
       if (data.success) {
-        // 3. SUCCESS! Redirect to the thank you page.
-        router.push("/thankyou");
+        // --- Function to handle redirecting the user ---
+        const handleRedirect = () => {
+          // Note: you may need to adjust the path if your contact page has a language prefix
+          // e.g., router.push(`/${lang}/thankyou`);
+          router.push("/thankyou");
+        };
+
+        // --- Push GTM event with a callback ---
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "Form August 2025",
+          eventCallback: handleRedirect,
+          eventTimeout: 2000, // 2-second fallback
+        });
+
+        // You can add other tracking pixels here if needed (e.g., Facebook)
       } else {
-        // The API returned success: false, so show an error.
+        // The API returned { success: false }, so show an error.
         setSubmitStatus("error");
+        setIsSubmitting(false);
       }
     } catch (error) {
-      // This will now catch both network errors and server errors.
       console.error("Submission failed:", error);
       setSubmitStatus("error");
-    } finally {
-      // This will run regardless of success or failure.
       setIsSubmitting(false);
     }
   };
-  // ======================================================
+  // =================================================================
 
   const closePopup = () => setSubmitStatus(null);
 
   return (
     <>
       <Form id="contact" onSubmit={handleSubmit}>
+        {/* ... The rest of your form's JSX remains exactly the same ... */}
         <FormGroup>
           <DropdownContainer>
             <DropdownInput

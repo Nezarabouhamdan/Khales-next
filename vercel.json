@@ -2,6 +2,9 @@
   "functions": {
     "pages/api/Contact-us.js": {
       "maxDuration": 60
+    },
+    "pages/api/create-lead.js": {
+      "maxDuration": 60
     }
   }
 }

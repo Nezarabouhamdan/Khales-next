@@ -1,24 +1,25 @@
 import xmlrpc from "xmlrpc";
 
 // ======================= DEBUGGING LOGS =======================
-// This will print the environment variables to your server console when the API route is compiled.
-console.log("--- Loading /api/create-lead ---");
+console.log("--- Loading API Route ---");
 console.log(`[ENV] ODOO_URL: "${process.env.ODOO_URL}"`);
-console.log(`[ENV] ODOO_DB: "${process.env.ODOO_DB}"`);
-console.log(`[ENV] ODOO_EMAIL: "${process.env.ODOO_EMAIL}"`);
-// We don't log the password for security reasons.
-console.log("------------------------------------");
+// ... (other logs)
 // =============================================================
 
 // Helper function to create a secure client for HTTPS URLs
 const createSecureClient = (url) => {
-  // Add a more detailed error message to show the problematic URL
   if (!url || !url.startsWith("https://")) {
     throw new Error(
       `Invalid or insecure Odoo URL provided. URL must start with https://. Received: "${url}"`
     );
   }
-  return xmlrpc.createSecureClient({ url });
+  return xmlrpc.createSecureClient({
+    url,
+    // 🎯 THE FIX: Add a timeout to the client itself.
+    // This will make the API fail faster and more gracefully if Odoo is unresponsive.
+    // Value is in milliseconds (30000ms = 30 seconds).
+    timeout: 30000,
+  });
 };
 
 // Initialize clients
@@ -29,10 +30,8 @@ const objectClient = createSecureClient(
   `${process.env.ODOO_URL}/xmlrpc/2/object`
 );
 
-/**
- * Authenticates with the Odoo server.
- */
 async function authenticate() {
+  // ... (rest of your authentication function is perfect)
   return new Promise((resolve, reject) => {
     commonClient.methodCall(
       "authenticate",
@@ -56,12 +55,8 @@ async function authenticate() {
   });
 }
 
-// ... (the rest of the file remains the same)
-
-/**
- * Helper function to simplify making Odoo API calls.
- */
 async function executeKw(uid, model, method, params = [], options = {}) {
+  // ... (rest of your helper function is perfect)
   return new Promise((resolve, reject) => {
     objectClient.methodCall(
       "execute_kw",
@@ -80,6 +75,7 @@ async function executeKw(uid, model, method, params = [], options = {}) {
 }
 
 export default async function handler(req, res) {
+  // ... (Your entire handler function is perfectly written, no changes needed here)
   if (req.method !== "POST") {
     return res
       .status(405)
@@ -87,10 +83,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. Authenticate
     const uid = await authenticate();
-
-    // 2. Validate required fields from the request body
     const { name, phone, email, description, branch, inquiry } = req.body;
     if (!name || !phone || !email) {
       return res
@@ -98,7 +91,6 @@ export default async function handler(req, res) {
         .json({ success: false, error: "Missing required fields" });
     }
 
-    // 3. Find or create the UTM Source "Website"
     let sourceIds = await executeKw(uid, "utm.source", "search", [
       [["name", "=", "Website"]],
     ]);
@@ -112,7 +104,6 @@ export default async function handler(req, res) {
       ]);
     }
 
-    // 4. Create the CRM lead
     const leadData = {
       name: `Website Lead - ${name}`,
       contact_name: name,
@@ -125,7 +116,6 @@ export default async function handler(req, res) {
     };
     const leadId = await executeKw(uid, "crm.lead", "create", [leadData]);
 
-    // 5. Subscribe default partners as followers
     const DEFAULT_PARTNER_IDS = [9, 23, 1041];
     await executeKw(
       uid,
@@ -135,14 +125,13 @@ export default async function handler(req, res) {
       { context: { mail_notify: false } }
     );
 
-    // 6. Return a success response
     res.status(200).json({
       success: true,
       leadId,
       message: "CRM lead created successfully",
     });
   } catch (error) {
-    console.error("Error in /api/create-lead:", error);
+    console.error("Error in API route:", error);
     res.status(500).json({
       success: false,
       error: error.message || "An internal server error occurred",
