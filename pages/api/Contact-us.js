@@ -1,4 +1,3 @@
-// In file: /pages/api/Contact-us.js (or equivalent)
 import xmlrpc from "xmlrpc";
 
 // Use secure client for HTTPS
@@ -27,12 +26,26 @@ async function authenticate() {
   });
 }
 
-// This function will run in the background
-async function processOdooLead(leadPayload) {
-  try {
-    const uid = await authenticate();
-    const { name, phone, email, description, branch, inquiry } = leadPayload;
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res
+      .status(405)
+      .json({ success: false, error: "Method Not Allowed" });
+  }
 
+  try {
+    // 1. Authenticate with Odoo
+    const uid = await authenticate();
+
+    // 2. Validate required fields from the form submission
+    const { name, phone, email, description, branch, inquiry } = req.body;
+    if (!name || !phone || !email) {
+      return res
+        .status(400)
+        .json({ success: false, error: "Missing required fields" });
+    }
+
+    // 3. Find or create the UTM Source "Website"
     const sourceIds = await new Promise((resolve, reject) => {
       objectClient.methodCall(
         "execute_kw",
@@ -65,6 +78,7 @@ async function processOdooLead(leadPayload) {
         );
       }));
 
+    // 4. Prepare and create the lead in Odoo
     const leadData = {
       name: `Website Contact us page - ${name}`,
       contact_name: name,
@@ -73,7 +87,6 @@ async function processOdooLead(leadPayload) {
       description: `Branch: ${branch}\nInquiry: ${inquiry}\n${description}`,
       source_id: sourceId,
     };
-
     const leadId = await new Promise((resolve, reject) => {
       objectClient.methodCall(
         "execute_kw",
@@ -89,6 +102,7 @@ async function processOdooLead(leadPayload) {
       );
     });
 
+    // 5. Subscribe followers
     const DEFAULT_PARTNER_IDS = [9, 23, 1041];
     await new Promise((resolve, reject) => {
       objectClient.methodCall(
@@ -106,42 +120,17 @@ async function processOdooLead(leadPayload) {
       );
     });
 
-    console.log(
-      `Successfully processed lead ${leadId} for ${name} in background.`
-    );
-  } catch (error) {
-    console.error("Error during background Odoo processing:", error);
-  }
-}
-
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res
-      .status(405)
-      .json({ success: false, error: "Method Not Allowed" });
-  }
-
-  try {
-    const { name, phone, email } = req.body;
-    if (!name || !phone || !email) {
-      return res
-        .status(400)
-        .json({ success: false, error: "Missing required fields" });
-    }
-
-    // 1. Respond IMMEDIATELY to the user's browser.
+    // 6. If everything above worked, send the final success response
     res.status(200).json({
       success: true,
-      message: "Request received. Processing in background.",
+      leadId,
+      message: "CRM lead created successfully",
     });
-
-    // 2. Start the slow Odoo process AFTER responding.
-    // We don't use 'await' here because we don't want to wait for it to finish.
-    processOdooLead(req.body);
   } catch (error) {
-    // This will only catch errors during validation, not during the Odoo process.
-    console.error("Error in /api/Contact-us handler:", error);
-    // Even if there's an error here, a response might have already been sent.
-    // It's best to just log it.
+    console.error("Error in /api/Contact-us:", error);
+    res.status(500).json({
+      success: false,
+      error: error.message || "Internal server error",
+    });
   }
 }

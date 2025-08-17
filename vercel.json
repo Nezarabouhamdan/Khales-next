@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "pages/api/Contact-us.js": {
+      "maxDuration": 60
+    }
+  }
+}
