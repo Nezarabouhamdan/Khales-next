@@ -90,6 +90,11 @@ const NavLogoLink = styled(Link)`
 const NavIcon = styled.img`
   height: 40px;
   width: auto;
+  transition: height 0.3s ease;
+
+  @media (max-width: 1200px) {
+    height: 30px; /* 🎯 FINAL FIX: Smaller logo */
+  }
 `;
 
 const MobileIcon = styled.div`
@@ -109,6 +114,11 @@ const NavMenu = styled.ul`
   list-style: none;
   text-align: center;
   gap: 1rem;
+  transition: gap 0.3s ease;
+
+  @media (max-width: 1200px) {
+    gap: 0.2rem; /* 🎯 FINAL FIX: Tighter space between tabs */
+  }
 
   @media screen and (max-width: 960px) {
     flex-direction: column;
@@ -149,11 +159,16 @@ const MenuLink = styled.a`
   font-size: 16px;
   cursor: pointer;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, font-size 0.3s ease, padding 0.3s ease;
   color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
 
   &:hover {
     color: ${COLORS.primary};
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 14px;
+    padding: 0.5rem 0.4rem; /* 🎯 FINAL FIX: Tighter padding inside tabs */
   }
 
   @media screen and (max-width: 960px) {
@@ -170,9 +185,13 @@ const MenuLink = styled.a`
 `;
 
 const ArrowIcon = styled(MdKeyboardArrowDown)`
-  margin-left: 4px;
-  transition: transform 0.3s ease;
+  margin-left: 4px; /* Default spacing */
+  transition: transform 0.3s ease, margin-left 0.3s ease;
   transform: ${({ $isOpen }) => ($isOpen ? "rotate(180deg)" : "rotate(0deg)")};
+
+  @media (max-width: 1200px) {
+    margin-left: 2px; /* 🎯 FINAL FIX: Tighter space next to text */
+  }
 `;
 
 const SubMenu = styled.ul`
@@ -234,6 +253,12 @@ const NavActions = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  transition: gap 0.3s ease;
+
+  @media (max-width: 1200px) {
+    gap: 1rem;
+  }
+
   @media screen and (max-width: 960px) {
     display: none;
   }
@@ -249,6 +274,11 @@ const CurrentFlag = styled.img`
   width: 28px;
   height: auto;
   border-radius: 4px;
+  transition: width 0.3s ease;
+
+  @media (max-width: 1200px) {
+    width: 24px;
+  }
 `;
 
 const LanguageOption = styled.div`
@@ -284,6 +314,12 @@ const PhoneNumberLink = styled.a`
     background-color: ${COLORS.primaryDarker};
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 13px;
+    padding: 0.5rem 1rem;
+    gap: 6px;
   }
 
   @media (max-width: 960px) {
@@ -334,22 +370,19 @@ export default function Navbar({ lang, navigation }) {
     return segments.join("/");
   };
 
-  // ======================= THE FIX IS HERE (Handler Function) =======================
   const handlePhoneClick = (e) => {
-    e.preventDefault(); // Prevent the default link action
+    e.preventDefault();
     const phoneUrl = "tel:+971551299880";
 
-    // Check if the gtag_report_conversion function exists on the window object
     if (typeof window.gtag_report_conversion === "function") {
       window.gtag_report_conversion(phoneUrl);
     } else {
       console.log(
         "gtag_report_conversion function not found. Redirecting directly."
       );
-      window.location.href = phoneUrl; // Fallback to direct navigation
+      window.location.href = phoneUrl;
     }
   };
-  // =================================================================================
 
   const navItems = navigation?.items || [];
 
@@ -457,7 +490,6 @@ export default function Navbar({ lang, navigation }) {
             </SubMenu>
           </MenuItem>
           <MenuItem className="mobile-only-phone">
-            {/* ======================= THE FIX IS HERE (Mobile) ======================= */}
             <PhoneNumberLink
               href="tel:+971551299880"
               dir="ltr"
@@ -466,7 +498,6 @@ export default function Navbar({ lang, navigation }) {
               <FaPhoneAlt />
               +971 55 129 9880
             </PhoneNumberLink>
-            {/* ======================================================================== */}
           </MenuItem>
           <style jsx global>{`
             .mobile-only-lang,
@@ -534,8 +565,6 @@ export default function Navbar({ lang, navigation }) {
               </SubMenuItem>
             </SubMenu>
           </MenuItem>
-
-          {/* ======================= THE FIX IS HERE (Desktop) ======================= */}
           <PhoneNumberLink
             href="tel:+971551299880"
             dir="ltr"
@@ -544,7 +573,6 @@ export default function Navbar({ lang, navigation }) {
             <FaPhoneAlt />
             +971 55 129 9880
           </PhoneNumberLink>
-          {/* ========================================================================= */}
         </NavActions>
       </NavbarContainer>
     </NavWrapper>

@@ -268,15 +268,6 @@ export default async function Home({ params: { lang } }) {
           isHomePage={true}
         />
       </section>
-      {/* New Blog Section */}
-
-      {/* Use the new Client Component */}
-      <EnhancedContent lang={lang} />
-
-      <section id="about" aria-label="About Khales - Building Excellence">
-        <AboutKhalesUltimate content={dictionary.about || {}} lang={lang} />
-      </section>
-
       <section
         id="services"
         aria-label="Our Architecture and Interior Design Services"
@@ -295,6 +286,13 @@ export default async function Home({ params: { lang } }) {
         aria-label="Featured Architecture and Interior Design Projects"
       >
         <FeaturedProjects content={dictionary.projects || {}} lang={lang} />
+      </section>
+
+      {/* Use the new Client Component */}
+      <EnhancedContent lang={lang} />
+
+      <section id="about" aria-label="About Khales - Building Excellence">
+        <AboutKhalesUltimate content={dictionary.about || {}} lang={lang} />
       </section>
 
       <section

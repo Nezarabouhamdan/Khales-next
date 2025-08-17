@@ -3,6 +3,7 @@ import * as React from "react";
 import { useState } from "react";
 import { GreenText, Title } from "../Whoweare/TextContent";
 import { styled, keyframes } from "styled-components";
+import { useRouter } from "next/navigation";
 
 // --- SVG ICONS ---
 const EmailIcon = () => (
@@ -119,6 +120,7 @@ export default function ContactUs({ lang, content }) {
 
 // --- ContactForm SUB-COMPONENT (Your original code, unchanged) ---
 const ContactForm = ({ content, rtl }) => {
+  const router = useRouter(); // 1. Get the router instance
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [selectedInquiry, setSelectedInquiry] = useState("");
   const [formData, setFormData] = useState({
@@ -142,10 +144,14 @@ const ContactForm = ({ content, rtl }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // ======================================================
+  // UPDATED HANDLE SUBMIT FUNCTION
+  // ======================================================
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
+
     try {
       const response = await fetch("/api/Contact-us", {
         method: "POST",
@@ -159,26 +165,33 @@ const ContactForm = ({ content, rtl }) => {
           inquiry: formData.inquiry,
         }),
       });
+
+      // 2. Add robust error checking. This was the source of the problem.
+      if (!response.ok) {
+        // If the server responded with an error (e.g., 500), throw an error
+        // to be caught by the catch block.
+        throw new Error(`Server error: ${response.status}`);
+      }
+
       const data = await response.json();
+
       if (data.success) {
-        setSubmitStatus("success");
-        setFormData({
-          name: "",
-          phone: "",
-          email: "",
-          message: "",
-          inquiry: "",
-        });
-        setSelectedInquiry("");
+        // 3. SUCCESS! Redirect to the thank you page.
+        router.push("/thankyou");
       } else {
+        // The API returned success: false, so show an error.
         setSubmitStatus("error");
       }
     } catch (error) {
+      // This will now catch both network errors and server errors.
+      console.error("Submission failed:", error);
       setSubmitStatus("error");
     } finally {
+      // This will run regardless of success or failure.
       setIsSubmitting(false);
     }
   };
+  // ======================================================
 
   const closePopup = () => setSubmitStatus(null);
 
@@ -294,37 +307,21 @@ const ContactForm = ({ content, rtl }) => {
           )}
         </SubmitButton>
       </Form>
-      {submitStatus && (
+      {/* This modal will now only show for errors */}
+      {submitStatus === "error" && (
         <ModalOverlay onClick={closePopup}>
           <ModalContent onClick={(e) => e.stopPropagation()} $rtl={rtl}>
-            {submitStatus === "success" ? (
-              <>
-                <AnimatedCheckmark viewBox="0 0 52 52">
-                  <Circle cx="26" cy="26" r="25" fill="none" />
-                  <Check fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-                </AnimatedCheckmark>
-                <ModalTitle>{rtl ? "نجاح!" : "Success!"}</ModalTitle>
-                <ModalText>
-                  {rtl
-                    ? "شكراً لك! تم استلام طلبك بنجاح."
-                    : "Thank you! Your submission has been received."}
-                </ModalText>
-              </>
-            ) : (
-              <>
-                <AnimatedXMark viewBox="0 0 52 52">
-                  <Circle cx="26" cy="26" r="25" fill="none" />
-                  <XLine x1="16" y1="16" x2="36" y2="36" />
-                  <XLine x1="16" y1="36" x2="36" y2="16" />
-                </AnimatedXMark>
-                <ModalTitle>{rtl ? "خطأ!" : "Oops!"}</ModalTitle>
-                <ModalText>
-                  {rtl
-                    ? "حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى."
-                    : "There was an error submitting your form. Please try again."}
-                </ModalText>
-              </>
-            )}
+            <AnimatedXMark viewBox="0 0 52 52">
+              <Circle cx="26" cy="26" r="25" fill="none" />
+              <XLine x1="16" y1="16" x2="36" y2="36" />
+              <XLine x1="16" y1="36" x2="36" y2="16" />
+            </AnimatedXMark>
+            <ModalTitle>{rtl ? "خطأ!" : "Oops!"}</ModalTitle>
+            <ModalText>
+              {rtl
+                ? "حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى."
+                : "There was an error submitting your form. Please try again."}
+            </ModalText>
             <CloseButton onClick={closePopup}>
               {rtl ? "إغلاق" : "Close"}
             </CloseButton>
@@ -334,7 +331,6 @@ const ContactForm = ({ content, rtl }) => {
     </>
   );
 };
-
 // --- STYLED COMPONENTS (Your original code, unchanged) ---
 const ContactHeader = styled.header`
   display: flex;
