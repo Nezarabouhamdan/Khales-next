@@ -98,7 +98,7 @@ export default async function RootLayout({ children, params }) {
     >
       <head>
         {" "}
-        <Script
+        {/* <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=AW-10827937555"
         />
@@ -136,7 +136,7 @@ export default async function RootLayout({ children, params }) {
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-TNHGBH7J');
           `}
-        </Script>
+        </Script> */}
         {/* ================= THE FIX IS HERE ================= */}
         {/* Add the link to the Font Awesome stylesheet. */}
         {/* This will load the CSS needed to render the icons. */}

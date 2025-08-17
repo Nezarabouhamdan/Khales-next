@@ -20,7 +20,7 @@ export default function LandingLayout({ children, params: { lang } }) {
       suppressHydrationWarning
     >
       <head>
-        <Script
+        {/* <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-FYYEQCM8Z7"
         />
@@ -42,7 +42,7 @@ export default function LandingLayout({ children, params: { lang } }) {
           `}
         </Script>
         {/* Google Tag Manager */}
-        <Script
+        {/* <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=AW-10827937555"
         />
@@ -53,7 +53,8 @@ export default function LandingLayout({ children, params: { lang } }) {
             gtag('js', new Date());
             gtag('config', 'AW-10827937555');
           `}
-        </Script>
+        </Script>{" "}
+         */}
       </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>
