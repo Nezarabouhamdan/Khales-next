@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styled, { css } from "styled-components";
-import { FaTimes, FaBars } from "react-icons/fa";
+import { FaTimes, FaBars, FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 // Custom hook to detect clicks outside of a component
@@ -24,7 +24,7 @@ const useClickOutside = (ref, handler) => {
 };
 
 // ===================================================================
-// STYLED COMPONENTS (No changes needed here, copy as is)
+// STYLED COMPONENTS
 // ===================================================================
 const COLORS = {
   primary: "#66a109",
@@ -264,6 +264,35 @@ const FlagIcon = styled.img`
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 `;
 
+const PhoneNumberLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: ${COLORS.primary};
+  color: ${COLORS.white};
+
+  &:hover {
+    background-color: ${COLORS.primaryDarker};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 960px) {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1.2rem;
+  }
+`;
+
 // ===================================================================
 // MAIN NAVBAR COMPONENT
 // ===================================================================
@@ -410,8 +439,17 @@ export default function Navbar({ lang, navigation }) {
               </SubMenuItem>
             </SubMenu>
           </MenuItem>
+          <MenuItem className="mobile-only-phone">
+            {/* ======================= THE FIX IS HERE (Mobile) ======================= */}
+            <PhoneNumberLink href="tel:+971551299880" dir="ltr">
+              <FaPhoneAlt />
+              +971 55 129 9880
+            </PhoneNumberLink>
+            {/* ======================================================================== */}
+          </MenuItem>
           <style jsx global>{`
-            .mobile-only-lang {
+            .mobile-only-lang,
+            .mobile-only-phone {
               display: none;
             }
             @media screen and (max-width: 960px) {
@@ -419,6 +457,11 @@ export default function Navbar({ lang, navigation }) {
                 display: flex;
                 width: 100%;
                 justify-content: center;
+              }
+              .mobile-only-phone {
+                display: block;
+                width: 100%;
+                padding-top: 1rem;
               }
             }
           `}</style>
@@ -471,9 +514,12 @@ export default function Navbar({ lang, navigation }) {
             </SubMenu>
           </MenuItem>
 
-          {/* ======================= THE FIX IS HERE ======================= */}
-          {/* The CTAButton has been completely removed from here */}
-          {/* =============================================================== */}
+          {/* ======================= THE FIX IS HERE (Desktop) ======================= */}
+          <PhoneNumberLink href="tel:+971551299880" dir="ltr">
+            <FaPhoneAlt />
+            +971 55 129 9880
+          </PhoneNumberLink>
+          {/* ========================================================================= */}
         </NavActions>
       </NavbarContainer>
     </NavWrapper>

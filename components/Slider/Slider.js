@@ -304,7 +304,7 @@ export default function HeroSlider({ slides, rtl, lang }) {
           <motion.div variants={itemVariants}>
             {/* ======================= THE FINAL FIX ======================= */}
             {/* We wrap the styled div with the modern Link component. No legacy props needed. */}
-            <Link href={`/${safeLang}/booking`}>
+            <Link href={`/${safeLang}/Contact`}>
               <CTAButtonWrapper>{slide.button}</CTAButtonWrapper>
             </Link>
           </motion.div>

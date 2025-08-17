@@ -128,7 +128,7 @@ export default function CTASection({ lang, content }) {
         <Heading>{content.heading}</Heading>
         {/* Use the new 'subheading' from the dictionary */}
         <Paragraph>{content.subheading}</Paragraph>
-        <StyledCTAButton href={`/${lang}/booking`}>
+        <StyledCTAButton href={`/${lang}/Contact`}>
           {content.buttonText}
         </StyledCTAButton>
       </CTAContainer>
