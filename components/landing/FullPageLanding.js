@@ -701,6 +701,9 @@ export default function FullPageLanding({ lang, content }) {
   // ======================================================
   // UPDATED HANDLE SUBMIT FUNCTION
   // ======================================================
+  // ======================================================
+  // ROBUST HANDLE SUBMIT FUNCTION WITH EVENT CALLBACK
+  // ======================================================
   const handleSubmit = async (e) => {
     e.preventDefault();
     const tempErrors = {};
@@ -748,15 +751,22 @@ export default function FullPageLanding({ lang, content }) {
       if (data.success) {
         setSubmitStatus("success");
 
-        // =============================================
-        // PUSH GTM EVENT FOR GOOGLE ADS CONVERSION
-        // =============================================
+        // --- Function to handle redirecting the user ---
+        const handleRedirect = () => {
+          router.push(`/${lang}/thankyou`);
+        };
+
+        // --- Push GTM event with a callback ---
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: "Form August 2025",
+          // This callback function will run after the event is processed
+          eventCallback: handleRedirect,
+          // Add a timeout as a fallback in case GTM fails
+          eventTimeout: 2000, // 2 seconds
         });
-        // =============================================
 
+        // --- Other tracking pixels (like Facebook) can fire immediately ---
         if (typeof window !== "undefined" && window.fbq) {
           let leadValue = 0;
           if (
@@ -780,10 +790,6 @@ export default function FullPageLanding({ lang, content }) {
             value: leadValue,
           });
         }
-
-        setTimeout(() => {
-          router.push(`/${lang}/thankyou`);
-        }, 0);
       } else {
         setSubmitStatus(data.error || "An unknown error occurred.");
         setIsSubmitting(false);
@@ -793,6 +799,7 @@ export default function FullPageLanding({ lang, content }) {
       setIsSubmitting(false);
     }
   };
+  // ======================================================
   // ======================================================
 
   const containerVariants = {
