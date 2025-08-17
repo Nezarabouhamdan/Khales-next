@@ -97,6 +97,19 @@ export default async function RootLayout({ children, params }) {
       className={inter.className}
     >
       <head>
+        {/* Google Tag Manager */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-10827937555"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-10827937555');
+          `}
+        </Script>
         {/* ================= THE FIX IS HERE ================= */}
         {/* Add the link to the Font Awesome stylesheet. */}
         {/* This will load the CSS needed to render the icons. */}
@@ -126,7 +139,7 @@ export default async function RootLayout({ children, params }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {/* This `<i>` tag will now be correctly replaced by the WhatsApp icon */}
+              {/* This \`<i>\` tag will now be correctly replaced by the WhatsApp icon */}
               <i id="whatsapp" className="fa fa-whatsapp my-float"></i>
             </Link>
             <Calltoaction id="call" />

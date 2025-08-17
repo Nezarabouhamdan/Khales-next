@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import StyledComponentsRegistry from "@/utils/registry";
+import Script from "next/script"; // Import the Script component
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,21 @@ export default function LandingLayout({ children, params: { lang } }) {
       dir={lang === "ar" ? "rtl" : "ltr"}
       suppressHydrationWarning
     >
+      <head>
+        {/* Google Tag Manager */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-10827937555"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-10827937555');
+          `}
+        </Script>
+      </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>
           {/* We do NOT include the Navbar or Footer here. */}
