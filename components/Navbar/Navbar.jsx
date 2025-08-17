@@ -334,6 +334,23 @@ export default function Navbar({ lang, navigation }) {
     return segments.join("/");
   };
 
+  // ======================= THE FIX IS HERE (Handler Function) =======================
+  const handlePhoneClick = (e) => {
+    e.preventDefault(); // Prevent the default link action
+    const phoneUrl = "tel:+971551299880";
+
+    // Check if the gtag_report_conversion function exists on the window object
+    if (typeof window.gtag_report_conversion === "function") {
+      window.gtag_report_conversion(phoneUrl);
+    } else {
+      console.log(
+        "gtag_report_conversion function not found. Redirecting directly."
+      );
+      window.location.href = phoneUrl; // Fallback to direct navigation
+    }
+  };
+  // =================================================================================
+
   const navItems = navigation?.items || [];
 
   const MainNavLinks = () => (
@@ -441,7 +458,11 @@ export default function Navbar({ lang, navigation }) {
           </MenuItem>
           <MenuItem className="mobile-only-phone">
             {/* ======================= THE FIX IS HERE (Mobile) ======================= */}
-            <PhoneNumberLink href="tel:+971551299880" dir="ltr">
+            <PhoneNumberLink
+              href="tel:+971551299880"
+              dir="ltr"
+              onClick={handlePhoneClick}
+            >
               <FaPhoneAlt />
               +971 55 129 9880
             </PhoneNumberLink>
@@ -515,7 +536,11 @@ export default function Navbar({ lang, navigation }) {
           </MenuItem>
 
           {/* ======================= THE FIX IS HERE (Desktop) ======================= */}
-          <PhoneNumberLink href="tel:+971551299880" dir="ltr">
+          <PhoneNumberLink
+            href="tel:+971551299880"
+            dir="ltr"
+            onClick={handlePhoneClick}
+          >
             <FaPhoneAlt />
             +971 55 129 9880
           </PhoneNumberLink>

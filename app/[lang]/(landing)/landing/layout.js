@@ -20,6 +20,18 @@ export default function LandingLayout({ children, params: { lang } }) {
       suppressHydrationWarning
     >
       <head>
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-FYYEQCM8Z7"
+        />
+        <Script id="google-analytics-gtag" strategy="afterInteractive">
+          {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FYYEQCM8Z7');
+      `}
+        </Script>
         {/* Google Tag Manager */}
         <Script
           strategy="afterInteractive"

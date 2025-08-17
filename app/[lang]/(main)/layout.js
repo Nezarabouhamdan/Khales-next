@@ -97,7 +97,7 @@ export default async function RootLayout({ children, params }) {
       className={inter.className}
     >
       <head>
-        {/* Google Tag Manager */}
+        {" "}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=AW-10827937555"
@@ -110,6 +110,33 @@ export default async function RootLayout({ children, params }) {
             gtag('config', 'AW-10827937555');
           `}
         </Script>
+        <Script id="google-ads-click-conversion" strategy="lazyOnload">
+          {`
+            function gtag_report_conversion(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                  'send_to': 'AW-10827937555/BC6DCMzwjogbEJPulKso',
+                  'value': 1.0,
+                  'currency': 'AED',
+                  'event_callback': callback
+              });
+              return false;
+            }
+          `}
+        </Script>{" "}
+        <Script id="google-tag-manager-head" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TNHGBH7J');
+          `}
+        </Script>
         {/* ================= THE FIX IS HERE ================= */}
         {/* Add the link to the Font Awesome stylesheet. */}
         {/* This will load the CSS needed to render the icons. */}
@@ -118,10 +145,17 @@ export default async function RootLayout({ children, params }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         {/* ====================================================== */}
-
         <LocalBusinessSchema />
       </head>
       <body>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TNHGBH7J"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <SpeedInsights />
         <Analytics />
 
