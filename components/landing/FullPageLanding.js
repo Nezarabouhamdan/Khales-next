@@ -601,7 +601,7 @@ const ModalContent = styled.div`
 `;
 
 export default function FullPageLanding({ lang, content }) {
-  const router = useRouter(); // Added router for potential future use
+  const router = useRouter();
   const isRTL = lang === "ar";
 
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -698,11 +698,13 @@ export default function FullPageLanding({ lang, content }) {
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: null }));
   };
 
+  // ================= THE FIX IS HERE =================
   const handleSubmit = async (e) => {
     e.preventDefault();
     const tempErrors = {};
     const errorMessages = content.form.errors;
 
+    // --- Validation ---
     if (!formData.name.trim()) tempErrors.name = errorMessages.name;
     if (!formData.email.trim()) tempErrors.email = errorMessages.email;
     else if (!/\S+@\S+\.\S+/.test(formData.email))
@@ -734,8 +736,19 @@ export default function FullPageLanding({ lang, content }) {
           inquiry: "Website Lead Form",
         }),
       });
+
+      if (!response.ok) {
+        // Handle HTTP errors like 404 or 500
+        throw new Error(`Server responded with status: ${response.status}`);
+      }
+
       const data = await response.json();
+
       if (data.success) {
+        // 1. Set success status to show the success message modal
+        setSubmitStatus("success");
+
+        // 2. Track Facebook Lead event
         if (typeof window !== "undefined" && window.fbq) {
           let leadValue = 0;
           if (
@@ -760,17 +773,22 @@ export default function FullPageLanding({ lang, content }) {
           });
         }
 
-        // Use router to navigate to thank you page
-        router.push(`/${lang}/thankyou`);
+        // 3. Redirect to the thank you page after a 2-second delay
+        setTimeout(() => {
+          router.push(`/${lang}/thankyou`);
+        }, 0);
       } else {
-        setSubmitStatus(data.error || "error");
+        // Handle application-level errors from the API (e.g., { success: false, error: "..." })
+        setSubmitStatus(data.error || "An unknown error occurred.");
+        setIsSubmitting(false);
       }
     } catch (error) {
-      setSubmitStatus("error");
-    } finally {
+      // Handle network errors or other exceptions during the fetch
+      setSubmitStatus(error.message || "Failed to submit the form.");
       setIsSubmitting(false);
     }
   };
+  // ======================================================
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -1372,7 +1390,8 @@ export default function FullPageLanding({ lang, content }) {
                   ? content.form.successMessage
                   : `${content.form.errorMessage}${
                       typeof submitStatus === "string" &&
-                      submitStatus !== "error"
+                      submitStatus !== "error" &&
+                      submitStatus !== "success"
                         ? `: ${submitStatus}`
                         : ""
                     }`}
