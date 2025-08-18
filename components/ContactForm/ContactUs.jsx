@@ -131,7 +131,6 @@ const ContactForm = ({ content, rtl }) => {
     name: "",
     phone: "",
     email: "",
-    message: "",
     inquiry: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -177,7 +176,6 @@ const ContactForm = ({ content, rtl }) => {
           name: formData.name,
           phone: formData.phone,
           email: formData.email,
-          description: formData.message,
           branch: "Website",
           inquiry: formData.inquiry,
         }),
@@ -299,22 +297,6 @@ const ContactForm = ({ content, rtl }) => {
           />
           <FormLabel htmlFor="email" $rtl={rtl}>
             {content.emailPlaceholder}
-          </FormLabel>
-        </FormGroup>
-        <FormGroup>
-          <FormTextarea
-            as="textarea"
-            id="message"
-            name="message"
-            rows={4}
-            placeholder=" "
-            value={formData.message}
-            onChange={handleInputChange}
-            $rtl={rtl}
-            required
-          />
-          <FormLabel htmlFor="message" $rtl={rtl}>
-            {content.messagePlaceholder}
           </FormLabel>
         </FormGroup>
         <SubmitButton

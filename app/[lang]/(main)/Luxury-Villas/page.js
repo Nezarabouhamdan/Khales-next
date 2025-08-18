@@ -18,7 +18,7 @@ export async function generateMetadata({ params: { lang } }) {
     description: pageData.meta.description,
     lang: lang,
     // Update the alternates URL for this specific page
-    alternatesUrl: "/luxury-villas",
+    alternatesUrl: "/Luxury-Villas",
   });
 }
 
