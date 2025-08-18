@@ -70,26 +70,27 @@ export const dictionary = {
     // FIX: Changed label to be more generic for an icon
     languageButton: "Language",
   },
+
   hero: {
     slides: [
       {
-        // FIX: This is the primary H1 heading for the site.
-        title: "Premier Architecture & Interior Design in Dubai",
-        subtitle: "Transforming visions into reality...",
+        title: "Full Project Management Service In Dubai",
+        subtitle:
+          "We manage every detail of your project with precision, from initial concept to the moment we hand you the keys to your new home.",
         buttonText: "Get in Touch",
         buttonLink: "/Contact",
       },
       {
-        // FIX: Changed to avoid being a duplicate H1. This can be an H2 or H3.
-        title: "Showcasing Innovative Engineering & Flawless Execution",
-        subtitle: "Our expert team ensures every detail is perfect...",
+        title: "Engineering Consultancy In UAE",
+        subtitle: "Your vision, expertly engineered",
         buttonText: "Explore Services",
         buttonLink: "/#services",
       },
+
       {
-        // FIX: Changed to avoid being a duplicate H1. This can be an H2 or H3.
-        title: "A Testament to Your Vision & Our Commitment",
-        subtitle: "Let's build something extraordinary together.",
+        title: "Hire A Professional Project Manager",
+        subtitle:
+          "We ensure you're a part of the process, with consistent updates and a commitment to clear communication.",
         buttonText: "Book a Consultation",
         buttonLink: "/Contact",
       },
@@ -2090,18 +2091,18 @@ export const dictionary = {
     items: [
       {
         title: "Residential",
-        highlight: "Legacies",
+        highlight: "Projects",
         description:
-          "We shape skylines with landmark residential buildings and craft generational legacies with exclusive mansions. Your vision, built to last and inspire.",
+          "We design and manage projects with one mission: to redefine luxury and transform your vision into the perfect living space. ",
         showcaseSubtitle: "Homes that define generations...",
         linkText: "Explore Residential Worlds",
         slug: "Residential",
       },
       {
         title: "Commercial",
-        highlight: "Destinations",
+        highlight: "Projects",
         description:
-          "We build the cornerstones of community: from bustling shopping malls and state-of-the-art hospitals to inspiring schools where the future is shaped.",
+          "We provide project management and engineering consultancy expertise to ensure your commercial project is executed on time and on budget ",
         showcaseSubtitle: "Engineering the landmarks of tomorrow...",
         linkText: "Explore Commercial Destinations",
         slug: "Commercial",
@@ -2110,7 +2111,7 @@ export const dictionary = {
         title: "Luxury",
         highlight: "Villas",
         description:
-          "Experience the pinnacle of bespoke living. We design and construct serene, exclusive villas that blend opulence with tranquility, creating your perfect private escape.",
+          "Timeless luxury is our core expertise. We guarantee on time project execution and to deliver perfect living spaces. ",
         showcaseSubtitle: "Crafting your personal sanctuary...",
         linkText: "Discover Exquisite Villas",
         slug: "Luxury-Villas",
