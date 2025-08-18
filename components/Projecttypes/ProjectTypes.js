@@ -3,8 +3,14 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaArrowRight, FaHome, FaBuilding, FaShopware } from "react-icons/fa"; // Using relevant icons
+import {
+  FaArrowRight,
+  FaHome,
+  FaBuilding,
+  FaGem, // Import a new icon for luxury
+} from "react-icons/fa";
 import ImageWithSkeleton from "../ImageSkeleton"; // Reusing your existing component
+
 // Configuration for the project types with relevant icons and images
 const projectTypesConfig = [
   {
@@ -23,7 +29,16 @@ const projectTypesConfig = [
         "https://i.ibb.co/230kjT1y/Whats-App-Image-2025-08-14-at-11-55-30-589f6c94.jpg", // A high-quality image of a commercial project
     },
   },
+  {
+    // NEW: Luxury Villa
+    showcase: {
+      icon: <FaGem />, // Using the new luxury icon
+      image:
+        "https://i.ibb.co/XkZj9v9d/Whats-App-Image-2025-08-14-at-11-39-58-5b951252.jpg", // A high-quality image of a luxury villa
+    },
+  },
 ];
+
 // --- STYLED COMPONENTS (Renamed for clarity, styles are identical to OurServices) ---
 // --- STYLED COMPONENTS ---
 

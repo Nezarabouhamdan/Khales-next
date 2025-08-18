@@ -26,7 +26,7 @@ const slowZoom = keyframes`
 `;
 const SectionContainer = styled.div`
   position: relative;
-  background-color: #f8f9fa; // خلفية بلون رمادي فاتح لكسر الروتين
+  background-color: #ffffffff; // خلفية بلون رمادي فاتح لكسر الروتين
 
   font-family: ${(({ lang }) =>
     lang === "ar" ? "var(--font-tajawal)" : "var(--font-inter)",

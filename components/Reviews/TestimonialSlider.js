@@ -25,7 +25,7 @@ const partners = [
 // --- STYLED COMPONENTS (Your original code, unchanged) ---
 const SectionWrapper = styled.section`
   padding: 8rem 0;
-  background-color: #ffffffff; // خلفية بلون رمادي فاتح لكسر الروتين
+  background-color: #f8f9fa; // خلفية بلون رمادي فاتح لكسر الروتين
   position: relative;
   overflow: hidden;
   font-family: "Inter", sans-serif;

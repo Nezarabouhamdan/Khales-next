@@ -257,7 +257,6 @@ export default async function Home({ params: { lang } }) {
           __html: JSON.stringify(homePageSchema),
         }}
       />
-
       <section
         id="hero"
         aria-label="Premier Architecture & Interior Design Company Dubai"
@@ -267,6 +266,12 @@ export default async function Home({ params: { lang } }) {
           lang={lang}
           isHomePage={true}
         />
+      </section>{" "}
+      <section
+        id="project-types"
+        aria-label="Our Residential and Commercial Project Types"
+      >
+        <ProjectTypes content={dictionary.projectTypes || {}} lang={lang} />
       </section>
       <section
         id="services"
@@ -275,26 +280,16 @@ export default async function Home({ params: { lang } }) {
         <OurServices content={dictionary.services || {}} lang={lang} />
       </section>
       <section
-        id="project-types"
-        aria-label="Our Residential and Commercial Project Types"
-      >
-        <ProjectTypes content={dictionary.projectTypes || {}} lang={lang} />
-      </section>
-
-      <section
         id="projects"
         aria-label="Featured Architecture and Interior Design Projects"
       >
         <FeaturedProjects content={dictionary.projects || {}} lang={lang} />
       </section>
-
       {/* Use the new Client Component */}
       <EnhancedContent lang={lang} />
-
       <section id="about" aria-label="About Khales - Building Excellence">
         <AboutKhalesUltimate content={dictionary.about || {}} lang={lang} />
       </section>
-
       <section
         id="why-choose-us"
         aria-label="Why Choose Khales for Your Project"
@@ -310,17 +305,14 @@ export default async function Home({ params: { lang } }) {
           lang={lang}
         />
       </section>
-
       <section
         id="statistics"
         aria-label="Our Achievements and Success Stories"
       >
         <ValuePropositionV2 content={dictionary.stats || {}} lang={lang} />
       </section>
-
       {/* Use the new Client Component */}
       <FAQSection lang={lang} />
-
       <section id="contact" aria-label="Contact Khales for Your Next Project">
         <CTASection content={dictionary.cta || {}} lang={lang} />
       </section>

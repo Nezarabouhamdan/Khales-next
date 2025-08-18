@@ -26,7 +26,7 @@ const HeaderIcon = () => (
 // UPDATED: Main section container now holds the background shapes.
 const BlogsSection = styled.section`
   padding: 100px 0;
-  background-color: #f8f9fa; // خلفية بلون رمادي فاتح لكسر الروتين
+  background-color: #ffffffff; // خلفية بلون رمادي فاتح لكسر الروتين
   position: relative; // Needed for positioning the shapes
   overflow: hidden; // Prevents shapes from spilling out
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};

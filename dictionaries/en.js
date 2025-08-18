@@ -52,6 +52,7 @@ export const dictionary = {
         children: [
           { label: "Residential", path: "/Residential" },
           { label: "Commercial", path: "/Commercial" },
+          { label: "Luxury Villas", path: "/Luxury-Villas" },
         ],
       },
       // FIX: New "Company" dropdown containing About, Blogs, and Connect
@@ -2091,7 +2092,7 @@ export const dictionary = {
         title: "Residential",
         highlight: "Legacies",
         description:
-          "We shape skylines with landmark residential buildings, craft generational legacies with exclusive mansions, and design serene escapes with bespoke luxury villas. Your vision, built to last.",
+          "We shape skylines with landmark residential buildings and craft generational legacies with exclusive mansions. Your vision, built to last and inspire.",
         showcaseSubtitle: "Homes that define generations...",
         linkText: "Explore Residential Worlds",
         slug: "Residential",
@@ -2100,10 +2101,19 @@ export const dictionary = {
         title: "Commercial",
         highlight: "Destinations",
         description:
-          "We build the cornerstones of community: from bustling shopping malls and state-of-the-art hospitals to inspiring schools and university campuses where the future is shaped.",
+          "We build the cornerstones of community: from bustling shopping malls and state-of-the-art hospitals to inspiring schools where the future is shaped.",
         showcaseSubtitle: "Engineering the landmarks of tomorrow...",
         linkText: "Explore Commercial Destinations",
         slug: "Commercial",
+      },
+      {
+        title: "Luxury",
+        highlight: "Villas",
+        description:
+          "Experience the pinnacle of bespoke living. We design and construct serene, exclusive villas that blend opulence with tranquility, creating your perfect private escape.",
+        showcaseSubtitle: "Crafting your personal sanctuary...",
+        linkText: "Discover Exquisite Villas",
+        slug: "Luxury-Villas",
       },
     ],
   },
@@ -2207,6 +2217,60 @@ export const dictionary = {
       ],
       image:
         "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit&crop&q=80",
+    },
+    labels: {
+      year: "Year",
+      location: "Location",
+      services: "Services",
+      scrollLeft: "Scroll Left",
+      scrollRight: "Scroll Right",
+    },
+  },
+  luxuryVillaPage: {
+    meta: {
+      title: "Bespoke Luxury Villa Design & Construction | Khales",
+      description:
+        "Khales specializes in creating bespoke luxury villas that serve as private sanctuaries. Discover our commitment to personalized design, elegance, and seamless indoor-outdoor living.",
+    },
+    header: {
+      tag: "BESPOKE VILLA ARCHITECTURE & SANCTUARY DESIGN",
+      title: "Crafting Your Private Sanctuary",
+      year: "2019-2024",
+      location: "Dubai Hills, Palm Jumeirah",
+      services: "Bespoke Design & Turnkey Construction",
+      bgImage:
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80",
+    },
+    gallery: {
+      title: "Villa Design Showcase",
+      images: [
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1600585152225-357ea66c7e2b?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&q=80",
+      ],
+    },
+    overview: {
+      title: "The Art of the Personal Escape",
+      text: [
+        "A luxury villa is more than a home; it is a **sanctuary** crafted exclusively for you. Our philosophy centers on creating intensely personal spaces that reflect your identity and offer a profound sense of peace and privacy.",
+        "We achieve this through a deep, collaborative **bespoke design** process. Every detail, from the architectural flow to the finishing materials, is selected to create a seamless connection between the indoor environment and the surrounding natural landscape.",
+      ],
+      tag: "PRIVACY | ELEGANCE | TRANQUILITY",
+      image:
+        "https://images.unsplash.com/photo-1617103996237-7036d8b6a37c?auto=format&fit=crop&q=80",
+    },
+    challenges: {
+      title: "Balancing Grandeur with Intimacy",
+      text: "The ultimate challenge in villa design is to create spaces that feel both grand and intimately personal. Our expertise lies in mastering this balance through thoughtful **landscape integration** and meticulous attention to the human scale of the design.",
+      solutions: [
+        "Personalized design consultations to capture the client's unique vision.",
+        "Seamless integration of smart home technology for ultimate comfort.",
+        "Meticulous **landscape integration** to enhance privacy and beauty.",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1576219467570-b14a822b89c8?auto=format&fit=crop&q=80",
     },
     labels: {
       year: "Year",
