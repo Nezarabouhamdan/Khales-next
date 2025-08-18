@@ -2118,6 +2118,7 @@ export const dictionary = {
     ],
   },
   residentialPage: {
+    // MISSING: New meta title and description were not provided.
     meta: {
       title:
         "Luxury Residential Architecture: Buildings, Mansions, Villas | Khales",
@@ -2125,46 +2126,51 @@ export const dictionary = {
         "From iconic residential buildings that redefine skylines to exclusive mansions and serene villas, discover our portfolio of luxury living spaces tailored for you.",
     },
     header: {
-      tag: "LEGACY-DEFINING RESIDENTIAL ARCHITECTURE",
-      title: "From Skyline to Sanctuary",
+      // MAPPED: Headline is used for the title.
+      tag: "RESIDENTIAL PROJECTS", // MAPPED: Derived from the service name.
+      title: "Luxury Residential Projects Across the UAE",
+      // MISSING: Year, Location, and Services were not in the new content.
       year: "2020-2024",
       location: "Across the UAE",
       services: "Full-Cycle Design & Build",
       bgImage:
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80", // Unchanged
     },
+    // MISSING: Gallery content was not provided.
     gallery: {
       title: "Residential Showcase",
       images: [
         "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit&crop&q=80",
         "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit&crop&q=80",
         "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit&crop&q=80",
       ],
     },
     overview: {
-      title: "Crafting Your World, at Every Scale",
+      // MAPPED: From the "First Section" content.
+      title: "Homes Engineered for Living",
       text: [
-        "Our vision begins with the skyline itself, where we design iconic **residential buildings** that become city landmarks, offering an unparalleled lifestyle. We merge innovative engineering with timeless aesthetics to create unique vertical communities.",
-        "This same commitment to excellence extends to the creation of sprawling **mansions** that tell the story of a family's legacy, and is perfected in the intimate details of our bespoke **luxury villas**, designed to be your private, secure sanctuary.",
+        "Elevating your living experience is our mission. We craft residential spaces that are a perfect blend of luxury, sophistication, and enduring value. With a focus on architectural precision and seamless project management, we handle everything from private villas to grand buildings. Our comprehensive, turnkey service brings your vision to life, from the first design concept to the final handover.",
       ],
-      tag: "BUILDINGS | MANSIONS | VILLAS",
+      tag: "From Luxury Buildings to Bespoke Residences", // MAPPED: From Subheadline
       image:
-        "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80", // Unchanged
     },
     challenges: {
-      title: "From Grand Vision to Personal Detail",
-      text: "Our mastery lies in adapting to scale, from the complex structural requirements of high-rise buildings to the deeply personal finishing touches of private villas and mansions.",
+      // MAPPED: From the "2nd Section" content.
+      title: "Engineered Luxury. Timeless Living.",
+      text: "Each home we design is more than a structure, it is a lifestyle investment built to last.",
       solutions: [
-        "Advanced structural engineering for high-rise residential buildings.",
-        "Exclusive material sourcing for bespoke luxury mansions.",
-        "Privacy-focused landscape architecture for serene villa integration.",
+        "Bespoke Design Solutions – Residences that reflect your taste, culture, and aspirations.",
+        "Cohesive Turnkey Delivery – A complete solution from permits to handover.",
+        "Enduring Quality – Premium materials, sustainable choices, and refined finishes.",
       ],
       image:
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit&crop&q=80", // Unchanged
     },
     labels: {
+      // Unchanged
       year: "Year",
       location: "Location",
       services: "Services",
@@ -2173,52 +2179,58 @@ export const dictionary = {
     },
   },
   commercialPage: {
+    // MISSING: New meta title and description were not provided.
     meta: {
       title: "Commercial Project Management & Reinvention | Khales",
       description:
         "Khales specializes in commercial reinvention through expert project management. We transform and deliver commercial projects, from malls to hospitals, on time and on budget.",
     },
     header: {
-      tag: "COMMERCIAL REINVENTION & PROJECT MANAGEMENT",
-      title: "Transforming Assets, Maximizing Value",
+      // MAPPED: Headline is used for the title.
+      tag: "COMMERCIAL PROJECTS", // MAPPED: Derived from the service name.
+      title: "Commercial Projects that Define Business Success",
+      // MISSING: Year, Location, and Services were not in the new content.
       year: "2018-2024",
       location: "Dubai, Abu Dhabi",
       services: "End-to-End Project Management",
       bgImage:
-        "https://images.unsplash.com/photo-1599693351227-7729be15b84c?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1599693351227-7729be15b84c?auto=format&fit&crop&q=80", // Unchanged
     },
+    // MISSING: Gallery content was not provided.
     gallery: {
       title: "Commercial Portfolio",
       images: [
         "https://images.unsplash.com/photo-1549492423-400259a4563b?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1581351639922-c31325154333?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1581351639922-c31325154333?auto=format&fit&crop&q=80",
         "https://images.unsplash.com/photo-1542372403-995f57a6b338?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1582211516195-2f949c812165?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1582211516195-2f949c812165?auto=format&fit&crop&q=80",
         "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit&crop&q=80",
       ],
     },
     overview: {
-      title: "The Art of Commercial Reinvention",
+      // MAPPED: From the "First Section" content.
+      title: "Spaces that Empower Business",
       text: [
-        "We don't just build commercial spaces; we practice **commercial reinvention**. This means revitalizing existing assets or creating new ones with a forward-thinking vision, focusing on maximizing value and ensuring long-term sustainability.",
-        "This is achieved through rigorous **project management**. Our team provides complete oversight from the initial feasibility study to final handover, ensuring every facet of the project is executed with precision and efficiency.",
+        "Our commercial projects combine intelligent planning, modern design, and operational efficiency to deliver lasting value. From high-profile corporate offices to vibrant retail destinations, we design and manage projects that strengthen brand presence and profitability. With Khales, every commercial development becomes a benchmark of precision, performance, and prestige.",
       ],
-      tag: "EXPERT PROJECT MANAGEMENT",
+      tag: "We offer premium solutions for mixed-use developments", // MAPPED: From Subheadline
       image:
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit&crop&q=80", // Unchanged
     },
     challenges: {
-      title: "Mastering Complexity with Project Management",
-      text: "Large-scale commercial ventures require more than just construction. They demand strategic **project management** to navigate complex regulatory and financial landscapes—this is the core of our expertise.",
+      // MAPPED: From the "2nd Section" content.
+      title: "Excellence in Commercial Development",
+      text: "We deliver commercial spaces that serve both business growth and long-term investment value.",
       solutions: [
-        "Strategic **project management** for complex **commercial reinvention** initiatives.",
-        "Lifecycle financial planning to ensure project viability and ROI.",
-        "Agile methodologies to adapt to changing market demands during development.",
+        "Future-Ready Designs – Adaptive spaces built for evolving business needs.",
+        "Efficient Project Management – Precision planning with cost and time certainty.",
+        "Trusted Across Sectors – healthcare, retail, hospitality, and mixed-use projects.",
       ],
       image:
-        "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit&crop&q=80", // Unchanged
     },
     labels: {
+      // Unchanged
       year: "Year",
       location: "Location",
       services: "Services",
@@ -2227,52 +2239,58 @@ export const dictionary = {
     },
   },
   luxuryVillaPage: {
+    // MISSING: New meta title and description were not provided.
     meta: {
       title: "Bespoke Luxury Villa Design & Construction | Khales",
       description:
         "Khales specializes in creating bespoke luxury villas that serve as private sanctuaries. Discover our commitment to personalized design, elegance, and seamless indoor-outdoor living.",
     },
     header: {
-      tag: "BESPOKE VILLA ARCHITECTURE & SANCTUARY DESIGN",
-      title: "Crafting Your Private Sanctuary",
+      // MAPPED: Headline is used for the title.
+      tag: "LUXURY VILLA SOLUTIONS", // MAPPED: Derived from the service name.
+      title: "The Art of Living in Luxury",
+      // MISSING: Year, Location, and Services were not in the new content.
       year: "2019-2024",
       location: "Dubai Hills, Palm Jumeirah",
       services: "Bespoke Design & Turnkey Construction",
       bgImage:
-        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit&crop&q=80", // Unchanged
     },
+    // MISSING: Gallery content was not provided.
     gallery: {
       title: "Villa Design Showcase",
       images: [
-        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1600585152225-357ea66c7e2b?auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1600585152225-357ea66c7e2b?auto=format&fit&crop&q=80",
+        "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit&crop&q=80",
       ],
     },
     overview: {
-      title: "The Art of the Personal Escape",
+      // MAPPED: From the "First Section" content.
+      title: "Delivering Engineered Designs",
       text: [
-        "A luxury villa is more than a home; it is a **sanctuary** crafted exclusively for you. Our philosophy centers on creating intensely personal spaces that reflect your identity and offer a profound sense of peace and privacy.",
-        "We achieve this through a deep, collaborative **bespoke design** process. Every detail, from the architectural flow to the finishing materials, is selected to create a seamless connection between the indoor environment and the surrounding natural landscape.",
+        "We deliver structured engineering and designs that meets our client requirement. We do this by focusing on architectural precision and seamless project management, ensuring every detail is expertly handled. Our commitment is to deliver a flawless journey from the initial concept to the final, perfect result, on time and within budget. This comprehensive approach guarantees that we don't just meet expectations, we exceed them, creating a final product that is both functional and aesthetically stunning.",
       ],
-      tag: "PRIVACY | ELEGANCE | TRANQUILITY",
+      tag: "Creating a fusion of architectural luxury, built to elevate your lifestyle.", // MAPPED: From Subheadline
       image:
-        "https://images.unsplash.com/photo-1617103996237-7036d8b6a37c?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617103996237-7036d8b6a37c?auto=format&fit&crop&q=80", // Unchanged
     },
     challenges: {
-      title: "Balancing Grandeur with Intimacy",
-      text: "The ultimate challenge in villa design is to create spaces that feel both grand and intimately personal. Our expertise lies in mastering this balance through thoughtful **landscape integration** and meticulous attention to the human scale of the design.",
+      // MAPPED: From the "2nd Section" content.
+      title: "Luxury Villa Solutions",
+      text: "We craft your lifestyle, creating a seamless fusion of architectural luxury and personal vision.",
       solutions: [
-        "Personalized design consultations to capture the client's unique vision.",
-        "Seamless integration of smart home technology for ultimate comfort.",
-        "Meticulous **landscape integration** to enhance privacy and beauty.",
+        "Design Solutions: We specialize in bringing your unique vision to life, crafting a villa that is a perfect reflection of your style.",
+        "Enduring Quality: We are committed to building with premium materials and sustainable choices, giving your villa a long-lasting impression of luxury.",
+        "Comprehensive Project Oversight: we provide a dedicated Engineer throughout the entire process, ensuring a professional and transparent delivery of your dream home with unmatched attention to detail.",
       ],
       image:
-        "https://images.unsplash.com/photo-1576219467570-b14a822b89c8?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1576219467570-b14a822b89c8?auto=format&fit&crop&q=80", // Unchanged
     },
     labels: {
+      // Unchanged
       year: "Year",
       location: "Location",
       services: "Services",

@@ -39,10 +39,8 @@ const projectTypesConfig = [
   },
 ];
 
-// --- STYLED COMPONENTS (Renamed for clarity, styles are identical to OurServices) ---
 // --- STYLED COMPONENTS ---
 
-// Add position: relative to ContentWrapper
 const ContentWrapper = styled.div`
   width: 100%;
   max-width: 1100px;
@@ -50,40 +48,35 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6rem;
-  position: relative; /* Add this */
-  z-index: 1; /* Ensure content stays above the background shape */
+  gap: 2rem; /* Reduced gap to accommodate clickable row padding */
+  position: relative;
+  z-index: 1;
 
-  /* New pseudo-element for the small decorative icon */
   &::after {
     content: "";
     position: absolute;
-    top: 5rem; /* Position it near the top */
-    right: ${({ lang }) =>
-      lang === "ar" ? "auto" : "0"}; /* Position on the right for LTR */
-    left: ${({ lang }) =>
-      lang === "ar" ? "0" : "auto"}; /* Position on the left for RTL */
+    top: 5rem;
+    right: ${({ lang }) => (lang === "ar" ? "auto" : "0")};
+    left: ${({ lang }) => (lang === "ar" ? "0" : "auto")};
     width: 80px;
     height: 80px;
-    background-image: radial-gradient(
-      #dbe3ce 20%,
-      transparent 20%
-    ); /* Creates a dot */
-    background-size: 10px 10px; /* Creates a grid of dots */
+    background-image: radial-gradient(#dbe3ce 20%, transparent 20%);
+    background-size: 10px 10px;
     opacity: 0.7;
-    z-index: 0; /* Keep it behind the main text/images */
+    z-index: 0;
   }
 
   @media (max-width: 992px) {
-    gap: 4rem;
+    gap: 1rem;
     padding: 0 1.5rem;
     &::after {
-      top: 2rem; /* Adjust position for mobile */
+      top: 2rem;
       width: 60px;
       height: 60px;
     }
   }
 `;
+
 const BackgroundImageWrapper = styled.div`
   position: absolute;
   top: 0;
@@ -95,6 +88,8 @@ const BackgroundImageWrapper = styled.div`
   border-radius: 20px;
   overflow: hidden;
 `;
+
+// This is no longer a Link, just a visual div.
 const ShowcaseCard = styled.div`
   position: relative;
   border-radius: 20px;
@@ -107,13 +102,12 @@ const ShowcaseCard = styled.div`
   overflow: hidden;
   isolation: isolate;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+
   &::after {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.3) 0%,
@@ -121,17 +115,12 @@ const ShowcaseCard = styled.div`
     );
     z-index: -1;
   }
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    ${BackgroundImageWrapper} {
-      transform: scale(1.05);
-    }
-  }
 `;
+
 const SectionHeader = styled(motion.div)`
   text-align: center;
   max-width: 700px;
+  margin-bottom: 4rem;
   h2 {
     font-size: 3.5rem;
     font-weight: 700;
@@ -144,22 +133,54 @@ const SectionHeader = styled(motion.div)`
     color: #555;
   }
   @media (max-width: 768px) {
+    margin-bottom: 2rem;
     h2 {
       font-size: 2.5rem;
     }
   }
 `;
-const ProjectRow = styled(motion.div)`
+
+const ProjectRowWrapper = styled(motion.div)`
+  width: 100%;
+`;
+
+// MODIFICATION 1: Create a new component from next/link to wrap everything.
+// This is now the main clickable element and flex container.
+const ClickableProjectRow = styled(Link)`
   display: flex;
   width: 100%;
   max-width: 1100px;
   gap: 3rem;
   align-items: center;
   flex-direction: ${(props) => (props.$isReversed ? "row-reverse" : "row")};
+  text-decoration: none; /* Remove default link styles */
+  color: inherit; /* Inherit text color from parent */
+  border-radius: 20px; /* Optional: for hover effects */
+  transition: background-color 0.3s ease;
+
+  /* MODIFICATION 2: Unified hover effect for the entire row */
+  &:hover {
+    ${ShowcaseCard} {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    ${BackgroundImageWrapper} {
+      transform: scale(1.05);
+    }
+    .arrow-icon {
+      transform: ${({ lang }) =>
+        lang === "ar"
+          ? "translateX(-4px) scaleX(-1)"
+          : "translateX(4px) scaleX(1)"};
+    }
+  }
+
   @media (max-width: 992px) {
     flex-direction: column;
+    gap: 2rem;
   }
 `;
+
 const ShowcaseColumn = styled(motion.div)`
   flex: 1;
   min-width: 300px;
@@ -202,7 +223,9 @@ const ProjectTypeDescription = styled.p`
   line-height: 1.8;
   margin-bottom: 2rem;
 `;
-const ExploreLink = styled(Link)`
+
+// MODIFICATION 3: Change ExploreLink from a Link to a div
+const ExploreLink = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -214,11 +237,7 @@ const ExploreLink = styled(Link)`
   .arrow-icon {
     transition: transform 0.3s ease;
   }
-  &:hover .arrow-icon {
-    transform: ${({ lang }) =>
-      lang === "ar" ? "translateX(-4px)" : "translateX(4px)"};
-  }
-`; // --- STYLED COMPONENTS ---
+`;
 
 const ProjectsContainer = styled.section`
   width: 100%;
@@ -230,34 +249,26 @@ const ProjectsContainer = styled.section`
   gap: 6rem;
   direction: ${({ lang }) => (lang === "ar" ? "rtl" : "ltr")};
   overflow: hidden;
-  position: relative; /* This is crucial for positioning the pseudo-element */
+  position: relative;
 
-  /* Add this new pseudo-element for the background shape */
   &::before {
     content: "";
     position: absolute;
-    top: 10%; /* Adjust vertical position */
-    left: ${({ lang }) =>
-      lang === "ar"
-        ? "auto"
-        : "-150px"}; /* Position off-screen to the left for LTR */
-    right: ${({ lang }) =>
-      lang === "ar"
-        ? "-150px"
-        : "auto"}; /* Position off-screen to the right for RTL */
-    width: 500px; /* Width of the shape */
-    height: 500px; /* Height of the shape */
-    background-color: #f0f5e6; /* A very light green, matching your brand */
-    border-radius: 50%; /* Makes it a circle */
-    opacity: 0.6; /* Soften the color */
-    z-index: 0; /* Place it behind the content */
+    top: 10%;
+    left: ${({ lang }) => (lang === "ar" ? "auto" : "-150px")};
+    right: ${({ lang }) => (lang === "ar" ? "-150px" : "auto")};
+    width: 500px;
+    height: 500px;
+    background-color: #f0f5e6;
+    border-radius: 50%;
+    opacity: 0.6;
+    z-index: 0;
   }
 
   @media (max-width: 992px) {
     padding: 4rem 0;
     gap: 4rem;
     &::before {
-      /* Adjust for smaller screens if needed */
       width: 350px;
       height: 350px;
       left: ${({ lang }) => (lang === "ar" ? "auto" : "-100px")};
@@ -265,6 +276,7 @@ const ProjectsContainer = styled.section`
     }
   }
 `;
+
 // --- MAIN COMPONENT ---
 export default function ProjectTypes({ lang, content }) {
   if (!content || !content.header || !content.items) {
@@ -284,51 +296,57 @@ export default function ProjectTypes({ lang, content }) {
         </SectionHeader>
         {content.items.map((project, index) => {
           const projectConfig = projectTypesConfig[index];
-          const projectUrl = `/${lang}/${project.slug}`; // Link to a section on the projects page
+          const projectUrl = `/${lang}/${project.slug}`;
 
           return (
-            <ProjectRow key={project.title} $isReversed={index % 2 !== 0}>
-              <ShowcaseColumn>
-                <ShowcaseCard>
-                  <BackgroundImageWrapper>
-                    <ImageWithSkeleton
-                      src={projectConfig.showcase.image}
-                      alt={`Showcase for ${project.title} projects`}
-                      sizes="(max-width: 992px) 90vw, 45vw"
-                    />
-                  </BackgroundImageWrapper>
-                  <ShowcaseIcon>{projectConfig.showcase.icon}</ShowcaseIcon>
-                  <div>
-                    <ShowcaseSubCard>
-                      {project.showcaseSubtitle}
-                    </ShowcaseSubCard>
-                  </div>
-                </ShowcaseCard>
-              </ShowcaseColumn>
+            // MODIFICATION 4: Use the new ClickableProjectRow as the main wrapper
+            <ProjectRowWrapper key={project.title}>
+              <ClickableProjectRow
+                href={projectUrl}
+                $isReversed={index % 2 !== 0}
+                lang={lang}
+              >
+                <ShowcaseColumn>
+                  <ShowcaseCard>
+                    <BackgroundImageWrapper>
+                      <ImageWithSkeleton
+                        src={projectConfig.showcase.image}
+                        alt={`Showcase for ${project.title} projects`}
+                        sizes="(max-width: 992px) 90vw, 45vw"
+                      />
+                    </BackgroundImageWrapper>
+                    <ShowcaseIcon>{projectConfig.showcase.icon}</ShowcaseIcon>
+                    <div>
+                      <ShowcaseSubCard>
+                        {project.showcaseSubtitle}
+                      </ShowcaseSubCard>
+                    </div>
+                  </ShowcaseCard>
+                </ShowcaseColumn>
 
-              <TextColumn>
-                <motion.div>
-                  <ProjectTypeTitle as="h3">
-                    {project.title} <span>{project.highlight}</span>
-                  </ProjectTypeTitle>
-                  <ProjectTypeDescription>
-                    {project.description}
-                  </ProjectTypeDescription>
-                </motion.div>
-                {/* FeaturesGrid has been removed as requested */}
-                <motion.div>
-                  <ExploreLink href={projectUrl} lang={lang}>
-                    {project.linkText}
-                    <FaArrowRight
-                      className="arrow-icon"
-                      style={{
-                        transform: lang === "ar" ? "scaleX(-1)" : "scaleX(1)",
-                      }}
-                    />
-                  </ExploreLink>
-                </motion.div>
-              </TextColumn>
-            </ProjectRow>
+                <TextColumn>
+                  <motion.div>
+                    <ProjectTypeTitle as="h3">
+                      {project.title} <span>{project.highlight}</span>
+                    </ProjectTypeTitle>
+                    <ProjectTypeDescription>
+                      {project.description}
+                    </ProjectTypeDescription>
+                  </motion.div>
+                  <motion.div>
+                    <ExploreLink lang={lang}>
+                      {project.linkText}
+                      <FaArrowRight
+                        className="arrow-icon"
+                        style={{
+                          transform: lang === "ar" ? "scaleX(-1)" : "scaleX(1)",
+                        }}
+                      />
+                    </ExploreLink>
+                  </motion.div>
+                </TextColumn>
+              </ClickableProjectRow>
+            </ProjectRowWrapper>
           );
         })}
       </ContentWrapper>
