@@ -20,8 +20,8 @@ import ProjectTypes from "@/components/Projecttypes/ProjectTypes";
 const getHomePageSchema = (lang) => {
   const name =
     lang === "ar"
-      ? "خالص - إدارة المشاريع والاستشارات الهندسية في دبي"
-      : "Khales - Expert Project Management & Engineering Consultancy in Dubai";
+      ? "خالص - إدارة المشاريع والاستشارات الهندسية في الإمارات"
+      : "Khales - Expert Project Management & Engineering Consultancy in UAE";
 
   const description =
     lang === "ar"
@@ -182,8 +182,8 @@ const getHomePageSchema = (lang) => {
 export async function generateMetadata({ params: { lang } }) {
   const title =
     lang === "ar"
-      ? "خالص | إدارة المشاريع والاستشارات الهندسية للفلل والمشاريع التجارية"
-      : "Khales | Full Project Management & Engineering for Villas & Commercial Projects";
+      ? "خالص | إدارة المشاريع والهندسة في والإمارات" // Short & Powerful
+      : "Khales | Project Management & Engineering in UAE"; // Short & Powerful
 
   const description =
     lang === "ar"
@@ -272,7 +272,7 @@ export default async function Home({ params: { lang } }) {
       />
       <section
         id="hero"
-        aria-label="Premier Architecture & Interior Design Company Dubai"
+        aria-label="Full Project Management & Engineering for Villas & Commercial Projects"
       >
         <Hero
           slides={dictionary.hero?.slides || []}
