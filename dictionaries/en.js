@@ -109,22 +109,6 @@ export const dictionary = {
     },
     items: [
       {
-        slug: "EngineeringConsultancy",
-        title: "Engineering",
-        highlight: "Consultancy",
-        description:
-          "Our engineering team supports each project with clear, code-compliant...",
-        showcaseSubtitle: "Technical solutions...",
-        features: [
-          {
-            title: "Structural Analysis",
-            description: "Detailed engineering checks...",
-          },
-          { title: "Quality Assurance", description: "Technical reviews..." },
-        ],
-        linkText: "Explore Engineering Solutions",
-      },
-      {
         slug: "project-management",
         title: "Project",
         highlight: "Management",
@@ -142,6 +126,22 @@ export const dictionary = {
           },
         ],
         linkText: "Discover Project Excellence",
+      },
+      {
+        slug: "EngineeringConsultancy",
+        title: "Engineering",
+        highlight: "Consultancy",
+        description:
+          "Our engineering team supports each project with clear, code-compliant...",
+        showcaseSubtitle: "Technical solutions...",
+        features: [
+          {
+            title: "Structural Analysis",
+            description: "Detailed engineering checks...",
+          },
+          { title: "Quality Assurance", description: "Technical reviews..." },
+        ],
+        linkText: "Explore Engineering Solutions",
       },
     ],
   },

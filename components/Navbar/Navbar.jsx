@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styled, { css } from "styled-components";
-import { FaTimes, FaBars, FaPhoneAlt } from "react-icons/fa";
+import { FaTimes, FaBars } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 // Custom hook to detect clicks outside of a component
@@ -281,6 +281,18 @@ const CurrentFlag = styled.img`
   }
 `;
 
+const LanguageLabel = styled.span`
+  font-weight: 500;
+  font-size: 16px;
+  color: ${COLORS.darkText};
+  @media (max-width: 1200px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 960px) {
+    font-size: 1.2rem;
+  }
+`;
+
 const LanguageOption = styled.div`
   display: flex;
   align-items: center;
@@ -292,41 +304,6 @@ const FlagIcon = styled.img`
   height: auto;
   border-radius: 3px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const PhoneNumberLink = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 0.6rem 1.2rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: ${COLORS.primary};
-  color: ${COLORS.white};
-
-  &:hover {
-    background-color: ${COLORS.primaryDarker};
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  @media (max-width: 1200px) {
-    font-size: 13px;
-    padding: 0.5rem 1rem;
-    gap: 6px;
-  }
-
-  @media (max-width: 960px) {
-    width: 100%;
-    font-size: 1.2rem;
-    padding: 1.2rem;
-  }
 `;
 
 // ===================================================================
@@ -368,20 +345,6 @@ export default function Navbar({ lang, navigation }) {
     const segments = pathname.split("/");
     segments[1] = locale;
     return segments.join("/");
-  };
-
-  const handlePhoneClick = (e) => {
-    e.preventDefault();
-    const phoneUrl = "tel:+971551299880";
-
-    if (typeof window.gtag_report_conversion === "function") {
-      window.gtag_report_conversion(phoneUrl);
-    } else {
-      console.log(
-        "gtag_report_conversion function not found. Redirecting directly."
-      );
-      window.location.href = phoneUrl;
-    }
   };
 
   const navItems = navigation?.items || [];
@@ -443,18 +406,11 @@ export default function Navbar({ lang, navigation }) {
 
         <NavMenu $isOpen={isMobileMenuOpen} ref={navRef}>
           <MainNavLinks />
+          {/* Mobile Language Switcher */}
           <MenuItem className="mobile-only-lang">
             <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
               <LanguageButton>
-                <CurrentFlag
-                  src={
-                    lang === "en"
-                      ? "https://flagcdn.com/w40/us.png"
-                      : "https://flagcdn.com/w40/sa.png"
-                  }
-                  alt="Current language"
-                />
-                <span>{lang === "en" ? "Language" : "اللغة"}</span>
+                <LanguageLabel>{lang === "en" ? "EN" : "AR"}</LanguageLabel>
               </LanguageButton>
               <ArrowIcon $isOpen={openDropdown === "language"} />
             </MenuLink>
@@ -489,19 +445,8 @@ export default function Navbar({ lang, navigation }) {
               </SubMenuItem>
             </SubMenu>
           </MenuItem>
-          <MenuItem className="mobile-only-phone">
-            <PhoneNumberLink
-              href="tel:+971551299880"
-              dir="ltr"
-              onClick={handlePhoneClick}
-            >
-              <FaPhoneAlt />
-              +971 55 129 9880
-            </PhoneNumberLink>
-          </MenuItem>
           <style jsx global>{`
-            .mobile-only-lang,
-            .mobile-only-phone {
+            .mobile-only-lang {
               display: none;
             }
             @media screen and (max-width: 960px) {
@@ -510,27 +455,16 @@ export default function Navbar({ lang, navigation }) {
                 width: 100%;
                 justify-content: center;
               }
-              .mobile-only-phone {
-                display: block;
-                width: 100%;
-                padding-top: 1rem;
-              }
             }
           `}</style>
         </NavMenu>
 
         <NavActions>
+          {/* Desktop Language Switcher */}
           <MenuItem>
             <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
               <LanguageButton>
-                <CurrentFlag
-                  src={
-                    lang === "en"
-                      ? "https://flagcdn.com/w40/us.png"
-                      : "https://flagcdn.com/w40/sa.png"
-                  }
-                  alt="Current language"
-                />
+                <LanguageLabel>{lang === "en" ? "EN" : "AR"}</LanguageLabel>
               </LanguageButton>
               <ArrowIcon $isOpen={openDropdown === "language"} />
             </MenuLink>
@@ -541,10 +475,6 @@ export default function Navbar({ lang, navigation }) {
                   $isActive={lang === "en"}
                 >
                   <LanguageOption>
-                    <FlagIcon
-                      src="https://flagcdn.com/w40/us.png"
-                      alt="USA Flag"
-                    />
                     <span>English</span>
                   </LanguageOption>
                 </SubMenuLink>
@@ -555,24 +485,12 @@ export default function Navbar({ lang, navigation }) {
                   $isActive={lang === "ar"}
                 >
                   <LanguageOption>
-                    <FlagIcon
-                      src="https://flagcdn.com/w40/sa.png"
-                      alt="KSA Flag"
-                    />
                     <span>العربية</span>
                   </LanguageOption>
                 </SubMenuLink>
               </SubMenuItem>
             </SubMenu>
           </MenuItem>
-          <PhoneNumberLink
-            href="tel:+971551299880"
-            dir="ltr"
-            onClick={handlePhoneClick}
-          >
-            <FaPhoneAlt />
-            +971 55 129 9880
-          </PhoneNumberLink>
         </NavActions>
       </NavbarContainer>
     </NavWrapper>
