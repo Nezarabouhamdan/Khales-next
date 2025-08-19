@@ -47,7 +47,7 @@ const HeaderSection = styled.header`
     height: 100%;
     overflow: hidden;
     z-index: 1;
-    opacity: 0.65;
+    opacity: 0.85;
     will-change: transform, opacity;
     animation: ${kenBurns} 25s ease-in-out infinite alternate;
   }

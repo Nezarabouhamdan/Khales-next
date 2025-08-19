@@ -2141,10 +2141,11 @@ export const dictionary = {
       title: "Residential Showcase",
       images: [
         "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
-        "https://i.ibb.co/pBbqBsD1/Screenshot-2025-08-19-154236.png",
-        "https://i.ibb.co/CszkhwNq/Screenshot-2025-08-19-154250.png",
         "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
-        "https://i.ibb.co/mC2GrZwr/Screenshot-2025-08-19-154323.png",
+        "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
+        "https://i.ibb.co/pj4pCr6F/Screenshot-2025-08-19-162543.png",
+
+        "https://i.ibb.co/pBbqBsD1/Screenshot-2025-08-19-154236.png",
         "https://i.ibb.co/7NxsWySc/Screenshot-2025-08-19-154348.png",
         "https://i.ibb.co/4gp06CFY/Screenshot-2025-08-19-154407.png",
       ],
@@ -2195,7 +2196,7 @@ export const dictionary = {
       year: "2018-2024",
       location: "Dubai, Abu Dhabi",
       services: "End-to-End Project Management",
-      bgImage: "https://i.ibb.co/YBpNBTCw/Screenshot-2025-08-19-153027.png", // Unchanged
+      bgImage: "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png", // Unchanged
     },
     // MISSING: Gallery content was not provided.
     gallery: {
@@ -2204,7 +2205,7 @@ export const dictionary = {
         "https://i.ibb.co/hJnXF2nB/Screenshot-2025-08-19-161351.png",
         "https://i.ibb.co/xrb1rTT/Screenshot-2025-08-19-161402.png",
         "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
-        "https://i.ibb.co/ns92WVsG/Screenshot-2025-08-19-161440.png",
+        "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
         "https://i.ibb.co/39N0kDJ8/Screenshot-2025-08-19-161450.png",
         "https://i.ibb.co/wrCF8HS2/Screenshot-2025-08-19-161535.png",
         "https://i.ibb.co/DPrRMcx3/Screenshot-2025-08-19-161550.png",
@@ -2262,13 +2263,15 @@ export const dictionary = {
     gallery: {
       title: "Villa Design Showcase",
       images: [
-        "https://i.ibb.co/HTdfXnC7/Screenshot-2025-08-19-161049.png",
-        "https://i.ibb.co/KM8mhtK/Screenshot-2025-08-19-161101.png",
-        "https://i.ibb.co/CD1d3R0/Screenshot-2025-08-19-161111.png",
-        "https://i.ibb.co/tp4mqRLv/Screenshot-2025-08-19-161129.png",
-        "https://i.ibb.co/BRznYLG/Screenshot-2025-08-19-161138.png",
         "https://i.ibb.co/8DzpbsXX/Screenshot-2025-08-19-161154.png",
+        "https://i.ibb.co/KM8mhtK/Screenshot-2025-08-19-161101.png",
+        "https://i.ibb.co/pjtLWqgJ/Screenshot-2025-08-19-163130.png",
         "https://i.ibb.co/9H3YHd3B/Screenshot-2025-08-19-161235.png",
+
+        "https://i.ibb.co/whZ5JmQv/Screenshot-2025-08-19-163108.png",
+        "https://i.ibb.co/HTdfXnC7/Screenshot-2025-08-19-161049.png",
+
+        "https://i.ibb.co/BRznYLG/Screenshot-2025-08-19-161138.png",
       ],
     },
     overview: {
