@@ -17,17 +17,16 @@ import FAQSection from "@/components/FAQ/FAQSection";
 import FeaturedBlogs from "@/components/FeaturedBlogs/FeaturedBlogs";
 import ProjectTypes from "@/components/Projecttypes/ProjectTypes";
 
-// --- STRUCTURED DATA --- (Updated with Blog Section)
 const getHomePageSchema = (lang) => {
   const name =
     lang === "ar"
-      ? "خالص - شركة رائدة للهندسة المعمارية والتصميم الداخلي في دبي"
-      : "Khales - Premier Architecture & Interior Design Company Dubai, UAE";
+      ? "خالص - إدارة المشاريع والاستشارات الهندسية في دبي"
+      : "Khales - Expert Project Management & Engineering Consultancy in Dubai";
 
   const description =
     lang === "ar"
-      ? "شركة رائدة في الهندسة المعمارية والتصميم الداخلي في دبي متخصصة في المشاريع السكنية والتجارية الفاخرة في جميع أنحاء الإمارات."
-      : "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across UAE.";
+      ? "شركة رائدة في إدارة المشاريع والاستشارات الهندسية في دبي، متخصصة في المشاريع التجارية والسكنية والفلل الفاخرة في جميع أنحاء الإمارات."
+      : "Leading project management and engineering consultancy in Dubai, specializing in commercial, residential, and luxury villa projects across the UAE.";
 
   return {
     "@context": "https://schema.org",
@@ -42,7 +41,7 @@ const getHomePageSchema = (lang) => {
       url: "https://www.khales.ae/",
       name: "Khales",
       description:
-        "Premier Architecture & Interior Design Company in Dubai, UAE",
+        "Expert Project Management & Engineering Consultancy in Dubai, UAE",
       publisher: {
         "@type": "Organization",
         "@id": "https://www.khales.ae/#organization",
@@ -60,7 +59,7 @@ const getHomePageSchema = (lang) => {
         height: 630,
       },
       description:
-        "Dubai's premier architecture and interior design company specializing in luxury residential and commercial projects across UAE",
+        "Leading project management and engineering consultancy in Dubai, specializing in commercial, residential, and luxury villa projects across the UAE.",
       address: {
         "@type": "PostalAddress",
         addressCountry: "AE",
@@ -89,25 +88,41 @@ const getHomePageSchema = (lang) => {
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Architecture and Interior Design Services",
+        name: "Project Management and Engineering Consultancy Services",
         itemListElement: [
           {
             "@type": "Offer",
-            itemOffered: { "@type": "Service", name: "Architecture Design" },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: { "@type": "Service", name: "Interior Design" },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: { "@type": "Service", name: "Project Management" },
+            itemOffered: {
+              "@type": "Service",
+              name: "Full Project Management",
+            },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
               name: "Engineering Consultancy",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Commercial Project Management",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Residential Project Management",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Luxury Villa Construction Management",
             },
           },
         ],
@@ -144,8 +159,8 @@ const getHomePageSchema = (lang) => {
         },
         {
           "@type": "ListItem",
-          position: 6, // New position
-          item: { "@type": "WebPageElement", name: "Our Blogs" }, // New blog section
+          position: 6,
+          item: { "@type": "WebPageElement", name: "Our Blogs" },
         },
       ],
     },
@@ -163,46 +178,45 @@ const getHomePageSchema = (lang) => {
   };
 };
 
-// --- METADATA --- (No changes needed)
+// --- METADATA ---
 export async function generateMetadata({ params: { lang } }) {
   const title =
     lang === "ar"
-      ? "خالص | شركة هندسة معمارية وتصميم داخلي رائدة في دبي"
-      : "Khales | Premier Architecture & Design Firm in Dubai, UAE";
+      ? "خالص | إدارة المشاريع والاستشارات الهندسية للفلل والمشاريع التجارية"
+      : "Khales | Full Project Management & Engineering for Villas & Commercial Projects";
 
   const description =
     lang === "ar"
-      ? "اكتشف خالص، شركة الهندسة المعمارية والتصميم الداخلي الرائدة في دبي. متخصصون في بناء الفلل الفاخرة والمكاتب العصرية والمشاريع التجارية المخصصة في جميع أنحاء الإمارات."
-      : "Discover Khales, Dubai's leading architecture & interior design firm. We craft luxury villas, modern offices, and bespoke commercial projects across the UAE.";
+      ? "تقدم خالص إدارة مشاريع شاملة واستشارات هندسية للمشاريع التجارية والسكنية وتطوير الفلل الفاخرة في دبي والإمارات. رؤيتكم، بإدارة وهندسة احترافية."
+      : "Khales offers comprehensive project management and engineering consultancy for commercial, residential, and luxury villa developments in Dubai and across the UAE. Your vision, expertly managed and engineered.";
 
   const keywords =
     lang === "ar"
       ? [
-          "هندسة معمارية دبي",
-          "تصميم داخلي دبي",
-          "تصميم فاخر الإمارات",
-          "شركة خالص",
-          "مهندسين معماريين دبي",
-          "مصممين داخليين الإمارات",
-          "تصميم فلل دبي",
-          "تصميم مكاتب دبي",
-          "إدارة مشاريع الإمارات",
-          "مدونة هندسة معمارية", // Added keyword
+          "إدارة مشاريع كاملة دبي",
+          "استشارات هندسية الإمارات",
+          "إدارة المشاريع التجارية دبي",
+          "إدارة المشاريع السكنية",
+          "إدارة بناء الفلل الفاخرة",
+          "استشاريون هندسيون دبي",
+          "إدارة مشاريع البناء الإمارات",
+          "المشاريع العقارية دبي",
+          "استشارات المباني التجارية",
+          "خدمات هندسية للفلل",
+          "شركة خالص لإدارة المشاريع",
         ]
       : [
-          "architecture Dubai",
-          "interior design Dubai",
-          "luxury design UAE",
-          "Khales company",
-          "architects Dubai",
-          "interior designers UAE",
-          "villa design Dubai",
-          "office design Dubai",
-          "project management UAE",
-          "commercial architecture Dubai",
-          "residential design Dubai",
-          "engineering consultancy Dubai",
-          "architecture blog", // Added keyword
+          "full project management Dubai",
+          "engineering consultancy UAE",
+          "commercial project management Dubai",
+          "residential project management UAE",
+          "luxury villa construction management",
+          "engineering consultants Dubai",
+          "construction project management UAE",
+          "real estate project management Dubai",
+          "commercial building consultants",
+          "villa engineering services Abu Dhabi",
+          "Khales project management",
         ];
 
   const baseUrl = "https://www.khales.ae";
@@ -226,7 +240,7 @@ export async function generateMetadata({ params: { lang } }) {
           url: `${baseUrl}/assets/Khales-Logo.png`,
           width: 1200,
           height: 630,
-          alt: "Khales - Architecture & Interior Design Dubai",
+          alt: "Khales - Project Management & Engineering Consultancy",
         },
       ],
     },
@@ -242,7 +256,6 @@ export async function generateMetadata({ params: { lang } }) {
     },
   };
 }
-
 // --- PAGE COMPONENT --- (Updated with Blog Section)
 export default async function Home({ params: { lang } }) {
   const dictionary = await getDictionary(lang);
