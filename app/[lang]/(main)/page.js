@@ -187,8 +187,8 @@ export async function generateMetadata({ params: { lang } }) {
 
   const description =
     lang === "ar"
-      ? "تقدم خالص إدارة مشاريع شاملة واستشارات هندسية للمشاريع التجارية والسكنية وتطوير الفلل الفاخرة في دبي والإمارات. رؤيتكم، بإدارة وهندسة احترافية."
-      : "Khales offers comprehensive project management and engineering consultancy for commercial, residential, and luxury villa developments in Dubai and across the UAE. Your vision, expertly managed and engineered.";
+      ? "خبراء في إدارة المشاريع والاستشارات الهندسية للفلل والمشاريع التجارية في دبي. حوّل رؤيتك إلى واقع معنا."
+      : "Expert project management and engineering consultancy for villas and commercial projects in Dubai. Turn your vision into reality.";
 
   const keywords =
     lang === "ar"
