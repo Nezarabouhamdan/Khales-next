@@ -18,17 +18,17 @@ import ImageWithSkeleton from "../ImageSkeleton";
 const servicesConfig = [
   {
     showcase: {
-      icon: <FaStar />,
-      image: "https://i.ibb.co/27vKcS6W/Screenshot-2025-08-14-165427.png",
-    },
-    features: [{ icon: <FaProjectDiagram /> }, { icon: <FaClipboardCheck /> }],
-  },
-  {
-    showcase: {
       icon: <FaTasks />,
       image: "https://i.ibb.co/SwLmzSCw/PM.png",
     },
     features: [{ icon: <FaBullseye /> }, { icon: <FaClipboardCheck /> }],
+  },
+  {
+    showcase: {
+      icon: <FaStar />,
+      image: "https://i.ibb.co/27vKcS6W/Screenshot-2025-08-14-165427.png",
+    },
+    features: [{ icon: <FaProjectDiagram /> }, { icon: <FaClipboardCheck /> }],
   },
 ];
 

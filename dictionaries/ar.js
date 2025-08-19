@@ -106,18 +106,6 @@ export const dictionary = {
     },
     items: [
       {
-        slug: "EngineeringConsultancy",
-        title: "الاستشارات",
-        highlight: "الهندسية",
-        description: "نقدم حلولاً هندسية شاملة...",
-        showcaseSubtitle: "تصميم وهيكلة أنظمة...",
-        features: [
-          { title: "التحليل الإنشائي", description: "تحليل حسابي متقدم..." },
-          { title: "ضمان الجودة", description: "بروتوكولات اختبار صارمة..." },
-        ],
-        linkText: "اكتشف الحلول الهندسية",
-      },
-      {
         slug: "project-management",
         title: "إدارة",
         highlight: "المشاريع",
@@ -128,6 +116,18 @@ export const dictionary = {
           { title: "إدارة المخاطر", description: "استراتيجيات استباقية..." },
         ],
         linkText: "اكتشف تميز المشاريع",
+      },
+      {
+        slug: "EngineeringConsultancy",
+        title: "الاستشارات",
+        highlight: "الهندسية",
+        description: "نقدم حلولاً هندسية شاملة...",
+        showcaseSubtitle: "تصميم وهيكلة أنظمة...",
+        features: [
+          { title: "التحليل الإنشائي", description: "تحليل حسابي متقدم..." },
+          { title: "ضمان الجودة", description: "بروتوكولات اختبار صارمة..." },
+        ],
+        linkText: "اكتشف الحلول الهندسية",
       },
     ],
   },
