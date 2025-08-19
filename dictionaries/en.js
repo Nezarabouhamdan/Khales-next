@@ -2134,18 +2134,19 @@ export const dictionary = {
       year: "2020-2024",
       location: "Across the UAE",
       services: "Full-Cycle Design & Build",
-      bgImage:
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80", // Unchanged
+      bgImage: "https://i.ibb.co/5gYG32cT/Screenshot-2025-08-19-153006.png", // Unchanged
     },
     // MISSING: Gallery content was not provided.
     gallery: {
       title: "Residential Showcase",
       images: [
-        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit&crop&q=80",
+        "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
+        "https://i.ibb.co/pBbqBsD1/Screenshot-2025-08-19-154236.png",
+        "https://i.ibb.co/CszkhwNq/Screenshot-2025-08-19-154250.png",
+        "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
+        "https://i.ibb.co/mC2GrZwr/Screenshot-2025-08-19-154323.png",
+        "https://i.ibb.co/7NxsWySc/Screenshot-2025-08-19-154348.png",
+        "https://i.ibb.co/4gp06CFY/Screenshot-2025-08-19-154407.png",
       ],
     },
     overview: {
@@ -2194,18 +2195,19 @@ export const dictionary = {
       year: "2018-2024",
       location: "Dubai, Abu Dhabi",
       services: "End-to-End Project Management",
-      bgImage:
-        "https://images.unsplash.com/photo-1599693351227-7729be15b84c?auto=format&fit&crop&q=80", // Unchanged
+      bgImage: "https://i.ibb.co/YBpNBTCw/Screenshot-2025-08-19-153027.png", // Unchanged
     },
     // MISSING: Gallery content was not provided.
     gallery: {
       title: "Commercial Portfolio",
       images: [
-        "https://images.unsplash.com/photo-1549492423-400259a4563b?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1581351639922-c31325154333?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1542372403-995f57a6b338?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1582211516195-2f949c812165?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit&crop&q=80",
+        "https://i.ibb.co/hJnXF2nB/Screenshot-2025-08-19-161351.png",
+        "https://i.ibb.co/xrb1rTT/Screenshot-2025-08-19-161402.png",
+        "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
+        "https://i.ibb.co/ns92WVsG/Screenshot-2025-08-19-161440.png",
+        "https://i.ibb.co/39N0kDJ8/Screenshot-2025-08-19-161450.png",
+        "https://i.ibb.co/wrCF8HS2/Screenshot-2025-08-19-161535.png",
+        "https://i.ibb.co/DPrRMcx3/Screenshot-2025-08-19-161550.png",
       ],
     },
     overview: {
@@ -2254,18 +2256,19 @@ export const dictionary = {
       year: "2019-2024",
       location: "Dubai Hills, Palm Jumeirah",
       services: "Bespoke Design & Turnkey Construction",
-      bgImage:
-        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit&crop&q=80", // Unchanged
+      bgImage: "https://i.ibb.co/wrCYmX0L/Screenshot-2025-08-19-153017.png", // Unchanged
     },
     // MISSING: Gallery content was not provided.
     gallery: {
       title: "Villa Design Showcase",
       images: [
-        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1600585152225-357ea66c7e2b?auto=format&fit&crop&q=80",
-        "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit&crop&q=80",
+        "https://i.ibb.co/HTdfXnC7/Screenshot-2025-08-19-161049.png",
+        "https://i.ibb.co/KM8mhtK/Screenshot-2025-08-19-161101.png",
+        "https://i.ibb.co/CD1d3R0/Screenshot-2025-08-19-161111.png",
+        "https://i.ibb.co/tp4mqRLv/Screenshot-2025-08-19-161129.png",
+        "https://i.ibb.co/BRznYLG/Screenshot-2025-08-19-161138.png",
+        "https://i.ibb.co/8DzpbsXX/Screenshot-2025-08-19-161154.png",
+        "https://i.ibb.co/9H3YHd3B/Screenshot-2025-08-19-161235.png",
       ],
     },
     overview: {
