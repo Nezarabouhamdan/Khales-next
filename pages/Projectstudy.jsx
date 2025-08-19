@@ -11,7 +11,6 @@ import OurProcessWork from "@/components/OurProcessWork/OurProcessWork";
 import CTASection from "@/components/Homecontact/CTASection";
 import { Row2, Column } from "@/utils/Globalstyles";
 import { GreenText, Title as Title2 } from "@/components/Whoweare/TextContent";
-import ProjectHighlight from "@/components/Projecthighlights/ProjectHighlight";
 
 const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 

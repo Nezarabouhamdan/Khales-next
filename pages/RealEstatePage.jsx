@@ -5,10 +5,8 @@ import OurProcessWork from "../components/OurProcessWork/OurProcessWork";
 import { Row2, Column } from "../utils/Globalstyles";
 import { GreenText, Title as Title2 } from "../components/Whoweare/TextContent";
 import CTASection from "../components/Homecontact/CTASection";
-import ProjectHighlight from "../components/Projecthighlights/ProjectHighlight";
 import { useLanguage } from "../Context/Languagecontext"; // Import the language context
 import dynamic from "next/dynamic";
-import banner from "@/public/assets/banner/project.jpeg";
 const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
 
 export const slides = {
@@ -273,7 +271,6 @@ const RealEstatePage = () => {
           <OurProcessWork panels={process[language]} />
           <img width={"300px"} src={"/assets/4.png"} alt="Process Work" />
         </Row2>
-        <ProjectHighlight data={ProjectHighlightdata[language]} />
 
         <Title2>
           {language === "ar" ? "الأسئلة الشائعة " : "Frequently Asked"}
