@@ -30,6 +30,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params: { lang } }) {
+  const baseUrl = "https://www.khales.ae"; // Define your base URL
+
   const title =
     lang === "ar"
       ? "مجموعة خالص | للاستشارات الهندسية وإدارة المشاريع في دبي"
@@ -38,7 +40,12 @@ export async function generateMetadata({ params: { lang } }) {
     lang === "ar"
       ? "شركة رائدة في دبي متخصصة في التصميم المعماري، والتصميم الداخلي، وإدارة المشاريع للمباني السكنية والتجارية الفاخرة."
       : "A leading firm in Dubai specializing in architectural design, interior design, and project management for luxury residential and commercial properties.";
-
+  const languages = {};
+  i18n.locales.forEach((locale) => {
+    // Example: "en-AE": "https://www.khales.ae/en"
+    const langCode = locale === "en" ? "en-AE" : "ar-AE";
+    languages[langCode] = `${baseUrl}/${locale}`;
+  });
   return {
     title: {
       default: title,
@@ -47,13 +54,13 @@ export async function generateMetadata({ params: { lang } }) {
     description: description,
     metadataBase: new URL("https://www.khales.ae"),
     alternates: {
-      canonical: "/",
+      canonical: `${baseUrl}/${lang}`,
       languages: { "en-US": "/en", "ar-AE": "/ar" },
     },
     openGraph: {
       title: title,
       description: description,
-      url: "https://www.khales.ae",
+      url: `${baseUrl}/${lang}`, // Also ensure this is absolute
       siteName: "Khales Group",
       images: [
         {

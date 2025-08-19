@@ -18,6 +18,10 @@ import FeaturedBlogs from "@/components/FeaturedBlogs/FeaturedBlogs";
 import ProjectTypes from "@/components/Projecttypes/ProjectTypes";
 
 const getHomePageSchema = (lang) => {
+  // Define base and language-specific URLs for clarity
+  const baseUrl = "https://www.khales.ae";
+  const pageUrl = `${baseUrl}/${lang}`;
+
   const name =
     lang === "ar"
       ? "خالص - إدارة المشاريع والاستشارات الهندسية في الإمارات"
@@ -31,30 +35,30 @@ const getHomePageSchema = (lang) => {
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://www.khales.ae/#webpage",
-    url: "https://www.khales.ae/",
+    "@id": `${pageUrl}/#webpage`, // CORRECTED: Uses language-specific URL
+    url: pageUrl, // CORRECTED: Uses language-specific URL
     name: name,
     description: description,
     isPartOf: {
       "@type": "WebSite",
-      "@id": "https://www.khales.ae/#website",
-      url: "https://www.khales.ae/",
+      "@id": `${baseUrl}/#website`, // CORRECT: Stays as base URL
+      url: baseUrl, // CORRECT: Stays as base URL
       name: "Khales",
       description:
         "Expert Project Management & Engineering Consultancy in Dubai, UAE",
       publisher: {
         "@type": "Organization",
-        "@id": "https://www.khales.ae/#organization",
+        "@id": `${baseUrl}/#organization`,
       },
     },
     about: {
       "@type": "Organization",
-      "@id": "https://www.khales.ae/#organization",
+      "@id": `${baseUrl}/#organization`, // CORRECT: Stays as base URL
       name: "Khales",
-      url: "https://www.khales.ae/",
+      url: baseUrl, // CORRECT: Stays as base URL
       logo: {
         "@type": "ImageObject",
-        url: "https://www.khales.ae/assets/Khales-Logo.png",
+        url: `${baseUrl}/assets/Khales-Logo.png`,
         width: 1200,
         height: 630,
       },
@@ -171,7 +175,7 @@ const getHomePageSchema = (lang) => {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://www.khales.ae/",
+          item: pageUrl, // CORRECTED: Uses language-specific URL
         },
       ],
     },
