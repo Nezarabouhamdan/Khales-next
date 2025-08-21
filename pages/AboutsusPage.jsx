@@ -2,6 +2,8 @@
 
 import React from "react";
 import MissionVision from "@/components/Mission Vision/Mission Vision";
+import ComprehensiveAbout from "@/components/ComprehensiveAbout";
+import ValueProposition from "@/components/AboutusSpecial";
 
 export default function AboutUsPageClient({ lang, content }) {
   // THE FIX IS HERE: We check if `content` and `content.missionVision` exist before trying to use them.
@@ -10,13 +12,19 @@ export default function AboutUsPageClient({ lang, content }) {
 
   return (
     <>
-      <div style={{ paddingTop: "10vh" }}></div>
-
-      {/* We only render the MissionVision component if we have the content for it */}
+      <div style={{ paddingTop: "5vh" }}></div>
+      <ComprehensiveAbout
+        lang={lang}
+        content={content.comprehensiveAbout}
+      />{" "}
       {missionVisionContent && (
         <MissionVision lang={lang} content={missionVisionContent} />
       )}
-
+      <ValueProposition
+        lang={lang}
+        content={content.valueProposition}
+      ></ValueProposition>
+      {/* We only render the MissionVision component if we have the content for it */}
       {/* You can add other components here with similar safety checks */}
     </>
   );

@@ -16,6 +16,7 @@ import EnhancedContent from "@/components/EnhanceContent";
 import FAQSection from "@/components/FAQ/FAQSection";
 import FeaturedBlogs from "@/components/FeaturedBlogs/FeaturedBlogs";
 import ProjectTypes from "@/components/Projecttypes/ProjectTypes";
+import ComprehensiveAbout from "@/components/ComprehensiveAbout";
 
 const getHomePageSchema = (lang) => {
   // Define base and language-specific URLs for clarity
