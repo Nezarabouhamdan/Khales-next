@@ -112,20 +112,22 @@ const LocationCard = styled(motion.div)`
 
 const ComingSoonBadge = styled.div`
   position: absolute;
-  top: 32px;
-  ${({ isArabic }) => (isArabic ? "left: -45px;" : "right: -45px;")}
+  top: ${({ isArabic }) => (isArabic ? "30px" : "30px")};
+  ${({ isArabic }) => (isArabic ? "left: -35px;" : "right: -30px;")}
+  transform: ${({ isArabic }) =>
+    isArabic ? "rotate(-45deg)" : "rotate(45deg)"};
   background-color: #66a109;
   color: white;
-  padding: 6px 40px;
+  padding: 6px 4px;
   font-size: 0.8rem;
   font-weight: 600;
+  width: 150px;
+  text-align: center;
   text-transform: uppercase;
-  transform: rotate(45deg);
   transform-origin: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 3;
 `;
-
 const IconWrapper = styled.div`
   font-size: 1.75rem;
   color: #66a109;
