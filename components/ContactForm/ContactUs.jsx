@@ -123,21 +123,22 @@ export default function ContactUs({ lang, content }) {
 // import { useRouter } from "next/navigation";
 
 // --- ContactForm SUB-COMPONENT ---
+// --- ContactForm SUB-COMPONENT (Corrected) ---
 const ContactForm = ({ content, rtl }) => {
-  const router = useRouter(); // Import the router
+  const router = useRouter(); // Make sure this is imported at the top of the file
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
-  const [selectedInquiry, setSelectedInquiry] = useState("");
+  // ❗️ STATE CONSOLIDATED: We no longer need a separate 'selectedInquiry' state.
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    inquiry: "",
+    inquiry: "", // This will be our single source of truth.
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleInquirySelect = (option) => {
-    setSelectedInquiry(option);
+    // ✅ SIMPLIFIED: Only update the 'formData' state.
     setFormData((prev) => ({ ...prev, inquiry: option }));
     setIsInquiryOpen(false);
   };
@@ -147,22 +148,18 @@ const ContactForm = ({ content, rtl }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // =================================================================
-  // 🎯 FINAL FIX: UPDATED handleSubmit to match the Landing Page
-  // =================================================================
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Basic validation (optional, but good practice)
+    // ✅ ROBUST VALIDATION: Now checks the same data that will be submitted.
     if (
       !formData.name ||
       !formData.phone ||
       !formData.email ||
-      !selectedInquiry
+      !formData.inquiry // Changed from !selectedInquiry
     ) {
-      // You can add more specific error handling here if you want
       setIsSubmitting(false);
       setSubmitStatus("error");
       return;
@@ -177,7 +174,7 @@ const ContactForm = ({ content, rtl }) => {
           phone: formData.phone,
           email: formData.email,
           branch: "Website",
-          inquiry: formData.inquiry,
+          inquiry: formData.inquiry, // This was already correct.
         }),
       });
 
@@ -188,24 +185,17 @@ const ContactForm = ({ content, rtl }) => {
       const data = await response.json();
 
       if (data.success) {
-        // --- Function to handle redirecting the user ---
         const handleRedirect = () => {
-          // Note: you may need to adjust the path if your contact page has a language prefix
-          // e.g., router.push(`/${lang}/thankyou`);
           router.push("/thankyou");
         };
 
-        // --- Push GTM event with a callback ---
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: "Form August 2025",
           eventCallback: handleRedirect,
-          eventTimeout: 2000, // 2-second fallback
+          eventTimeout: 2000,
         });
-
-        // You can add other tracking pixels here if needed (e.g., Facebook)
       } else {
-        // The API returned { success: false }, so show an error.
         setSubmitStatus("error");
         setIsSubmitting(false);
       }
@@ -215,14 +205,12 @@ const ContactForm = ({ content, rtl }) => {
       setIsSubmitting(false);
     }
   };
-  // =================================================================
 
   const closePopup = () => setSubmitStatus(null);
 
   return (
     <>
       <Form id="contact" onSubmit={handleSubmit}>
-        {/* ... The rest of your form's JSX remains exactly the same ... */}
         <FormGroup>
           <DropdownContainer>
             <DropdownInput
@@ -230,7 +218,8 @@ const ContactForm = ({ content, rtl }) => {
               id="inquiry"
               name="inquiry"
               placeholder=" "
-              value={selectedInquiry}
+              // ✅ BIND TO SINGLE SOURCE OF TRUTH: Use formData.inquiry for the value.
+              value={formData.inquiry}
               onClick={() => setIsInquiryOpen((o) => !o)}
               readOnly
               $rtl={rtl}
@@ -316,7 +305,7 @@ const ContactForm = ({ content, rtl }) => {
           )}
         </SubmitButton>
       </Form>
-      {/* This modal will now only show for errors */}
+      {/* --- Error Modal remains the same --- */}
       {submitStatus === "error" && (
         <ModalOverlay onClick={closePopup}>
           <ModalContent onClick={(e) => e.stopPropagation()} $rtl={rtl}>
