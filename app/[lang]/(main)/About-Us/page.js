@@ -1,3 +1,5 @@
+// /app/[lang]/(main)/About-Us/page.js
+
 import { getDictionary } from "@/get-dictionary";
 import { generatePageMetadata } from "@/lib/metadata";
 import AboutUsPageClient from "@/pages/AboutsusPage";
@@ -10,28 +12,37 @@ const JsonLdSchema = ({ data }) => (
   />
 );
 
-// 1. Generate dynamic, translated metadata for this page
+// This function is correct
 export async function generateMetadata({ params: { lang } }) {
-  const dictionary = await getDictionary(lang);
-  const pageData = dictionary.aboutUsPage;
+  const dict = await getDictionary(lang);
+  const pageData = dict.aboutUsPage;
 
   return generatePageMetadata({
     title: pageData.metaTitle,
     description: pageData.metaDescription,
     keywords: pageData.metaKeywords,
     lang: lang,
-    alternatesUrl: "/about-us", // Use your new standardized URL
+    alternatesUrl: "/about-us",
   });
 }
 
-// 2. This is the main server component for the "About Us" route
+// ✅ MAIN FIX IS HERE
 export default async function AboutUsPage({ params: { lang } }) {
-  const dictionary = await getDictionary(lang);
-  const pageData = dictionary.aboutUsPage;
-  const baseUrl = "https://www.khales.ae";
+  // ✅ YOU MUST FETCH THE DICTIONARY HERE
+  const dict = await getDictionary(lang);
+
+  // This will now work because 'dict' is defined
+  const pageData = dict.aboutUsPage;
+
+  const pageContent = {
+    comprehensiveAbout: dict.comprehensiveAbout,
+    valueProposition: dict.valueProposition,
+    missionVision: pageData.missionVision,
+  };
+
+  const baseUrl = "https://www.khales.ae"; // Make sure this is correct
   const pageUrl = `${baseUrl}/${lang}/about-us`;
 
-  // Dynamically generate the AboutPage Schema from the dictionary
   const aboutSchema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
@@ -60,7 +71,6 @@ export default async function AboutUsPage({ params: { lang } }) {
     },
   };
 
-  // Dynamically generate the Breadcrumb Schema from the dictionary
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -82,12 +92,9 @@ export default async function AboutUsPage({ params: { lang } }) {
 
   return (
     <>
-      {/* Inject schema directly into the page */}
       <JsonLdSchema data={aboutSchema} />
       <JsonLdSchema data={breadcrumbSchema} />
-
-      {/* Render the client component, passing down the dictionary content */}
-      <AboutUsPageClient lang={lang} content={pageData} />
+      <AboutUsPageClient lang={lang} content={pageContent} />
     </>
   );
 }

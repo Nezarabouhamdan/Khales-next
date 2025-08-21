@@ -1,3 +1,4 @@
+// ./AboutUsPageClient.js
 "use client";
 
 import React from "react";
@@ -6,26 +7,28 @@ import ComprehensiveAbout from "@/components/ComprehensiveAbout";
 import ValueProposition from "@/components/AboutusSpecial";
 
 export default function AboutUsPageClient({ lang, content }) {
-  // THE FIX IS HERE: We check if `content` and `content.missionVision` exist before trying to use them.
-  // If `missionVision` is missing from the dictionary, this will prevent the component from crashing.
+  // ✅ ADDED SAFETY CHECKS for all content pieces
+  const comprehensiveAboutContent = content?.comprehensiveAbout;
   const missionVisionContent = content?.missionVision;
+  const valuePropositionContent = content?.valueProposition;
 
   return (
     <>
       <div style={{ paddingTop: "5vh" }}></div>
-      <ComprehensiveAbout
-        lang={lang}
-        content={content.comprehensiveAbout}
-      />{" "}
+
+      {/* Render component only if content exists */}
+      {comprehensiveAboutContent && (
+        <ComprehensiveAbout lang={lang} content={comprehensiveAboutContent} />
+      )}
+
       {missionVisionContent && (
         <MissionVision lang={lang} content={missionVisionContent} />
       )}
-      <ValueProposition
-        lang={lang}
-        content={content.valueProposition}
-      ></ValueProposition>
-      {/* We only render the MissionVision component if we have the content for it */}
-      {/* You can add other components here with similar safety checks */}
+
+      {/* Render component only if content exists */}
+      {valuePropositionContent && (
+        <ValueProposition lang={lang} content={valuePropositionContent} />
+      )}
     </>
   );
 }

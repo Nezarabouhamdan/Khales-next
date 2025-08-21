@@ -7,7 +7,46 @@ import { projectsData as allProjects } from "@/components/Property Page/ProjectD
 
 export const dictionary = {
   // dictionaries/en.js
-
+  comprehensiveAbout: {
+    title: "Khales Group",
+    subtitle: "Orchestrating Landmark Projects",
+    intro:
+      " Khales Group is a premier project management and engineering consultancy firm dedicated to navigating the complexities of large-scale construction. Our expertise is proven across two distinct realms: the demanding world of major commercial developments and the nuanced creation of luxury residential properties.",
+    subsections: [
+      {
+        title: "Mastery in Commercial Developments",
+        text: "Our team delivers high-stakes commercial ventures like malls, hospitals, and hotels, ensuring these projects are completed on schedule, within budget, and to the highest standards.",
+      },
+      {
+        title: "Engineering Excellence for Luxury Residences",
+        text: "We apply rigorous engineering to the art of luxury living, ensuring the flawless execution of exclusive villas and residential buildings with unparalleled structural integrity and finish.",
+      },
+    ],
+    buttonText: "Explore Our Portfolio",
+    buttonLink: "/projects",
+  },
+  valueProposition: {
+    title: "The Khales",
+    subtitle: "Advantage",
+    intro:
+      "Beyond construction, we build strategic partnerships founded on transparency, accountability, and a relentless pursuit of excellence. We are your advocates from day one to final handover.",
+    subsections: [
+      {
+        title: "Strategic Foresight",
+        text: "We anticipate challenges before they arise, providing proactive solutions that protect your investment and maximize long-term value.",
+      },
+      {
+        title: "Uncompromising Quality",
+        text: "Our commitment to superior craftsmanship, premium materials, and rigorous supervision ensures your project becomes a lasting legacy.",
+      },
+      {
+        title: "Seamless Execution",
+        text: "We serve as your single point of contact, transforming complex processes into a streamlined, clear, and predictable journey to success.",
+      },
+    ],
+    buttonText: "Book a Consultation",
+    buttonLink: "/Contact",
+  },
   navigation: {
     items: [
       // FIX: Home is now a standalone link
@@ -1228,29 +1267,6 @@ export const dictionary = {
     breadcrumbAbout: "About", // Add this inside your main `dictionary` object in en.js
     // ...
 
-    valueProposition: {
-      title: "The Khales",
-      subtitle: "Advantage",
-      intro:
-        "Beyond construction, we build strategic partnerships founded on transparency, accountability, and a relentless pursuit of excellence. We are your advocates from day one to final handover.",
-      subsections: [
-        {
-          title: "Strategic Foresight",
-          text: "We anticipate challenges before they arise, providing proactive solutions that protect your investment and maximize long-term value.",
-        },
-        {
-          title: "Uncompromising Quality",
-          text: "Our commitment to superior craftsmanship, premium materials, and rigorous supervision ensures your project becomes a lasting legacy.",
-        },
-        {
-          title: "Seamless Execution",
-          text: "We serve as your single point of contact, transforming complex processes into a streamlined, clear, and predictable journey to success.",
-        },
-      ],
-      buttonText: "Book a Consultation",
-      buttonLink: "/Contact",
-    },
-
     // ...
     missionVision: {
       mission: {
@@ -1277,25 +1293,6 @@ export const dictionary = {
     // dictionaries/en.js
 
     // ... (inside your main dictionary object)
-
-    comprehensiveAbout: {
-      title: "Khales Group",
-      subtitle: "Orchestrating Landmark Projects",
-      intro:
-        " Khales Group is a premier project management and engineering consultancy firm dedicated to navigating the complexities of large-scale construction. Our expertise is proven across two distinct realms: the demanding world of major commercial developments and the nuanced creation of luxury residential properties.",
-      subsections: [
-        {
-          title: "Mastery in Commercial Developments",
-          text: "Our team delivers high-stakes commercial ventures like malls, hospitals, and hotels, ensuring these projects are completed on schedule, within budget, and to the highest standards.",
-        },
-        {
-          title: "Engineering Excellence for Luxury Residences",
-          text: "We apply rigorous engineering to the art of luxury living, ensuring the flawless execution of exclusive villas and residential buildings with unparalleled structural integrity and finish.",
-        },
-      ],
-      buttonText: "Explore Our Portfolio",
-      buttonLink: "/projects",
-    },
 
     // ... (rest of your dictionary)
 
