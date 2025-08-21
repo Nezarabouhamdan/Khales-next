@@ -1,4 +1,5 @@
 import xmlrpc from "xmlrpc";
+// still import xmlrpc from "xmlrpc";
 
 // Use secure client for HTTPS
 const commonClient = xmlrpc.createSecureClient({
@@ -34,10 +35,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. Authenticate with Odoo
     const uid = await authenticate();
 
-    // 2. Validate required fields from the form submission
+    // ✅ ROBUST DESTRUCTURING AND VALIDATION
     const { name, phone, email, description, branch, inquiry } = req.body;
     if (!name || !phone || !email) {
       return res
@@ -45,7 +45,6 @@ export default async function handler(req, res) {
         .json({ success: false, error: "Missing required fields" });
     }
 
-    // 3. Find or create the UTM Source "Website"
     const sourceIds = await new Promise((resolve, reject) => {
       objectClient.methodCall(
         "execute_kw",
@@ -78,15 +77,25 @@ export default async function handler(req, res) {
         );
       }));
 
-    // 4. Prepare and create the lead in Odoo
+    // ✅ FIXED: Conditionally build the description string
+    // This prevents 'undefined' from being added to the text.
+    let leadDescription = `Branch: ${branch || "Not specified"}\nInquiry: ${
+      inquiry || "Not specified"
+    }`;
+    if (description) {
+      // Only add the description if it actually exists
+      leadDescription += `\n${description}`;
+    }
+
     const leadData = {
       name: `Website Contact us page - ${name}`,
       contact_name: name,
       phone,
       email_from: email,
-      description: `Branch: ${branch}\nInquiry: ${inquiry}\n${description}`,
+      description: leadDescription, // Use the safely constructed string
       source_id: sourceId,
     };
+
     const leadId = await new Promise((resolve, reject) => {
       objectClient.methodCall(
         "execute_kw",
@@ -102,7 +111,6 @@ export default async function handler(req, res) {
       );
     });
 
-    // 5. Subscribe followers
     const DEFAULT_PARTNER_IDS = [9, 23, 1041];
     await new Promise((resolve, reject) => {
       objectClient.methodCall(
@@ -120,7 +128,6 @@ export default async function handler(req, res) {
       );
     });
 
-    // 6. If everything above worked, send the final success response
     res.status(200).json({
       success: true,
       leadId,
