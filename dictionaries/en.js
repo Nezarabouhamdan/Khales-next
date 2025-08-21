@@ -1259,7 +1259,8 @@ export const dictionary = {
       {
         id: 1,
         slug: "modern-architectural-trends-residential-design",
-        coverImage: "/assets/blog1.png",
+        coverImage:
+          "https://i.ibb.co/nMq11458/Whats-App-Image-2025-08-19-at-17-26-05-cc5d2f30.jpg",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Architecture Department",
         date: "June 28, 2023",
@@ -1316,7 +1317,8 @@ export const dictionary = {
       {
         id: 2,
         slug: "advancements-structural-steel-design-villas",
-        coverImage: "/assets/blog2.png",
+        coverImage:
+          "https://i.ibb.co/1Jjmw6BL/Whats-App-Image-2025-08-19-at-17-26-04-cb6b7148.jpg",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Engineering Department",
         date: "July 15, 2023",
@@ -1373,7 +1375,8 @@ export const dictionary = {
       {
         id: 3,
         slug: "innovative-approaches-high-rise-building-structures",
-        coverImage: "/assets/blog3.png",
+        coverImage:
+          "https://i.ibb.co/G4CrSXX1/Whats-App-Image-2025-08-19-at-17-26-04-94ea9f47.jpg",
         tags: ["Construction", "Engineering"],
         title: "Innovative Approaches to High-Rise Building Structures",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1430,7 +1433,8 @@ export const dictionary = {
       {
         id: 4,
         slug: "eco-friendly-materials-modern-interior-design",
-        coverImage: "/assets/blog4.png",
+        coverImage:
+          "https://i.ibb.co/ymSCJMgz/Whats-App-Image-2025-08-19-at-17-26-04-3e992f7c.jpg",
         tags: ["Interior", "Design"],
         title: "Eco-Friendly Materials in Modern Interior Design",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1488,7 +1492,8 @@ export const dictionary = {
       {
         id: 5,
         slug: "effective-stakeholder-communication-project-management",
-        coverImage: "/assets/blog5.png",
+        coverImage:
+          "https://i.ibb.co/7xjnS53y/Whats-App-Image-2025-08-19-at-17-26-03-e5f96ef0.jpg",
         tags: ["Management", "Communication"],
         title: "Effective Stakeholder Communication in Project Management",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1545,7 +1550,8 @@ export const dictionary = {
       {
         id: 6,
         slug: "balance-aesthetics-functionality-interior-design",
-        coverImage: "/assets/blog6.png",
+        coverImage:
+          "https://i.ibb.co/LztWgNMp/Whats-App-Image-2025-08-19-at-17-26-03-9c758071.jpg",
         tags: ["Interior", "Design"],
         title:
           "Achieving Balance Between Aesthetics and Functionality in Interior Design",
@@ -1603,7 +1609,8 @@ export const dictionary = {
       {
         id: 7,
         slug: "sustainable-architecture-practices",
-        coverImage: "/assets/blog7.png",
+        coverImage:
+          "https://i.ibb.co/KzWLjvKK/Whats-App-Image-2025-08-19-at-17-26-02-d2a9b715.jpg",
         tags: ["Architecture", "Sustainability"],
         title: "Sustainable Architecture Practices",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1660,7 +1667,8 @@ export const dictionary = {
       {
         id: 8,
         slug: "importance-of-agile-project-management",
-        coverImage: "/assets/blog8.png",
+        coverImage:
+          "https://i.ibb.co/1Gmvq9cD/Whats-App-Image-2025-08-19-at-17-26-02-f7fd0ec6.jpg",
         tags: ["Management", "Agile"],
         title: "The Importance of Agile Project Management",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1718,7 +1726,7 @@ export const dictionary = {
         id: 9,
         slug: "ai-on-job-site-reducing-construction-risk",
         coverImage:
-          "https://i.ibb.co/5WXkZ8Fb/ai-technology-microchip-background-digital-transformation-concept-1.jpg",
+          "https://i.ibb.co/cSHpQVB4/Whats-App-Image-2025-08-19-at-17-26-01-7445188c.jpg",
         tags: ["Technology", "Safety"],
         title:
           "AI on the Job Site: How Predictive Tech Is Reducing Construction Risk",
@@ -2158,7 +2166,7 @@ export const dictionary = {
       ],
       tag: "From Luxury Buildings to Bespoke Residences", // MAPPED: From Subheadline
       image:
-        "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80", // Unchanged
+        "https://i.ibb.co/z3f5Ssw/Whats-App-Image-2025-08-19-at-17-39-07-8327f9de.jpg", // Unchanged
     },
     challenges: {
       // MAPPED: From the "2nd Section" content.
@@ -2170,7 +2178,7 @@ export const dictionary = {
         "Enduring Quality – Premium materials, sustainable choices, and refined finishes.",
       ],
       image:
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit&crop&q=80", // Unchanged
+        "https://i.ibb.co/VWbFLYMr/Whats-App-Image-2025-08-19-at-17-39-07-38659e0b.jpg", // Unchanged
     },
     labels: {
       // Unchanged
@@ -2219,7 +2227,7 @@ export const dictionary = {
       ],
       tag: "We offer premium solutions for mixed-use developments", // MAPPED: From Subheadline
       image:
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit&crop&q=80", // Unchanged
+        "https://i.ibb.co/Myqk5sdW/Whats-App-Image-2025-08-19-at-17-59-26-3b3ee446.jpg", // Unchanged
     },
     challenges: {
       // MAPPED: From the "2nd Section" content.
@@ -2231,7 +2239,7 @@ export const dictionary = {
         "Trusted Across Sectors – healthcare, retail, hospitality, and mixed-use projects.",
       ],
       image:
-        "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit&crop&q=80", // Unchanged
+        "https://i.ibb.co/hwfLBB2/Whats-App-Image-2025-08-19-at-17-59-27-9515773e.jpg", // Unchanged
     },
     labels: {
       // Unchanged
@@ -2282,7 +2290,7 @@ export const dictionary = {
       ],
       tag: "Creating a fusion of architectural luxury, built to elevate your lifestyle.", // MAPPED: From Subheadline
       image:
-        "https://images.unsplash.com/photo-1617103996237-7036d8b6a37c?auto=format&fit&crop&q=80", // Unchanged
+        "https://i.ibb.co/vvzYx8BF/Whats-App-Image-2025-08-19-at-17-32-12-5ea491e1.jpg", // Unchanged
     },
     challenges: {
       // MAPPED: From the "2nd Section" content.
@@ -2294,7 +2302,7 @@ export const dictionary = {
         "Comprehensive Project Oversight: we provide a dedicated Engineer throughout the entire process, ensuring a professional and transparent delivery of your dream home with unmatched attention to detail.",
       ],
       image:
-        "https://images.unsplash.com/photo-1576219467570-b14a822b89c8?auto=format&fit&crop&q=80", // Unchanged
+        "https://i.ibb.co/S74Bhv2Y/Whats-App-Image-2025-08-19-at-17-32-12-cbe6f3b9.jpg", // Unchanged
     },
     labels: {
       // Unchanged

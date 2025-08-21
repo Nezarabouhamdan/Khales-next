@@ -1250,7 +1250,8 @@ export const dictionary = {
       {
         id: 1,
         slug: "modern-architectural-trends-residential-design",
-        coverImage: "/assets/blog1.png",
+        coverImage:
+          "https://i.ibb.co/nMq11458/Whats-App-Image-2025-08-19-at-17-26-05-cc5d2f30.jpg",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "قسم الهندسة المعمارية",
         date: "٢٨ يونيو ٢٠٢٣",
@@ -1306,7 +1307,8 @@ export const dictionary = {
       {
         id: 2,
         slug: "advancements-structural-steel-design-villas",
-        coverImage: "/assets/blog2.png",
+        coverImage:
+          "https://i.ibb.co/1Jjmw6BL/Whats-App-Image-2025-08-19-at-17-26-04-cb6b7148.jpg",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "قسم الهندسة",
         date: "١٥ يوليو ٢٠٢٣",
@@ -1362,7 +1364,8 @@ export const dictionary = {
       {
         id: 3,
         slug: "innovative-approaches-high-rise-building-structures",
-        coverImage: "/assets/blog3.png",
+        coverImage:
+          "https://i.ibb.co/G4CrSXX1/Whats-App-Image-2025-08-19-at-17-26-04-94ea9f47.jpg",
         tags: ["بناء", "هندسة"],
         title: "أساليب مبتكرة لهياكل المباني الشاهقة",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1418,7 +1421,8 @@ export const dictionary = {
       {
         id: 4,
         slug: "eco-friendly-materials-modern-interior-design",
-        coverImage: "/assets/blog4.png",
+        coverImage:
+          "https://i.ibb.co/ymSCJMgz/Whats-App-Image-2025-08-19-at-17-26-04-3e992f7c.jpg",
         tags: ["داخلي", "تصميم"],
         title: "مواد صديقة للبيئة في التصميم الداخلي الحديث",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1474,7 +1478,8 @@ export const dictionary = {
       {
         id: 5,
         slug: "effective-stakeholder-communication-project-management",
-        coverImage: "/assets/blog5.png",
+        coverImage:
+          "https://i.ibb.co/7xjnS53y/Whats-App-Image-2025-08-19-at-17-26-03-e5f96ef0.jpg",
         tags: ["إدارة", "تواصل"],
         title: "التواصل الفعال مع أصحاب المصلحة في إدارة المشاريع",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1531,7 +1536,8 @@ export const dictionary = {
       {
         id: 6,
         slug: "balance-aesthetics-functionality-interior-design",
-        coverImage: "/assets/blog6.png",
+        coverImage:
+          "https://i.ibb.co/LztWgNMp/Whats-App-Image-2025-08-19-at-17-26-03-9c758071.jpg",
         tags: ["داخلي", "تصميم"],
         title: "تحقيق التوازن بين الجماليات والوظيفة في التصميم الداخلي",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1587,7 +1593,8 @@ export const dictionary = {
       {
         id: 7,
         slug: "sustainable-architecture-practices",
-        coverImage: "/assets/blog7.png",
+        coverImage:
+          "https://i.ibb.co/KzWLjvKK/Whats-App-Image-2025-08-19-at-17-26-02-d2a9b715.jpg",
         tags: ["عمارة", "استدامة"],
         title: "ممارسات الهندسة المعمارية المستدامة",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1644,7 +1651,8 @@ export const dictionary = {
       {
         id: 8,
         slug: "importance-of-agile-project-management",
-        coverImage: "/assets/blog8.png",
+        coverImage:
+          "https://i.ibb.co/1Gmvq9cD/Whats-App-Image-2025-08-19-at-17-26-02-f7fd0ec6.jpg",
         tags: ["إدارة", "مرونة"],
         title: "أهمية إدارة المشاريع الرشيقة",
         authorImage: "/assets/Khales Logo K - favicon.png",
@@ -1701,7 +1709,7 @@ export const dictionary = {
         id: 9,
         slug: "ai-on-job-site-reducing-construction-risk",
         coverImage:
-          "https://i.ibb.co/5WXkZ8Fb/ai-technology-microchip-background-digital-transformation-concept-1.jpg",
+          "https://i.ibb.co/cSHpQVB4/Whats-App-Image-2025-08-19-at-17-26-01-7445188c.jpg",
         tags: ["تكنولوجيا", "سلامة"],
         title:
           "الذكاء الاصطناعي في مواقع العمل: كيف تقلل التقنيات التنبؤية مخاطر البناء",
@@ -2153,7 +2161,7 @@ export const dictionary = {
       ],
       tag: "من المباني الفاخرة إلى المساكن المصممة خصيصًا", // تم الربط: من العنوان الفرعي.
       image:
-        "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80", // لم يتغير
+        "https://i.ibb.co/z3f5Ssw/Whats-App-Image-2025-08-19-at-17-39-07-8327f9de.jpg", // Unchanged
     },
     challenges: {
       title: "فخامة هندسية. حياة خالدة.", // تم الربط: من محتوى "القسم الثاني".
@@ -2164,7 +2172,7 @@ export const dictionary = {
         "جودة دائمة – مواد فاخرة، خيارات مستدامة، وتشطيبات راقية.",
       ],
       image:
-        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit&crop&q=80", // لم يتغير
+        "https://i.ibb.co/VWbFLYMr/Whats-App-Image-2025-08-19-at-17-39-07-38659e0b.jpg", // Unchanged
     },
     labels: {
       // لم يتغير
@@ -2210,7 +2218,7 @@ export const dictionary = {
       ],
       tag: "نقدم حلولاً متميزة للمشاريع متعددة الاستخدامات", // تم الربط: من العنوان الفرعي.
       image:
-        "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit&crop&q=80", // لم يتغير
+        "https://i.ibb.co/Myqk5sdW/Whats-App-Image-2025-08-19-at-17-59-26-3b3ee446.jpg", // Unchanged
     },
     challenges: {
       title: "التميز في التطوير التجاري", // تم الربط: من محتوى "القسم الثاني".
@@ -2221,7 +2229,7 @@ export const dictionary = {
         "موثوق بها عبر القطاعات – الرعاية الصحية، التجزئة، الضيافة، والمشاريع متعددة الاستخدامات.",
       ],
       image:
-        "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit&crop&q=80", // لم يتغير
+        "https://i.ibb.co/hwfLBB2/Whats-App-Image-2025-08-19-at-17-59-27-9515773e.jpg", // Unchanged
     },
     labels: {
       // لم يتغير
@@ -2267,7 +2275,7 @@ export const dictionary = {
       ],
       tag: "نخلق مزيجًا من الفخامة المعمارية، مصمم للارتقاء بأسلوب حياتك.", // تم الربط: من العنوان الفرعي.
       image:
-        "https://images.unsplash.com/photo-1617103996237-7036d8b6a37c?auto=format&fit&crop&q=80", // لم يتغير
+        "https://i.ibb.co/vvzYx8BF/Whats-App-Image-2025-08-19-at-17-32-12-5ea491e1.jpg", // Unchanged
     },
     challenges: {
       title: "حلول الفلل الفاخرة", // تم الربط: من محتوى "القسم الثاني".
@@ -2278,7 +2286,7 @@ export const dictionary = {
         "إشراف شامل على المشروع: نوفر مهندسًا متخصصًا طوال العملية بأكملها، لضمان تسليم احترافي وشفاف لمنزل أحلامك مع اهتمام لا مثيل له بالتفاصيل.",
       ],
       image:
-        "https://images.unsplash.com/photo-1576219467570-b14a822b89c8?auto=format&fit&crop&q=80", // لم يتغير
+        "https://i.ibb.co/S74Bhv2Y/Whats-App-Image-2025-08-19-at-17-32-12-cbe6f3b9.jpg", // Unchanged
     },
     labels: {
       // لم يتغير
