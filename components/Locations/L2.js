@@ -5,6 +5,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import Link from "next/link"; // Import the Next.js Link component
 
 // Static data that doesn't need translation
 const officeImageUrls = [
@@ -21,7 +22,7 @@ const kenBurns = keyframes`
   100% { transform: scale(1.1); }
 `;
 
-// --- STYLED COMPONENTS (Your original code, unchanged) ---
+// --- STYLED COMPONENTS ---
 const rtlStyle = css`
   direction: rtl;
   unicode-bidi: plaintext;
@@ -29,6 +30,7 @@ const rtlStyle = css`
   font-family: "Cairo", sans-serif;
   font-feature-settings: "tnum";
 `;
+
 const SectionContainer = styled.section`
   width: 100%;
   padding: 6rem 2rem;
@@ -36,10 +38,12 @@ const SectionContainer = styled.section`
   position: relative;
   overflow: hidden;
   font-family: "Inter", sans-serif;
-  ${({ isArabic }) => isArabic && rtlStyle}@media (max-width:992px) {
+  ${({ isArabic }) => isArabic && rtlStyle}
+  @media (max-width: 992px) {
     padding: 4rem 1.5rem;
   }
 `;
+
 const ContentWrapper = styled(motion.div)`
   max-width: 1100px;
   margin: 0 auto;
@@ -50,6 +54,7 @@ const ContentWrapper = styled(motion.div)`
   align-items: center;
   gap: 3rem;
 `;
+
 const Header = styled.h1`
   font-size: 3.2rem;
   font-weight: 700;
@@ -62,17 +67,26 @@ const Header = styled.h1`
     font-size: 2.8rem;
   }
 `;
+
 const LocationsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   width: 100%;
 `;
-const LocationLink = styled.a`
+
+const ExternalLink = styled.a`
   text-decoration: none;
   color: inherit;
   display: block;
 `;
+
+const InternalLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  display: block;
+`;
+
 const LocationCard = styled(motion.div)`
   background-color: #fff;
   color: #1a1a1a;
@@ -83,22 +97,47 @@ const LocationCard = styled(motion.div)`
   border: 2px solid #e9ecef;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   height: 100%;
-  ${({ isArabic }) => isArabic && rtlStyle}&.active,&:hover {
+  position: relative;
+  overflow: hidden;
+
+  ${({ isArabic }) => isArabic && rtlStyle}
+
+  &.active,
+  &:hover {
     transform: translateY(-8px);
     border-color: #66a109;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
   }
 `;
+
+const ComingSoonBadge = styled.div`
+  position: absolute;
+  top: 32px;
+  ${({ isArabic }) => (isArabic ? "left: -45px;" : "right: -45px;")}
+  background-color: #66a109;
+  color: white;
+  padding: 6px 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  transform: rotate(45deg);
+  transform-origin: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+`;
+
 const IconWrapper = styled.div`
   font-size: 1.75rem;
   color: #66a109;
   margin-bottom: 1.5rem;
 `;
+
 const CityTitle = styled.h2`
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 `;
+
 const AddressText = styled.p`
   font-size: 0.95rem;
   line-height: 1.6;
@@ -106,6 +145,7 @@ const AddressText = styled.p`
   white-space: pre-wrap;
   ${({ isArabic }) => isArabic && rtlStyle}
 `;
+
 const ImageShowcase = styled(motion.div)`
   width: 100%;
   height: 500px;
@@ -113,6 +153,7 @@ const ImageShowcase = styled(motion.div)`
   overflow: hidden;
   position: relative;
 `;
+
 const ShowcaseImage = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -124,6 +165,7 @@ const ShowcaseImage = styled(motion.div)`
   background-image: url(${(props) => props.imageUrl});
   animation: ${kenBurns} 20s ease-in-out infinite alternate;
 `;
+
 const ImageCaption = styled(motion.div)`
   position: absolute;
   bottom: 0;
@@ -137,7 +179,8 @@ const ImageCaption = styled(motion.div)`
   );
   color: #fff;
   z-index: 2;
-  ${({ isArabic }) => isArabic && rtlStyle}h3 {
+  ${({ isArabic }) => isArabic && rtlStyle}
+  h3 {
     font-size: 1.75rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
@@ -149,9 +192,8 @@ const ImageCaption = styled(motion.div)`
   }
 `;
 
-// --- MAIN REFACTORED COMPONENT ---
+// --- MAIN COMPONENT ---
 export default function OfficeLocationsFinal({ lang, content }) {
-  // Use the props passed from the parent ContactPage component
   const isArabic = lang === "ar";
   const locationsData = content?.offices || [];
 
@@ -161,14 +203,19 @@ export default function OfficeLocationsFinal({ lang, content }) {
       address: loc.description,
       link: loc.link,
       imageUrl: officeImageUrls[index % officeImageUrls.length],
+      isComingSoon: loc.isComingSoon || false,
     }));
   }, [locationsData]);
 
-  const [activeLocation, setActiveLocation] = useState(processedLocations[0]);
+  const [activeLocation, setActiveLocation] = useState(
+    processedLocations.find((loc) => !loc.isComingSoon) || processedLocations[0]
+  );
 
-  // Update the active location when the language/data changes
   useEffect(() => {
-    setActiveLocation(processedLocations[0]);
+    const firstAvailable = processedLocations.find((loc) => !loc.isComingSoon);
+    if (firstAvailable) {
+      setActiveLocation(firstAvailable);
+    }
   }, [processedLocations]);
 
   if (!content || !activeLocation) {
@@ -195,30 +242,45 @@ export default function OfficeLocationsFinal({ lang, content }) {
           </Header>
         </motion.div>
         <LocationsGrid>
-          {processedLocations.map((loc, index) => (
-            <LocationLink
-              key={index}
-              href={loc.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          {processedLocations.map((loc, index) => {
+            const CardContent = (
               <LocationCard
                 className={activeLocation.city === loc.city ? "active" : ""}
-                onMouseEnter={() => setActiveLocation(loc)}
+                onMouseEnter={() => !loc.isComingSoon && setActiveLocation(loc)}
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0 },
                 }}
                 isArabic={isArabic}
               >
+                {loc.isComingSoon && (
+                  <ComingSoonBadge isArabic={isArabic}>
+                    {content.comingSoonText}
+                  </ComingSoonBadge>
+                )}
                 <IconWrapper>
                   <FaMapMarkerAlt />
                 </IconWrapper>
                 <CityTitle>{loc.city}</CityTitle>
                 <AddressText isArabic={isArabic}>{loc.address}</AddressText>
               </LocationCard>
-            </LocationLink>
-          ))}
+            );
+
+            return loc.isComingSoon ? (
+              <InternalLink href={`/${lang}${loc.link}`} key={index} passHref>
+                {CardContent}
+              </InternalLink>
+            ) : (
+              <ExternalLink
+                key={index}
+                href={loc.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {CardContent}
+              </ExternalLink>
+            );
+          })}
         </LocationsGrid>
         <ImageShowcase>
           <AnimatePresence mode="wait">

@@ -79,7 +79,6 @@ export async function generateMetadata({ params: { lang } }) {
     },
   };
 }
-const META_PIXEL_ID = "3634194126882623"; // Replace with your actual pixel ID
 
 export default async function RootLayout({ children, params }) {
   const lang = params.lang || i18n.defaultLocale;

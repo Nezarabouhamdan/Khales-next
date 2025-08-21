@@ -1071,6 +1071,7 @@ export const dictionary = {
     locations: {
       titlePart1: " مكاتبنا",
       titlePart2: " حول العالم ",
+      comingSoonText: "قريباً",
       offices: [
         {
           titlePart1: "مجلس",
@@ -1093,12 +1094,7 @@ export const dictionary = {
             "متجر 11، بلوك C، المقر الرئيسي لآل سعود، المنطقة التجارية مويلح، الشارقة، الإمارات\n\n+971 6 551 8070",
           link: "https://maps.app.goo.gl/SD2R8ZKmym2NPLUu7",
         },
-        {
-          titlePart1: "فرع",
-          titlePart2: "أبوظبي",
-          description: "القناة، ربدان، أبوظبي، الإمارات\n\n+971 56 189 9918",
-          link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8",
-        },
+
         {
           titlePart1: "فرع",
           titlePart2: "الفجيرة",
@@ -1108,9 +1104,18 @@ export const dictionary = {
         },
         {
           titlePart1: "فرع",
+          titlePart2: "أبوظبي",
+          description:
+            "القناة، ربدان، أبوظبي، الإمارات\n(سيتم الافتتاح قريباً)",
+          link: "/coming-soon",
+          isComingSoon: true,
+        },
+        {
+          titlePart1: "فرع",
           titlePart2: "لندن, بريطانيا",
-          description: "لندن, بريطانيا\n\n+971 56 189 9918", // Note: Original AR data had Fujairah's description here, I kept it but you might want to correct it
-          link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
+          description: "لندن, بريطانيا\n(سيتم الافتتاح قريباً)",
+          link: "/coming-soon",
+          isComingSoon: true,
         },
       ],
     },

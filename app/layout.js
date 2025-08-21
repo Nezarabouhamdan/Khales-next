@@ -10,6 +10,7 @@ export const metadata = {
   title: "Khales Not found Page",
   description: "Special offer from Khales Group.",
 };
+const META_PIXEL_ID = "3634194126882623"; // Replace with your actual pixel ID
 
 // This is a self-contained Root Layout for the landing page group.
 export default function LandingLayout({ children, params: { lang } }) {

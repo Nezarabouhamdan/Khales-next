@@ -1090,6 +1090,7 @@ export const dictionary = {
     locations: {
       titlePart1: "Our ",
       titlePart2: " Offices",
+      comingSoonText: "Coming Soon",
       offices: [
         {
           titlePart1: "Dubai",
@@ -1112,12 +1113,7 @@ export const dictionary = {
             "Shop 11, Block C, Al Saud Head Office, Muwaileh, Sharjah, UAE\n\n+971 6 551 8070",
           link: "https://maps.app.goo.gl/SD2R8ZKmym2NPLUu7",
         },
-        {
-          titlePart1: "Abu Dhabi",
-          titlePart2: "Branch",
-          description: "Al Qana, Rabdan, Abu Dhabi, UAE\n\n+971 56 189 9918",
-          link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8",
-        },
+
         {
           titlePart1: "Fujairah",
           titlePart2: "Branch",
@@ -1126,10 +1122,18 @@ export const dictionary = {
           link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
         },
         {
+          titlePart1: "Abu Dhabi",
+          titlePart2: "Branch",
+          description: "Al Qana, Rabdan, Abu Dhabi, UAE\n(Opening Soon)",
+          link: "/coming-soon",
+          isComingSoon: true,
+        },
+        {
           titlePart1: "London,",
           titlePart2: "UK Branch",
-          description: "London, UK\n\n+971 56 189 9918",
-          link: "https://maps.app.goo.gl/b5nk9dJwQj6KKqVh8", // Note: This link points to Abu Dhabi, you may want to update it for London
+          description: "London, UK\n(Opening Soon)",
+          link: "/coming-soon",
+          isComingSoon: true,
         },
       ],
     },
