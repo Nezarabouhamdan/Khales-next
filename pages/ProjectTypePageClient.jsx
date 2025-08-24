@@ -3,12 +3,28 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
-import { FaCheckCircle, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+
+// 1. IMPORT ALL ICONS NEEDED ACROSS ALL PAGES
+import {
+  FaCheckCircle,
+  FaArrowLeft,
+  FaArrowRight,
+  FaHome,
+  FaGem,
+  FaKey,
+  FaChartLine,
+  FaClipboardCheck,
+  FaBuilding,
+  FaPalette,
+  FaStar,
+  FaSpa,
+} from "react-icons/fa";
+
+// 2. IMPORT YOUR CUSTOM COMPONENTS
 import ImageWithSkeleton from "@/components/ImageSkeleton";
-// 1. IMPORT THE CTA SECTION COMPONENT
 import CTASection from "@/components/Homecontact/CTASection";
 
-// ... All styled-components and variants remain the same ...
+// --- ANIMATION VARIANTS ---
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15, duration: 0.5 } },
@@ -21,9 +37,21 @@ const itemVariants = {
     transition: { duration: 0.5, ease: "easeOut" },
   },
 };
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 const kenBurns = keyframes`
   0% { transform: scale(1.0); } 100% { transform: scale(1.1); }
 `;
+
+// --- ALL STYLED COMPONENTS ---
+
+// Page Structure
 const PageWrapper = styled.div`
   background-color: #ffffff;
   font-family: ${({ lang }) =>
@@ -32,6 +60,16 @@ const PageWrapper = styled.div`
   position: relative;
   overflow-x: hidden;
 `;
+const MaxWidthContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
+const MainContentSection = styled.section`
+  padding-bottom: 5rem;
+`;
+
+// Header
 const HeaderSection = styled.header`
   background-color: #121212;
   color: #fff;
@@ -48,7 +86,7 @@ const HeaderSection = styled.header`
     overflow: hidden;
     z-index: 1;
     opacity: 0.85;
-    will-change: transform, opacity;
+    will-change: transform;
     animation: ${kenBurns} 25s ease-in-out infinite alternate;
   }
   &::before {
@@ -80,62 +118,6 @@ const MainTitle = styled(motion.h1)`
   margin-bottom: 1.5rem;
   @media (max-width: 768px) {
     font-size: 2.5rem;
-  }
-`;
-const GalleryWrapper = styled.div`
-  overflow-x: auto;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  cursor: grab;
-  &:active {
-    cursor: grabbing;
-  }
-  margin: 0 -2rem 10rem -2rem;
-`;
-const GalleryScrollContainer = styled(motion.div)`
-  display: flex;
-  gap: 2rem;
-  padding: 1rem 2rem;
-  width: max-content;
-`;
-const GalleryImage = styled(motion.div)`
-  flex-shrink: 0;
-  width: 400px;
-  height: 250px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  position: relative;
-  will-change: transform;
-  @media (max-width: 768px) {
-    width: 300px;
-    height: 200px;
-  }
-`;
-const ContentBlock = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  gap: 5rem;
-  margin-bottom: 10rem;
-  flex-direction: ${(props) => (props.reverse ? "row-reverse" : "row")};
-  @media (max-width: 992px) {
-    flex-direction: column-reverse;
-    gap: 3rem;
-  }
-`;
-const ImageWrapper = styled(motion.div)`
-  flex: 1;
-  position: relative;
-  height: auto;
-  aspect-ratio: 3 / 4;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  @media (max-width: 992px) {
-    width: 100%;
-    aspect-ratio: 16 / 10;
   }
 `;
 const HeaderTag = styled(motion.p)`
@@ -173,14 +155,8 @@ const MetaGrid = styled(motion.div)`
     }
   }
 `;
-const MainContentSection = styled.section`
-  padding-bottom: 5rem;
-`;
-const MaxWidthContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-`;
+
+// Gallery
 const SectionHeader = styled(motion.div)`
   display: flex;
   justify-content: space-between;
@@ -199,9 +175,40 @@ const SectionHeader = styled(motion.div)`
       width: 80px;
       height: 3px;
       background-color: #66a109;
-      margin: ${({ lang }) => (lang === "ar" ? "0 auto 0 0" : "0 0 0 auto")};
       margin-left: ${({ lang }) => (lang === "ar" ? "auto" : "0")};
     }
+  }
+`;
+const GalleryWrapper = styled.div`
+  overflow-x: auto;
+  scrollbar-width: none;
+  cursor: grab;
+  margin: 0 -2rem 10rem -2rem;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &:active {
+    cursor: grabbing;
+  }
+`;
+const GalleryScrollContainer = styled(motion.div)`
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  width: max-content;
+`;
+const GalleryImage = styled(motion.div)`
+  flex-shrink: 0;
+  width: 400px;
+  height: 250px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  will-change: transform;
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 200px;
   }
 `;
 const NavArrows = styled.div`
@@ -223,13 +230,38 @@ const ArrowButton = styled.button`
   &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
-    transform: scale(1);
   }
   &:not(:disabled):hover {
     background-color: #66a109;
     border-color: #66a109;
     color: #fff;
     transform: scale(1.05);
+  }
+`;
+
+// Content Blocks
+const ContentBlock = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  margin-bottom: 10rem;
+  flex-direction: ${(props) => (props.reverse ? "row-reverse" : "row")};
+  @media (max-width: 992px) {
+    flex-direction: column-reverse;
+    gap: 3rem;
+  }
+`;
+const ImageWrapper = styled(motion.div)`
+  flex: 1;
+  position: relative;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  @media (max-width: 992px) {
+    width: 100%;
+    aspect-ratio: 16 / 10;
   }
 `;
 const TextWrapper = styled(motion.div)`
@@ -275,13 +307,84 @@ const StyledList = styled(motion.ul)`
   }
 `;
 
-// 2. ACCEPT THE ctaContent PROP
+// New Principles Section
+const PrinciplesSectionWrapper = styled.section`
+  padding: 5rem 2rem 10rem;
+  background-color: #f8f9fa;
+`;
+const PrinciplesHeader = styled(motion.div)`
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 4rem;
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+  }
+`;
+const PrinciplesGrid = styled(motion.div)`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+`;
+const PrincipleCard = styled(motion.div)`
+  text-align: ${({ lang }) => (lang === "ar" ? "right" : "left")};
+  .icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #66a109;
+    margin-bottom: 1.5rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #eef6e3;
+  }
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #555;
+  }
+`;
+
+// --- MAIN PAGE COMPONENT ---
 const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
   if (!content || !ctaContent) {
     return null;
   }
 
-  const { header, gallery, overview, challenges, labels } = content;
+  const { header, gallery, overview, challenges, principles, labels } = content;
+
+  // 3. DYNAMIC ICON MAPPING
+  // This object connects the 'icon' string from your JSON to the actual imported icon component.
+  const iconMap = {
+    home: <FaHome />,
+    gem: <FaGem />,
+    key: <FaKey />,
+    chart: <FaChartLine />,
+    clipboard: <FaClipboardCheck />,
+    building: <FaBuilding />,
+    palette: <FaPalette />,
+    star: <FaStar />,
+    spa: <FaSpa />,
+  };
 
   const galleryRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -294,39 +397,27 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
     const el = galleryRef.current;
     if (el) {
       const scrollLeft = Math.ceil(el.scrollLeft);
-      const scrollWidth = el.scrollWidth;
-      const clientWidth = el.clientWidth;
-
+      const { scrollWidth, clientWidth } = el;
       setCanScrollLeft(scrollLeft > 10);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
   }, []);
 
-  const debounceTimeout = useRef(null);
-
   useEffect(() => {
     const el = galleryRef.current;
     if (!el) return;
-
+    let debounceTimeout = null;
     const debouncedCheck = () => {
-      if (debounceTimeout.current) {
-        clearTimeout(debounceTimeout.current);
-      }
-      debounceTimeout.current = setTimeout(() => {
-        checkScrollability();
-      }, 150);
+      clearTimeout(debounceTimeout);
+      debounceTimeout = setTimeout(() => checkScrollability(), 150);
     };
-
     checkScrollability();
     el.addEventListener("scroll", debouncedCheck, { passive: true });
     window.addEventListener("resize", debouncedCheck, { passive: true });
-
     return () => {
       el.removeEventListener("scroll", debouncedCheck);
       window.removeEventListener("resize", debouncedCheck);
-      if (debounceTimeout.current) {
-        clearTimeout(debounceTimeout.current);
-      }
+      clearTimeout(debounceTimeout);
     };
   }, [checkScrollability]);
 
@@ -485,7 +576,38 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
         </MaxWidthContainer>
       </MainContentSection>
 
-      {/* 3. RENDER THE CTA SECTION AT THE END OF THE PAGE */}
+      {principles && (
+        <PrinciplesSectionWrapper>
+          <MaxWidthContainer>
+            <PrinciplesHeader
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={itemVariants}
+            >
+              <h2>{principles.title}</h2>
+              <p>{principles.subtitle}</p>
+            </PrinciplesHeader>
+            <PrinciplesGrid
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
+            >
+              {principles.cards.map((card, index) => (
+                <PrincipleCard key={index} lang={lang} variants={cardVariants}>
+                  <div className="icon-wrapper">
+                    {iconMap[card.icon] || null}
+                  </div>
+                  <h4>{card.title}</h4>
+                  <p>{card.description}</p>
+                </PrincipleCard>
+              ))}
+            </PrinciplesGrid>
+          </MaxWidthContainer>
+        </PrinciplesSectionWrapper>
+      )}
+
       <CTASection lang={lang} content={ctaContent} />
     </PageWrapper>
   );
