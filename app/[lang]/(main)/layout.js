@@ -34,8 +34,8 @@ export async function generateMetadata({ params: { lang } }) {
 
   const title =
     lang === "ar"
-      ? "مجموعة خالص | للاستشارات الهندسية وإدارة المشاريع في دبي"
-      : "Khales Group | Engineering Consultancy & Project Management in Dubai";
+      ? "مجموعة خالص | للاستشارات الهندسية وإدارة المشاريع في الإمارات"
+      : "Khales Group | Engineering Consultancy & Project Management in UAE";
   const description =
     lang === "ar"
       ? "شركة رائدة في دبي متخصصة في التصميم المعماري، والتصميم الداخلي، وإدارة المشاريع للمباني السكنية والتجارية الفاخرة."
