@@ -1,123 +1,189 @@
-// app/[lang]/projects/[slug]/page.js
-
 import React from "react";
 import { notFound } from "next/navigation";
-
-// Ensure this path is correct
+import Script from "next/script"; // <-- IMPORT SCRIPT COMPONENT
 import {
   projectsData,
   findProjectBySlug,
 } from "@/components/Property Page/ProjectData";
-
-// Import the UI component
 import PropertyPage from "@/components/Property Page/PropertyPage";
 
-// This function tells Next.js which pages to generate at build time
-export async function generateStaticParams() {
-  try {
-    if (!Array.isArray(projectsData)) {
-      console.error(
-        "generateStaticParams Error: projectsData is not an array."
-      );
-      return [];
-    }
+// --- NEW SCHEMA FUNCTION (For Individual Projects) ---
+const getProjectPageSchema = (lang, project) => {
+  const projectData = project[lang] || project.en;
+  const baseUrl = "https://www.khales.ae";
+  const pageUrl = `${baseUrl}/${lang}/projects/${project.slug}`;
 
-    const allPaths = projectsData.flatMap((project) => {
-      // Ensure project and slug exist before creating paths
-      if (project && project.slug) {
-        return [
-          { lang: "en", slug: project.slug },
-          { lang: "ar", slug: project.slug },
-        ];
-      }
-      return [];
-    });
+  // This schema describes the project as a product (a building)
+  // It provides rich details that search engines can use for rich snippets
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}/#webpage`,
+        url: pageUrl,
+        name: `${projectData.title} | Khales Group`,
+        description: projectData.description,
+        isPartOf: { "@id": `${baseUrl}/#website` },
+        breadcrumb: { "@id": `${pageUrl}/#breadcrumb` },
+      },
+      {
+        "@type": "Product", // <-- The specific schema for a project
+        "@id": `${pageUrl}/#product`,
+        name: projectData.title,
+        description: projectData.longDescription,
+        image: project.mainImage,
+        sku: project.id,
+        brand: {
+          "@type": "Brand",
+          name: "Khales",
+        },
+        offers: {
+          "@type": "Offer",
+          price: projectData.price.replace(/,/g, ""), // Use numeric price for schema
+          priceCurrency: lang === "ar" ? "OMR" : "OMR", // Adjust currency as needed (e.g., AED, SAR)
+          availability: "https://schema.org/InStock", // Or another relevant status
+          url: pageUrl,
+        },
+        // Add specific details about the property
+        additionalProperty: [
+          {
+            "@type": "PropertyValue",
+            name: "Square Footage",
+            value: `${projectData.sqft} sqft`,
+          },
+          {
+            "@type": "PropertyValue",
+            name: "Bedrooms",
+            value: projectData.beds,
+          },
+          {
+            "@type": "PropertyValue",
+            name: "Floors",
+            value: projectData.floor,
+          },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: lang === "ar" ? "الرئيسية" : "Home",
+            item: `${baseUrl}/${lang}`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: lang === "ar" ? "المشاريع" : "Projects",
+            item: `${baseUrl}/${lang}/projects`,
+          }, // Assuming a projects index page exists
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: projectData.title,
+            item: pageUrl,
+          },
+        ],
+      },
+    ],
+  };
+};
 
-    return allPaths;
-  } catch (error) {
-    console.error("Error in generateStaticParams:", error);
-    return [];
-  }
-}
-
-// This function generates the metadata for the page <head>
+// --- METADATA (Dynamically generated with keywords and rich social cards) ---
 export async function generateMetadata({ params }) {
-  try {
-    // --- DEBUGGING ---
-    console.log("[generateMetadata] Received params:", params);
+  const { slug, lang } = params;
+  const project = findProjectBySlug(slug);
 
-    if (!params || !params.slug || !params.lang) {
-      console.error(
-        "[generateMetadata] Error: Params object is incomplete.",
-        params
-      );
-      return { title: "Invalid Project" };
-    }
-
-    const { slug, lang } = params;
-    const project = findProjectBySlug(slug);
-
-    // --- DEBUGGING ---
-    console.log(
-      `[generateMetadata] Found project for slug "${slug}":`,
-      project ? "Yes" : "No"
-    );
-
-    // ===================== THE MOST IMPORTANT FIX IS HERE =====================
-    // If no project is found, return a default title immediately to prevent any crash.
-    if (!project) {
-      return {
-        title: "Project Not Found",
-        description: "The project you are looking for does not exist.",
-      };
-    }
-    // ========================================================================
-
-    // Gracefully select the language data, falling back to English, then to an empty object
-    const projectData = project[lang] || project.en || {};
-
-    // --- DEBUGGING ---
-    console.log(
-      `[generateMetadata] Using language data for "${lang}". Title:`,
-      projectData.title
-    );
-
-    // Final check to prevent crash if title is still missing for some reason
-    if (!projectData.title) {
-      console.error(
-        `[generateMetadata] Error: Title is missing for lang "${lang}" in project:`,
-        project.slug
-      );
-      return { title: "Project Details | Khales Group" };
-    }
-
-    return {
-      title: `${projectData.title} | Khales Group`,
-      description:
-        projectData.description || "Details for our exclusive project.",
-    };
-  } catch (error) {
-    console.error("[generateMetadata] A critical error occurred:", error);
-    return {
-      title: "Server Error",
-      description: "Could not load page details due to a server error.",
-    };
+  if (!project) {
+    return { title: "Project Not Found" };
   }
+
+  const projectData = project[lang] || project.en;
+  const baseUrl = "https://www.khales.ae";
+
+  // --- ADDED: Dynamic keywords based on project details ---
+  const keywords =
+    lang === "ar"
+      ? [
+          projectData.title,
+          `مشروع ${projectData.title}`,
+          project.category.ar,
+          projectData.address,
+          `مشاريع بناء في ${projectData.address}`,
+        ]
+      : [
+          projectData.title,
+          `${projectData.title} project`,
+          project.category.eng,
+          projectData.address,
+          `construction projects in ${projectData.address}`,
+        ];
+
+  return {
+    title: `${projectData.title} | Khales Project`,
+    description: projectData.description,
+    keywords: keywords,
+    // --- ADDED: Open Graph and Twitter for rich social sharing ---
+    openGraph: {
+      title: `${projectData.title} | Khales Project`,
+      description: projectData.description,
+      url: `${baseUrl}/${lang}/projects/${slug}`,
+      siteName: "Khales",
+      images: [{ url: project.mainImage, width: 1200, height: 630 }],
+      locale: lang === "ar" ? "ar_AE" : "en_US",
+      type: "article", // 'article' is good for a detailed project page
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${projectData.title} | Khales Project`,
+      description: projectData.description,
+      images: [project.mainImage],
+    },
+    // --- ADDED: Canonical and hreflang for international SEO ---
+    alternates: {
+      canonical: `/${lang}/projects/${slug}`,
+      languages: {
+        "en-US": `/en/projects/${slug}`,
+        "ar-AE": `/ar/projects/${slug}`,
+      },
+    },
+  };
 }
 
-// This is the main server component for the page
+// --- PAGE COMPONENT (Updated with Schema injection) ---
 export default async function Page({ params }) {
   const { slug, lang } = params;
   const project = findProjectBySlug(slug);
 
-  // If the project is not found, Next.js will render the 404 page
   if (!project) {
     notFound();
   }
 
+  // Generate the specific schema for this project
+  const projectSchema = getProjectPageSchema(lang, project);
+
   return (
-    <main>
-      <PropertyPage project={project} lang={lang} />
-    </main>
+    <>
+      {/* Inject the dynamic, project-specific schema */}
+      <Script
+        id="project-page-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
+      <main>
+        <PropertyPage project={project} lang={lang} />
+      </main>
+    </>
   );
+}
+
+// Ensure this function exists in your project
+export async function generateStaticParams() {
+  return projectsData.flatMap((project) => [
+    { lang: "en", slug: project.slug },
+    { lang: "ar", slug: project.slug },
+  ]);
 }
