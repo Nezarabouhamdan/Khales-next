@@ -2207,14 +2207,36 @@ export const dictionary = {
     },
     gallery: {
       title: "Residential Showcase",
+      // --- UPDATED STRUCTURE ---
       images: [
-        "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
-        "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
-        "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
-        "https://i.ibb.co/pj4pCr6F/Screenshot-2025-08-19-162543.png",
-        "https://i.ibb.co/pBbqBsD1/Screenshot-2025-08-19-154236.png",
-        "https://i.ibb.co/7NxsWySc/Screenshot-2025-08-19-154348.png",
-        "https://i.ibb.co/4gp06CFY/Screenshot-2025-08-19-154407.png",
+        {
+          src: "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
+          title: "Modern Building Exterior with Water Feature",
+        },
+        {
+          src: "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
+          title: "Grand Atrium Lobby",
+        },
+        {
+          src: "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
+          title: "Open-Plan Living and Kitchen Area",
+        },
+        {
+          src: "https://i.ibb.co/pj4pCr6F/Screenshot-2025-08-19-162543.png",
+          title: "Residential Building with Green Terraces",
+        },
+        {
+          src: "https://i.ibb.co/pBbqBsD1/Screenshot-2025-08-19-154236.png",
+          title: "Luxurious Lobby with Palm Trees and Chandelier",
+        },
+        {
+          src: "https://i.ibb.co/7NxsWySc/Screenshot-2025-08-19-154348.png",
+          title: "Modern Kitchen and Dining Area",
+        },
+        {
+          src: "https://i.ibb.co/4gp06CFY/Screenshot-2025-08-19-154407.png",
+          title: "Contemporary Kitchen with Island and View",
+        },
       ],
     },
     overview: {
@@ -2286,14 +2308,36 @@ export const dictionary = {
     },
     gallery: {
       title: "Commercial Portfolio",
+      // --- UPDATED STRUCTURE ---
       images: [
-        "https://i.ibb.co/hJnXF2nB/Screenshot-2025-08-19-161351.png",
-        "https://i.ibb.co/xrb1rTT/Screenshot-2025-08-19-161402.png",
-        "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
-        "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
-        "https://i.ibb.co/39N0kDJ8/Screenshot-2025-08-19-161450.png",
-        "https://i.ibb.co/wrCF8HS2/Screenshot-2025-08-19-161535.png",
-        "https://i.ibb.co/DPrRMcx3/Screenshot-2025-08-19-161550.png",
+        {
+          src: "https://i.ibb.co/hJnXF2nB/Screenshot-2025-08-19-161351.png",
+          title: "Commercial Building with Rooftop Pool",
+        },
+        {
+          src: "https://i.ibb.co/xrb1rTT/Screenshot-2025-08-19-161402.png",
+          title: "Sports Complex with Tennis Courts",
+        },
+        {
+          src: "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
+          title: "Shopping Mall Interior with Palm Trees",
+        },
+        {
+          src: "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
+          title: "Modern Commercial Building at Night",
+        },
+        {
+          src: "https://i.ibb.co/39N0kDJ8/Screenshot-2025-08-19-161450.png",
+          title: "Restaurant Interior",
+        },
+        {
+          src: "https://i.ibb.co/wrCF8HS2/Screenshot-2025-08-19-161535.png",
+          title: "Modern Office Interior with City View",
+        },
+        {
+          src: "https://i.ibb.co/DPrRMcx3/Screenshot-2025-08-19-161550.png",
+          title: "Indoor Commercial Walkway with Shops and Palm Trees",
+        },
       ],
     },
     overview: {
@@ -2365,14 +2409,36 @@ export const dictionary = {
     },
     gallery: {
       title: "Villa Design Showcase",
+      // --- UPDATED STRUCTURE ---
       images: [
-        "https://i.ibb.co/8DzpbsXX/Screenshot-2025-08-19-161154.png",
-        "https://i.ibb.co/KM8mhtK/Screenshot-2025-08-19-161101.png",
-        "https://i.ibb.co/pjtLWqgJ/Screenshot-2025-08-19-163130.png",
-        "https://i.ibb.co/9H3YHd3B/Screenshot-2025-08-19-161235.png",
-        "https://i.ibb.co/whZ5JmQv/Screenshot-2025-08-19-163108.png",
-        "https://i.ibb.co/HTdfXnC7/Screenshot-2025-08-19-161049.png",
-        "https://i.ibb.co/BRznYLG/Screenshot-2025-08-19-161138.png",
+        {
+          src: "https://i.ibb.co/8DzpbsXX/Screenshot-2025-08-19-161154.png",
+          title: "Classical Villa Exterior",
+        },
+        {
+          src: "https://i.ibb.co/KM8mhtK/Screenshot-2025-08-19-161101.png",
+          title: "Grand Entrance Hall with Double Staircase",
+        },
+        {
+          src: "https://i.ibb.co/pjtLWqgJ/Screenshot-2025-08-19-163130.png",
+          title: "Modern Villa with Reflecting Pool",
+        },
+        {
+          src: "https://i.ibb.co/9H3YHd3B/Screenshot-2025-08-19-161235.png",
+          title: "Luxurious Living Room with Chandelier",
+        },
+        {
+          src: "https://i.ibb.co/whZ5JmQv/Screenshot-2025-08-19-163108.png",
+          title: "Villa Exterior with Decorative Screen and Water Feature",
+        },
+        {
+          src: "https://i.ibb.co/HTdfXnC7/Screenshot-2025-08-19-161049.png",
+          title: "Traditional Courtyard with Water Feature",
+        },
+        {
+          src: "https://i.ibb.co/BRznYLG/Screenshot-2025-08-19-161138.png",
+          title: "Elegant Living Area with High Ceilings",
+        },
       ],
     },
     overview: {

@@ -2180,6 +2180,7 @@ export const dictionary = {
     ],
   },
   residentialPage: {
+    // Assuming a structure like this for your Arabic content
     meta: {
       title: "هندسة معمارية سكنية فاخرة: مبانٍ وقصور وفلل | خالص",
       description:
@@ -2195,14 +2196,36 @@ export const dictionary = {
     },
     gallery: {
       title: "معرض المشاريع السكنية",
+      // --- UPDATED STRUCTURE ---
       images: [
-        "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
-        "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
-        "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
-        "https://i.ibb.co/pj4pCr6F/Screenshot-2025-08-19-162543.png",
-        "https://i.ibb.co/pBbqBsD1/Screenshot-2025-08-19-154236.png",
-        "https://i.ibb.co/7NxsWySc/Screenshot-2025-08-19-154348.png",
-        "https://i.ibb.co/4gp06CFY/Screenshot-2025-08-19-154407.png",
+        {
+          src: "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
+          title: "واجهة المبنى الحديثة مع نافورة مائية",
+        },
+        {
+          src: "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
+          title: "ردهة الأتريوم الكبرى",
+        },
+        {
+          src: "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
+          title: "مساحة معيشة ومطبخ مفتوحة",
+        },
+        {
+          src: "https://i.ibb.co/pj4pCr6F/Screenshot-2025-08-19-162543.png",
+          title: "مبنى سكني بتراسات خضراء",
+        },
+        {
+          src: "https://i.ibb.co/pBbqBsD1/Screenshot-2025-08-19-154236.png",
+          title: "ردهة فاخرة بأشجار النخيل والثريا",
+        },
+        {
+          src: "https://i.ibb.co/7NxsWySc/Screenshot-2025-08-19-154348.png",
+          title: "مطبخ حديث ومنطقة لتناول الطعام",
+        },
+        {
+          src: "https://i.ibb.co/4gp06CFY/Screenshot-2025-08-19-154407.png",
+          title: "مطبخ عصري مع جزيرة وإطلالة",
+        },
       ],
     },
     overview: {
@@ -2274,14 +2297,36 @@ export const dictionary = {
     },
     gallery: {
       title: "معرض المشاريع التجارية",
+      // --- UPDATED STRUCTURE ---
       images: [
-        "https://i.ibb.co/hJnXF2nB/Screenshot-2025-08-19-161351.png",
-        "https://i.ibb.co/xrb1rTT/Screenshot-2025-08-19-161402.png",
-        "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
-        "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
-        "https://i.ibb.co/39N0kDJ8/Screenshot-2025-08-19-161450.png",
-        "https://i.ibb.co/wrCF8HS2/Screenshot-2025-08-19-161535.png",
-        "https://i.ibb.co/DPrRMcx3/Screenshot-2025-08-19-161550.png",
+        {
+          src: "https://i.ibb.co/hJnXF2nB/Screenshot-2025-08-19-161351.png",
+          title: "مبنى تجاري مع مسبح على السطح",
+        },
+        {
+          src: "https://i.ibb.co/xrb1rTT/Screenshot-2025-08-19-161402.png",
+          title: "مجمع رياضي مع ملاعب تنس",
+        },
+        {
+          src: "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
+          title: "تصميم داخلي لمركز تسوق بأشجار النخيل",
+        },
+        {
+          src: "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
+          title: "مبنى تجاري حديث ليلاً",
+        },
+        {
+          src: "https://i.ibb.co/39N0kDJ8/Screenshot-2025-08-19-161450.png",
+          title: "تصميم داخلي لمطعم",
+        },
+        {
+          src: "https://i.ibb.co/wrCF8HS2/Screenshot-2025-08-19-161535.png",
+          title: "مكتب حديث مع إطلالة على المدينة",
+        },
+        {
+          src: "https://i.ibb.co/DPrRMcx3/Screenshot-2025-08-19-161550.png",
+          title: "ممشى تجاري داخلي مع محلات وأشجار النخيل",
+        },
       ],
     },
     overview: {
@@ -2323,7 +2368,7 @@ export const dictionary = {
         },
         {
           icon: "building",
-          title: "وظائفية تواكب المستقبل",
+          title: "قدرات عملية تواكب المستقبل",
           description:
             "نصمم مساحات قابلة للتكيف ومتكاملة تقنيًا، ليست فقط لتلبية احتياجات اليوم، بل للمتطلبات المتطورة للغد.",
         },
@@ -2353,14 +2398,36 @@ export const dictionary = {
     },
     gallery: {
       title: "معرض تصاميم الفلل",
+      // --- UPDATED STRUCTURE ---
       images: [
-        "https://i.ibb.co/8DzpbsXX/Screenshot-2025-08-19-161154.png",
-        "https://i.ibb.co/KM8mhtK/Screenshot-2025-08-19-161101.png",
-        "https://i.ibb.co/pjtLWqgJ/Screenshot-2025-08-19-163130.png",
-        "https://i.ibb.co/9H3YHd3B/Screenshot-2025-08-19-161235.png",
-        "https://i.ibb.co/whZ5JmQv/Screenshot-2025-08-19-163108.png",
-        "https://i.ibb.co/HTdfXnC7/Screenshot-2025-08-19-161049.png",
-        "https://i.ibb.co/BRznYLG/Screenshot-2025-08-19-161138.png",
+        {
+          src: "https://i.ibb.co/8DzpbsXX/Screenshot-2025-08-19-161154.png",
+          title: "واجهة الفيلا الكلاسيكية",
+        },
+        {
+          src: "https://i.ibb.co/KM8mhtK/Screenshot-2025-08-19-161101.png",
+          title: "قاعة مدخل فخمة مع درج مزدوج",
+        },
+        {
+          src: "https://i.ibb.co/pjtLWqgJ/Screenshot-2025-08-19-163130.png",
+          title: "فيلا حديثة مع مسبح عاكس",
+        },
+        {
+          src: "https://i.ibb.co/9H3YHd3B/Screenshot-2025-08-19-161235.png",
+          title: "غرفة معيشة فاخرة مع ثريا",
+        },
+        {
+          src: "https://i.ibb.co/whZ5JmQv/Screenshot-2025-08-19-163108.png",
+          title: "واجهة الفيلا مع شاشة زخرفية وميزة مائية",
+        },
+        {
+          src: "https://i.ibb.co/HTdfXnC7/Screenshot-2025-08-19-161049.png",
+          title: "فناء تقليدي مع ميزة مائية",
+        },
+        {
+          src: "https://i.ibb.co/BRznYLG/Screenshot-2025-08-19-161138.png",
+          title: "منطقة معيشة أنيقة ذات أسقف عالية",
+        },
       ],
     },
     overview: {

@@ -1,10 +1,7 @@
 "use client";
-
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
-
-// 1. IMPORT ALL ICONS NEEDED ACROSS ALL PAGES
 import {
   FaCheckCircle,
   FaArrowLeft,
@@ -19,12 +16,10 @@ import {
   FaStar,
   FaSpa,
 } from "react-icons/fa";
-
-// 2. IMPORT YOUR CUSTOM COMPONENTS
 import ImageWithSkeleton from "@/components/ImageSkeleton";
 import CTASection from "@/components/Homecontact/CTASection";
 
-// --- ANIMATION VARIANTS ---
+// --- ANIMATION VARIANTS (Unchanged) ---
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15, duration: 0.5 } },
@@ -49,9 +44,9 @@ const kenBurns = keyframes`
   0% { transform: scale(1.0); } 100% { transform: scale(1.1); }
 `;
 
-// --- ALL STYLED COMPONENTS ---
+// --- STYLED COMPONENTS (With Updates) ---
 
-// Page Structure
+// Page Structure (Unchanged)
 const PageWrapper = styled.div`
   background-color: #ffffff;
   font-family: ${({ lang }) =>
@@ -60,6 +55,7 @@ const PageWrapper = styled.div`
   position: relative;
   overflow-x: hidden;
 `;
+// ... (Other unchanged styled components like MaxWidthContainer, MainContentSection, HeaderSection, etc.)
 const MaxWidthContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -68,8 +64,6 @@ const MaxWidthContainer = styled.div`
 const MainContentSection = styled.section`
   padding-bottom: 5rem;
 `;
-
-// Header
 const HeaderSection = styled.header`
   background-color: #121212;
   color: #fff;
@@ -197,9 +191,23 @@ const GalleryScrollContainer = styled(motion.div)`
   padding: 1rem 2rem;
   width: max-content;
 `;
-const GalleryImage = styled(motion.div)`
+
+// NEW: Wrapper for each gallery item (image + title)
+const GalleryItemWrapper = styled(motion.div)`
   flex-shrink: 0;
   width: 400px;
+  position: relative;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateY(-8px);
+  }
+  @media (max-width: 768px) {
+    width: 300px;
+  }
+`;
+
+const GalleryImage = styled.div`
+  width: 100%;
   height: 250px;
   border-radius: 20px;
   overflow: hidden;
@@ -207,39 +215,62 @@ const GalleryImage = styled(motion.div)`
   position: relative;
   will-change: transform;
   @media (max-width: 768px) {
-    width: 300px;
     height: 200px;
   }
 `;
+
+// NEW: Style for the image title
+const ImageTitle = styled.div`
+  font-weight: 500;
+  color: #333;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+
+  ${GalleryItemWrapper}:hover & {
+    color: #66a109;
+  }
+`;
+
 const NavArrows = styled.div`
   display: flex;
   gap: 1rem;
 `;
+
+// UPDATED: ArrowButton with more visibility
 const ArrowButton = styled.button`
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
-  border: 1px solid #e0e0e0;
-  background-color: #fff;
-  color: #333;
+  border: 1px solid #dcdcdc; /* Slightly darker border */
+  background-color: #ffffff;
+  color: #222; /* Darker icon color */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 1.2rem; /* Larger icon */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Softer, more visible shadow */
+
   &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+    transform: scale(1);
+    background-color: #f5f5f5;
   }
+
   &:not(:disabled):hover {
     background-color: #66a109;
-    border-color: #66a109;
+    border-color: #5a9008;
     color: #fff;
-    transform: scale(1.05);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   }
 `;
 
-// Content Blocks
+// ... (Rest of your unchanged styled-components like ContentBlock, ImageWrapper, etc.)
 const ContentBlock = styled(motion.div)`
   display: flex;
   align-items: center;
@@ -306,8 +337,6 @@ const StyledList = styled(motion.ul)`
     }
   }
 `;
-
-// New Principles Section
 const PrinciplesSectionWrapper = styled.section`
   padding: 5rem 2rem 10rem;
   background-color: #f8f9fa;
@@ -372,8 +401,6 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
 
   const { header, gallery, overview, challenges, principles, labels } = content;
 
-  // 3. DYNAMIC ICON MAPPING
-  // This object connects the 'icon' string from your JSON to the actual imported icon component.
   const iconMap = {
     home: <FaHome />,
     gem: <FaGem />,
@@ -507,21 +534,23 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
           variants={itemVariants}
         >
           <GalleryScrollContainer>
-            {gallery.images.map((src, i) => (
-              <GalleryImage
-                key={i}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              >
-                <ImageWithSkeleton
-                  src={src}
-                  alt={`${gallery.title} ${i + 1}`}
-                  sizes="(max-width: 768px) 300px, 400px"
-                />
-              </GalleryImage>
+            {/* NEW: Updated mapping function for images with titles */}
+            {gallery.images.map((image, i) => (
+              <GalleryItemWrapper key={i}>
+                <GalleryImage>
+                  <ImageWithSkeleton
+                    src={image.src} // Use image.src
+                    alt={image.title} // Use image.title for alt text
+                    sizes="(max-width: 768px) 300px, 400px"
+                  />
+                </GalleryImage>
+                <ImageTitle>{image.title}</ImageTitle>
+              </GalleryItemWrapper>
             ))}
           </GalleryScrollContainer>
         </GalleryWrapper>
 
+        {/* ... (Rest of your unchanged JSX for content blocks, principles, etc.) ... */}
         <MaxWidthContainer>
           <ContentBlock
             as={motion.div}
