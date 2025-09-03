@@ -139,10 +139,6 @@
   font-style: normal;
 }
 
-* {
-  font-family: "Playfair";
-}
-
 body {
   margin: 0;
   font-family: "Playfair";
@@ -159,13 +155,11 @@ code {
   font-display: swap;
 }
 
-/* Reduce Layout Shift */
 img {
   height: auto;
   max-width: 100%;
 }
 
-/* Optimize Critical Rendering Path */
 .above-fold {
   contain: layout style paint;
 }

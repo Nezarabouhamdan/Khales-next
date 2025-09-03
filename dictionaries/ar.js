@@ -2595,5 +2595,4 @@ export const dictionary = {
     reject: "رفض",
     accept: "قبول",
   },
-  // ... your other content
 };
