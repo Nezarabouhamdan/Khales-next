@@ -18,6 +18,8 @@ import {
 } from "react-icons/fa";
 import ImageWithSkeleton from "@/components/ImageSkeleton";
 import CTASection from "@/components/Homecontact/CTASection";
+import ServicesSection from "@/components/ServicesSection";
+import SectorsSection from "@/components/SectorsSection";
 
 // --- ANIMATION VARIANTS (Unchanged) ---
 const containerVariants = {
@@ -44,9 +46,7 @@ const kenBurns = keyframes`
   0% { transform: scale(1.0); } 100% { transform: scale(1.1); }
 `;
 
-// --- STYLED COMPONENTS (With Updates) ---
-
-// Page Structure (Unchanged)
+// --- STYLED COMPONENTS (Unchanged) ---
 const PageWrapper = styled.div`
   background-color: #ffffff;
   font-family: ${({ lang }) =>
@@ -55,12 +55,12 @@ const PageWrapper = styled.div`
   position: relative;
   overflow-x: hidden;
 `;
-// ... (Other unchanged styled components like MaxWidthContainer, MainContentSection, HeaderSection, etc.)
 const MaxWidthContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 `;
+// ... (All other styled-components remain exactly the same as in your original file)
 const MainContentSection = styled.section`
   padding-bottom: 5rem;
 `;
@@ -149,8 +149,6 @@ const MetaGrid = styled(motion.div)`
     }
   }
 `;
-
-// Gallery
 const SectionHeader = styled(motion.div)`
   display: flex;
   justify-content: space-between;
@@ -191,8 +189,6 @@ const GalleryScrollContainer = styled(motion.div)`
   padding: 1rem 2rem;
   width: max-content;
 `;
-
-// NEW: Wrapper for each gallery item (image + title)
 const GalleryItemWrapper = styled(motion.div)`
   flex-shrink: 0;
   width: 400px;
@@ -205,7 +201,6 @@ const GalleryItemWrapper = styled(motion.div)`
     width: 300px;
   }
 `;
-
 const GalleryImage = styled.div`
   width: 100%;
   height: 250px;
@@ -218,8 +213,6 @@ const GalleryImage = styled.div`
     height: 200px;
   }
 `;
-
-// NEW: Style for the image title
 const ImageTitle = styled.div`
   font-weight: 500;
   color: #333;
@@ -232,13 +225,10 @@ const ImageTitle = styled.div`
     color: #66a109;
   }
 `;
-
 const NavArrows = styled.div`
   display: flex;
   gap: 1rem;
 `;
-
-// UPDATED: ArrowButton with more visibility
 const ArrowButton = styled.button`
   width: 55px;
   height: 55px;
@@ -269,8 +259,6 @@ const ArrowButton = styled.button`
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   }
 `;
-
-// ... (Rest of your unchanged styled-components like ContentBlock, ImageWrapper, etc.)
 const ContentBlock = styled(motion.div)`
   display: flex;
   align-items: center;
@@ -393,13 +381,24 @@ const PrincipleCard = styled(motion.div)`
   }
 `;
 
-// --- MAIN PAGE COMPONENT ---
+// --- MAIN PAGE COMPONENT (UPDATED) ---
 const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
   if (!content || !ctaContent) {
     return null;
   }
 
-  const { header, gallery, overview, challenges, principles, labels } = content;
+  // UPDATED: Destructure the new content object for the services section
+  const {
+    header,
+    gallery,
+    overview,
+    challenges,
+    principles,
+    labels,
+    services,
+    servicesSectionContent, // <-- ADD THIS
+    sectorsData,
+  } = content;
 
   const iconMap = {
     home: <FaHome />,
@@ -420,6 +419,7 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
   const LeftArrowIcon = lang === "ar" ? FaArrowRight : FaArrowLeft;
   const RightArrowIcon = lang === "ar" ? FaArrowLeft : FaArrowRight;
 
+  // ... (useCallback, useEffect, and handleNavClick hooks are unchanged)
   const checkScrollability = useCallback(() => {
     const el = galleryRef.current;
     if (el) {
@@ -459,6 +459,7 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
 
   return (
     <PageWrapper lang={lang}>
+      {/* (HeaderSection, MainContentSection, etc. are unchanged) */}
       <HeaderSection>
         <div className="bg-image-wrapper">
           <ImageWithSkeleton
@@ -492,7 +493,6 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
           </MetaGrid>
         </HeaderContentContainer>
       </HeaderSection>
-
       <MainContentSection>
         <MaxWidthContainer>
           <SectionHeader
@@ -534,13 +534,12 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
           variants={itemVariants}
         >
           <GalleryScrollContainer>
-            {/* NEW: Updated mapping function for images with titles */}
             {gallery.images.map((image, i) => (
               <GalleryItemWrapper key={i}>
                 <GalleryImage>
                   <ImageWithSkeleton
-                    src={image.src} // Use image.src
-                    alt={image.title} // Use image.title for alt text
+                    src={image.src}
+                    alt={image.title}
                     sizes="(max-width: 768px) 300px, 400px"
                   />
                 </GalleryImage>
@@ -550,7 +549,6 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
           </GalleryScrollContainer>
         </GalleryWrapper>
 
-        {/* ... (Rest of your unchanged JSX for content blocks, principles, etc.) ... */}
         <MaxWidthContainer>
           <ContentBlock
             as={motion.div}
@@ -604,7 +602,14 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
           </ContentBlock>
         </MaxWidthContainer>
       </MainContentSection>
-
+      {/* UPDATED: Conditionally render and pass correct props */}
+      {services && servicesSectionContent && (
+        <ServicesSection
+          services={services}
+          content={servicesSectionContent}
+          lang={lang}
+        />
+      )}
       {principles && (
         <PrinciplesSectionWrapper>
           <MaxWidthContainer>

@@ -14,6 +14,8 @@ const nextConfig = {
       "images.pexels.com",
       "cdn.builder.io", // And add the new one
       "images.unsplash.com",
+      "s3.us-west-2.amazonaws.com",
+      "upload.wikimedia.org",
     ],
     remotePatterns: [
       {

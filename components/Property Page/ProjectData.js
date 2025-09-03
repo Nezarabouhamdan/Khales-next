@@ -86,7 +86,7 @@ export const projectsData = [
         "The Crown Central is a high-rise mixed-use development located in a prime area of Riyadh. Designed to balance luxury with accessibility, the project offers an urban experience that combines residential, commercial, and lifestyle spaces within a unified architectural language. With sweeping views of the city and a high-exposure site, the design focuses on clean vertical rhythm, clear circulation, and material elegance. Khales was appointed for full architectural design and site supervision, overseeing quality and consistency from concept to delivery.",
       price: "5,750,000",
       beds: "60+ units/rooms",
-      floor: "6",
+      floor: "15",
       sqft: "60,100",
       keyFeatures: [
         "Vertical urban design",
@@ -107,7 +107,7 @@ export const projectsData = [
         "ذا كراون سنترال هو مشروع تطويري شاهق متعدد الاستخدامات يقع في منطقة حيوية بالرياض. تم تصميمه لتحقيق التوازن بين الفخامة وسهولة الوصول، ويقدم المشروع تجربة حضرية تجمع بين المساحات السكنية والتجارية والترفيهية ضمن لغة معمارية موحدة. مع إطلالات واسعة على المدينة وموقع بارز، يركز التصميم على الإيقاع الرأسي النظيف، والحركة الواضحة، وأناقة المواد. تم تعيين خالص لتقديم التصميم المعماري الكامل والإشراف على الموقع، ومراقبة الجودة والاتساق من الفكرة حتى التسليم.",
       price: "٥٬٧٥٠٬٠٠٠",
       beds: "+٦٠ وحدة/غرفة",
-      floor: "٦",
+      floor: "١٥",
       sqft: "٦٠٬١٠٠",
       keyFeatures: [
         "تصميم حضري رأسي",

@@ -25,6 +25,40 @@
   font-weight: 1000;
   font-style: normal;
 } */
+/* In: app/globals.css */
+
+/* ... (your existing .float and .float2 styles) ... */
+
+/* NEW: Styles for the Mobile-Only Floating Contact Button */
+/* ============================================== */
+/*  Styles for the Floating Contact Button        */
+/* ============================================== */
+
+.float-contact {
+  position: fixed;
+  padding: 0.75rem 1.25rem; /* Adjust padding for a nice pill shape */
+  bottom: 40px; /* Distance from the bottom */
+  left: 40px; /* Distance from the left */
+  background-color: rgb(102, 161, 9); /* Your brand's green color */
+  color: #fff; /* White text */
+  border-radius: 50px; /* Fully rounded corners */
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600; /* Bold text */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* A nice, soft shadow */
+  z-index: 100;
+  text-decoration: none; /* Remove underline from link */
+  display: flex; /* To align icon and text */
+  align-items: center;
+  gap: 0.5rem; /* Space between icon and text */
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Add a hover effect to make it interactive */
+.float-contact:hover {
+  transform: translateY(-5px) scale(1.05); /* Lifts and slightly enlarges the button */
+  background-color: #5a8f08; /* A slightly darker green on hover */
+}
 .increment {
   font-size: 35px;
   color: #ffffff;

@@ -12,9 +12,14 @@ export const dictionary = {
     items: [
       // FIX: الرئيسية is now a standalone link
       {
-        label: "الرئيسية",
-        path: "/",
-        isDropdown: false,
+        label: "نبذة عنا",
+        isDropdown: true,
+        children: [
+          { label: " الرئيسية ", path: "/" },
+
+          { label: "نبذة عن خالص", path: "/about-us" },
+          { label: "المدونة", path: "/blog" },
+        ],
       },
       {
         label: "أنواع المشاريع",
@@ -52,14 +57,11 @@ export const dictionary = {
         ],
       },
       // FIX: New "الشركة" dropdown containing About, Blogs, and Connect
+
       {
-        label: "نبذة عنا",
-        isDropdown: true,
-        children: [
-          { label: "نبذة عن خالص", path: "/about-us" },
-          { label: "المدونة", path: "/blog" },
-          { label: "تواصل معنا", path: "/Contact" },
-        ],
+        label: "تواصل معنا",
+        path: "/Contact",
+        isDropdown: false,
       },
     ],
     ctaButton: "أحجز موعدك الآن",
@@ -70,7 +72,7 @@ export const dictionary = {
   hero: {
     slides: [
       {
-        title: "خدمة إدارة المشاريع المتكاملة في الإمارات",
+        title: "خدمة إدارة المشاريع المتكاملة ",
         subtitle:
           "ندير كل تفاصيل مشروعكم بدقة، من المفهوم الأولي حتى لحظة تسليم المفتاح.",
 
@@ -78,7 +80,7 @@ export const dictionary = {
         buttonLink: "/Contact",
       },
       {
-        title: "استشارات هندسية في الإمارات",
+        title: "الإستشارات هندسية",
         subtitle: "رؤيتكم، بهندسة متقنة",
         buttonText: "اكتشف خدماتنا",
         buttonLink: "/#services",
@@ -2046,7 +2048,7 @@ export const dictionary = {
 
     // For the Page Component
     title: "سياسة الخصوصية",
-    lastUpdated: "تم آخر تحديث لسياسة الخصوصية هذه في 26 مارس 2025.",
+    lastUpdated: "تم آخر تحديث لسياسة الخصوصية هذه في 3 سبتمبر 2025.",
     sections: [
       {
         heading: "مقدمة",
@@ -2180,7 +2182,42 @@ export const dictionary = {
     ],
   },
   residentialPage: {
-    // Assuming a structure like this for your Arabic content
+    services: [
+      {
+        id: "Buildings",
+        title: " مباني سكنية",
+        src: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Staples_High_School%2C_Westport%2C_CT.jpg",
+      },
+      {
+        id: "Townhouses",
+        title: "تاون هاوس",
+        src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+      },
+      {
+        id: "Standalone Villas",
+        title: "فلل مستقلة",
+        src: "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
+      },
+      {
+        id: "Penthouses",
+        title: "بنتهاوس",
+        src: "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
+      },
+      {
+        id: "Gated Communities ",
+        title: "مجمعات مسورة ",
+        src: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+      },
+      {
+        id: "Branded Residences",
+        title: "مساكن ذات علامة تجارية",
+        src: "https://s3.us-west-2.amazonaws.com/wold/images/Expertises/EDU/High%20School/Main%20Image/_1200x630_crop_center-center_82_none/Wold-Architects-Engineers-High-School-Design.jpg?mtime=1687291518",
+      },
+    ],
+    servicesSectionContent: {
+      title: "فئات الأصول السكنية",
+      linkText: "جميع الفئات السكنية",
+    },
     meta: {
       title: "هندسة معمارية سكنية فاخرة: مبانٍ وقصور وفلل | خالص",
       description:
@@ -2196,7 +2233,6 @@ export const dictionary = {
     },
     gallery: {
       title: "معرض المشاريع السكنية",
-      // --- UPDATED STRUCTURE ---
       images: [
         {
           src: "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
@@ -2282,6 +2318,42 @@ export const dictionary = {
     },
   },
   commercialPage: {
+    services: [
+      {
+        id: "Schools",
+        title: "مدارس",
+        src: "https://i.ibb.co/Dfqz9fPc/Screenshot-2025-09-03-163218.png",
+      },
+      {
+        id: "Hospitals",
+        title: "مستشفيات",
+        src: "https://i.ibb.co/wNXp9qTQ/Screenshot-2025-09-03-163004.png",
+      },
+      {
+        id: "Malls",
+        title: "مراكز تسوق",
+        src: "https://i.ibb.co/whcX2LDJ/Screenshot-2025-09-03-163540.png",
+      },
+      {
+        id: "Gyms & Fitness Club",
+        title: "الأندية الصحية والصالات الرياضية",
+        src: "https://i.ibb.co/yBp8wtWr/Screenshot-2025-09-03-163226.png",
+      },
+      {
+        id: "Airports",
+        title: "مطارات",
+        src: "https://i.ibb.co/Zz2L1Ds4/Screenshot-2025-09-03-163145.png",
+      },
+      {
+        id: "Universites",
+        title: "جامعات",
+        src: "https://i.ibb.co/21JrKcS1/Screenshot-2025-09-03-163157.png",
+      },
+    ],
+    servicesSectionContent: {
+      title: "فئات الأصول التجارية",
+      linkText: "جميع الفئات التجارية",
+    },
     meta: {
       title: "إدارة وإعادة ابتكار المشاريع التجارية | خالص",
       description:
@@ -2297,7 +2369,6 @@ export const dictionary = {
     },
     gallery: {
       title: "معرض المشاريع التجارية",
-      // --- UPDATED STRUCTURE ---
       images: [
         {
           src: "https://i.ibb.co/hJnXF2nB/Screenshot-2025-08-19-161351.png",
@@ -2383,6 +2454,42 @@ export const dictionary = {
     },
   },
   luxuryVillaPage: {
+    services: [
+      {
+        id: "Modern Villas",
+        title: "فلل حديثة",
+        src: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Staples_High_School%2C_Westport%2C_CT.jpg",
+      },
+      {
+        id: "Organic Villas",
+        title: "فلل طبيعية",
+        src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+      },
+      {
+        id: "Classic Villas",
+        title: "فلل كلاسيكية",
+        src: "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
+      },
+      {
+        id: "Arabian Villas",
+        title: "فلل عربية",
+        src: "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
+      },
+      {
+        id: "Modern Farmhouse Villas",
+        title: "فلل بمزرعة حديثة",
+        src: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+      },
+      {
+        id: "Tuscan Villas",
+        title: "فلل على الطراز التوسكاني",
+        src: "https://s3.us-west-2.amazonaws.com/wold/images/Expertises/EDU/High%20School/Main%20Image/_1200x630_crop_center-center_82_none/Wold-Architects-Engineers-High-School-Design.jpg?mtime=1687291518",
+      },
+    ],
+    servicesSectionContent: {
+      title: "أنماط الفلل",
+      linkText: "جميع أنماط الفلل",
+    },
     meta: {
       title: "تصميم وبناء فلل فاخرة مخصصة | خالص",
       description:
@@ -2398,7 +2505,6 @@ export const dictionary = {
     },
     gallery: {
       title: "معرض تصاميم الفلل",
-      // --- UPDATED STRUCTURE ---
       images: [
         {
           src: "https://i.ibb.co/8DzpbsXX/Screenshot-2025-08-19-161154.png",
@@ -2483,4 +2589,11 @@ export const dictionary = {
       scrollRight: "اسحب لليمين",
     },
   },
+  cookieConsent: {
+    text: "نحن نستخدم ملفات تعريف الارتباط الأساسية لضمان تشغيل موقعنا. بموافقتك، قد نستخدم أيضًا ملفات تعريف ارتباط غير أساسية لتحسين تجربة المستخدم وتحليل حركة المرور.",
+    learnMore: "اعرف المزيد.",
+    reject: "رفض",
+    accept: "قبول",
+  },
+  // ... your other content
 };

@@ -33,7 +33,7 @@ const SkeletonOverlay = styled.div`
 
 // --- Styled Components (with the final fix for the button) ---
 const HeroSection = styled.section`
-  height: 100vh;
+  height: 75vh;
   position: relative;
   display: flex;
   overflow: hidden;

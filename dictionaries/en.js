@@ -50,11 +50,15 @@ export const dictionary = {
   },
   navigation: {
     items: [
-      // FIX: Home is now a standalone link
       {
-        label: "Home",
-        path: "/",
-        isDropdown: false,
+        label: "About us",
+        isDropdown: true,
+        children: [
+          { label: "Home", path: "/" },
+
+          { label: "About Khales", path: "/About-Us" },
+          { label: "Blogs", path: "/blog" },
+        ],
       },
 
       {
@@ -95,16 +99,12 @@ export const dictionary = {
           { label: "Luxury Villas", path: "/Luxury-Villas" },
         ],
       },
-      // FIX: New "Company" dropdown containing About, Blogs, and Connect
       {
-        label: "About us",
-        isDropdown: true,
-        children: [
-          { label: "About Khales", path: "/About-Us" },
-          { label: "Blogs", path: "/blog" },
-          { label: "Contact us", path: "/Contact" },
-        ],
+        label: "Contact us",
+        path: "/Contact",
+        isDropdown: false,
       },
+      // FIX: New "Company" dropdown containing About, Blogs, and Connect
     ],
     ctaButton: "Book Consultation",
     // FIX: Changed label to be more generic for an icon
@@ -114,14 +114,14 @@ export const dictionary = {
   hero: {
     slides: [
       {
-        title: "Full Project Management Services In UAE",
+        title: "Full Project Management Services ",
         subtitle:
           "We manage every detail of your project with precision, from initial concept to the moment we hand you the keys to your new home.",
         buttonText: "Get in Touch",
         buttonLink: "/Contact",
       },
       {
-        title: "Engineering Consultancy In UAE",
+        title: "Engineering Consultancy ",
         subtitle: "Your vision, expertly engineered",
         buttonText: "Explore Services",
         buttonLink: "/#services",
@@ -2066,7 +2066,7 @@ export const dictionary = {
       "user data",
     ],
     title: "Privacy Policy",
-    lastUpdated: "This Privacy Policy was last updated on March 26, 2025.",
+    lastUpdated: "This Privacy Policy was last updated on September 3, 2025.",
     sections: [
       {
         heading: "Introduction",
@@ -2190,7 +2190,44 @@ export const dictionary = {
       },
     ],
   },
+
   residentialPage: {
+    services: [
+      {
+        id: " Buildings",
+        title: " Buildings",
+        src: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Staples_High_School%2C_Westport%2C_CT.jpg",
+      },
+      {
+        id: "Townhouses",
+        title: "Townhouses",
+        src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+      },
+      {
+        id: "Standalone Villas",
+        title: "Standalone Villas",
+        src: "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
+      },
+      {
+        id: "Penthouses",
+        title: "Penthouses",
+        src: "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
+      },
+      {
+        id: "Gated Communities",
+        title: "Gated Communities ",
+        src: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+      },
+      {
+        id: "Branded Residences",
+        title: "Branded Residences",
+        src: "https://s3.us-west-2.amazonaws.com/wold/images/Expertises/EDU/High%20School/Main%20Image/_1200x630_crop_center-center_82_none/Wold-Architects-Engineers-High-School-Design.jpg?mtime=1687291518",
+      },
+    ],
+    servicesSectionContent: {
+      title: "Residential  Classes",
+      linkText: "All Residential Classes",
+    },
     meta: {
       title:
         "Luxury Residential Architecture: Buildings, Mansions, Villas | Khales",
@@ -2207,7 +2244,6 @@ export const dictionary = {
     },
     gallery: {
       title: "Residential Showcase",
-      // --- UPDATED STRUCTURE ---
       images: [
         {
           src: "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
@@ -2293,6 +2329,42 @@ export const dictionary = {
     },
   },
   commercialPage: {
+    services: [
+      {
+        id: "Schools",
+        title: "Schools",
+        src: "https://i.ibb.co/Dfqz9fPc/Screenshot-2025-09-03-163218.png",
+      },
+      {
+        id: "Hospitals",
+        title: "Hospitals",
+        src: "https://i.ibb.co/wNXp9qTQ/Screenshot-2025-09-03-163004.png",
+      },
+      {
+        id: "Malls",
+        title: "Malls",
+        src: "https://i.ibb.co/whcX2LDJ/Screenshot-2025-09-03-163540.png",
+      },
+      {
+        id: "Gyms & Fitness Club",
+        title: "Gyms & Fitness Club",
+        src: "https://i.ibb.co/yBp8wtWr/Screenshot-2025-09-03-163226.png",
+      },
+      {
+        id: "Airports",
+        title: "Airports",
+        src: "https://i.ibb.co/Zz2L1Ds4/Screenshot-2025-09-03-163145.png",
+      },
+      {
+        id: "Universites",
+        title: "Universites",
+        src: "https://i.ibb.co/21JrKcS1/Screenshot-2025-09-03-163157.png",
+      },
+    ],
+    servicesSectionContent: {
+      title: "Commercial  Classes",
+      linkText: "All Commercial Classes",
+    },
     meta: {
       title: "Commercial Project Management & Reinvention | Khales",
       description:
@@ -2308,7 +2380,6 @@ export const dictionary = {
     },
     gallery: {
       title: "Commercial Portfolio",
-      // --- UPDATED STRUCTURE ---
       images: [
         {
           src: "https://i.ibb.co/hJnXF2nB/Screenshot-2025-08-19-161351.png",
@@ -2394,6 +2465,42 @@ export const dictionary = {
     },
   },
   luxuryVillaPage: {
+    services: [
+      {
+        id: "Modern Villas",
+        title: "Modern Villas",
+        src: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Staples_High_School%2C_Westport%2C_CT.jpg",
+      },
+      {
+        id: "Organic Villas",
+        title: "Organic Villas",
+        src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+      },
+      {
+        id: "Classic Villas",
+        title: "Classic Villas",
+        src: "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
+      },
+      {
+        id: "Arabian Villas",
+        title: "Arabian Villas",
+        src: "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
+      },
+      {
+        id: "Modern Farmhouse Villas",
+        title: "Modern Farmhouse Villas",
+        src: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+      },
+      {
+        id: "Tuscan Villas",
+        title: "Tuscan Villas",
+        src: "https://s3.us-west-2.amazonaws.com/wold/images/Expertises/EDU/High%20School/Main%20Image/_1200x630_crop_center-center_82_none/Wold-Architects-Engineers-High-School-Design.jpg?mtime=1687291518",
+      },
+    ],
+    servicesSectionContent: {
+      title: "Villa Styles",
+      linkText: "All Villa Styles",
+    },
     meta: {
       title: "Bespoke Luxury Villa Design & Construction | Khales",
       description:
@@ -2409,7 +2516,6 @@ export const dictionary = {
     },
     gallery: {
       title: "Villa Design Showcase",
-      // --- UPDATED STRUCTURE ---
       images: [
         {
           src: "https://i.ibb.co/8DzpbsXX/Screenshot-2025-08-19-161154.png",
@@ -2493,5 +2599,12 @@ export const dictionary = {
       scrollLeft: "Scroll Left",
       scrollRight: "Scroll Right",
     },
+  },
+  cookieConsent: {
+    text: "We use essential cookies to make our site work. With your consent, we may also use non-essential cookies to improve user experience and analyze website traffic.",
+    learnMore: "Learn more.",
+    reject: "Decline",
+    accept: "Accept",
+    // ... your other content
   },
 };

@@ -187,13 +187,13 @@ const getHomePageSchema = (lang) => {
 export async function generateMetadata({ params: { lang } }) {
   const title =
     lang === "ar"
-      ? "خالص | إدارة المشاريع والهندسة في والإمارات" // Short & Powerful
-      : "Khales | Project Management & Engineering in UAE"; // Short & Powerful
+      ? "خالص | إدارة المشاريع والهندسة  " // Short & Powerful
+      : "Khales | Project Management & Engineering "; // Short & Powerful
 
   const description =
     lang === "ar"
-      ? "خبراء في إدارة المشاريع والاستشارات الهندسية للفلل والمشاريع التجارية في دبي. حوّل رؤيتك إلى واقع معنا."
-      : "Expert project management and engineering consultancy for villas and commercial projects in Dubai. Turn your vision into reality.";
+      ? "خبراء في إدارة المشاريع والاستشارات الهندسية للفلل والمشاريع التجارية . حوّل رؤيتك إلى واقع معنا."
+      : "Expert project management and engineering consultancy for villas and commercial projects. Turn your vision into reality.";
 
   const keywords =
     lang === "ar"

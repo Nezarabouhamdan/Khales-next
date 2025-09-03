@@ -468,7 +468,7 @@ export default function PropertyPage({ project, lang }) {
                 </HighlightsTable>
               </>
             )}
-            <ContactButton href={`/${lang}/booking`}>
+            <ContactButton href={`/${lang}/Contact`}>
               {lang === "ar" ? "تواصل معنا" : "Contact us"}{" "}
               <span className="arrow">→</span>
             </ContactButton>

@@ -17,6 +17,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import CustomCursor from "@/components/CustomCursor";
 import Calltoaction from "../../Calltoaction";
 import LocalBusinessSchema from "@/components/LocalBusiness/LocalBusiness";
+import { FaEnvelope } from "react-icons/fa";
+import CookieConsent from "@/utils/CookieConsent";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -83,7 +85,7 @@ export async function generateMetadata({ params: { lang } }) {
 export default async function RootLayout({ children, params }) {
   const lang = params.lang || i18n.defaultLocale;
   const dictionary = await getDictionary(lang);
-
+  const cookieContent = dictionary.cookieConsent;
   if (!dictionary) {
     return (
       <html lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
@@ -165,7 +167,6 @@ export default async function RootLayout({ children, params }) {
         </noscript>
         <SpeedInsights />
         <Analytics />
-
         <StyledComponentsRegistry>
           <ClientProviders>
             <Navbar lang={lang} navigation={dictionary.navigation} />
@@ -183,11 +184,11 @@ export default async function RootLayout({ children, params }) {
               {/* This \`<i>\` tag will now be correctly replaced by the WhatsApp icon */}
               <i id="whatsapp" className="fa fa-whatsapp my-float"></i>
             </Link>
+
             <Calltoaction id="call" />
           </ClientProviders>
         </StyledComponentsRegistry>
-
-        <CustomCursor />
+        <CustomCursor /> <CookieConsent lang={lang} content={cookieContent} />
       </body>
     </html>
   );

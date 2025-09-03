@@ -77,18 +77,15 @@ const StyledImageSection = styled.section`
     padding: 0;
   }
 `;
-
 const SlideContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
   position: relative;
-
   @media (max-width: 991px) {
     gap: 15px;
   }
 `;
-
 const TopImage = styled.img`
   width: 300px;
   height: 300px;
@@ -96,7 +93,6 @@ const TopImage = styled.img`
   object-fit: cover;
   margin-left: auto;
   margin-right: 196px;
-
   @media (max-width: 1200px) {
     width: 250px;
     height: 250px;
