@@ -452,11 +452,18 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
     const el = galleryRef.current;
     if (el) {
       const scrollAmount = el.clientWidth * 0.8;
-      const scrollValue = direction === "left" ? -scrollAmount : scrollAmount;
+
+      // Determine the base scroll value
+      let scrollValue = direction === "left" ? -scrollAmount : scrollAmount;
+
+      // THE FIX: Invert the scroll direction for RTL layouts
+      if (lang === "ar") {
+        scrollValue = -scrollValue;
+      }
+
       el.scrollBy({ left: scrollValue, behavior: "smooth" });
     }
   };
-
   return (
     <PageWrapper lang={lang}>
       {/* (HeaderSection, MainContentSection, etc. are unchanged) */}
