@@ -1,5 +1,7 @@
 // app/sitemap.js
 
+import { getDictionary } from "@/get-dictionary";
+
 // You will need your functions to get dynamic data
 // For example: import { getAllProjects, getAllBlogs } from "@/lib/data";
 
