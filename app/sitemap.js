@@ -35,54 +35,52 @@ export default async function sitemap() {
     "/terms-and-conditions", // Added based on your screenshot
   ];
 
-  // --- 3. Generate static route entries for each language ---
-  const staticEntries = staticPaths.flatMap((path) => {
-    return locales.map((locale) => ({
+  const staticEntries = staticPaths.flatMap((path) =>
+    locales.map((locale) => ({
       url: `${baseUrl}/${locale}${path === "/" ? "" : path}`,
       lastModified: new Date(),
-      // 'alternates' tells Google about the other language versions of THIS page
       alternates: {
         languages: {
           en: `${baseUrl}/en${path === "/" ? "" : path}`,
           ar: `${baseUrl}/ar${path === "/" ? "" : path}`,
         },
       },
-    }));
-  });
+    }))
+  );
 
-  // --- 4. Generate dynamic route entries (IMPORTANT - YOU MUST DO THIS) ---
+  // --- Dynamic Projects (from your local ProjectData.js file) ---
+  const projectEntries = projectsData.flatMap((project) =>
+    locales.map((locale) => ({
+      url: `${baseUrl}/${locale}/projects/${project.slug}`,
+      // Since your data doesn't have an 'updatedAt', we'll use the current date
+      lastModified: new Date(),
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/projects/${project.slug}`,
+          ar: `${baseUrl}/ar/projects/${project.slug}`,
+        },
+      },
+    }))
+  );
 
-  // Example for projects:
-  // const projects = await getAllProjects(); // Replace with your actual data fetching
-  // const projectEntries = projects.flatMap((project) => {
-  //   return locales.map((locale) => ({
-  //     url: `${baseUrl}/${locale}/projects/${project.slug}`, // e.g., /en/projects/the-royal-villa
-  //     lastModified: new Date(project.updatedAt),
-  //     alternates: {
-  //       languages: {
-  //         en: `${baseUrl}/en/projects/${project.slug}`,
-  //         ar: `${baseUrl}/ar/projects/${project.slug}`,
-  //       },
-  //     },
-  //   }));
-  // });
+  // --- Dynamic Blogs (from your dictionary files) ---
+  const enDictionary = await getDictionary("en"); // We only need one language to get the slugs
+  const blogPosts = enDictionary?.blogsPage?.posts || [];
 
-  // Example for blogs:
-  // const blogs = await getAllBlogs(); // Replace with your actual data fetching
-  // const blogEntries = blogs.flatMap((blog) => {
-  //   return locales.map((locale) => ({
-  //     url: `${baseUrl}/${locale}/blog/${blog.slug}`, // e.g., /en/blog/modern-trends
-  //     lastModified: new Date(blog.updatedAt),
-  //     alternates: {
-  //       languages: {
-  //         en: `${baseUrl}/en/blog/${blog.slug}`,
-  //         ar: `${baseUrl}/ar/blog/${blog.slug}`,
-  //       },
-  //     },
-  //   }));
-  // });
+  const blogEntries = blogPosts.flatMap((blog) =>
+    locales.map((locale) => ({
+      // Your blog URLs use `/blog/` (singular) based on your folder structure
+      url: `${baseUrl}/${locale}/blog/${blog.slug}`,
+      lastModified: new Date(blog.date), // Use the date from your blog data
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/blog/${blog.slug}`,
+          ar: `${baseUrl}/ar/blog/${blog.slug}`,
+        },
+      },
+    }))
+  );
 
-  // --- 5. Combine and return all entries ---
-  // return [...staticEntries, ...projectEntries, ...blogEntries];
-  return staticEntries; // For now, returns only the static pages.
+  // --- Combine everything into one complete sitemap ---
+  return [...staticEntries, ...projectEntries, ...blogEntries];
 }
