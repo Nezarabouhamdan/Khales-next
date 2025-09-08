@@ -29,7 +29,6 @@ export default function AboutUsPageClient({ lang, content }) {
       {valuePropositionContent && (
         <ValueProposition lang={lang} content={valuePropositionContent} />
       )}{" "}
-      {/* Render component only if content exists */}
       {comprehensiveAboutContent && (
         <ComprehensiveAbout lang={lang} content={comprehensiveAboutContent} />
       )}

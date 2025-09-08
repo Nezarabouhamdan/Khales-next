@@ -171,7 +171,7 @@ export default function MissionVision({ lang, content }) {
         {/* IMAGE COLUMN */}
         <ImageColumn variants={itemVariants}>
           <Image
-            src="https://images.unsplash.com/photo-1581092446347-a5631267edf4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            src="https://i.ibb.co/CK25n9qp/Whats-App-Image-2025-09-08-at-17-56-07-f4bc4b61.jpg"
             alt="Architectural planning and design"
             layout="fill"
             objectFit="cover"

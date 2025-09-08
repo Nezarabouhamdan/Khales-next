@@ -19,6 +19,7 @@ import Calltoaction from "../../Calltoaction";
 import LocalBusinessSchema from "@/components/LocalBusiness/LocalBusiness";
 import { FaEnvelope } from "react-icons/fa";
 import CookieConsent from "@/utils/CookieConsent";
+import SiteProtection from "@/utils/SiteProtection";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -170,9 +171,11 @@ export default async function RootLayout({ children, params }) {
         <StyledComponentsRegistry>
           <ClientProviders>
             <Navbar lang={lang} navigation={dictionary.navigation} />
-            <main>{children}</main>
+            <SiteProtection>
+              {" "}
+              <main>{children}</main>
+            </SiteProtection>
             <Footer lang={lang} content={dictionary.footer} />
-
             <ScrollToTop />
             <Link
               id="whatsapp"
@@ -184,7 +187,6 @@ export default async function RootLayout({ children, params }) {
               {/* This \`<i>\` tag will now be correctly replaced by the WhatsApp icon */}
               <i id="whatsapp" className="fa fa-whatsapp my-float"></i>
             </Link>
-
             <Calltoaction id="call" />
           </ClientProviders>
         </StyledComponentsRegistry>
