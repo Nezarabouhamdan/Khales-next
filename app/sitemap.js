@@ -1,17 +1,20 @@
 // app/sitemap.js
 
+// app/sitemap.js
+
+// 1. Import your data sources DIRECTLY
+// ===================================
+import { projectsData } from "@/components/Property Page/ProjectData";
 import { getDictionary } from "@/get-dictionary";
 
-// You will need your functions to get dynamic data
-// For example: import { getAllProjects, getAllBlogs } from "@/lib/data";
-
+// ===================================
+// 2. MAIN SITEMAP FUNCTION
+// ===================================
 export default async function sitemap() {
   const baseUrl = "https://www.khales.ae";
-
-  // --- 1. Define your languages ---
   const locales = ["en", "ar"];
 
-  // --- 2. Define your static paths (with exact casing) ---
+  // --- Static Pages (This part is correct) ---
   const staticPaths = [
     "/", // Homepage
     "/About-Us",
