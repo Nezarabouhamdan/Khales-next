@@ -21,23 +21,24 @@ export default async function sitemap() {
     "/services",
     "/projects",
     "/Contact",
-    "/InteriorDesign", // Note: 'services' subpages are often dynamic, but included here as static per your structure
-    "/ProjectManagement",
     "/EngineeringConsultancy",
-    "/EngineeringSupervision", // Added based on your screenshot
-    "/development-planning", // Corrected case from screenshot
-    "/LandscapingDesign",
-    "/Projectfeasability", // Corrected case from screenshot
     "/Blogs", // The main blogs page
     "/booking",
     "/Luxury-Villas",
     "/Residential",
     "/Commercial",
-    "/EngineeringDesign",
-    "/Investing", // Custom pages
-    "/Projectfeasability",
     "/privacy-policy", // Added based on your screenshot
     "/terms-and-conditions", // Added based on your screenshot
+    "/services/InteriorDesign",
+    "/services/EngineeringDesign", // This was also likely a service
+    "/services/ProjectManagement",
+    "/services/EngineeringConsultancy",
+    "/services/EngineeringSupervision",
+    "/services/development-planning",
+    "/services/LandscapingDesign",
+    "/services/Projectfeasability",
+    "/services/ProjectManager",
+    ,
   ];
 
   const staticEntries = staticPaths.flatMap((path) =>
