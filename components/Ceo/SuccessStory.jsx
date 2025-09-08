@@ -1,252 +1,230 @@
-"use client";
+"use in client";
 import styled from "styled-components";
+import { FaCheckCircle } from "react-icons/fa";
+import Image from "next/image"; // Import the Next.js Image component
 
-const SuccessStory = ({
-  title = "Success Story",
-  testimonialContent = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada.",
-  testimonialContentSecond = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada",
+const SuccessStory1 = ({
+  department = "A Message from our Chairman and CEO",
+  date = "Company Vision Statement",
+  logoUrl = "https://i.ibb.co/jZxqpqmM/Khales-Logo-K-favicon.png", // Real logo URL
+
+  // NEW: Text has been restructured into three distinct parts
+  firstParagraph = "Khales began with a simple mission: to design and deliver homes that reflect the values and heritage of the UAE. From our first projects in Fujairah and Sharjah to our main hub in Dubai, we have grown into a company that now builds not only villas but also commercial structures that shape the future of our cities.",
+  quoteText = "Our strength lies in combining tradition with innovation — honoring the roots of our journey while embracing the opportunities ahead.",
+  thirdParagraph = "With dedicated teams across consultancy, design, and project management, we deliver projects with precision, integrity, and a vision that looks beyond today’s needs. As we step forward, our commitment is clear: from the UAE to the global stage, Khales will continue to build spaces that endure, inspire, and stand as lasting symbols of progress.",
+
   authorName = "Majed AlKindi",
-  authorTitle = "Ceo and Founder of Khales Group",
-  authorImageUrl = "https://cdn.builder.io/api/v1/image/assets/TEMP/be5480bffe065efd04d757dea30c7774c6227289?placeholderIfAbsent=true&apiKey=934bdeb679ca4a59ae6868dceb8afdbf",
+  authorTitle = "Chairman and CEO of Khales Group",
+  authorImageUrl = "https://i.ibb.co/4w9ZnzW5/Screenshot-2025-09-07-105436.png",
 }) => {
   return (
     <MainContainer>
       <ContentWrapper>
-        <TestimonialSection>
-          <TestimonialColumn>
-            <TestimonialContent>
-              <Title>{title}</Title>
-              <QuoteMark>“</QuoteMark>
-              <TestimonialText>
-                {testimonialContent}
-                <br />
-                {testimonialContentSecond}
-              </TestimonialText>
-            </TestimonialContent>
-          </TestimonialColumn>
-          <AuthorColumn>
-            <AuthorSection>
-              <AuthorLayoutContainer>
-                <AuthorImageColumn>
-                  <AuthorImage
-                    src={authorImageUrl}
-                    alt={`${authorName} - ${authorTitle}`}
-                  />
-                </AuthorImageColumn>
-                <AuthorCardColumn>
-                  <AuthorCard>
-                    <AuthorName>{authorName}</AuthorName>
-                    <AuthorJobTitle>{authorTitle}</AuthorJobTitle>
-                  </AuthorCard>
-                </AuthorCardColumn>
-              </AuthorLayoutContainer>
-            </AuthorSection>
-          </AuthorColumn>
-        </TestimonialSection>
+        {/* --- LEFT SIDE: Now a perfect match of the screenshot and new structure --- */}
+        <TestimonialColumn>
+          <ArticleHeader>
+            <LogoWrapper>
+              {/* Using the real logo image */}
+              <Image
+                src={logoUrl}
+                alt="Khales K Logo"
+                layout="fill"
+                objectFit="contain"
+              />
+            </LogoWrapper>
+            <AuthorDetails>
+              <DepartmentName>{department}</DepartmentName>
+              <PostDate>{date}</PostDate>
+            </AuthorDetails>
+          </ArticleHeader>
+
+          <Divider />
+
+          {/* New text structure is implemented here */}
+          <Paragraph>{firstParagraph}</Paragraph>
+          <Blockquote>"{quoteText}"</Blockquote>
+          <Paragraph>{thirdParagraph}</Paragraph>
+        </TestimonialColumn>
+
+        {/* --- RIGHT SIDE: The approved dynamic image/card combo --- */}
+        <AuthorColumn>
+          <AuthorImage
+            src={authorImageUrl}
+            alt={`${authorName} - ${authorTitle}`}
+          />
+          <AuthorCard>
+            <AuthorName>{authorName}</AuthorName>
+            <AuthorJobTitle>{authorTitle}</AuthorJobTitle>
+          </AuthorCard>
+        </AuthorColumn>
       </ContentWrapper>
     </MainContainer>
   );
 };
 
-// --- STYLED COMPONENTS ---
+// --- STYLED COMPONENTS (Final Version) ---
 
 const MainContainer = styled.section`
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #ffffff;
   display: flex;
-  padding: 12px 70px;
-  flex-direction: column;
-  overflow: hidden;
-  align-items: center;
+  padding: 100px 70px;
   justify-content: center;
+  overflow: hidden;
   @media (max-width: 991px) {
-    padding: 100px 20px;
+    padding: 60px 20px;
   }
 `;
 
 const ContentWrapper = styled.div`
-  margin-left: 15px;
+  display: flex;
   width: 100%;
   max-width: 1450px;
+  gap: 80px;
+  align-items: center;
+
   @media (max-width: 991px) {
-    max-width: 100%;
+    flex-direction: column-reverse;
+    gap: 60px;
   }
 `;
 
-const TestimonialSection = styled.div`
-  gap: 20px;
-  display: flex;
-  @media (max-width: 991px) {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0px;
-  }
-`;
+// --- LEFT SIDE STYLES ---
 
 const TestimonialColumn = styled.div`
+  width: 55%;
+  @media (max-width: 991px) {
+    width: 100%;
+  }
+`;
+
+const ArticleHeader = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+// UPDATED: Now styles an Image component container
+const LogoWrapper = styled.div`
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin-right: 16px;
+  flex-shrink: 0;
+`;
+
+const AuthorDetails = styled.div`
+  line-height: 1.4;
+`;
+
+const DepartmentName = styled.p`
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 1rem;
+`;
+
+const PostDate = styled.p`
+  font-size: 0.9rem;
+  color: #777;
+`;
+
+const Divider = styled.hr`
+  border: none;
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 2rem 0;
+`;
+
+const Blockquote = styled.blockquote`
+  margin: 2em 0;
+  padding-left: 25px;
+  border-left: 4px solid #66a109;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #1a1a1a;
+  line-height: 1.7;
+`;
+
+const Paragraph = styled.p`
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #333;
+  font-weight: 400;
+
+  &:not(:last-child) {
+    margin-bottom: 1.5em; /* Add space only if it's not the very last paragraph */
+  }
+`;
+
+// --- RIGHT SIDE STYLES (Unchanged) ---
+
+const AuthorColumn = styled.div`
+  width: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  line-height: normal;
-  width: 40%;
-  margin-left: 0px;
   @media (max-width: 991px) {
     width: 100%;
   }
 `;
 
-const TestimonialContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  color: #000;
+const AuthorImage = styled.img`
+  width: 350px;
+  height: 350px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  box-shadow: 0 15px 50px -10px rgba(0, 0, 0, 0.15);
+  border: 6px solid #fff;
+
   @media (max-width: 991px) {
-    max-width: 100%;
-    margin-top: 40px;
+    width: 250px;
+    height: 250px;
   }
-`;
-
-const Title = styled.h1`
-  color: #000;
-  font-size: 70px;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -1.32px;
-  margin-left: 19px;
-  @media (max-width: 991px) {
-    max-width: 100%;
-    font-size: 40px;
-    line-height: 44px;
-  }
-`;
-
-const QuoteMark = styled.div`
-  color: #66a109;
-  font-size: 70px;
-  font-weight: 700;
-  line-height: 1;
-  margin-left: 19px;
-
-  letter-spacing: -3.3px;
-  z-index: 10;
-  margin-top: 20px;
-  @media (max-width: 991px) {
-    font-size: 40px;
-  }
-`;
-
-const TestimonialText = styled.p`
-  color: #000;
-  font-size: 18px;
-  font-weight: 100;
-  letter-spacing: -0.28px;
-  align-self: stretch;
-  margin-left: 19px;
-  margin-top: 10px;
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
-`;
-
-const AuthorColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  line-height: normal;
-  width: 60%;
-  margin-left: 20px;
-  @media (max-width: 991px) {
-    width: 100%;
-    margin-left: 0;
-  }
-`;
-
-const AuthorSection = styled.div`
-  flex-grow: 1;
-  @media (max-width: 991px) {
-    max-width: 100%;
-    margin-top: 40px;
-  }
-`;
-
-const AuthorLayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const AuthorCardColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  line-height: normal;
-  width: 100%;
-  margin-left: 0px;
-  position: relative;
 `;
 
 const AuthorCard = styled.div`
-  border-radius: 8px;
-  background-color: rgba(102, 161, 9, 1);
-  z-index: 10;
+  border-radius: 10px;
+  background-color: #66a109;
   color: #fff;
-  padding: 38px 48px;
-  margin-top: -200px;
-
-  /* Adjust width to look good with the newly sized image */
+  text-align: center;
+  padding: 25px 40px;
+  margin-top: -80px;
+  z-index: 10;
+  position: relative;
   width: 90%;
-  max-width: 450px;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(102, 161, 9, 0.35);
 
   @media (max-width: 991px) {
-    margin-top: -80px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 90%;
+    margin-top: -60px;
+    width: 85%;
+    padding: 20px;
   }
 `;
 
 const AuthorName = styled.h2`
   color: #fff;
-  font-size: 50px;
+  font-size: 26px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.7px;
   @media (max-width: 991px) {
-    font-size: 40px;
+    font-size: 32px;
   }
 `;
 
 const AuthorJobTitle = styled.p`
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
-  letter-spacing: -0.31px;
-  margin-top: 17px;
-  @media (max-width: 991px) {
-    max-width: 100%;
-    font-size: 20px;
-  }
-`;
-
-const AuthorImageColumn = styled.div`
+  margin-top: 12px;
   display: flex;
-  flex-direction: column;
-  line-height: normal;
-  /* This controls the image size, restoring its original look */
-  width: 75%;
-  max-width: 480px;
-  margin-left: 0px;
-`;
-
-const AuthorImage = styled.img`
-  aspect-ratio: 0.78;
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.95;
   @media (max-width: 991px) {
-    margin-top: 40px;
+    font-size: 16px;
   }
 `;
 
-export default SuccessStory;
+export default SuccessStory1;

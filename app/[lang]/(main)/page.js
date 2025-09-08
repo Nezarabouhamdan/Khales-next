@@ -1,7 +1,5 @@
 import { getDictionary } from "@/get-dictionary";
 import Script from "next/script";
-
-// Import all section components
 import Hero from "@/components/Hero/Hero";
 import OurServices from "@/components/Our Services/OurServices";
 import AboutKhalesUltimate from "@/components/Aboutkhales/AboutKhales2";
@@ -10,29 +8,21 @@ import FeaturedProjects from "@/components/Property Page/FeaturedProjects";
 import TestimonialSlider from "@/components/Reviews/TestimonialSlider";
 import ValuePropositionV2 from "@/components/Statics/Statics2";
 import CTASection from "@/components/Homecontact/CTASection";
-
-// Import the new Client Components
 import EnhancedContent from "@/components/EnhanceContent";
 import FAQSection from "@/components/FAQ/FAQSection";
 import FeaturedBlogs from "@/components/FeaturedBlogs/FeaturedBlogs";
 import ProjectTypes from "@/components/Projecttypes/ProjectTypes";
-import ComprehensiveAbout from "@/components/ComprehensiveAbout";
-
 const getHomePageSchema = (lang) => {
-  // Define base and language-specific URLs for clarity
   const baseUrl = "https://www.khales.ae";
   const pageUrl = `${baseUrl}/${lang}`;
-
   const name =
     lang === "ar"
       ? "خالص - إدارة المشاريع والاستشارات الهندسية في الإمارات"
       : "Khales - Expert Project Management & Engineering Consultancy in UAE";
-
   const description =
     lang === "ar"
       ? "شركة رائدة في إدارة المشاريع والاستشارات الهندسية في دبي، متخصصة في المشاريع التجارية والسكنية والفلل الفاخرة في جميع أنحاء الإمارات."
       : "Leading project management and engineering consultancy in Dubai, specializing in commercial, residential, and luxury villa projects across the UAE.";
-
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",

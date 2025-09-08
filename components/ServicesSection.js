@@ -5,18 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // --- STYLED COMPONENTS ---
 
-const ServicesWrapper = styled.section`
+const ServicesWrappr = styled.section`
   position: relative;
   width: 100%;
   height: 80vh;
   min-height: 600px;
   overflow: hidden;
+  padding: 4rem;
   background-color: #111;
   color: #fff;
   font-family: var(
     --font-inter
   ); // This will be overridden by the parent's font style
-  padding: 4rem;
 
   @media (max-width: 992px) {
     height: auto;
@@ -180,7 +180,7 @@ const ServicesSection = ({ services, content, lang }) => {
   }
 
   return (
-    <ServicesWrapper>
+    <ServicesWrappr>
       <AnimatePresence>
         {hoveredService && (
           <BackgroundImage
@@ -214,7 +214,7 @@ const ServicesSection = ({ services, content, lang }) => {
           ))}
         </ServicesGrid>
       </ContentContainer>
-    </ServicesWrapper>
+    </ServicesWrappr>
   );
 };
 

@@ -420,16 +420,28 @@ const ProjectTypePageClient = ({ lang, content, ctaContent }) => {
   const RightArrowIcon = lang === "ar" ? FaArrowLeft : FaArrowRight;
 
   // ... (useCallback, useEffect, and handleNavClick hooks are unchanged)
+  // --- Paste this into your ProjectTypePageClient component ---
+
   const checkScrollability = useCallback(() => {
     const el = galleryRef.current;
     if (el) {
-      const scrollLeft = Math.ceil(el.scrollLeft);
       const { scrollWidth, clientWidth } = el;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  }, []);
 
+      // Use Math.abs() to handle both LTR (positive) and RTL (negative) scrollLeft values consistently
+      const scrollLeftAbs = Math.abs(Math.round(el.scrollLeft));
+      const maxScroll = scrollWidth - clientWidth;
+
+      // A small tolerance to prevent floating point inaccuracies
+      const tolerance = 10;
+
+      // This logic now works for BOTH LTR and RTL:
+      // Can we scroll "back"? Yes, if we've scrolled away from the starting edge.
+      setCanScrollLeft(scrollLeftAbs > tolerance);
+
+      // Can we scroll "forward"? Yes, if our distance from the start is less than the maximum possible scroll distance.
+      setCanScrollRight(scrollLeftAbs < maxScroll - tolerance);
+    }
+  }, []); // This function no longer needs `lang` as a dependency because the logic is now universal
   useEffect(() => {
     const el = galleryRef.current;
     if (!el) return;
