@@ -4,185 +4,157 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { motion, useInView } from "framer-motion";
 import { FaStar, FaCheck } from "react-icons/fa";
-// REMOVED: import { useLanguage } from "@/Context/Languagecontext";
+import Image from "next/image";
 
-// STYLED COMPONENTS (Unchanged)
+// Main section container
 const SectionWrapper = styled.section`
-  display: flex;
   width: 100%;
-  min-height: 100vh;
+  padding: 100px 70px;
+  background-color: #ffffff;
   font-family: "Inter", sans-serif;
   overflow: hidden;
   direction: ${(props) => props.dir};
 
-  @media (max-width: 992px) {
-    flex-direction: column;
+  @media (max-width: 991px) {
+    padding: 60px 20px;
   }
 `;
 
-const Column = styled(motion.div)`
-  flex: 1;
-  padding: 6rem 4rem;
-  position: relative;
-  display: flex;
-  justify-content: center;
+// Centered content container
+const Container = styled.div`
+  max-width: 1450px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr; // Image on the left, text on the right
+  gap: 5rem;
   align-items: center;
 
-  @media (max-width: 1200px) {
-    padding: 5rem 3rem;
-  }
-  @media (max-width: 992px) {
-    padding: 5rem 2rem;
-    min-height: 80vh;
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 `;
 
-const MissionColumn = styled(Column)`
-  background-color: #f8f9fa;
-  color: #1a1a1a;
-`;
-
-const VisionColumn = styled(Column)`
-  background-color: #121212;
-  color: #ffffff;
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 550px;
-  z-index: 2;
+// Column for the image
+const ImageColumn = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
   position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 991px) {
+    min-height: 350px;
+    margin-bottom: 2rem;
+  }
+`;
+
+// Column for Mission and Vision text content
+const ContentColumn = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+`;
+
+// Card for individual Mission/Vision item
+const InfoCard = styled.div`
+  width: 100%;
   text-align: ${(props) => (props.dir === "rtl" ? "right" : "left")};
 `;
 
-const Header = styled(motion.div)`
+const Header = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: ${(props) =>
+    props.dir === "rtl" ? "flex-end" : "flex-start"};
 `;
 
-const IconWrapper = styled(motion.div)`
-  width: 60px;
-  height: 60px;
+const IconWrapper = styled.div`
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #66a109;
-  color: #ffffff;
-  font-size: 1.5rem;
+  background-color: #f0f7e6; // Lighter green background
+  color: #66a109; // Brand green icon color
+  font-size: 1.25rem;
   flex-shrink: 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  &:hover {
-    transform: scale(1.1) rotate(15deg);
-    box-shadow: 0 0 25px rgba(102, 161, 9, 0.6);
-  }
-`;
-
-const VisionIconWrapper = styled(IconWrapper)`
-  box-shadow: 0 0 0 3px #66a109;
-  border: 3px solid #121212;
 `;
 
 const Title = styled.h2`
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
+  color: #1a1a1a;
   @media (max-width: 768px) {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 `;
 
-const Description = styled(motion.p)`
-  font-size: 1.1rem;
+const Description = styled.p`
+  font-size: 1.05rem;
   line-height: 1.8;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   color: #495057;
-  ${VisionColumn} & {
-    color: #ced4da;
-  }
 `;
 
-const TagsContainer = styled(motion.div)`
+const TagsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  width: 100%;
-  justify-content: flex-start;
+  justify-content: ${(props) =>
+    props.dir === "rtl" ? "flex-end" : "flex-start"};
 `;
 
 const Tag = styled.span`
-  padding: 0.6rem 1.2rem;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
+  background-color: #f8f9fa;
+  color: #343a40;
+  border: 1px solid #dee2e6;
   cursor: default;
   transition: all 0.3s ease;
-  background-color: ${(props) => props.bg || "#66a109"};
-  color: ${(props) => props.color || "#ffffff"};
-  border: 1px solid ${(props) => props.border || "transparent"};
+
   &:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    border-color: #66a109;
   }
 `;
 
-const DecorativeShape = styled(motion.div)`
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  transition: transform 0.4s ease-out;
-`;
-
-// FRAMER MOTION VARIANTS (Unchanged)
-const sectionVariants = {
+// Framer Motion Variants
+const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
-      delayChildren: 0.3,
+      delayChildren: 0.1,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
+  hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.8,
-      ease: [0.6, -0.05, 0.01, 0.99],
+      duration: 0.6,
+      ease: "easeOut",
     },
   },
 };
 
-// THE REFACTORED MAIN COMPONENT
 export default function MissionVision({ lang, content }) {
-  // All data now comes from props
   const isRTL = lang === "ar";
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-
-  const handleMouseMove = (e) => {
-    const { currentTarget } = e;
-    const shapes = currentTarget.querySelectorAll(".shape");
-    const rect = currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    shapes.forEach((shape) => {
-      const factor = shape.getAttribute("data-factor") || 20;
-      shape.style.transform = `translate(${x / factor}px, ${y / factor}px)`;
-    });
-  };
-
-  const handleMouseLeave = (e) => {
-    const shapes = e.currentTarget.querySelectorAll(".shape");
-    shapes.forEach((shape) => {
-      shape.style.transform = `translate(0px, 0px)`;
-    });
-  };
 
   if (!content) {
     return null; // Don't render if content is not available
@@ -190,141 +162,57 @@ export default function MissionVision({ lang, content }) {
 
   return (
     <SectionWrapper ref={sectionRef} dir={isRTL ? "rtl" : "ltr"}>
-      {/* MISSION COLUMN */}
-      <MissionColumn
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        variants={sectionVariants}
+      <Container
+        as={motion.div}
+        variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        <DecorativeShape
-          className="shape"
-          data-factor="-20"
-          style={{
-            top: "10%",
-            left: isRTL ? "auto" : "15%",
-            right: isRTL ? "15%" : "auto",
-            width: "100px",
-            height: "100px",
-            background: "rgba(102, 161, 9, 0.2)",
-            borderRadius: "50%",
-          }}
-        />
-        <DecorativeShape
-          className="shape"
-          data-factor="30"
-          style={{
-            top: "20%",
-            right: isRTL ? "auto" : "15%",
-            left: isRTL ? "15%" : "auto",
-            width: "50px",
-            height: "50px",
-            background: "#e9ecef",
-            borderRadius: "10px",
-          }}
-        />
-        <DecorativeShape
-          className="shape"
-          data-factor="-15"
-          style={{
-            bottom: "15%",
-            left: isRTL ? "auto" : "20%",
-            right: isRTL ? "20%" : "auto",
-            width: "80px",
-            height: "80px",
-            border: "2px solid rgba(102, 161, 9, 0.3)",
-            borderRadius: "50%",
-          }}
-        />
+        {/* IMAGE COLUMN */}
+        <ImageColumn variants={itemVariants}>
+          <Image
+            src="https://images.unsplash.com/photo-1581092446347-a5631267edf4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Architectural planning and design"
+            layout="fill"
+            objectFit="cover"
+          />
+        </ImageColumn>
 
-        <ContentWrapper dir={isRTL ? "rtl" : "ltr"}>
-          <Header variants={itemVariants}>
-            <IconWrapper>
-              <FaStar />
-            </IconWrapper>
-            <Title>{content.mission.title}</Title>
-          </Header>
-          <Description variants={itemVariants}>
-            {content.mission.description}
-          </Description>
-          <TagsContainer variants={itemVariants}>
-            <Tag>{content.mission.tags[0]}</Tag>
-            <Tag bg="#121212" color="#ffffff">
-              {content.mission.tags[1]}
-            </Tag>
-            <Tag>{content.mission.tags[2]}</Tag>
-          </TagsContainer>
-        </ContentWrapper>
-      </MissionColumn>
+        {/* CONTENT COLUMN */}
+        <ContentColumn variants={itemVariants}>
+          {/* MISSION CARD */}
+          <InfoCard dir={isRTL ? "rtl" : "ltr"}>
+            <Header dir={isRTL ? "rtl" : "ltr"}>
+              <IconWrapper>
+                <FaStar />
+              </IconWrapper>
+              <Title>{content.mission.title}</Title>
+            </Header>
+            <Description>{content.mission.description}</Description>
+            <TagsContainer dir={isRTL ? "rtl" : "ltr"}>
+              {content.mission.tags.map((tag) => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
+            </TagsContainer>
+          </InfoCard>
 
-      {/* VISION COLUMN */}
-      <VisionColumn
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        variants={sectionVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        <DecorativeShape
-          className="shape"
-          data-factor="-20"
-          style={{
-            top: "15%",
-            left: isRTL ? "auto" : "10%",
-            right: isRTL ? "10%" : "auto",
-            width: "60px",
-            height: "60px",
-            border: "2px solid rgba(102, 161, 9, 0.4)",
-            borderRadius: "10px",
-          }}
-        />
-        <DecorativeShape
-          className="shape"
-          data-factor="30"
-          style={{
-            top: "25%",
-            right: isRTL ? "auto" : "20%",
-            left: isRTL ? "20%" : "auto",
-            width: "80px",
-            height: "80px",
-            background: "rgba(102, 161, 9, 0.1)",
-            borderRadius: "50%",
-          }}
-        />
-        <DecorativeShape
-          className="shape"
-          data-factor="-15"
-          style={{
-            bottom: "20%",
-            left: isRTL ? "auto" : "40%",
-            right: isRTL ? "40%" : "auto",
-            width: "120px",
-            height: "120px",
-            background: "rgba(255, 255, 255, 0.05)",
-            borderRadius: "50%",
-          }}
-        />
-
-        <ContentWrapper dir={isRTL ? "rtl" : "ltr"}>
-          <Header variants={itemVariants}>
-            <VisionIconWrapper>
-              <FaCheck />
-            </VisionIconWrapper>
-            <Title>{content.vision.title}</Title>
-          </Header>
-          <Description variants={itemVariants}>
-            {content.vision.description}
-          </Description>
-          <TagsContainer variants={itemVariants}>
-            <Tag color="#111111">{content.vision.tags[0]}</Tag>
-            <Tag bg="#ffffff" color="#111111" border="1px solid #dee2e6">
-              {content.vision.tags[1]}
-            </Tag>
-            <Tag color="#111111">{content.vision.tags[2]}</Tag>
-          </TagsContainer>
-        </ContentWrapper>
-      </VisionColumn>
+          {/* VISION CARD */}
+          <InfoCard dir={isRTL ? "rtl" : "ltr"}>
+            <Header dir={isRTL ? "rtl" : "ltr"}>
+              <IconWrapper>
+                <FaCheck />
+              </IconWrapper>
+              <Title>{content.vision.title}</Title>
+            </Header>
+            <Description>{content.vision.description}</Description>
+            <TagsContainer dir={isRTL ? "rtl" : "ltr"}>
+              {content.vision.tags.map((tag) => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
+            </TagsContainer>
+          </InfoCard>
+        </ContentColumn>
+      </Container>
     </SectionWrapper>
   );
 }

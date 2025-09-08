@@ -1268,7 +1268,18 @@ export const dictionary = {
     breadcrumbAbout: "About", // Add this inside your main `dictionary` object in en.js
     // ...
 
-    // ...
+    successStory: {
+      department: "A Message from our Chairman and CEO",
+      date: "Company Vision Statement",
+      firstParagraph:
+        "Khales began with a simple mission: to design and deliver homes that reflect the values and heritage of the UAE. From our first projects in Fujairah and Sharjah to our main hub in Dubai, we have grown into a company that now builds not only villas but also commercial structures that shape the future of our cities.",
+      quoteText:
+        "Our strength lies in combining tradition with innovation — honoring the roots of our journey while embracing the opportunities ahead.",
+      thirdParagraph:
+        "With dedicated teams across consultancy, design, and project management, we deliver projects with precision, integrity, and a vision that looks beyond today’s needs. As we step forward, our commitment is clear: from the UAE to the global stage, Khales will continue to build spaces that endure, inspire, and stand as lasting symbols of progress.",
+      authorName: "Majed AlKindi",
+      authorTitle: "Chairman and CEO of Khales Group",
+    },
     missionVision: {
       mission: {
         title: "Our Mission",
@@ -1283,23 +1294,6 @@ export const dictionary = {
         tags: ["Visionary Leadership", "Sustainable Growth", "Excellence"],
       },
     },
-    // dictionaries/en.js
-
-    // ... (inside your main dictionary object)
-
-    // dictionaries/en.js
-
-    // ... (inside your main dictionary object)
-
-    // dictionaries/en.js
-
-    // ... (inside your main dictionary object)
-
-    // ... (rest of your dictionary)
-
-    // ... (rest of your dictionary)
-
-    // ... (rest of your dictionary)
   },
 
   blogsPage: {

@@ -13,12 +13,15 @@ export default function AboutUsPageClient({ lang, content }) {
   const comprehensiveAboutContent = content?.comprehensiveAbout;
   const missionVisionContent = content?.missionVision;
   const valuePropositionContent = content?.valueProposition;
+  const successStoryContent = content?.successStory; // ✅ ADD THIS LINE
 
   return (
     <>
-      {" "}
       <div style={{ paddingTop: "5vh" }}></div>
-      <SuccessStory />
+      {/* Render component only if content exists */}
+      {successStoryContent && (
+        <SuccessStory lang={lang} content={successStoryContent} />
+      )}
       {/* Render component only if content exists */}
       {missionVisionContent && (
         <MissionVision lang={lang} content={missionVisionContent} />

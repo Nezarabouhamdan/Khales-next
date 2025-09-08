@@ -1,22 +1,23 @@
-"use in client";
+"use client";
 import styled from "styled-components";
 import { FaCheckCircle } from "react-icons/fa";
 import Image from "next/image"; // Import the Next.js Image component
 
-const SuccessStory1 = ({
-  department = "A Message from our Chairman and CEO",
-  date = "Company Vision Statement",
-  logoUrl = "https://i.ibb.co/jZxqpqmM/Khales-Logo-K-favicon.png", // Real logo URL
+const SuccessStory1 = ({ lang, content }) => {
+  const {
+    department,
+    date,
+    firstParagraph,
+    quoteText,
+    thirdParagraph,
+    authorName,
+    authorTitle,
+  } = content;
 
-  // NEW: Text has been restructured into three distinct parts
-  firstParagraph = "Khales began with a simple mission: to design and deliver homes that reflect the values and heritage of the UAE. From our first projects in Fujairah and Sharjah to our main hub in Dubai, we have grown into a company that now builds not only villas but also commercial structures that shape the future of our cities.",
-  quoteText = "Our strength lies in combining tradition with innovation — honoring the roots of our journey while embracing the opportunities ahead.",
-  thirdParagraph = "With dedicated teams across consultancy, design, and project management, we deliver projects with precision, integrity, and a vision that looks beyond today’s needs. As we step forward, our commitment is clear: from the UAE to the global stage, Khales will continue to build spaces that endure, inspire, and stand as lasting symbols of progress.",
+  const logoUrl = "https://i.ibb.co/jZxqpqmM/Khales-Logo-K-favicon.png";
+  const authorImageUrl =
+    "https://i.ibb.co/xqCzZv4c/Screenshot-2025-09-07-105436-removebg-preview.png";
 
-  authorName = "Majed AlKindi",
-  authorTitle = "Chairman and CEO of Khales Group",
-  authorImageUrl = "https://i.ibb.co/4w9ZnzW5/Screenshot-2025-09-07-105436.png",
-}) => {
   return (
     <MainContainer>
       <ContentWrapper>

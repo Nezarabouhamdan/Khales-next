@@ -38,6 +38,7 @@ export default async function AboutUsPage({ params: { lang } }) {
     comprehensiveAbout: dict.comprehensiveAbout,
     valueProposition: dict.valueProposition,
     missionVision: pageData.missionVision,
+    successStory: pageData.successStory, // ✅ ADD THIS LINE
   };
 
   const baseUrl = "https://www.khales.ae"; // Make sure this is correct
