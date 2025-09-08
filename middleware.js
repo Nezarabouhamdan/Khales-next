@@ -23,7 +23,7 @@ function getLocale(request) {
 export function middleware(request) {
   const pathname = request.nextUrl.pathname;
 
-  // Skip middleware for public assets, API routes, etc.
+  // This block is no longer needed because the matcher handles it, but it doesn't hurt to leave it.
   if (
     ["/manifest.json", "/favicon.ico"].includes(pathname) ||
     pathname.startsWith("/assets/")
@@ -48,7 +48,10 @@ export function middleware(request) {
   }
 }
 
+// --- THE ONLY CHANGE IS HERE ---
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico).*)"],
+  // Add 'robots.txt' and 'sitemap.xml' to the ignore list
+  matcher: [
+    "/((?!api|_next/static|_next/image|assets|favicon.ico|robots.txt|sitemap.xml).*)",
+  ],
 };
