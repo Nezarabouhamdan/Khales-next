@@ -43,7 +43,7 @@ export async function generateMetadata({ params: { lang } }) {
     description,
     keywords,
     lang,
-    alternatesUrl: "/Contacts",
+    alternatesUrl: "/Contact",
   });
 }
 

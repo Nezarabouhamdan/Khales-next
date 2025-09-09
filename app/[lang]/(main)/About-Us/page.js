@@ -22,7 +22,7 @@ export async function generateMetadata({ params: { lang } }) {
     description: pageData.metaDescription,
     keywords: pageData.metaKeywords,
     lang: lang,
-    alternatesUrl: "/about-us",
+    alternatesUrl: "/About-Us",
   });
 }
 
@@ -42,7 +42,7 @@ export default async function AboutUsPage({ params: { lang } }) {
   };
 
   const baseUrl = "https://www.khales.ae"; // Make sure this is correct
-  const pageUrl = `${baseUrl}/${lang}/about-us`;
+  const pageUrl = `${baseUrl}/${lang}/About-Us`;
 
   const aboutSchema = {
     "@context": "https://schema.org",
