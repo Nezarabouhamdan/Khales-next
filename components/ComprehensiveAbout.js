@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { FaCity, FaDraftingCompass } from "react-icons/fa";
+import ImageWithSkeleton from "./ImageSkeleton";
 
 // ========================================================================
 // DATA & VARIANTS (No changes here)
@@ -288,7 +289,7 @@ export default function ComprehensiveAbout({ lang, content }) {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.7, ease: "easeInOut" }}
               >
-                <Image
+                <ImageWithSkeleton
                   src={galleryImages[currentImageIndex]}
                   alt={`${displayContent.title} gallery image`}
                   fill

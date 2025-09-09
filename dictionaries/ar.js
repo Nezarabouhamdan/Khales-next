@@ -17,7 +17,7 @@ export const dictionary = {
         children: [
           { label: " الرئيسية ", path: "/" },
 
-          { label: "نبذة عن خالص", path: "/about-us" },
+          { label: "نبذة عن خالص", path: "/About-Us" },
           { label: "المدونة", path: "/blog" },
         ],
       },

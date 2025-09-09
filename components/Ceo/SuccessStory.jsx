@@ -1,9 +1,11 @@
 "use client";
 import styled from "styled-components";
-import { FaCheckCircle } from "react-icons/fa";
-import Image from "next/image"; // Import the Next.js Image component
+import Image from "next/image"; // Keep this for the logo
+import ImageWithSkeleton from "../ImageSkeleton"; // The component you are using
 
 const SuccessStory1 = ({ lang, content }) => {
+  if (!content) return null; // Safety check for content
+
   const {
     department,
     date,
@@ -16,16 +18,15 @@ const SuccessStory1 = ({ lang, content }) => {
 
   const logoUrl = "https://i.ibb.co/jZxqpqmM/Khales-Logo-K-favicon.png";
   const authorImageUrl =
-    "https://i.ibb.co/xqCzZv4c/Screenshot-2025-09-07-105436-removebg-preview.png";
+    "https://i.ibb.co/xqCzZv4c/Screenshot-2025-09-07-105436-removebg-preview.png"; // Using a non-removed-bg version for better visuals with border-radius
 
   return (
     <MainContainer>
       <ContentWrapper>
-        {/* --- LEFT SIDE: Now a perfect match of the screenshot and new structure --- */}
+        {/* The order in the JSX remains the same for the desktop layout */}
         <TestimonialColumn>
           <ArticleHeader>
             <LogoWrapper>
-              {/* Using the real logo image */}
               <Image
                 src={logoUrl}
                 alt="Khales K Logo"
@@ -41,18 +42,18 @@ const SuccessStory1 = ({ lang, content }) => {
 
           <Divider />
 
-          {/* New text structure is implemented here */}
           <Paragraph>{firstParagraph}</Paragraph>
           <Blockquote>"{quoteText}"</Blockquote>
           <Paragraph>{thirdParagraph}</Paragraph>
         </TestimonialColumn>
 
-        {/* --- RIGHT SIDE: The approved dynamic image/card combo --- */}
         <AuthorColumn>
-          <AuthorImage
-            src={authorImageUrl}
-            alt={`${authorName} - ${authorTitle}`}
-          />
+          <AuthorImageContainer>
+            <ImageWithSkeleton
+              src={authorImageUrl}
+              alt={`${authorName} - ${authorTitle}`}
+            />
+          </AuthorImageContainer>
           <AuthorCard>
             <AuthorName>{authorName}</AuthorName>
             <AuthorJobTitle>{authorTitle}</AuthorJobTitle>
@@ -63,7 +64,7 @@ const SuccessStory1 = ({ lang, content }) => {
   );
 };
 
-// --- STYLED COMPONENTS (Final Version) ---
+// --- STYLED COMPONENTS ---
 
 const MainContainer = styled.section`
   background-color: #ffffff;
@@ -76,6 +77,7 @@ const MainContainer = styled.section`
   }
 `;
 
+// --- MODIFIED HERE ---
 const ContentWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -84,12 +86,18 @@ const ContentWrapper = styled.div`
   align-items: center;
 
   @media (max-width: 991px) {
+    /* 
+      This is the only change needed.
+      'column-reverse' will stack the flex items vertically
+      but in the reverse order from the JSX, putting the
+      AuthorColumn (image) on top.
+    */
     flex-direction: column-reverse;
     gap: 60px;
   }
 `;
 
-// --- LEFT SIDE STYLES ---
+// --- LEFT SIDE STYLES (UNCHANGED) ---
 
 const TestimonialColumn = styled.div`
   width: 55%;
@@ -103,7 +111,6 @@ const ArticleHeader = styled.div`
   align-items: center;
 `;
 
-// UPDATED: Now styles an Image component container
 const LogoWrapper = styled.div`
   position: relative;
   width: 44px;
@@ -151,11 +158,11 @@ const Paragraph = styled.p`
   font-weight: 400;
 
   &:not(:last-child) {
-    margin-bottom: 1.5em; /* Add space only if it's not the very last paragraph */
+    margin-bottom: 1.5em;
   }
 `;
 
-// --- RIGHT SIDE STYLES (Unchanged) ---
+// --- RIGHT SIDE STYLES ---
 
 const AuthorColumn = styled.div`
   width: 45%;
@@ -168,15 +175,14 @@ const AuthorColumn = styled.div`
   }
 `;
 
-const AuthorImage = styled.img`
+const AuthorImageContainer = styled.div`
+  position: relative;
   width: 350px;
   height: 350px;
-  aspect-ratio: 1;
-  object-fit: cover;
-  object-position: center;
   border-radius: 50%;
   box-shadow: 0 15px 50px -10px rgba(0, 0, 0, 0.15);
   border: 6px solid #fff;
+  overflow: hidden;
 
   @media (max-width: 991px) {
     width: 250px;
@@ -210,7 +216,7 @@ const AuthorName = styled.h2`
   font-weight: 700;
   line-height: 1;
   @media (max-width: 991px) {
-    font-size: 32px;
+    font-size: 22px;
   }
 `;
 
@@ -219,12 +225,9 @@ const AuthorJobTitle = styled.p`
   font-size: 16px;
   font-weight: 400;
   margin-top: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   opacity: 0.95;
   @media (max-width: 991px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { motion, useInView } from "framer-motion";
 import { FaStar, FaCheck } from "react-icons/fa";
 import Image from "next/image";
+import ImageWithSkeleton from "../ImageSkeleton";
 
 // Main section container
 const SectionWrapper = styled.section`
@@ -20,12 +21,19 @@ const SectionWrapper = styled.section`
   }
 `;
 
-// Centered content container
+// --- MODIFIED ---
+// Centered content container now reverses grid based on direction
 const Container = styled.div`
   max-width: 1450px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1.1fr; // Image on the left, text on the right
+  /* 
+    This is the key change:
+    - LTR (English): Image (1fr) on the left, Text (1.1fr) on the right.
+    - RTL (Arabic): Text (1.1fr) on the left, Image (1fr) on the right.
+  */
+  grid-template-columns: ${(props) =>
+    props.dir === "rtl" ? "1.1fr 1fr" : "1fr 1.1fr"};
   gap: 5rem;
   align-items: center;
 
@@ -48,6 +56,8 @@ const ImageColumn = styled(motion.div)`
   @media (max-width: 991px) {
     min-height: 350px;
     margin-bottom: 2rem;
+    /* For mobile, ensure the image is always first */
+    order: -1;
   }
 `;
 
@@ -70,7 +80,7 @@ const Header = styled.div`
   gap: 1rem;
   margin-bottom: 1.5rem;
   justify-content: ${(props) =>
-    props.dir === "rtl" ? "flex-end" : "flex-start"};
+    props.dir === "rtl" ? "flex-start" : "flex-start"};
 `;
 
 const IconWrapper = styled.div`
@@ -80,8 +90,8 @@ const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f7e6; // Lighter green background
-  color: #66a109; // Brand green icon color
+  background-color: #f0f7e6;
+  color: #66a109;
   font-size: 1.25rem;
   flex-shrink: 0;
 `;
@@ -107,7 +117,7 @@ const TagsContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: ${(props) =>
-    props.dir === "rtl" ? "flex-end" : "flex-start"};
+    props.dir === "rtl" ? "flex-start" : "flex-start"};
 `;
 
 const Tag = styled.span`
@@ -160,58 +170,73 @@ export default function MissionVision({ lang, content }) {
     return null; // Don't render if content is not available
   }
 
+  // Define the content and image columns to avoid repetition
+  const ImageComponent = (
+    <ImageColumn variants={itemVariants}>
+      <ImageWithSkeleton
+        src="https://i.ibb.co/GvtDkZf9/Whats-App-Image-2025-09-09-at-09-40-04-d696481f.jpg"
+        alt="Architectural planning and design"
+        layout="fill"
+        objectFit="cover"
+      />
+    </ImageColumn>
+  );
+
+  const ContentComponent = (
+    <ContentColumn variants={itemVariants}>
+      <InfoCard dir={isRTL ? "rtl" : "ltr"}>
+        <Header dir={isRTL ? "rtl" : "ltr"}>
+          <IconWrapper>
+            <FaStar />
+          </IconWrapper>
+          <Title>{content.mission.title}</Title>
+        </Header>
+        <Description>{content.mission.description}</Description>
+        <TagsContainer dir={isRTL ? "rtl" : "ltr"}>
+          {content.mission.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </TagsContainer>
+      </InfoCard>
+      <InfoCard dir={isRTL ? "rtl" : "ltr"}>
+        <Header dir={isRTL ? "rtl" : "ltr"}>
+          <IconWrapper>
+            <FaCheck />
+          </IconWrapper>
+          <Title>{content.vision.title}</Title>
+        </Header>
+        <Description>{content.vision.description}</Description>
+        <TagsContainer dir={isRTL ? "rtl" : "ltr"}>
+          {content.vision.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </TagsContainer>
+      </InfoCard>
+    </ContentColumn>
+  );
+
   return (
     <SectionWrapper ref={sectionRef} dir={isRTL ? "rtl" : "ltr"}>
       <Container
+        dir={isRTL ? "rtl" : "ltr"} // Pass direction prop to styled-component
         as={motion.div}
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        {/* IMAGE COLUMN */}
-        <ImageColumn variants={itemVariants}>
-          <Image
-            src="https://i.ibb.co/CK25n9qp/Whats-App-Image-2025-09-08-at-17-56-07-f4bc4b61.jpg"
-            alt="Architectural planning and design"
-            layout="fill"
-            objectFit="cover"
-          />
-        </ImageColumn>
-
-        {/* CONTENT COLUMN */}
-        <ContentColumn variants={itemVariants}>
-          {/* MISSION CARD */}
-          <InfoCard dir={isRTL ? "rtl" : "ltr"}>
-            <Header dir={isRTL ? "rtl" : "ltr"}>
-              <IconWrapper>
-                <FaStar />
-              </IconWrapper>
-              <Title>{content.mission.title}</Title>
-            </Header>
-            <Description>{content.mission.description}</Description>
-            <TagsContainer dir={isRTL ? "rtl" : "ltr"}>
-              {content.mission.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-            </TagsContainer>
-          </InfoCard>
-
-          {/* VISION CARD */}
-          <InfoCard dir={isRTL ? "rtl" : "ltr"}>
-            <Header dir={isRTL ? "rtl" : "ltr"}>
-              <IconWrapper>
-                <FaCheck />
-              </IconWrapper>
-              <Title>{content.vision.title}</Title>
-            </Header>
-            <Description>{content.vision.description}</Description>
-            <TagsContainer dir={isRTL ? "rtl" : "ltr"}>
-              {content.vision.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-            </TagsContainer>
-          </InfoCard>
-        </ContentColumn>
+        {/* --- MODIFIED --- */}
+        {/* Conditionally render the order of components */}
+        {isRTL ? (
+          <>
+            {ContentComponent}
+            {ImageComponent}
+          </>
+        ) : (
+          <>
+            {ImageComponent}
+            {ContentComponent}
+          </>
+        )}
       </Container>
     </SectionWrapper>
   );

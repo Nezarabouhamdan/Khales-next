@@ -43,6 +43,10 @@ const FilterTabs = styled.div`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 const FilterButton = styled.button`
   padding: 0.6rem 1.2rem;
