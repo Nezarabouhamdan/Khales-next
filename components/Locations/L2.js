@@ -10,7 +10,7 @@ import Link from "next/link"; // Import the Next.js Link component
 // Static data that doesn't need translation
 const officeImageUrls = [
   "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1920",
-  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1920",
+  "https://www.becarabia.com/source/uploads/2025/07/sittower00_20250720_9977f.jpg",
   "https://www.workspace.co.uk/media/archive%20articles/0/banner-ban.png?width=1920&height=800&mode=crop&format=webp&quality=60",
   "https://images.unsplash.com/photo-1596496181848-3013d44113e2?auto=format&fit=crop&q=80&w=1920",
   "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1920",
