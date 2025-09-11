@@ -211,7 +211,7 @@ export const dictionary = {
     ],
     companyTitle: "الشركة",
     companyLinks: [
-      { text: "نبذة عنا", href: "/about-us" },
+      { text: "نبذة عنا", href: "/About-Us" },
       { text: " تواصل معنا", href: "/Contact" },
       { text: "المدونة", href: "/blog" },
       { text: "احجز استشارة", href: "/Contact" },

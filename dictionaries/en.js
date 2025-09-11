@@ -263,7 +263,7 @@ export const dictionary = {
     ],
     companyTitle: "Company",
     companyLinks: [
-      { text: "About", href: "/about-us" },
+      { text: "About", href: "/About-Us" },
       { text: "Contact us", href: "/Contact" },
       { text: "Blogs", href: "/blog" },
       { text: "Book Consultation", href: "/Contact" },
