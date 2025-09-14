@@ -9,8 +9,6 @@ const shimmer = keyframes`
   0% { background-position: -1000px 0; }
   100% { background-position: 1000px 0; }
 `;
-
-// --- MODIFIED ---
 const ImageWrapper = styled.div`
   position: relative;
   overflow: hidden;
@@ -23,7 +21,6 @@ const ImageWrapper = styled.div`
   background-color: ${(props) => (props.$isLoaded ? "transparent" : "#f0f0f0")};
   transition: background-color 0.3s ease-in-out;
 `;
-
 const Skeleton = styled.div`
   position: absolute;
   top: 0;
@@ -39,18 +36,14 @@ const Skeleton = styled.div`
   background-size: 2000px 100%;
   animation: ${shimmer} 1.5s linear infinite;
 `;
-
 const StyledImage = styled(Image)`
   transition: opacity 0.5s ease-in-out;
   opacity: ${(props) => (props.$isLoaded ? 1 : 0)};
 `;
-
 export default function ImageWithSkeleton({ src, alt, ...props }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const { width, height, ...rest } = props;
-
   return (
-    // MODIFIED: Pass the $isLoaded prop to the wrapper
     <ImageWrapper {...rest} $isLoaded={isLoaded}>
       {!isLoaded && <Skeleton />}
       <StyledImage

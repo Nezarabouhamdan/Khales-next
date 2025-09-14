@@ -8,10 +8,10 @@ import Image from "next/image"; // IMPORT: Next.js Image component for optimizat
 
 // Static data can remain here
 const galleryImages = [
-  "https://i.ibb.co/7tKV3xP1/aboutus5.jpg",
-  "https://i.ibb.co/XftcdnrY/aboutus2.jpg",
-  "https://i.ibb.co/v4S8JftQ/aboutus4.jpg",
-  "https://i.ibb.co/jPgtTSzr/aboutus3.jpg",
+  "  https://i.ibb.co/9HF5THtS/aboutus3.webp",
+  "https://i.ibb.co/q37YXv0J/aboutus4.webp",
+  "https://i.ibb.co/fz2ZgGk7/aboutus5.webp",
+  "https://i.ibb.co/KcQDbmjJ/aboutus2.webp",
 ];
 
 // --- FRAMER MOTION VARIANTS (No changes made) ---
