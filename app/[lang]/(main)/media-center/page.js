@@ -22,7 +22,7 @@ const reelsData = [
     embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
   },
   {
-    title: "High-Rise Construction Progress",
+    title: "Key Points In Any Successful Project",
     category: "Construction",
     thumbnailUrl: "https://i.ytimg.com/vi/c4k6aGyFPqk/maxresdefault.jpg",
     embedUrl: "https://www.youtube.com/embed/c4k6aGyFPqk",

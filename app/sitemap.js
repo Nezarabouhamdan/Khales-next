@@ -22,7 +22,7 @@ export default async function sitemap() {
     "/projects",
     "/Contact",
     "/EngineeringConsultancy",
-    "/Blogs", // The main blogs page
+    "/blog", // The main blogs page
     "/booking",
     "/Luxury-Villas",
     "/Residential",
@@ -38,7 +38,6 @@ export default async function sitemap() {
     "/services/LandscapingDesign",
     "/services/Projectfeasability",
     "/services/ProjectManager",
-    ,
   ];
 
   const staticEntries = staticPaths.flatMap((path) =>
