@@ -2188,34 +2188,34 @@ export const dictionary = {
   residentialPage: {
     services: [
       {
-        id: " Buildings",
-        title: " Buildings",
-        src: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Staples_High_School%2C_Westport%2C_CT.jpg",
+        id: "Buildings",
+        title: "Buildings",
+        src: "https://i.ibb.co/tT0NKPxF/Whats-App-Image-2025-09-14-at-13-45-06-987b91ba.jpg",
       },
       {
         id: "Townhouses",
         title: "Townhouses",
-        src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+        src: "https://i.ibb.co/BVShpR5x/Whats-App-Image-2025-09-14-at-14-03-22-76644d88.jpg",
       },
       {
         id: "Standalone Villas",
         title: "Standalone Villas",
-        src: "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
+        src: "https://i.ibb.co/zpG2XvY/Whats-App-Image-2025-09-14-at-13-51-04-99879083.jpg",
       },
       {
         id: "Penthouses",
         title: "Penthouses",
-        src: "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
+        src: "https://i.ibb.co/RktB3pMj/Whats-App-Image-2025-09-14-at-14-24-29-0ddf6107.jpg",
       },
       {
         id: "Gated Communities",
-        title: "Gated Communities ",
-        src: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+        title: "Gated Communities",
+        src: "https://i.ibb.co/QBxd96n/Whats-App-Image-2025-09-14-at-14-08-44-95d6e3a4.jpg",
       },
       {
         id: "Branded Residences",
         title: "Branded Residences",
-        src: "https://s3.us-west-2.amazonaws.com/wold/images/Expertises/EDU/High%20School/Main%20Image/_1200x630_crop_center-center_82_none/Wold-Architects-Engineers-High-School-Design.jpg?mtime=1687291518",
+        src: "https://i.ibb.co/LzmC3D0V/branded.jpg",
       },
     ],
     servicesSectionContent: {
@@ -2463,32 +2463,32 @@ export const dictionary = {
       {
         id: "Modern Villas",
         title: "Modern Villas",
-        src: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Staples_High_School%2C_Westport%2C_CT.jpg",
+        src: "https://i.ibb.co/nqwgs127/Whats-App-Image-2025-09-11-at-16-47-17-2a71e142.jpg",
       },
       {
         id: "Organic Villas",
         title: "Organic Villas",
-        src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+        src: "https://i.ibb.co/pr286yCg/Whats-App-Image-2025-09-11-at-16-45-49-77b61589.jpg",
       },
       {
         id: "Classic Villas",
         title: "Classic Villas",
-        src: "https://i.ibb.co/v69Zzfsf/Screenshot-2025-08-19-161428.png",
+        src: "https://i.ibb.co/B5Gm7KQN/Whats-App-Image-2025-09-11-at-16-46-01-2bdda072.jpg",
       },
       {
         id: "Arabian Villas",
         title: "Arabian Villas",
-        src: "https://i.ibb.co/WNQVrKTw/Screenshot-2025-08-19-163549.png",
+        src: "https://i.ibb.co/35cWCpXD/Whats-App-Image-2025-09-11-at-16-45-28-6d5a2cea.jpg",
       },
       {
         id: "Modern Farmhouse Villas",
         title: "Modern Farmhouse Villas",
-        src: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1800",
+        src: "https://i.ibb.co/dxFsfJk/Whats-App-Image-2025-09-11-at-16-45-42-0a428d49.jpg",
       },
       {
         id: "Tuscan Villas",
         title: "Tuscan Villas",
-        src: "https://s3.us-west-2.amazonaws.com/wold/images/Expertises/EDU/High%20School/Main%20Image/_1200x630_crop_center-center_82_none/Wold-Architects-Engineers-High-School-Design.jpg?mtime=1687291518",
+        src: "https://i.ibb.co/99ZrrJt3/Whats-App-Image-2025-09-11-at-16-46-23-798a19b6.jpg",
       },
     ],
     servicesSectionContent: {

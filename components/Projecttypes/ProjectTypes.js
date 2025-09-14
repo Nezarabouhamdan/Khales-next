@@ -26,7 +26,7 @@ const projectTypesConfig = [
     showcase: {
       icon: <FaBuilding />,
       image:
-        "https://i.ibb.co/230kjT1y/Whats-App-Image-2025-08-14-at-11-55-30-589f6c94.jpg", // A high-quality image of a commercial project
+        "https://i.ibb.co/7dD5Cvyn/Whats-App-Image-2025-09-14-at-15-06-14-fd7fc972.jpg", // A high-quality image of a commercial project
     },
   },
   {
