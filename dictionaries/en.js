@@ -2645,7 +2645,7 @@ export const dictionary = {
         embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
       },
       {
-        title: "EVERY ENTRANCE IS A BEGINNING OF LUXURY",
+        title: "Every Entrance is a Beginning of Luxury",
         category: "Sales",
         thumbnailUrl: "https://i.ytimg.com/vi/CbGAM0kiLmM/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/CbGAM0kiLmM",
