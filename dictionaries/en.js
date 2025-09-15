@@ -7,6 +7,85 @@ import { projectsData as allProjects } from "@/components/Property Page/ProjectD
 
 export const dictionary = {
   // dictionaries/en.js
+  navigation: {
+    items: [
+      {
+        label: "Home",
+        path: "/",
+        isDropdown: false,
+      },
+
+      {
+        label: "Services",
+        isDropdown: true,
+        isMegaMenu: true,
+        children: [
+          {
+            title: "Project Management",
+            links: [
+              {
+                label: "360 Project Management",
+                path: "/services/ProjectManagement",
+              },
+              { label: "Project Manager", path: "/services/ProjectManager" },
+              {
+                label: "Development Planning",
+                path: "/services/development-planning",
+              },
+              {
+                label: "Feasibility Study",
+                path: "/services/Projectfeasability",
+              },
+            ],
+          },
+          {
+            title: "Engineering Consultancy",
+            links: [
+              {
+                label: "Engineering Design",
+                path: "/services/EngineeringDesign",
+              },
+              {
+                label: "Engineering Supervision",
+                path: "/services/EngineeringSupervision",
+              },
+              { label: "Interior Designing", path: "/services/InteriorDesign" },
+              { label: "Landscaping", path: "/services/LandscapingDesign" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Project Types",
+        isDropdown: true,
+        children: [
+          { label: "Residential", path: "/Residential" },
+          { label: "Commercial", path: "/Commercial" },
+          { label: "Luxury Villas", path: "/Luxury-Villas" },
+        ],
+      },
+      {
+        label: "Media Center",
+        path: "/media-center",
+        isDropdown: false,
+      },
+      {
+        label: "About us",
+        isDropdown: true,
+        children: [
+          { label: "About Khales", path: "/About-Us" },
+          { label: "Blogs", path: "/blog" },
+        ],
+      },
+      {
+        label: "Contact us",
+        path: "/Contact",
+        isDropdown: false,
+      },
+    ],
+    ctaButton: "Book Consultation",
+    languageButton: "Language",
+  },
 
   comprehensiveAbout: {
     title: "Khales Group",
@@ -48,68 +127,9 @@ export const dictionary = {
     buttonText: "Book a Consultation",
     buttonLink: "/Contact",
   },
-  navigation: {
-    items: [
-      {
-        label: "About us",
-        isDropdown: true,
-        children: [
-          { label: "Home", path: "/" },
+  // dictionaries/en.js
 
-          { label: "About Khales", path: "/About-Us" },
-          { label: "Blogs", path: "/blog" },
-        ],
-      },
-
-      {
-        label: "Project Management",
-        isDropdown: true,
-        children: [
-          {
-            label: "360 Project Management",
-            path: "/services/ProjectManagement",
-          },
-          { label: "Project Manager", path: "/services/ProjectManager" },
-          {
-            label: "Development Planning",
-            path: "/services/development-planning",
-          },
-          { label: "Feasibility Study", path: "/services/Projectfeasability" },
-        ],
-      },
-      {
-        label: "Engineering Consultancy",
-        isDropdown: true,
-        children: [
-          { label: "Engineering Design", path: "/services/EngineeringDesign" },
-          {
-            label: "Engineering Supervision",
-            path: "/services/EngineeringSupervision",
-          },
-          { label: "Interior Designing", path: "/services/InteriorDesign" },
-          { label: "Landscaping", path: "/services/LandscapingDesign" },
-        ],
-      },
-      {
-        label: "Project Types",
-        isDropdown: true,
-        children: [
-          { label: "Residential", path: "/Residential" },
-          { label: "Commercial", path: "/Commercial" },
-          { label: "Luxury Villas", path: "/Luxury-Villas" },
-        ],
-      },
-      {
-        label: "Contact us",
-        path: "/Contact",
-        isDropdown: false,
-      },
-      // FIX: New "Company" dropdown containing About, Blogs, and Connect
-    ],
-    ctaButton: "Book Consultation",
-    // FIX: Changed label to be more generic for an icon
-    languageButton: "Language",
-  },
+  // dictionaries/en.js
 
   hero: {
     slides: [
@@ -2600,5 +2620,48 @@ export const dictionary = {
     reject: "Decline",
     accept: "Accept",
     // ... your other content
+  },
+
+  // dictionaries/en.js
+
+  mediaCenterPage: {
+    title: "Media Center",
+    subtitle:
+      "Explore our latest projects, design insights, and construction milestones through our curated collection of videos.",
+    // These are for the filter buttons
+    categories: [
+      "All",
+      "Interior Design",
+      "Architecture",
+      "Construction",
+      "Development",
+      "Sales",
+    ],
+    reels: [
+      {
+        title: "Smart Material Tips for True Luxury",
+        category: "Interior Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
+      },
+      {
+        title: "EVERY ENTRANCE IS A BEGINNING OF LUXURY",
+        category: "Sales",
+        thumbnailUrl: "https://i.ytimg.com/vi/CbGAM0kiLmM/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/CbGAM0kiLmM",
+      },
+      {
+        title: "Key Points In Any Successful Project",
+        category: "Construction",
+        thumbnailUrl: "https://i.ytimg.com/vi/c4k6aGyFPqk/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/c4k6aGyFPqk",
+      },
+      {
+        title: "The Architect: Shaping the Future", // English title as a fallback
+        category: "Architecture",
+        thumbnailUrl: "https://i.ytimg.com/vi/d3VPrwh2Zmg/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/d3VPrwh2Zmg",
+      },
+    ],
   },
 };

@@ -28,7 +28,6 @@ const useClickOutside = (ref, handler) => {
 // ===================================================================
 const COLORS = {
   primary: "#66a109",
-  primaryDarker: "#5a8f08",
   white: "#ffffff",
   darkText: "#1a1a1a",
 };
@@ -91,9 +90,8 @@ const NavIcon = styled.img`
   height: 40px;
   width: auto;
   transition: height 0.3s ease;
-
   @media (max-width: 1200px) {
-    height: 30px; /* 🎯 FINAL FIX: Smaller logo */
+    height: 30px;
   }
 `;
 
@@ -115,11 +113,9 @@ const NavMenu = styled.ul`
   text-align: center;
   gap: 1rem;
   transition: gap 0.3s ease;
-
   @media (max-width: 1200px) {
-    gap: 0.2rem; /* 🎯 FINAL FIX: Tighter space between tabs */
+    gap: 0.2rem;
   }
-
   @media screen and (max-width: 960px) {
     flex-direction: column;
     width: 100%;
@@ -146,6 +142,7 @@ const MenuItem = styled.li`
     width: 100%;
     height: auto;
     justify-content: center;
+    flex-direction: column;
   }
 `;
 
@@ -159,18 +156,16 @@ const MenuLink = styled.a`
   font-size: 16px;
   cursor: pointer;
   position: relative;
-  transition: color 0.3s ease, font-size 0.3s ease, padding 0.3s ease;
+  transition: color 0.3s ease;
   color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
-
   &:hover {
     color: ${COLORS.primary};
   }
 
   @media (max-width: 1200px) {
     font-size: 14px;
-    padding: 0.5rem 0.4rem; /* 🎯 FINAL FIX: Tighter padding inside tabs */
+    padding: 0.5rem 0.4rem;
   }
-
   @media screen and (max-width: 960px) {
     width: 100%;
     text-align: center;
@@ -185,12 +180,11 @@ const MenuLink = styled.a`
 `;
 
 const ArrowIcon = styled(MdKeyboardArrowDown)`
-  margin-left: 4px; /* Default spacing */
-  transition: transform 0.3s ease, margin-left 0.3s ease;
+  margin-left: 4px;
+  transition: transform 0.3s ease;
   transform: ${({ $isOpen }) => ($isOpen ? "rotate(180deg)" : "rotate(0deg)")};
-
   @media (max-width: 1200px) {
-    margin-left: 2px; /* 🎯 FINAL FIX: Tighter space next to text */
+    margin-left: 2px;
   }
 `;
 
@@ -215,7 +209,6 @@ const SubMenu = styled.ul`
       ? "translateY(0) translateX(-50%)"
       : "translateY(-10px) translateX(-50%)"};
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
   @media screen and (max-width: 960px) {
     position: static;
     transform: none;
@@ -234,6 +227,7 @@ const SubMenuItem = styled.li`
 
 const SubMenuLink = styled(Link)`
   display: flex;
+  justify-content: center; // Centered text for all submenu items
   align-items: center;
   padding: 0.75rem 1.25rem;
   color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
@@ -241,7 +235,7 @@ const SubMenuLink = styled(Link)`
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
-  text-align: left;
+  text-align: center;
   font-size: 1rem;
   &:hover {
     background-color: #f4f4f4;
@@ -253,12 +247,9 @@ const NavActions = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  transition: gap 0.3s ease;
-
   @media (max-width: 1200px) {
     gap: 1rem;
   }
-
   @media screen and (max-width: 960px) {
     display: none;
   }
@@ -268,17 +259,6 @@ const LanguageButton = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-`;
-
-const CurrentFlag = styled.img`
-  width: 28px;
-  height: auto;
-  border-radius: 4px;
-  transition: width 0.3s ease;
-
-  @media (max-width: 1200px) {
-    width: 24px;
-  }
 `;
 
 const LanguageLabel = styled.span`
@@ -306,6 +286,63 @@ const FlagIcon = styled.img`
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 `;
 
+const MegaMenu = styled.div`
+  position: absolute;
+  top: 65px;
+  left: 50%;
+  width: 550px; // A good width for a balanced look
+  background-color: ${COLORS.white};
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  padding: 1.5rem 1rem;
+  display: flex;
+  gap: 1rem;
+  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
+  visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
+  transform: ${({ $isOpen }) =>
+    $isOpen
+      ? "translateY(0) translateX(-50%)"
+      : "translateY(-10px) translateX(-50%)"};
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  @media screen and (max-width: 960px) {
+    position: static;
+    flex-direction: column;
+    width: 100%;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background-color: #f7f7f7;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
+  }
+`;
+
+const MegaMenuColumn = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const MegaMenuTitle = styled.div`
+  font-weight: 700; // Bolder title
+  color: ${COLORS.darkText};
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  text-align: center;
+  border-bottom: 1px solid #eee; // Subtle separator
+  @media (max-width: 960px) {
+    background-color: #ebebeb;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    border-bottom: none;
+  }
+`;
+
 // ===================================================================
 // MAIN NAVBAR COMPONENT
 // ===================================================================
@@ -317,9 +354,7 @@ export default function Navbar({ lang, navigation }) {
   const pathname = usePathname();
   const navRef = useRef();
 
-  useClickOutside(navRef, () => {
-    setOpenDropdown(null);
-  });
+  useClickOutside(navRef, () => setOpenDropdown(null));
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -353,9 +388,14 @@ export default function Navbar({ lang, navigation }) {
     <>
       {navItems.map((item) => {
         const hasChildren = item.isDropdown;
+        const isMegaMenu = item.isMegaMenu;
         const fullPath = item.path ? `/${lang}${item.path}` : "#";
         const isActive = hasChildren
-          ? item.children.some((child) => pathname === `/${lang}${child.path}`)
+          ? item.children.some((child) =>
+              (child.links || [child]).some(
+                (link) => pathname === `/${lang}${link.path}`
+              )
+            )
           : pathname === `/${lang}${item.path}`;
 
         return (
@@ -373,20 +413,39 @@ export default function Navbar({ lang, navigation }) {
                 <ArrowIcon $isOpen={openDropdown === item.label} />
               )}
             </MenuLink>
-            {hasChildren && (
-              <SubMenu $isOpen={openDropdown === item.label}>
-                {item.children.map((child) => (
-                  <SubMenuItem key={child.label}>
-                    <SubMenuLink
-                      href={`/${lang}${child.path}`}
-                      $isActive={pathname === `/${lang}${child.path}`}
-                    >
-                      {child.label}
-                    </SubMenuLink>
-                  </SubMenuItem>
-                ))}
-              </SubMenu>
-            )}
+            {hasChildren &&
+              (isMegaMenu ? (
+                <MegaMenu $isOpen={openDropdown === item.label}>
+                  {item.children.map((column) => (
+                    <MegaMenuColumn key={column.title}>
+                      <MegaMenuTitle>{column.title}</MegaMenuTitle>
+                      {column.links.map((link) => (
+                        <SubMenuItem key={link.label}>
+                          <SubMenuLink
+                            href={`/${lang}${link.path}`}
+                            $isActive={pathname === `/${lang}${link.path}`}
+                          >
+                            {link.label}
+                          </SubMenuLink>
+                        </SubMenuItem>
+                      ))}
+                    </MegaMenuColumn>
+                  ))}
+                </MegaMenu>
+              ) : (
+                <SubMenu $isOpen={openDropdown === item.label}>
+                  {item.children.map((child) => (
+                    <SubMenuItem key={child.label}>
+                      <SubMenuLink
+                        href={`/${lang}${child.path}`}
+                        $isActive={pathname === `/${lang}${child.path}`}
+                      >
+                        {child.label}
+                      </SubMenuLink>
+                    </SubMenuItem>
+                  ))}
+                </SubMenu>
+              ))}
           </MenuItem>
         );
       })}
@@ -399,14 +458,11 @@ export default function Navbar({ lang, navigation }) {
         <NavLogoLink href={`/${lang}`}>
           <NavIcon src="/assets/Khales-Logo.png" alt="Khales Logo" />
         </NavLogoLink>
-
         <MobileIcon onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
         </MobileIcon>
-
         <NavMenu $isOpen={isMobileMenuOpen} ref={navRef}>
           <MainNavLinks />
-          {/* Mobile Language Switcher */}
           <MenuItem className="mobile-only-lang">
             <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
               <LanguageButton>
@@ -458,9 +514,7 @@ export default function Navbar({ lang, navigation }) {
             }
           `}</style>
         </NavMenu>
-
         <NavActions>
-          {/* Desktop Language Switcher */}
           <MenuItem>
             <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
               <LanguageButton>

@@ -8,17 +8,57 @@ import { projectsData as allProjects } from "@/components/Property Page/ProjectD
 export const dictionary = {
   // dictionaries/ar.js
 
+  // dictionaries/ar.js
+
+  // dictionaries/ar.js
+
   navigation: {
     items: [
-      // FIX: الرئيسية is now a standalone link
+      {
+        label: "الرئيسية",
+        path: "/",
+        isDropdown: false,
+      },
       {
         label: "نبذة عنا",
         isDropdown: true,
         children: [
-          { label: " الرئيسية ", path: "/" },
-
           { label: "نبذة عن خالص", path: "/About-Us" },
           { label: "المدونة", path: "/blog" },
+        ],
+      },
+      {
+        label: "خدماتنا",
+        isDropdown: true,
+        isMegaMenu: true,
+        children: [
+          {
+            title: "إدارة مشاريع",
+            links: [
+              {
+                label: "خدمة إدارة المشروع الشاملة",
+                path: "/services/ProjectManagement",
+              },
+              { label: "مدير المشروع", path: "/services/ProjectManager" },
+              {
+                label: "التخطيط التطويري",
+                path: "/services/development-planning",
+              },
+              { label: "دراسة الجدوى", path: "/services/Projectfeasability" },
+            ],
+          },
+          {
+            title: "استشارات هندسية",
+            links: [
+              { label: "التصميم الهندسي", path: "/services/EngineeringDesign" },
+              {
+                label: "الإشراف الهندسي",
+                path: "/services/EngineeringSupervision",
+              },
+              { label: "التصميم الداخلي", path: "/services/InteriorDesign" },
+              { label: "تنسيق الحدائق", path: "/services/LandscapingDesign" },
+            ],
+          },
         ],
       },
       {
@@ -31,33 +71,10 @@ export const dictionary = {
         ],
       },
       {
-        label: "إدارة مشاريع",
-        isDropdown: true,
-        children: [
-          {
-            label: "خدمة إدارة المشروع الشاملة",
-            path: "/services/ProjectManagement",
-          },
-          { label: "مدير المشروع", path: "/services/ProjectManager" },
-          { label: "التخطيط التطويري", path: "/services/development-planning" },
-          { label: "دراسة الجدوى", path: "/services/Projectfeasability" },
-        ],
+        label: "المركز الإعلامي",
+        path: "/media-center",
+        isDropdown: false,
       },
-      {
-        label: "استشارات هندسية",
-        isDropdown: true,
-        children: [
-          { label: "التصميم الهندسي", path: "/services/EngineeringDesign" },
-          {
-            label: "الإشراف الهندسي",
-            path: "/services/EngineeringSupervision",
-          },
-          { label: "التصميم الداخلي", path: "/services/InteriorDesign" },
-          { label: "تنسيق الحدائق", path: "/services/LandscapingDesign" },
-        ],
-      },
-      // FIX: New "الشركة" dropdown containing About, Blogs, and Connect
-
       {
         label: "تواصل معنا",
         path: "/Contact",
@@ -65,10 +82,8 @@ export const dictionary = {
       },
     ],
     ctaButton: "أحجز موعدك الآن",
-    // FIX: Changed label to be more generic for an icon
     languageButton: "اللغة",
   },
-
   hero: {
     slides: [
       {
@@ -2599,5 +2614,50 @@ export const dictionary = {
     learnMore: "اعرف المزيد.",
     reject: "رفض",
     accept: "قبول",
+  }, // dictionaries/ar.js
+
+  mediaCenterPage: {
+    title: " المركز الإعلامي",
+    subtitle:
+      "استكشف أحدث مشاريعنا ورؤى التصميم ومراحل البناء من خلال مجموعتنا المختارة من مقاطع الفيديو.",
+    // Translated categories for the filter buttons
+    categories: [
+      "الكل",
+      "تصميم داخلي",
+      "هندسة معمارية",
+      "بناء",
+      "تطوير",
+      "مبيعات",
+    ],
+    reels: [
+      {
+        title: "Smart Material Tips for True Luxury", // English title as a fallback
+        artitle: "نصائح ذكية لاختيار المواد لتحقيق الفخامة الحقيقية", // Arabic title
+        category: "Interior Design", // The category key remains in English for filtering
+        thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
+      },
+      {
+        title: "EVERY ENTRANCE IS A BEGINNING OF LUXURY",
+        artitle: "كل مدخل هو بداية للفخامة",
+        category: "Sales",
+        thumbnailUrl: "https://i.ytimg.com/vi/CbGAM0kiLmM/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/CbGAM0kiLmM",
+      },
+      {
+        title: "Key Points In Any Successful Project",
+        artitle: "نقاط أساسية في أي مشروع ناجح",
+        category: "Construction",
+        thumbnailUrl: "https://i.ytimg.com/vi/c4k6aGyFPqk/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/c4k6aGyFPqk",
+      },
+      {
+        title: "The Architect: Shaping the Future", // English title as a fallback
+        artitle: "المعماري: أساس المستقبل", // Arabic title
+        category: "Architecture", // The category key remains in English for filtering
+        thumbnailUrl: "https://i.ytimg.com/vi/d3VPrwh2Zmg/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/d3VPrwh2Zmg",
+      },
+    ],
   },
 };
