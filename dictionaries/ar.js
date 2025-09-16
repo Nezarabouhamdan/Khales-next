@@ -2655,6 +2655,13 @@ export const dictionary = {
         thumbnailUrl: "https://i.ytimg.com/vi/d3VPrwh2Zmg/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/d3VPrwh2Zmg",
       },
+      {
+        title: "Interior Design Concepts Explained by Eng. Samer", // English title as a fallback
+        artitle: "خمس مفاهيم مختلفة للتصميم الداخلي مع المهندس سامر", // Arabic title
+        category: "Interior Design", // The category key remains in English for filtering
+        thumbnailUrl: "https://i.ytimg.com/vi/9afpoZ-hAXE/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/9afpoZ-hAXE",
+      },
     ],
   },
 };

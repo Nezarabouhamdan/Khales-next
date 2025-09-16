@@ -2666,6 +2666,12 @@ export const dictionary = {
         thumbnailUrl: "https://i.ytimg.com/vi/d3VPrwh2Zmg/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/d3VPrwh2Zmg",
       },
+      {
+        title: "Interior Design Concepts Explained by Eng. Samer", // English title as a fallback
+        category: "Interior Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/9afpoZ-hAXE/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/9afpoZ-hAXE",
+      },
     ],
   },
 };
