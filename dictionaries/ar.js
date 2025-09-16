@@ -2628,12 +2628,20 @@ export const dictionary = {
     ],
     reels: [
       {
-        title: "Smart Material Tips for True Luxury", // English title as a fallback
-        artitle: "نصائح ذكية لاختيار المواد لتحقيق الفخامة الحقيقية", // Arabic title
+        title: "Interior Design Concepts Explained by Eng. Samer", // English title as a fallback
+        artitle: "خمس مفاهيم مختلفة للتصميم الداخلي مع المهندس سامر", // Arabic title
         category: "Interior Design", // The category key remains in English for filtering
-        thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
-        embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
+        thumbnailUrl: "https://i.ytimg.com/vi/9afpoZ-hAXE/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/9afpoZ-hAXE",
       },
+      {
+        title: "The Architect: Shaping the Future", // English title as a fallback
+        artitle: "المعماري: أساس المستقبل", // Arabic title
+        category: "Architecture", // The category key remains in English for filtering
+        thumbnailUrl: "https://i.ytimg.com/vi/d3VPrwh2Zmg/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/d3VPrwh2Zmg",
+      },
+
       {
         title: "EVERY ENTRANCE IS A BEGINNING OF LUXURY",
         artitle: "كل مدخل هو بداية للفخامة",
@@ -2649,18 +2657,11 @@ export const dictionary = {
         embedUrl: "https://www.youtube.com/embed/c4k6aGyFPqk",
       },
       {
-        title: "The Architect: Shaping the Future", // English title as a fallback
-        artitle: "المعماري: أساس المستقبل", // Arabic title
-        category: "Architecture", // The category key remains in English for filtering
-        thumbnailUrl: "https://i.ytimg.com/vi/d3VPrwh2Zmg/maxresdefault.jpg",
-        embedUrl: "https://www.youtube.com/embed/d3VPrwh2Zmg",
-      },
-      {
-        title: "Interior Design Concepts Explained by Eng. Samer", // English title as a fallback
-        artitle: "خمس مفاهيم مختلفة للتصميم الداخلي مع المهندس سامر", // Arabic title
+        title: "Smart Material Tips for True Luxury", // English title as a fallback
+        artitle: "نصائح ذكية لاختيار المواد لتحقيق الفخامة الحقيقية", // Arabic title
         category: "Interior Design", // The category key remains in English for filtering
-        thumbnailUrl: "https://i.ytimg.com/vi/9afpoZ-hAXE/maxresdefault.jpg",
-        embedUrl: "https://www.youtube.com/embed/9afpoZ-hAXE",
+        thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
       },
     ],
   },

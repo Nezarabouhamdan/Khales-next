@@ -2643,11 +2643,18 @@ export const dictionary = {
     ],
     reels: [
       {
-        title: "Smart Material Tips for True Luxury",
+        title: "Interior Design Concepts Explained by Eng. Samer", // English title as a fallback
         category: "Interior Design",
-        thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
-        embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
+        thumbnailUrl: "https://i.ytimg.com/vi/9afpoZ-hAXE/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/9afpoZ-hAXE",
       },
+      {
+        title: "The Architect: Shaping the Future", // English title as a fallback
+        category: "Architecture",
+        thumbnailUrl: "https://i.ytimg.com/vi/d3VPrwh2Zmg/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/d3VPrwh2Zmg",
+      },
+
       {
         title: "Every Entrance is a Beginning of Luxury",
         category: "Sales",
@@ -2661,16 +2668,10 @@ export const dictionary = {
         embedUrl: "https://www.youtube.com/embed/c4k6aGyFPqk",
       },
       {
-        title: "The Architect: Shaping the Future", // English title as a fallback
-        category: "Architecture",
-        thumbnailUrl: "https://i.ytimg.com/vi/d3VPrwh2Zmg/maxresdefault.jpg",
-        embedUrl: "https://www.youtube.com/embed/d3VPrwh2Zmg",
-      },
-      {
-        title: "Interior Design Concepts Explained by Eng. Samer", // English title as a fallback
+        title: "Smart Material Tips for True Luxury",
         category: "Interior Design",
-        thumbnailUrl: "https://i.ytimg.com/vi/9afpoZ-hAXE/maxresdefault.jpg",
-        embedUrl: "https://www.youtube.com/embed/9afpoZ-hAXE",
+        thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
       },
     ],
   },
