@@ -8,7 +8,7 @@ import Image from "next/image"; // IMPORT: Next.js Image component for optimizat
 
 // Static data can remain here
 const galleryImages = [
-  "  https://i.ibb.co/9HF5THtS/aboutus3.webp",
+  "https://i.ibb.co/9HF5THtS/aboutus3.webp",
   "https://i.ibb.co/q37YXv0J/aboutus4.webp",
   "https://i.ibb.co/fz2ZgGk7/aboutus5.webp",
   "https://i.ibb.co/KcQDbmjJ/aboutus2.webp",
