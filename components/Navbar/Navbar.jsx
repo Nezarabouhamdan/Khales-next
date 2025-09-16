@@ -227,7 +227,7 @@ const SubMenuItem = styled.li`
 
 const SubMenuLink = styled(Link)`
   display: flex;
-  justify-content: center; // Centered text for all submenu items
+  justify-content: center;
   align-items: center;
   padding: 0.75rem 1.25rem;
   color: ${({ $isActive }) => ($isActive ? COLORS.primary : COLORS.darkText)};
@@ -290,7 +290,7 @@ const MegaMenu = styled.div`
   position: absolute;
   top: 65px;
   left: 50%;
-  width: 550px; // A good width for a balanced look
+  width: 550px;
   background-color: ${COLORS.white};
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
@@ -326,14 +326,20 @@ const MegaMenuColumn = styled.div`
   gap: 0.5rem;
 `;
 
-const MegaMenuTitle = styled.div`
-  font-weight: 700; // Bolder title
+const MegaMenuTitle = styled(Link)`
+  // CHANGED to a Link
+  font-weight: 700;
   color: ${COLORS.darkText};
   padding-bottom: 0.75rem;
   margin-bottom: 0.75rem;
   font-size: 1.1rem;
   text-align: center;
-  border-bottom: 1px solid #eee; // Subtle separator
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: ${COLORS.primary};
+  }
   @media (max-width: 960px) {
     background-color: #ebebeb;
     border-radius: 8px;
@@ -418,7 +424,10 @@ export default function Navbar({ lang, navigation }) {
                 <MegaMenu $isOpen={openDropdown === item.label}>
                   {item.children.map((column) => (
                     <MegaMenuColumn key={column.title}>
-                      <MegaMenuTitle>{column.title}</MegaMenuTitle>
+                      {/* RENDER THE CLICKABLE TITLE */}
+                      <MegaMenuTitle href={`/${lang}${column.path}`}>
+                        {column.title}
+                      </MegaMenuTitle>
                       {column.links.map((link) => (
                         <SubMenuItem key={link.label}>
                           <SubMenuLink

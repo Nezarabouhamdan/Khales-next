@@ -6,12 +6,6 @@ import { projectsData as allProjects } from "@/components/Property Page/ProjectD
 // ===============================================================
 
 export const dictionary = {
-  // dictionaries/ar.js
-
-  // dictionaries/ar.js
-
-  // dictionaries/ar.js
-
   navigation: {
     items: [
       {
@@ -19,14 +13,7 @@ export const dictionary = {
         path: "/",
         isDropdown: false,
       },
-      {
-        label: "نبذة عنا",
-        isDropdown: true,
-        children: [
-          { label: "نبذة عن خالص", path: "/About-Us" },
-          { label: "المدونة", path: "/blog" },
-        ],
-      },
+
       {
         label: "خدماتنا",
         isDropdown: true,
@@ -34,6 +21,7 @@ export const dictionary = {
         children: [
           {
             title: "إدارة مشاريع",
+            path: "/services/project-management", // <-- Clickable path for the title
             links: [
               {
                 label: "خدمة إدارة المشروع الشاملة",
@@ -49,6 +37,7 @@ export const dictionary = {
           },
           {
             title: "استشارات هندسية",
+            path: "/services/EngineeringConsultancy", // <-- Clickable path for the title
             links: [
               { label: "التصميم الهندسي", path: "/services/EngineeringDesign" },
               {
@@ -71,9 +60,17 @@ export const dictionary = {
         ],
       },
       {
-        label: "المركز الإعلامي",
+        label: "المعرض المرئي",
         path: "/media-center",
         isDropdown: false,
+      },
+      {
+        label: "نبذة عنا",
+        isDropdown: true,
+        children: [
+          { label: "نبذة عن خالص", path: "/About-Us" },
+          { label: "المدونة", path: "/blog" },
+        ],
       },
       {
         label: "تواصل معنا",

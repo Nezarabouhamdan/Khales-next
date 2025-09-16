@@ -7,6 +7,8 @@ import { projectsData as allProjects } from "@/components/Property Page/ProjectD
 
 export const dictionary = {
   // dictionaries/en.js
+  // dictionaries/en.js
+
   navigation: {
     items: [
       {
@@ -22,6 +24,7 @@ export const dictionary = {
         children: [
           {
             title: "Project Management",
+            path: "/services/project-management", // <-- Clickable path for the title
             links: [
               {
                 label: "360 Project Management",
@@ -40,6 +43,7 @@ export const dictionary = {
           },
           {
             title: "Engineering Consultancy",
+            path: "/services/EngineeringConsultancy", // <-- Clickable path for the title
             links: [
               {
                 label: "Engineering Design",
