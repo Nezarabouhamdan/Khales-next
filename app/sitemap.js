@@ -18,6 +18,7 @@ export default async function sitemap() {
     "/booking",
     "/Luxury-Villas",
     "/Residential",
+    "/media-center",
     "/Commercial",
     "/privacy-policy",
     "/terms-and-conditions",
