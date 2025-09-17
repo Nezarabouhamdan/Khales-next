@@ -2635,7 +2635,7 @@ export const dictionary = {
     // These are for the filter buttons
     categories: [
       "All",
-      "Interior Design",
+      "Design",
       "Architecture",
       "Construction",
       "Development",
@@ -2643,8 +2643,14 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Villa Design: Between Luxury and Functionality", // English title as a fallback
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/BU4qpdJ1EaU/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/BU4qpdJ1EaU",
+      },
+      {
         title: "Interior Design Concepts Explained by Eng. Samer", // English title as a fallback
-        category: "Interior Design",
+        category: "Design",
         thumbnailUrl: "https://i.ytimg.com/vi/9afpoZ-hAXE/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/9afpoZ-hAXE",
       },
@@ -2669,7 +2675,7 @@ export const dictionary = {
       },
       {
         title: "Smart Material Tips for True Luxury",
-        category: "Interior Design",
+        category: "Design",
         thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
       },

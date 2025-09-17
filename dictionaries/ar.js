@@ -2628,9 +2628,16 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Villa Design: Between Luxury and Functionality", // English title as a fallback        artitle: "خمس مفاهيم مختلفة للتصميم الداخلي مع المهندس سامر", // Arabic title
+        artitle: "فيلا بين الفخامة والعملية", // Arabic title
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/BU4qpdJ1EaU/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/BU4qpdJ1EaU",
+      },
+      {
         title: "Interior Design Concepts Explained by Eng. Samer", // English title as a fallback
         artitle: "خمس مفاهيم مختلفة للتصميم الداخلي مع المهندس سامر", // Arabic title
-        category: "Interior Design", // The category key remains in English for filtering
+        category: "Design", // The category key remains in English for filtering
         thumbnailUrl: "https://i.ytimg.com/vi/9afpoZ-hAXE/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/9afpoZ-hAXE",
       },
@@ -2659,7 +2666,7 @@ export const dictionary = {
       {
         title: "Smart Material Tips for True Luxury", // English title as a fallback
         artitle: "نصائح ذكية لاختيار المواد لتحقيق الفخامة الحقيقية", // Arabic title
-        category: "Interior Design", // The category key remains in English for filtering
+        category: "Design", // The category key remains in English for filtering
         thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
       },
