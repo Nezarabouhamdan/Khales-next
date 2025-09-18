@@ -2679,12 +2679,12 @@ export const dictionary = {
         thumbnailUrl: "https://i.ytimg.com/vi/c4k6aGyFPqk/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/c4k6aGyFPqk",
       },
-      {
-        title: "Smart Material Tips for True Luxury",
-        category: "Design",
-        thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
-        embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
-      },
+      // {
+      //   title: "Smart Material Tips for True Luxury",
+      //   category: "Design",
+      //   thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
+      //   embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
+      // },
     ],
   },
 };
