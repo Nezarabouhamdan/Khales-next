@@ -51,7 +51,7 @@ export default function MediaCenterPageClient({ lang, content }) {
     const categoryIndex = content.categories.indexOf(translatedLabel);
     const enCategories = [
       "All",
-      "Interior Design",
+      "Design",
       "Architecture",
       "Construction",
       "Development",
