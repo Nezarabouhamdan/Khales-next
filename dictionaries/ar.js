@@ -2628,6 +2628,14 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Designing with Shades & Harmony ", // English title as a fallback
+        artitle: " التنسيق اللوني سر جاذبية التصميم الخارجي", // Arabic title
+
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/Vcl2cgFTIx4/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/Vcl2cgFTIx4",
+      },
+      {
         title: "Villa Design: Between Luxury and Functionality", // English title as a fallback        artitle: "خمس مفاهيم مختلفة للتصميم الداخلي مع المهندس سامر", // Arabic title
         artitle: "فيلا بين الفخامة والعملية", // Arabic title
         category: "Design",
