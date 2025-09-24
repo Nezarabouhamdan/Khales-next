@@ -5,7 +5,6 @@ import React, { useState, useMemo, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import Link from "next/link"; // Import the Next.js Link component
 
 // Static data that doesn't need translation
 const officeImageUrls = [
@@ -76,12 +75,6 @@ const LocationsGrid = styled(motion.div)`
 `;
 
 const ExternalLink = styled.a`
-  text-decoration: none;
-  color: inherit;
-  display: block;
-`;
-
-const InternalLink = styled(Link)`
   text-decoration: none;
   color: inherit;
   display: block;
@@ -268,10 +261,10 @@ export default function OfficeLocationsFinal({ lang, content }) {
               </LocationCard>
             );
 
+            // If the location is coming soon, render the card without a link.
+            // Otherwise, wrap it in a link.
             return loc.isComingSoon ? (
-              <InternalLink href={`/${lang}${loc.link}`} key={index} passHref>
-                {CardContent}
-              </InternalLink>
+              <div key={index}>{CardContent}</div>
             ) : (
               <ExternalLink
                 key={index}
