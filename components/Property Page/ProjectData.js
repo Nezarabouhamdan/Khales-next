@@ -262,7 +262,7 @@ export const projectsData = [
   },
   {
     id: 5,
-    slug: "al-barsha-grand-villa",
+    slug: "Jebel-Ali-Hills-grand-villa",
     category: {
       eng: "Residential",
       ar: "سكني",
@@ -283,8 +283,8 @@ export const projectsData = [
     ],
     en: {
       tags: ["Neoclassical", "Luxury Villa", "Real Estate"],
-      title: "Al Barsha Grand Villa",
-      address: "Al Barsha, Dubai",
+      title: "Jebel Ali Hills Villa",
+      address: "Jebel Ali Hills, Dubai",
       description: "A masterpiece of neoclassical design and luxury.",
       longDescription:
         "This exquisite villa in Al Barsha is a stunning example of modern neoclassical architecture. The design features a grand entrance with stately columns, leading into spacious interiors that overlook a serene central courtyard with a private swimming pool. Every detail is crafted for an unparalleled lifestyle of elegance and comfort, blending timeless design with contemporary luxury.",
@@ -313,8 +313,8 @@ export const projectsData = [
     },
     ar: {
       tags: ["نيوكلاسيكي", "فيلا فاخرة", "عقارات"],
-      title: "فيلا البرشاء الكبرى",
-      address: "البرشاء، دبي",
+      title: "فيلا تلال جبل علي ",
+      address: "تلال جبل علي, دبي",
       description: "تحفة فنية تجمع بين التصميم النيوكلاسيكي والفخامة.",
       longDescription:
         "تعتبر هذه الفيلا الرائعة في البرشاء مثالاً مذهلاً على العمارة النيوكلاسيكية الحديثة. يتميز التصميم بمدخل فخم بأعمدة مهيبة، يؤدي إلى مساحات داخلية واسعة تطل على فناء مركزي هادئ مع مسبح خاص. تم تصميم كل التفاصيل لأسلوب حياة لا مثيل له من الأناقة والراحة، حيث يمزج التصميم الخالد مع الفخامة المعاصرة.",
@@ -344,7 +344,7 @@ export const projectsData = [
   },
   {
     id: 6,
-    slug: "verdant-gardens-emirates-hills",
+    slug: "verdant-gardens-qatar",
     category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
 
     mainImage:
@@ -363,8 +363,8 @@ export const projectsData = [
     ],
     en: {
       tags: ["Landscape Design", "Garden Architecture", "Outdoor Living"],
-      title: "Emirates Hills Garden",
-      address: "Emirates Hills, Dubai",
+      title: "Qatar Garden",
+      address: "Lusail , Qatar ",
       description: "A landscape of geometric beauty and tranquility.",
       longDescription:
         "This landscape design project in Emirates Hills transforms an outdoor space into a private sanctuary. The design is defined by its clean, geometric pathways that create a sense of structure and flow through manicured lawns and lush plantings. Key features include serene water elements and a modern pergola that serves as a focal point for relaxation and entertainment, seamlessly extending the home's living space into the natural environment.",
@@ -396,8 +396,8 @@ export const projectsData = [
         "هندسة الحدائق",
         "المعيشة في الهواء الطلق",
       ],
-      title: "حديقة تلال الإمارات",
-      address: "تلال الإمارات، دبي",
+      title: "حديقة تلال قطر",
+      address: "لوسيل، قطر",
       description: "تصميم طبيعي يجمع بين الجمال الهندسي والهدوء.",
       longDescription:
         "يحول مشروع تصميم المناظر الطبيعية هذا في تلال الإمارات المساحة الخارجية إلى ملاذ خاص. يتميز التصميم بممراته الهندسية النظيفة التي تخلق إحساسًا بالهيكل والتدفق عبر المروج المشذبة والنباتات المورقة. تشمل الميزات الرئيسية عناصر مائية هادئة وبرجولا حديثة تعمل كنقطة محورية للاسترخاء والترفيه، مما يوسع مساحة معيشة المنزل بسلاسة في البيئة الطبيعية.",
