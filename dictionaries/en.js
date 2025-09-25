@@ -2643,6 +2643,12 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Why Every Successful Project Needs a Project Manager", // English title as a fallback
+        category: "Development",
+        thumbnailUrl: "https://i.ytimg.com/vi/Vcl2cgFTIx4/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/Vcl2cgFTIx4",
+      },
+      {
         title: "Designing with Shades & Harmony ", // English title as a fallback
         category: "Design",
         thumbnailUrl: "https://i.ytimg.com/vi/Vcl2cgFTIx4/maxresdefault.jpg",
