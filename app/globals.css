@@ -16,6 +16,149 @@
 }
 * {
   cursor: none !important;
+} /* --- New, Enhanced Project Card Styles --- */
+
+/* The main container for the card link */
+.project-card {
+  position: relative; /* Essential for overlay positioning */
+  display: block;
+  aspect-ratio: 4 / 3; /* Defines a consistent shape for all cards */
+  border-radius: 20px;
+  overflow: hidden;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* The card's background image */
+.project-card .card-image > div {
+  /* Targets the inner div of ImageWithSkeleton */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease-out;
+}
+
+.project-card:hover .card-image > div {
+  transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* The gradient overlay to ensure text is readable */
+.project-card .card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 40%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  transition: background 0.3s ease;
+}
+
+.project-card:hover .card-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+/* The container for all text content */
+.project-card .card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+/* Container for the tag pills */
+.project-card .card-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Individual tag "pill" with a modern glassmorphism effect */
+.project-card .card-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 99px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* The main project title */
+.project-card .card-title {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  color: #fff;
+}
+
+/* Container for the content that appears on hover */
+.project-card .card-hover-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out 0.1s;
+}
+
+.project-card:hover .card-hover-content {
+  max-height: 200px; /* Allow space for content to appear */
+  opacity: 1;
+}
+
+/* The project description text */
+.project-card .card-description {
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0.75rem 0 0 0;
+}
+
+/* The "View Project" call to action */
+.project-card .card-cta {
+  display: flex;
+  align-items: center;
+  color: #66a109;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.project-card .card-cta-icon {
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .card-cta-icon {
+  transform: translateX(5px); /* Arrow moves to the right */
+}
+
+/* Existing CTA link style from before */
+.cta-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(102, 161, 9, 0.25);
 }
 /* @font-face {
   font-family: "Red Thinker";

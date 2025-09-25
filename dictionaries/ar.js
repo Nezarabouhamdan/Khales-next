@@ -13,7 +13,15 @@ export const dictionary = {
         path: "/",
         isDropdown: false,
       },
-
+      {
+        label: "أنواع المشاريع",
+        isDropdown: true,
+        children: [
+          { label: "سكني", path: "/Residential" },
+          { label: "تجاري", path: "/Commercial" },
+          { label: "فلل فاخرة", path: "/Luxury-Villas" },
+        ],
+      },
       {
         label: "خدماتنا",
         isDropdown: true,
@@ -51,13 +59,9 @@ export const dictionary = {
         ],
       },
       {
-        label: "أنواع المشاريع",
-        isDropdown: true,
-        children: [
-          { label: "سكني", path: "/Residential" },
-          { label: "تجاري", path: "/Commercial" },
-          { label: "الفلل الفاخرة", path: "/Luxury-Villas" },
-        ],
+        label: "مشاريعنا",
+        path: "/projects",
+        isDropdown: false,
       },
       {
         label: "المعرض المرئي",
@@ -70,12 +74,8 @@ export const dictionary = {
         children: [
           { label: "نبذة عن خالص", path: "/About-Us" },
           { label: "المدونة", path: "/blog" },
+          { label: "تواصل معنا", path: "/Contact" },
         ],
-      },
-      {
-        label: "تواصل معنا",
-        path: "/Contact",
-        isDropdown: false,
       },
     ],
     ctaButton: "أحجز موعدك الآن",
@@ -2612,7 +2612,12 @@ export const dictionary = {
     reject: "رفض",
     accept: "قبول",
   }, // dictionaries/ar.js
-
+  projectsPage: {
+    metaTitle: "مشاريعنا | خالص",
+    metaDescription:
+      "استكشف مجموعتنا الكاملة من المشاريع السكنية والتجارية والفاخرة.",
+    title: "مشاريعنا",
+  },
   mediaCenterPage: {
     title: " المركز الإعلامي",
     subtitle:

@@ -16,7 +16,15 @@ export const dictionary = {
         path: "/",
         isDropdown: false,
       },
-
+      {
+        label: "Project Types",
+        isDropdown: true,
+        children: [
+          { label: "Residential", path: "/Residential" },
+          { label: "Commercial", path: "/Commercial" },
+          { label: "Luxury Villas", path: "/Luxury-Villas" },
+        ],
+      },
       {
         label: "Services",
         isDropdown: true,
@@ -60,14 +68,11 @@ export const dictionary = {
         ],
       },
       {
-        label: "Project Types",
-        isDropdown: true,
-        children: [
-          { label: "Residential", path: "/Residential" },
-          { label: "Commercial", path: "/Commercial" },
-          { label: "Luxury Villas", path: "/Luxury-Villas" },
-        ],
+        label: "Projects",
+        path: "/projects",
+        isDropdown: false,
       },
+
       {
         label: "Media Center",
         path: "/media-center",
@@ -79,12 +84,8 @@ export const dictionary = {
         children: [
           { label: "About Khales", path: "/About-Us" },
           { label: "Blogs", path: "/blog" },
+          { label: "Contact us", path: "/Contact" },
         ],
-      },
-      {
-        label: "Contact us",
-        path: "/Contact",
-        isDropdown: false,
       },
     ],
     ctaButton: "Book Consultation",
@@ -2627,7 +2628,12 @@ export const dictionary = {
   },
 
   // dictionaries/en.js
-
+  projectsPage: {
+    metaTitle: "Our Projects | Khales",
+    metaDescription:
+      "Explore our full portfolio of residential, commercial, and luxury projects.",
+    title: "Our Projects",
+  },
   mediaCenterPage: {
     title: "Media Center",
     subtitle:
