@@ -5,7 +5,7 @@ export const projectsData = [
   {
     id: 1,
     slug: "The-Royal-Villa",
-    category: { eng: "Villas", ar: "فلل" },
+    category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
     mainImage: "https://i.ibb.co/n8rkyLkQ/Screenshot-2025-08-06-134945.png",
     // ======================= THE FIX IS HERE =======================
     // Updated the gallery images with the new links provided.
@@ -123,7 +123,7 @@ export const projectsData = [
   {
     id: 3,
     slug: "TheOrganicVilla",
-    category: { eng: "Villas", ar: "فلل" },
+    category: { eng: "Residential", ar: "سكني" },
     mainImage: "https://i.ibb.co/hFHH248S/IMG-20250811-WA0020.jpg",
 
     galleryImages: [
@@ -185,190 +185,245 @@ export const projectsData = [
       ],
     },
   },
-  // {
-  //   id: 4,
-  //   slug: "TheOrganicVil",
-  //   category: { eng: "Villas", ar: "فلل" },
-  //   mainImage:
-  //     "https://i.ibb.co/dwNpBPhF/Whats-App-Image-2025-09-04-at-10-44-32-5403cc4b.jpg",
-  //   galleryImages: [
-  //     "https://i.ibb.co/dwNpBPhF/Whats-App-Image-2025-09-04-at-10-44-32-5403cc4b.jpg",
-  //     "https://i.ibb.co/DD59VbTS/Whats-App-Image-2025-09-04-at-10-44-33-27a6a82c.jpg",
-  //     "https://i.ibb.co/84zFBDJF/Whats-App-Image-2025-09-04-at-10-44-33-d33f0e38.jpg",
-  //     "https://i.ibb.co/wZW5wV8y/Whats-App-Image-2025-09-04-at-10-44-34-6c900ec8.jpg",
-  //     "https://i.ibb.co/F45Mh4PR/Whats-App-Image-2025-09-04-at-10-44-34-dd385f2b.jpg",
-  //   ],
-  //   en: {
-  //     tags: ["Project Management", "Construction Oversight"],
-  //     title: "The Organic Villa",
-  //     address: "Al Wasl, Dubai",
-  //     description: "A tranquil retreat of understated luxury.",
-  //     longDescription:
-  //       "Located in the heart of Al Wasl, Dubai, The Organic Villa is a modern private residence that brings together calm, softness, and understated luxury. The design embraces an organic architectural language, with curved edges, natural transitions, and a focus on flow and serenity. Inspired by the concept of “less is more,” the villa was envisioned as a tranquil retreat, blending openness with refined spatial control. Khales is leading the full project management scope, overseeing design, engineering coordination, and site execution to ensure a seamless delivery from ground to roof.",
-  //     price: "5,750,000",
-  //     beds: "6",
-  //     floor: "Ground + 1st + Roof",
-  //     sqft: "10,800",
-  //     keyFeatures: [
-  //       "Curved façade elements",
-  //       "Soft architectural lines",
-  //       "Minimal palette",
-  //       "Layered spaces",
-  //     ],
-  //     highlights: [
-  //       { label: "Project Type", value: "Villa" },
-  //       { label: "Under Construction", value: "2025" },
-  //     ],
-  //   },
-  //   ar: {
-  //     tags: ["إدارة المشاريع", "إشراف على البناء"],
-  //     title: "الفيلا الطبيعية",
-  //     address: "الوصل، دبي",
-  //     description: "ملاذ هادئ من الفخامة البسيطة.",
-  //     longDescription:
-  //       "تقع الفيلا العضوية في قلب منطقة الوصل بدبي، وهي سكن خاص حديث يجمع بين الهدوء والنعومة والفخامة البسيطة. يتبنى التصميم لغة معمارية عضوية، مع حواف منحنية وتحولات طبيعية وتركيز على التدفق والسكينة. مستوحاة من مفهوم 'الأقل هو الأكثر'، تم تصور الفيلا كملاذ هادئ، يمزج بين الانفتاح والتحكم المكاني الراقي. تقود خالص نطاق إدارة المشروع بالكامل، حيث تشرف على التصميم والتنسيق الهندسي وتنفيذ الموقع لضمان تسليم سلس من الأساس إلى السقف.",
-  //     price: "٥٬٧٥٠٬٠٠٠",
-  //     beds: "٦",
-  //     floor: "أرضي + أول + سطح",
-  //     sqft: "١٠٬٨٠٠",
-  //     keyFeatures: [
-  //       "عناصر واجهة منحنية",
-  //       "خطوط معمارية ناعمة",
-  //       "ألوان بسيطة",
-  //       "مساحات متدرجة",
-  //     ],
-  //     highlights: [
-  //       { label: "نوع المشروع", value: "فيلا" },
-  //       { label: "تحت الإنشاء", value: "٢٠٢٥" },
-  //     ],
-  //   },
-  // },
-  // {
-  //   id: 5,
-  //   slug: "TheOrganicVill",
-  //   category: { eng: "Villas", ar: "فلل" },
-  //   mainImage:
-  //     "https://i.ibb.co/1GPhqTPD/Whats-App-Image-2025-09-04-at-10-32-13-743b2078.jpg",
-  //   galleryImages: [
-  //     "https://i.ibb.co/1GPhqTPD/Whats-App-Image-2025-09-04-at-10-32-13-743b2078.jpg",
-  //     "https://i.ibb.co/KRR5NY8/Whats-App-Image-2025-09-04-at-10-32-14-9f862531.jpg",
-  //     "https://i.ibb.co/LVsR3zg/Whats-App-Image-2025-09-04-at-10-32-14-79e5bf44.jpg",
-  //     "https://i.ibb.co/ZphXVW4P/Whats-App-Image-2025-09-04-at-10-32-14-467df346.jpg",
-  //     "https://i.ibb.co/PsCnRPTd/Whats-App-Image-2025-09-04-at-10-32-14-2342643b.jpg",
-  //     "https://i.ibb.co/XxxX9Grb/Whats-App-Image-2025-09-04-at-10-32-14-8146521b.jpg",
-  //     "https://i.ibb.co/p6QPVrkr/Whats-App-Image-2025-09-04-at-10-32-14-d00a7d0c.jpg",
-  //     "https://i.ibb.co/JjVctXys/Whats-App-Image-2025-09-04-at-10-32-14-e83d3a9f.jpg",
-  //     "https://i.ibb.co/gFbqPR3z/Whats-App-Image-2025-09-04-at-10-32-14-f4a6a6c0.jpg",
-  //     "https://i.ibb.co/LXmcHJB3/Whats-App-Image-2025-09-04-at-10-32-14-fbb17ca2.jpg",
-  //   ],
-  //   en: {
-  //     tags: ["Project Management", "Construction Oversight"],
-  //     title: "The Organic Villa",
-  //     address: "Al Wasl, Dubai",
-  //     description: "A tranquil retreat of understated luxury.",
-  //     longDescription:
-  //       "Located in the heart of Al Wasl, Dubai, The Organic Villa is a modern private residence that brings together calm, softness, and understated luxury. The design embraces an organic architectural language, with curved edges, natural transitions, and a focus on flow and serenity. Inspired by the concept of “less is more,” the villa was envisioned as a tranquil retreat, blending openness with refined spatial control. Khales is leading the full project management scope, overseeing design, engineering coordination, and site execution to ensure a seamless delivery from ground to roof.",
-  //     price: "5,750,000",
-  //     beds: "6",
-  //     floor: "Ground + 1st + Roof",
-  //     sqft: "10,800",
-  //     keyFeatures: [
-  //       "Curved façade elements",
-  //       "Soft architectural lines",
-  //       "Minimal palette",
-  //       "Layered spaces",
-  //     ],
-  //     highlights: [
-  //       { label: "Project Type", value: "Villa" },
-  //       { label: "Under Construction", value: "2025" },
-  //     ],
-  //   },
-  //   ar: {
-  //     tags: ["إدارة المشاريع", "إشراف على البناء"],
-  //     title: "الفيلا الطبيعية",
-  //     address: "الوصل، دبي",
-  //     description: "ملاذ هادئ من الفخامة البسيطة.",
-  //     longDescription:
-  //       "تقع الفيلا العضوية في قلب منطقة الوصل بدبي، وهي سكن خاص حديث يجمع بين الهدوء والنعومة والفخامة البسيطة. يتبنى التصميم لغة معمارية عضوية، مع حواف منحنية وتحولات طبيعية وتركيز على التدفق والسكينة. مستوحاة من مفهوم 'الأقل هو الأكثر'، تم تصور الفيلا كملاذ هادئ، يمزج بين الانفتاح والتحكم المكاني الراقي. تقود خالص نطاق إدارة المشروع بالكامل، حيث تشرف على التصميم والتنسيق الهندسي وتنفيذ الموقع لضمان تسليم سلس من الأساس إلى السقف.",
-  //     price: "٥٬٧٥٠٬٠٠٠",
-  //     beds: "٦",
-  //     floor: "أرضي + أول + سطح",
-  //     sqft: "١٠٬٨٠٠",
-  //     keyFeatures: [
-  //       "عناصر واجهة منحنية",
-  //       "خطوط معمارية ناعمة",
-  //       "ألوان بسيطة",
-  //       "مساحات متدرجة",
-  //     ],
-  //     highlights: [
-  //       { label: "نوع المشروع", value: "فيلا" },
-  //       { label: "تحت الإنشاء", value: "٢٠٢٥" },
-  //     ],
-  //   },
-  // },
-  // {
-  //   id: 6,
-  //   slug: "TheOrganicVilzl",
-  //   category: { eng: "Villas", ar: "فلل" },
-  //   mainImage:
-  //     "https://i.ibb.co/xtGNLgds/Whats-App-Image-2025-09-04-at-10-31-20-2df48564.jpg",
-  //   galleryImages: [
-  //     "https://i.ibb.co/xtGNLgds/Whats-App-Image-2025-09-04-at-10-31-20-2df48564.jpg",
-  //     "https://i.ibb.co/JjBGD20D/Whats-App-Image-2025-09-04-at-10-31-20-4b12e02b.jpg",
-  //     "https://i.ibb.co/Q3pwT8QK/Whats-App-Image-2025-09-04-at-10-31-20-6b3f634d.jpg",
-  //     "https://i.ibb.co/JDLqyCk/Whats-App-Image-2025-09-04-at-10-31-20-61e36149.jpg",
-  //     "https://i.ibb.co/m5sQtTcw/Whats-App-Image-2025-09-04-at-10-31-20-75a47559.jpg",
-  //     "https://i.ibb.co/C3hKt7ym/Whats-App-Image-2025-09-04-at-10-31-20-081a8e4c.jpg",
-  //     "https://i.ibb.co/svSbfWbF/Whats-App-Image-2025-09-04-at-10-31-20-bb1f4fe7.jpg",
-  //     "https://i.ibb.co/fGq3ZFYK/Whats-App-Image-2025-09-04-at-10-31-21-8cf01818.jpg",
-  //     "https://i.ibb.co/fdQq4sL8/Whats-App-Image-2025-09-04-at-10-31-21-14c14361.jpg",
-  //     "https://i.ibb.co/svyJsPqn/Whats-App-Image-2025-09-04-at-10-31-21-17fb33a1.jpg",
-  //   ],
-  //   en: {
-  //     tags: ["Project Management", "Construction Oversight"],
-  //     title: "The Organic Villa",
-  //     address: "Al Wasl, Dubai",
-  //     description: "A tranquil retreat of understated luxury.",
-  //     longDescription:
-  //       "Located in the heart of Al Wasl, Dubai, The Organic Villa is a modern private residence that brings together calm, softness, and understated luxury. The design embraces an organic architectural language, with curved edges, natural transitions, and a focus on flow and serenity. Inspired by the concept of “less is more,” the villa was envisioned as a tranquil retreat, blending openness with refined spatial control. Khales is leading the full project management scope, overseeing design, engineering coordination, and site execution to ensure a seamless delivery from ground to roof.",
-  //     price: "5,750,000",
-  //     beds: "6",
-  //     floor: "Ground + 1st + Roof",
-  //     sqft: "10,800",
-  //     keyFeatures: [
-  //       "Curved façade elements",
-  //       "Soft architectural lines",
-  //       "Minimal palette",
-  //       "Layered spaces",
-  //     ],
-  //     highlights: [
-  //       { label: "Project Type", value: "Villa" },
-  //       { label: "Under Construction", value: "2025" },
-  //     ],
-  //   },
-  //   ar: {
-  //     tags: ["إدارة المشاريع", "إشراف على البناء"],
-  //     title: "الفيلا الطبيعية",
-  //     address: "الوصل، دبي",
-  //     description: "ملاذ هادئ من الفخامة البسيطة.",
-  //     longDescription:
-  //       "تقع الفيلا العضوية في قلب منطقة الوصل بدبي، وهي سكن خاص حديث يجمع بين الهدوء والنعومة والفخامة البسيطة. يتبنى التصميم لغة معمارية عضوية، مع حواف منحنية وتحولات طبيعية وتركيز على التدفق والسكينة. مستوحاة من مفهوم 'الأقل هو الأكثر'، تم تصور الفيلا كملاذ هادئ، يمزج بين الانفتاح والتحكم المكاني الراقي. تقود خالص نطاق إدارة المشروع بالكامل، حيث تشرف على التصميم والتنسيق الهندسي وتنفيذ الموقع لضمان تسليم سلس من الأساس إلى السقف.",
-  //     price: "٥٬٧٥٠٬٠٠٠",
-  //     beds: "٦",
-  //     floor: "أرضي + أول + سطح",
-  //     sqft: "١٠٬٨٠٠",
-  //     keyFeatures: [
-  //       "عناصر واجهة منحنية",
-  //       "خطوط معمارية ناعمة",
-  //       "ألوان بسيطة",
-  //       "مساحات متدرجة",
-  //     ],
-  //     highlights: [
-  //       { label: "نوع المشروع", value: "فيلا" },
-  //       { label: "تحت الإنشاء", value: "٢٠٢٥" },
-  //     ],
-  //   },
-  // },
+  {
+    id: 4,
+    slug: "meydan-residential-building",
+    category: {
+      eng: "Residential",
+      ar: " سكني",
+    },
+    mainImage:
+      "https://i.ibb.co/dwNpBPhF/Whats-App-Image-2025-09-04-at-10-44-32-5403cc4b.jpg",
+    galleryImages: [
+      "https://i.ibb.co/dwNpBPhF/Whats-App-Image-2025-09-04-at-10-44-32-5403cc4b.jpg",
+      "https://i.ibb.co/DD59VbTS/Whats-App-Image-2025-09-04-at-10-44-33-27a6a82c.jpg",
+      "https://i.ibb.co/84zFBDJF/Whats-App-Image-2025-09-04-at-10-44-33-d33f0e38.jpg",
+      "https://i.ibb.co/wZW5wV8y/Whats-App-Image-2025-09-04-at-10-44-34-6c900ec8.jpg",
+      "https://i.ibb.co/F45Mh4PR/Whats-App-Image-2025-09-04-at-10-44-34-dd385f2b.jpg",
+    ],
+    en: {
+      tags: ["Residential", "Modern Architecture", "Real Estate"],
+      title: "Meydan Residential Building",
+      address: "Al Meydan, Dubai",
+      description: "Modern G+4 residential living in Meydan.",
+      longDescription:
+        "This modern G+4 residential building is located in the prestigious Al Meydan area of Dubai. It offers a collection of contemporary apartments designed for a modern lifestyle, featuring high-quality finishes and thoughtful layouts. The project's prime location provides residents with excellent connectivity and access to world-class amenities.",
+      price: "0",
+      beds: "32+ units",
+      floor: "G+4",
+      sqft: "25,000",
+      status: "Under Construction",
+      keyFeatures: [
+        "Contemporary architectural design",
+        "Spacious apartment layouts",
+        "Prime location in Al Meydan",
+        "High-end interior finishes",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Residential Building",
+        },
+        {
+          label: "Status",
+          value: "Under Construction",
+        },
+      ],
+    },
+    ar: {
+      tags: ["سكني", "عمارة حديثة", "عقارات"],
+      title: "مبنى سكني في ميدان",
+      address: "الميدان، دبي",
+      description: "حياة عصرية في مبنى سكني G+4.",
+      longDescription:
+        "يقع هذا المبنى السكني الحديث المكون من أرضي + 4 طوابق في منطقة الميدان المرموقة في دبي. يقدم مجموعة من الشقق العصرية المصممة لأسلوب حياة حديث، مع تشطيبات عالية الجودة وتصاميم مدروسة. يوفر الموقع المتميز للمشروع للسكان سهولة الوصول إلى المرافق عالمية المستوى.",
+      price: "٠",
+      beds: "+٣٢ وحدة",
+      floor: "أرضي + ٤ طوابق",
+      sqft: "٢٥٬٠٠٠",
+      status: "تحت الإنشاء",
+      keyFeatures: [
+        "تصميم معماري معاصر",
+        "شقق سكنية واسعة",
+        "موقع متميز في الميدان",
+        "تشطيبات داخلية فاخرة",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "مبنى سكني",
+        },
+        {
+          label: "الحالة",
+          value: "تحت الإنشاء",
+        },
+      ],
+    },
+  },
+  {
+    id: 5,
+    slug: "al-barsha-grand-villa",
+    category: {
+      eng: "Residential",
+      ar: "سكني",
+    },
+    mainImage:
+      "https://i.ibb.co/1GPhqTPD/Whats-App-Image-2025-09-04-at-10-32-13-743b2078.jpg",
+    galleryImages: [
+      "https://i.ibb.co/1GPhqTPD/Whats-App-Image-2025-09-04-at-10-32-13-743b2078.jpg",
+      "https://i.ibb.co/KRR5NY8/Whats-App-Image-2025-09-04-at-10-32-14-9f862531.jpg",
+      "https://i.ibb.co/LVsR3zg/Whats-App-Image-2025-09-04-at-10-32-14-79e5bf44.jpg",
+      "https://i.ibb.co/ZphXVW4P/Whats-App-Image-2025-09-04-at-10-32-14-467df346.jpg",
+      "https://i.ibb.co/PsCnRPTd/Whats-App-Image-2025-09-04-at-10-32-14-2342643b.jpg",
+      "https://i.ibb.co/XxxX9Grb/Whats-App-Image-2025-09-04-at-10-32-14-8146521b.jpg",
+      "https://i.ibb.co/p6QPVrkr/Whats-App-Image-2025-09-04-at-10-32-14-d00a7d0c.jpg",
+      "https://i.ibb.co/JjVctXys/Whats-App-Image-2025-09-04-at-10-32-14-e83d3a9f.jpg",
+      "https://i.ibb.co/gFbqPR3z/Whats-App-Image-2025-09-04-at-10-32-14-f4a6a6c0.jpg",
+      "https://i.ibb.co/LXmcHJB3/Whats-App-Image-2025-09-04-at-10-32-14-fbb17ca2.jpg",
+    ],
+    en: {
+      tags: ["Neoclassical", "Luxury Villa", "Real Estate"],
+      title: "Al Barsha Grand Villa",
+      address: "Al Barsha, Dubai",
+      description: "A masterpiece of neoclassical design and luxury.",
+      longDescription:
+        "This exquisite villa in Al Barsha is a stunning example of modern neoclassical architecture. The design features a grand entrance with stately columns, leading into spacious interiors that overlook a serene central courtyard with a private swimming pool. Every detail is crafted for an unparalleled lifestyle of elegance and comfort, blending timeless design with contemporary luxury.",
+      beds: "6",
+      floor: "Ground + 1st",
+      sqft: "7200",
+      price: "0",
+      status: "Newly Completed",
+      keyFeatures: [
+        "Grand neoclassical facade",
+        "Private courtyard with swimming pool",
+        "Landscaped gardens with a fountain",
+        "Spacious, light-filled interiors",
+        "Premium marble and wood finishes",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Luxury Villa",
+        },
+        {
+          label: "Status",
+          value: "Newly Completed",
+        },
+      ],
+    },
+    ar: {
+      tags: ["نيوكلاسيكي", "فيلا فاخرة", "عقارات"],
+      title: "فيلا البرشاء الكبرى",
+      address: "البرشاء، دبي",
+      description: "تحفة فنية تجمع بين التصميم النيوكلاسيكي والفخامة.",
+      longDescription:
+        "تعتبر هذه الفيلا الرائعة في البرشاء مثالاً مذهلاً على العمارة النيوكلاسيكية الحديثة. يتميز التصميم بمدخل فخم بأعمدة مهيبة، يؤدي إلى مساحات داخلية واسعة تطل على فناء مركزي هادئ مع مسبح خاص. تم تصميم كل التفاصيل لأسلوب حياة لا مثيل له من الأناقة والراحة، حيث يمزج التصميم الخالد مع الفخامة المعاصرة.",
+      beds: "٦",
+      floor: "أرضي + أول",
+      sqft: "٧٠٠",
+      price: "٠",
+      status: "مكتمل حديثاً",
+      keyFeatures: [
+        "واجهة نيوكلاسيكية فخمة",
+        "فناء خاص مع مسبح",
+        "حدائق منسقة مع نافورة",
+        "مساحات داخلية واسعة ومضيئة",
+        "تشطيبات فاخرة من الرخام والخشب",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "فيلا فاخرة",
+        },
+        {
+          label: "الحالة",
+          value: "مكتمل حديثاً",
+        },
+      ],
+    },
+  },
+  {
+    id: 6,
+    slug: "verdant-gardens-emirates-hills",
+    category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
+
+    mainImage:
+      "https://i.ibb.co/xtGNLgds/Whats-App-Image-2025-09-04-at-10-31-20-2df48564.jpg",
+    galleryImages: [
+      "https://i.ibb.co/xtGNLgds/Whats-App-Image-2025-09-04-at-10-31-20-2df48564.jpg",
+      "https://i.ibb.co/JjBGD20D/Whats-App-Image-2025-09-04-at-10-31-20-4b12e02b.jpg",
+      "https://i.ibb.co/Q3pwT8QK/Whats-App-Image-2025-09-04-at-10-31-20-6b3f634d.jpg",
+      "https://i.ibb.co/JDLqyCk/Whats-App-Image-2025-09-04-at-10-31-20-61e36149.jpg",
+      "https://i.ibb.co/m5sQtTcw/Whats-App-Image-2025-09-04-at-10-31-20-75a47559.jpg",
+      "https://i.ibb.co/C3hKt7ym/Whats-App-Image-2025-09-04-at-10-31-20-081a8e4c.jpg",
+      "https://i.ibb.co/svSbfWbF/Whats-App-Image-2025-09-04-at-10-31-20-bb1f4fe7.jpg",
+      "https://i.ibb.co/fGq3ZFYK/Whats-App-Image-2025-09-04-at-10-31-21-8cf01818.jpg",
+      "https://i.ibb.co/fdQq4sL8/Whats-App-Image-2025-09-04-at-10-31-21-14c14361.jpg",
+      "https://i.ibb.co/svyJsPqn/Whats-App-Image-2025-09-04-at-10-31-21-17fb33a1.jpg",
+    ],
+    en: {
+      tags: ["Landscape Design", "Garden Architecture", "Outdoor Living"],
+      title: "Emirates Hills Garden",
+      address: "Emirates Hills, Dubai",
+      description: "A landscape of geometric beauty and tranquility.",
+      longDescription:
+        "This landscape design project in Emirates Hills transforms an outdoor space into a private sanctuary. The design is defined by its clean, geometric pathways that create a sense of structure and flow through manicured lawns and lush plantings. Key features include serene water elements and a modern pergola that serves as a focal point for relaxation and entertainment, seamlessly extending the home's living space into the natural environment.",
+      price: "0",
+      sqft: "600",
+
+      status: "Newly Completed",
+      keyFeatures: [
+        "Geometric concrete and grass pathways",
+        "Manicured lawns and lush greenery",
+        "Modern pergola for outdoor seating",
+        "Integrated water features",
+        "Seamless indoor-outdoor transitions",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Landscape",
+        },
+        {
+          label: "Status",
+          value: "Completed",
+        },
+      ],
+    },
+    ar: {
+      tags: [
+        "تصميم المناظر الطبيعية",
+        "هندسة الحدائق",
+        "المعيشة في الهواء الطلق",
+      ],
+      title: "حديقة تلال الإمارات",
+      address: "تلال الإمارات، دبي",
+      description: "تصميم طبيعي يجمع بين الجمال الهندسي والهدوء.",
+      longDescription:
+        "يحول مشروع تصميم المناظر الطبيعية هذا في تلال الإمارات المساحة الخارجية إلى ملاذ خاص. يتميز التصميم بممراته الهندسية النظيفة التي تخلق إحساسًا بالهيكل والتدفق عبر المروج المشذبة والنباتات المورقة. تشمل الميزات الرئيسية عناصر مائية هادئة وبرجولا حديثة تعمل كنقطة محورية للاسترخاء والترفيه، مما يوسع مساحة معيشة المنزل بسلاسة في البيئة الطبيعية.",
+      price: "٠",
+      sqft: "٦٠٠",
+
+      status: "مكتمل حديثاً",
+      keyFeatures: [
+        "ممرات هندسية من الخرسانة والعشب",
+        "مروج مشذبة ومساحات خضراء مورقة",
+        "برجولا حديثة للجلوس في الهواء الطلق",
+        "عناصر مائية مدمجة",
+        "انتقالات سلسة بين الداخل والخارج",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "تصميم مناظر طبيعية",
+        },
+        {
+          label: "الحالة",
+          value: "مكتمل",
+        },
+      ],
+    },
+  },
 ];
 
 export const findProjectBySlug = (slug) => {

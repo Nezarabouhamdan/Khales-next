@@ -413,16 +413,21 @@ export default function PropertyPage({ project, lang }) {
           </LeftColumn>
           <RightColumn as={motion.div} variants={itemVariants}>
             <Stats>
-              <StatItem>
-                <span className="icon">
-                  <FaBed />
-                </span>
-                <div>
-                  <strong>{projectData.beds}</strong>
-                  <br />
-                  {lang === "ar" ? "غرف" : "Beds"}
-                </div>
-              </StatItem>
+              {/* --- MODIFICATION START --- */}
+              {project.category.eng !== "Landscape Design" && (
+                <StatItem>
+                  <span className="icon">
+                    <FaBed />
+                  </span>
+                  <div>
+                    <strong>{projectData.beds}</strong>
+                    <br />
+                    {lang === "ar" ? "غرف" : "Beds"}
+                  </div>
+                </StatItem>
+              )}
+              {/* --- MODIFICATION END --- */}
+
               {projectData.floor && (
                 <StatItem>
                   <span className="icon">
