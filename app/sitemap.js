@@ -13,7 +13,7 @@ export default async function sitemap() {
     "/About-Us",
     "/projects",
     "/Contact",
-    "/EngineeringConsultancy",
+    "/services/EngineeringConsultancy",
     "/blog", // CORRECTED: Was "/Blogs", now matches your dynamic post URLs.
     "/booking",
     "/Luxury-Villas",
