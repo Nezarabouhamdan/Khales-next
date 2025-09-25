@@ -367,7 +367,7 @@ export const projectsData = [
       address: "Lusail , Qatar ",
       description: "A landscape of geometric beauty and tranquility.",
       longDescription:
-        "This landscape design project in Emirates Hills transforms an outdoor space into a private sanctuary. The design is defined by its clean, geometric pathways that create a sense of structure and flow through manicured lawns and lush plantings. Key features include serene water elements and a modern pergola that serves as a focal point for relaxation and entertainment, seamlessly extending the home's living space into the natural environment.",
+        "This landscape design project in Lusail , Qatar transforms an outdoor space into a private sanctuary. The design is defined by its clean, geometric pathways that create a sense of structure and flow through manicured lawns and lush plantings. Key features include serene water elements and a modern pergola that serves as a focal point for relaxation and entertainment, seamlessly extending the home's living space into the natural environment.",
       price: "0",
       sqft: "600",
 
@@ -400,7 +400,7 @@ export const projectsData = [
       address: "لوسيل، قطر",
       description: "تصميم طبيعي يجمع بين الجمال الهندسي والهدوء.",
       longDescription:
-        "يحول مشروع تصميم المناظر الطبيعية هذا في تلال الإمارات المساحة الخارجية إلى ملاذ خاص. يتميز التصميم بممراته الهندسية النظيفة التي تخلق إحساسًا بالهيكل والتدفق عبر المروج المشذبة والنباتات المورقة. تشمل الميزات الرئيسية عناصر مائية هادئة وبرجولا حديثة تعمل كنقطة محورية للاسترخاء والترفيه، مما يوسع مساحة معيشة المنزل بسلاسة في البيئة الطبيعية.",
+        "يحول مشروع تصميم المناظر الطبيعية هذا في لوسيل - قطر المساحة الخارجية إلى ملاذ خاص. يتميز التصميم بممراته الهندسية النظيفة التي تخلق إحساسًا بالهيكل والتدفق عبر المروج المشذبة والنباتات المورقة. تشمل الميزات الرئيسية عناصر مائية هادئة وبرجولا حديثة تعمل كنقطة محورية للاسترخاء والترفيه، مما يوسع مساحة معيشة المنزل بسلاسة في البيئة الطبيعية.",
       price: "٠",
       sqft: "٦٠٠",
 

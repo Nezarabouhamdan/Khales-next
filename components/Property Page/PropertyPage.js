@@ -413,8 +413,8 @@ export default function PropertyPage({ project, lang }) {
           </LeftColumn>
           <RightColumn as={motion.div} variants={itemVariants}>
             <Stats>
-              {/* --- MODIFICATION START --- */}
-              {project.category.eng !== "Landscape Design" && (
+              {/* --- CORRECT & IMPROVED LOGIC --- */}
+              {project.id !== 6 && (
                 <StatItem>
                   <span className="icon">
                     <FaBed />
@@ -426,7 +426,7 @@ export default function PropertyPage({ project, lang }) {
                   </div>
                 </StatItem>
               )}
-              {/* --- MODIFICATION END --- */}
+              {/* --- END OF LOGIC --- */}
 
               {projectData.floor && (
                 <StatItem>
