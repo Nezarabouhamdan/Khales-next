@@ -21,6 +21,7 @@ export default function LandingLayout({ children, params: { lang } }) {
       suppressHydrationWarning
     >
       <head>
+        <meta property="fb:app_id" content="1160662655535691" />
         <Script
           id="facebook-meta-pixel"
           strategy="afterInteractive"
