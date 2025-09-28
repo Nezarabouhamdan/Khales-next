@@ -155,7 +155,8 @@ export default async function RootLayout({ children, params }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         {/* ====================================================== */}
-        <LocalBusinessSchema />
+        <LocalBusinessSchema />{" "}
+        <meta property="fb:app_id" content="1160662655535691" />
       </head>
       <body>
         <noscript>
