@@ -287,7 +287,7 @@ export const projectsData = [
       address: "Jebel Ali Hills, Dubai",
       description: "A masterpiece of neoclassical design and luxury.",
       longDescription:
-        "This exquisite villa in Al Barsha is a stunning example of modern neoclassical architecture. The design features a grand entrance with stately columns, leading into spacious interiors that overlook a serene central courtyard with a private swimming pool. Every detail is crafted for an unparalleled lifestyle of elegance and comfort, blending timeless design with contemporary luxury.",
+        "This exquisite villa in Jebel Ali Hills is a stunning example of modern neoclassical architecture. The design features a grand entrance with stately columns, leading into spacious interiors that overlook a serene central courtyard with a private swimming pool. Every detail is crafted for an unparalleled lifestyle of elegance and comfort, blending timeless design with contemporary luxury.",
       beds: "6",
       floor: "Ground + 1st",
       sqft: "7200",
@@ -317,7 +317,7 @@ export const projectsData = [
       address: "تلال جبل علي, دبي",
       description: "تحفة فنية تجمع بين التصميم النيوكلاسيكي والفخامة.",
       longDescription:
-        "تعتبر هذه الفيلا الرائعة في البرشاء مثالاً مذهلاً على العمارة النيوكلاسيكية الحديثة. يتميز التصميم بمدخل فخم بأعمدة مهيبة، يؤدي إلى مساحات داخلية واسعة تطل على فناء مركزي هادئ مع مسبح خاص. تم تصميم كل التفاصيل لأسلوب حياة لا مثيل له من الأناقة والراحة، حيث يمزج التصميم الخالد مع الفخامة المعاصرة.",
+        "تعتبر هذه الفيلا الرائعة في تلال جبل علي مثالاً مذهلاً على العمارة النيوكلاسيكية الحديثة. يتميز التصميم بمدخل فخم بأعمدة مهيبة، يؤدي إلى مساحات داخلية واسعة تطل على فناء مركزي هادئ مع مسبح خاص. تم تصميم كل التفاصيل لأسلوب حياة لا مثيل له من الأناقة والراحة، حيث يمزج التصميم الخالد مع الفخامة المعاصرة.",
       beds: "٦",
       floor: "أرضي + أول",
       sqft: "٧٠٠",
