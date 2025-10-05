@@ -2633,6 +2633,13 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "protect your investment, keep your vision on track", // English title as a fallback
+        artitle: "احمِي استثمارك… وخلي رؤيتك تمشي على الخطة الصح", // Arabic title
+        category: "Development",
+        thumbnailUrl: "https://i.ytimg.com/vi/mC7rJZoBvVQ/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/mC7rJZoBvVQ",
+      },
+      {
         title: "Why Every Successful Project Needs a Project Manager", // English title as a fallback
         artitle: " ليش كل مشروع ناجح يحتاج مدير مشروع", // Arabic title
 

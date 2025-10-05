@@ -2649,6 +2649,12 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "protect your investment, keep your vision on track", // English title as a fallback
+        category: "Development",
+        thumbnailUrl: "https://i.ytimg.com/vi/mC7rJZoBvVQ/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/mC7rJZoBvVQ",
+      },
+      {
         title: "Why Every Successful Project Needs a Project Manager", // English title as a fallback
         category: "Development",
         thumbnailUrl: "https://i.ytimg.com/vi/nXYW561Kuok/maxresdefault.jpg",
@@ -2660,12 +2666,7 @@ export const dictionary = {
         thumbnailUrl: "https://i.ytimg.com/vi/Vcl2cgFTIx4/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/Vcl2cgFTIx4",
       },
-      // {
-      //   title: "Villa Design: Between Luxury and Functionality", // English title as a fallback
-      //   category: "Design",
-      //   thumbnailUrl: "https://i.ytimg.com/vi/BU4qpdJ1EaU/maxresdefault.jpg",
-      //   embedUrl: "https://www.youtube.com/embed/BU4qpdJ1EaU",
-      // },
+
       {
         title: "Interior Design Concepts Explained by Eng. Samer", // English title as a fallback
         category: "Design",
