@@ -2633,6 +2633,13 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Al Wasl – Your Ready Dream Home Awaits", // English title as a fallback
+        artitle: "في الوصل... بيتك الجاهز ينتظرك", // Arabic title
+        category: "Architecture",
+        thumbnailUrl: "https://i.ytimg.com/vi/ScdKGWxPkaE/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/ScdKGWxPkaE",
+      },
+      {
         title: "protect your investment, keep your vision on track", // English title as a fallback
         artitle: "احمِي استثمارك… وخلي رؤيتك تمشي على الخطة الصح", // Arabic title
         category: "Development",
