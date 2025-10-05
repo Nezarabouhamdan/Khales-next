@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import StyledComponentsRegistry from "@/utils/registry";
 import Script from "next/script"; // Import the Script component
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,6 +60,8 @@ export default function LandingLayout({ children, params: { lang } }) {
       </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>
+          <Analytics />
+
           {/* We do NOT include the Navbar or Footer here. */}
           {/* We only render the page content. */}
           {children}
