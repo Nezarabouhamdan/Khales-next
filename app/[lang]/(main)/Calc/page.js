@@ -609,8 +609,7 @@ const initializeRoomsState = () => {
 const VillaCalculatorPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const TOTAL_STEPS = 3; // *** TOTAL STEPS IS NOW 3 ***
-  const [selections, setSelections] = useState(getInitialState());
-
+  const [selections, setSelections] = useState(getInitialState()); //SS
   const calculationResult = useMemo(() => {
     let totalCoreArea = 0,
       totalFixedAddonCost = 0;
