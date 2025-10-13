@@ -605,7 +605,6 @@ const initializeRoomsState = () => {
   });
   return state;
 };
-
 // --- Main Component ---
 const VillaCalculatorPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
