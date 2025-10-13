@@ -684,7 +684,7 @@ const S_BreakdownItem = styled.div`
   .cost {
     font-size: 1.4rem; // Adjusted for mobile
     font-weight: 700;
-    color: var(--primary-darker);
+    color: var(--text-dark);
     direction: ltr;
     text-align: right;
     margin-top: auto;
