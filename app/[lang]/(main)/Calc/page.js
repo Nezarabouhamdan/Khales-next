@@ -1,7 +1,12 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+
+// Register Chart.js components we will use
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 // --- CONFIGURATION DATA (Constants) ---
 const PRICING_DATA = {
@@ -57,6 +62,16 @@ const PRICING_DATA = {
     },
   },
   area_addons: { bathroom: 6, dressing_room: 6 },
+};
+const LOCATION_PRICING_FACTORS = {
+  dubai: 1.0,
+  al_ain: 1.0,
+  abu_dhabi: 1.1,
+  sharjah: 0.95,
+  ajman: 0.88,
+  umm_al_quwain: 0.85,
+  fujairah: 0.8,
+  ras_al_khaimah: 0.8,
 };
 const ROOM_CONFIG = [
   {
@@ -144,14 +159,29 @@ const ITEM_TRANSLATIONS = {
   aluminum_glass: "أعمال الألمنيوم والزجاج",
   electrical: "أعمال الكهرباء",
   hvac: "أعمال التكييف",
-  plumbing: "أعمال الصحية",
+  plumbing: "أعمال السباكة",
   external_works: "الأعمال الخارجية",
   contingencies: "نفقات غير متوقّعة",
   consultant_fees: "أتعاب الاستشاري",
 };
+const CHART_COLORS = [
+  "#8DC63F",
+  "#F9A825",
+  "#29B6F6",
+  "#7E57C2",
+  "#EF5350",
+  "#FF7043",
+  "#66BB6A",
+  "#FFEE58",
+  "#42A5F5",
+  "#AB47BC",
+  "#EC407A",
+  "#FFA726",
+  "#26A69A",
+  "#D4E157",
+];
 
-// --- STYLED COMPONENTS (PROFESSIONAL REDESIGN) ---
-
+// --- STYLED COMPONENTS (with Mobile Optimizations) ---
 const fadeIn = keyframes`from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); }`;
 
 const S_CalculatorWrapper = styled.div`
@@ -168,47 +198,42 @@ const S_CalculatorWrapper = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align top for mobile scrolling */
-  padding: 20px; /* Padding for mobile */
-
+  align-items: flex-start;
+  padding: 100px 16px; // Reduced padding for mobile
+  direction: rtl;
   @media (min-width: 768px) {
-    align-items: center; /* Center on larger screens */
-    padding: 40px 20px;
+    align-items: center;
+    padding: 100px 20px;
   }
 `;
-
 const S_WizardLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px; /* Mobile gap */
   width: 100%;
   max-width: 1400px;
   background: var(--bg-white);
   border-radius: 24px;
-  padding: 24px; /* Mobile padding */
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-
+  padding: 16px; // Reduced padding for mobile
+  @media (min-width: 768px) {
+    padding: 24px;
+  }
   @media (min-width: 1200px) {
-    grid-template-columns: ${(props) =>
-      props.showSidebar ? "1fr 420px" : "1fr"};
     gap: 60px;
     min-height: 85vh;
     padding: 40px;
   }
 `;
-
 const S_StepContainer = styled.div`
   display: flex;
   flex-direction: column;
   animation: ${fadeIn} 0.5s ease-out forwards;
 `;
-
 const S_StepContent = styled.div`
   flex-grow: 1;
   overflow-y: auto;
-  padding: 10px;
+  padding: 10px 0;
 `;
-
 const S_ProgressBarContainer = styled.div`
   width: 100%;
   height: 8px;
@@ -217,31 +242,27 @@ const S_ProgressBarContainer = styled.div`
   overflow: hidden;
   margin-bottom: 24px;
 `;
-
 const S_ProgressBar = styled.div`
   width: ${(props) => props.progress}%;
   height: 100%;
   background-color: var(--primary-color);
   transition: width 0.4s ease-out;
 `;
-
 const S_StepHeader = styled.div`
-  text-align: center; /* Center align for mobile as per screenshot */
-  margin-bottom: 40px;
+  text-align: right;
+  margin-bottom: 32px;
   h1 {
-    font-size: 2rem; /* Mobile font size */
+    font-size: 1.8rem; // Smaller on mobile
     font-weight: 800;
     color: var(--text-dark);
     margin: 0 0 8px 0;
   }
   p {
-    font-size: 1rem; /* Mobile font size */
+    font-size: 1rem;
     color: var(--text-light);
     margin: 0;
   }
-
   @media (min-width: 768px) {
-    text-align: right; /* Revert to right-align on desktop */
     h1 {
       font-size: 2.5rem;
     }
@@ -250,38 +271,30 @@ const S_StepHeader = styled.div`
     }
   }
 `;
-
 const S_SubSectionHeader = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-dark);
   text-align: right;
-  margin-top: 40px;
+  margin-top: 32px;
   margin-bottom: 16px;
   padding-bottom: 8px;
-  border-bottom: 2px solid var(--border-color);
-
+  border-bottom: 2px solid var(--primary-color);
   &:first-of-type {
-    margin-top: 10px; /* Reduce top margin for the very first header in a step */
+    margin-top: 10px;
   }
 `;
-
 const S_ChoiceGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(140px, 1fr)
-  ); /* Adjusted for mobile */
-  gap: 16px; /* Adjusted for mobile */
-
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
   }
 `;
-
 const S_ChoiceCard = styled.div`
-  padding: 24px;
+  padding: 16px;
   border: 2px solid
     ${(props) =>
       props.active ? "var(--primary-color)" : "var(--border-color)"};
@@ -293,7 +306,7 @@ const S_ChoiceCard = styled.div`
     props.active ? "var(--bg-light)" : "transparent"};
   h3 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
   }
   &:hover {
@@ -301,32 +314,34 @@ const S_ChoiceCard = styled.div`
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
     border-color: var(--primary-color);
   }
+  @media (min-width: 768px) {
+    padding: 24px;
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
 `;
-
 const S_Navigation = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-direction: column-reverse; /* Stack buttons vertically */
-  gap: 16px; /* Space between stacked buttons */
+  flex-direction: column-reverse;
+  gap: 16px;
   margin-top: auto;
   padding-top: 30px;
   border-top: 1px solid var(--border-color);
-
   @media (min-width: 768px) {
-    flex-direction: row; /* Side-by-side on desktop */
+    flex-direction: row-reverse;
   }
 `;
-
 const S_Button = styled.button`
-  padding: 14px 32px;
+  padding: 14px 24px;
   font-size: 1rem;
   font-weight: 700;
   border-radius: 12px;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  width: 100%; /* Full width for mobile */
-
+  width: 100%;
   &.next {
     background-color: var(--primary-color);
     color: white;
@@ -341,51 +356,44 @@ const S_Button = styled.button`
       background-color: var(--bg-light);
     }
   }
-
   @media (min-width: 768px) {
-    width: auto; /* Auto width on desktop */
+    width: auto;
+    padding: 14px 32px;
   }
 `;
-
 const S_RoomSection = styled.div`
   margin-bottom: 24px;
 `;
-
 const S_RoomHeader = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column; /* Stack title and buttons vertically on mobile */
-  align-items: stretch; /* Make children take full width */
+  flex-direction: column;
+  align-items: stretch;
   gap: 16px;
-  padding: 16px 20px;
+  padding: 16px;
   border: 1px solid var(--border-color);
   border-radius: 16px;
   background-color: var(--bg-light);
-
   h3 {
     margin: 0;
     font-size: 1.2rem;
-    text-align: right; /* Keep title aligned right */
+    text-align: right;
   }
-
   @media (min-width: 768px) {
-    flex-direction: row; /* Revert to horizontal layout on desktop */
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
   }
 `;
-
 const S_CountSelector = styled.div`
   display: flex;
   gap: 8px;
-  flex-wrap: wrap; /* Allows buttons to wrap to the next line */
-  justify-content: flex-start; /* Aligns wrapped buttons to the left */
-
+  flex-wrap: wrap;
+  justify-content: flex-start;
   @media (min-width: 768px) {
-    flex-wrap: nowrap; /* Disables wrapping on larger screens */
+    flex-wrap: nowrap;
   }
 `;
-
 const S_CountButton = styled.button`
   width: 36px;
   height: 36px;
@@ -400,24 +408,20 @@ const S_CountButton = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
 `;
-
 const S_RoomDetailsGrid = styled.div`
   padding-top: 24px;
   display: grid;
-  grid-template-columns: 1fr; /* Single column on mobile */
+  grid-template-columns: 1fr;
   gap: 24px;
-
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   }
 `;
-
 const S_RoomDetailCard = styled.div`
   background-color: var(--bg-light);
   border: 1px solid #f3f4f6;
   border-radius: 16px;
   padding: 24px;
-
   h4 {
     font-weight: 800;
     font-size: 1.2rem;
@@ -425,18 +429,15 @@ const S_RoomDetailCard = styled.div`
     text-align: right;
   }
 `;
-
 const S_InputGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr; /* Stack on mobile */
+  grid-template-columns: 1fr;
   gap: 16px;
   margin-bottom: 16px;
-
   @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr; /* Side-by-side on desktop */
+    grid-template-columns: 1fr 1fr;
   }
 `;
-
 const S_InputGroup = styled.div`
   label {
     display: block;
@@ -446,7 +447,6 @@ const S_InputGroup = styled.div`
     margin-bottom: 8px;
     text-align: right;
   }
-
   input {
     width: 100%;
     padding: 12px 16px;
@@ -457,7 +457,6 @@ const S_InputGroup = styled.div`
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.2s ease;
-
     &:focus {
       outline: none;
       border-color: var(--primary-color);
@@ -465,7 +464,6 @@ const S_InputGroup = styled.div`
     }
   }
 `;
-
 const S_ToggleRow = styled.div`
   display: flex;
   justify-content: space-between;
@@ -473,26 +471,22 @@ const S_ToggleRow = styled.div`
   width: 100%;
   padding: 16px 0;
   border-top: 1px solid var(--border-color);
-
   span {
     font-weight: 500;
     font-size: 1.05rem;
     color: var(--text-dark);
   }
 `;
-
 const S_ToggleSwitch = styled.label`
   position: relative;
   display: inline-block;
   width: 46px;
   height: 26px;
-
   input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-
   .slider {
     position: absolute;
     cursor: pointer;
@@ -503,7 +497,6 @@ const S_ToggleSwitch = styled.label`
     background-color: #ccc;
     transition: 0.4s;
     border-radius: 26px;
-
     &:before {
       position: absolute;
       content: "";
@@ -516,65 +509,236 @@ const S_ToggleSwitch = styled.label`
       border-radius: 50%;
     }
   }
-
   input:checked + .slider {
     background-color: var(--primary-color);
   }
-
   input:checked + .slider:before {
     transform: translateX(20px);
   }
 `;
-
-const S_SummaryContainer = styled.div`
-  background: var(--bg-light);
-  border-radius: 16px;
-  padding: 32px;
-  @media (max-width: 1200px) {
-    margin-top: 40px;
-  }
-`;
-const S_FinalWrapper = styled.div`
+// --- STYLES FOR RESULTS PAGE (with Mobile Optimizations) ---
+const S_ResultsPageWrapper = styled.div`
+  animation: ${fadeIn} 0.6s ease-out forwards;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  animation: ${fadeIn} 0.5s ease-out forwards;
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    @media (min-width: 768px) {
+      font-size: 2.2rem;
+    }
   }
-`;
-const S_FinalCost = styled.div`
-  font-size: 4rem;
-  font-weight: 800;
-  color: var(--primary-color);
-  margin: 20px 0;
-
-  @media (max-width: 768px) {
-    font-size: 3rem; /* Adjust cost font size on smaller screens */
-  }
-`;
-const S_DetailedBreakdown = styled.div`
-  width: 100%;
-  h3 {
-    text-align: right;
-    margin: 0 0 12px 0;
-  }
-  div {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
-    &:last-child {
-      border-bottom: none;
+  p {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 8px auto 0;
+    @media (min-width: 768px) {
+      font-size: 1.1rem;
     }
   }
 `;
-
+const S_ResultsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 24px 0;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 30px 0;
+  }
+`;
+const S_ResultBox = styled.div`
+  background: var(--bg-light);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  span {
+    font-size: 1rem;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 2.1rem; // Adjusted for mobile
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-dark);
+    direction: ltr;
+  }
+  &.primary {
+    border-color: var(--primary-color);
+    h2 {
+      color: var(--primary-color);
+    }
+  }
+  @media (min-width: 768px) {
+    padding: 24px;
+    span {
+      font-size: 1.1rem;
+    }
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+`;
+const S_ActionButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 16px;
+  align-items: center;
+  margin-top: 40px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+const S_BreakdownSection = styled.div`
+  background: var(--bg-light);
+  border-radius: 16px;
+  padding: 16px; // Reduced padding for mobile
+  margin-top: 32px;
+  text-align: right;
+  @media (min-width: 768px) {
+    padding: 32px;
+    margin-top: 40px;
+  }
+`;
+const S_BreakdownLayout = styled.div`
+  display: grid;
+  grid-template-columns: 1fr; // Single column on mobile
+  gap: 24px;
+  margin-top: 24px;
+  @media (min-width: 992px) {
+    grid-template-columns: 320px 1fr; // Two columns on desktop
+    gap: 30px;
+    align-items: flex-start;
+  }
+`;
+const S_ChartContainer = styled.div`
+  position: relative; // No sticky on mobile
+  padding: 16px;
+  border-radius: 16px;
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color);
+  @media (min-width: 992px) {
+    position: sticky;
+    top: 20px;
+    padding: 24px;
+  }
+`;
+const S_TotalInChart = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  h2 {
+    font-size: 1.8rem; // Adjusted for mobile
+    font-weight: 800;
+    color: var(--text-dark);
+  }
+  span {
+    color: var(--text-light);
+  }
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 2rem;
+    }
+  }
+`;
+const S_BreakdownList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr; // Single column on small screens
+  gap: 12px;
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(250px, 1fr)
+    ); // Grid on larger screens
+    gap: 16px;
+  }
+`;
+const S_BreakdownItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.08);
+  }
+  .label-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .label-group span {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+  .cost {
+    font-size: 1.4rem; // Adjusted for mobile
+    font-weight: 700;
+    color: var(--primary-darker);
+    direction: ltr;
+    text-align: right;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    @media (min-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+`;
+const S_ColorDot = styled.div`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-color: ${(props) => props.color};
+`;
+// --- Pie Chart Component ---
+const CostPieChart = ({ breakdownDetails }) => {
+  const data = {
+    labels: breakdownDetails.map((item) => item.name),
+    datasets: [
+      {
+        data: breakdownDetails.map((item) => item.cost),
+        backgroundColor: CHART_COLORS,
+        borderColor: "#ffffff",
+        borderWidth: 2,
+        hoverOffset: 10,
+      },
+    ],
+  };
+  const options = {
+    responsive: true,
+    cutout: "75%",
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        rtl: true,
+        textDirection: "rtl",
+        callbacks: {
+          label: function (context) {
+            const label = context.label || "";
+            const value = context.parsed || 0;
+            return `${label}: ${Math.round(value).toLocaleString()} د.إ`;
+          },
+        },
+      },
+    },
+    animation: { animateRotate: true, animateScale: true, duration: 1200 },
+  };
+  return <Doughnut data={data} options={options} />;
+};
 const getInitialState = () => ({
-  location: "abu_dhabi",
+  location: "dubai",
   designStyle: "modern",
   finishing: "standard",
   parking: 2,
@@ -589,7 +753,6 @@ const getInitialState = () => ({
     {}
   ),
 });
-
 const initializeRoomsState = () => {
   const state = {};
   ROOM_CONFIG.forEach((room) => {
@@ -605,14 +768,16 @@ const initializeRoomsState = () => {
   });
   return state;
 };
+
 // --- Main Component ---
 const VillaCalculatorPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const TOTAL_STEPS = 3; // *** TOTAL STEPS IS NOW 3 ***
-  const [selections, setSelections] = useState(getInitialState()); //SS
+  const TOTAL_STEPS = 3;
+  const [selections, setSelections] = useState(getInitialState());
+
   const calculationResult = useMemo(() => {
-    let totalCoreArea = 0,
-      totalFixedAddonCost = 0;
+    let totalCoreArea = 0;
+    let totalFixedAddonCost = 0;
     Object.keys(selections.rooms).forEach((id) => {
       const room = selections.rooms[id];
       for (let i = 0; i < room.count; i++) {
@@ -630,26 +795,39 @@ const VillaCalculatorPage = () => {
         selections.fixedAddons[a.id] &&
         ((totalCoreArea += a.area), (totalFixedAddonCost += a.cost))
     );
-    if (selections.basement)
+    if (selections.basement) {
       totalCoreArea *= PRICING_DATA.factors.basement_multiplier;
+    }
     const totalBUA =
       totalCoreArea * PRICING_DATA.factors.circulation_multiplier;
     const costs = PRICING_DATA.cost_breakdown_per_sqm[selections.finishing];
-    const breakdownDetails = Object.keys(costs).map((key) => ({
+    const baseBreakdownDetails = Object.keys(costs).map((key) => ({
       name: ITEM_TRANSLATIONS[key],
       cost: costs[key] * totalBUA,
     }));
-    const totalConstructionCost = breakdownDetails.reduce(
+    const locationMultiplier =
+      LOCATION_PRICING_FACTORS[selections.location] || 1.0;
+    const adjustedBreakdownDetails = baseBreakdownDetails.map((item) => ({
+      ...item,
+      cost: item.cost * locationMultiplier,
+    }));
+    const adjustedConstructionCost = adjustedBreakdownDetails.reduce(
       (sum, item) => sum + item.cost,
       0
     );
-    if (totalFixedAddonCost > 0)
-      breakdownDetails.push({
-        name: "تكلفة الإضافات",
+    const finalBreakdownForDisplay = [...adjustedBreakdownDetails];
+    if (totalFixedAddonCost > 0) {
+      finalBreakdownForDisplay.push({
+        name: "تكلفة الإضافات الثابتة",
         cost: totalFixedAddonCost,
       });
-    const totalPrice = totalConstructionCost + totalFixedAddonCost;
-    return { totalBUA, totalPrice, breakdownDetails };
+    }
+    const finalTotalPrice = adjustedConstructionCost + totalFixedAddonCost;
+    return {
+      totalBUA,
+      totalPrice: finalTotalPrice,
+      breakdownDetails: finalBreakdownForDisplay,
+    };
   }, [selections]);
 
   const handleSimpleChange = (field, value) =>
@@ -684,8 +862,6 @@ const VillaCalculatorPage = () => {
   const nextStep = () =>
     setCurrentStep((prev) => Math.min(prev + 1, TOTAL_STEPS + 1));
   const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
-
-  // *** NEW FUNCTION TO RESET THE STATE ***
   const handleReset = () => {
     setCurrentStep(1);
     setSelections(getInitialState());
@@ -693,7 +869,7 @@ const VillaCalculatorPage = () => {
 
   const renderStep = () => {
     switch (currentStep) {
-      case 1: // *** COMBINED STEP 1 ***
+      case 1:
         return (
           <>
             <S_StepHeader>
@@ -703,25 +879,25 @@ const VillaCalculatorPage = () => {
             <S_StepContent>
               <S_SubSectionHeader>الموقع</S_SubSectionHeader>
               <S_ChoiceGrid>
-                {["abu_dhabi", "dubai", "sharjah"].map((loc) => (
+                {[
+                  { id: "abu_dhabi", name: "أبوظبي" },
+                  { id: "dubai", name: "دبي" },
+                  { id: "sharjah", name: "الشارقة" },
+                  { id: "ajman", name: "عجمان" },
+                  { id: "umm_al_quwain", name: "أم القيوين" },
+                  { id: "ras_al_khaimah", name: "رأس الخيمة" },
+                  { id: "fujairah", name: "الفجيرة" },
+                  { id: "al_ain", name: "العين" },
+                ].map((loc) => (
                   <S_ChoiceCard
-                    key={loc}
-                    active={selections.location === loc}
-                    onClick={() => handleSimpleChange("location", loc)}
+                    key={loc.id}
+                    active={selections.location === loc.id}
+                    onClick={() => handleSimpleChange("location", loc.id)}
                   >
-                    <h3>
-                      {
-                        {
-                          abu_dhabi: "أبوظبي",
-                          dubai: "دبي",
-                          sharjah: "الشارقة",
-                        }[loc]
-                      }
-                    </h3>
+                    <h3>{loc.name}</h3>
                   </S_ChoiceCard>
                 ))}
               </S_ChoiceGrid>
-
               <S_SubSectionHeader>الطراز المعماري</S_SubSectionHeader>
               <S_ChoiceGrid>
                 {["modern", "neoclassic", "heritage"].map((style) => (
@@ -742,7 +918,6 @@ const VillaCalculatorPage = () => {
                   </S_ChoiceCard>
                 ))}
               </S_ChoiceGrid>
-
               <S_SubSectionHeader>مستوى التشطيب</S_SubSectionHeader>
               <S_ChoiceGrid>
                 {["standard", "medium", "high"].map((fin) => (
@@ -764,7 +939,7 @@ const VillaCalculatorPage = () => {
             </S_StepContent>
           </>
         );
-      case 2: // Now step 2
+      case 2:
         return (
           <>
             <S_StepHeader>
@@ -884,7 +1059,7 @@ const VillaCalculatorPage = () => {
             </S_StepContent>
           </>
         );
-      case 3: // Now step 3
+      case 3:
         return (
           <>
             <S_StepHeader>
@@ -912,7 +1087,6 @@ const VillaCalculatorPage = () => {
                   <h3>طابق سفلي</h3>
                 </S_ChoiceCard>
               </S_ChoiceGrid>
-
               <S_SubSectionHeader>الإضافات الفاخرة</S_SubSectionHeader>
               <S_ChoiceGrid>
                 {FIXED_COST_ADDONS_CONFIG.map((a) => (
@@ -925,7 +1099,6 @@ const VillaCalculatorPage = () => {
                   </S_ChoiceCard>
                 ))}
               </S_ChoiceGrid>
-
               <S_SubSectionHeader>مواقف السيارات</S_SubSectionHeader>
               <S_ChoiceGrid>
                 {[0, 1, 2, 3, 4].map((c) => (
@@ -948,7 +1121,7 @@ const VillaCalculatorPage = () => {
 
   return (
     <S_CalculatorWrapper>
-      <S_WizardLayout showSidebar={currentStep > TOTAL_STEPS}>
+      <S_WizardLayout>
         {currentStep <= TOTAL_STEPS ? (
           <S_StepContainer>
             <S_ProgressBarContainer>
@@ -969,55 +1142,79 @@ const VillaCalculatorPage = () => {
             </S_Navigation>
           </S_StepContainer>
         ) : (
-          <>
-            <S_FinalWrapper>
-              <h1>هذا هو تقدير التكلفة لمشروعك</h1>
-              <p>
-                هذا تقدير مبدئي بناءً على اختياراتك. تواصل معنا للحصول على عرض
-                سعر مفصل.
-              </p>
-              <S_FinalCost>
-                {Math.round(calculationResult.totalPrice).toLocaleString()} د.إ
-              </S_FinalCost>
-              <S_Button
-                className="next"
+          <S_ResultsPageWrapper>
+            <h1>هذا هو تقدير التكلفة لمشروعك</h1>
+            <p>
+              هذا تقدير مبدئي بناءً على اختياراتك. تواصل معنا للحصول على عرض سعر
+              مفصل.
+            </p>
+            <S_ResultsGrid>
+              <S_ResultBox>
+                <span>إجمالي مساحة البناء (BUA)</span>
+                <h2>{calculationResult.totalBUA.toFixed(2)} م²</h2>
+              </S_ResultBox>
+              <S_ResultBox className="primary">
+                <span>التكلفة الإجمالية التقديرية</span>
+                <h2>
+                  {Math.round(calculationResult.totalPrice).toLocaleString()}{" "}
+                  د.إ
+                </h2>
+              </S_ResultBox>
+            </S_ResultsGrid>
+
+            <S_BreakdownSection>
+              <S_SubSectionHeader
                 style={{
-                  padding: "20px 40px",
-                  fontSize: "1.2rem",
-                  width: "auto",
+                  border: "none",
+                  margin: "0 0 16px 0",
+                  padding: 0,
+                  fontSize: "1.4rem",
                 }}
               >
-                احجز استشارة مجانية
-              </S_Button>
-              {/* *** NEW START AGAIN BUTTON *** */}
-              <S_Button
-                className="back"
-                onClick={handleReset}
-                style={{
-                  marginTop: "16px",
-                  width: "auto",
-                  alignSelf: "center",
-                }}
-              >
+                ملخص تفاصيل التكلفة
+              </S_SubSectionHeader>
+              <S_BreakdownLayout>
+                <S_ChartContainer>
+                  <CostPieChart
+                    breakdownDetails={calculationResult.breakdownDetails}
+                  />
+                  <S_TotalInChart>
+                    <h2>
+                      {Math.round(
+                        calculationResult.totalPrice
+                      ).toLocaleString()}
+                    </h2>
+                    <span>د.إ</span>
+                  </S_TotalInChart>
+                </S_ChartContainer>
+
+                <S_BreakdownList>
+                  {calculationResult.breakdownDetails.map((item, index) => (
+                    <S_BreakdownItem key={item.name}>
+                      <div className="label-group">
+                        <S_ColorDot
+                          color={CHART_COLORS[index % CHART_COLORS.length]}
+                        />
+                        <span>{item.name}</span>
+                      </div>
+                      <span className="cost">
+                        {Math.round(item.cost).toLocaleString()} د.إ
+                      </span>
+                    </S_BreakdownItem>
+                  ))}
+                </S_BreakdownList>
+              </S_BreakdownLayout>
+            </S_BreakdownSection>
+
+            <S_ActionButtonsContainer>
+              <S_Button className="back" onClick={handleReset}>
                 ابدأ من جديد
               </S_Button>
-            </S_FinalWrapper>
-            <S_SummaryContainer>
-              <S_DetailedBreakdown>
-                <h3>ملخص التكلفة</h3>
-                <div>
-                  <span>إجمالي مساحة البناء</span>
-                  <span>{calculationResult.totalBUA.toFixed(2)} م²</span>
-                </div>
-                {calculationResult.breakdownDetails.map((item) => (
-                  <div key={item.name}>
-                    <span>{item.name}</span>
-                    <span>{Math.round(item.cost).toLocaleString()} د.إ</span>
-                  </div>
-                ))}
-              </S_DetailedBreakdown>
-            </S_SummaryContainer>
-          </>
+              <S_Button className="next" style={{ fontSize: "1.2rem" }}>
+                احجز استشارة مجانية
+              </S_Button>
+            </S_ActionButtonsContainer>
+          </S_ResultsPageWrapper>
         )}
       </S_WizardLayout>
     </S_CalculatorWrapper>
