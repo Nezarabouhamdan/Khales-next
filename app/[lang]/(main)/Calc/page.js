@@ -1,9 +1,34 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import styled, { keyframes } from "styled-components";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  FaMapMarkerAlt,
+  FaPalette,
+  FaStar,
+  FaBed,
+  FaUsers,
+  FaRestroom,
+  FaConciergeBell,
+  FaUtensils,
+  FaUserFriends,
+  FaWarehouse,
+  FaCar,
+  FaSwimmingPool,
+  FaBuilding,
+  FaVideo,
+  FaDumbbell,
+  FaPlus,
+  FaMinus,
+  FaCheck,
+  FaExpandArrowsAlt,
+  FaRulerCombined,
+  FaTshirt,
+} from "react-icons/fa";
+import { FaStairs } from "react-icons/fa6";
+import { GiElevator } from "react-icons/gi";
 
 // Register Chart.js components we will use
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -83,6 +108,7 @@ const ROOM_CONFIG = [
     has_dressing: true,
     w: 4,
     l: 5,
+    icon: <FaBed />,
   },
   {
     id: "majlis",
@@ -93,6 +119,7 @@ const ROOM_CONFIG = [
     has_dressing: false,
     w: 6,
     l: 7,
+    icon: <FaUsers />,
   },
   {
     id: "living",
@@ -103,6 +130,7 @@ const ROOM_CONFIG = [
     has_dressing: false,
     w: 4,
     l: 7,
+    icon: <FaRestroom />,
   },
   {
     id: "kitchen",
@@ -113,6 +141,7 @@ const ROOM_CONFIG = [
     has_dressing: false,
     w: 5,
     l: 5,
+    icon: <FaUtensils />,
   },
   {
     id: "dining",
@@ -123,6 +152,7 @@ const ROOM_CONFIG = [
     has_dressing: false,
     w: 5,
     l: 5,
+    icon: <FaConciergeBell />,
   },
   {
     id: "guest_bedroom",
@@ -133,20 +163,40 @@ const ROOM_CONFIG = [
     has_dressing: true,
     w: 4,
     l: 5,
+    icon: <FaUserFriends />,
   },
 ];
 const OTHER_ROOMS_CONFIG = [
-  { id: "maid_room", name: "غرفة خادمة", area: 12 },
-  { id: "storage_room", name: "غرفة تخزين", area: 5 },
-  { id: "prep_kitchen", name: "مطبخ تحضيري", area: 20 },
-  { id: "driver_room", name: "غرفة للسائق", area: 20 },
+  { id: "maid_room", name: "غرفة خادمة", area: 12, icon: <FaPlus /> },
+  { id: "staircase_room", name: "غرفة درج", area: 20, icon: <FaStairs /> },
+  { id: "storage_room", name: "غرفة تخزين", area: 5, icon: <FaWarehouse /> },
+  { id: "prep_kitchen", name: "مطبخ تحضيري", area: 20, icon: <FaUtensils /> },
+  { id: "driver_room", name: "غرفة للسائق", area: 20, icon: <FaCar /> },
 ];
 const FIXED_COST_ADDONS_CONFIG = [
-  { id: "pool", name: "مسبح", area: 45, cost: 228000 },
-  { id: "office", name: "مكتب", area: 20, cost: 38597 },
-  { id: "elevator", name: "مصعد", area: 6, cost: 133380 },
-  { id: "cinema", name: "صالة سينما", area: 20, cost: 78444 },
-  { id: "gym", name: "صالة رياضية", area: 20, cost: 56919 },
+  {
+    id: "pool",
+    name: "مسبح",
+    area: 45,
+    cost: 228000,
+    icon: <FaSwimmingPool />,
+  },
+  { id: "office", name: "مكتب", area: 20, cost: 38597, icon: <FaBuilding /> },
+  { id: "elevator", name: "مصعد", area: 6, cost: 133380, icon: <GiElevator /> },
+  {
+    id: "cinema",
+    name: "صالة سينما",
+    area: 20,
+    cost: 78444,
+    icon: <FaVideo />,
+  },
+  {
+    id: "gym",
+    name: "صالة رياضية",
+    area: 20,
+    cost: 56919,
+    icon: <FaDumbbell />,
+  },
 ];
 const ITEM_TRANSLATIONS = {
   preparatory: "الأعمال التمهيدية",
@@ -286,38 +336,51 @@ const S_SubSectionHeader = styled.h3`
 `;
 const S_ChoiceGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 12px;
+  /* Reduced the minimum card width to allow for a more compact layout */
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px; /* Slightly reduced gap */
   @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
   }
 `;
 const S_ChoiceCard = styled.div`
-  padding: 16px;
+  padding: 12px; /* Reduced padding */
   border: 2px solid
     ${(props) =>
       props.active ? "var(--primary-color)" : "var(--border-color)"};
-  border-radius: 16px;
+  border-radius: 12px; /* Slightly smaller border radius */
   cursor: pointer;
   text-align: center;
   transition: all 0.2s ease-in-out;
   background-color: ${(props) =>
     props.active ? "var(--bg-light)" : "transparent"};
   h3 {
-    margin: 0;
-    font-size: 1rem;
+    margin: 6px 0 0 0; /* Reduced margin */
+    font-size: 0.9rem; /* Reduced font size */
     font-weight: 700;
   }
+  svg {
+    font-size: 1.8rem; /* Reduced icon size */
+    color: ${(props) =>
+      props.active ? "var(--primary-color)" : "var(--text-light)"};
+    transition: all 0.2s ease-in-out;
+  }
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    transform: translateY(-4px); /* Slightly less hover effect */
+    box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.05);
     border-color: var(--primary-color);
+    svg {
+      color: var(--primary-color);
+    }
   }
   @media (min-width: 768px) {
-    padding: 24px;
+    padding: 20px; /* Reduced desktop padding */
     h3 {
-      font-size: 1.2rem;
+      font-size: 1rem; /* Reduced desktop font size */
+    }
+    svg {
+      font-size: 2.2rem; /* Reduced desktop icon size */
     }
   }
 `;
@@ -369,6 +432,7 @@ const S_RoomHeader = styled.div`
   flex-direction: column;
   align-items: stretch;
   gap: 16px;
+  width: fit-content; /* Makes the container only as wide as its content */
   padding: 16px;
   border: 1px solid var(--border-color);
   border-radius: 16px;
@@ -377,11 +441,14 @@ const S_RoomHeader = styled.div`
     margin: 0;
     font-size: 1.2rem;
     text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   @media (min-width: 768px) {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 16px 20px;
   }
 `;
@@ -440,7 +507,9 @@ const S_InputGrid = styled.div`
 `;
 const S_InputGroup = styled.div`
   label {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 1rem;
     font-weight: 500;
     color: var(--text-dark);
@@ -475,6 +544,9 @@ const S_ToggleRow = styled.div`
     font-weight: 500;
     font-size: 1.05rem;
     color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 `;
 const S_ToggleSwitch = styled.label`
@@ -771,8 +843,7 @@ const initializeRoomsState = () => {
 
 // --- Main Component ---
 const VillaCalculatorPage = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const TOTAL_STEPS = 3;
+  const [showResults, setShowResults] = useState(false);
   const [selections, setSelections] = useState(getInitialState());
 
   const calculationResult = useMemo(() => {
@@ -859,25 +930,24 @@ const VillaCalculatorPage = () => {
     });
   };
 
-  const nextStep = () =>
-    setCurrentStep((prev) => Math.min(prev + 1, TOTAL_STEPS + 1));
-  const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
+  const handleSubmit = () => setShowResults(true);
   const handleReset = () => {
-    setCurrentStep(1);
+    setShowResults(false);
     setSelections(getInitialState());
   };
 
-  const renderStep = () => {
-    switch (currentStep) {
-      case 1:
-        return (
-          <>
+  return (
+    <S_CalculatorWrapper>
+      <S_WizardLayout>
+        {!showResults ? (
+          <S_StepContainer>
             <S_StepHeader>
-              <h1>الخصائص الأساسية</h1>
-              <p>اختر الموقع، الطراز، ومستوى التشطيب لمشروعك.</p>
+              <h1>حاسبة تكلفة بناء فيلا</h1>
+              <p>أدخل تفاصيل مشروعك للحصول على تقدير فوري للتكلفة.</p>
             </S_StepHeader>
             <S_StepContent>
-              <S_SubSectionHeader>الموقع</S_SubSectionHeader>
+              {/* --- Section 1: Basic Properties --- */}
+              <S_SubSectionHeader>الخصائص الأساسية</S_SubSectionHeader>
               <S_ChoiceGrid>
                 {[
                   { id: "abu_dhabi", name: "أبوظبي" },
@@ -894,63 +964,54 @@ const VillaCalculatorPage = () => {
                     active={selections.location === loc.id}
                     onClick={() => handleSimpleChange("location", loc.id)}
                   >
+                    <FaMapMarkerAlt />
                     <h3>{loc.name}</h3>
                   </S_ChoiceCard>
                 ))}
               </S_ChoiceGrid>
               <S_SubSectionHeader>الطراز المعماري</S_SubSectionHeader>
               <S_ChoiceGrid>
-                {["modern", "neoclassic", "heritage"].map((style) => (
+                {[
+                  { id: "modern", name: "مودرن" },
+                  { id: "neoclassic", name: "نيو كلاسيكي" },
+                  { id: "heritage", name: "كلاسيك" },
+                ].map((style) => (
                   <S_ChoiceCard
-                    key={style}
-                    active={selections.designStyle === style}
-                    onClick={() => handleSimpleChange("designStyle", style)}
+                    key={style.id}
+                    active={selections.designStyle === style.id}
+                    onClick={() => handleSimpleChange("designStyle", style.id)}
                   >
-                    <h3>
-                      {
-                        {
-                          modern: "عصري",
-                          neoclassic: "نيو كلاسيكي",
-                          heritage: "تراثي",
-                        }[style]
-                      }
-                    </h3>
+                    <FaPalette />
+                    <h3>{style.name}</h3>
                   </S_ChoiceCard>
                 ))}
               </S_ChoiceGrid>
               <S_SubSectionHeader>مستوى التشطيب</S_SubSectionHeader>
               <S_ChoiceGrid>
-                {["standard", "medium", "high"].map((fin) => (
+                {[
+                  { id: "standard", name: "أساسي" },
+                  { id: "medium", name: "متوسط" },
+                  { id: "high", name: "فاخر" },
+                ].map((fin) => (
                   <S_ChoiceCard
-                    key={fin}
-                    active={selections.finishing === fin}
-                    onClick={() => handleSimpleChange("finishing", fin)}
+                    key={fin.id}
+                    active={selections.finishing === fin.id}
+                    onClick={() => handleSimpleChange("finishing", fin.id)}
                   >
-                    <h3>
-                      {
-                        { standard: "أساسي", medium: "متوسط", high: "فاخر" }[
-                          fin
-                        ]
-                      }
-                    </h3>
+                    <FaStar />
+                    <h3>{fin.name}</h3>
                   </S_ChoiceCard>
                 ))}
               </S_ChoiceGrid>
-            </S_StepContent>
-          </>
-        );
-      case 2:
-        return (
-          <>
-            <S_StepHeader>
-              <h1>تحديد الغرف والمساحات</h1>
-              <p>حدد عدد وأبعاد الغرف الرئيسية في الفيلا.</p>
-            </S_StepHeader>
-            <S_StepContent>
+
+              {/* --- Section 2: Rooms and Spaces --- */}
+              <S_SubSectionHeader>الغرف والمساحات</S_SubSectionHeader>
               {ROOM_CONFIG.map((room) => (
                 <S_RoomSection key={room.id}>
                   <S_RoomHeader>
-                    <h3>{room.name}</h3>
+                    <h3>
+                      {room.icon} {room.name}
+                    </h3>
                     <S_CountSelector>
                       {room.counts.map((c) => (
                         <S_CountButton
@@ -974,7 +1035,9 @@ const VillaCalculatorPage = () => {
                           </h4>
                           <S_InputGrid>
                             <S_InputGroup>
-                              <label>العرض (م)</label>
+                              <label>
+                                <FaExpandArrowsAlt /> العرض (م)
+                              </label>
                               <input
                                 type="number"
                                 value={selections.rooms[room.id].details[i].w}
@@ -989,7 +1052,9 @@ const VillaCalculatorPage = () => {
                               />
                             </S_InputGroup>
                             <S_InputGroup>
-                              <label>الطول (م)</label>
+                              <label>
+                                <FaRulerCombined /> الطول (م)
+                              </label>
                               <input
                                 type="number"
                                 value={selections.rooms[room.id].details[i].l}
@@ -1006,7 +1071,9 @@ const VillaCalculatorPage = () => {
                           </S_InputGrid>
                           {room.has_bath && (
                             <S_ToggleRow>
-                              <span>إضافة حمام</span>
+                              <span>
+                                <FaRestroom /> إضافة حمام
+                              </span>
                               <S_ToggleSwitch>
                                 <input
                                   type="checkbox"
@@ -1028,7 +1095,9 @@ const VillaCalculatorPage = () => {
                           )}
                           {room.has_dressing && (
                             <S_ToggleRow>
-                              <span>إضافة غرفة ملابس</span>
+                              <span>
+                                <FaTshirt /> إضافة غرفة ملابس
+                              </span>
                               <S_ToggleSwitch>
                                 <input
                                   type="checkbox"
@@ -1056,18 +1125,9 @@ const VillaCalculatorPage = () => {
                   )}
                 </S_RoomSection>
               ))}
-            </S_StepContent>
-          </>
-        );
-      case 3:
-        return (
-          <>
-            <S_StepHeader>
-              <h1>الإضافات والمرافق</h1>
-              <p>اختر أي مرافق إضافية أو إضافات فاخرة تحتاجها.</p>
-            </S_StepHeader>
-            <S_StepContent>
-              <S_SubSectionHeader>المرافق الإضافية</S_SubSectionHeader>
+
+              {/* --- Section 3: Add-ons and Facilities --- */}
+              <S_SubSectionHeader>الإضافات والمرافق</S_SubSectionHeader>
               <S_ChoiceGrid>
                 {OTHER_ROOMS_CONFIG.map((r) => (
                   <S_ChoiceCard
@@ -1075,6 +1135,7 @@ const VillaCalculatorPage = () => {
                     active={selections.otherRooms[r.id]}
                     onClick={() => handleCheckboxChange("otherRooms", r.id)}
                   >
+                    {r.icon}
                     <h3>{r.name}</h3>
                   </S_ChoiceCard>
                 ))}
@@ -1084,7 +1145,8 @@ const VillaCalculatorPage = () => {
                     handleSimpleChange("basement", !selections.basement)
                   }
                 >
-                  <h3>طابق سفلي</h3>
+                  <FaMinus />
+                  <h3>سرداب</h3>
                 </S_ChoiceCard>
               </S_ChoiceGrid>
               <S_SubSectionHeader>الإضافات الفاخرة</S_SubSectionHeader>
@@ -1095,6 +1157,7 @@ const VillaCalculatorPage = () => {
                     active={selections.fixedAddons[a.id]}
                     onClick={() => handleCheckboxChange("fixedAddons", a.id)}
                   >
+                    {a.icon}
                     <h3>{a.name}</h3>
                   </S_ChoiceCard>
                 ))}
@@ -1107,37 +1170,15 @@ const VillaCalculatorPage = () => {
                     active={selections.parking === c}
                     onClick={() => handleSimpleChange("parking", c)}
                   >
+                    <FaCar />
                     <h3>{c}</h3>
                   </S_ChoiceCard>
                 ))}
               </S_ChoiceGrid>
             </S_StepContent>
-          </>
-        );
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <S_CalculatorWrapper>
-      <S_WizardLayout>
-        {currentStep <= TOTAL_STEPS ? (
-          <S_StepContainer>
-            <S_ProgressBarContainer>
-              <S_ProgressBar progress={(currentStep / TOTAL_STEPS) * 100} />
-            </S_ProgressBarContainer>
-            {renderStep()}
             <S_Navigation>
-              <S_Button
-                className="back"
-                onClick={prevStep}
-                disabled={currentStep === 1}
-              >
-                رجوع
-              </S_Button>
-              <S_Button className="next" onClick={nextStep}>
-                {currentStep === TOTAL_STEPS ? "عرض النتيجة" : "التالي"}
+              <S_Button className="next" onClick={handleSubmit}>
+                عرض النتيجة
               </S_Button>
             </S_Navigation>
           </S_StepContainer>

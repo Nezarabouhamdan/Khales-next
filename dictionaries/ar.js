@@ -64,7 +64,7 @@ export const dictionary = {
         isDropdown: false,
       },
       {
-        label: "المعرض المرئي",
+        label: "المركز الإعلامي",
         path: "/media-center",
         isDropdown: false,
       },
