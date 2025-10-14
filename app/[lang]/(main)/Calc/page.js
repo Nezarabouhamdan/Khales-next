@@ -22,15 +22,16 @@ import {
   FaDumbbell,
   FaPlus,
   FaMinus,
-  FaCheck,
   FaExpandArrowsAlt,
   FaRulerCombined,
   FaTshirt,
+  FaRuler,
+  FaDraftingCompass,
 } from "react-icons/fa";
 import { FaStairs } from "react-icons/fa6";
 import { GiElevator } from "react-icons/gi";
 
-// Register Chart.js components we will use
+// Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 // --- CONFIGURATION DATA (Constants) ---
@@ -200,7 +201,7 @@ const FIXED_COST_ADDONS_CONFIG = [
 ];
 const ITEM_TRANSLATIONS = {
   preparatory: "الأعمال التمهيدية",
-  excavation_substructure: "أعمال الحفر والبنية التحتية",
+  excavation_substructure: "أعمال الحفر والبنية التحتية ( الأساسات )",
   superstructure: "أعمال الهيكل العلوي",
   blockwork: "أعمال البناء",
   waterproofing: "أعمال العزل المائي",
@@ -231,7 +232,7 @@ const CHART_COLORS = [
   "#D4E157",
 ];
 
-// --- STYLED COMPONENTS (with Mobile Optimizations) ---
+// --- STYLED COMPONENTS ---
 const fadeIn = keyframes`from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); }`;
 
 const S_CalculatorWrapper = styled.div`
@@ -249,7 +250,7 @@ const S_CalculatorWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 100px 16px; // Reduced padding for mobile
+  padding: 50px 16px;
   direction: rtl;
   @media (min-width: 768px) {
     align-items: center;
@@ -257,26 +258,20 @@ const S_CalculatorWrapper = styled.div`
   }
 `;
 const S_WizardLayout = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
   width: 100%;
   max-width: 1400px;
   background: var(--bg-white);
   border-radius: 24px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-  padding: 16px; // Reduced padding for mobile
+  padding: 16px;
   @media (min-width: 768px) {
     padding: 24px;
   }
   @media (min-width: 1200px) {
-    gap: 60px;
-    min-height: 85vh;
     padding: 40px;
   }
 `;
 const S_StepContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   animation: ${fadeIn} 0.5s ease-out forwards;
 `;
 const S_StepContent = styled.div`
@@ -284,25 +279,11 @@ const S_StepContent = styled.div`
   overflow-y: auto;
   padding: 10px 0;
 `;
-const S_ProgressBarContainer = styled.div`
-  width: 100%;
-  height: 8px;
-  background-color: #f3f4f6;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 24px;
-`;
-const S_ProgressBar = styled.div`
-  width: ${(props) => props.progress}%;
-  height: 100%;
-  background-color: var(--primary-color);
-  transition: width 0.4s ease-out;
-`;
 const S_StepHeader = styled.div`
   text-align: right;
   margin-bottom: 32px;
   h1 {
-    font-size: 1.8rem; // Smaller on mobile
+    font-size: 1.8rem;
     font-weight: 800;
     color: var(--text-dark);
     margin: 0 0 8px 0;
@@ -311,6 +292,7 @@ const S_StepHeader = styled.div`
     font-size: 1rem;
     color: var(--text-light);
     margin: 0;
+    max-width: 600px;
   }
   @media (min-width: 768px) {
     h1 {
@@ -336,38 +318,37 @@ const S_SubSectionHeader = styled.h3`
 `;
 const S_ChoiceGrid = styled.div`
   display: grid;
-  /* Reduced the minimum card width to allow for a more compact layout */
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px; /* Slightly reduced gap */
+  gap: 10px;
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 16px;
   }
 `;
 const S_ChoiceCard = styled.div`
-  padding: 12px; /* Reduced padding */
+  padding: 12px;
   border: 2px solid
     ${(props) =>
       props.active ? "var(--primary-color)" : "var(--border-color)"};
-  border-radius: 12px; /* Slightly smaller border radius */
+  border-radius: 12px;
   cursor: pointer;
   text-align: center;
   transition: all 0.2s ease-in-out;
   background-color: ${(props) =>
     props.active ? "var(--bg-light)" : "transparent"};
   h3 {
-    margin: 6px 0 0 0; /* Reduced margin */
-    font-size: 0.9rem; /* Reduced font size */
+    margin: 6px 0 0 0;
+    font-size: 0.9rem;
     font-weight: 700;
   }
   svg {
-    font-size: 1.8rem; /* Reduced icon size */
+    font-size: 1.8rem;
     color: ${(props) =>
       props.active ? "var(--primary-color)" : "var(--text-light)"};
     transition: all 0.2s ease-in-out;
   }
   &:hover {
-    transform: translateY(-4px); /* Slightly less hover effect */
+    transform: translateY(-4px);
     box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.05);
     border-color: var(--primary-color);
     svg {
@@ -375,21 +356,22 @@ const S_ChoiceCard = styled.div`
     }
   }
   @media (min-width: 768px) {
-    padding: 20px; /* Reduced desktop padding */
+    padding: 20px;
     h3 {
-      font-size: 1rem; /* Reduced desktop font size */
+      font-size: 1rem;
     }
     svg {
-      font-size: 2.2rem; /* Reduced desktop icon size */
+      font-size: 2.2rem;
     }
   }
 `;
+
 const S_Navigation = styled.div`
   display: flex;
-  justify-content: space-between;
-  flex-direction: column-reverse;
+  justify-content: center;
+  flex-direction: column;
   gap: 16px;
-  margin-top: auto;
+  margin-top: 30px;
   padding-top: 30px;
   border-top: 1px solid var(--border-color);
   @media (min-width: 768px) {
@@ -421,7 +403,6 @@ const S_Button = styled.button`
   }
   @media (min-width: 768px) {
     width: auto;
-    padding: 14px 32px;
   }
 `;
 const S_RoomSection = styled.div`
@@ -432,7 +413,7 @@ const S_RoomHeader = styled.div`
   flex-direction: column;
   align-items: stretch;
   gap: 16px;
-  width: fit-content; /* Makes the container only as wide as its content */
+  width: fit-content;
   padding: 16px;
   border: 1px solid var(--border-color);
   border-radius: 16px;
@@ -588,24 +569,9 @@ const S_ToggleSwitch = styled.label`
     transform: translateX(20px);
   }
 `;
-// --- STYLES FOR RESULTS PAGE (with Mobile Optimizations) ---
 const S_ResultsPageWrapper = styled.div`
   animation: ${fadeIn} 0.6s ease-out forwards;
   text-align: center;
-  h1 {
-    font-size: 1.8rem;
-    @media (min-width: 768px) {
-      font-size: 2.2rem;
-    }
-  }
-  p {
-    font-size: 1rem;
-    max-width: 600px;
-    margin: 8px auto 0;
-    @media (min-width: 768px) {
-      font-size: 1.1rem;
-    }
-  }
 `;
 const S_ResultsGrid = styled.div`
   display: grid;
@@ -630,7 +596,7 @@ const S_ResultBox = styled.div`
     margin-bottom: 8px;
   }
   h2 {
-    font-size: 2.1rem; // Adjusted for mobile
+    font-size: 2.1rem;
     font-weight: 800;
     margin: 0;
     color: var(--text-dark);
@@ -652,7 +618,6 @@ const S_ResultBox = styled.div`
     }
   }
 `;
-
 const S_ExtraAreaSection = styled.div`
   background: var(--bg-light);
   border-radius: 16px;
@@ -661,17 +626,15 @@ const S_ExtraAreaSection = styled.div`
   text-align: right;
   max-width: 400px;
   border: 1px solid var(--border-color);
-
   h4 {
     margin: 0 0 16px 0;
     font-size: 1.2rem;
     font-weight: 700;
   }
 `;
-
 const S_ActionButtonsContainer = styled.div`
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 16px;
   align-items: center;
   margin-top: 40px;
@@ -683,7 +646,7 @@ const S_ActionButtonsContainer = styled.div`
 const S_BreakdownSection = styled.div`
   background: var(--bg-light);
   border-radius: 16px;
-  padding: 16px; // Reduced padding for mobile
+  padding: 16px;
   margin-top: 32px;
   text-align: right;
   @media (min-width: 768px) {
@@ -693,17 +656,17 @@ const S_BreakdownSection = styled.div`
 `;
 const S_BreakdownLayout = styled.div`
   display: grid;
-  grid-template-columns: 1fr; // Single column on mobile
+  grid-template-columns: 1fr;
   gap: 24px;
   margin-top: 24px;
   @media (min-width: 992px) {
-    grid-template-columns: 320px 1fr; // Two columns on desktop
+    grid-template-columns: 320px 1fr;
     gap: 30px;
     align-items: flex-start;
   }
 `;
 const S_ChartContainer = styled.div`
-  position: relative; // No sticky on mobile
+  position: relative;
   padding: 16px;
   border-radius: 16px;
   background-color: var(--bg-white);
@@ -722,7 +685,7 @@ const S_TotalInChart = styled.div`
   text-align: center;
   pointer-events: none;
   h2 {
-    font-size: 1.8rem; // Adjusted for mobile
+    font-size: 1.8rem;
     font-weight: 800;
     color: var(--text-dark);
   }
@@ -737,13 +700,10 @@ const S_TotalInChart = styled.div`
 `;
 const S_BreakdownList = styled.div`
   display: grid;
-  grid-template-columns: 1fr; // Single column on small screens
+  grid-template-columns: 1fr;
   gap: 12px;
   @media (min-width: 576px) {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(250px, 1fr)
-    ); // Grid on larger screens
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 16px;
   }
 `;
@@ -771,7 +731,7 @@ const S_BreakdownItem = styled.div`
     color: var(--text-dark);
   }
   .cost {
-    font-size: 1.4rem; // Adjusted for mobile
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-dark);
     direction: ltr;
@@ -791,7 +751,113 @@ const S_ColorDot = styled.div`
   flex-shrink: 0;
   background-color: ${(props) => props.color};
 `;
-// --- Pie Chart Component ---
+
+// --- NEW STYLES FOR INTRO PAGE ---
+const S_IntroLayout = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  animation: ${fadeIn} 0.6s ease-out forwards;
+  min-height: 60vh;
+
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+const S_IntroContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+  padding: 2rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+
+  @media (max-width: 991px) {
+    text-align: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+`;
+
+const S_LogoPlaceholder = styled.img`
+  width: 70px;
+  height: 70px;
+  background-color: var(--border-color);
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  // You can replace this with an <img> tag like:
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  // background-position: center;
+`;
+
+const S_ModeSelectionArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+`;
+
+const S_ModeChoiceCard = styled.div`
+  padding: 2rem;
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: transparent;
+  text-align: right;
+
+  .icon-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  svg {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    transition: all 0.2s ease-in-out;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.07);
+    border-color: var(--primary-color);
+  }
+`;
+
+// --- Reusable Components ---
 const CostPieChart = ({ breakdownDetails }) => {
   const data = {
     labels: breakdownDetails.map((item) => item.name),
@@ -814,11 +880,10 @@ const CostPieChart = ({ breakdownDetails }) => {
         rtl: true,
         textDirection: "rtl",
         callbacks: {
-          label: function (context) {
-            const label = context.label || "";
-            const value = context.parsed || 0;
-            return `${label}: ${Math.round(value).toLocaleString()} د.إ`;
-          },
+          label: (context) =>
+            `${context.label || ""}: ${Math.round(
+              context.parsed || 0
+            ).toLocaleString()} د.إ`,
         },
       },
     },
@@ -826,6 +891,7 @@ const CostPieChart = ({ breakdownDetails }) => {
   };
   return <Doughnut data={data} options={options} />;
 };
+
 const getInitialState = () => ({
   location: "dubai",
   designStyle: "modern",
@@ -860,46 +926,65 @@ const initializeRoomsState = () => {
 
 // --- Main Component ---
 const VillaCalculatorPage = () => {
+  const [calculationMode, setCalculationMode] = useState(null); // 'detailed' or 'quick'
   const [showResults, setShowResults] = useState(false);
   const [selections, setSelections] = useState(getInitialState());
-  const [extraArea, setExtraArea] = useState(0); // State for the extra area
+  const [quickSelections, setQuickSelections] = useState({
+    bua: 500,
+    location: "dubai",
+    finishing: "standard",
+  });
+  const [extraArea, setExtraArea] = useState(0);
 
   const calculationResult = useMemo(() => {
-    let totalCoreArea = 0;
-    let totalFixedAddonCost = 0;
-    Object.keys(selections.rooms).forEach((id) => {
-      const room = selections.rooms[id];
-      for (let i = 0; i < room.count; i++) {
-        const d = room.details[i];
-        totalCoreArea += (d.w || 0) * (d.l || 0);
-        if (d.bath) totalCoreArea += PRICING_DATA.area_addons.bathroom;
-        if (d.dressing) totalCoreArea += PRICING_DATA.area_addons.dressing_room;
-      }
-    });
-    OTHER_ROOMS_CONFIG.forEach(
-      (r) => selections.otherRooms[r.id] && (totalCoreArea += r.area)
-    );
-    FIXED_COST_ADDONS_CONFIG.forEach(
-      (a) =>
-        selections.fixedAddons[a.id] &&
-        ((totalCoreArea += a.area), (totalFixedAddonCost += a.cost))
-    );
-    if (selections.basement) {
-      totalCoreArea *= PRICING_DATA.factors.basement_multiplier;
+    let finalTotalBUA,
+      totalFixedAddonCost = 0;
+
+    if (calculationMode === "quick") {
+      finalTotalBUA = quickSelections.bua || 0;
+    } else {
+      let totalCoreArea = 0;
+      Object.keys(selections.rooms).forEach((id) => {
+        const room = selections.rooms[id];
+        for (let i = 0; i < room.count; i++) {
+          const d = room.details[i];
+          totalCoreArea += (d.w || 0) * (d.l || 0);
+          if (d.bath) totalCoreArea += PRICING_DATA.area_addons.bathroom;
+          if (d.dressing)
+            totalCoreArea += PRICING_DATA.area_addons.dressing_room;
+        }
+      });
+      OTHER_ROOMS_CONFIG.forEach(
+        (r) => selections.otherRooms[r.id] && (totalCoreArea += r.area)
+      );
+      FIXED_COST_ADDONS_CONFIG.forEach(
+        (a) =>
+          selections.fixedAddons[a.id] &&
+          ((totalCoreArea += a.area), (totalFixedAddonCost += a.cost))
+      );
+      if (selections.basement)
+        totalCoreArea *= PRICING_DATA.factors.basement_multiplier;
+
+      const bua_before_buffer =
+        totalCoreArea * PRICING_DATA.factors.circulation_multiplier;
+      finalTotalBUA = bua_before_buffer + extraArea;
     }
-    const totalBUA_before_buffer =
-      totalCoreArea * PRICING_DATA.factors.circulation_multiplier;
 
-    // Add the user-defined extra area to the BUA
-    const finalTotalBUA = totalBUA_before_buffer + extraArea;
+    const finishing =
+      calculationMode === "quick"
+        ? quickSelections.finishing
+        : selections.finishing;
+    const location =
+      calculationMode === "quick"
+        ? quickSelections.location
+        : selections.location;
 
-    const costs = PRICING_DATA.cost_breakdown_per_sqm[selections.finishing];
+    const costs = PRICING_DATA.cost_breakdown_per_sqm[finishing];
     const baseBreakdownDetails = Object.keys(costs).map((key) => ({
       name: ITEM_TRANSLATIONS[key],
-      cost: costs[key] * finalTotalBUA, // Use the final BUA for calculation
+      cost: costs[key] * finalTotalBUA,
     }));
-    const locationMultiplier =
-      LOCATION_PRICING_FACTORS[selections.location] || 1.0;
+    const locationMultiplier = LOCATION_PRICING_FACTORS[location] || 1.0;
     const adjustedBreakdownDetails = baseBreakdownDetails.map((item) => ({
       ...item,
       cost: item.cost * locationMultiplier,
@@ -909,394 +994,569 @@ const VillaCalculatorPage = () => {
       0
     );
     const finalBreakdownForDisplay = [...adjustedBreakdownDetails];
-    if (totalFixedAddonCost > 0) {
+    if (totalFixedAddonCost > 0)
       finalBreakdownForDisplay.push({
         name: "تكلفة الإضافات الثابتة",
         cost: totalFixedAddonCost,
       });
-    }
     const finalTotalPrice = adjustedConstructionCost + totalFixedAddonCost;
+
     return {
-      totalBUA: finalTotalBUA, // Return the final BUA
+      totalBUA: finalTotalBUA,
       totalPrice: finalTotalPrice,
       breakdownDetails: finalBreakdownForDisplay,
     };
-  }, [selections, extraArea]); // Add extraArea to the dependency array
+  }, [selections, quickSelections, calculationMode, extraArea]);
 
-  const handleSimpleChange = (field, value) =>
-    setSelections((prev) => ({ ...prev, [field]: value }));
-  const handleCheckboxChange = (group, id) =>
-    setSelections((prev) => ({
-      ...prev,
-      [group]: { ...prev[group], [id]: !prev[group][id] },
-    }));
-  const handleRoomCountChange = (id, count) =>
-    setSelections((prev) => ({
-      ...prev,
-      rooms: { ...prev.rooms, [id]: { ...prev.rooms[id], count } },
-    }));
-  const handleRoomDetailChange = (id, i, field, value) => {
-    setSelections((prev) => {
-      const newDetails = [...prev.rooms[id].details];
-      newDetails[i] = {
-        ...newDetails[i],
-        [field]: typeof value === "boolean" ? value : parseFloat(value) || 0,
-      };
-      return {
-        ...prev,
-        rooms: {
-          ...prev.rooms,
-          [id]: { ...prev.rooms[id], details: newDetails },
-        },
-      };
-    });
-  };
-
-  const handleSubmit = () => setShowResults(true);
   const handleReset = () => {
     setShowResults(false);
     setSelections(getInitialState());
-    setExtraArea(0); // Also reset the extra area
+    setQuickSelections({ bua: 500, location: "dubai", finishing: "standard" });
+    setCalculationMode(null);
+    setExtraArea(0);
   };
 
-  const handleExtraAreaChange = (e) => {
+  const handleShowResult = () => setShowResults(true);
+  const handleExtraAreaChange = (e) =>
     setExtraArea(parseFloat(e.target.value) || 0);
+
+  // --- Render Functions ---
+
+  const renderModeSelector = () => (
+    <S_IntroLayout>
+      <S_IntroContent>
+        <S_LogoPlaceholder src="https://i.ibb.co/S71HLHbn/download.png" />
+        <h1>أطلق العنان لمنزل أحلامك</h1>
+        <p>
+          استخدم حاسبة التكاليف التفاعلية الخاصة بنا للحصول على تقدير فوري
+          لتكلفة بناء فيلتك. اختر الطريقة التي تناسبك وابدأ التخطيط اليوم.
+        </p>
+      </S_IntroContent>
+      <S_ModeSelectionArea>
+        <S_ModeChoiceCard onClick={() => setCalculationMode("detailed")}>
+          <div className="icon-title">
+            <FaDraftingCompass />
+            <h3>حساب التكلفة بالتفصيل</h3>
+          </div>
+          <p>
+            أدخل كل التفاصيل بنفسك، من عدد الغرف وأبعادها إلى المرافق الإضافية،
+            للحصول على تقدير دقيق.
+          </p>
+        </S_ModeChoiceCard>
+        <S_ModeChoiceCard onClick={() => setCalculationMode("quick")}>
+          <div className="icon-title">
+            <FaRuler />
+            <h3>حساب التكلفة بالمساحة</h3>
+          </div>
+          <p>
+            لديك مساحة بناء جاهزة؟ أدخلها مباشرة مع الموقع ونوع التشطيب واحصل
+            على تقدير فوري للتكلفة.
+          </p>
+        </S_ModeChoiceCard>
+      </S_ModeSelectionArea>
+    </S_IntroLayout>
+  );
+
+  const renderQuickCalculator = () => (
+    <S_StepContainer>
+      <S_StepHeader>
+        <h1>حساب التكلفة بالمساحة</h1>
+        <p>
+          أدخل المساحة الإجمالية، الموقع، ومستوى التشطيب للحصول على تقدير سريع.
+        </p>
+      </S_StepHeader>
+      <S_StepContent>
+        <S_SubSectionHeader>تفاصيل المشروع</S_SubSectionHeader>
+        <S_InputGroup style={{ maxWidth: "400px", margin: "0 auto 30px" }}>
+          <label>إجمالي مساحة البناء (م²)</label>
+          <input
+            type="number"
+            value={quickSelections.bua}
+            onChange={(e) =>
+              setQuickSelections((s) => ({
+                ...s,
+                bua: parseFloat(e.target.value) || 0,
+              }))
+            }
+          />
+        </S_InputGroup>
+
+        <S_SubSectionHeader>الموقع</S_SubSectionHeader>
+        <S_ChoiceGrid>
+          {Object.keys(LOCATION_PRICING_FACTORS).map((locId) => (
+            <S_ChoiceCard
+              key={locId}
+              active={quickSelections.location === locId}
+              onClick={() =>
+                setQuickSelections((s) => ({ ...s, location: locId }))
+              }
+            >
+              <FaMapMarkerAlt />
+              <h3>
+                {
+                  {
+                    dubai: "دبي",
+                    al_ain: "العين",
+                    abu_dhabi: "أبوظبي",
+                    sharjah: "الشارقة",
+                    ajman: "عجمان",
+                    umm_al_quwain: "أم القيوين",
+                    fujairah: "الفجيرة",
+                    ras_al_khaimah: "رأس الخيمة",
+                  }[locId]
+                }
+              </h3>
+            </S_ChoiceCard>
+          ))}
+        </S_ChoiceGrid>
+
+        <S_SubSectionHeader>مستوى التشطيب</S_SubSectionHeader>
+        <S_ChoiceGrid>
+          {Object.keys(PRICING_DATA.cost_breakdown_per_sqm).map((finId) => (
+            <S_ChoiceCard
+              key={finId}
+              active={quickSelections.finishing === finId}
+              onClick={() =>
+                setQuickSelections((s) => ({ ...s, finishing: finId }))
+              }
+            >
+              <FaStar />
+              <h3>
+                {{ standard: "أساسي", medium: "متوسط", high: "فاخر" }[finId]}
+              </h3>
+            </S_ChoiceCard>
+          ))}
+        </S_ChoiceGrid>
+      </S_StepContent>
+      <S_Navigation>
+        <S_Button className="back" onClick={() => setCalculationMode(null)}>
+          رجوع
+        </S_Button>
+        <S_Button className="next" onClick={handleShowResult}>
+          عرض النتيجة
+        </S_Button>
+      </S_Navigation>
+    </S_StepContainer>
+  );
+
+  const renderDetailedCalculator = () => (
+    <S_StepContainer>
+      <S_StepHeader>
+        <h1 style={{ textAlign: "right" }}>حاسبة تكلفة بناء فيلا</h1>
+        <p style={{ textAlign: "right" }}>
+          أدخل تفاصيل مشروعك للحصول على تقدير فوري للتكلفة.
+        </p>
+      </S_StepHeader>
+      <S_StepContent>
+        {/* --- Section 1: Basic Properties --- */}
+        <S_SubSectionHeader>الخصائص الأساسية</S_SubSectionHeader>
+        <S_ChoiceGrid>
+          {[
+            "abu_dhabi",
+            "dubai",
+            "sharjah",
+            "ajman",
+            "umm_al_quwain",
+            "ras_al_khaimah",
+            "fujairah",
+            "al_ain",
+          ].map((locId) => (
+            <S_ChoiceCard
+              key={locId}
+              active={selections.location === locId}
+              onClick={() => setSelections((s) => ({ ...s, location: locId }))}
+            >
+              <FaMapMarkerAlt />
+              <h3>
+                {
+                  {
+                    abu_dhabi: "أبوظبي",
+                    dubai: "دبي",
+                    sharjah: "الشارقة",
+                    ajman: "عجمان",
+                    umm_al_quwain: "أم القيوين",
+                    ras_al_khaimah: "رأس الخيمة",
+                    fujairah: "الفجيرة",
+                    al_ain: "العين",
+                  }[locId]
+                }
+              </h3>
+            </S_ChoiceCard>
+          ))}
+        </S_ChoiceGrid>
+        <S_SubSectionHeader>الطراز المعماري</S_SubSectionHeader>
+        <S_ChoiceGrid>
+          {[
+            { id: "modern", name: "مودرن" },
+            { id: "neoclassic", name: "نيو كلاسيكي" },
+            { id: "heritage", name: "كلاسيك" },
+          ].map((style) => (
+            <S_ChoiceCard
+              key={style.id}
+              active={selections.designStyle === style.id}
+              onClick={() =>
+                setSelections((s) => ({ ...s, designStyle: style.id }))
+              }
+            >
+              <FaPalette /> <h3>{style.name}</h3>
+            </S_ChoiceCard>
+          ))}
+        </S_ChoiceGrid>
+        <S_SubSectionHeader>مستوى التشطيب</S_SubSectionHeader>
+        <S_ChoiceGrid>
+          {[
+            { id: "standard", name: "أساسي" },
+            { id: "medium", name: "متوسط" },
+            { id: "high", name: "فاخر" },
+          ].map((fin) => (
+            <S_ChoiceCard
+              key={fin.id}
+              active={selections.finishing === fin.id}
+              onClick={() =>
+                setSelections((s) => ({ ...s, finishing: fin.id }))
+              }
+            >
+              <FaStar /> <h3>{fin.name}</h3>
+            </S_ChoiceCard>
+          ))}
+        </S_ChoiceGrid>
+
+        {/* --- Section 2: Rooms and Spaces --- */}
+        <S_SubSectionHeader>الغرف والمساحات</S_SubSectionHeader>
+        {ROOM_CONFIG.map((room) => (
+          <S_RoomSection key={room.id}>
+            <S_RoomHeader>
+              <h3>
+                {room.icon} {room.name}
+              </h3>
+              <S_CountSelector>
+                {room.counts.map((c) => (
+                  <S_CountButton
+                    key={c}
+                    active={selections.rooms[room.id].count === c}
+                    onClick={() =>
+                      setSelections((s) => ({
+                        ...s,
+                        rooms: {
+                          ...s.rooms,
+                          [room.id]: { ...s.rooms[room.id], count: c },
+                        },
+                      }))
+                    }
+                  >
+                    {c}
+                  </S_CountButton>
+                ))}
+              </S_CountSelector>
+            </S_RoomHeader>
+            {selections.rooms[room.id].count > 0 && (
+              <S_RoomDetailsGrid>
+                {Array.from({ length: selections.rooms[room.id].count }).map(
+                  (_, i) => (
+                    <S_RoomDetailCard key={i}>
+                      <h4>
+                        {room.name.replace("ال", "").trim()} {i + 1}
+                      </h4>
+                      <S_InputGrid>
+                        <S_InputGroup>
+                          <label>
+                            <FaExpandArrowsAlt /> العرض (م)
+                          </label>
+                          <input
+                            type="number"
+                            value={selections.rooms[room.id].details[i].w}
+                            onChange={(e) => {
+                              const newDetails = [
+                                ...selections.rooms[room.id].details,
+                              ];
+                              newDetails[i].w = parseFloat(e.target.value) || 0;
+                              setSelections((s) => ({
+                                ...s,
+                                rooms: {
+                                  ...s.rooms,
+                                  [room.id]: {
+                                    ...s.rooms[room.id],
+                                    details: newDetails,
+                                  },
+                                },
+                              }));
+                            }}
+                          />
+                        </S_InputGroup>
+                        <S_InputGroup>
+                          <label>
+                            <FaRulerCombined /> الطول (م)
+                          </label>
+                          <input
+                            type="number"
+                            value={selections.rooms[room.id].details[i].l}
+                            onChange={(e) => {
+                              const newDetails = [
+                                ...selections.rooms[room.id].details,
+                              ];
+                              newDetails[i].l = parseFloat(e.target.value) || 0;
+                              setSelections((s) => ({
+                                ...s,
+                                rooms: {
+                                  ...s.rooms,
+                                  [room.id]: {
+                                    ...s.rooms[room.id],
+                                    details: newDetails,
+                                  },
+                                },
+                              }));
+                            }}
+                          />
+                        </S_InputGroup>
+                      </S_InputGrid>
+                      {room.has_bath && (
+                        <S_ToggleRow>
+                          <span>
+                            <FaRestroom /> إضافة حمام
+                          </span>
+                          <S_ToggleSwitch>
+                            <input
+                              type="checkbox"
+                              checked={
+                                selections.rooms[room.id].details[i].bath
+                              }
+                              onChange={() => {
+                                const newDetails = [
+                                  ...selections.rooms[room.id].details,
+                                ];
+                                newDetails[i].bath = !newDetails[i].bath;
+                                setSelections((s) => ({
+                                  ...s,
+                                  rooms: {
+                                    ...s.rooms,
+                                    [room.id]: {
+                                      ...s.rooms[room.id],
+                                      details: newDetails,
+                                    },
+                                  },
+                                }));
+                              }}
+                            />
+                            <span className="slider"></span>
+                          </S_ToggleSwitch>
+                        </S_ToggleRow>
+                      )}
+                      {room.has_dressing && (
+                        <S_ToggleRow>
+                          <span>
+                            <FaTshirt /> إضافة غرفة ملابس
+                          </span>
+                          <S_ToggleSwitch>
+                            <input
+                              type="checkbox"
+                              checked={
+                                selections.rooms[room.id].details[i].dressing
+                              }
+                              onChange={() => {
+                                const newDetails = [
+                                  ...selections.rooms[room.id].details,
+                                ];
+                                newDetails[i].dressing =
+                                  !newDetails[i].dressing;
+                                setSelections((s) => ({
+                                  ...s,
+                                  rooms: {
+                                    ...s.rooms,
+                                    [room.id]: {
+                                      ...s.rooms[room.id],
+                                      details: newDetails,
+                                    },
+                                  },
+                                }));
+                              }}
+                            />
+                            <span className="slider"></span>
+                          </S_ToggleSwitch>
+                        </S_ToggleRow>
+                      )}
+                    </S_RoomDetailCard>
+                  )
+                )}
+              </S_RoomDetailsGrid>
+            )}
+          </S_RoomSection>
+        ))}
+
+        {/* --- Section 3: Add-ons and Facilities --- */}
+        <S_SubSectionHeader>الإضافات والمرافق</S_SubSectionHeader>
+        <S_ChoiceGrid>
+          {OTHER_ROOMS_CONFIG.map((r) => (
+            <S_ChoiceCard
+              key={r.id}
+              active={selections.otherRooms[r.id]}
+              onClick={() =>
+                setSelections((s) => ({
+                  ...s,
+                  otherRooms: { ...s.otherRooms, [r.id]: !s.otherRooms[r.id] },
+                }))
+              }
+            >
+              {r.icon}
+              <h3>{r.name}</h3>
+            </S_ChoiceCard>
+          ))}
+          <S_ChoiceCard
+            active={selections.basement}
+            onClick={() =>
+              setSelections((s) => ({ ...s, basement: !s.basement }))
+            }
+          >
+            <FaMinus />
+            <h3>سرداب</h3>
+          </S_ChoiceCard>
+        </S_ChoiceGrid>
+        <S_SubSectionHeader>الإضافات الفاخرة</S_SubSectionHeader>
+        <S_ChoiceGrid>
+          {FIXED_COST_ADDONS_CONFIG.map((a) => (
+            <S_ChoiceCard
+              key={a.id}
+              active={selections.fixedAddons[a.id]}
+              onClick={() =>
+                setSelections((s) => ({
+                  ...s,
+                  fixedAddons: {
+                    ...s.fixedAddons,
+                    [a.id]: !s.fixedAddons[a.id],
+                  },
+                }))
+              }
+            >
+              {a.icon}
+              <h3>{a.name}</h3>
+            </S_ChoiceCard>
+          ))}
+        </S_ChoiceGrid>
+        <S_SubSectionHeader>مواقف السيارات</S_SubSectionHeader>
+        <S_ChoiceGrid>
+          {[0, 1, 2, 3, 4].map((c) => (
+            <S_ChoiceCard
+              key={c}
+              active={selections.parking === c}
+              onClick={() => setSelections((s) => ({ ...s, parking: c }))}
+            >
+              <FaCar />
+              <h3>{c}</h3>
+            </S_ChoiceCard>
+          ))}
+        </S_ChoiceGrid>
+      </S_StepContent>
+      <S_Navigation>
+        <S_Button className="back" onClick={() => setCalculationMode(null)}>
+          رجوع
+        </S_Button>
+        <S_Button className="next" onClick={handleShowResult}>
+          عرض النتيجة
+        </S_Button>
+      </S_Navigation>
+    </S_StepContainer>
+  );
+
+  const renderResults = () => {
+    return (
+      <S_ResultsPageWrapper>
+        <S_StepHeader>
+          <h1 style={{ textAlign: "center" }}>هذا هو تقدير التكلفة لمشروعك</h1>
+          <p style={{ maxWidth: "600px", margin: "0 auto" }}>
+            هذا تقدير مبدئي بناءً على اختياراتك. تواصل معنا للحصول على عرض سعر
+            مفصل.
+          </p>
+        </S_StepHeader>
+        <S_ResultsGrid>
+          <S_ResultBox>
+            <span>إجمالي مساحة البناء (BUA)</span>
+            <h2>{calculationResult.totalBUA.toFixed(2)} م²</h2>
+          </S_ResultBox>
+          <S_ResultBox className="primary">
+            <span>التكلفة الإجمالية التقديرية</span>
+            <h2>
+              {Math.round(calculationResult.totalPrice).toLocaleString()} د.إ
+            </h2>
+          </S_ResultBox>
+        </S_ResultsGrid>
+
+        {calculationMode === "detailed" && (
+          <S_ExtraAreaSection>
+            <h4>إضافة مساحة احتياطية</h4>
+            <S_InputGroup>
+              <label>مساحة إضافية (م²)</label>
+              <input
+                type="number"
+                value={extraArea === 0 ? "" : extraArea}
+                onChange={handleExtraAreaChange}
+                placeholder="e.g., 50"
+              />
+            </S_InputGroup>
+          </S_ExtraAreaSection>
+        )}
+
+        <S_BreakdownSection>
+          <S_SubSectionHeader
+            style={{
+              border: "none",
+              margin: "0 0 16px 0",
+              padding: 0,
+              fontSize: "1.4rem",
+            }}
+          >
+            ملخص تفاصيل التكلفة
+          </S_SubSectionHeader>
+          <S_BreakdownLayout>
+            <S_ChartContainer>
+              <CostPieChart
+                breakdownDetails={calculationResult.breakdownDetails}
+              />
+              <S_TotalInChart>
+                <h2>
+                  {Math.round(calculationResult.totalPrice).toLocaleString()}
+                </h2>
+                <span>د.إ</span>
+              </S_TotalInChart>
+            </S_ChartContainer>
+            <S_BreakdownList>
+              {calculationResult.breakdownDetails.map((item, index) => (
+                <S_BreakdownItem key={item.name}>
+                  <div className="label-group">
+                    <S_ColorDot
+                      color={CHART_COLORS[index % CHART_COLORS.length]}
+                    />
+                    <span>{item.name}</span>
+                  </div>
+                  <span className="cost">
+                    {Math.round(item.cost).toLocaleString()} د.إ
+                  </span>
+                </S_BreakdownItem>
+              ))}
+            </S_BreakdownList>
+          </S_BreakdownLayout>
+        </S_BreakdownSection>
+
+        <S_ActionButtonsContainer>
+          <S_Button className="back" onClick={handleReset}>
+            ابدأ من جديد
+          </S_Button>
+          <S_Button className="next" style={{ fontSize: "1.2rem" }}>
+            احجز استشارة مجانية
+          </S_Button>
+        </S_ActionButtonsContainer>
+      </S_ResultsPageWrapper>
+    );
   };
 
   return (
     <S_CalculatorWrapper>
       <S_WizardLayout>
-        {!showResults ? (
-          <S_StepContainer>
-            <S_StepHeader>
-              <h1>حاسبة تكلفة بناء فيلا</h1>
-              <p>أدخل تفاصيل مشروعك للحصول على تقدير فوري للتكلفة.</p>
-            </S_StepHeader>
-            <S_StepContent>
-              {/* --- Section 1: Basic Properties --- */}
-              <S_SubSectionHeader>الخصائص الأساسية</S_SubSectionHeader>
-              <S_ChoiceGrid>
-                {[
-                  { id: "abu_dhabi", name: "أبوظبي" },
-                  { id: "dubai", name: "دبي" },
-                  { id: "sharjah", name: "الشارقة" },
-                  { id: "ajman", name: "عجمان" },
-                  { id: "umm_al_quwain", name: "أم القيوين" },
-                  { id: "ras_al_khaimah", name: "رأس الخيمة" },
-                  { id: "fujairah", name: "الفجيرة" },
-                  { id: "al_ain", name: "العين" },
-                ].map((loc) => (
-                  <S_ChoiceCard
-                    key={loc.id}
-                    active={selections.location === loc.id}
-                    onClick={() => handleSimpleChange("location", loc.id)}
-                  >
-                    <FaMapMarkerAlt />
-                    <h3>{loc.name}</h3>
-                  </S_ChoiceCard>
-                ))}
-              </S_ChoiceGrid>
-              <S_SubSectionHeader>الطراز المعماري</S_SubSectionHeader>
-              <S_ChoiceGrid>
-                {[
-                  { id: "modern", name: "مودرن" },
-                  { id: "neoclassic", name: "نيو كلاسيكي" },
-                  { id: "heritage", name: "كلاسيك" },
-                ].map((style) => (
-                  <S_ChoiceCard
-                    key={style.id}
-                    active={selections.designStyle === style.id}
-                    onClick={() => handleSimpleChange("designStyle", style.id)}
-                  >
-                    <FaPalette />
-                    <h3>{style.name}</h3>
-                  </S_ChoiceCard>
-                ))}
-              </S_ChoiceGrid>
-              <S_SubSectionHeader>مستوى التشطيب</S_SubSectionHeader>
-              <S_ChoiceGrid>
-                {[
-                  { id: "standard", name: "أساسي" },
-                  { id: "medium", name: "متوسط" },
-                  { id: "high", name: "فاخر" },
-                ].map((fin) => (
-                  <S_ChoiceCard
-                    key={fin.id}
-                    active={selections.finishing === fin.id}
-                    onClick={() => handleSimpleChange("finishing", fin.id)}
-                  >
-                    <FaStar />
-                    <h3>{fin.name}</h3>
-                  </S_ChoiceCard>
-                ))}
-              </S_ChoiceGrid>
-
-              {/* --- Section 2: Rooms and Spaces --- */}
-              <S_SubSectionHeader>الغرف والمساحات</S_SubSectionHeader>
-              {ROOM_CONFIG.map((room) => (
-                <S_RoomSection key={room.id}>
-                  <S_RoomHeader>
-                    <h3>
-                      {room.icon} {room.name}
-                    </h3>
-                    <S_CountSelector>
-                      {room.counts.map((c) => (
-                        <S_CountButton
-                          key={c}
-                          active={selections.rooms[room.id].count === c}
-                          onClick={() => handleRoomCountChange(room.id, c)}
-                        >
-                          {c}
-                        </S_CountButton>
-                      ))}
-                    </S_CountSelector>
-                  </S_RoomHeader>
-                  {selections.rooms[room.id].count > 0 && (
-                    <S_RoomDetailsGrid>
-                      {Array.from({
-                        length: selections.rooms[room.id].count,
-                      }).map((_, i) => (
-                        <S_RoomDetailCard key={i}>
-                          <h4>
-                            {room.name.replace("ال", "").trim()} {i + 1}
-                          </h4>
-                          <S_InputGrid>
-                            <S_InputGroup>
-                              <label>
-                                <FaExpandArrowsAlt /> العرض (م)
-                              </label>
-                              <input
-                                type="number"
-                                value={selections.rooms[room.id].details[i].w}
-                                onChange={(e) =>
-                                  handleRoomDetailChange(
-                                    room.id,
-                                    i,
-                                    "w",
-                                    e.target.value
-                                  )
-                                }
-                              />
-                            </S_InputGroup>
-                            <S_InputGroup>
-                              <label>
-                                <FaRulerCombined /> الطول (م)
-                              </label>
-                              <input
-                                type="number"
-                                value={selections.rooms[room.id].details[i].l}
-                                onChange={(e) =>
-                                  handleRoomDetailChange(
-                                    room.id,
-                                    i,
-                                    "l",
-                                    e.target.value
-                                  )
-                                }
-                              />
-                            </S_InputGroup>
-                          </S_InputGrid>
-                          {room.has_bath && (
-                            <S_ToggleRow>
-                              <span>
-                                <FaRestroom /> إضافة حمام
-                              </span>
-                              <S_ToggleSwitch>
-                                <input
-                                  type="checkbox"
-                                  checked={
-                                    selections.rooms[room.id].details[i].bath
-                                  }
-                                  onChange={() =>
-                                    handleRoomDetailChange(
-                                      room.id,
-                                      i,
-                                      "bath",
-                                      !selections.rooms[room.id].details[i].bath
-                                    )
-                                  }
-                                />
-                                <span className="slider"></span>
-                              </S_ToggleSwitch>
-                            </S_ToggleRow>
-                          )}
-                          {room.has_dressing && (
-                            <S_ToggleRow>
-                              <span>
-                                <FaTshirt /> إضافة غرفة ملابس
-                              </span>
-                              <S_ToggleSwitch>
-                                <input
-                                  type="checkbox"
-                                  checked={
-                                    selections.rooms[room.id].details[i]
-                                      .dressing
-                                  }
-                                  onChange={() =>
-                                    handleRoomDetailChange(
-                                      room.id,
-                                      i,
-                                      "dressing",
-                                      !selections.rooms[room.id].details[i]
-                                        .dressing
-                                    )
-                                  }
-                                />
-                                <span className="slider"></span>
-                              </S_ToggleSwitch>
-                            </S_ToggleRow>
-                          )}
-                        </S_RoomDetailCard>
-                      ))}
-                    </S_RoomDetailsGrid>
-                  )}
-                </S_RoomSection>
-              ))}
-
-              {/* --- Section 3: Add-ons and Facilities --- */}
-              <S_SubSectionHeader>الإضافات والمرافق</S_SubSectionHeader>
-              <S_ChoiceGrid>
-                {OTHER_ROOMS_CONFIG.map((r) => (
-                  <S_ChoiceCard
-                    key={r.id}
-                    active={selections.otherRooms[r.id]}
-                    onClick={() => handleCheckboxChange("otherRooms", r.id)}
-                  >
-                    {r.icon}
-                    <h3>{r.name}</h3>
-                  </S_ChoiceCard>
-                ))}
-                <S_ChoiceCard
-                  active={selections.basement}
-                  onClick={() =>
-                    handleSimpleChange("basement", !selections.basement)
-                  }
-                >
-                  <FaMinus />
-                  <h3>سرداب</h3>
-                </S_ChoiceCard>
-              </S_ChoiceGrid>
-              <S_SubSectionHeader>الإضافات الفاخرة</S_SubSectionHeader>
-              <S_ChoiceGrid>
-                {FIXED_COST_ADDONS_CONFIG.map((a) => (
-                  <S_ChoiceCard
-                    key={a.id}
-                    active={selections.fixedAddons[a.id]}
-                    onClick={() => handleCheckboxChange("fixedAddons", a.id)}
-                  >
-                    {a.icon}
-                    <h3>{a.name}</h3>
-                  </S_ChoiceCard>
-                ))}
-              </S_ChoiceGrid>
-              <S_SubSectionHeader>مواقف السيارات</S_SubSectionHeader>
-              <S_ChoiceGrid>
-                {[0, 1, 2, 3, 4].map((c) => (
-                  <S_ChoiceCard
-                    key={c}
-                    active={selections.parking === c}
-                    onClick={() => handleSimpleChange("parking", c)}
-                  >
-                    <FaCar />
-                    <h3>{c}</h3>
-                  </S_ChoiceCard>
-                ))}
-              </S_ChoiceGrid>
-            </S_StepContent>
-            <S_Navigation>
-              <S_Button className="next" onClick={handleSubmit}>
-                عرض النتيجة
-              </S_Button>
-            </S_Navigation>
-          </S_StepContainer>
-        ) : (
-          <S_ResultsPageWrapper>
-            <h1>هذا هو تقدير التكلفة لمشروعك</h1>
-            <p>
-              هذا تقدير مبدئي بناءً على اختياراتك. تواصل معنا للحصول على عرض سعر
-              مفصل.
-            </p>
-            <S_ResultsGrid>
-              <S_ResultBox>
-                <span>إجمالي مساحة البناء (BUA)</span>
-                <h2>{calculationResult.totalBUA.toFixed(2)} م²</h2>
-              </S_ResultBox>
-              <S_ResultBox className="primary">
-                <span>التكلفة الإجمالية التقديرية</span>
-                <h2>
-                  {Math.round(calculationResult.totalPrice).toLocaleString()}{" "}
-                  د.إ
-                </h2>
-              </S_ResultBox>
-            </S_ResultsGrid>
-
-            <S_ExtraAreaSection>
-              <h4>إضافة مساحة احتياطية</h4>
-              <S_InputGroup>
-                <label>مساحة إضافية (م²)</label>
-                <input
-                  type="number"
-                  value={extraArea === 0 ? "" : extraArea}
-                  onChange={handleExtraAreaChange}
-                  placeholder="e.g., 50"
-                />
-              </S_InputGroup>
-            </S_ExtraAreaSection>
-
-            <S_BreakdownSection>
-              <S_SubSectionHeader
-                style={{
-                  border: "none",
-                  margin: "0 0 16px 0",
-                  padding: 0,
-                  fontSize: "1.4rem",
-                }}
-              >
-                ملخص تفاصيل التكلفة
-              </S_SubSectionHeader>
-              <S_BreakdownLayout>
-                <S_ChartContainer>
-                  <CostPieChart
-                    breakdownDetails={calculationResult.breakdownDetails}
-                  />
-                  <S_TotalInChart>
-                    <h2>
-                      {Math.round(
-                        calculationResult.totalPrice
-                      ).toLocaleString()}
-                    </h2>
-                    <span>د.إ</span>
-                  </S_TotalInChart>
-                </S_ChartContainer>
-
-                <S_BreakdownList>
-                  {calculationResult.breakdownDetails.map((item, index) => (
-                    <S_BreakdownItem key={item.name}>
-                      <div className="label-group">
-                        <S_ColorDot
-                          color={CHART_COLORS[index % CHART_COLORS.length]}
-                        />
-                        <span>{item.name}</span>
-                      </div>
-                      <span className="cost">
-                        {Math.round(item.cost).toLocaleString()} د.إ
-                      </span>
-                    </S_BreakdownItem>
-                  ))}
-                </S_BreakdownList>
-              </S_BreakdownLayout>
-            </S_BreakdownSection>
-
-            <S_ActionButtonsContainer>
-              <S_Button className="back" onClick={handleReset}>
-                ابدأ من جديد
-              </S_Button>
-              <S_Button className="next" style={{ fontSize: "1.2rem" }}>
-                احجز استشارة مجانية
-              </S_Button>
-            </S_ActionButtonsContainer>
-          </S_ResultsPageWrapper>
-        )}
+        {!calculationMode
+          ? renderModeSelector()
+          : !showResults
+          ? calculationMode === "detailed"
+            ? renderDetailedCalculator()
+            : renderQuickCalculator()
+          : renderResults()}
       </S_WizardLayout>
     </S_CalculatorWrapper>
   );
