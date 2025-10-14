@@ -652,6 +652,23 @@ const S_ResultBox = styled.div`
     }
   }
 `;
+
+const S_ExtraAreaSection = styled.div`
+  background: var(--bg-light);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 32px auto;
+  text-align: right;
+  max-width: 400px;
+  border: 1px solid var(--border-color);
+
+  h4 {
+    margin: 0 0 16px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+`;
+
 const S_ActionButtonsContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
@@ -845,6 +862,7 @@ const initializeRoomsState = () => {
 const VillaCalculatorPage = () => {
   const [showResults, setShowResults] = useState(false);
   const [selections, setSelections] = useState(getInitialState());
+  const [extraArea, setExtraArea] = useState(0); // State for the extra area
 
   const calculationResult = useMemo(() => {
     let totalCoreArea = 0;
@@ -869,12 +887,16 @@ const VillaCalculatorPage = () => {
     if (selections.basement) {
       totalCoreArea *= PRICING_DATA.factors.basement_multiplier;
     }
-    const totalBUA =
+    const totalBUA_before_buffer =
       totalCoreArea * PRICING_DATA.factors.circulation_multiplier;
+
+    // Add the user-defined extra area to the BUA
+    const finalTotalBUA = totalBUA_before_buffer + extraArea;
+
     const costs = PRICING_DATA.cost_breakdown_per_sqm[selections.finishing];
     const baseBreakdownDetails = Object.keys(costs).map((key) => ({
       name: ITEM_TRANSLATIONS[key],
-      cost: costs[key] * totalBUA,
+      cost: costs[key] * finalTotalBUA, // Use the final BUA for calculation
     }));
     const locationMultiplier =
       LOCATION_PRICING_FACTORS[selections.location] || 1.0;
@@ -895,11 +917,11 @@ const VillaCalculatorPage = () => {
     }
     const finalTotalPrice = adjustedConstructionCost + totalFixedAddonCost;
     return {
-      totalBUA,
+      totalBUA: finalTotalBUA, // Return the final BUA
       totalPrice: finalTotalPrice,
       breakdownDetails: finalBreakdownForDisplay,
     };
-  }, [selections]);
+  }, [selections, extraArea]); // Add extraArea to the dependency array
 
   const handleSimpleChange = (field, value) =>
     setSelections((prev) => ({ ...prev, [field]: value }));
@@ -934,6 +956,11 @@ const VillaCalculatorPage = () => {
   const handleReset = () => {
     setShowResults(false);
     setSelections(getInitialState());
+    setExtraArea(0); // Also reset the extra area
+  };
+
+  const handleExtraAreaChange = (e) => {
+    setExtraArea(parseFloat(e.target.value) || 0);
   };
 
   return (
@@ -1202,6 +1229,19 @@ const VillaCalculatorPage = () => {
                 </h2>
               </S_ResultBox>
             </S_ResultsGrid>
+
+            <S_ExtraAreaSection>
+              <h4>إضافة مساحة احتياطية</h4>
+              <S_InputGroup>
+                <label>مساحة إضافية (م²)</label>
+                <input
+                  type="number"
+                  value={extraArea === 0 ? "" : extraArea}
+                  onChange={handleExtraAreaChange}
+                  placeholder="e.g., 50"
+                />
+              </S_InputGroup>
+            </S_ExtraAreaSection>
 
             <S_BreakdownSection>
               <S_SubSectionHeader
