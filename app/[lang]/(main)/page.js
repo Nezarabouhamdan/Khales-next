@@ -49,7 +49,7 @@ const getHomePageSchema = (lang) => {
       url: baseUrl, // CORRECT: Stays as base URL
       logo: {
         "@type": "ImageObject",
-        url: `${baseUrl}/assets/Khales-Logo.png`,
+        url: `${baseUrl}/assets/Khales Logo K - favicon.png`,
         width: 1200,
         height: 630,
       },
@@ -232,7 +232,7 @@ export async function generateMetadata({ params: { lang } }) {
       type: "website",
       images: [
         {
-          url: `${baseUrl}/assets/Khales-Logo.png`,
+          url: `${baseUrl}/assets/Khales Logo K - favicon.png`,
           width: 1200,
           height: 630,
           alt: "Khales - Project Management & Engineering Consultancy",
@@ -243,7 +243,7 @@ export async function generateMetadata({ params: { lang } }) {
       card: "summary_large_image",
       title,
       description,
-      images: [`${baseUrl}/assets/Khales-Logo.png`],
+      images: [`${baseUrl}/assets/Khales Logo K - favicon.png`],
     },
     alternates: {
       canonical: `/${lang}`,
