@@ -34,6 +34,217 @@ import { GiElevator } from "react-icons/gi";
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+// --- DICTIONARY (LANGUAGES) ---
+const dictionaries = {
+  ar: {
+    // Intro Page
+    introTitle: "أطلق العنان لمنزل أحلامك",
+    introDescription:
+      "استخدم حاسبة التكاليف التفاعلية الخاصة بنا للحصول على تقدير فوري لتكلفة بناء فيلتك. اختر الطريقة التي تناسبك وابدأ التخطيط اليوم.",
+    detailedModeTitle: "حساب التكلفة بالتفصيل",
+    detailedModeDescription:
+      "أدخل كل التفاصيل بنفسك، من عدد الغرف وأبعادها إلى المرافق الإضافية، للحصول على تقدير دقيق.",
+    quickModeTitle: "حساب التكلفة بالمساحة",
+    quickModeDescription:
+      "لديك مساحة بناء جاهزة؟ أدخلها مباشرة مع الموقع ونوع التشطيب واحصل على تقدير فوري للتكلفة.",
+    // Detailed Calculator
+    detailedTitle: "حاسبة تكلفة بناء فيلا",
+    detailedDescription: "أدخل تفاصيل مشروعك للحصول على تقدير فوري للتكلفة.",
+    basicProperties: "الخصائص الأساسية",
+    location: "الموقع",
+    architecturalStyle: "الطراز المعماري",
+    finishingLevel: "مستوى التشطيب",
+    roomsAndSpaces: "الغرف والمساحات",
+    addonsAndFacilities: "الإضافات والمرافق",
+    luxuryAddons: "الإضافات الفاخرة",
+    parking: "مواقف السيارات",
+    // Quick Calculator
+    quickTitle: "حساب التكلفة بالمساحة",
+    quickDescription:
+      "أدخل المساحة الإجمالية، الموقع، ومستوى التشطيب للحصول على تقدير سريع.",
+    projectDetails: "تفاصيل المشروع",
+    totalBUA: "إجمالي مساحة البناء (م²)",
+    // Results Page
+    resultsTitle: "هذا هو تقدير التكلفة لمشروعك",
+    resultsDescription:
+      "هذا تقدير مبدئي بناءً على اختياراتك. تواصل معنا للحصول على عرض سعر مفصل.",
+    totalBUAResult: "إجمالي مساحة البناء (BUA)",
+    totalCostResult: "التكلفة الإجمالية التقديرية",
+    extraAreaSectionTitle: "إضافة مساحة احتياطية",
+    extraAreaLabel: "مساحة إضافية (م²)",
+    costBreakdownTitle: "ملخص تفاصيل التكلفة",
+    // Buttons
+    back: "رجوع",
+    next: "التالي",
+    showResult: "عرض النتيجة",
+    startOver: "ابدأ من جديد",
+    bookConsultation: "احجز استشارة مجانية",
+    // Options
+    locations: {
+      abu_dhabi: "أبوظبي",
+      dubai: "دبي",
+      sharjah: "الشارقة",
+      ajman: "عجمان",
+      umm_al_quwain: "أم القيوين",
+      ras_al_khaimah: "رأس الخيمة",
+      fujairah: "الفجيرة",
+      al_ain: "العين",
+    },
+    styles: { modern: "مودرن", neoclassic: "نيو كلاسيكي", heritage: "كلاسيك" },
+    finishings: { standard: "أساسي", medium: "متوسط", high: "فاخر" },
+    // Rooms & Addons Text
+    roomNames: {
+      bedroom: "غرف النوم",
+      majlis: "المجلس",
+      living: "غرف المعيشة",
+      kitchen: "المطبخ",
+      dining: "غرفة الطعام",
+      guest_bedroom: "غرفة نوم الضيوف",
+    },
+    otherRoomNames: {
+      maid_room: "غرفة خادمة",
+      staircase_room: "غرفة درج",
+      storage_room: "غرفة تخزين",
+      prep_kitchen: "مطبخ تحضيري",
+      driver_room: "غرفة للسائق",
+    },
+    fixedAddonNames: {
+      pool: "مسبح",
+      office: "مكتب",
+      elevator: "مصعد",
+      cinema: "صالة سينما",
+      gym: "صالة رياضية",
+    },
+    addBathroom: "إضافة حمام",
+    addDressingRoom: "إضافة غرفة ملابس",
+    widthLabel: "العرض (م)",
+    lengthLabel: "الطول (م)",
+    basement: "سرداب",
+    // Cost Breakdown Items
+    itemTranslations: {
+      preparatory: "الأعمال التمهيدية",
+      excavation_substructure: "أعمال الحفر والبنية التحتية ( الأساسات )",
+      superstructure: "أعمال الهيكل العلوي",
+      blockwork: "أعمال البناء",
+      waterproofing: "أعمال العزل المائي",
+      main_finishing: "أعمال التشطيب",
+      carpentry: "أعمال النجارة",
+      aluminum_glass: "أعمال الألمنيوم والزجاج",
+      electrical: "أعمال الكهرباء",
+      hvac: "أعمال التكييف",
+      plumbing: "أعمال السباكة",
+      external_works: "الأعمال الخارجية",
+      contingencies: "نفقات غير متوقّعة",
+      consultant_fees: "أتعاب الاستشاري",
+      fixed_addons_cost: "تكلفة الإضافات الثابتة",
+    },
+  },
+  en: {
+    // Intro Page
+    introTitle: "Unlock Your Dream Home",
+    introDescription:
+      "Use our interactive cost calculator to get an instant estimate for your villa. Choose the method that suits you and start planning today.",
+    detailedModeTitle: "Detailed Cost Calculation",
+    detailedModeDescription:
+      "Enter all the details yourself, from the number and dimensions of rooms to additional facilities, for an accurate estimate.",
+    quickModeTitle: "Cost Calculation by Area",
+    quickModeDescription:
+      "Have a total area in mind? Enter it directly with the location and finishing type for a quick cost estimate.",
+    // Detailed Calculator
+    detailedTitle: "Villa Construction Cost Calculator",
+    detailedDescription:
+      "Enter your project details to get an instant cost estimate.",
+    basicProperties: "Basic Properties",
+    location: "Location",
+    architecturalStyle: "Architectural Style",
+    finishingLevel: "Finishing Level",
+    roomsAndSpaces: "Rooms & Spaces",
+    addonsAndFacilities: "Add-ons & Facilities",
+    luxuryAddons: "Luxury Add-ons",
+    parking: "Parking",
+    // Quick Calculator
+    quickTitle: "Calculate Cost by Area",
+    quickDescription:
+      "Enter the total area, location, and finishing level for a quick estimate.",
+    projectDetails: "Project Details",
+    totalBUA: "Total Built-Up Area (m²)",
+    // Results Page
+    resultsTitle: "Here is the Cost Estimate for Your Project",
+    resultsDescription:
+      "This is a preliminary estimate based on your choices. Contact us for a detailed quotation.",
+    totalBUAResult: "Total Built-Up Area (BUA)",
+    totalCostResult: "Estimated Total Cost",
+    extraAreaSectionTitle: "Add a Safety Margin",
+    extraAreaLabel: "Additional Area (m²)",
+    costBreakdownTitle: "Cost Breakdown Summary",
+    // Buttons
+    back: "Back",
+    next: "Next",
+    showResult: "Show Result",
+    startOver: "Start Over",
+    bookConsultation: "Book a Free Consultation",
+    // Options
+    locations: {
+      abu_dhabi: "Abu Dhabi",
+      dubai: "Dubai",
+      sharjah: "Sharjah",
+      ajman: "Ajman",
+      umm_al_quwain: "Umm Al Quwain",
+      ras_al_khaimah: "Ras Al Khaimah",
+      fujairah: "Fujairah",
+      al_ain: "Al Ain",
+    },
+    styles: { modern: "Modern", neoclassic: "Neoclassic", heritage: "Classic" },
+    finishings: { standard: "Standard", medium: "Medium", high: "High-End" },
+    // Rooms & Addons Text
+    roomNames: {
+      bedroom: "Bedrooms",
+      majlis: "Majlis",
+      living: "Living Rooms",
+      kitchen: "Kitchen",
+      dining: "Dining Room",
+      guest_bedroom: "Guest Bedroom",
+    },
+    otherRoomNames: {
+      maid_room: "Maid Room",
+      staircase_room: "Staircase Room",
+      storage_room: "Storage Room",
+      prep_kitchen: "Prep Kitchen",
+      driver_room: "Driver Room",
+    },
+    fixedAddonNames: {
+      pool: "Pool",
+      office: "Office",
+      elevator: "Elevator",
+      cinema: "Cinema",
+      gym: "Gym",
+    },
+    addBathroom: "Add Bathroom",
+    addDressingRoom: "Add Dressing Room",
+    widthLabel: "Width (m)",
+    lengthLabel: "Length (m)",
+    basement: "Basement",
+    // Cost Breakdown Items
+    itemTranslations: {
+      preparatory: "Preparatory Works",
+      excavation_substructure: "Excavation & Substructure",
+      superstructure: "Superstructure Works",
+      blockwork: "Blockwork",
+      waterproofing: "Waterproofing",
+      main_finishing: "Finishing Works",
+      carpentry: "Carpentry Works",
+      aluminum_glass: "Aluminum & Glass",
+      electrical: "Electrical Works",
+      hvac: "HVAC Works",
+      plumbing: "Plumbing Works",
+      external_works: "External Works",
+      contingencies: "Contingencies",
+      consultant_fees: "Consultant Fees",
+      fixed_addons_cost: "Fixed Add-ons Cost",
+    },
+  },
+};
+
 // --- CONFIGURATION DATA (Constants) ---
 const PRICING_DATA = {
   factors: { circulation_multiplier: 1.4, basement_multiplier: 1.35 },
@@ -102,7 +313,6 @@ const LOCATION_PRICING_FACTORS = {
 const ROOM_CONFIG = [
   {
     id: "bedroom",
-    name: "غرف النوم",
     counts: [1, 2, 3, 4, 5, 6, 7, 8],
     default: 1,
     has_bath: true,
@@ -113,7 +323,6 @@ const ROOM_CONFIG = [
   },
   {
     id: "majlis",
-    name: "المجلس",
     counts: [1, 2, 3],
     default: 1,
     has_bath: true,
@@ -124,7 +333,6 @@ const ROOM_CONFIG = [
   },
   {
     id: "living",
-    name: "غرف المعيشة",
     counts: [1, 2, 3],
     default: 1,
     has_bath: false,
@@ -135,7 +343,6 @@ const ROOM_CONFIG = [
   },
   {
     id: "kitchen",
-    name: "المطبخ",
     counts: [1, 2],
     default: 1,
     has_bath: false,
@@ -146,7 +353,6 @@ const ROOM_CONFIG = [
   },
   {
     id: "dining",
-    name: "غرفة الطعام",
     counts: [0, 1, 2, 3],
     default: 0,
     has_bath: false,
@@ -157,7 +363,6 @@ const ROOM_CONFIG = [
   },
   {
     id: "guest_bedroom",
-    name: "غرفة نوم الضيوف",
     counts: [0, 1, 2],
     default: 0,
     has_bath: true,
@@ -168,53 +373,19 @@ const ROOM_CONFIG = [
   },
 ];
 const OTHER_ROOMS_CONFIG = [
-  { id: "maid_room", name: "غرفة خادمة", area: 12, icon: <FaPlus /> },
-  { id: "staircase_room", name: "غرفة درج", area: 20, icon: <FaStairs /> },
-  { id: "storage_room", name: "غرفة تخزين", area: 5, icon: <FaWarehouse /> },
-  { id: "prep_kitchen", name: "مطبخ تحضيري", area: 20, icon: <FaUtensils /> },
-  { id: "driver_room", name: "غرفة للسائق", area: 20, icon: <FaCar /> },
+  { id: "maid_room", area: 12, icon: <FaPlus /> },
+  { id: "staircase_room", area: 20, icon: <FaStairs /> },
+  { id: "storage_room", area: 5, icon: <FaWarehouse /> },
+  { id: "prep_kitchen", area: 20, icon: <FaUtensils /> },
+  { id: "driver_room", area: 20, icon: <FaCar /> },
 ];
 const FIXED_COST_ADDONS_CONFIG = [
-  {
-    id: "pool",
-    name: "مسبح",
-    area: 45,
-    cost: 228000,
-    icon: <FaSwimmingPool />,
-  },
-  { id: "office", name: "مكتب", area: 20, cost: 38597, icon: <FaBuilding /> },
-  { id: "elevator", name: "مصعد", area: 6, cost: 133380, icon: <GiElevator /> },
-  {
-    id: "cinema",
-    name: "صالة سينما",
-    area: 20,
-    cost: 78444,
-    icon: <FaVideo />,
-  },
-  {
-    id: "gym",
-    name: "صالة رياضية",
-    area: 20,
-    cost: 56919,
-    icon: <FaDumbbell />,
-  },
+  { id: "pool", area: 45, cost: 228000, icon: <FaSwimmingPool /> },
+  { id: "office", area: 20, cost: 38597, icon: <FaBuilding /> },
+  { id: "elevator", area: 6, cost: 133380, icon: <GiElevator /> },
+  { id: "cinema", area: 20, cost: 78444, icon: <FaVideo /> },
+  { id: "gym", area: 20, cost: 56919, icon: <FaDumbbell /> },
 ];
-const ITEM_TRANSLATIONS = {
-  preparatory: "الأعمال التمهيدية",
-  excavation_substructure: "أعمال الحفر والبنية التحتية ( الأساسات )",
-  superstructure: "أعمال الهيكل العلوي",
-  blockwork: "أعمال البناء",
-  waterproofing: "أعمال العزل المائي",
-  main_finishing: "أعمال التشطيب",
-  carpentry: "أعمال النجارة",
-  aluminum_glass: "أعمال الألمنيوم والزجاج",
-  electrical: "أعمال الكهرباء",
-  hvac: "أعمال التكييف",
-  plumbing: "أعمال السباكة",
-  external_works: "الأعمال الخارجية",
-  contingencies: "نفقات غير متوقّعة",
-  consultant_fees: "أتعاب الاستشاري",
-};
 const CHART_COLORS = [
   "#8DC63F",
   "#F9A825",
@@ -251,7 +422,7 @@ const S_CalculatorWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   padding: 50px 16px;
-  direction: rtl;
+  direction: ${(props) => (props.isRTL ? "rtl" : "ltr")};
   @media (min-width: 768px) {
     align-items: center;
     padding: 100px 20px;
@@ -280,7 +451,7 @@ const S_StepContent = styled.div`
   padding: 10px 0;
 `;
 const S_StepHeader = styled.div`
-  text-align: right;
+  text-align: ${(props) => (props.isRTL ? "right" : "left")};
   margin-bottom: 32px;
   h1 {
     font-size: 1.8rem;
@@ -307,7 +478,7 @@ const S_SubSectionHeader = styled.h3`
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-dark);
-  text-align: right;
+  text-align: ${(props) => (props.isRTL ? "right" : "left")};
   margin-top: 32px;
   margin-bottom: 16px;
   padding-bottom: 8px;
@@ -421,7 +592,7 @@ const S_RoomHeader = styled.div`
   h3 {
     margin: 0;
     font-size: 1.2rem;
-    text-align: right;
+    text-align: ${(props) => (props.isRTL ? "right" : "left")};
     display: flex;
     align-items: center;
     gap: 10px;
@@ -474,7 +645,7 @@ const S_RoomDetailCard = styled.div`
     font-weight: 800;
     font-size: 1.2rem;
     margin: 0 0 24px 0;
-    text-align: right;
+    text-align: ${(props) => (props.isRTL ? "right" : "left")};
   }
 `;
 const S_InputGrid = styled.div`
@@ -495,7 +666,7 @@ const S_InputGroup = styled.div`
     font-weight: 500;
     color: var(--text-dark);
     margin-bottom: 8px;
-    text-align: right;
+    text-align: ${(props) => (props.isRTL ? "right" : "left")};
   }
   input {
     width: 100%;
@@ -503,7 +674,7 @@ const S_InputGroup = styled.div`
     border-radius: 10px;
     border: 1px solid var(--border-color);
     background-color: var(--bg-white);
-    text-align: right;
+    text-align: ${(props) => (props.isRTL ? "right" : "left")};
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.2s ease;
@@ -555,7 +726,8 @@ const S_ToggleSwitch = styled.label`
       content: "";
       height: 18px;
       width: 18px;
-      left: 4px;
+      left: ${(props) => (props.isRTL ? "auto" : "4px")};
+      right: ${(props) => (props.isRTL ? "4px" : "auto")};
       bottom: 4px;
       background-color: white;
       transition: 0.4s;
@@ -566,7 +738,8 @@ const S_ToggleSwitch = styled.label`
     background-color: var(--primary-color);
   }
   input:checked + .slider:before {
-    transform: translateX(20px);
+    transform: ${(props) =>
+      props.isRTL ? "translateX(-20px)" : "translateX(20px)"};
   }
 `;
 const S_ResultsPageWrapper = styled.div`
@@ -623,7 +796,7 @@ const S_ExtraAreaSection = styled.div`
   border-radius: 16px;
   padding: 24px;
   margin: 32px auto;
-  text-align: right;
+  text-align: ${(props) => (props.isRTL ? "right" : "left")};
   max-width: 400px;
   border: 1px solid var(--border-color);
   h4 {
@@ -648,7 +821,7 @@ const S_BreakdownSection = styled.div`
   border-radius: 16px;
   padding: 16px;
   margin-top: 32px;
-  text-align: right;
+  text-align: ${(props) => (props.isRTL ? "right" : "left")};
   @media (min-width: 768px) {
     padding: 32px;
     margin-top: 40px;
@@ -725,6 +898,7 @@ const S_BreakdownItem = styled.div`
     align-items: center;
     gap: 12px;
     margin-bottom: 16px;
+    text-align: ${(props) => (props.isRTL ? "right" : "left")};
   }
   .label-group span {
     font-weight: 500;
@@ -735,7 +909,7 @@ const S_BreakdownItem = styled.div`
     font-weight: 700;
     color: var(--text-dark);
     direction: ltr;
-    text-align: right;
+    text-align: ${(props) => (props.isRTL ? "right" : "left")};
     margin-top: auto;
     padding-top: 10px;
     border-top: 1px solid var(--border-color);
@@ -751,34 +925,28 @@ const S_ColorDot = styled.div`
   flex-shrink: 0;
   background-color: ${(props) => props.color};
 `;
-
-// --- NEW STYLES FOR INTRO PAGE ---
 const S_IntroLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
   animation: ${fadeIn} 0.6s ease-out forwards;
   min-height: 60vh;
-
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
   }
 `;
-
 const S_IntroContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: right;
+  text-align: ${(props) => (props.isRTL ? "right" : "left")};
   padding: 2rem;
   border-radius: 20px;
   background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
-
   @media (max-width: 991px) {
     text-align: center;
     align-items: center;
   }
-
   h1 {
     font-size: 2.5rem;
     font-weight: 800;
@@ -786,23 +954,21 @@ const S_IntroContent = styled.div`
     line-height: 1.2;
     margin-bottom: 1rem;
   }
-
   p {
     font-size: 1.1rem;
     color: var(--text-light);
     line-height: 1.7;
     margin-bottom: 2rem;
+    max-width: 500px;
   }
 `;
-
 const S_LogoPlaceholder = styled.img`
   width: 70px;
   height: 70px;
-  background-color: var(--border-color);
   border-radius: 16px;
   margin-bottom: 1.5rem;
+  object-fit: contain;
 `;
-
 const S_ModeSelectionArea = styled.div`
   display: flex;
   flex-direction: column;
@@ -816,7 +982,7 @@ const S_ModeChoiceCard = styled.div`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   background-color: transparent;
-  text-align: right;
+  text-align: ${(props) => (props.isRTL ? "right" : "left")};
   .icon-title {
     display: flex;
     align-items: center;
@@ -840,7 +1006,6 @@ const S_ModeChoiceCard = styled.div`
     color: var(--text-light);
     line-height: 1.6;
   }
-
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.07);
@@ -848,8 +1013,12 @@ const S_ModeChoiceCard = styled.div`
   }
 `;
 
+// --- Helper function to get dictionary ---
+// In a real app, this would be your `get-dictionary.js`
+const getDictionary = (lang) => dictionaries[lang] || dictionaries.en;
+
 // --- Reusable Components ---
-const CostPieChart = ({ breakdownDetails }) => {
+const CostPieChart = ({ breakdownDetails, isRTL }) => {
   const data = {
     labels: breakdownDetails.map((item) => item.name),
     datasets: [
@@ -868,13 +1037,13 @@ const CostPieChart = ({ breakdownDetails }) => {
     plugins: {
       legend: { display: false },
       tooltip: {
-        rtl: true,
-        textDirection: "rtl",
+        rtl: isRTL,
+        textDirection: isRTL ? "rtl" : "ltr",
         callbacks: {
           label: (context) =>
             `${context.label || ""}: ${Math.round(
               context.parsed || 0
-            ).toLocaleString()} د.إ`,
+            ).toLocaleString()} ${isRTL ? "د.إ" : "AED"}`,
         },
       },
     },
@@ -915,9 +1084,10 @@ const initializeRoomsState = () => {
   return state;
 };
 
-// --- Main Component ---
-const VillaCalculatorPage = () => {
-  const [calculationMode, setCalculationMode] = useState(null); // 'detailed' or 'quick'
+// --- Client Component ---
+function VillaCalculatorClient({ lang, dictionary }) {
+  const isRTL = lang === "ar";
+  const [calculationMode, setCalculationMode] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [selections, setSelections] = useState(getInitialState());
   const [quickSelections, setQuickSelections] = useState({
@@ -972,7 +1142,7 @@ const VillaCalculatorPage = () => {
 
     const costs = PRICING_DATA.cost_breakdown_per_sqm[finishing];
     const baseBreakdownDetails = Object.keys(costs).map((key) => ({
-      name: ITEM_TRANSLATIONS[key],
+      name: dictionary.itemTranslations[key],
       cost: costs[key] * finalTotalBUA,
     }));
     const locationMultiplier = LOCATION_PRICING_FACTORS[location] || 1.0;
@@ -987,7 +1157,7 @@ const VillaCalculatorPage = () => {
     const finalBreakdownForDisplay = [...adjustedBreakdownDetails];
     if (totalFixedAddonCost > 0)
       finalBreakdownForDisplay.push({
-        name: "تكلفة الإضافات الثابتة",
+        name: dictionary.itemTranslations.fixed_addons_cost,
         cost: totalFixedAddonCost,
       });
     const finalTotalPrice = adjustedConstructionCost + totalFixedAddonCost;
@@ -997,7 +1167,7 @@ const VillaCalculatorPage = () => {
       totalPrice: finalTotalPrice,
       breakdownDetails: finalBreakdownForDisplay,
     };
-  }, [selections, quickSelections, calculationMode, extraArea]);
+  }, [selections, quickSelections, calculationMode, extraArea, dictionary]);
 
   const handleReset = () => {
     setShowResults(false);
@@ -1015,34 +1185,31 @@ const VillaCalculatorPage = () => {
 
   const renderModeSelector = () => (
     <S_IntroLayout>
-      <S_IntroContent>
+      <S_IntroContent isRTL={isRTL}>
         <S_LogoPlaceholder src="https://i.ibb.co/S71HLHbn/download.png" />
-        <h1>أطلق العنان لمنزل أحلامك</h1>
-        <p>
-          استخدم حاسبة التكاليف التفاعلية الخاصة بنا للحصول على تقدير فوري
-          لتكلفة بناء فيلتك. اختر الطريقة التي تناسبك وابدأ التخطيط اليوم.
-        </p>
+        <h1>{dictionary.introTitle}</h1>
+        <p>{dictionary.introDescription}</p>
       </S_IntroContent>
       <S_ModeSelectionArea>
-        <S_ModeChoiceCard onClick={() => setCalculationMode("detailed")}>
+        <S_ModeChoiceCard
+          isRTL={isRTL}
+          onClick={() => setCalculationMode("detailed")}
+        >
           <div className="icon-title">
             <FaDraftingCompass />
-            <h3>حساب التكلفة بالتفصيل</h3>
+            <h3>{dictionary.detailedModeTitle}</h3>
           </div>
-          <p>
-            أدخل كل التفاصيل بنفسك، من عدد الغرف وأبعادها إلى المرافق الإضافية،
-            للحصول على تقدير دقيق.
-          </p>
+          <p>{dictionary.detailedModeDescription}</p>
         </S_ModeChoiceCard>
-        <S_ModeChoiceCard onClick={() => setCalculationMode("quick")}>
+        <S_ModeChoiceCard
+          isRTL={isRTL}
+          onClick={() => setCalculationMode("quick")}
+        >
           <div className="icon-title">
             <FaRuler />
-            <h3>حساب التكلفة بالمساحة</h3>
+            <h3>{dictionary.quickModeTitle}</h3>
           </div>
-          <p>
-            لديك مساحة بناء جاهزة؟ أدخلها مباشرة مع الموقع ونوع التشطيب واحصل
-            على تقدير فوري للتكلفة.
-          </p>
+          <p>{dictionary.quickModeDescription}</p>
         </S_ModeChoiceCard>
       </S_ModeSelectionArea>
     </S_IntroLayout>
@@ -1050,16 +1217,19 @@ const VillaCalculatorPage = () => {
 
   const renderQuickCalculator = () => (
     <S_StepContainer>
-      <S_StepHeader>
-        <h1>حساب التكلفة بالمساحة</h1>
-        <p>
-          أدخل المساحة الإجمالية، الموقع، ومستوى التشطيب للحصول على تقدير سريع.
-        </p>
+      <S_StepHeader isRTL={isRTL}>
+        <h1>{dictionary.quickTitle}</h1>
+        <p>{dictionary.quickDescription}</p>
       </S_StepHeader>
       <S_StepContent>
-        <S_SubSectionHeader>تفاصيل المشروع</S_SubSectionHeader>
-        <S_InputGroup style={{ maxWidth: "400px", margin: "0 auto 30px" }}>
-          <label>إجمالي مساحة البناء (م²)</label>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.projectDetails}
+        </S_SubSectionHeader>
+        <S_InputGroup
+          isRTL={isRTL}
+          style={{ maxWidth: "400px", margin: "0 auto 30px" }}
+        >
+          <label>{dictionary.totalBUA}</label>
           <input
             type="number"
             value={quickSelections.bua}
@@ -1072,7 +1242,9 @@ const VillaCalculatorPage = () => {
           />
         </S_InputGroup>
 
-        <S_SubSectionHeader>الموقع</S_SubSectionHeader>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.location}
+        </S_SubSectionHeader>
         <S_ChoiceGrid>
           {Object.keys(LOCATION_PRICING_FACTORS).map((locId) => (
             <S_ChoiceCard
@@ -1083,25 +1255,14 @@ const VillaCalculatorPage = () => {
               }
             >
               <FaMapMarkerAlt />
-              <h3>
-                {
-                  {
-                    dubai: "دبي",
-                    al_ain: "العين",
-                    abu_dhabi: "أبوظبي",
-                    sharjah: "الشارقة",
-                    ajman: "عجمان",
-                    umm_al_quwain: "أم القيوين",
-                    fujairah: "الفجيرة",
-                    ras_al_khaimah: "رأس الخيمة",
-                  }[locId]
-                }
-              </h3>
+              <h3>{dictionary.locations[locId]}</h3>
             </S_ChoiceCard>
           ))}
         </S_ChoiceGrid>
 
-        <S_SubSectionHeader>مستوى التشطيب</S_SubSectionHeader>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.finishingLevel}
+        </S_SubSectionHeader>
         <S_ChoiceGrid>
           {Object.keys(PRICING_DATA.cost_breakdown_per_sqm).map((finId) => (
             <S_ChoiceCard
@@ -1112,19 +1273,17 @@ const VillaCalculatorPage = () => {
               }
             >
               <FaStar />
-              <h3>
-                {{ standard: "أساسي", medium: "متوسط", high: "فاخر" }[finId]}
-              </h3>
+              <h3>{dictionary.finishings[finId]}</h3>
             </S_ChoiceCard>
           ))}
         </S_ChoiceGrid>
       </S_StepContent>
       <S_Navigation>
         <S_Button className="back" onClick={() => setCalculationMode(null)}>
-          رجوع
+          {dictionary.back}
         </S_Button>
         <S_Button className="next" onClick={handleShowResult}>
-          عرض النتيجة
+          {dictionary.showResult}
         </S_Button>
       </S_Navigation>
     </S_StepContainer>
@@ -1132,93 +1291,67 @@ const VillaCalculatorPage = () => {
 
   const renderDetailedCalculator = () => (
     <S_StepContainer>
-      <S_StepHeader>
-        <h1 style={{ textAlign: "right" }}>حاسبة تكلفة بناء فيلا</h1>
-        <p style={{ textAlign: "right" }}>
-          أدخل تفاصيل مشروعك للحصول على تقدير فوري للتكلفة.
-        </p>
+      <S_StepHeader isRTL={isRTL}>
+        <h1>{dictionary.detailedTitle}</h1>
+        <p>{dictionary.detailedDescription}</p>
       </S_StepHeader>
       <S_StepContent>
         {/* --- Section 1: Basic Properties --- */}
-        <S_SubSectionHeader>الخصائص الأساسية</S_SubSectionHeader>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.basicProperties}
+        </S_SubSectionHeader>
         <S_ChoiceGrid>
-          {[
-            "abu_dhabi",
-            "dubai",
-            "sharjah",
-            "ajman",
-            "umm_al_quwain",
-            "ras_al_khaimah",
-            "fujairah",
-            "al_ain",
-          ].map((locId) => (
+          {Object.keys(LOCATION_PRICING_FACTORS).map((locId) => (
             <S_ChoiceCard
               key={locId}
               active={selections.location === locId}
               onClick={() => setSelections((s) => ({ ...s, location: locId }))}
             >
               <FaMapMarkerAlt />
-              <h3>
-                {
-                  {
-                    abu_dhabi: "أبوظبي",
-                    dubai: "دبي",
-                    sharjah: "الشارقة",
-                    ajman: "عجمان",
-                    umm_al_quwain: "أم القيوين",
-                    ras_al_khaimah: "رأس الخيمة",
-                    fujairah: "الفجيرة",
-                    al_ain: "العين",
-                  }[locId]
-                }
-              </h3>
+              <h3>{dictionary.locations[locId]}</h3>
             </S_ChoiceCard>
           ))}
         </S_ChoiceGrid>
-        <S_SubSectionHeader>الطراز المعماري</S_SubSectionHeader>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.architecturalStyle}
+        </S_SubSectionHeader>
         <S_ChoiceGrid>
-          {[
-            { id: "modern", name: "مودرن" },
-            { id: "neoclassic", name: "نيو كلاسيكي" },
-            { id: "heritage", name: "كلاسيك" },
-          ].map((style) => (
+          {Object.keys(dictionary.styles).map((styleId) => (
             <S_ChoiceCard
-              key={style.id}
-              active={selections.designStyle === style.id}
+              key={styleId}
+              active={selections.designStyle === styleId}
               onClick={() =>
-                setSelections((s) => ({ ...s, designStyle: style.id }))
+                setSelections((s) => ({ ...s, designStyle: styleId }))
               }
             >
-              <FaPalette /> <h3>{style.name}</h3>
+              <FaPalette /> <h3>{dictionary.styles[styleId]}</h3>
             </S_ChoiceCard>
           ))}
         </S_ChoiceGrid>
-        <S_SubSectionHeader>مستوى التشطيب</S_SubSectionHeader>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.finishingLevel}
+        </S_SubSectionHeader>
         <S_ChoiceGrid>
-          {[
-            { id: "standard", name: "أساسي" },
-            { id: "medium", name: "متوسط" },
-            { id: "high", name: "فاخر" },
-          ].map((fin) => (
+          {Object.keys(dictionary.finishings).map((finId) => (
             <S_ChoiceCard
-              key={fin.id}
-              active={selections.finishing === fin.id}
-              onClick={() =>
-                setSelections((s) => ({ ...s, finishing: fin.id }))
-              }
+              key={finId}
+              active={selections.finishing === finId}
+              onClick={() => setSelections((s) => ({ ...s, finishing: finId }))}
             >
-              <FaStar /> <h3>{fin.name}</h3>
+              <FaStar /> <h3>{dictionary.finishings[finId]}</h3>
             </S_ChoiceCard>
           ))}
         </S_ChoiceGrid>
 
         {/* --- Section 2: Rooms and Spaces --- */}
-        <S_SubSectionHeader>الغرف والمساحات</S_SubSectionHeader>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.roomsAndSpaces}
+        </S_SubSectionHeader>
         {ROOM_CONFIG.map((room) => (
           <S_RoomSection key={room.id}>
-            <S_RoomHeader>
+            <S_RoomHeader isRTL={isRTL}>
               <h3>
-                {room.icon} {room.name}
+                {room.icon} {dictionary.roomNames[room.id]}
               </h3>
               <S_CountSelector>
                 {room.counts.map((c) => (
@@ -1244,14 +1377,14 @@ const VillaCalculatorPage = () => {
               <S_RoomDetailsGrid>
                 {Array.from({ length: selections.rooms[room.id].count }).map(
                   (_, i) => (
-                    <S_RoomDetailCard key={i}>
+                    <S_RoomDetailCard key={i} isRTL={isRTL}>
                       <h4>
-                        {room.name.replace("ال", "").trim()} {i + 1}
+                        {dictionary.roomNames[room.id]} {i + 1}
                       </h4>
                       <S_InputGrid>
-                        <S_InputGroup>
+                        <S_InputGroup isRTL={isRTL}>
                           <label>
-                            <FaExpandArrowsAlt /> العرض (م)
+                            <FaExpandArrowsAlt /> {dictionary.widthLabel}
                           </label>
                           <input
                             type="number"
@@ -1274,9 +1407,9 @@ const VillaCalculatorPage = () => {
                             }}
                           />
                         </S_InputGroup>
-                        <S_InputGroup>
+                        <S_InputGroup isRTL={isRTL}>
                           <label>
-                            <FaRulerCombined /> الطول (م)
+                            <FaRulerCombined /> {dictionary.lengthLabel}
                           </label>
                           <input
                             type="number"
@@ -1303,9 +1436,9 @@ const VillaCalculatorPage = () => {
                       {room.has_bath && (
                         <S_ToggleRow>
                           <span>
-                            <FaRestroom /> إضافة حمام
+                            <FaRestroom /> {dictionary.addBathroom}
                           </span>
-                          <S_ToggleSwitch>
+                          <S_ToggleSwitch isRTL={isRTL}>
                             <input
                               type="checkbox"
                               checked={
@@ -1335,9 +1468,9 @@ const VillaCalculatorPage = () => {
                       {room.has_dressing && (
                         <S_ToggleRow>
                           <span>
-                            <FaTshirt /> إضافة غرفة ملابس
+                            <FaTshirt /> {dictionary.addDressingRoom}
                           </span>
-                          <S_ToggleSwitch>
+                          <S_ToggleSwitch isRTL={isRTL}>
                             <input
                               type="checkbox"
                               checked={
@@ -1374,7 +1507,9 @@ const VillaCalculatorPage = () => {
         ))}
 
         {/* --- Section 3: Add-ons and Facilities --- */}
-        <S_SubSectionHeader>الإضافات والمرافق</S_SubSectionHeader>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.addonsAndFacilities}
+        </S_SubSectionHeader>
         <S_ChoiceGrid>
           {OTHER_ROOMS_CONFIG.map((r) => (
             <S_ChoiceCard
@@ -1388,7 +1523,7 @@ const VillaCalculatorPage = () => {
               }
             >
               {r.icon}
-              <h3>{r.name}</h3>
+              <h3>{dictionary.otherRoomNames[r.id]}</h3>
             </S_ChoiceCard>
           ))}
           <S_ChoiceCard
@@ -1398,10 +1533,12 @@ const VillaCalculatorPage = () => {
             }
           >
             <FaMinus />
-            <h3>سرداب</h3>
+            <h3>{dictionary.basement}</h3>
           </S_ChoiceCard>
         </S_ChoiceGrid>
-        <S_SubSectionHeader>الإضافات الفاخرة</S_SubSectionHeader>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.luxuryAddons}
+        </S_SubSectionHeader>
         <S_ChoiceGrid>
           {FIXED_COST_ADDONS_CONFIG.map((a) => (
             <S_ChoiceCard
@@ -1418,11 +1555,13 @@ const VillaCalculatorPage = () => {
               }
             >
               {a.icon}
-              <h3>{a.name}</h3>
+              <h3>{dictionary.fixedAddonNames[a.id]}</h3>
             </S_ChoiceCard>
           ))}
         </S_ChoiceGrid>
-        <S_SubSectionHeader>مواقف السيارات</S_SubSectionHeader>
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.parking}
+        </S_SubSectionHeader>
         <S_ChoiceGrid>
           {[0, 1, 2, 3, 4].map((c) => (
             <S_ChoiceCard
@@ -1438,10 +1577,10 @@ const VillaCalculatorPage = () => {
       </S_StepContent>
       <S_Navigation>
         <S_Button className="back" onClick={() => setCalculationMode(null)}>
-          رجوع
+          {dictionary.back}
         </S_Button>
         <S_Button className="next" onClick={handleShowResult}>
-          عرض النتيجة
+          {dictionary.showResult}
         </S_Button>
       </S_Navigation>
     </S_StepContainer>
@@ -1450,31 +1589,31 @@ const VillaCalculatorPage = () => {
   const renderResults = () => {
     return (
       <S_ResultsPageWrapper>
-        <S_StepHeader>
-          <h1 style={{ textAlign: "center" }}>هذا هو تقدير التكلفة لمشروعك</h1>
+        <S_StepHeader isRTL={isRTL} style={{ textAlign: "center" }}>
+          <h1>{dictionary.resultsTitle}</h1>
           <p style={{ maxWidth: "600px", margin: "0 auto" }}>
-            هذا تقدير مبدئي بناءً على اختياراتك. تواصل معنا للحصول على عرض سعر
-            مفصل.
+            {dictionary.resultsDescription}
           </p>
         </S_StepHeader>
         <S_ResultsGrid>
           <S_ResultBox>
-            <span>إجمالي مساحة البناء (BUA)</span>
-            <h2>{calculationResult.totalBUA.toFixed(2)} م²</h2>
+            <span>{dictionary.totalBUAResult}</span>
+            <h2>{calculationResult.totalBUA.toFixed(2)} m²</h2>
           </S_ResultBox>
           <S_ResultBox className="primary">
-            <span>التكلفة الإجمالية التقديرية</span>
+            <span>{dictionary.totalCostResult}</span>
             <h2>
-              {Math.round(calculationResult.totalPrice).toLocaleString()} د.إ
+              {Math.round(calculationResult.totalPrice).toLocaleString()}
+              {isRTL ? " د.إ" : " AED"}
             </h2>
           </S_ResultBox>
         </S_ResultsGrid>
 
         {calculationMode === "detailed" && (
-          <S_ExtraAreaSection>
-            <h4>إضافة مساحة احتياطية</h4>
-            <S_InputGroup>
-              <label>مساحة إضافية (م²)</label>
+          <S_ExtraAreaSection isRTL={isRTL}>
+            <h4>{dictionary.extraAreaSectionTitle}</h4>
+            <S_InputGroup isRTL={isRTL}>
+              <label>{dictionary.extraAreaLabel}</label>
               <input
                 type="number"
                 value={extraArea === 0 ? "" : extraArea}
@@ -1485,8 +1624,9 @@ const VillaCalculatorPage = () => {
           </S_ExtraAreaSection>
         )}
 
-        <S_BreakdownSection>
+        <S_BreakdownSection isRTL={isRTL}>
           <S_SubSectionHeader
+            isRTL={isRTL}
             style={{
               border: "none",
               margin: "0 0 16px 0",
@@ -1494,23 +1634,24 @@ const VillaCalculatorPage = () => {
               fontSize: "1.4rem",
             }}
           >
-            ملخص تفاصيل التكلفة
+            {dictionary.costBreakdownTitle}
           </S_SubSectionHeader>
           <S_BreakdownLayout>
             <S_ChartContainer>
               <CostPieChart
                 breakdownDetails={calculationResult.breakdownDetails}
+                isRTL={isRTL}
               />
               <S_TotalInChart>
                 <h2>
                   {Math.round(calculationResult.totalPrice).toLocaleString()}
                 </h2>
-                <span>د.إ</span>
+                <span>{isRTL ? "د.إ" : "AED"}</span>
               </S_TotalInChart>
             </S_ChartContainer>
             <S_BreakdownList>
               {calculationResult.breakdownDetails.map((item, index) => (
-                <S_BreakdownItem key={item.name}>
+                <S_BreakdownItem key={index} isRTL={isRTL}>
                   <div className="label-group">
                     <S_ColorDot
                       color={CHART_COLORS[index % CHART_COLORS.length]}
@@ -1518,7 +1659,8 @@ const VillaCalculatorPage = () => {
                     <span>{item.name}</span>
                   </div>
                   <span className="cost">
-                    {Math.round(item.cost).toLocaleString()} د.إ
+                    {Math.round(item.cost).toLocaleString()}
+                    {isRTL ? " د.إ" : " AED"}
                   </span>
                 </S_BreakdownItem>
               ))}
@@ -1528,10 +1670,10 @@ const VillaCalculatorPage = () => {
 
         <S_ActionButtonsContainer>
           <S_Button className="back" onClick={handleReset}>
-            ابدأ من جديد
+            {dictionary.startOver}
           </S_Button>
           <S_Button className="next" style={{ fontSize: "1.2rem" }}>
-            احجز استشارة مجانية
+            {dictionary.bookConsultation}
           </S_Button>
         </S_ActionButtonsContainer>
       </S_ResultsPageWrapper>
@@ -1539,7 +1681,7 @@ const VillaCalculatorPage = () => {
   };
 
   return (
-    <S_CalculatorWrapper>
+    <S_CalculatorWrapper isRTL={isRTL}>
       <S_WizardLayout>
         {!calculationMode
           ? renderModeSelector()
@@ -1551,6 +1693,13 @@ const VillaCalculatorPage = () => {
       </S_WizardLayout>
     </S_CalculatorWrapper>
   );
-};
+}
 
-export default VillaCalculatorPage;
+// --- Server Component (Default Export) ---
+// This would be your `app/[lang]/calculator/page.js`
+export default function VillaCalculatorPage({ params }) {
+  const lang = params?.lang || "ar"; // Default to Arabic if lang is not present
+  const dictionary = getDictionary(lang);
+
+  return <VillaCalculatorClient lang={lang} dictionary={dictionary} />;
+}
