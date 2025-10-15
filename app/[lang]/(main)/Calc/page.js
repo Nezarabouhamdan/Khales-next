@@ -801,10 +801,6 @@ const S_LogoPlaceholder = styled.img`
   background-color: var(--border-color);
   border-radius: 16px;
   margin-bottom: 1.5rem;
-  // You can replace this with an <img> tag like:
-  // background-size: contain;
-  // background-repeat: no-repeat;
-  // background-position: center;
 `;
 
 const S_ModeSelectionArea = styled.div`
@@ -813,7 +809,6 @@ const S_ModeSelectionArea = styled.div`
   justify-content: center;
   gap: 1.5rem;
 `;
-
 const S_ModeChoiceCard = styled.div`
   padding: 2rem;
   border: 2px solid var(--border-color);
@@ -822,27 +817,23 @@ const S_ModeChoiceCard = styled.div`
   transition: all 0.2s ease-in-out;
   background-color: transparent;
   text-align: right;
-
   .icon-title {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-bottom: 1rem;
   }
-
   svg {
     font-size: 2.5rem;
     color: var(--primary-color);
     transition: all 0.2s ease-in-out;
   }
-
   h3 {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-dark);
   }
-
   p {
     margin: 0;
     font-size: 1rem;
