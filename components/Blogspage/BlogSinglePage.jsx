@@ -49,7 +49,6 @@ const QuoteIcon = () => (
 );
 const formatSocialCount = (num) =>
   num >= 1000 ? (num / 1000).toFixed(1).replace(".0", "") + "k" : num;
-
 // --- MAIN COMPONENT ---
 function BlogSinglePage({ blogData, lang, followUsText }) {
   const isRTL = lang === "ar";
