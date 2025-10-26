@@ -19,6 +19,8 @@ export default async function sitemap() {
     "/Luxury-Villas",
     "/Residential",
     "/media-center",
+    "/Calc", // Your new calculator page
+
     "/Commercial",
     "/privacy-policy",
     "/terms-and-conditions",

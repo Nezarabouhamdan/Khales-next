@@ -72,10 +72,9 @@ export const dictionary = {
         path: "/projects",
         isDropdown: false,
       },
-
       {
-        label: "Media Center",
-        path: "/media-center",
+        label: "Estimate Your Villa Cost",
+        path: "/Calc",
         isDropdown: false,
       },
       {
@@ -83,6 +82,7 @@ export const dictionary = {
         isDropdown: true,
         children: [
           { label: "About Khales", path: "/About-Us" },
+          { label: "Media Center", path: "/media-center" },
           { label: "Blogs", path: "/blog" },
           { label: "Contact us", path: "/Contact" },
         ],
@@ -90,6 +90,136 @@ export const dictionary = {
     ],
     ctaButton: "Book Consultation",
     languageButton: "Language",
+  },
+  calcPage: {
+    metaTitle:
+      "Khales | Luxury Villa Design, Engineering & Construction in Dubai & Abu Dhabi",
+    metaDescription:
+      "Transform your vision into reality with Khales. We specialize in luxury villa design, engineering consultancy, interior design, and full-service construction across the UAE. Partner with us to build your dream home.",
+    metaKeywords: [
+      "Khales",
+      "Luxury villa design Dubai",
+      "Engineering consultants UAE",
+      "High-end construction Abu Dhabi",
+      "Interior Design",
+      "Architecture Firm UAE",
+      "Project Management",
+      "Landscape Design",
+      "Khales Projects",
+      "Building contractors in Dubai",
+    ],
+    schemaName: "Khales",
+    schemaDescription:
+      "Khales specializes in luxury villa design, engineering consultancy, interior design, and full-service construction across the UAE.",
+    title: "Estimate Your Villa Cost",
+    subtitle:
+      "Use our calculator to get a preliminary budget for your dream villa.",
+  },
+
+  calculator: {
+    // Intro Page
+    introTitle: "Unlock Your Dream Home",
+    introDescription:
+      "Use our interactive cost calculator to get an instant estimate for your villa. Choose the method that suits you and start planning today.",
+    detailedModeTitle: "Detailed Cost Calculation",
+    detailedModeDescription:
+      "Enter all the details yourself, from the number and dimensions of rooms to additional facilities, for an accurate estimate.",
+    quickModeTitle: "Cost Calculation by Area",
+    quickModeDescription:
+      "Have a total area in mind? Enter it directly with the location and finishing type for a quick cost estimate.",
+    // Detailed Calculator
+    detailedTitle: "Villa Construction Cost Calculator",
+    detailedDescription:
+      "Enter your project details to get an instant cost estimate.",
+    basicProperties: "Basic Properties",
+    location: "Location",
+    architecturalStyle: "Architectural Style",
+    finishingLevel: "Finishing Level",
+    roomsAndSpaces: "Rooms & Spaces",
+    addonsAndFacilities: "Add-ons & Facilities",
+    luxuryAddons: "Luxury Add-ons",
+    parking: "Parking",
+    // Quick Calculator
+    quickTitle: "Calculate Cost by Area",
+    quickDescription:
+      "Enter the total area, location, and finishing level for a quick estimate.",
+    projectDetails: "Project Details",
+    totalBUA: "Total Built-Up Area (m²)",
+    // Results Page
+    resultsTitle: "Here is the Cost Estimate for Your Project",
+    resultsDescription:
+      "This is a preliminary estimate based on your choices. Contact us for a detailed quotation.",
+    totalBUAResult: "Total Built-Up Area (BUA)",
+    totalBUAResultSqft: "Total Built-Up Area (sqft)",
+    totalCostResult: "Estimated Total Cost",
+    extraAreaSectionTitle: "Add a Safety Margin",
+    extraAreaLabel: "Additional Area (m²)",
+    costBreakdownTitle: "Cost Breakdown Summary",
+    // Buttons
+    back: "Back",
+    next: "Next",
+    showResult: "Show Result",
+    startOver: "Start Over",
+    bookConsultation: "Book a Free Consultation",
+    // Options
+    locations: {
+      abu_dhabi: "Abu Dhabi",
+      dubai: "Dubai",
+      sharjah: "Sharjah",
+      ajman: "Ajman",
+      umm_al_quwain: "Umm Al Quwain",
+      ras_al_khaimah: "Ras Al Khaimah",
+      fujairah: "Fujairah",
+      al_ain: "Al Ain",
+    },
+    styles: { modern: "Modern", neoclassic: "Neoclassic", heritage: "Classic" },
+    finishings: { standard: "Standard", medium: "Medium", high: "High-End" },
+    // Rooms & Addons Text
+    roomNames: {
+      bedroom: "Bedrooms",
+      majlis: "Majlis",
+      living: "Living Rooms",
+      kitchen: "Kitchen",
+      dining: "Dining Room",
+      guest_bedroom: "Guest Bedroom",
+    },
+    otherRoomNames: {
+      maid_room: "Maid Room",
+      staircase_room: "Staircase Room",
+      storage_room: "Storage Room",
+      prep_kitchen: "Prep Kitchen",
+      driver_room: "Driver Room",
+    },
+    fixedAddonNames: {
+      pool: "Pool",
+      office: "Office",
+      elevator: "Elevator",
+      cinema: "Cinema",
+      gym: "Gym",
+    },
+    addBathroom: "Add Bathroom",
+    addDressingRoom: "Add Dressing Room",
+    widthLabel: "Width (m)",
+    lengthLabel: "Length (m)",
+    basement: "Basement",
+    // Cost Breakdown Items
+    itemTranslations: {
+      preparatory: "Preparatory Works",
+      excavation_substructure: "Excavation & Substructure",
+      superstructure: "Superstructure Works",
+      blockwork: "Blockwork",
+      waterproofing: "Waterproofing",
+      main_finishing: "Finishing Works",
+      carpentry: "Carpentry Works",
+      aluminum_glass: "Aluminum & Glass",
+      electrical: "Electrical Works",
+      hvac: "HVAC Works",
+      plumbing: "Plumbing Works",
+      external_works: "External Works",
+      contingencies: "Contingencies",
+      consultant_fees: "Consultant Fees",
+      fixed_addons_cost: "Fixed Add-ons Cost",
+    },
   },
 
   comprehensiveAbout: {
@@ -2648,6 +2778,12 @@ export const dictionary = {
       "Sales",
     ],
     reels: [
+      {
+        title: "Luxury Dubai Villas for Emiratis", // English title as a fallback
+        category: "Sales",
+        thumbnailUrl: "https://i.ytimg.com/vi/tuKWll12qLk/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/tuKWll12qLk",
+      },
       {
         title: "Al Wasl – Your Ready Dream Home Awaits", // English title as a fallback
         category: "Architecture",

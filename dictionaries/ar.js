@@ -64,8 +64,8 @@ export const dictionary = {
         isDropdown: false,
       },
       {
-        label: "المركز الإعلامي",
-        path: "/media-center",
+        label: "قدّر تكلفة منزلك",
+        path: "/Calc",
         isDropdown: false,
       },
       {
@@ -73,6 +73,7 @@ export const dictionary = {
         isDropdown: true,
         children: [
           { label: "نبذة عن خالص", path: "/About-Us" },
+          { label: "المركز الإعلامي", path: "/media-center" },
           { label: "المدونة", path: "/blog" },
           { label: "تواصل معنا", path: "/Contact" },
         ],
@@ -80,6 +81,132 @@ export const dictionary = {
     ],
     ctaButton: "أحجز موعدك الآن",
     languageButton: "اللغة",
+  },
+  calcPage: {
+    metaTitle: "خالص | شركاؤك في الرفاهية للتصميم والبناء في الإمارات",
+    metaDescription:
+      "خالص للاستشارات الهندسية: خبراء في إدارة المشاريع، التصميم الداخلي الفاخر، تصميم الحدائق، وخدمات البناء المتكاملة في دبي، أبوظبي، وكافة الإمارات. نحوّل رؤيتك إلى واقع ملموس.",
+    metaKeywords: [
+      "خالص",
+      "تصميم فلل فاخرة دبي",
+      "استشارات هندسية الإمارات",
+      "مقاولات بناء أبوظبي",
+      "تصميم داخلي الإمارات",
+      "شركة هندسة معمارية دبي",
+      "إدارة المشاريع",
+      "تصميم حدائق",
+      "مشاريع خالص",
+      "مقاولون بناء في دبي",
+    ],
+    schemaName: "خالص",
+    schemaDescription:
+      "خالص متخصصة في تصميم الفلل الفاخرة، الاستشارات الهندسية، التصميم الداخلي، وخدمات البناء المتكاملة في الإمارات.",
+    title: "قدّر تكلفة منزلك",
+    subtitle: "استخدم الحاسبة للحصول على ميزانية أولية لفيلا أحلامك.",
+  },
+  calculator: {
+    // Intro Page
+    introTitle: "أطلق العنان لمنزل أحلامك",
+    introDescription:
+      "استخدم حاسبة التكاليف التفاعلية الخاصة بنا للحصول على تقدير فوري لتكلفة بناء فيلتك. اختر الطريقة التي تناسبك وابدأ التخطيط اليوم.",
+    detailedModeTitle: "حساب التكلفة بالتفصيل",
+    detailedModeDescription:
+      "أدخل كل التفاصيل بنفسك، من عدد الغرف وأبعادها إلى المرافق الإضافية، للحصول على تقدير دقيق.",
+    quickModeTitle: "حساب التكلفة بالمساحة",
+    quickModeDescription:
+      "لديك مساحة بناء جاهزة؟ أدخلها مباشرة مع الموقع ونوع التشطيب واحصل على تقدير فوري للتكلفة.",
+    // Detailed Calculator
+    detailedTitle: "حاسبة تكلفة بناء فيلا",
+    detailedDescription: "أدخل تفاصيل مشروعك للحصول على تقدير فوري للتكلفة.",
+    basicProperties: "الخصائص الأساسية",
+    location: "الموقع",
+    architecturalStyle: "الطراز المعماري",
+    finishingLevel: "مستوى التشطيب",
+    roomsAndSpaces: "الغرف والمساحات",
+    addonsAndFacilities: "الإضافات والمرافق",
+    luxuryAddons: "الإضافات الفاخرة",
+    parking: "مواقف السيارات",
+    // Quick Calculator
+    quickTitle: "حساب التكلفة بالمساحة",
+    quickDescription:
+      "أدخل المساحة الإجمالية، الموقع، ومستوى التشطيب للحصول على تقدير سريع.",
+    projectDetails: "تفاصيل المشروع",
+    totalBUA: "إجمالي مساحة البناء (م²)",
+    // Results Page
+    resultsTitle: "هذا هو تقدير التكلفة لمشروعك",
+    resultsDescription:
+      "هذا تقدير مبدئي بناءً على اختياراتك. تواصل معنا للحصول على عرض سعر مفصل.",
+    totalBUAResult: "إجمالي مساحة البناء (BUA)",
+    totalBUAResultSqft: "إجمالي مساحة البناء (قدم مربع)",
+    totalCostResult: "التكلفة الإجمالية التقديرية",
+    extraAreaSectionTitle: "إضافة مساحة احتياطية",
+    extraAreaLabel: "مساحة إضافية (م²)",
+    costBreakdownTitle: "ملخص تفاصيل التكلفة",
+    // Buttons
+    back: "رجوع",
+    next: "التالي",
+    showResult: "عرض النتيجة",
+    startOver: "ابدأ من جديد",
+    bookConsultation: "احجز استشارة مجانية",
+    // Options
+    locations: {
+      abu_dhabi: "أبوظبي",
+      dubai: "دبي",
+      sharjah: "الشارقة",
+      ajman: "عجمان",
+      umm_al_quwain: "أم القيوين",
+      ras_al_khaimah: "رأس الخيمة",
+      fujairah: "الفجيرة",
+      al_ain: "العين",
+    },
+    styles: { modern: "مودرن", neoclassic: "نيو كلاسيكي", heritage: "كلاسيك" },
+    finishings: { standard: "أساسي", medium: "متوسط", high: "فاخر" },
+    // Rooms & Addons Text
+    roomNames: {
+      bedroom: "غرف النوم",
+      majlis: "المجلس",
+      living: "غرف المعيشة",
+      kitchen: "المطبخ",
+      dining: "غرفة الطعام",
+      guest_bedroom: "غرفة نوم الضيوف",
+    },
+    otherRoomNames: {
+      maid_room: "غرفة خادمة",
+      staircase_room: "غرفة درج",
+      storage_room: "غرفة تخزين",
+      prep_kitchen: "مطبخ تحضيري",
+      driver_room: "غرفة للسائق",
+    },
+    fixedAddonNames: {
+      pool: "مسبح",
+      office: "مكتب",
+      elevator: "مصعد",
+      cinema: "صالة سينما",
+      gym: "صالة رياضية",
+    },
+    addBathroom: "إضافة حمام",
+    addDressingRoom: "إضافة غرفة ملابس",
+    widthLabel: "العرض (م)",
+    lengthLabel: "الطول (م)",
+    basement: "سرداب",
+    // Cost Breakdown Items
+    itemTranslations: {
+      preparatory: "الأعمال التمهيدية",
+      excavation_substructure: "أعمال الحفر والبنية التحتية ( الأساسات )",
+      superstructure: "أعمال الهيكل العلوي",
+      blockwork: "أعمال البناء",
+      waterproofing: "أعمال العزل المائي",
+      main_finishing: "أعمال التشطيب",
+      carpentry: "أعمال النجارة",
+      aluminum_glass: "أعمال الألمنيوم والزجاج",
+      electrical: "أعمال الكهرباء",
+      hvac: "أعمال التكييف",
+      plumbing: "أعمال السباكة",
+      external_works: "الأعمال الخارجية",
+      contingencies: "نفقات غير متوقّعة",
+      consultant_fees: "أتعاب الاستشاري",
+      fixed_addons_cost: "تكلفة الإضافات الثابتة",
+    },
   },
   hero: {
     slides: [
@@ -2632,6 +2759,13 @@ export const dictionary = {
       "مبيعات",
     ],
     reels: [
+      {
+        title: "Luxury Dubai Villas for Emiratis", // English title as a fallback
+        artitle: "فلل فاخرة في دبي للإماراتيين", // Arabic title
+        category: "Sales",
+        thumbnailUrl: "https://i.ytimg.com/vi/tuKWll12qLk/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/tuKWll12qLk",
+      },
       {
         title: "Al Wasl – Your Ready Dream Home Awaits", // English title as a fallback
         artitle: "في الوصل... بيتك الجاهز ينتظرك", // Arabic title
