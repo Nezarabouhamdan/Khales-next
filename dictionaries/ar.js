@@ -341,6 +341,15 @@ export const dictionary = {
     buttonText: "احجز استشارتك",
   },
   footer: {
+    villaEstimatorCTA: {
+      title: "قدّر تكلفة بناء فيلتك",
+      description:
+        "توفر حاسبتنا التفاعلية تفصيلاً شفافًا ومفصلاً لتكاليف فيلا أحلامك. استكشف على الفور أسعار الغرف والتشطيبات والإضافات الفاخرة لتخطيط ميزانيتك بثقة.",
+      buttonText: "احسب الآن",
+      imageUrl:
+        "https://i.ibb.co/kgXP5n7F/khales-ae-real-photograph-of-a-super-luxury-villa-front-view-a11ecba1-05c6-4f9b-9d86-41228b5f0545-1.png",
+      imageAlt: "فيلا حديثة مع مسبح عند الغسق",
+    },
     description: "مجموعة خالص، شريككم الموثوق...",
     servicesTitle: "خدماتنا",
     servicesLinks: [

@@ -408,6 +408,15 @@ export const dictionary = {
     buttonText: "Book Your Consultation",
   },
   footer: {
+    villaEstimatorCTA: {
+      title: "Estimate Your Villa's Construction Cost",
+      description:
+        "Our interactive calculator provides a transparent, detailed cost breakdown for your dream villa. Instantly explore pricing for different rooms, finishes, and luxury add-ons to plan your budget with confidence.",
+      buttonText: "Calculate Now",
+      imageUrl:
+        "https://i.ibb.co/kgXP5n7F/khales-ae-real-photograph-of-a-super-luxury-villa-front-view-a11ecba1-05c6-4f9b-9d86-41228b5f0545-1.png",
+      imageAlt: "Modern luxury villa exterior at sunset",
+    },
     description: "Khales Group, your trusted partner...",
     servicesTitle: "Our Services",
     servicesLinks: [

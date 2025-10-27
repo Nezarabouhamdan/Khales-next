@@ -12,6 +12,7 @@ import EnhancedContent from "@/components/EnhanceContent";
 import FAQSection from "@/components/FAQ/FAQSection";
 import FeaturedBlogs from "@/components/FeaturedBlogs/FeaturedBlogs";
 import ProjectTypes from "@/components/Projecttypes/ProjectTypes";
+import VillaCostEstimatorCTA from "@/components/VillaCostEstimatorCTA";
 const getHomePageSchema = (lang) => {
   const baseUrl = "https://www.khales.ae";
   const pageUrl = `${baseUrl}/${lang}`;
@@ -291,6 +292,12 @@ export default async function Home({ params: { lang } }) {
         id="projects"
         aria-label="Featured Architecture and Interior Design Projects"
       >
+        {" "}
+        {/* --- Villa Cost Estimator CTA Section --- */}
+        <VillaCostEstimatorCTA
+          lang={lang}
+          content={dictionary.footer.villaEstimatorCTA}
+        />
         <FeaturedProjects content={dictionary.projects || {}} lang={lang} />
       </section>
       {/* Use the new Client Component */}
