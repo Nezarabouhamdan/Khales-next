@@ -20,7 +20,6 @@ export default async function sitemap() {
     "/Residential",
     "/media-center",
     "/Calc", // Your new calculator page
-
     "/Commercial",
     "/privacy-policy",
     "/terms-and-conditions",

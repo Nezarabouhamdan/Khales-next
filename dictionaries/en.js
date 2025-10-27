@@ -2779,6 +2779,12 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "3 Things You Must Inspect Yourself", // English title as a fallback
+        category: "Architecture",
+        thumbnailUrl: "https://i.ytimg.com/vi/pvPCon2uWOk/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/pvPCon2uWOk",
+      },
+      {
         title: "Luxury Dubai Villas for Emiratis", // English title as a fallback
         category: "Sales",
         thumbnailUrl: "https://i.ytimg.com/vi/tuKWll12qLk/maxresdefault.jpg",
