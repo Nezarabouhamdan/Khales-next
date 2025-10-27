@@ -32,27 +32,31 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-export async function generateMetadata({ params: { lang } }) {
-  const baseUrl = "https://www.khales.ae"; // Define your base URL
+// In app/[lang]/layout.js
 
+export async function generateMetadata({ params: { lang } }) {
+  const baseUrl = "https://www.khales.ae";
+
+  // --- THE FIX IS HERE ---
+  // We create conditional variables for both the title and the template
   const title =
     lang === "ar"
       ? "مجموعة خالص | للاستشارات الهندسية وإدارة المشاريع في الإمارات"
       : "Khales Group | Engineering Consultancy & Project Management in UAE";
+
   const description =
     lang === "ar"
       ? "شركة رائدة في دبي متخصصة في التصميم المعماري، والتصميم الداخلي، وإدارة المشاريع للمباني السكنية والتجارية الفاخرة."
       : "A leading firm in Dubai specializing in architectural design, interior design, and project management for luxury residential and commercial properties.";
-  const languages = {};
-  i18n.locales.forEach((locale) => {
-    // Example: "en-AE": "https://www.khales.ae/en"
-    const langCode = locale === "en" ? "en-AE" : "ar-AE";
-    languages[langCode] = `${baseUrl}/${locale}`;
-  });
+
+  const titleTemplate =
+    lang === "ar" ? "%s | مجموعة خالص" : "%s | Khales Group";
+  // --- END OF FIX ---
+
   return {
     title: {
       default: title,
-      template: `%s | Khales Group`,
+      template: titleTemplate, // <-- Use the new conditional template
     },
     description: description,
     metadataBase: new URL("https://www.khales.ae"),
@@ -63,8 +67,8 @@ export async function generateMetadata({ params: { lang } }) {
     openGraph: {
       title: title,
       description: description,
-      url: `${baseUrl}/${lang}`, // Also ensure this is absolute
-      siteName: "Khales Group",
+      url: `${baseUrl}/${lang}`,
+      siteName: lang === "ar" ? "مجموعة خالص" : "Khales Group", // Also make siteName conditional
       images: [
         {
           url: "https://www.khales.ae/assets/Khales-Logo.png",

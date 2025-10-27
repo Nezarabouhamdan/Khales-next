@@ -92,6 +92,9 @@ const getProjectPageSchema = (lang, project) => {
   };
 };
 
+// This is the problematic line in your generateMetadata function
+title: `${projectsData.title} | Khales Project`;
+
 // --- METADATA (Dynamically generated with keywords and rich social cards) ---
 export async function generateMetadata({ params }) {
   const { slug, lang } = params;
@@ -122,23 +125,26 @@ export async function generateMetadata({ params }) {
           `construction projects in ${projectData.address}`,
         ];
 
+  // This is the part we are fixing. We make the suffix conditional.
+  const titleSuffix = lang === "ar" ? " | مشروع خالص" : " | Khales Project";
+
   return {
-    title: `${projectData.title} | Khales Project`,
+    title: `${projectData.title}${titleSuffix}`, // <-- FIXED
     description: projectData.description,
     keywords: keywords,
     // --- ADDED: Open Graph and Twitter for rich social sharing ---
     openGraph: {
-      title: `${projectData.title} | Khales Project`,
+      title: `${projectData.title}${titleSuffix}`, // <-- FIXED
       description: projectData.description,
       url: `${baseUrl}/${lang}/projects/${slug}`,
       siteName: "Khales",
       images: [{ url: project.mainImage, width: 1200, height: 630 }],
       locale: lang === "ar" ? "ar_AE" : "en_US",
-      type: "article", // 'article' is good for a detailed project page
+      type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${projectData.title} | Khales Project`,
+      title: `${projectData.title}${titleSuffix}`, // <-- FIXED
       description: projectData.description,
       images: [project.mainImage],
     },
