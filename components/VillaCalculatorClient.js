@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Link from "next/link";
 import styled, { keyframes } from "styled-components";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -1461,7 +1462,12 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
           <S_Button className="back" onClick={handleReset}>
             {dictionary.startOver}
           </S_Button>
-          <S_Button className="next" style={{ fontSize: "1.2rem" }}>
+          <S_Button
+            as={Link}
+            href={`/${lang}/Contact`}
+            className="next"
+            style={{ fontSize: "1.2rem", textDecoration: "none" }}
+          >
             {dictionary.bookConsultation}
           </S_Button>
         </S_ActionButtonsContainer>
