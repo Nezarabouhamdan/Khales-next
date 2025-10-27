@@ -93,29 +93,30 @@ export const dictionary = {
   },
   calcPage: {
     metaTitle:
-      "Khales | Luxury Villa Design, Engineering & Construction in Dubai & Abu Dhabi",
+      "Villa Construction Cost Calculator UAE | Instant Estimate | Khales",
     metaDescription:
-      "Transform your vision into reality with Khales. We specialize in luxury villa design, engineering consultancy, interior design, and full-service construction across the UAE. Partner with us to build your dream home.",
+      "Use the interactive Khales villa cost calculator for a detailed, instant price estimate. Customize rooms, finishes, and luxury add-ons to plan your budget for construction in Dubai, Abu Dhabi, & the UAE.",
     metaKeywords: [
-      "Khales",
-      "Luxury villa design Dubai",
-      "Engineering consultants UAE",
-      "High-end construction Abu Dhabi",
-      "Interior Design",
-      "Architecture Firm UAE",
-      "Project Management",
-      "Landscape Design",
-      "Khales Projects",
-      "Building contractors in Dubai",
+      "villa construction cost calculator",
+      "cost to build a villa in UAE",
+      "building cost estimator Dubai",
+      "villa construction calculator Abu Dhabi",
+      "house building cost Sharjah",
+      "construction prices UAE",
+      "contracting cost calculator",
+      "villa finishing cost",
+      "modern villa construction cost",
+      "Khales project management",
+      "engineering consultancy cost estimation",
     ],
-    schemaName: "Khales",
+    schemaName: "Villa Construction Cost Calculator UAE",
     schemaDescription:
-      "Khales specializes in luxury villa design, engineering consultancy, interior design, and full-service construction across the UAE.",
+      "Get an instant cost estimate for building a custom villa in the UAE. Our interactive calculator lets you select rooms, dimensions, finishes, and add-ons for a detailed price breakdown.",
+    // The 'title' and 'subtitle' are for on-page use, they can remain the same
     title: "Estimate Your Villa Cost",
     subtitle:
       "Use our calculator to get a preliminary budget for your dream villa.",
   },
-
   calculator: {
     // Intro Page
     introTitle: "Unlock Your Dream Home",
