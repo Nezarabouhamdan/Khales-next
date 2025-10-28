@@ -527,7 +527,7 @@ export const projectsData = [
     ],
     en: {
       tags: ["Architectural Design", "Modern Luxury", "Residential"],
-      title: " Modern Villa",
+      title: "Modern Organic Villa",
       address: "Abu Dhabi, UAE",
       description:
         "A symphony of stone, glass, and light in a grand modern villa.",
@@ -559,7 +559,7 @@ export const projectsData = [
     },
     ar: {
       tags: ["تصميم معماري", "فخامة عصرية", "سكني"],
-      title: "فيلا العصرية",
+      title: "فيلا طبيعية عصرية",
       address: "أبوظبي، الإمارات العربية المتحدة",
       description: "سيمفونية من الحجر والزجاج والضوء في فيلا عصرية فخمة.",
       longDescription:
