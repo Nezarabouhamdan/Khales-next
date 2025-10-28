@@ -344,7 +344,7 @@ export const dictionary = {
   projects: {
     title: "Featured Projects",
     tabs: ["Featured", "Commercial", "Interior Design", "Villas"],
-    projectsData: allProjects,
+    projectsData: [...allProjects].reverse(),
   },
   whyUs: {
     label: "Why Choose Khales",

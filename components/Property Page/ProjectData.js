@@ -7,8 +7,6 @@ export const projectsData = [
     slug: "The-Royal-Villa",
     category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
     mainImage: "https://i.ibb.co/n8rkyLkQ/Screenshot-2025-08-06-134945.png",
-    // ======================= THE FIX IS HERE =======================
-    // Updated the gallery images with the new links provided.
     galleryImages: [
       "https://i.ibb.co/Z1GsRkFF/Screenshot-2025-08-06-134653.png",
       "https://i.ibb.co/rGMMdMbr/Screenshot-2025-08-06-134836.png",
@@ -21,7 +19,6 @@ export const projectsData = [
       "https://i.ibb.co/n8rkyLkQ/Screenshot-2025-08-06-134945.png",
       "https://i.ibb.co/qY8yWfyy/Screenshot-2025-08-06-134958.png",
     ],
-    // ===============================================================
     en: {
       tags: ["Architectural Design", "Site Supervision"],
       title: "The Royal Villa",
@@ -370,7 +367,6 @@ export const projectsData = [
         "This landscape design project in Lusail , Qatar transforms an outdoor space into a private sanctuary. The design is defined by its clean, geometric pathways that create a sense of structure and flow through manicured lawns and lush plantings. Key features include serene water elements and a modern pergola that serves as a focal point for relaxation and entertainment, seamlessly extending the home's living space into the natural environment.",
       price: "0",
       sqft: "600",
-
       status: "Newly Completed",
       keyFeatures: [
         "Geometric concrete and grass pathways",
@@ -403,7 +399,6 @@ export const projectsData = [
         "يحول مشروع تصميم المناظر الطبيعية هذا في لوسيل - قطر المساحة الخارجية إلى ملاذ خاص. يتميز التصميم بممراته الهندسية النظيفة التي تخلق إحساسًا بالهيكل والتدفق عبر المروج المشذبة والنباتات المورقة. تشمل الميزات الرئيسية عناصر مائية هادئة وبرجولا حديثة تعمل كنقطة محورية للاسترخاء والترفيه، مما يوسع مساحة معيشة المنزل بسلاسة في البيئة الطبيعية.",
       price: "٠",
       sqft: "٦٠٠",
-
       status: "مكتمل حديثاً",
       keyFeatures: [
         "ممرات هندسية من الخرسانة والعشب",
@@ -420,6 +415,176 @@ export const projectsData = [
         {
           label: "الحالة",
           value: "مكتمل",
+        },
+      ],
+    },
+  },
+  {
+    id: 7,
+    slug: "serene-sanctuary-residence",
+    category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
+    mainImage: "https://i.ibb.co/HpDNRdnM/IMG-20251028-WA0041.jpg",
+
+    galleryImages: [
+      "https://i.ibb.co/HpDNRdnM/IMG-20251028-WA0041.jpg",
+      "https://i.ibb.co/svBxptTs/IMG-20251028-WA0007.jpg",
+      "https://i.ibb.co/m55RmG09/IMG-20251028-WA0037.jpg",
+      "https://i.ibb.co/SD1Lj4Q9/IMG-20251028-WA0009.jpg",
+      "https://i.ibb.co/chSfGP1F/IMG-20251028-WA0038.jpg",
+      "https://i.ibb.co/mFC8pK9G/IMG-20251028-WA0010.jpg",
+      "https://i.ibb.co/VcyCNF0v/IMG-20251028-WA0039.jpg",
+      "https://i.ibb.co/0RkzYsDP/IMG-20251028-WA0013.jpg",
+      "https://i.ibb.co/93GHyd8g/IMG-20251028-WA0036.jpg",
+      "https://i.ibb.co/Z1djg2LS/IMG-20251028-WA0015.jpg",
+      "https://i.ibb.co/TqLYZJD3/IMG-20251028-WA0035.jpg",
+      "https://i.ibb.co/PGJ7q0wt/IMG-20251028-WA0020.jpg",
+      "https://i.ibb.co/FbVGx064/IMG-20251028-WA0034.jpg",
+      "https://i.ibb.co/VWr532Gn/IMG-20251028-WA0022.jpg",
+      "https://i.ibb.co/rKGPrqG5/IMG-20251028-WA0033.jpg",
+      "https://i.ibb.co/4ZbZmw4f/IMG-20251028-WA0023.jpg",
+      "https://i.ibb.co/pBNRzpth/IMG-20251028-WA0030.jpg",
+      "https://i.ibb.co/TD0WKjSz/IMG-20251028-WA0026.jpg",
+      "https://i.ibb.co/Mx6FM6KW/IMG-20251028-WA0029.jpg",
+      "https://i.ibb.co/jvfNBp8Y/IMG-20251028-WA0040.jpg",
+    ],
+    en: {
+      tags: ["Interior Design", "Luxury Living", "Modern Elegance"],
+      title: "Serene Sanctuary Residence",
+      address: "Dubai, UAE",
+      description:
+        "A harmonious blend of contemporary design and timeless luxury.",
+      longDescription:
+        "This exquisite interior design project exemplifies modern elegance and serene luxury. The design philosophy centers on a harmonious blend of natural materials, including rich wood, textured stone, and soft fabrics, creating a warm and inviting atmosphere. Expansive living areas are defined by sophisticated color palettes, statement lighting fixtures, and bespoke furniture. From the grand, double-height living room to the intimate, richly detailed bedroom, every space is meticulously curated to offer an unparalleled experience of comfort, style, and tranquility.",
+      price: "0",
+      beds: "6 ",
+      floor: "Multi-level",
+      sqft: "9,300",
+      status: "Completed",
+      keyFeatures: [
+        "Statement pendant and chandelier lighting",
+        "Curved architectural elements and furniture",
+        "Extensive use of natural wood and stone",
+        "Soothing, neutral color palette with rich accents",
+        "Integrated smart lighting and custom shelving",
+        "Cohesive design flow between open-plan spaces",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Full Interior Design",
+        },
+        {
+          label: "Status",
+          value: "Completed",
+        },
+      ],
+    },
+    ar: {
+      tags: ["تصميم داخلي", "حياة فاخرة", "أناقة عصرية"],
+      title: "مسكن الملاذ الهادئ",
+      address: "دبي، الإمارات العربية المتحدة",
+      description: "مزيج متناغم من التصميم المعاصر والفخامة الخالدة.",
+      longDescription:
+        "هذا المشروع الرائع للتصميم الداخلي يجسد الأناقة العصرية والفخامة الهادئة. تتمحور فلسفة التصميم حول مزيج متناغم من المواد الطبيعية، بما في ذلك الخشب الغني والحجر المزخرف والأقمشة الناعمة، مما يخلق جوًا دافئًا وجذابًا. تتميز مناطق المعيشة الواسعة بألوان متطورة، وتركيبات إضاءة مميزة، وأثاث مصنوع حسب الطلب. من غرفة المعيشة الكبرى ذات الارتفاع المزدوج إلى غرفة النوم الحميمية والغنية بالتفاصيل، تم تنسيق كل مساحة بدقة لتقديم تجربة لا مثيل لها من الراحة والأناقة والسكينة.",
+      price: "٠",
+      beds: "٦",
+      floor: "متعدد الطوابق",
+      sqft: "٩٬٣٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "إضاءة مميزة من الثريات والمعلقات",
+        "عناصر معمارية وأثاث منحني",
+        "استخدام واسع للخشب الطبيعي والحجر",
+        "لوحة ألوان محايدة ومريحة مع لمسات غنية",
+        "إضاءة ذكية مدمجة ورفوف مخصصة",
+        "تدفق تصميمي متماسك بين المساحات المفتوحة",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "تصميم داخلي كامل",
+        },
+        {
+          label: "الحالة",
+          value: "مكتمل",
+        },
+      ],
+    },
+  },
+  {
+    id: 8, // <-- ID set to 1
+    slug: "al-khawaneej-modern-villa",
+    category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
+    mainImage: "https://i.ibb.co/tpWtkGSQ/IMG-20251026-WA0004.jpg",
+    galleryImages: [
+      "https://i.ibb.co/tpWtkGSQ/IMG-20251026-WA0004.jpg",
+      "https://i.ibb.co/N6mJYMJj/IMG-20251026-WA0005.jpg",
+      "https://i.ibb.co/nMMFLHRq/IMG-20251028-WA0042.jpg",
+      "https://i.ibb.co/QFTLy2Cd/IMG-20251028-WA0043.jpg",
+      "https://i.ibb.co/jZjDhJFv/IMG-20251028-WA0045.jpg",
+      "https://i.ibb.co/60BDTchv/IMG-20251028-WA0046.jpg",
+      "https://i.ibb.co/NgqMpZQn/Whats-App-Image-2025-10-28-at-11-16-39-309d2163.jpg",
+    ],
+    en: {
+      tags: ["Architectural Design", "Modern Luxury", "Residential"],
+      title: " Modern Villa",
+      address: "Abu Dhabi, UAE",
+      description:
+        "A symphony of stone, glass, and light in a grand modern villa.",
+      longDescription:
+        "This stunning villa in Al Khawaneej is a masterpiece of modern architecture, defined by its symmetrical design and gracefully curved forms. The façade combines natural stone cladding with expansive curved glass walls, creating a seamless connection between the luxurious interiors and the meticulously landscaped gardens. A grand arched wooden door serves as a powerful centerpiece, welcoming visitors into a space where elegance and contemporary design coexist in perfect harmony.",
+      beds: "6",
+      floor: "Ground + 1st",
+      sqft: "11,500",
+      price: "0",
+      status: "Newly Completed",
+      keyFeatures: [
+        "Symmetrical façade with curved glass walls",
+        "Grand arched solid wood entrance",
+        "Natural stone cladding",
+        "Circular driveway and manicured landscaping",
+        "Integrated indoor-outdoor living design",
+        "Private swimming pool and terrace",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Luxury Villa",
+        },
+        {
+          label: "Status",
+          value: "Newly Completed",
+        },
+      ],
+    },
+    ar: {
+      tags: ["تصميم معماري", "فخامة عصرية", "سكني"],
+      title: "فيلا العصرية",
+      address: "أبوظبي، الإمارات العربية المتحدة",
+      description: "سيمفونية من الحجر والزجاج والضوء في فيلا عصرية فخمة.",
+      longDescription:
+        "تعتبر هذه الفيلا المذهلة في الخوانيج تحفة فنية من العمارة الحديثة، تتميز بتصميمها المتناظر وأشكالها المنحنية بأناقة. تجمع الواجهة بين تكسية الحجر الطبيعي والجدران الزجاجية المنحنية الواسعة، مما يخلق اتصالاً سلسًا بين التصميمات الداخلية الفاخرة والحدائق المنسقة بدقة. يعمل الباب الخشبي المقوس الكبير كقطعة مركزية قوية، ويرحب بالزوار في مساحة تتعايش فيها الأناقة والتصميم المعاصر في تناغم تام.",
+      beds: "٦",
+      floor: "أرضي + أول",
+      sqft: "١١٬٥٠٠",
+      price: "٠",
+      status: "مكتمل حديثاً",
+      keyFeatures: [
+        "واجهة متناظرة مع جدران زجاجية منحنية",
+        "مدخل فخم من الخشب الصلب المقوس",
+        "تكسية من الحجر الطبيعي",
+        "ممر دائري وحدائق منسقة",
+        "تصميم متكامل للمعيشة الداخلية والخارجية",
+        "حمام سباحة خاص وتراس",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "فيلا فاخرة",
+        },
+        {
+          label: "الحالة",
+          value: "مكتمل حديثاً",
         },
       ],
     },

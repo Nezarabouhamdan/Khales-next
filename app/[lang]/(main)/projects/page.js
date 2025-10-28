@@ -257,7 +257,7 @@ export default async function ProjectsPage({ params: { lang } }) {
                 alignItems: "stretch",
               }}
             >
-              {projectsData.map((project) => {
+              {[...projectsData].reverse().map((project) => {
                 const projectDetails = project[lang] || project.en;
                 return (
                   // --- UI ENHANCEMENT: The structure is now a single Link component ---

@@ -277,8 +277,7 @@ export const dictionary = {
   projects: {
     title: "مشاريع مميزة",
     tabs: ["مميز", "تجاري", "تصميم داخلي", "فلل"],
-    // This now correctly uses the imported 'allProjects' variable
-    projectsData: allProjects,
+    projectsData: [...allProjects].reverse(),
   },
   whyUs: {
     label: "لماذا تختار خالص",
