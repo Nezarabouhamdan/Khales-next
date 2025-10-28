@@ -2770,6 +2770,13 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Top 5 Aesthetic Materials Redefining Design Trends", // English title as a fallback
+        artitle: "أفضل 5 مواد جمالية تشكّل اتجاهات التصميم", // Arabic title
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/jqIn_baahWw/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/jqIn_baahWw",
+      },
+      {
         title: "3 Things You Must Inspect Yourself", // English title as a fallback
         artitle: "شوف أهم الفحوصات اللي لازم تسويها بنفسك", // Arabic title
         category: "Architecture",
