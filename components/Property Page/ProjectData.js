@@ -513,7 +513,7 @@ export const projectsData = [
   },
   {
     id: 8, // <-- ID set to 1
-    slug: "al-khawaneej-modern-villa",
+    slug: "modern-villa",
     category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
     mainImage: "https://i.ibb.co/tpWtkGSQ/IMG-20251026-WA0004.jpg",
     galleryImages: [
