@@ -92,7 +92,7 @@ export default function ReelCard({ thumbnailUrl, embedUrl, title }) {
     <CardWrapper onClick={!isVideoLoaded ? handlePlayClick : undefined}>
       {isVideoLoaded ? (
         <StyledIframe
-          src={`${embedUrl}?autoplay=1`}
+          src={`${embedUrl}?autoplay=0`}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
