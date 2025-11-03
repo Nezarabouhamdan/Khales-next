@@ -18,7 +18,7 @@ const projectTypesConfig = [
     showcase: {
       icon: <FaHome />,
       image:
-        "https://i.ibb.co/svbRT4PJ/Whats-App-Image-2025-08-14-at-11-39-54-237f6213.jpg", // A high-quality image of a residential project
+        "https://i.ibb.co/zT0WrNXC/Whats-App-Image-2025-10-30-at-17-35-07-1a75eb9d.jpg", // A high-quality image of a residential project
     },
   },
   {
@@ -26,7 +26,7 @@ const projectTypesConfig = [
     showcase: {
       icon: <FaBuilding />,
       image:
-        "https://i.ibb.co/7dD5Cvyn/Whats-App-Image-2025-09-14-at-15-06-14-fd7fc972.jpg", // A high-quality image of a commercial project
+        "https://i.ibb.co/23z0fFjw/Whats-App-Image-2025-10-30-at-17-36-29-132f0528.jpg", // A high-quality image of a commercial project
     },
   },
   {
@@ -34,7 +34,7 @@ const projectTypesConfig = [
     showcase: {
       icon: <FaGem />, // Using the new luxury icon
       image:
-        "https://i.ibb.co/XkZj9v9d/Whats-App-Image-2025-08-14-at-11-39-58-5b951252.jpg", // A high-quality image of a luxury villa
+        "https://i.ibb.co/TD19YqTg/Whats-App-Image-2025-10-30-at-17-37-38-b2830fda.jpg", // A high-quality image of a luxury villa
     },
   },
 ];

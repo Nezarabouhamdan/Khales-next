@@ -10,11 +10,12 @@ import {
   FaBuilding,
 } from "react-icons/fa";
 import Image from "next/image";
+import ImageWithSkeleton from "../ImageSkeleton";
 import Link from "next/link";
 
 // Swiper for mobile gallery
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -84,7 +85,7 @@ const HeroGrid = styled(motion.div)`
   margin-bottom: 3rem;
   @media (min-width: 993px) {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 550px 1fr;
     gap: 1rem;
     height: 550px;
   }
@@ -272,15 +273,6 @@ export default function PropertyPage({ project, lang }) {
     return <div>Content for this language not found.</div>;
   }
 
-  useEffect(() => {
-    if (gallery.length > 1) {
-      const timer = setInterval(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % gallery.length);
-      }, 8000);
-      return () => clearInterval(timer);
-    }
-  }, [gallery.length]);
-
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -302,14 +294,14 @@ export default function PropertyPage({ project, lang }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8 }}
+                  transition={{ duration: 0.7 }}
                   style={{
                     width: "100%",
                     height: "100%",
                     position: "absolute",
                   }}
                 >
-                  <Image
+                  <ImageWithSkeleton
                     src={gallery[currentImageIndex]}
                     alt={`${projectData.title} - view ${currentImageIndex + 1}`}
                     fill
@@ -355,18 +347,17 @@ export default function PropertyPage({ project, lang }) {
           {gallery.length > 0 && (
             <MobileSwiperWrapper>
               <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
+                modules={[Navigation, Pagination]}
                 slidesPerView={1}
                 spaceBetween={10}
                 navigation
                 pagination={{ clickable: true }}
-                autoplay={{ delay: 8000, disableOnInteraction: false }}
                 loop={gallery.length > 1}
               >
                 {gallery.map((imgSrc, i) => (
                   <SwiperSlide key={i}>
                     <MobileImageContainer>
-                      <Image
+                      <ImageWithSkeleton
                         src={imgSrc}
                         alt={`${projectData.title} gallery image ${i + 1}`}
                         fill

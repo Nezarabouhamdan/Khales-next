@@ -144,6 +144,27 @@ const Tags = styled.p`
   margin: 0 0 0.5rem 0;
 `;
 
+const ViewMoreWrapper = styled.div`
+  text-align: center;
+  margin-top: 3rem;
+`;
+
+const ViewMoreButton = styled(Link)`
+  display: inline-block;
+  padding: 0.8rem 2.5rem;
+  border-radius: 99px;
+  background-color: #66a109;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #5a9008;
+  }
+`;
+
 // --- MAIN COMPONENT ---
 export default function FeaturedProjects({ lang, content }) {
   const projects = content?.projectsData || [];
@@ -202,7 +223,7 @@ export default function FeaturedProjects({ lang, content }) {
 
         <ProjectsGrid>
           <AnimatePresence>
-            {filteredProjects.map((project, index) => (
+            {filteredProjects.slice(0, 6).map((project, index) => (
               <ProjectCard
                 as={motion.div}
                 key={project.id}
@@ -244,6 +265,13 @@ export default function FeaturedProjects({ lang, content }) {
             ))}
           </AnimatePresence>
         </ProjectsGrid>
+        {filteredProjects.length > 6 && (
+          <ViewMoreWrapper>
+            <ViewMoreButton href={`/${lang}/projects`}>
+              {lang === "ar" ? "عرض المزيد" : "View More"}
+            </ViewMoreButton>
+          </ViewMoreWrapper>
+        )}
       </Container>
     </SectionWrapper>
   );
