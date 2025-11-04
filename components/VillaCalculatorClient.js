@@ -31,6 +31,8 @@ import {
 } from "react-icons/fa";
 import { FaStairs } from "react-icons/fa6";
 import { GiElevator } from "react-icons/gi";
+import { jsPDF, GState } from "jspdf";
+import html2canvas from "html2canvas";
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -967,6 +969,89 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   const handleExtraAreaChange = (e) =>
     setExtraArea(parseFloat(e.target.value) || 0);
 
+  const handleDownloadPdf = async () => {
+    const element = document.getElementById("pdf-content");
+    if (!element) {
+      console.error("PDF content element not found.");
+      return;
+    }
+
+    const elementsToHide = element.querySelectorAll(".pdf-exclude");
+    elementsToHide.forEach((el) => (el.style.display = "none"));
+
+    const canvas = await html2canvas(element, {
+      backgroundColor: "#ffffff",
+      scale: 2,
+      useCORS: true,
+      logging: true,
+      allowTaint: true,
+      letterRendering: true,
+    });
+
+    elementsToHide.forEach((el) => (el.style.display = ""));
+
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
+    });
+
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
+    heightLeft -= pdfHeight;
+
+    while (heightLeft >= 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
+      heightLeft -= pdfHeight;
+    }
+
+    const logoUrl = "/assets/Khales Logo K - favicon.png";
+    const img = new Image();
+    img.src = logoUrl;
+
+    img.onload = () => {
+      const totalPages = pdf.internal.getNumberOfPages();
+      const watermarkGState = new GState({
+        opacity: 0.1,
+        "stroke-opacity": 0.1,
+      });
+
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.saveGraphicsState();
+        pdf.setGState(watermarkGState);
+
+        const imgWidth = 80;
+        const imgHeight = (img.height * imgWidth) / img.width;
+        const x = (pdfWidth - imgWidth) / 2;
+        const y = (pdfHeight - imgHeight) / 2;
+
+        pdf.addImage(img, "PNG", x, y, imgWidth, imgHeight);
+
+        pdf.restoreGraphicsState();
+      }
+      pdf.save(
+        `Villa_Calculation_Results_${new Date().toISOString().slice(0, 10)}.pdf`
+      );
+    };
+
+    img.onerror = () => {
+      console.error("Failed to load logo image for watermark.");
+      pdf.save(
+        `Villa_Calculation_Results_${new Date().toISOString().slice(0, 10)}.pdf`
+      );
+    };
+  };
+
   // --- Render Functions ---
 
   const renderModeSelector = () => (
@@ -1374,7 +1459,9 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
 
   const renderResults = () => {
     return (
-      <S_ResultsPageWrapper>
+      <S_ResultsPageWrapper id="pdf-content">
+        {" "}
+        {/* Add id for targeting */}
         <S_StepHeader isRTL={isRTL} style={{ textAlign: "center" }}>
           <h1>{dictionary.resultsTitle}</h1>
           <p style={{ maxWidth: "600px", margin: "0 auto" }}>
@@ -1398,7 +1485,6 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
             </h2>
           </S_ResultBox>
         </S_ResultsGrid>
-
         {calculationMode === "detailed" && (
           <S_ExtraAreaSection isRTL={isRTL}>
             <h4>{dictionary.extraAreaSectionTitle}</h4>
@@ -1413,7 +1499,6 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
             </S_InputGroup>
           </S_ExtraAreaSection>
         )}
-
         <S_BreakdownSection isRTL={isRTL}>
           <S_SubSectionHeader
             isRTL={isRTL}
@@ -1457,18 +1542,26 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
             </S_BreakdownList>
           </S_BreakdownLayout>
         </S_BreakdownSection>
-
         <S_ActionButtonsContainer>
-          <S_Button className="back" onClick={handleReset}>
+          <S_Button className="back pdf-exclude" onClick={handleReset}>
             {dictionary.startOver}
           </S_Button>
           <S_Button
             as={Link}
             href={`/${lang}/Contact`}
-            className="next"
+            className="next pdf-exclude"
             style={{ fontSize: "1.2rem", textDecoration: "none" }}
           >
             {dictionary.bookConsultation}
+          </S_Button>
+          {/* --- MODIFICATION --- */}
+          {/* Added the 'pdf-exclude' className to this button */}
+          <S_Button
+            className="next pdf-exclude"
+            onClick={handleDownloadPdf}
+            style={{ fontSize: "1.2rem", textDecoration: "none" }}
+          >
+            {dictionary.downloadPdf || "Download PDF"}
           </S_Button>
         </S_ActionButtonsContainer>
       </S_ResultsPageWrapper>

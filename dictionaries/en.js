@@ -162,6 +162,8 @@ export const dictionary = {
     showResult: "Show Result",
     startOver: "Start Over",
     bookConsultation: "Book a Free Consultation",
+    downloadPdf: "Download PDF",
+    generating: "Generating...",
     // Options
     locations: {
       abu_dhabi: "Abu Dhabi",

@@ -150,6 +150,8 @@ export const dictionary = {
     showResult: "عرض النتيجة",
     startOver: "ابدأ من جديد",
     bookConsultation: "احجز استشارة مجانية",
+    downloadPdf: "تحميل PDF",
+    generating: "جاري الإنشاء...",
     // Options
     locations: {
       abu_dhabi: "أبوظبي",
