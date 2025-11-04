@@ -721,6 +721,7 @@ const S_IntroLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+
   animation: ${fadeIn} 0.6s ease-out forwards;
   min-height: 60vh;
   @media (min-width: 992px) {
@@ -760,6 +761,98 @@ const S_LogoPlaceholder = styled.img`
   border-radius: 16px;
   margin-bottom: 1.5rem;
   object-fit: contain;
+`;
+// --- PDF-only styled container (hidden off-screen but rendered by html2canvas) ---
+const S_PdfContainer = styled.div`
+  position: absolute;
+  left: -9999px; /* keep off-screen so visible UI is untouched */
+  top: 0;
+  width: 794px; /* approximate A4 width in px at 96dpi */
+  background: #ffffff;
+  color: #111827;
+  font-family: "Tajawal", sans-serif;
+  /* add top spacing so PDF content isn't stuck to the top */
+  padding: 70px 24px 24px 24px; /* 100px extra top (100 + 24 default) */
+  box-sizing: border-box;
+`;
+
+const S_PdfHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px; /* increased spacing below header */
+`;
+
+const S_PdfTitle = styled.h1`
+  font-size: 22px;
+  margin: 0;
+  font-weight: 800;
+`;
+
+const S_PdfSummaryRow = styled.div`
+  display: flex;
+  gap: 12px;
+  margin: 18px 0 28px 0; /* more space between summary and chart */
+  align-items: stretch;
+`;
+
+const S_PdfSummaryBox = styled.div`
+  flex: 1;
+  background: #f7faf9;
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left;
+  h3 {
+    margin: 0;
+    font-size: 12px;
+    color: #6b7280;
+  }
+  p {
+    margin: 6px 0 0;
+    font-size: 20px;
+    font-weight: 800;
+    direction: ltr;
+  }
+`;
+
+const S_PdfPieContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 32px 0 36px; /* increase spacing around chart */
+`;
+
+const S_PdfChartWrapper = styled.div`
+  position: relative;
+  width: 360px;
+  height: 360px;
+  margin-bottom: 12px;
+`;
+
+const S_PdfBreakdownGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px; /* slightly larger gap between items */
+  margin-top: 24px; /* more distance from chart */
+`;
+
+const S_PdfBreakdownItem = styled.div`
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  .label {
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 6px;
+  }
+  .cost {
+    font-weight: 700;
+    color: #111827;
+    direction: ltr;
+    text-align: left;
+  }
 `;
 const S_ModeSelectionArea = styled.div`
   display: flex;
@@ -970,7 +1063,8 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     setExtraArea(parseFloat(e.target.value) || 0);
 
   const handleDownloadPdf = async () => {
-    const element = document.getElementById("pdf-content");
+    // target the hidden PDF layout container (rendered off-screen)
+    const element = document.getElementById("pdf-container-hidden");
     if (!element) {
       console.error("PDF content element not found.");
       return;
@@ -986,6 +1080,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
       logging: true,
       allowTaint: true,
       letterRendering: true,
+      width: element.scrollWidth,
     });
 
     elementsToHide.forEach((el) => (el.style.display = ""));
@@ -1014,7 +1109,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
       heightLeft -= pdfHeight;
     }
 
-    const logoUrl = "/assets/Khales Logo K - favicon.png";
+    const logoUrl = "https://i.ibb.co/8LDkH0gt/Khales-Logo.png";
     const img = new Image();
     img.src = logoUrl;
 
@@ -1057,7 +1152,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   const renderModeSelector = () => (
     <S_IntroLayout>
       <S_IntroContent isRTL={isRTL}>
-        <S_LogoPlaceholder src="https://i.ibb.co/S71HLHbn/download.png" />
+        <S_LogoPlaceholder src="https://i.ibb.co/8LDkH0gt/Khales-Logo.png" />
         <h1>{dictionary.introTitle}</h1>
         <p>{dictionary.introDescription}</p>
       </S_IntroContent>
@@ -1459,112 +1554,188 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
 
   const renderResults = () => {
     return (
-      <S_ResultsPageWrapper id="pdf-content">
-        {" "}
-        {/* Add id for targeting */}
-        <S_StepHeader isRTL={isRTL} style={{ textAlign: "center" }}>
-          <h1>{dictionary.resultsTitle}</h1>
-          <p style={{ maxWidth: "600px", margin: "0 auto" }}>
-            {dictionary.resultsDescription}
-          </p>
-        </S_StepHeader>
-        <S_ResultsGrid>
-          <S_ResultBox>
-            <span>{dictionary.totalBUAResult}</span>
-            <h2>{calculationResult.totalBUA.toFixed(2)} m²</h2>
-          </S_ResultBox>
-          <S_ResultBox>
-            <span>{dictionary.totalBUAResultSqft}</span>
-            <h2>{(calculationResult.totalBUA * 10.764).toFixed(2)} sqft</h2>
-          </S_ResultBox>
-          <S_ResultBox className="primary">
-            <span>{dictionary.totalCostResult}</span>
-            <h2>
-              {Math.round(calculationResult.totalPrice).toLocaleString()}
-              {isRTL ? " د.إ" : " AED"}
-            </h2>
-          </S_ResultBox>
-        </S_ResultsGrid>
-        {calculationMode === "detailed" && (
-          <S_ExtraAreaSection isRTL={isRTL}>
-            <h4>{dictionary.extraAreaSectionTitle}</h4>
-            <S_InputGroup isRTL={isRTL}>
-              <label>{dictionary.extraAreaLabel}</label>
-              <input
-                type="number"
-                value={extraArea === 0 ? "" : extraArea}
-                onChange={handleExtraAreaChange}
-                placeholder="e.g., 50"
-              />
-            </S_InputGroup>
-          </S_ExtraAreaSection>
-        )}
-        <S_BreakdownSection isRTL={isRTL}>
-          <S_SubSectionHeader
-            isRTL={isRTL}
-            style={{
-              border: "none",
-              margin: "0 0 16px 0",
-              padding: 0,
-              fontSize: "1.4rem",
-            }}
-          >
-            {dictionary.costBreakdownTitle}
-          </S_SubSectionHeader>
-          <S_BreakdownLayout>
-            <S_ChartContainer>
-              <CostPieChart
-                breakdownDetails={calculationResult.breakdownDetails}
-                isRTL={isRTL}
-              />
+      <>
+        <S_ResultsPageWrapper id="results-visible">
+          {" "}
+          {/* Add id for targeting */}
+          <S_StepHeader isRTL={isRTL} style={{ textAlign: "center" }}>
+            <h1>{dictionary.resultsTitle}</h1>
+            <p style={{ maxWidth: "600px", margin: "0 auto" }}>
+              {dictionary.resultsDescription}
+            </p>
+          </S_StepHeader>
+          <S_ResultsGrid>
+            <S_ResultBox>
+              <span>{dictionary.totalBUAResult}</span>
+              <h2>{calculationResult.totalBUA.toFixed(2)} m²</h2>
+            </S_ResultBox>
+            <S_ResultBox>
+              <span>{dictionary.totalBUAResultSqft}</span>
+              <h2>{(calculationResult.totalBUA * 10.764).toFixed(2)} sqft</h2>
+            </S_ResultBox>
+            <S_ResultBox className="primary">
+              <span>{dictionary.totalCostResult}</span>
+              <h2>
+                {Math.round(calculationResult.totalPrice).toLocaleString()}
+                {isRTL ? " د.إ" : " AED"}
+              </h2>
+            </S_ResultBox>
+          </S_ResultsGrid>
+          {calculationMode === "detailed" && (
+            <S_ExtraAreaSection isRTL={isRTL}>
+              <h4>{dictionary.extraAreaSectionTitle}</h4>
+              <S_InputGroup isRTL={isRTL}>
+                <label>{dictionary.extraAreaLabel}</label>
+                <input
+                  type="number"
+                  value={extraArea === 0 ? "" : extraArea}
+                  onChange={handleExtraAreaChange}
+                  placeholder="e.g., 50"
+                />
+              </S_InputGroup>
+            </S_ExtraAreaSection>
+          )}
+          <S_BreakdownSection isRTL={isRTL}>
+            <S_SubSectionHeader
+              isRTL={isRTL}
+              style={{
+                border: "none",
+                margin: "0 0 16px 0",
+                padding: 0,
+                fontSize: "1.4rem",
+              }}
+            >
+              {dictionary.costBreakdownTitle}
+            </S_SubSectionHeader>
+            <S_BreakdownLayout>
+              <S_ChartContainer>
+                <CostPieChart
+                  breakdownDetails={calculationResult.breakdownDetails}
+                  isRTL={isRTL}
+                />
+                <S_TotalInChart>
+                  <h2>
+                    {Math.round(calculationResult.totalPrice).toLocaleString()}
+                  </h2>
+                  <span>{isRTL ? "د.إ" : "AED"}</span>
+                </S_TotalInChart>
+              </S_ChartContainer>
+              <S_BreakdownList>
+                {calculationResult.breakdownDetails.map((item, index) => (
+                  <S_BreakdownItem key={index} isRTL={isRTL}>
+                    <div className="label-group">
+                      <S_ColorDot
+                        color={CHART_COLORS[index % CHART_COLORS.length]}
+                      />
+                      <span>{item.name}</span>
+                    </div>
+                    <span className="cost">
+                      {Math.round(item.cost).toLocaleString()}
+                      {isRTL ? " د.إ" : " AED"}
+                    </span>
+                  </S_BreakdownItem>
+                ))}
+              </S_BreakdownList>
+            </S_BreakdownLayout>
+          </S_BreakdownSection>
+          <S_ActionButtonsContainer>
+            <S_Button className="back pdf-exclude" onClick={handleReset}>
+              {dictionary.startOver}
+            </S_Button>
+            <S_Button
+              as={Link}
+              href={`/${lang}/Contact`}
+              className="next pdf-exclude"
+              style={{ fontSize: "1.2rem", textDecoration: "none" }}
+            >
+              {dictionary.bookConsultation}
+            </S_Button>
+            {/* --- MODIFICATION --- */}
+            {/* Added the 'pdf-exclude' className to this button */}
+            <S_Button
+              className="next pdf-exclude"
+              onClick={handleDownloadPdf}
+              style={{ fontSize: "1.2rem", textDecoration: "none" }}
+            >
+              {dictionary.downloadPdf || "Download PDF"}
+            </S_Button>
+          </S_ActionButtonsContainer>
+        </S_ResultsPageWrapper>
+
+        {/* Hidden PDF layout captured by html2canvas when generating PDF */}
+        <S_PdfContainer id="pdf-container-hidden" aria-hidden="true">
+          <S_PdfHeader>
+            <img
+              src="https://i.ibb.co/8LDkH0gt/Khales-Logo.png"
+              alt="logo"
+              style={{ width: 60, height: 40, borderRadius: 0 }}
+            />
+            <div>
+              <S_PdfTitle>{dictionary.resultsTitle}</S_PdfTitle>
+              <div style={{ fontSize: 12, color: "#6b7280" }}>
+                {dictionary.resultsDescription}
+              </div>
+            </div>
+          </S_PdfHeader>
+
+          <S_PdfSummaryRow>
+            <S_PdfSummaryBox>
+              <h3>{dictionary.totalBUAResult}</h3>
+              <p>{calculationResult.totalBUA.toFixed(2)} m²</p>
+            </S_PdfSummaryBox>
+            <S_PdfSummaryBox>
+              <h3>{dictionary.totalBUAResultSqft}</h3>
+              <p>{(calculationResult.totalBUA * 10.764).toFixed(2)} sqft</p>
+            </S_PdfSummaryBox>
+            <S_PdfSummaryBox>
+              <h3>{dictionary.totalCostResult}</h3>
+              <p>
+                {Math.round(calculationResult.totalPrice).toLocaleString()}
+                {isRTL ? " د.إ" : " AED"}
+              </p>
+            </S_PdfSummaryBox>
+          </S_PdfSummaryRow>
+
+          <S_PdfPieContainer>
+            <S_PdfChartWrapper>
+              <div style={{ width: "100%", height: "100%" }}>
+                <CostPieChart
+                  breakdownDetails={calculationResult.breakdownDetails}
+                  isRTL={isRTL}
+                />
+              </div>
+              {/* Reuse the same centered total box as the visible chart */}
               <S_TotalInChart>
                 <h2>
                   {Math.round(calculationResult.totalPrice).toLocaleString()}
                 </h2>
                 <span>{isRTL ? "د.إ" : "AED"}</span>
               </S_TotalInChart>
-            </S_ChartContainer>
-            <S_BreakdownList>
-              {calculationResult.breakdownDetails.map((item, index) => (
-                <S_BreakdownItem key={index} isRTL={isRTL}>
-                  <div className="label-group">
-                    <S_ColorDot
-                      color={CHART_COLORS[index % CHART_COLORS.length]}
-                    />
-                    <span>{item.name}</span>
-                  </div>
-                  <span className="cost">
-                    {Math.round(item.cost).toLocaleString()}
-                    {isRTL ? " د.إ" : " AED"}
-                  </span>
-                </S_BreakdownItem>
-              ))}
-            </S_BreakdownList>
-          </S_BreakdownLayout>
-        </S_BreakdownSection>
-        <S_ActionButtonsContainer>
-          <S_Button className="back pdf-exclude" onClick={handleReset}>
-            {dictionary.startOver}
-          </S_Button>
-          <S_Button
-            as={Link}
-            href={`/${lang}/Contact`}
-            className="next pdf-exclude"
-            style={{ fontSize: "1.2rem", textDecoration: "none" }}
-          >
-            {dictionary.bookConsultation}
-          </S_Button>
-          {/* --- MODIFICATION --- */}
-          {/* Added the 'pdf-exclude' className to this button */}
-          <S_Button
-            className="next pdf-exclude"
-            onClick={handleDownloadPdf}
-            style={{ fontSize: "1.2rem", textDecoration: "none" }}
-          >
-            {dictionary.downloadPdf || "Download PDF"}
-          </S_Button>
-        </S_ActionButtonsContainer>
-      </S_ResultsPageWrapper>
+            </S_PdfChartWrapper>
+          </S_PdfPieContainer>
+
+          <S_PdfBreakdownGrid>
+            {calculationResult.breakdownDetails.map((item, i) => (
+              <S_PdfBreakdownItem key={i}>
+                <div
+                  className="label-group"
+                  style={{ display: "flex", alignItems: "center", gap: 8 }}
+                >
+                  <S_ColorDot
+                    color={CHART_COLORS[i % CHART_COLORS.length]}
+                    style={{ width: 10, height: 10 }}
+                  />
+                  <div style={{ fontWeight: 600 }}>{item.name}</div>
+                </div>
+                <div className="cost">
+                  {Math.round(item.cost).toLocaleString()}
+                  {isRTL ? " د.إ" : " AED"}
+                </div>
+              </S_PdfBreakdownItem>
+            ))}
+          </S_PdfBreakdownGrid>
+        </S_PdfContainer>
+      </>
     );
   };
 
