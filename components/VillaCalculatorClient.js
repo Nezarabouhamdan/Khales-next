@@ -38,6 +38,7 @@ import html2canvas from "html2canvas";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 // --- CONFIGURATION DATA (Constants) ---
+// ... (Your constants like PRICING_DATA, LOCATION_PRICING_FACTORS, etc. remain here, unchanged)
 const PRICING_DATA = {
   factors: { circulation_multiplier: 1.4, basement_multiplier: 1.35 },
   cost_breakdown_per_sqm: {
@@ -196,8 +197,9 @@ const CHART_COLORS = [
 ];
 
 // --- STYLED COMPONENTS ---
-const fadeIn = keyframes`from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); }`;
+const fadeIn = keyframes`from { opacity: 0; } to { opacity: 1; }`;
 
+// ... (Your other styled components remain here, unchanged)
 const S_CalculatorWrapper = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap");
   --primary-color: #66a109;
@@ -220,6 +222,7 @@ const S_CalculatorWrapper = styled.div`
     padding: 100px 20px;
   }
 `;
+
 const S_WizardLayout = styled.div`
   width: 100%;
   max-width: 1400px;
@@ -234,6 +237,18 @@ const S_WizardLayout = styled.div`
     padding: 40px;
   }
 `;
+
+// --- UI MODIFICATION: Add props to S_ResultsPageWrapper ---
+const S_ResultsPageWrapper = styled.div`
+  animation: ${fadeIn} 0.6s ease-out forwards;
+  text-align: center;
+  transition: filter 0.3s ease-in-out;
+  filter: ${(props) => (props.isBlurred ? "blur(8px)" : "none")};
+  pointer-events: ${(props) => (props.isBlurred ? "none" : "auto")};
+  user-select: ${(props) => (props.isBlurred ? "none" : "auto")};
+`;
+
+// ... (All your other styled-components go here)
 const S_StepContainer = styled.div`
   animation: ${fadeIn} 0.5s ease-out forwards;
 `;
@@ -328,7 +343,6 @@ const S_ChoiceCard = styled.div`
     }
   }
 `;
-
 const S_Navigation = styled.div`
   display: flex;
   justify-content: center;
@@ -350,10 +364,14 @@ const S_Button = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   width: 100%;
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
   &.next {
     background-color: var(--primary-color);
     color: white;
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: var(--primary-darker);
     }
   }
@@ -533,10 +551,6 @@ const S_ToggleSwitch = styled.label`
     transform: ${(props) =>
       props.isRTL ? "translateX(-20px)" : "translateX(20px)"};
   }
-`;
-const S_ResultsPageWrapper = styled.div`
-  animation: ${fadeIn} 0.6s ease-out forwards;
-  text-align: center;
 `;
 const S_ResultsGrid = styled.div`
   display: grid;
@@ -721,7 +735,6 @@ const S_IntroLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-
   animation: ${fadeIn} 0.6s ease-out forwards;
   min-height: 60vh;
   @media (min-width: 992px) {
@@ -775,27 +788,23 @@ const S_PdfContainer = styled.div`
   padding: 70px 24px 24px 24px; /* 100px extra top (100 + 24 default) */
   box-sizing: border-box;
 `;
-
 const S_PdfHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 30px; /* increased spacing below header */
 `;
-
 const S_PdfTitle = styled.h1`
   font-size: 22px;
   margin: 0;
   font-weight: 800;
 `;
-
 const S_PdfSummaryRow = styled.div`
   display: flex;
   gap: 12px;
   margin: 18px 0 28px 0; /* more space between summary and chart */
   align-items: stretch;
 `;
-
 const S_PdfSummaryBox = styled.div`
   flex: 1;
   background: #f7faf9;
@@ -815,27 +824,23 @@ const S_PdfSummaryBox = styled.div`
     direction: ltr;
   }
 `;
-
 const S_PdfPieContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: 32px 0 36px; /* increase spacing around chart */
 `;
-
 const S_PdfChartWrapper = styled.div`
   position: relative;
   width: 360px;
   height: 360px;
   margin-bottom: 12px;
 `;
-
 const S_PdfBreakdownGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px; /* slightly larger gap between items */
   margin-top: 24px; /* more distance from chart */
 `;
-
 const S_PdfBreakdownItem = styled.div`
   background: #ffffff;
   border: 1px solid #e5e7eb;
@@ -898,7 +903,66 @@ const S_ModeChoiceCard = styled.div`
   }
 `;
 
-// --- Reusable Components ---
+// --- Styled Components for Modal ---
+const S_ModalBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(4px); /* Fallback blur on the backdrop itself */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: ${fadeIn} 0.3s ease;
+`;
+
+const S_ModalContent = styled.div`
+  background: white;
+  padding: 30px 40px;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: ${fadeIn} 0.4s ease; /* Slightly delayed animation */
+  direction: ${(props) => (props.isRTL ? "rtl" : "ltr")};
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: var(--text-dark);
+  }
+
+  p {
+    color: var(--text-light);
+    margin-bottom: 24px;
+    font-size: 1.1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-group {
+    text-align: ${(props) => (props.isRTL ? "right" : "left")};
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+`;
+
+// --- Reusable Components & Initial State ---
+// ... (CostPieChart, getInitialState, initializeRoomsState functions remain here, unchanged)
 const CostPieChart = ({ breakdownDetails, isRTL }) => {
   const data = {
     labels: breakdownDetails.map((item) => item.name),
@@ -932,7 +996,6 @@ const CostPieChart = ({ breakdownDetails, isRTL }) => {
   };
   return <Doughnut data={data} options={options} />;
 };
-
 const getInitialState = () => ({
   location: "dubai",
   designStyle: "modern",
@@ -965,9 +1028,10 @@ const initializeRoomsState = () => {
   return state;
 };
 
-// --- Client Component ---
+// --- Main Client Component ---
 export default function VillaCalculatorClient({ lang, dictionary }) {
   const isRTL = lang === "ar";
+  // ... (all existing states are correct)
   const [calculationMode, setCalculationMode] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [selections, setSelections] = useState(getInitialState());
@@ -978,7 +1042,12 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   });
   const [extraArea, setExtraArea] = useState(0);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [leadInfo, setLeadInfo] = useState({ name: "", email: "", phone: "" });
+
   const calculationResult = useMemo(() => {
+    // ... (This function is correct, no changes needed)
     let finalTotalBUA,
       totalFixedAddonCost = 0;
 
@@ -1050,6 +1119,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     };
   }, [selections, quickSelections, calculationMode, extraArea, dictionary]);
 
+  // All handler functions are correct
   const handleReset = () => {
     setShowResults(false);
     setSelections(getInitialState());
@@ -1062,8 +1132,53 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   const handleExtraAreaChange = (e) =>
     setExtraArea(parseFloat(e.target.value) || 0);
 
+  const initiatePdfDownload = () => setIsModalOpen(true);
+
+  const handleLeadInfoChange = (e) => {
+    const { name, value } = e.target;
+    setLeadInfo((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmitAndDownload = async (e) => {
+    e.preventDefault();
+    if (!leadInfo.name || !leadInfo.email || !leadInfo.phone) {
+      alert(dictionary.fillAllFields || "Please fill in all fields.");
+      return;
+    }
+    setIsSubmitting(true);
+
+    fetch("/api/create-pdf-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: leadInfo.name,
+        email: leadInfo.email,
+        phone: leadInfo.phone,
+        description: `Lead from PDF Download.\nTotal BUA: ${calculationResult.totalBUA.toFixed(
+          2
+        )} m²\nEstimated Cost: ${Math.round(
+          calculationResult.totalPrice
+        ).toLocaleString()} AED`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.success) throw new Error(data.error);
+        console.log("Lead creation initiated:", data.message || "Success");
+      })
+      .catch((error) => {
+        console.error("Error sending lead data:", error);
+      });
+
+    await handleDownloadPdf();
+
+    setIsSubmitting(false);
+    setIsModalOpen(false);
+    setLeadInfo({ name: "", email: "", phone: "" });
+  };
+
   const handleDownloadPdf = async () => {
-    // target the hidden PDF layout container (rendered off-screen)
+    // ... (This function is correct, no changes needed)
     const element = document.getElementById("pdf-container-hidden");
     if (!element) {
       console.error("PDF content element not found.");
@@ -1112,6 +1227,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     const logoUrl = "https://i.ibb.co/8LDkH0gt/Khales-Logo.png";
     const img = new Image();
     img.src = logoUrl;
+    img.crossOrigin = "Anonymous"; // Handle potential CORS issue with logo image
 
     img.onload = () => {
       const totalPages = pdf.internal.getNumberOfPages();
@@ -1148,8 +1264,8 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   };
 
   // --- Render Functions ---
-
   const renderModeSelector = () => (
+    //... (This function's code remains the same)
     <S_IntroLayout>
       <S_IntroContent isRTL={isRTL}>
         <S_LogoPlaceholder src="https://i.ibb.co/8LDkH0gt/Khales-Logo.png" />
@@ -1182,6 +1298,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   );
 
   const renderQuickCalculator = () => (
+    //... (This function's code remains the same)
     <S_StepContainer>
       <S_StepHeader isRTL={isRTL}>
         <h1>{dictionary.quickTitle}</h1>
@@ -1256,6 +1373,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   );
 
   const renderDetailedCalculator = () => (
+    //... (This function's code remains the same)
     <S_StepContainer>
       <S_StepHeader isRTL={isRTL}>
         <h1>{dictionary.detailedTitle}</h1>
@@ -1555,9 +1673,9 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   const renderResults = () => {
     return (
       <>
-        <S_ResultsPageWrapper id="results-visible">
-          {" "}
-          {/* Add id for targeting */}
+        {/* Pass the isBlurred prop here */}
+        <S_ResultsPageWrapper id="results-visible" isBlurred={isModalOpen}>
+          {/* ... (The content inside S_ResultsPageWrapper is unchanged) ... */}
           <S_StepHeader isRTL={isRTL} style={{ textAlign: "center" }}>
             <h1>{dictionary.resultsTitle}</h1>
             <p style={{ maxWidth: "600px", margin: "0 auto" }}>
@@ -1638,9 +1756,10 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
               </S_BreakdownList>
             </S_BreakdownLayout>
           </S_BreakdownSection>
+
           <S_ActionButtonsContainer>
             <S_Button className="back pdf-exclude" onClick={handleReset}>
-              {dictionary.startOver}
+              {dictionary.startOver || "Start Over"}
             </S_Button>
             <S_Button
               as={Link}
@@ -1648,13 +1767,11 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
               className="next pdf-exclude"
               style={{ fontSize: "1.2rem", textDecoration: "none" }}
             >
-              {dictionary.bookConsultation}
+              {dictionary.bookConsultation || "Book a Consultation"}
             </S_Button>
-            {/* --- MODIFICATION --- */}
-            {/* Added the 'pdf-exclude' className to this button */}
             <S_Button
               className="next pdf-exclude"
-              onClick={handleDownloadPdf}
+              onClick={initiatePdfDownload}
               style={{ fontSize: "1.2rem", textDecoration: "none" }}
             >
               {dictionary.downloadPdf || "Download PDF"}
@@ -1662,8 +1779,9 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
           </S_ActionButtonsContainer>
         </S_ResultsPageWrapper>
 
-        {/* Hidden PDF layout captured by html2canvas when generating PDF */}
+        {/* Hidden PDF layout (unchanged) */}
         <S_PdfContainer id="pdf-container-hidden" aria-hidden="true">
+          {/* ... all your PDF structure remains the same ... */}
           <S_PdfHeader>
             <img
               src="https://i.ibb.co/8LDkH0gt/Khales-Logo.png"
@@ -1677,7 +1795,6 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
               </div>
             </div>
           </S_PdfHeader>
-
           <S_PdfSummaryRow>
             <S_PdfSummaryBox>
               <h3>{dictionary.totalBUAResult}</h3>
@@ -1695,7 +1812,6 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
               </p>
             </S_PdfSummaryBox>
           </S_PdfSummaryRow>
-
           <S_PdfPieContainer>
             <S_PdfChartWrapper>
               <div style={{ width: "100%", height: "100%" }}>
@@ -1704,7 +1820,6 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
                   isRTL={isRTL}
                 />
               </div>
-              {/* Reuse the same centered total box as the visible chart */}
               <S_TotalInChart>
                 <h2>
                   {Math.round(calculationResult.totalPrice).toLocaleString()}
@@ -1713,7 +1828,6 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
               </S_TotalInChart>
             </S_PdfChartWrapper>
           </S_PdfPieContainer>
-
           <S_PdfBreakdownGrid>
             {calculationResult.breakdownDetails.map((item, i) => (
               <S_PdfBreakdownItem key={i}>
@@ -1735,6 +1849,74 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
             ))}
           </S_PdfBreakdownGrid>
         </S_PdfContainer>
+
+        {/* The Modal is now outside the wrapper so it doesn't get blurred */}
+        {isModalOpen && (
+          <S_ModalBackdrop onClick={() => setIsModalOpen(false)}>
+            <S_ModalContent isRTL={isRTL} onClick={(e) => e.stopPropagation()}>
+              <h2>{dictionary.modalTitle || "Get Your Full Report"}</h2>
+              <p>
+                {dictionary.modalDescription ||
+                  "Enter your details to download the complete PDF estimation."}
+              </p>
+              <form onSubmit={handleSubmitAndDownload}>
+                <div className="form-group">
+                  <label htmlFor="name">{dictionary.nameLabel || "Name"}</label>
+                  <S_InputGroup>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      required
+                      value={leadInfo.name}
+                      onChange={handleLeadInfoChange}
+                    />
+                  </S_InputGroup>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">
+                    {dictionary.emailLabel || "Email Address"}
+                  </label>
+                  <S_InputGroup>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      required
+                      value={leadInfo.email}
+                      onChange={handleLeadInfoChange}
+                    />
+                  </S_InputGroup>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="phone">
+                    {dictionary.phoneLabel || "Phone Number"}
+                  </label>
+                  <S_InputGroup>
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="phone"
+                      required
+                      value={leadInfo.phone}
+                      onChange={handleLeadInfoChange}
+                    />
+                  </S_InputGroup>
+                </div>
+                <S_Button
+                  type="submit"
+                  className="next"
+                  style={{ width: "100%", marginTop: "10px" }}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting
+                    ? dictionary.submitting || "Processing..."
+                    : dictionary.proceedAndDownload || "Proceed & Download"}
+                </S_Button>
+              </form>
+            </S_ModalContent>
+          </S_ModalBackdrop>
+        )}
       </>
     );
   };
