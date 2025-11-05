@@ -217,6 +217,7 @@ const S_CalculatorWrapper = styled.div`
   align-items: flex-start;
   padding: 50px 16px;
   direction: ${(props) => (props.isRTL ? "rtl" : "ltr")};
+  overflow-x: hidden;
   @media (min-width: 768px) {
     align-items: center;
     padding: 100px 20px;
@@ -246,6 +247,7 @@ const S_ResultsPageWrapper = styled.div`
   filter: ${(props) => (props.isBlurred ? "blur(8px)" : "none")};
   pointer-events: ${(props) => (props.isBlurred ? "none" : "auto")};
   user-select: ${(props) => (props.isBlurred ? "none" : "auto")};
+  overflow-x: hidden;
 `;
 
 // ... (All your other styled-components go here)
@@ -778,7 +780,7 @@ const S_LogoPlaceholder = styled.img`
 // --- PDF-only styled container (hidden off-screen but rendered by html2canvas) ---
 const S_PdfContainer = styled.div`
   position: absolute;
-  left: -9999px; /* keep off-screen so visible UI is untouched */
+  ${(props) => (props.isRTL ? "right: -9999px;" : "left: -9999px;")} /* keep off-screen */
   top: 0;
   width: 794px; /* approximate A4 width in px at 96dpi */
   background: #ffffff;
@@ -1780,7 +1782,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
         </S_ResultsPageWrapper>
 
         {/* Hidden PDF layout (unchanged) */}
-        <S_PdfContainer id="pdf-container-hidden" aria-hidden="true">
+        <S_PdfContainer id="pdf-container-hidden" aria-hidden="true" isRTL={isRTL}>
           {/* ... all your PDF structure remains the same ... */}
           <S_PdfHeader>
             <img
