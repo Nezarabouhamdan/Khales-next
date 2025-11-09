@@ -1046,7 +1046,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [leadInfo, setLeadInfo] = useState({ name: "", email: "", phone: "" });
+  const [leadInfo, setLeadInfo] = useState({ email: "", phone: "" });
 
   const calculationResult = useMemo(() => {
     // ... (This function is correct, no changes needed)
@@ -1143,7 +1143,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
 
   const handleSubmitAndDownload = async (e) => {
     e.preventDefault();
-    if (!leadInfo.name || !leadInfo.email || !leadInfo.phone) {
+    if (!leadInfo.email || !leadInfo.phone) {
       alert(dictionary.fillAllFields || "Please fill in all fields.");
       return;
     }
@@ -1862,19 +1862,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
                   "Enter your details to download the complete PDF estimation."}
               </p>
               <form onSubmit={handleSubmitAndDownload}>
-                <div className="form-group">
-                  <label htmlFor="name">{dictionary.nameLabel || "Name"}</label>
-                  <S_InputGroup>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      required
-                      value={leadInfo.name}
-                      onChange={handleLeadInfoChange}
-                    />
-                  </S_InputGroup>
-                </div>
+
                 <div className="form-group">
                   <label htmlFor="email">
                     {dictionary.emailLabel || "Email Address"}

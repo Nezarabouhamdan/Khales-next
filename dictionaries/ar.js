@@ -211,6 +211,13 @@ export const dictionary = {
       consultant_fees: "أتعاب الاستشاري",
       fixed_addons_cost: "تكلفة الإضافات الثابتة",
     },
+    modalTitle: "احصل على تقريرك الكامل",
+    modalDescription: "أدخل تفاصيلك لتحميل تقدير PDF الكامل.",
+    emailLabel: "عنوان البريد الإلكتروني",
+    phoneLabel: "رقم الهاتف",
+    proceedAndDownload: "متابعة وتحميل",
+    submitting: "جاري المعالجة...",
+    fillAllFields: "يرجى ملء جميع الحقول.",
   },
   hero: {
     slides: [
