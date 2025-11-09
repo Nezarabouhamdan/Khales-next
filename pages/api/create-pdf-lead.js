@@ -78,12 +78,15 @@ export default async function handler(req, res) {
     const uid = await authenticate();
     const { name, phone, email, description } = req.body;
 
-    if (!name || !phone || !email) {
+    if (!phone || !email) {
       return res.status(400).json({
         success: false,
-        error: "Missing required fields: name, phone, and email are required.",
+        error: "Missing required fields: phone and email are required.",
       });
     }
+
+    // If name is not provided, use the part of the email before the @ as a default
+    const leadName = name || email.split("@")[0];
 
     // Find or create the 'Website' UTM source
     let sourceIds = await executeKw(uid, "utm.source", "search", [
@@ -96,8 +99,8 @@ export default async function handler(req, res) {
 
     // Prepare the lead data, specifying the origin
     const leadData = {
-      name: `PDF Download Lead - ${name}`, // Custom name for CRM clarity
-      contact_name: name,
+      name: `PDF Download Lead - ${leadName}`, // Use the generated or provided name
+      contact_name: leadName, // Use the generated or provided name
       phone,
       email_from: email,
       description:

@@ -151,6 +151,7 @@ export const dictionary = {
     startOver: "ابدأ من جديد",
     bookConsultation: "احجز استشارة مجانية",
     downloadPdf: "تحميل PDF",
+    downloadFreePdf: "تحميل PDF مجاني",
     generating: "جاري الإنشاء...",
     // Options
     locations: {
@@ -212,10 +213,11 @@ export const dictionary = {
       fixed_addons_cost: "تكلفة الإضافات الثابتة",
     },
     modalTitle: "احصل على تقريرك الكامل",
-    modalDescription: "أدخل تفاصيلك لتحميل تقدير PDF الكامل.",
+    modalDescription:
+      "أدخل التفاصيل الخاصة بك لرؤية النتائج وتنزيل تقدير PDF الكامل.",
     emailLabel: "عنوان البريد الإلكتروني",
     phoneLabel: "رقم الهاتف",
-    proceedAndDownload: "متابعة وتحميل",
+    proceedAndDownload: "عرض النتائج",
     submitting: "جاري المعالجة...",
     fillAllFields: "يرجى ملء جميع الحقول.",
   },

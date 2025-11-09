@@ -1130,11 +1130,12 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     setExtraArea(0);
   };
 
-  const handleShowResult = () => setShowResults(true);
+  const handleShowResult = () => setIsModalOpen(true);
+
   const handleExtraAreaChange = (e) =>
     setExtraArea(parseFloat(e.target.value) || 0);
 
-  const initiatePdfDownload = () => setIsModalOpen(true);
+  const initiatePdfDownload = () => handleDownloadPdf();
 
   const handleLeadInfoChange = (e) => {
     const { name, value } = e.target;
@@ -1153,7 +1154,6 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: leadInfo.name,
         email: leadInfo.email,
         phone: leadInfo.phone,
         description: `Lead from PDF Download.\nTotal BUA: ${calculationResult.totalBUA.toFixed(
@@ -1172,11 +1172,10 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
         console.error("Error sending lead data:", error);
       });
 
-    await handleDownloadPdf();
-
     setIsSubmitting(false);
     setIsModalOpen(false);
-    setLeadInfo({ name: "", email: "", phone: "" });
+    setShowResults(true);
+    setLeadInfo({ email: "", phone: "" });
   };
 
   const handleDownloadPdf = async () => {
@@ -1776,7 +1775,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
               onClick={initiatePdfDownload}
               style={{ fontSize: "1.2rem", textDecoration: "none" }}
             >
-              {dictionary.downloadPdf || "Download PDF"}
+              {dictionary.downloadFreePdf || "Download Free PDF"}
             </S_Button>
           </S_ActionButtonsContainer>
         </S_ResultsPageWrapper>
@@ -1851,8 +1850,20 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
             ))}
           </S_PdfBreakdownGrid>
         </S_PdfContainer>
+      </>
+    );
+  };
 
-        {/* The Modal is now outside the wrapper so it doesn't get blurred */}
+  return (
+    <S_CalculatorWrapper isRTL={isRTL}>
+      <S_WizardLayout>
+        {!calculationMode
+          ? renderModeSelector()
+          : !showResults
+          ? calculationMode === "detailed"
+            ? renderDetailedCalculator()
+            : renderQuickCalculator()
+          : renderResults()}
         {isModalOpen && (
           <S_ModalBackdrop onClick={() => setIsModalOpen(false)}>
             <S_ModalContent isRTL={isRTL} onClick={(e) => e.stopPropagation()}>
@@ -1862,7 +1873,6 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
                   "Enter your details to download the complete PDF estimation."}
               </p>
               <form onSubmit={handleSubmitAndDownload}>
-
                 <div className="form-group">
                   <label htmlFor="email">
                     {dictionary.emailLabel || "Email Address"}
@@ -1907,20 +1917,6 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
             </S_ModalContent>
           </S_ModalBackdrop>
         )}
-      </>
-    );
-  };
-
-  return (
-    <S_CalculatorWrapper isRTL={isRTL}>
-      <S_WizardLayout>
-        {!calculationMode
-          ? renderModeSelector()
-          : !showResults
-          ? calculationMode === "detailed"
-            ? renderDetailedCalculator()
-            : renderQuickCalculator()
-          : renderResults()}
       </S_WizardLayout>
     </S_CalculatorWrapper>
   );

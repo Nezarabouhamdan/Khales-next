@@ -163,7 +163,16 @@ export const dictionary = {
     startOver: "Start Over",
     bookConsultation: "Book a Free Consultation",
     downloadPdf: "Download PDF",
+    downloadFreePdf: "Download Free PDF",
     generating: "Generating...",
+    modalTitle: "Get Your Full Report",
+    modalDescription:
+      "Enter your details to see the results and download the complete PDF estimation.",
+    emailLabel: "Email Address",
+    phoneLabel: "Phone Number",
+    proceedAndDownload: "Show Results",
+    submitting: "Processing...",
+    fillAllFields: "Please fill in all fields.",
     // Options
     locations: {
       abu_dhabi: "Abu Dhabi",
