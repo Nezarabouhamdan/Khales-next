@@ -220,6 +220,7 @@ export const dictionary = {
     proceedAndDownload: "عرض النتائج",
     submitting: "جاري المعالجة...",
     fillAllFields: "يرجى ملء جميع الحقول.",
+    invalidEmail: "يرجى إدخال عنوان بريد إلكتروني صالح.",
   },
   hero: {
     slides: [

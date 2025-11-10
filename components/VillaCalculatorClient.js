@@ -1148,6 +1148,13 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
       alert(dictionary.fillAllFields || "Please fill in all fields.");
       return;
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(leadInfo.email)) {
+      alert(dictionary.invalidEmail || "Please enter a valid email address.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     fetch("/api/create-pdf-lead", {

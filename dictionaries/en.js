@@ -173,6 +173,7 @@ export const dictionary = {
     proceedAndDownload: "Show Results",
     submitting: "Processing...",
     fillAllFields: "Please fill in all fields.",
+    invalidEmail: "Please enter a valid email address.",
     // Options
     locations: {
       abu_dhabi: "Abu Dhabi",
