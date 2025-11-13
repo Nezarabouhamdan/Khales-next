@@ -405,7 +405,7 @@ export default function PropertyPage({ project, lang }) {
           <RightColumn as={motion.div} variants={itemVariants}>
             <Stats>
               {/* --- CORRECT & IMPROVED LOGIC --- */}
-              {project.id !== 6 && (
+              {project.id !== 6 && project.id !== 8 && (
                 <StatItem>
                   <span className="icon">
                     <FaBed />

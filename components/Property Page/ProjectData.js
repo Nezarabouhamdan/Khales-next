@@ -589,6 +589,79 @@ export const projectsData = [
       ],
     },
   },
+  {
+    id: 8, // <-- ID set to 1
+    slug: "executive-office-sanctuary",
+    category: { eng: "Commercial", ar: " تجاري" },
+    mainImage:
+      "https://i.ibb.co/Tyjgbs7/572708391-18062769137536261-139946249393563180-n.jpg", // <-- REPLACE THIS URL
+    galleryImages: [
+      "https://i.ibb.co/Tyjgbs7/572708391-18062769137536261-139946249393563180-n.jpg",
+      "https://i.ibb.co/TDD5Cb2n/572785590-18062769146536261-4767663444702448640-n.jpg",
+      "https://i.ibb.co/PvfnZ3tq/572964804-18062769161536261-1532981835295323812-n.jpg",
+      "https://i.ibb.co/GvX8frBf/573391300-18062769164536261-6965146751731372342-n.jpg",
+    ],
+    en: {
+      tags: ["Interior Design", "Corporate Luxury", "Office Design"],
+      title: "Executive Office Sanctuary",
+      address: "Dubai, UAE",
+      description:
+        "An executive office where luxury design meets peak productivity.",
+      longDescription:
+        "This executive office is meticulously designed to be a sanctuary of focus and sophistication. The space is defined by its warm wood paneling, a dramatic 3D wave-textured feature wall, and a breathtaking sculptural chandelier that floats like a flock of birds. Every element, from the custom integrated shelving to the curated furniture, is chosen to create an environment that is both inspiring and supremely functional, balancing corporate authority with modern artistic expression.",
+      price: "0",
+      sqft: "500",
+      status: "Completed",
+      keyFeatures: [
+        "Artistic sculptural 'flock' chandelier",
+        "Backlit 3D wave-textured feature wall",
+        "Rich wood paneling and slatted details",
+        "Custom integrated shelving with accent lighting",
+        "Modern, ergonomic and comfortable furnishings",
+        "Sophisticated cove and ambient lighting design",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Executive Office Interior",
+        },
+        {
+          label: "Status",
+          value: "Completed",
+        },
+      ],
+    },
+    ar: {
+      tags: ["تصميم داخلي", "فخامة الشركات", "تصميم مكاتب"],
+      title: "مكتب المدير التنفيذي",
+      address: "دبي، الإمارات العربية المتحدة",
+      description:
+        "مكتب تنفيذي حيث يلتقي التصميم الفاخر بأعلى مستويات الإنتاجية.",
+      longDescription:
+        "تم تصميم هذا المكتب التنفيذي بدقة ليكون ملاذًا للتركيز والرقي. يتميز المكان بألواح خشبية دافئة، وجدار مزخرف ثلاثي الأبعاد بموجات درامية، وثريا فنية مذهلة تطفو مثل سرب من الطيور. تم اختيار كل عنصر، من الأرفف المدمجة المخصصة إلى الأثاث المنسق، لخلق بيئة ملهمة وعملية للغاية، توازن بين الهوية المؤسسية والتعبير الفني الحديث.",
+      price: "٠",
+      sqft: "٥٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "ثريا فنية على شكل سرب",
+        "جدار مزخرف ثلاثي الأبعاد بإضاءة خلفية",
+        "ألواح وتفاصيل خشبية غنية",
+        "أرفف مدمجة مخصصة مع إضاءة موجهة",
+        "أثاث عصري ومريح",
+        "تصميم إضاءة متطور ومحيطي",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "تصميم داخلي لمكتب تنفيذي",
+        },
+        {
+          label: "الحالة",
+          value: "مكتمل",
+        },
+      ],
+    },
+  },
 ];
 
 export const findProjectBySlug = (slug) => {
