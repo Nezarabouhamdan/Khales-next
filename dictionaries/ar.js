@@ -2782,6 +2782,13 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Calculate Your Villa Cost Easily", // English title as a fallback
+        artitle: "احسب تكلفة بناء فيلتك بسهولة",
+        category: "Development",
+        thumbnailUrl: "https://i.ytimg.com/vi/nxcI4xfwXaE/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/nxcI4xfwXaE",
+      },
+      {
         title: "Top 5 Aesthetic Materials Redefining Design Trends", // English title as a fallback
         artitle: "أفضل 5 مواد جمالية تشكّل اتجاهات التصميم", // Arabic title
         category: "Design",
