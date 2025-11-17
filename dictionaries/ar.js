@@ -2782,6 +2782,13 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Invest today, so your future self can thank you tomorrow", // English title as a fallback
+        artitle: " استثمر اليوم… عشان يشكرك نفسك بالمستقبل",
+        category: "Development",
+        thumbnailUrl: "https://i.ytimg.com/vi/__O_77cPcU8/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/__O_77cPcU8",
+      },
+      {
         title: "Calculate Your Villa Cost Easily", // English title as a fallback
         artitle: "احسب تكلفة بناء فيلتك بسهولة",
         category: "Development",
