@@ -662,6 +662,306 @@ export const projectsData = [
       ],
     },
   },
+  {
+    id: 9, // <-- ID set to 1
+    slug: "abu-dhabi-grand-palace",
+    category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
+    mainImage:
+      "https://i.ibb.co/BHV2W6vf/Whats-App-Image-2025-11-18-at-12-29-22-142b2921.jpg",
+    galleryImages: [
+      "https://i.ibb.co/BHV2W6vf/Whats-App-Image-2025-11-18-at-12-29-22-142b2921.jpg",
+      "https://i.ibb.co/27sz0Yxr/Whats-App-Image-2025-11-18-at-12-29-22-824d277f.jpg",
+    ],
+    en: {
+      tags: ["Architectural Design", "Neoclassical", "Palace Architecture"],
+      title: "The Abu Dhabi Grand Palace",
+      address: "Abu Dhabi, UAE",
+      description:
+        "A neoclassical masterpiece defining regal elegance and grandeur.",
+      longDescription:
+        "This grand palace in Abu Dhabi stands as a monument to neoclassical design and unparalleled luxury. Its majestic, symmetrical façade features grand colonnades, intricate detailing, and stately arched windows that command attention. The approach is marked by a spectacular circular driveway with multiple elaborate fountains, creating a breathtaking sense of arrival day and night. This palace is the ultimate statement in bespoke luxury, designed to host on a royal scale while offering the utmost in privacy and opulence.",
+      price: "0",
+      beds: "10+ suites",
+      floor: "Multi-level",
+      sqft: "55,000",
+      status: "Completed",
+      keyFeatures: [
+        "Grand symmetrical neoclassical façade",
+        "Majestic column work and arches",
+        "Statement entrance with multiple fountains",
+        "Extensive, manicured landscaping",
+        "Palatial scale and proportions",
+        "Dramatic exterior night lighting",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Private Palace",
+        },
+        {
+          label: "Status",
+          value: "Completed",
+        },
+      ],
+    },
+    ar: {
+      tags: ["تصميم معماري", "نيوكلاسيكي", "عمارة القصور"],
+      title: "قصر أبوظبي الكبير",
+      address: "أبوظبي، الإمارات العربية المتحدة",
+      description: "تحفة نيوكلاسيكية تجسد الأناقة الملكية والعظمة.",
+      longDescription:
+        "يقف هذا القصر الكبير في أبوظبي كصرح معماري للتصميم النيوكلاسيكي والفخامة التي لا مثيل لها. تتميز واجهته المهيبة والمتناظرة بأعمدة ضخمة وتفاصيل معقدة ونوافذ مقوسة فخمة تجذب الانتباه. يتميز المدخل بممر دائري مذهل مع نوافير متعددة ومتقنة، مما يخلق إحساسًا يخطف الأنفاس عند الوصول ليلاً ونهارًا. هذا القصر هو التعبير النهائي عن الفخامة المصممة خصيصًا، حيث تم تصميمه للاستضافة على نطاق ملكي مع توفير أقصى درجات الخصوصية والبذخ.",
+      price: "٠",
+      beds: "+١٠ أجنحة",
+      floor: "متعدد الطوابق",
+      sqft: "٥٥٬٠٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "واجهة نيوكلاسيكية متناظرة وفخمة",
+        "أعمدة وأقواس مهيبة",
+        "مدخل مميز بنوافير متعددة",
+        "مناظر طبيعية واسعة ومنسقة",
+        "مساحات وأبعاد قصرية",
+        "إضاءة ليلية خارجية درامية",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "قصر خاص",
+        },
+        {
+          label: "الحالة",
+          value: "مكتمل",
+        },
+      ],
+    },
+  },
+  {
+    id: 10, // Will be the top ID in the full list
+    slug: "riyadh-twin-villas",
+    category: { eng: "Residential", ar: "سكني" },
+    // IMPORTANT: You will need to upload these images and replace the placeholder URLs
+    mainImage: "https://i.ibb.co/qLYc9brg/IMG-20251118-WA0017.jpg",
+    galleryImages: [
+      "https://i.ibb.co/qLYc9brg/IMG-20251118-WA0017.jpg",
+      "https://i.ibb.co/3m0DJBt1/IMG-20251118-WA0018.jpg",
+      "https://i.ibb.co/B5XJgyD8/IMG-20251118-WA0019.jpg",
+      "https://i.ibb.co/4nHQ2Q7y/IMG-20251118-WA0020.jpg",
+      "https://i.ibb.co/v4F3vMyz/IMG-20251118-WA0021.jpg",
+      "https://i.ibb.co/XkxPp47n/IMG-20251118-WA0022.jpg",
+      "https://i.ibb.co/V0NYwvNb/IMG-20251118-WA0023.jpg",
+    ],
+    en: {
+      tags: ["Architectural Design", "Modern Villas", "Residential Complex"],
+      title: "Riyadh Twin Villas",
+      address: "Riyadh, Saudi Arabia",
+      description:
+        "A striking residential complex featuring two symmetrical modern villas.",
+      longDescription:
+        "This project in Riyadh showcases a pair of impeccably designed modern villas that function as a single, cohesive architectural statement. The design is characterized by clean geometric lines, a minimalist white façade, and striking vertical wood-look paneling that adds warmth and texture. Large, floor-to-ceiling windows ensure light-filled interiors, while recessed lighting and vertical LED strips on the exterior create a dramatic and sophisticated ambiance at dusk. Each villa features a covered carport, blending functionality seamlessly with high-end design.",
+      beds: "5 per villa",
+      floor: "Ground + 1st",
+      sqft: "4,800 per villa",
+      price: "0",
+      status: "Concept Design",
+      keyFeatures: [
+        "Symmetrical twin villa design",
+        "Clean, minimalist geometric architecture",
+        "Vertical wood-look accent paneling",
+        "Integrated exterior LED lighting strips",
+        "Floor-to-ceiling windows for maximum light",
+        "Covered carport integrated into the structure",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Twin Villa Complex",
+        },
+        {
+          label: "Status",
+          value: "Concept",
+        },
+      ],
+    },
+    ar: {
+      tags: ["تصميم معماري", "فلل حديثة", "مجمع سكني"],
+      title: "فلل الرياض المزدوجة",
+      address: "الرياض، المملكة العربية السعودية",
+      description: "مجمع سكني مذهل يضم فيلتين عصريتين متماثلتين.",
+      longDescription:
+        "يعرض هذا المشروع في الرياض زوجًا من الفلل الحديثة المصممة بشكل لا تشوبه شائبة والتي تعمل كبيان معماري واحد ومتماسك. يتميز التصميم بخطوط هندسية نظيفة، وواجهة بيضاء بسيطة، وألواح رأسية مذهلة بمظهر خشبي تضيف الدفء والملمس. تضمن النوافذ الكبيرة الممتدة من الأرض إلى السقف تصميمات داخلية مليئة بالضوء، بينما تخلق الإضاءة الغائرة وشرائط LED الرأسية في الخارج أجواءً دراماتيكية ومتطورة عند الغسق. تحتوي كل فيلا على مرآب مغطى للسيارات، يمزج بين الوظائف بسلاسة مع التصميم الراقي.",
+      beds: "٥ لكل فيلا",
+      floor: "أرضي + أول",
+      sqft: "٤٬٨٠٠ لكل فيلا",
+      price: "٠",
+      status: "تصميم مبدئي",
+      keyFeatures: [
+        "تصميم فيلا مزدوجة متماثل",
+        "هندسة معمارية بسيطة ونظيفة",
+        "ألواح خشبية رأسية مميزة",
+        "شرائط إضاءة LED خارجية مدمجة",
+        "نوافذ من الأرض إلى السقف لأقصى قدر من الضوء",
+        "مرآب سيارات مغطى مدمج في الهيكل",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "مجمع فلل مزدوجة",
+        },
+        {
+          label: "الحالة",
+          value: "تصميم مبدئي",
+        },
+      ],
+    },
+  },
+  {
+    id: 11, // Will be the top ID in the full list
+    slug: "dubai-hills-contemporary-majlis",
+    category: { eng: "Interior_Design", ar: "تصميم داخلي" },
+    mainImage: "https://i.ibb.co/dJPDgQ0z/IMG-20251118-WA0041.jpg",
+    galleryImages: [
+      "https://i.ibb.co/dJPDgQ0z/IMG-20251118-WA0041.jpg",
+      "https://i.ibb.co/8DQzRKqV/IMG-20251118-WA0042.jpg",
+      "https://i.ibb.co/1tMfKjFW/IMG-20251118-WA0043.jpg",
+      "https://i.ibb.co/P004NQ4/IMG-20251118-WA0044.jpg",
+      "https://i.ibb.co/213zRPbY/IMG-20251118-WA0045.jpg",
+      "https://i.ibb.co/RpHmbgVD/IMG-20251118-WA0046.jpg",
+    ],
+    en: {
+      tags: ["Interior Design", "Modern Majlis", "Luxury Living"],
+      title: "Dubai Hills Contemporary Majlis",
+      address: "Dubai Hills, Dubai",
+      description:
+        "A sophisticated blend of modern design and luxurious comfort for an elegant reception area.",
+      longDescription:
+        "This contemporary majlis in Dubai Hills is a masterclass in refined elegance. The design harmonizes warm wood slat paneling with dramatic, veined marble walls to create a space that is both welcoming and visually stunning. A modern linear fireplace serves as a sleek focal point, complemented by a large, bespoke curved sofa that encourages social interaction. Custom cove lighting and carefully selected fixtures cast a soft, ambient glow, highlighting the rich textures and creating an atmosphere of quiet luxury.",
+      sqft: "1,200",
+      price: "0",
+      status: "Completed",
+      keyFeatures: [
+        "Warm wood and veined marble wall paneling",
+        "Modern linear fireplace feature",
+        "Custom integrated cove and accent lighting",
+        "Bespoke curved sofa and designer armchairs",
+        "Sophisticated neutral color palette",
+        "Luxurious textures and high-end finishes",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Majlis / Reception Interior",
+        },
+        {
+          label: "Status",
+          value: "Completed",
+        },
+      ],
+    },
+    ar: {
+      tags: ["تصميم داخلي", "مجلس عصري", "حياة فاخرة"],
+      title: "مجلس دبي هيلز المعاصر",
+      address: "دبي هيلز، دبي",
+      description:
+        "مزيج راقٍ من التصميم الحديث والراحة الفاخرة لمنطقة استقبال أنيقة.",
+      longDescription:
+        "يُعد هذا المجلس المعاصر في دبي هيلز مثالاً رائعاً على الأناقة الراقية. يوازن التصميم بين ألواح الخشب الدافئة وجدران الرخام ذات العروق الدرامية لخلق مساحة ترحيبية ومذهلة بصريًا. تعمل المدفأة الخطية الحديثة كنقطة محورية أنيقة، وتكملها أريكة منحنية كبيرة مصممة خصيصًا تشجع على التفاعل الاجتماعي. تلقي الإضاءة المدمجة والتركيبات المختارة بعناية توهجًا ناعمًا ومحيطيًا، مما يبرز الأنسجة الغنية ويخلق جوًا من الفخامة الهادئة.",
+      sqft: "١٬٢٠٠",
+      price: "٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "ألواح جدارية من الخشب الدافئ والرخام",
+        "مدفأة خطية حديثة ومميزة",
+        "إضاءة مدمجة وموجهة مخصصة",
+        "أريكة منحنية مصممة خصيصًا وكراسي بذراعين",
+        "لوحة ألوان محايدة ومتطورة",
+        "أنسجة فاخرة وتشطيبات راقية",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "تصميم داخلي لمجلس/منطقة استقبال",
+        },
+        {
+          label: "الحالة",
+          value: "مكتمل",
+        },
+      ],
+    },
+  },
+  {
+    id: 11, // Will be the top ID in the full list
+    slug: "the-courtyard-mall-of-the-arts",
+    category: { eng: "Commercial", ar: "تجاري" },
+    mainImage: "https://i.ibb.co/PzbCBHzz/IMG-20251118-WA0048.jpg",
+    galleryImages: [
+      "https://i.ibb.co/PzbCBHzz/IMG-20251118-WA0048.jpg",
+      "https://i.ibb.co/XZm0MnYm/IMG-20251118-WA0049.jpg",
+      "https://i.ibb.co/VWKYDgvc/IMG-20251118-WA0050.jpg",
+      "https://i.ibb.co/qMp83PpS/IMG-20251118-WA0051.jpg",
+      "https://i.ibb.co/60fhHLc9/IMG-20251118-WA0052.jpg",
+    ],
+    en: {
+      tags: ["Architectural Design", "Commercial", "Lifestyle Center"],
+      title: "The Courtyard, Mall of the Arts",
+      address: "Dubai, UAE",
+      description:
+        "A modern lifestyle and retail destination where art, culture, and commerce converge.",
+      longDescription:
+        "This commercial project in Dubai redefines the retail experience. The design features a collection of modern structures with expansive glass facades and classical-inspired colonnades, creating a network of open-air courtyards and terraces. The architecture blurs the line between indoor and outdoor spaces, encouraging exploration and community gathering. Housing a curated mix of art galleries, boutique shops, and contemporary cafes, it serves as a dynamic cultural hub for the city.",
+      sqft: "150,000",
+      price: "0",
+      status: "Completed",
+      keyFeatures: [
+        "Expansive glass facades blurring indoor/outdoor spaces",
+        "Open-air courtyards and community terraces",
+        "Modern architecture with classical colonnade elements",
+        "Hub for art galleries and high-end retail",
+        "Integrated dining and lifestyle experiences",
+        "Minimalist concrete and dark metal framework",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Commercial & Retail Center",
+        },
+        {
+          label: "Status",
+          value: "Completed",
+        },
+      ],
+    },
+    ar: {
+      tags: ["تصميم معماري", "تجاري", "مركز لايف ستايل"],
+      title: "ذا كورت يارد، مول الفنون",
+      address: "دبي، الإمارات العربية المتحدة",
+      description:
+        "وجهة عصرية للتجزئة ونمط الحياة حيث يلتقي الفن والثقافة والتجارة.",
+      longDescription:
+        "يعيد هذا المشروع التجاري في دبي تعريف تجربة التسوق. يتميز التصميم بمجموعة من الهياكل الحديثة ذات الواجهات الزجاجية الواسعة والأعمدة المستوحاة من الطراز الكلاسيكي، مما يخلق شبكة من الساحات المفتوحة والتراسات. يطمس التصميم المعماري الخط الفاصل بين المساحات الداخلية والخارجية، مما يشجع على الاستكشاف والتجمع المجتمعي. يضم مزيجًا منتقى من المعارض الفنية والمتاجر الراقية والمقاهي العصرية، ويعمل كمركز ثقافي ديناميكي للمدينة.",
+      sqft: "١٥٠٬٠٠٠",
+      price: "٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "واجهات زجاجية واسعة تطمس الحدود بين الداخل والخارج",
+        "ساحات مفتوحة وتراسات مجتمعية",
+        "هندسة معمارية حديثة مع عناصر كلاسيكية",
+        "مركز للمعارض الفنية والمتاجر الراقية",
+        "تجارب متكاملة لتناول الطعام وأسلوب الحياة",
+        "هيكل بسيط من الخرسانة والإطارات المعدنية الداكنة",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "مركز تجاري وتجزئة",
+        },
+        {
+          label: "الحالة",
+          value: "مكتمل",
+        },
+      ],
+    },
+  },
 ];
 
 export const findProjectBySlug = (slug) => {
