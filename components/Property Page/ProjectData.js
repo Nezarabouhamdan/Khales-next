@@ -590,7 +590,7 @@ export const projectsData = [
     },
   },
   {
-    id: 8, // <-- ID set to 1
+    id: 9, 
     slug: "executive-office-sanctuary",
     category: { eng: "Commercial", ar: " تجاري" },
     mainImage:
@@ -663,7 +663,7 @@ export const projectsData = [
     },
   },
   {
-    id: 9, // <-- ID set to 1
+    id: 10, 
     slug: "abu-dhabi-grand-palace",
     category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
     mainImage:
@@ -737,7 +737,7 @@ export const projectsData = [
     },
   },
   {
-    id: 10, // Will be the top ID in the full list
+    id: 11, 
     slug: "riyadh-twin-villas",
     category: { eng: "Residential", ar: "سكني" },
     // IMPORTANT: You will need to upload these images and replace the placeholder URLs
@@ -816,7 +816,7 @@ export const projectsData = [
     },
   },
   {
-    id: 11, // Will be the top ID in the full list
+    id: 12, 
     slug: "dubai-hills-contemporary-majlis",
     category: { eng: "Interior_Design", ar: "تصميم داخلي" },
     mainImage: "https://i.ibb.co/dJPDgQ0z/IMG-20251118-WA0041.jpg",
@@ -890,7 +890,7 @@ export const projectsData = [
     },
   },
   {
-    id: 11, // Will be the top ID in the full list
+    id: 13, 
     slug: "the-courtyard-mall-of-the-arts",
     category: { eng: "Commercial", ar: "تجاري" },
     mainImage: "https://i.ibb.co/PzbCBHzz/IMG-20251118-WA0048.jpg",
