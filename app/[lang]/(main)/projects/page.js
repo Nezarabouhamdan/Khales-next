@@ -140,7 +140,9 @@ export default async function ProjectsPage({ params: { lang }, searchParams }) {
 
   const startIndex = (currentPage - 1) * projectsPerPage;
   const endIndex = startIndex + projectsPerPage;
-  const currentProjects = [...projectsData].reverse().slice(startIndex, endIndex);
+  const currentProjects = [...projectsData]
+    .reverse()
+    .slice(startIndex, endIndex);
 
   return (
     <>

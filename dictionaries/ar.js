@@ -2782,6 +2782,13 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "From Planning to Execution: A Complete Project Journey", // English title as a fallback
+        artitle: "من التخطيط إلى التنفيذ: رحلة مشروع متكاملة",
+        category: "Development",
+        thumbnailUrl: "https://i.ytimg.com/vi/ZCWvJ3KqU3A/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/ZCWvJ3KqU3A",
+      },
+      {
         title: "Invest today, so your future self can thank you tomorrow", // English title as a fallback
         artitle: " استثمر اليوم… عشان مستقبلَك يشكرك بكرا",
         category: "Development",
