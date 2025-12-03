@@ -2782,6 +2782,13 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "How Modern Design Started – Before You Build Yours", // English title as a fallback
+        artitle: " كيف بدأ التصميم المودرن – قبل ما تبني بيتك",
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/wTJFHnZ2iYU/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/wTJFHnZ2iYU",
+      },
+      {
         title: "From Planning to Execution: A Complete Project Journey", // English title as a fallback
         artitle: "من التخطيط إلى التنفيذ: رحلة مشروع متكاملة",
         category: "Development",

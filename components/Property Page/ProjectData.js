@@ -590,7 +590,7 @@ export const projectsData = [
     },
   },
   {
-    id: 9, 
+    id: 9,
     slug: "executive-office-sanctuary",
     category: { eng: "Commercial", ar: " تجاري" },
     mainImage:
@@ -663,7 +663,7 @@ export const projectsData = [
     },
   },
   {
-    id: 10, 
+    id: 10,
     slug: "abu-dhabi-grand-palace",
     category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
     mainImage:
@@ -737,7 +737,7 @@ export const projectsData = [
     },
   },
   {
-    id: 11, 
+    id: 11,
     slug: "riyadh-twin-villas",
     category: { eng: "Residential", ar: "سكني" },
     // IMPORTANT: You will need to upload these images and replace the placeholder URLs
@@ -816,7 +816,7 @@ export const projectsData = [
     },
   },
   {
-    id: 12, 
+    id: 12,
     slug: "dubai-hills-contemporary-majlis",
     category: { eng: "Interior_Design", ar: "تصميم داخلي" },
     mainImage: "https://i.ibb.co/dJPDgQ0z/IMG-20251118-WA0041.jpg",
@@ -890,7 +890,7 @@ export const projectsData = [
     },
   },
   {
-    id: 13, 
+    id: 13,
     slug: "the-courtyard-mall-of-the-arts",
     category: { eng: "Commercial", ar: "تجاري" },
     mainImage: "https://i.ibb.co/PzbCBHzz/IMG-20251118-WA0048.jpg",
@@ -954,6 +954,92 @@ export const projectsData = [
         {
           label: "نوع المشروع",
           value: "مركز تجاري وتجزئة",
+        },
+        {
+          label: "الحالة",
+          value: "مكتمل",
+        },
+      ],
+    },
+  },
+  {
+    id: 14, // Will be the top ID in the full list
+    slug: "jumeirah-bay-modern-villa",
+    category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
+    mainImage: "https://i.ibb.co/VYcS0Rvt/IMG-20251203-WA0037.jpg",
+    galleryImages: [
+      "https://i.ibb.co/VYcS0Rvt/IMG-20251203-WA0037.jpg",
+      "https://i.ibb.co/0Rz8wM7g/IMG-20251203-WA0038.jpg",
+      "https://i.ibb.co/sdBkpNKF/IMG-20251203-WA0039.jpg",
+      "https://i.ibb.co/kVm7FVd9/IMG-20251203-WA0040.jpg",
+      "https://i.ibb.co/vCt46hNC/IMG-20251203-WA0030.jpg",
+      "https://i.ibb.co/Txc9ZJ8T/IMG-20251203-WA0026.jpg",
+      "https://i.ibb.co/tphwmkNL/IMG-20251203-WA0027.jpg",
+      "https://i.ibb.co/Q3wCDrBm/IMG-20251203-WA0028.jpg",
+      "https://i.ibb.co/tw7rxVnW/IMG-20251203-WA0029.jpg",
+      "https://i.ibb.co/nsZhNW0n/IMG-20251203-WA0031.jpg",
+      "https://i.ibb.co/cSj29V6Y/IMG-20251203-WA0032.jpg",
+      "https://i.ibb.co/mf9rLGw/IMG-20251203-WA0033.jpg",
+      "https://i.ibb.co/0jZW59Pk/IMG-20251203-WA0034.jpg",
+      "https://i.ibb.co/1JmRv0xt/IMG-20251203-WA0035.jpg",
+      "https://i.ibb.co/BKCm5wtB/IMG-20251203-WA0036.jpg",
+    ],
+    en: {
+      tags: ["Interior Design", "Modern Luxury", "Villa Design"],
+      title: "Jumeirah Bay Modern Villa",
+      address: "Jumeirah Bay Island, Dubai",
+      description:
+        "A showcase of contemporary luxury defined by soaring spaces and exquisite materials.",
+      longDescription:
+        "This villa on Jumeirah Bay Island is the pinnacle of modern luxury design. The heart of the home is a spectacular double-height reception area, featuring a monolithic floor-to-ceiling marble wall with striking gold inlays that commands attention. The design language of rich wood, dramatic marble, and warm metallics flows cohesively through the living areas, kitchen, and private suites. Bespoke furniture and sophisticated lighting schemes complete this impeccably tailored environment, creating a residence that is both monumentally impressive and intimately comfortable.",
+      sqft: "15,000",
+      beds: "6+ Bedroom Suites",
+      status: "Completed",
+      price: "0",
+      keyFeatures: [
+        "Spectacular double-height reception space",
+        "Monolithic marble feature wall with gold inlay",
+        "Statement chandelier and integrated lighting",
+        "Cohesive design across all living spaces",
+        "Sleek, modern kitchen with premium finishes",
+        "Luxurious master suite with custom joinery",
+        "Bespoke furniture and high-end materials throughout",
+      ],
+      highlights: [
+        {
+          label: "Project Type",
+          value: "Full Villa Interior Design",
+        },
+        {
+          label: "Status",
+          value: "Completed",
+        },
+      ],
+    },
+    ar: {
+      tags: ["تصميم داخلي", "فخامة عصرية", "تصميم فلل"],
+      title: "فيلا جميرا باي العصرية",
+      address: "جزيرة جميرا باي، دبي",
+      description: "تحفة من الفخامة العصرية تتميز بمساحات شاهقة ومواد رائعة.",
+      longDescription:
+        "تعتبر هذه الفيلا في جزيرة جميرا باي قمة التصميم الفاخر الحديث. قلب المنزل هو منطقة استقبال مذهلة ذات ارتفاع مزدوج، تتميز بجدار رخامي ضخم يمتد من الأرض إلى السقف مع تطعيمات ذهبية لافتة للنظر. تتدفق لغة التصميم من الخشب الغني والرخام الدرامي والمعادن الدافئة بشكل متناغم عبر مناطق المعيشة والمطبخ والأجنحة الخاصة. يكمل الأثاث المصمم خصيصًا وأنظمة الإضاءة المتطورة هذه البيئة المصممة بدقة، مما يخلق مسكنًا مثيرًا للإعجاب وضخمًا ومريحًا في آن واحد.",
+      sqft: "١٥٬٠٠٠",
+      beds: "+٦ أجنحة نوم",
+      status: "مكتمل",
+      price: "٠",
+      keyFeatures: [
+        "مساحة استقبال مذهلة بارتفاع مزدوج",
+        "جدار رخامي ضخم مميز مع تطعيم ذهبي",
+        "ثريا مميزة وإضاءة مدمجة",
+        "تصميم متناغم في جميع مساحات المعيشة",
+        "مطبخ حديث وأنيق بتشطيبات فاخرة",
+        "جناح رئيسي فاخر مع نجارة مخصصة",
+        "أثاث مصمم خصيصًا ومواد راقية في جميع الأنحاء",
+      ],
+      highlights: [
+        {
+          label: "نوع المشروع",
+          value: "تصميم داخلي كامل لفيلا",
         },
         {
           label: "الحالة",
