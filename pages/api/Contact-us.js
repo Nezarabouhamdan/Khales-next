@@ -1,5 +1,5 @@
 import xmlrpc from "xmlrpc";
-// still import xmlrpc from "xmlrpc";
+import { sendConfirmationEmail } from "@/lib/sendEmail";
 
 // Use secure client for HTTPS
 const commonClient = xmlrpc.createSecureClient({
@@ -128,10 +128,50 @@ export default async function handler(req, res) {
       );
     });
 
+    // Send confirmation email to user
+    console.log("📧 Sending confirmation email to:", email);
+    const emailResult = await sendConfirmationEmail(
+      email,
+      name,
+      inquiry || "General Inquiry"
+    );
+    console.log("📧 Email result:", emailResult);
+
+    if (emailResult.success && emailResult.refId) {
+      const { refId } = emailResult;
+      const updatedLeadData = {
+        name: `Contact us - ${refId}`,
+        description: `${refId}\n\n${leadDescription}`,
+      };
+
+      await new Promise((resolve, reject) => {
+        objectClient.methodCall(
+          "execute_kw",
+          [
+            process.env.ODOO_DB,
+            uid,
+            process.env.ODOO_PASSWORD,
+            "crm.lead",
+            "write", // Use 'write' to update
+            [[leadId], updatedLeadData], // Pass leadId and the data to update
+          ],
+          (err, result) => {
+            if (err) {
+              console.error("Failed to update Odoo lead:", err);
+              return reject(err);
+            }
+            console.log("✅ Odoo lead updated successfully with refId:", refId);
+            resolve(result);
+          }
+        );
+      });
+    }
+
     res.status(200).json({
       success: true,
       leadId,
       message: "CRM lead created successfully",
+      emailSent: emailResult.success,
     });
   } catch (error) {
     console.error("Error in /api/Contact-us:", error);
