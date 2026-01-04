@@ -378,7 +378,7 @@ export const dictionary = {
       { text: "احجز استشارة", href: "/Contact" },
     ],
     contactTitle: "اتصل بنا",
-    copyright: "حقوق النشر © 2025 خالص",
+    copyright: "حقوق النشر © 2026 خالص",
     legal: {
       rights: "جميع الحقوق محفوظة",
       terms: { text: "الشروط والأحكام", href: "/terms-and-conditions" },
@@ -2781,6 +2781,13 @@ export const dictionary = {
       "مبيعات",
     ],
     reels: [
+      {
+        title: "Crafting Meaningful Design Experiences", // English title as a fallback
+        artitle: " نصنع تجارب تصميم ذات معنى",
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/hPDXO_yBSSA/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/hPDXO_yBSSA",
+      },
       {
         title: "How Modern Design Started – Before You Build Yours", // English title as a fallback
         artitle: " كيف بدأ التصميم المودرن – قبل ما تبني بيتك",

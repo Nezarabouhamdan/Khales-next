@@ -446,7 +446,7 @@ export const dictionary = {
       { text: "Book Consultation", href: "/Contact" },
     ],
     contactTitle: "Contact us",
-    copyright: "Copyright © 2025 KHALES",
+    copyright: "Copyright © 2026 KHALES",
     legal: {
       rights: "All Rights Reserved",
       terms: { text: "Terms and Conditions", href: "/terms-and-conditions" },
@@ -2800,6 +2800,12 @@ export const dictionary = {
       "Sales",
     ],
     reels: [
+      {
+        title: "Crafting Meaningful Design Experiences", // English title as a fallback
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/hPDXO_yBSSA/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/hPDXO_yBSSA",
+      },
       {
         title: "How Modern Design Started – Before You Build Yours", // English title as a fallback
         category: "Design",
