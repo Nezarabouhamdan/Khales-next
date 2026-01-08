@@ -2803,6 +2803,12 @@ export const dictionary = {
       {
         title: "Crafting Meaningful Design Experiences", // English title as a fallback
         category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/FiB5BMQF25E/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/FiB5BMQF25E",
+      },
+      {
+        title: "Crafting Meaningful Design Experiences", // English title as a fallback
+        category: "Design",
         thumbnailUrl: "https://i.ytimg.com/vi/hPDXO_yBSSA/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/hPDXO_yBSSA",
       },
