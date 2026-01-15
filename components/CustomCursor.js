@@ -10,23 +10,32 @@ const CursorWrapper = styled(motion.div)`
   position: fixed;
   left: 0;
   top: 0;
-  pointer-events: none; /* This is crucial - the cursor itself should not be interactive */
+  width: 0; /* مهم جداً */
+  height: 0; /* مهم جداً */
+  pointer-events: none !important; /* الحل السحري لمشكلة عدم استجابة الأزرار */
   z-index: 10000;
+  display: flex; /* لضمان عدم وجود هوامش غريبة */
+  justify-content: flex-start;
+  align-items: flex-start;
   filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 1))
     drop-shadow(0px 0px 2px rgba(0, 0, 0, 1));
 `;
 
 const StyledArrowSVG = styled(motion.svg)`
   position: absolute;
-  /* The x/y props in the component will handle the transform for perfect alignment */
+  top: 0;
+  left: 0;
+  pointer-events: none !important; /* تأكيد إضافي */
   mix-blend-mode: difference;
+  /* إزالة أي هوامش افتراضية قد يضيفها المتصفح للـ SVG */
+  display: block;
 `;
 
 const CursorAura = styled(motion.div)`
   position: fixed;
   left: 0;
   top: 0;
-  pointer-events: none;
+  pointer-events: none !important;
   z-index: 9999;
   width: 50px;
   height: 50px;
@@ -36,13 +45,14 @@ const CursorAura = styled(motion.div)`
     rgba(102, 161, 9, 0.25) 0%,
     rgba(102, 161, 9, 0) 70%
   );
-  transform: translate(-50%, -50%); /* Center the aura on its own coordinates */
+  transform: translate(-50%, -50%);
 `;
 
 const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
 
+  // جعلنا القيم المبدئية خارج الشاشة لتجنب الوميض عند التحميل
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
@@ -57,21 +67,23 @@ const CustomCursor = () => {
     }
 
     const moveCursor = (e) => {
+      // استخدام clientX مباشرة لضمان الدقة مع الـ fixed position
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
     };
 
-    // --- REVISED, MORE ROBUST HOVER LOGIC ---
     const handleMouseOver = (e) => {
-      // Check if the element being hovered over is interactive
-      if (e.target.closest("a, button, [data-cursor-hover]")) {
+      if (
+        e.target.closest(
+          "a, button, [data-cursor-hover], input, select, textarea"
+        )
+      ) {
         setIsHovering(true);
       } else {
         setIsHovering(false);
       }
     };
 
-    // Listen to events on the whole document for reliability
     window.addEventListener("mousemove", moveCursor);
     document.addEventListener("mouseover", handleMouseOver);
 
@@ -95,11 +107,8 @@ const CustomCursor = () => {
           initial={{ scale: 1 }}
           animate={{ scale: isHovering ? 1.15 : 1 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          // --- THE PIXEL-PERFECT OFFSET ---
-          // This moves the SVG container itself so the tip of the arrow
-          // is exactly where the browser's real cursor event fires.
-          x="-3.63"
-          y="-3.63"
+          // حافظت على الإزاحة الخاصة بك لأنها صحيحة بناءً على رسمة الـ path
+          style={{ x: -3.63, y: -3.63 }}
         >
           <path
             d="M3.63,3.63L21.99,12L12.37,13.25L9.75,21.99L3.63,3.63Z"
@@ -112,7 +121,7 @@ const CustomCursor = () => {
         style={{
           x: auraX,
           y: auraY,
-          scale: isHovering ? 3 : 1, // Using scale directly is cleaner
+          scale: isHovering ? 3 : 1,
         }}
       />
     </>

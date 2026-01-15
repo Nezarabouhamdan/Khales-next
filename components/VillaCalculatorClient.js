@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import styled, { keyframes } from "styled-components";
 import { Doughnut } from "react-chartjs-2";
@@ -780,7 +780,8 @@ const S_LogoPlaceholder = styled.img`
 // --- PDF-only styled container (hidden off-screen but rendered by html2canvas) ---
 const S_PdfContainer = styled.div`
   position: absolute;
-  ${(props) => (props.isRTL ? "right: -9999px;" : "left: -9999px;")} /* keep off-screen */
+  ${(props) =>
+    props.isRTL ? "right: -9999px;" : "left: -9999px;"} /* keep off-screen */
   top: 0;
   width: 794px; /* approximate A4 width in px at 96dpi */
   background: #ffffff;
@@ -1041,6 +1042,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     bua: 500,
     location: "dubai",
     finishing: "standard",
+    unit: "m2",
   });
   const [extraArea, setExtraArea] = useState(0);
 
@@ -1048,13 +1050,68 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [leadInfo, setLeadInfo] = useState({ email: "", phone: "" });
 
+  // --- PERSISTENCE LOGIC ---
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    try {
+      const savedSelections = sessionStorage.getItem("villaCalc_selections");
+      if (savedSelections) setSelections(JSON.parse(savedSelections));
+
+      const savedQuick = sessionStorage.getItem("villaCalc_quickSelections");
+      if (savedQuick) setQuickSelections(JSON.parse(savedQuick));
+
+      const savedMode = sessionStorage.getItem("villaCalc_calculationMode");
+      if (savedMode) setCalculationMode(JSON.parse(savedMode));
+
+      const savedShowResults = sessionStorage.getItem("villaCalc_showResults");
+      if (savedShowResults) setShowResults(JSON.parse(savedShowResults));
+
+      const savedExtra = sessionStorage.getItem("villaCalc_extraArea");
+      if (savedExtra) setExtraArea(JSON.parse(savedExtra));
+    } catch (e) {
+      console.error("Failed to load calculator state", e);
+    } finally {
+      setIsLoaded(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    sessionStorage.setItem("villaCalc_selections", JSON.stringify(selections));
+    sessionStorage.setItem(
+      "villaCalc_quickSelections",
+      JSON.stringify(quickSelections)
+    );
+    sessionStorage.setItem(
+      "villaCalc_calculationMode",
+      JSON.stringify(calculationMode)
+    );
+    sessionStorage.setItem(
+      "villaCalc_showResults",
+      JSON.stringify(showResults)
+    );
+    sessionStorage.setItem("villaCalc_extraArea", JSON.stringify(extraArea));
+  }, [
+    selections,
+    quickSelections,
+    calculationMode,
+    showResults,
+    extraArea,
+    isLoaded,
+  ]);
+
   const calculationResult = useMemo(() => {
     // ... (This function is correct, no changes needed)
     let finalTotalBUA,
       totalFixedAddonCost = 0;
 
     if (calculationMode === "quick") {
-      finalTotalBUA = quickSelections.bua || 0;
+      if (quickSelections.unit === "sqft") {
+        finalTotalBUA = (quickSelections.bua || 0) / 10.764;
+      } else {
+        finalTotalBUA = quickSelections.bua || 0;
+      }
     } else {
       let totalCoreArea = 0;
       Object.keys(selections.rooms).forEach((id) => {
@@ -1125,7 +1182,12 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   const handleReset = () => {
     setShowResults(false);
     setSelections(getInitialState());
-    setQuickSelections({ bua: 500, location: "dubai", finishing: "standard" });
+    setQuickSelections({
+      bua: 500,
+      location: "dubai",
+      finishing: "standard",
+      unit: "m2",
+    });
     setCalculationMode(null);
     setExtraArea(0);
   };
@@ -1316,6 +1378,27 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
         <S_SubSectionHeader isRTL={isRTL}>
           {dictionary.projectDetails}
         </S_SubSectionHeader>
+
+        <S_SubSectionHeader isRTL={isRTL}>
+          {dictionary.areaUnit || "Area Unit"}
+        </S_SubSectionHeader>
+        <S_ChoiceGrid style={{ maxWidth: "400px", margin: "0 auto 20px" }}>
+          <S_ChoiceCard
+            active={quickSelections.unit === "m2"}
+            onClick={() => setQuickSelections((s) => ({ ...s, unit: "m2" }))}
+          >
+            <FaRulerCombined />
+            <h3>{dictionary.units?.m2 || "m²"}</h3>
+          </S_ChoiceCard>
+          <S_ChoiceCard
+            active={quickSelections.unit === "sqft"}
+            onClick={() => setQuickSelections((s) => ({ ...s, unit: "sqft" }))}
+          >
+            <FaRulerCombined />
+            <h3>{dictionary.units?.sqft || "sqft"}</h3>
+          </S_ChoiceCard>
+        </S_ChoiceGrid>
+
         <S_InputGroup
           isRTL={isRTL}
           style={{ maxWidth: "400px", margin: "0 auto 30px" }}
@@ -1788,7 +1871,11 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
         </S_ResultsPageWrapper>
 
         {/* Hidden PDF layout (unchanged) */}
-        <S_PdfContainer id="pdf-container-hidden" aria-hidden="true" isRTL={isRTL}>
+        <S_PdfContainer
+          id="pdf-container-hidden"
+          aria-hidden="true"
+          isRTL={isRTL}
+        >
           {/* ... all your PDF structure remains the same ... */}
           <S_PdfHeader>
             <img

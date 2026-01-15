@@ -145,7 +145,9 @@ export const dictionary = {
     quickDescription:
       "Enter the total area, location, and finishing level for a quick estimate.",
     projectDetails: "Project Details",
-    totalBUA: "Total Built-Up Area (m²)",
+    totalBUA: "Total Built-Up Area",
+    areaUnit: "Area Unit",
+    units: { m2: "Square Meters (m²)", sqft: "Square Feet (sqft)" },
     // Results Page
     resultsTitle: "Here is the Cost Estimate for Your Project",
     resultsDescription:

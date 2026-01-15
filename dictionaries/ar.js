@@ -133,7 +133,9 @@ export const dictionary = {
     quickDescription:
       "أدخل المساحة الإجمالية، الموقع، ومستوى التشطيب للحصول على تقدير سريع.",
     projectDetails: "تفاصيل المشروع",
-    totalBUA: "إجمالي مساحة البناء (م²)",
+    totalBUA: "إجمالي مساحة البناء",
+    areaUnit: "وحدة المساحة",
+    units: { m2: "متر مربع (m²)", sqft: "قدم مربع (sqft)" },
     // Results Page
     resultsTitle: "هذا هو تقدير التكلفة لمشروعك",
     resultsDescription:
@@ -199,7 +201,7 @@ export const dictionary = {
       preparatory: "الأعمال التمهيدية",
       excavation_substructure: "أعمال الحفر والبنية التحتية ( الأساسات )",
       superstructure: "أعمال الهيكل العلوي",
-      blockwork: "أعمال البناء",
+      blockwork: "أعمال الطابوق",
       waterproofing: "أعمال العزل المائي",
       main_finishing: "أعمال التشطيب",
       carpentry: "أعمال النجارة",
@@ -1227,7 +1229,7 @@ export const dictionary = {
         "سؤال عام",
         "استفسار عن المشروع",
         "طلب استشارة",
-        "حجز",
+        "حجز موعد",
         "أخرى",
       ],
     },
