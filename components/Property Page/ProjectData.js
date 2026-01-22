@@ -122,7 +122,6 @@ export const projectsData = [
     slug: "TheOrganicVilla",
     category: { eng: "Residential", ar: "سكني" },
     mainImage: "https://i.ibb.co/hFHH248S/IMG-20250811-WA0020.jpg",
-
     galleryImages: [
       "https://i.ibb.co/S44GR5MS/IMG-20250811-WA0018.jpg",
       "https://i.ibb.co/MxTqt5Yg/IMG-20250811-WA0019.jpg",
@@ -343,7 +342,6 @@ export const projectsData = [
     id: 6,
     slug: "verdant-gardens-qatar",
     category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
-
     mainImage:
       "https://i.ibb.co/xtGNLgds/Whats-App-Image-2025-09-04-at-10-31-20-2df48564.jpg",
     galleryImages: [
@@ -424,7 +422,6 @@ export const projectsData = [
     slug: "serene-sanctuary-residence",
     category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
     mainImage: "https://i.ibb.co/HpDNRdnM/IMG-20251028-WA0041.jpg",
-
     galleryImages: [
       "https://i.ibb.co/HpDNRdnM/IMG-20251028-WA0041.jpg",
       "https://i.ibb.co/svBxptTs/IMG-20251028-WA0007.jpg",
@@ -512,7 +509,7 @@ export const projectsData = [
     },
   },
   {
-    id: 8, // <-- ID set to 1
+    id: 8,
     slug: "modern-villa",
     category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
     mainImage: "https://i.ibb.co/tpWtkGSQ/IMG-20251026-WA0004.jpg",
@@ -594,7 +591,7 @@ export const projectsData = [
     slug: "executive-office-sanctuary",
     category: { eng: "Commercial", ar: " تجاري" },
     mainImage:
-      "https://i.ibb.co/Tyjgbs7/572708391-18062769137536261-139946249393563180-n.jpg", // <-- REPLACE THIS URL
+      "https://i.ibb.co/Tyjgbs7/572708391-18062769137536261-139946249393563180-n.jpg",
     galleryImages: [
       "https://i.ibb.co/Tyjgbs7/572708391-18062769137536261-139946249393563180-n.jpg",
       "https://i.ibb.co/TDD5Cb2n/572785590-18062769146536261-4767663444702448640-n.jpg",
@@ -740,7 +737,6 @@ export const projectsData = [
     id: 11,
     slug: "riyadh-twin-villas",
     category: { eng: "Residential", ar: "سكني" },
-    // IMPORTANT: You will need to upload these images and replace the placeholder URLs
     mainImage: "https://i.ibb.co/qLYc9brg/IMG-20251118-WA0017.jpg",
     galleryImages: [
       "https://i.ibb.co/qLYc9brg/IMG-20251118-WA0017.jpg",
@@ -963,7 +959,7 @@ export const projectsData = [
     },
   },
   {
-    id: 14, // Will be the top ID in the full list
+    id: 14,
     slug: "jumeirah-bay-modern-villa",
     category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
     mainImage: "https://i.ibb.co/VYcS0Rvt/IMG-20251203-WA0037.jpg",
@@ -1045,6 +1041,74 @@ export const projectsData = [
           label: "الحالة",
           value: "مكتمل",
         },
+      ],
+    },
+  },
+  {
+    id: 15,
+    slug: "the-flow-residence",
+    category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
+    mainImage:
+      "https://i.ibb.co/q3Xt31SD/Whats-App-Image-2026-01-22-at-11-23-09-AM-1.jpg",
+    galleryImages: [
+      "https://i.ibb.co/vCDtd8zz/Whats-App-Image-2026-01-22-at-11-23-09-AM.jpg", // Title Image
+      "https://i.ibb.co/q3Xt31SD/Whats-App-Image-2026-01-22-at-11-23-09-AM-1.jpg", // Main Exterior
+      "https://i.ibb.co/PzGDNpTt/Whats-App-Image-2026-01-22-at-11-23-10-AM.jpg", // Front Facade
+      "https://i.ibb.co/wH0FKgt/Whats-App-Image-2026-01-22-at-11-23-10-AM-1.jpg", // Pool Angle
+      "https://i.ibb.co/KxS6mY7P/Whats-App-Image-2026-01-22-at-11-23-10-AM-2.jpg", // Water Detail
+      "https://i.ibb.co/5XYZ6YcP/Whats-App-Image-2026-01-22-at-11-23-29-AM-1.jpg", // Walk-in Closet
+      "https://i.ibb.co/CpdRChV3/Whats-App-Image-2026-01-22-at-11-23-29-AM.jpg", // Lamp Detail
+      "https://i.ibb.co/2YgR4W89/Whats-App-Image-2026-01-22-at-11-23-28-AM.jpg", // Verde Vista Room
+      "https://i.ibb.co/F4tqwYGN/Whats-App-Image-2026-01-22-at-11-23-28-AM-1.jpg", // Bed Detail
+    ],
+    en: {
+      tags: ["Organic Architecture", "Luxury Interiors", "Verde Vista"],
+      title: "The Flow Residence",
+      address: "Dubai, UAE",
+      description:
+        "A futuristic organic villa blending fluid concrete forms with tropical luxury.",
+      longDescription:
+        "The Flow Residence redefines modern living with its striking organic architecture. The exterior is a sculpture of fluid concrete lines and expansive glass that seemingly floats above serene water features, blurring the boundaries between the built environment and nature. Inside, the residence features the 'Verde Vista' suite, a tropical-inspired sanctuary with botanical murals, curved furniture, and earthy tones. The master wing includes a state-of-the-art walk-in closet with glass-fronted joinery, showcasing a seamless integration of art, nature, and habitation.",
+      price: "0",
+      beds: "6",
+      floor: "G+1",
+      sqft: "13,200",
+      status: "Completed",
+      keyFeatures: [
+        "Fluid organic concrete architecture",
+        "Verde Vista tropical-themed master suite",
+        "Luxury glass-fronted walk-in closet",
+        "Integrated water features and landscaping",
+        "Floor-to-ceiling curved glass walls",
+      ],
+      highlights: [
+        { label: "Project Type", value: "Luxury Private Villa" },
+        { label: "Status", value: "Completed" },
+      ],
+    },
+    ar: {
+      tags: ["عمارة عضوية", "تصميم داخلي فاخر", "فيردي فيستا"],
+      title: "ذا فلو ريزيدنس",
+      address: "دبي، الإمارات العربية المتحدة",
+      description:
+        "فيلا عضوية مستقبلية تمزج بين الأشكال الخرسانية الانسيابية والفخامة الاستوائية.",
+      longDescription:
+        "يعيد مشروع 'ذا فلو ريزيدنس' تعريف الحياة العصرية بفضل هندسته المعمارية العضوية المذهلة. التصميم الخارجي عبارة عن منحوتة من الخطوط الخرسانية الانسيابية والزجاج الواسع الذي يبدو وكأنه يطفو فوق المسطحات المائية الهادئة. في الداخل، يتميز السكن بجناح 'فيردي فيستا'، وهو ملاذ مستوحى من المناطق الاستوائية مع جداريات نباتية وأثاث منحني وألوان ترابية. يشتمل الجناح الرئيسي على غرفة ملابس خزانة متطورة بواجهات زجاجية، مما يوضح تكاملاً سلسًا بين الفن والطبيعة والسكن.",
+      price: "٠",
+      beds: "٦",
+      floor: "أرضي + أول",
+      sqft: "١٣٬٢٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "هندسة معمارية خرسانية عضوية انسيابية",
+        "جناح رئيسي بتصميم 'فيردي فيستا' الاستوائي",
+        "غرفة ملابس فاخرة بواجهات زجاجية",
+        "مسطحات مائية ومناظر طبيعية مدمجة",
+        "جدران زجاجية منحنية من الأرض إلى السقف",
+      ],
+      highlights: [
+        { label: "نوع المشروع", value: "فيلا خاصة فاخرة" },
+        { label: "الحالة", value: "مكتمل" },
       ],
     },
   },
