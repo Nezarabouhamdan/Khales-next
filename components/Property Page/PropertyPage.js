@@ -154,7 +154,7 @@ const SectionContainer = styled.section`
   color: ${THEME.dark};
 
   @media (max-width: 992px) {
-    margin-top: 8vh;
+    margin-top: 15vh;
     padding-bottom: 3rem;
   }
 `;
