@@ -2784,6 +2784,27 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Don’t Receive Your Home Before Checking Smart Details", // English title as a fallback
+        artitle: "لا تستلم بيتك قبل ما تتأكد من هالتفاصيل المهمة",
+        category: "Construction",
+        thumbnailUrl: "https://i.ytimg.com/vi/rjAovsfJ9Oo/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/rjAovsfJ9Oo",
+      },
+      {
+        title: "Color Is Not a Choice. It’s a Decision", // English title as a fallback
+        artitle: " اللون ليس خياراً… بل قراراً",
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/Nu9G5zHLhgc/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/Nu9G5zHLhgc",
+      },
+      {
+        title: "recap 2025",
+        artitle: "ملخص 2025",
+        category: "Development",
+        thumbnailUrl: "https://i.ytimg.com/vi/wjsdMIj9fCM/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/wjsdMIj9fCM",
+      },
+      {
         title: "Crafting Meaningful Design Experiences", // English title as a fallback
         artitle: "نصنع تجارب تصميم ذات معنى",
         category: "Design",
