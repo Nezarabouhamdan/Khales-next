@@ -2422,14 +2422,14 @@ export const dictionary = {
           src: "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
           title: "Modern Building Exterior with Water Feature",
         },
-        {
-          src: "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
-          title: "Grand Atrium Lobby",
-        },
-        {
-          src: "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
-          title: "Open-Plan Living and Kitchen Area",
-        },
+        // {
+        //   src: "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
+        //   title: "Grand Atrium Lobby",
+        // },
+        // {
+        //   src: "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
+        //   title: "Open-Plan Living and Kitchen Area",
+        // },
         {
           src: "https://i.ibb.co/pj4pCr6F/Screenshot-2025-08-19-162543.png",
           title: "Residential Building with Green Terraces",

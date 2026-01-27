@@ -2406,14 +2406,14 @@ export const dictionary = {
           src: "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
           title: "واجهة المبنى الحديثة مع نافورة مائية",
         },
-        {
-          src: "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
-          title: "ردهة الأتريوم الكبرى",
-        },
-        {
-          src: "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
-          title: "مساحة معيشة ومطبخ مفتوحة",
-        },
+        // {
+        //   src: "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
+        //   title: "ردهة الأتريوم الكبرى",
+        // },
+        // {
+        //   src: "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
+        //   title: "مساحة معيشة ومطبخ مفتوحة",
+        // },
         {
           src: "https://i.ibb.co/pj4pCr6F/Screenshot-2025-08-19-162543.png",
           title: "مبنى سكني بتراسات خضراء",
@@ -2783,6 +2783,13 @@ export const dictionary = {
       "مبيعات",
     ],
     reels: [
+      {
+        title: "Don’t Receive Your Home Before Checking Smart Details", // English title as a fallback
+        artitle: "لا تستلم بيتك قبل ما تتأكد من هالتفاصيل المهمة",
+        category: "Construction",
+        thumbnailUrl: "https://i.ytimg.com/vi/rjAovsfJ9Oo/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/rjAovsfJ9Oo",
+      },
       {
         title: "Don’t Receive Your Home Before Checking Smart Details", // English title as a fallback
         artitle: "لا تستلم بيتك قبل ما تتأكد من هالتفاصيل المهمة",
