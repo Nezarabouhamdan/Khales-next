@@ -537,10 +537,8 @@ export const dictionary = {
       description2:
         " نقوم بإعداد التصاميم الإنشائية والمدنية والميكانيكية والكهربائية والصحية، بالتنسيق مع المخططات المعمارية وبما يتماشى مع قوانين السلطات المحلية. سواء كنت تبني فيلا أو مشروعًا متعدد الاستخدامات، فإننا نضمن أن مشروعك آمن ومتوافق وفعال وجاهز للتنفيذ.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/r2XkwpnD/Whats-App-Image-2026-01-27-at-5-57-31-PM.jpg",
+        "https://i.ibb.co/zh5jNrZs/Whats-App-Image-2026-01-27-at-5-58-23-PM.jpg",
       ],
     },
     process: {
@@ -620,10 +618,8 @@ export const dictionary = {
       description2:
         "من التفاصيل الإنشائية إلى الأنظمة الميكانيكية والكهربائية، يضمن مهندسونا تقدم مشروعك بأمان ودقة وكفاءة. نتتبع النسبة المئوية للأعمال المنجزة، ونتحقق من المواد المستخدمة، وندعم تقييمات الدفعات المرحلية، مما يحمي استثمارك ويعزز الموثوقية على المدى الطويل.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/mrV6ZKQz/Whats-App-Image-2026-01-27-at-6-02-51-PM.jpg",
+        "https://i.ibb.co/SwsQPVFC/Whats-App-Image-2026-01-27-at-6-03-10-PM.jpg",
       ],
     },
     process: {
@@ -708,10 +704,8 @@ export const dictionary = {
       description2:
         "نتولى كل شيء من التخطيط المكاني ومفاهيم الأجواء إلى اختيار المواد والرسومات الفنية. سواء كان ذلك لفيلا خاصة أو مساحة تجارية أو مشروع تطوير كامل، فإننا نضمن أن التصميم يعكس ذوق العميل وسياق المشروع، مع الحفاظ على كونه عمليًا وقابلاً للبناء وجاهزًا للوائح.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/BH2Yztmp/Whats-App-Image-2026-01-27-at-6-04-15-PM.jpg",
+        "https://i.ibb.co/5W2pN64c/Whats-App-Image-2026-01-27-at-6-04-21-PM.jpg",
       ],
     },
     process: {
@@ -797,10 +791,8 @@ export const dictionary = {
       description2:
         "من الحدائق والمداخل إلى التراسات وأسطح المسابح، يوازن فريق المناظر الطبيعية لدينا بين العناصر الطبيعية والميزات المبنية لتعزيز قابلية الاستخدام والانسيابية والطابع البصري. يتم تصميم كل التفاصيل، من اختيار النباتات إلى الإضاءة والمواد، لتناسب مناخك ومساحتك ورؤيتك الشخصية.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/gbXHLBDn/Whats-App-Image-2026-01-27-at-6-05-05-PM.jpg",
+        "https://i.ibb.co/ycYDCSv9/Whats-App-Image-2026-01-27-at-6-05-55-PM.jpg",
       ],
     },
     process: {
@@ -2403,32 +2395,36 @@ export const dictionary = {
       title: "معرض المشاريع السكنية",
       images: [
         {
-          src: "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
-          title: "واجهة المبنى الحديثة مع نافورة مائية",
-        },
-        // {
-        //   src: "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
-        //   title: "ردهة الأتريوم الكبرى",
-        // },
-        // {
-        //   src: "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
-        //   title: "مساحة معيشة ومطبخ مفتوحة",
-        // },
-        {
-          src: "https://i.ibb.co/pj4pCr6F/Screenshot-2025-08-19-162543.png",
-          title: "مبنى سكني بتراسات خضراء",
+          src: "https://i.ibb.co/hxZF9Sj2/Whats-App-Image-2026-01-27-at-5-57-23-PM.jpg",
+          title: "فيلا عصرية بتصميم هندسي بسيط",
         },
         {
-          src: "https://i.ibb.co/pBbqBsD1/Screenshot-2025-08-19-154236.png",
-          title: "ردهة فاخرة بأشجار النخيل والثريا",
+          src: "https://i.ibb.co/r2XkwpnD/Whats-App-Image-2026-01-27-at-5-57-31-PM.jpg",
+          title: "قصر إل ميرادور بتصميم أندلسي تقليدي",
         },
         {
-          src: "https://i.ibb.co/7NxsWySc/Screenshot-2025-08-19-154348.png",
-          title: "مطبخ حديث ومنطقة لتناول الطعام",
+          src: "https://i.ibb.co/hFW8RxqL/Whats-App-Image-2026-01-27-at-5-57-41-PM.jpg",
+          title: "فيلا مستقبلية انسيابية مع إطلالة على برج العرب",
         },
         {
-          src: "https://i.ibb.co/4gp06CFY/Screenshot-2025-08-19-154407.png",
-          title: "مطبخ عصري مع جزيرة وإطلالة",
+          src: "https://i.ibb.co/FLk3Q1Cs/Whats-App-Image-2026-01-27-at-5-57-58-PM.jpg",
+          title: "عقار فاخر بتصميم كلاسيكي ونوافذ مقوسة",
+        },
+        {
+          src: "https://i.ibb.co/DHPqxNRt/Whats-App-Image-2026-01-27-at-5-58-11-PM.jpg",
+          title: "فيلا معاصرة بمسبح لامتناهي وإطلالة على المارينا",
+        },
+        {
+          src: "https://i.ibb.co/zh5jNrZs/Whats-App-Image-2026-01-27-at-5-58-23-PM.jpg",
+          title: "فيلا حجرية حديثة مع موقف سيارات مغطى",
+        },
+        {
+          src: "https://i.ibb.co/XZLr55gr/Whats-App-Image-2026-01-27-at-5-58-34-PM.jpg",
+          title: "فيلا زجاجية فاخرة مع تنسيق حدائق صحراوي",
+        },
+        {
+          src: "https://i.ibb.co/KcR764mn/Whats-App-Image-2026-01-27-at-5-58-52-PM.jpg",
+          title: "تحفة معمارية حديثة تطل على برج خليفة",
         },
       ],
     },
