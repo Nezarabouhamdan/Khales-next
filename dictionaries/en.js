@@ -610,10 +610,8 @@ export const dictionary = {
       description2:
         "We prepare structural, civil, mechanical, electrical, and plumbing designs, coordinated with architectural plans and in line with local authority codes. Whether you’re building a villa or a multi-use development, we ensure your project is safe, compliant, efficient, and ready for execution.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/r2XkwpnD/Whats-App-Image-2026-01-27-at-5-57-31-PM.jpg",
+        "https://i.ibb.co/zh5jNrZs/Whats-App-Image-2026-01-27-at-5-58-23-PM.jpg",
       ],
     },
     process: {
@@ -697,10 +695,8 @@ export const dictionary = {
       description2:
         "From structural details to mechanical and electrical systems, our engineers ensure that your project is progressing safely, accurately, and efficiently. We track the percentage of work completed, verify materials used, and support interim payment evaluations, protecting your investment and reinforcing long-term reliability.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/mrV6ZKQz/Whats-App-Image-2026-01-27-at-6-02-51-PM.jpg",
+        "https://i.ibb.co/SwsQPVFC/Whats-App-Image-2026-01-27-at-6-03-10-PM.jpg",
       ],
     },
     process: {
@@ -787,10 +783,8 @@ export const dictionary = {
       description2:
         "We handle everything from spatial planning and mood concepts to material selection and technical drawings. Whether for a private villa, commercial space, or full development, we ensure the design reflects both the client’s taste and the project’s context, while staying practical, buildable, and regulation-ready.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/BH2Yztmp/Whats-App-Image-2026-01-27-at-6-04-15-PM.jpg",
+        "https://i.ibb.co/5W2pN64c/Whats-App-Image-2026-01-27-at-6-04-21-PM.jpg",
       ],
     },
     process: {
@@ -878,10 +872,8 @@ export const dictionary = {
       description2:
         "From gardens and entrances to terraces and pool decks, our landscape team balances natural elements with built features to enhance usability, flow, and visual character. Every detail, from plant selection to lighting and materials, is tailored to your climate, space, and personal vision.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/gbXHLBDn/Whats-App-Image-2026-01-27-at-6-05-05-PM.jpg",
+        "https://i.ibb.co/ycYDCSv9/Whats-App-Image-2026-01-27-at-6-05-55-PM.jpg",
       ],
     },
     process: {
@@ -2419,32 +2411,36 @@ export const dictionary = {
       title: "Residential Showcase",
       images: [
         {
-          src: "https://i.ibb.co/35xjVNt4/Screenshot-2025-08-19-154138.png",
-          title: "Modern Building Exterior with Water Feature",
+          src: "https://i.ibb.co/hxZF9Sj2/Whats-App-Image-2026-01-27-at-5-57-23-PM.jpg",
+          title: "Modern Minimalist Villa with Geometric Facade",
         },
         {
-          src: "https://i.ibb.co/5gJJpQ7F/Screenshot-2025-08-19-154310.png",
-          title: "Grand Atrium Lobby",
+          src: "https://i.ibb.co/r2XkwpnD/Whats-App-Image-2026-01-27-at-5-57-31-PM.jpg",
+          title: "Traditional Andalusian Mansion - El Mirador",
         },
         {
-          src: "https://i.ibb.co/whzNWQgp/Screenshot-2025-08-19-162608.png",
-          title: "Open-Plan Living and Kitchen Area",
+          src: "https://i.ibb.co/hFW8RxqL/Whats-App-Image-2026-01-27-at-5-57-41-PM.jpg",
+          title: "Futuristic Curved Villa with Burj Al Arab View",
         },
         {
-          src: "https://i.ibb.co/pj4pCr6F/Screenshot-2025-08-19-162543.png",
-          title: "Residential Building with Green Terraces",
+          src: "https://i.ibb.co/FLk3Q1Cs/Whats-App-Image-2026-01-27-at-5-57-58-PM.jpg",
+          title: "Neoclassical Luxury Estate with Arched Windows",
         },
         {
-          src: "https://i.ibb.co/pBbqBsD1/Screenshot-2025-08-19-154236.png",
-          title: "Luxurious Lobby with Palm Trees and Chandelier",
+          src: "https://i.ibb.co/DHPqxNRt/Whats-App-Image-2026-01-27-at-5-58-11-PM.jpg",
+          title: "Contemporary Villa with Infinity Pool and Marina Skyline",
         },
         {
-          src: "https://i.ibb.co/7NxsWySc/Screenshot-2025-08-19-154348.png",
-          title: "Modern Kitchen and Dining Area",
+          src: "https://i.ibb.co/zh5jNrZs/Whats-App-Image-2026-01-27-at-5-58-23-PM.jpg",
+          title: "Modern Stone Villa with Sleek Covered Portico",
         },
         {
-          src: "https://i.ibb.co/4gp06CFY/Screenshot-2025-08-19-154407.png",
-          title: "Contemporary Kitchen with Island and View",
+          src: "https://i.ibb.co/XZLr55gr/Whats-App-Image-2026-01-27-at-5-58-34-PM.jpg",
+          title: "Luxury Glass Villa with Desert-Inspired Landscaping",
+        },
+        {
+          src: "https://i.ibb.co/KcR764mn/Whats-App-Image-2026-01-27-at-5-58-52-PM.jpg",
+          title: "Modern Architectural Masterpiece overlooking Burj Khalifa",
         },
       ],
     },
