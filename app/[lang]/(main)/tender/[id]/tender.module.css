@@ -1,0 +1,236 @@
+/* tender.module.css */
+
+/* --- General Layout --- */
+.pageWrapper {
+  background-color: #f3f4f6; /* رمادي فاتح جداً مريح للعين */
+  min-height: 100vh;
+  padding-bottom: 120px; /* مساحة للبار السفلي */
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* --- Header Section (Clean) --- */
+.headerCard {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.projectTitle h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #111827;
+}
+
+.projectTitle p {
+  color: #6b7280;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.idBadge {
+  background: #eff6ff;
+  color: #4f8a10; /* Khales Green */
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid #d1fae5;
+}
+
+/* --- Contractor Form (Grid) --- */
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #374151;
+}
+
+.formCard {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 24px;
+}
+
+.gridTwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .gridTwo {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inputGroup {
+  margin-bottom: 16px;
+}
+
+.label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  background-color: #f9fafb;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #4f8a10;
+  background-color: white;
+  box-shadow: 0 0 0 1px #4f8a10;
+}
+
+/* --- Clean Table --- */
+.tableCard {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden; /* للزوايا */
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.table th {
+  background-color: #f9fafb;
+  text-align: left;
+  padding: 14px 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.95rem;
+  color: #1f2937;
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.priceInput {
+  width: 120px;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.priceInput:focus {
+  border-color: #4f8a10;
+  outline: none;
+}
+
+/* --- Floating Bottom Bar (Modern) --- */
+.bottomBar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 960px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 15px 25px;
+  border-radius: 12px;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  z-index: 50;
+}
+
+.totalArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.totalLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.totalValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.submitBtn {
+  background-color: #111827; /* أسود فخم أو استخدم الأخضر #4F8A10 */
+  color: white;
+  padding: 12px 32px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submitBtn:hover {
+  background-color: #000;
+}
+
+.submitBtn:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* --- Loading/Error --- */
+.centerMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #6b7280;
+}

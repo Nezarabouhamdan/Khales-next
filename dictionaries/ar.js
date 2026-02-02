@@ -2937,13 +2937,6 @@ export const dictionary = {
         thumbnailUrl: "https://i.ytimg.com/vi/c4k6aGyFPqk/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/c4k6aGyFPqk",
       },
-      // {
-      //   title: "Smart Material Tips for True Luxury", // English title as a fallback
-      //   artitle: "نصائح ذكية لاختيار المواد لتحقيق الفخامة الحقيقية", // Arabic title
-      //   category: "Design", // The category key remains in English for filtering
-      //   thumbnailUrl: "https://i.ytimg.com/vi/cZPaZxKNpUk/maxresdefault.jpg",
-      //   embedUrl: "https://www.youtube.com/embed/cZPaZxKNpUk",
-      // },
     ],
   },
 };
