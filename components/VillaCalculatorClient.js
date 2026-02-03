@@ -1396,7 +1396,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     <S_IntroLayout>
       <S_IntroContent isRTL={isRTL}>
         <S_LogoPlaceholder src="https://i.ibb.co/8LDkH0gt/Khales-Logo.png" />
-        {pdfLeadsCount !== null && (
+        {/* {pdfLeadsCount !== null && (
           <S_DownloadsBadge>
             <span>
               {isRTL
@@ -1405,7 +1405,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
             </span>
             <span className="count">{pdfLeadsCount}</span>
           </S_DownloadsBadge>
-        )}
+        )} */}
         <h1>{dictionary.introTitle}</h1>
         <p>{dictionary.introDescription}</p>
       </S_IntroContent>
