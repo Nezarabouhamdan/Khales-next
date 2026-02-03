@@ -250,6 +250,46 @@ const S_ResultsPageWrapper = styled.div`
   overflow-x: hidden;
 `;
 
+const S_PdfLeadsBadge = styled.div`
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--text-dark);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+  z-index: 60;
+  @media (max-width: 768px) {
+    right: 12px;
+    top: 12px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+`;
+
+const S_DownloadsBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fef9c3; /* Light yellow background from your screenshot */
+  color: #854d0e;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  border: 1px solid #fde047;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  .count {
+    color: var(--text-dark);
+    font-size: 1rem;
+  }
+`;
+
 // ... (All your other styled-components go here)
 const S_StepContainer = styled.div`
   animation: ${fadeIn} 0.5s ease-out forwards;
@@ -696,7 +736,9 @@ const S_BreakdownItem = styled.div`
   background-color: #ffffff;
   border: 1px solid var(--border-color);
   box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.08);
@@ -748,12 +790,14 @@ const S_IntroContent = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: ${(props) => (props.isRTL ? "right" : "left")};
+  /* Ensure the badge aligns with text */
+  align-items: ${(props) => (props.isRTL ? "flex-start" : "flex-start")};
   padding: 2rem;
   border-radius: 20px;
   background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
   @media (max-width: 991px) {
-    text-align: center;
     align-items: center;
+    text-align: center;
   }
   h1 {
     font-size: 2.5rem;
@@ -928,7 +972,8 @@ const S_ModalContent = styled.div`
   border-radius: 16px;
   max-width: 500px;
   width: 90%;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   animation: ${fadeIn} 0.4s ease; /* Slightly delayed animation */
   direction: ${(props) => (props.isRTL ? "rtl" : "ltr")};
@@ -990,7 +1035,7 @@ const CostPieChart = ({ breakdownDetails, isRTL }) => {
         callbacks: {
           label: (context) =>
             `${context.label || ""}: ${Math.round(
-              context.parsed || 0
+              context.parsed || 0,
             ).toLocaleString()} ${isRTL ? "د.إ" : "AED"}`,
         },
       },
@@ -1008,11 +1053,11 @@ const getInitialState = () => ({
   rooms: initializeRoomsState(),
   otherRooms: OTHER_ROOMS_CONFIG.reduce(
     (acc, room) => ({ ...acc, [room.id]: false }),
-    {}
+    {},
   ),
   fixedAddons: FIXED_COST_ADDONS_CONFIG.reduce(
     (acc, addon) => ({ ...acc, [addon.id]: false }),
-    {}
+    {},
   ),
 });
 const initializeRoomsState = () => {
@@ -1049,6 +1094,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [leadInfo, setLeadInfo] = useState({ email: "", phone: "" });
+  const [pdfLeadsCount, setPdfLeadsCount] = useState(null);
 
   // --- PERSISTENCE LOGIC ---
   const [isLoaded, setIsLoaded] = useState(false);
@@ -1076,20 +1122,31 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     }
   }, []);
 
+  // Fetch total PDF download leads count from server
+  useEffect(() => {
+    fetch("/api/pdf-leads-count")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.count !== "undefined")
+          setPdfLeadsCount(data.count);
+      })
+      .catch((err) => console.error("Failed to fetch pdf leads count:", err));
+  }, []);
+
   useEffect(() => {
     if (!isLoaded) return;
     sessionStorage.setItem("villaCalc_selections", JSON.stringify(selections));
     sessionStorage.setItem(
       "villaCalc_quickSelections",
-      JSON.stringify(quickSelections)
+      JSON.stringify(quickSelections),
     );
     sessionStorage.setItem(
       "villaCalc_calculationMode",
-      JSON.stringify(calculationMode)
+      JSON.stringify(calculationMode),
     );
     sessionStorage.setItem(
       "villaCalc_showResults",
-      JSON.stringify(showResults)
+      JSON.stringify(showResults),
     );
     sessionStorage.setItem("villaCalc_extraArea", JSON.stringify(extraArea));
   }, [
@@ -1125,12 +1182,12 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
         }
       });
       OTHER_ROOMS_CONFIG.forEach(
-        (r) => selections.otherRooms[r.id] && (totalCoreArea += r.area)
+        (r) => selections.otherRooms[r.id] && (totalCoreArea += r.area),
       );
       FIXED_COST_ADDONS_CONFIG.forEach(
         (a) =>
           selections.fixedAddons[a.id] &&
-          ((totalCoreArea += a.area), (totalFixedAddonCost += a.cost))
+          ((totalCoreArea += a.area), (totalFixedAddonCost += a.cost)),
       );
       if (selections.basement)
         totalCoreArea *= PRICING_DATA.factors.basement_multiplier;
@@ -1161,7 +1218,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     }));
     const adjustedConstructionCost = adjustedBreakdownDetails.reduce(
       (sum, item) => sum + item.cost,
-      0
+      0,
     );
     const finalBreakdownForDisplay = [...adjustedBreakdownDetails];
     if (totalFixedAddonCost > 0)
@@ -1226,9 +1283,9 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
         email: leadInfo.email,
         phone: leadInfo.phone,
         description: `Lead from PDF Download.\nTotal BUA: ${calculationResult.totalBUA.toFixed(
-          2
+          2,
         )} m²\nEstimated Cost: ${Math.round(
-          calculationResult.totalPrice
+          calculationResult.totalPrice,
         ).toLocaleString()} AED`,
       }),
     })
@@ -1321,14 +1378,14 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
         pdf.restoreGraphicsState();
       }
       pdf.save(
-        `Villa_Calculation_Results_${new Date().toISOString().slice(0, 10)}.pdf`
+        `Villa_Calculation_Results_${new Date().toISOString().slice(0, 10)}.pdf`,
       );
     };
 
     img.onerror = () => {
       console.error("Failed to load logo image for watermark.");
       pdf.save(
-        `Villa_Calculation_Results_${new Date().toISOString().slice(0, 10)}.pdf`
+        `Villa_Calculation_Results_${new Date().toISOString().slice(0, 10)}.pdf`,
       );
     };
   };
@@ -1339,6 +1396,16 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     <S_IntroLayout>
       <S_IntroContent isRTL={isRTL}>
         <S_LogoPlaceholder src="https://i.ibb.co/8LDkH0gt/Khales-Logo.png" />
+        {pdfLeadsCount !== null && (
+          <S_DownloadsBadge>
+            <span>
+              {isRTL
+                ? "عدد الأشخاص الذين استخدموا حاسبة الفيلا:"
+                : "Total Villa Estimator Users:"}
+            </span>
+            <span className="count">{pdfLeadsCount}</span>
+          </S_DownloadsBadge>
+        )}
         <h1>{dictionary.introTitle}</h1>
         <p>{dictionary.introDescription}</p>
       </S_IntroContent>
@@ -1674,7 +1741,7 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
                         </S_ToggleRow>
                       )}
                     </S_RoomDetailCard>
-                  )
+                  ),
                 )}
               </S_RoomDetailsGrid>
             )}
@@ -1954,10 +2021,10 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
         {!calculationMode
           ? renderModeSelector()
           : !showResults
-          ? calculationMode === "detailed"
-            ? renderDetailedCalculator()
-            : renderQuickCalculator()
-          : renderResults()}
+            ? calculationMode === "detailed"
+              ? renderDetailedCalculator()
+              : renderQuickCalculator()
+            : renderResults()}
         {isModalOpen && (
           <S_ModalBackdrop onClick={() => setIsModalOpen(false)}>
             <S_ModalContent isRTL={isRTL} onClick={(e) => e.stopPropagation()}>

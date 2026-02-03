@@ -13,6 +13,7 @@ import FAQSection from "@/components/FAQ/FAQSection";
 import FeaturedBlogs from "@/components/FeaturedBlogs/FeaturedBlogs";
 import ProjectTypes from "@/components/Projecttypes/ProjectTypes";
 import VillaCostEstimatorCTA from "@/components/VillaCostEstimatorCTA";
+import VisitorCounter from "@/components/VisitorCounter.jsx";
 const getHomePageSchema = (lang) => {
   const baseUrl = "https://www.khales.ae";
   const pageUrl = `${baseUrl}/${lang}`;
@@ -276,6 +277,7 @@ export default async function Home({ params: { lang } }) {
           isHomePage={true}
         />
       </section>{" "}
+      <VisitorCounter lang={lang} />
       <section
         id="project-types"
         aria-label="Our Residential & Commercial Project Types"
