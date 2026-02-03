@@ -8,10 +8,14 @@ export async function generateStaticParams() {
 }
 
 // This function generates the metadata for the page based on the language
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang } = params || {};
+
   if (lang !== "en" && lang !== "ar") {
     return { title: "Page Not Found" };
   }
+
   const dictionary = await getDictionary(lang);
   const content = dictionary.landingPage;
 
