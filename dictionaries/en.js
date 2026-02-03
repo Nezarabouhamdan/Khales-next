@@ -2799,6 +2799,12 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Design without logic is just guessing with style", // English title as a fallback
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/6UR3BwMoryE/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/6UR3BwMoryE",
+      },
+      {
         title: "Don’t Receive Your Home Before Checking Smart Details", // English title as a fallback
         category: "Construction",
         thumbnailUrl: "https://i.ytimg.com/vi/rjAovsfJ9Oo/maxresdefault.jpg",

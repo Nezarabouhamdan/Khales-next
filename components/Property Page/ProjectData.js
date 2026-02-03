@@ -1112,6 +1112,433 @@ export const projectsData = [
       ],
     },
   },
+  {
+    id: 16,
+    slug: "grand-neoclassical-suite",
+    category: { eng: "Interior_Design", ar: "تصميم داخلي" },
+    mainImage: "https://i.ibb.co/9kNb0SyN/1-jpg.jpg",
+    galleryImages: [
+      "https://i.ibb.co/9kNb0SyN/1-jpg.jpg", // Main Bedroom View
+      "https://i.ibb.co/048cYnv/2-jpg.jpg", // Full Bed Perspective
+      "https://i.ibb.co/BVZ5hKZc/3-jpg.jpg", // Side Bed View
+      "https://i.ibb.co/ks8W8Yhq/4-jpg.jpg", // Vanity and TV Wall
+      "https://i.ibb.co/k2tgCzKv/5-jpg.jpg", // Walk-in Entrance
+      "https://i.ibb.co/LD1LqsVw/6-jpg.jpg", // Wood Panel Detail
+      "https://i.ibb.co/RT2Wksx9/7-jpg.jpg", // Top-down Bed View
+      "https://i.ibb.co/pvfKqpX1/8-jpg.jpg", // Luxury Closet Detail
+      "https://i.ibb.co/Xr1KqxdH/9-jpg.jpg", // Modern Bathroom
+    ],
+    en: {
+      tags: ["Interior Design", "Neoclassical Style", "Luxury Living"],
+      title: "The Grand Neoclassical Suite",
+      address: "Dubai, UAE",
+      description:
+        "A master suite blending classical wall moldings with contemporary wood textures and marble.",
+      longDescription:
+        "The Grand Neoclassical Suite is a masterclass in sophisticated interior design. The bedroom features intricate wall moldings and recessed lighting that highlight a floor-to-ceiling vertical wood-slat headboard. The space flows into a curated walk-in closet with gold-toned hardware and glass cabinetry. The ensuite bathroom continues the luxury theme with organic-shaped backlit mirrors and full-height marble slab walls, creating a seamless transition between classical elegance and modern comfort.",
+      price: "0",
+      beds: "1 (Master Suite)",
+      floor: "Penthouse Level",
+      sqft: "1,100",
+      status: "Completed",
+      keyFeatures: [
+        "Custom neoclassical wall moldings",
+        "Vertical wood-slat feature headboard",
+        "Backlit organic-shaped vanity mirrors",
+        "Luxury walk-in closet with gold accents",
+        "Full marble-clad ensuite bathroom",
+      ],
+      highlights: [
+        { label: "Project Type", value: "Interior Design" },
+        { label: "Status", value: "Completed" },
+      ],
+    },
+    ar: {
+      tags: ["تصميم داخلي", "طراز نيوكلاسيكي", "حياة فاخرة"],
+      title: "جناح النيوكلاسيك الكبير",
+      address: "دبي، الإمارات العربية المتحدة",
+      description:
+        "جناح رئيسي يمزج بين القوالب الجدارية الكلاسيكية وأنسجة الخشب والرخام المعاصرة.",
+      longDescription:
+        "يعد جناح النيوكلاسيك الكبير نموذجاً للتصميم الداخلي الراقي. تتميز غرفة النوم بقوالب جدارية معقدة وإضاءة غائرة تبرز اللوح الأمامي للسرير المكون من شرائح خشبية رأسية ممتدة من الأرض إلى السقف. تتدفق المساحة إلى خزانة ملابس منسقة بعناية مع مقابض ذهبية وخزائن زجاجية. يواصل الحمام الرئيسي طابع الفخامة مع مرايا منحنية مضيئة وجدران رخامية كاملة، مما يخلق انتقالاً سلساً بين الأناقة الكلاسيكية والراحة الحديثة.",
+      price: "٠",
+      beds: "١ (جناح رئيسي)",
+      floor: "طابق البنتهاوس",
+      sqft: "١٬١٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "قوالب جدارية نيوكلاسيكية مخصصة",
+        "جدار خلفي للسرير من شرائح الخشب الرأسي",
+        "مرايا حمام منحنية مع إضاءة خلفية",
+        "خزانة ملابس فاخرة بلمسات ذهبية",
+        "حمام مغطى بالكامل بالرخام الفاخر",
+      ],
+      highlights: [
+        { label: "نوع المشروع", value: "تصميم داخلي" },
+        { label: "الحالة", value: "مكتمل" },
+      ],
+    },
+  },
+  {
+    id: 17,
+    slug: "the-pearl-residence",
+    category: { eng: "Interior_Design", ar: "تصميم داخلي" },
+    mainImage: "https://i.ibb.co/jZ6JLf2p/21-jpg.jpg",
+    galleryImages: [
+      "https://i.ibb.co/jZ6JLf2p/21-jpg.jpg", // Kitchen View
+      "https://i.ibb.co/pjZRN5tn/22-jpg.jpg", // Kitchen Detail
+      "https://i.ibb.co/Zz0kVwGx/23-jpg.jpg", // Majlis Area
+      "https://i.ibb.co/s9L2V5Zs/24-jpg.jpg", // Fireplace Detail
+      "https://i.ibb.co/spy89xTF/25-jpg.jpg", // Dining/Living Flow
+      "https://i.ibb.co/zW4k4mn8/26-jpg.jpg", // Corridor/Hallway
+      "https://i.ibb.co/hR5v6wyM/27-jpg.jpg", // Master Bedroom
+      "https://i.ibb.co/JFzDHNRS/28-jpg.jpg", // Headboard Detail
+      "https://i.ibb.co/jkgYbKJ1/29-jpg.jpg", // Bedroom TV Wall
+      "https://i.ibb.co/fz9dfrYP/30-jpg.jpg", // Second Bedroom
+      "https://i.ibb.co/sdJCDgZj/31-jpg.jpg", // Kid's/Teen Bedroom
+      "https://i.ibb.co/nqZ83ZrD/32-jpg.jpg", // Dressing Room
+      "https://i.ibb.co/84X05GCc/33-jpg.jpg", // Bathroom Marble
+      "https://i.ibb.co/F47fVDmr/34-jpg.jpg", // Vanity Detail
+      "https://i.ibb.co/hFkqPP98/35-jpg.jpg", // Shower Area
+      "https://i.ibb.co/JwD7nKbV/36-jpg.jpg", // Toilet/Bidet Area
+    ],
+    en: {
+      tags: ["Interior Design", "Modern Luxury", "Residential"],
+      title: "The Pearl Residence",
+      address: "Sharjah, UAE",
+      description:
+        "A comprehensive interior transformation featuring minimalist aesthetics and warm materiality.",
+      longDescription:
+        "The Pearl Residence showcases a seamless blend of modern minimalism and functional luxury. The heart of the home features a sleek, high-gloss kitchen with integrated appliances, flowing into a spacious majlis centered around a contemporary linear fireplace. Each bedroom is uniquely tailored, from the master suite's textured wall panels to the vibrant yet sophisticated secondary rooms. The design is unified by premium marble tiling, bespoke wood joinery, and a sophisticated lighting plan that enhances the residence's airy, open feel.",
+      price: "0",
+      beds: "5",
+      floor: "V+1",
+      sqft: "8,500",
+      status: "Completed",
+      keyFeatures: [
+        "Modern minimalist kitchen with island",
+        "Linear fireplace feature wall in Majlis",
+        "Bespoke bedroom wall paneling and joinery",
+        "Luxury marble bathrooms with integrated lighting",
+        "Open-plan living and dining integration",
+      ],
+      highlights: [
+        { label: "Project Type", value: "Full Interior Fit-out" },
+        { label: "Status", value: "Completed" },
+      ],
+    },
+    ar: {
+      tags: ["تصميم داخلي", "فخامة عصرية", "سكني"],
+      title: "ذا بيرل ريزيدنس",
+      address: "الشارقة، الإمارات العربية المتحدة",
+      description: "تحول داخلي شامل يتميز بجماليات بسيطة ومواد دافئة.",
+      longDescription:
+        "يعرض 'ذا بيرل ريزيدنس' مزيجًا سلسًا من البساطة الحديثة والفخامة الوظيفية. يتميز قلب المنزل بمطبخ أنيق عالي اللمعان مع أجهزة مدمجة، يتدفق إلى مجلس واسع يتوسطه مدفأة خطية معاصرة. تم تصميم كل غرفة نوم بشكل فريد، بدءًا من الألواح الجدارية المزخرفة في الجناح الرئيسي وصولاً إلى الغرف الثانوية الحيوية والأنيقة. يوحد التصميم أرضيات رخامية فاخرة، ونجارة خشبية مخصصة، ومخطط إضاءة متطور يعزز الشعور بالانشراح والاتساع في المسكن.",
+      price: "٠",
+      beds: "٥",
+      floor: "أرضي + أول",
+      sqft: "٨٬٥٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "مطبخ عصري بسيط مع جزيرة",
+        "جدار مميز بمدفأة خطية في المجلس",
+        "أعمال خشبية وتكسية جدران مخصصة للغرف",
+        "حمامات رخامية فاخرة مع إضاءة مدمجة",
+        "تكامل مساحات المعيشة والطعام المفتوحة",
+      ],
+      highlights: [
+        { label: "نوع المشروع", value: "تجهيز داخلي كامل" },
+        { label: "الحالة", value: "مكتمل" },
+      ],
+    },
+  },
+  {
+    id: 18,
+    slug: "the-first-floor-gallery",
+    category: { eng: "Interior_Design", ar: "تصميم داخلي" },
+    mainImage: "https://i.ibb.co/8nV0byX8/1st-floor-hall-page-0001-jpg.jpg",
+    galleryImages: [
+      "https://i.ibb.co/8nV0byX8/1st-floor-hall-page-0001-jpg.jpg", // Hallway Perspective
+      "https://i.ibb.co/BbNWkgJ/1st-floor-hall-page-0002-jpg.jpg", // Arched Entrance
+      "https://i.ibb.co/JWjTjh6g/1st-floor-hall-page-0003-jpg.jpg", // Wall Molding Detail
+      "https://i.ibb.co/Nnn42Kk7/1st-floor-hall-page-0004-jpg.jpg", // Corridor View
+      "https://i.ibb.co/gM2msWPr/1st-floor-hall-page-0005-jpg.jpg", // Doorway Integration
+      "https://i.ibb.co/Cp7HXTHy/1st-floor-hall-page-0006-jpg.jpg", // Lighting/Ceiling Detail
+      "https://i.ibb.co/9mR8Qj4n/1st-floor-hall-page-0007-jpg.jpg", // Transitional Space
+      "https://i.ibb.co/67gfNn3W/1st-floor-hall-page-0008-jpg.jpg", // Marble Flooring Detail
+      "https://i.ibb.co/Xk8B9N3w/1st-floor-hall-page-0009-jpg.jpg", // Vertical Paneling
+      "https://i.ibb.co/wrKzFmDC/1st-floor-hall-page-0010-jpg.jpg", // Corner Perspective
+      "https://i.ibb.co/VpDjqMh4/1st-floor-hall-page-0011-jpg.jpg", // Symmetrical Moldings
+      "https://i.ibb.co/HTgPxSnW/1st-floor-hall-page-0012-jpg.jpg", // Decorative Archway
+      "https://i.ibb.co/zcqBKzp/1st-floor-hall-page-0013-jpg.jpg", // Recessed Lighting View
+      "https://i.ibb.co/qLG9r6mT/1st-floor-hall-page-0014-jpg.jpg", // Detailed Cornices
+      "https://i.ibb.co/1Gps2HMB/1st-floor-hall-page-0015-jpg.jpg", // Full Hall Panorama
+    ],
+    en: {
+      tags: ["Interior Design", "Neoclassical", "Hallway Design"],
+      title: "The First Floor Gallery",
+      address: "Dubai, UAE",
+      description:
+        "An elegant first-floor hall transformation utilizing neoclassical moldings and grand arched transitions.",
+      longDescription:
+        "The First Floor Gallery project redefines transitional spaces as a destination of elegance. The design features symmetrical neoclassical wall moldings that add depth and rhythm to the expansive hallway. Arched entrances serve as grand portals between rooms, complemented by intricate ceiling cornices and soft recessed lighting. The use of high-polished marble flooring with subtle veining enhances the sense of space and light, creating a luxurious and cohesive flow throughout the upper level of the residence.",
+      price: "0",
+      beds: "Common Areas",
+      floor: "1st Floor",
+      sqft: "3,200",
+      status: "Completed",
+      keyFeatures: [
+        "Symmetrical neoclassical wall moldings",
+        "Grand arched decorative doorways",
+        "Polished marble flooring with inlaid details",
+        "Custom ceiling cornices and tray lighting",
+        "Integrated architectural soft lighting",
+      ],
+      highlights: [
+        { label: "Project Type", value: "Interior Gallery Design" },
+        { label: "Status", value: "Completed" },
+      ],
+    },
+    ar: {
+      tags: ["تصميم داخلي", "نيوكلاسيكي", "تصميم الممرات"],
+      title: "جاليري الطابق الأول",
+      address: "دبي، الإمارات العربية المتحدة",
+      description:
+        "تحول أنيق لصالة الطابق الأول باستخدام قوالب نيوكلاسيكية وانتقالات مقوسة فاخرة.",
+      longDescription:
+        "يعيد مشروع جاليري الطابق الأول تعريف مساحات الانتقال كوجهة للأناقة. يتميز التصميم بقوالب جدارية نيوكلاسيكية متناظرة تضيف عمقاً وإيقاعاً للممر الواسع. تعمل المداخل المقوسة كبوابات فاخرة بين الغرف، تكتمل بكرانيش سقف معقدة وإضاءة غائرة ناعمة. إن استخدام أرضيات الرخام المصقول ذات العروق الدقيقة يعزز الشعور بالاتساع والضوء، مما يخلق تدفقاً فاخراً ومتماسكاً في الطابق العلوي من المسكن.",
+      price: "٠",
+      beds: "مساحات مشتركة",
+      floor: "الطابق الأول",
+      sqft: "٣٬٢٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "قوالب جدارية نيوكلاسيكية متناظرة",
+        "مداخل مداخل مقوسة مزخرفة",
+        "أرضيات رخامية مصقولة بتفاصيل دقيقة",
+        "كرانيش سقف مخصصة وإضاءة مخفية",
+        "إضاءة معمارية ناعمة مدمجة",
+      ],
+      highlights: [
+        { label: "نوع المشروع", value: "تصميم ممرات داخلية" },
+        { label: "الحالة", value: "مكتمل" },
+      ],
+    },
+  },
+  {
+    id: 19,
+    slug: "modern-executive-workspace",
+    category: { eng: "Commercial", ar: "تجاري" },
+    mainImage: "https://i.ibb.co/PvSc6bfb/shoot1-jpg.jpg",
+    galleryImages: [
+      "https://i.ibb.co/PvSc6bfb/shoot1-jpg.jpg", // Main Office Perspective
+      "https://i.ibb.co/6cp0wLw6/shoot2-jpg.jpg", // Desk Detail
+      "https://i.ibb.co/LzJ4p8PC/shoot3-jpg.jpg", // Meeting Area
+      "https://i.ibb.co/d4JTJfjL/shoot5-jpg.jpg", // Integrated Shelving
+      "https://i.ibb.co/w3GkVg8/shoot6-jpg.jpg", // Wood Paneling Detail
+      "https://i.ibb.co/hnFz5vp/shoot12-jpg.jpg", // Hallway Transition
+      "https://i.ibb.co/kdJR8RJ/shoot13-jpg.jpg", // Executive Suite View
+      "https://i.ibb.co/gLH5YZPR/shoot14-Copy-jpg.jpg", // Accent Lighting Detail
+      "https://i.ibb.co/TDN3rkTF/shoot47-jpg.jpg", // Reception/Lounge Area
+      "https://i.ibb.co/rGKJs35b/shoot48-jpg.jpg", // Material Texture Close-up
+      "https://i.ibb.co/8LzvgZDN/shoot55-jpg.jpg", // Minimalist Corridor
+      "https://i.ibb.co/Lz1VzWp8/shoot56-jpg.jpg", // Architectural Arches
+      "https://i.ibb.co/cSM2MpQL/shoot59-jpg.jpg", // Breakout Space
+      "https://i.ibb.co/wFxXbmjb/shoot60-jpg.jpg", // Final Panorama
+    ],
+    en: {
+      tags: ["Interior Design", "Commercial Office", "Professional Workspace"],
+      title: "Modern Executive Workspace",
+      address: "Dubai, UAE",
+      description:
+        "A high-performance executive office environment blending dark wood aesthetics with integrated smart lighting.",
+      longDescription:
+        "The Modern Executive Workspace project redefines corporate luxury through a focus on focus and productivity. The design utilizes deep wood tones and slatted wall textures to create a sense of grounded authority. Custom-built executive desks and integrated shelving units maximize utility without sacrificing style. The workspace is unified by sophisticated linear lighting and recessed ceiling tracks that guide the eye through the professional suite, ensuring a seamless balance between modern corporate identity and artistic interior expression.",
+      price: "0",
+      beds: "Executive Suite",
+      floor: "Corporate Level",
+      sqft: "4,500",
+      status: "Completed",
+      keyFeatures: [
+        "Custom dark wood executive joinery",
+        "Integrated linear architectural lighting",
+        "Slatted wood wall textures and acoustic panels",
+        "Bespoke shelving with accent LED strips",
+        "Modern minimalist executive furniture",
+      ],
+      highlights: [
+        { label: "Project Type", value: "Commercial Office Design" },
+        { label: "Status", value: "Completed" },
+      ],
+    },
+    ar: {
+      tags: ["تصميم داخلي", "مكتب تجاري", "مساحة عمل احترافية"],
+      title: "مساحة العمل التنفيذية الحديثة",
+      address: "دبي، الإمارات العربية المتحدة",
+      description:
+        "بيئة مكتبية تنفيذية عالية الأداء تمزج بين جماليات الخشب الداكن والإضاءة الذكية المدمجة.",
+      longDescription:
+        "يعيد مشروع مساحة العمل التنفيذية الحديثة تعريف الفخامة المؤسسية من خلال التركيز على الهدوء والإنتاجية. يستخدم التصميم درجات الخشب العميقة وأنسجة الجدران المضلعة لخلق شعور بالثبات والسلطة. تعمل المكاتب التنفيذية المصممة حسب الطلب ووحدات الأرفف المدمجة على زيادة الكفاءة دون التضحية بالأناقة. توحد مساحة العمل إضاءة خطية متطورة ومسارات سقف غائرة توجه العين عبر الجناح الاحترافي، مما يضمن توازناً سلساً بين الهوية المؤسسية الحديثة والتعبير الفني الداخلي.",
+      price: "٠",
+      beds: "جناح تنفيذي",
+      floor: "طابق الشركات",
+      sqft: "٤٬٥٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "نجارة تنفيذية مخصصة من الخشب الداكن",
+        "إضاءة معمارية خطية مدمجة",
+        "أنسجة جدران خشبية مضلعة وألواح صوتية",
+        "أرفف مخصصة مع شرائط LED مميزة",
+        "أثاث تنفيذي عصري وبسيط",
+      ],
+      highlights: [
+        { label: "نوع المشروع", value: "تصميم مكاتب تجارية" },
+        { label: "الحالة", value: "مكتمل" },
+      ],
+    },
+  },
+  {
+    id: 20,
+    slug: "luxury-contemporary-majlis",
+    category: { eng: "Interior_Design", ar: "تصميم داخلي" },
+    mainImage:
+      "https://i.ibb.co/4Rng621Q/Whats-App-Image-2025-12-06-at-18-05-51.jpg",
+    galleryImages: [
+      "https://i.ibb.co/4Rng621Q/Whats-App-Image-2025-12-06-at-18-05-51.jpg", // Main Social Area
+      "https://i.ibb.co/FL6yYTDK/Whats-App-Image-2025-12-06-at-18-05-52-1.jpg", // Feature Stone Wall
+      "https://i.ibb.co/7x1GxF6Z/Whats-App-Image-2025-12-06-at-18-05-52-2.jpg", // Side Lounge Detail
+      "https://i.ibb.co/5xLWknVG/Whats-App-Image-2025-12-06-at-18-05-52.jpg", // Ceiling & Chandelier Detail
+      "https://i.ibb.co/GfQgqTPV/Whats-App-Image-2025-12-06-at-18-05-53.jpg", // Transitional Arched Corridor
+      "https://i.ibb.co/vCHYVkG7/Whats-App-Image-2025-12-06-at-18-05-54-1.jpg", // Entrance Foyer View
+      "https://i.ibb.co/vCbFdwYQ/Whats-App-Image-2025-12-06-at-18-05-54-2.jpg", // Custom Joinery & Shelving
+      "https://i.ibb.co/0gLK8FC/Whats-App-Image-2025-12-06-at-18-05-54.jpg", // Floor Inlay & Finishing
+    ],
+    en: {
+      tags: ["Interior Design", "Luxury Living", "Modern Majlis"],
+      title: "The Contemporary Grand Majlis",
+      address: "Dubai, UAE",
+      description:
+        "A palatial reception space merging modern stone textures with traditional hospitality layout.",
+      longDescription:
+        "The Contemporary Grand Majlis project is a study in monumental elegance and warmth. The double-height social area is anchored by a massive floor-to-ceiling stone-clad feature wall, accented by warm wood paneling and integrated LED lighting. A custom-designed circular chandelier serves as a luminous centerpiece, drawing the eye upward to the detailed ceiling tray. Arched transitions lead guests into the space, where bespoke curved furniture and a neutral, earthy palette create an environment that is both grand for hosting and intimate for conversation.",
+      price: "0",
+      beds: "Majlis / Reception",
+      floor: "Ground Floor",
+      sqft: "2,400",
+      status: "Completed",
+      keyFeatures: [
+        "Double-height stone-clad feature wall",
+        "Custom oversized ring chandelier",
+        "Arched architectural doorways and transitions",
+        "Integrated warm wood and marble joinery",
+        "Bespoke curved furniture and luxury upholstery",
+      ],
+      highlights: [
+        { label: "Project Type", value: "Luxury Majlis Interior" },
+        { label: "Status", value: "Completed" },
+      ],
+    },
+    ar: {
+      tags: ["تصميم داخلي", "حياة فاخرة", "مجلس مودرن"],
+      title: "مجلس الفخامة المعاصر",
+      address: "دبي، الإمارات العربية المتحدة",
+      description:
+        "مساحة استقبال قصرية تدمج بين أنسجة الحجر الحديثة وتخطيط الضيافة التقليدي.",
+      longDescription:
+        "يعد مشروع مجلس الفخامة المعاصر دراسة في الأناقة Monumental والدفء. منطقة الاستقبال ذات الارتفاع المزدوج مدعومة بجدار مميز مكسو بالحجر يمتد من الأرض إلى السقف، وتزينه ألواح خشبية دافئة وإضاءة LED مدمجة. تعمل ثريا دائرية مصممة خصيصًا كقطعة مركزية مضيئة، تجذب العين للأعلى نحو تفاصيل السقف. تقود الانتقالات المقوسة الضيوف إلى المساحة، حيث يخلق الأثاث المنحني المصمم خصيصًا ولوحة الألوان الترابية المحايدة بيئة فخمة للاستضافة وحميمية للحوار في آن واحد.",
+      price: "٠",
+      beds: "مجلس / استقبال",
+      floor: "الطابق الأرضي",
+      sqft: "٢٬٤٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "جدار مميز بارتفاع مزدوج مكسو بالحجر",
+        "ثريا دائرية ضخمة مخصصة",
+        "مداخل وانتقالات معمارية مقوسة",
+        "أعمال خشبية ورخامية مدمجة وفاخرة",
+        "أثاث منحني مصمم خصيصًا وتنجيد فاخر",
+      ],
+      highlights: [
+        { label: "نوع المشروع", value: "تصميم داخلي لمجلس فاخر" },
+        { label: "الحالة", value: "مكتمل" },
+      ],
+    },
+  }, // components/Property Page/ProjectData.js
+
+  {
+    id: 21,
+    slug: "al-khawaneej-organic-villa",
+    category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
+    mainImage: "https://i.ibb.co/gMYrJkNY/67-jpg.jpg",
+    galleryImages: [
+      "https://i.ibb.co/gMYrJkNY/67-jpg.jpg", // Main Exterior Perspective
+      "https://i.ibb.co/spWFvY8n/68-jpg.jpg", // Arched Entrance Detail
+      "https://i.ibb.co/jZT7gr8K/69-jpg.jpg", // Side Facade & Window Curves
+      "https://i.ibb.co/YFNncPPy/70-jpg.jpg", // Night Lighting View
+      "https://i.ibb.co/1YYCnQ6F/71-jpg.jpg", // Entrance Foyer Transition
+      "https://i.ibb.co/ymrMTmBM/72-jpg.jpg", // Stone Cladding Texture
+      "https://i.ibb.co/gF74x9vb/73-jpg.jpg", // Driveway & Landscaping
+      "https://i.ibb.co/fY9JTGDJ/74-jpg.jpg", // Balcony & Glass Railing
+      "https://i.ibb.co/KczSvQvx/75-jpg.jpg", // Exterior Corner View
+      "https://i.ibb.co/fVvJsd3W/76-jpg.jpg", // Landscape & Arch Harmony
+      "https://i.ibb.co/PZfcnj2k/77-jpg.jpg", // Architectural Detail
+      "https://i.ibb.co/ZRbT78CS/78-jpg.jpg", // Gate & Fence Design
+      "https://i.ibb.co/k2FgBzhk/80-jpg.jpg", // Garden Perspective
+      "https://i.ibb.co/0ySh74DD/81-jpg.jpg", // Pool Side Exterior
+      "https://i.ibb.co/35BCQwsK/82-jpg.jpg", // Boundary Wall Detail
+      "https://i.ibb.co/0jjmB3yx/83-jpg.jpg", // Sunset Exterior Shot
+    ],
+    en: {
+      tags: ["Architectural Design", "Luxury Villa", "Modern Organic"],
+      title: "The Al Khawaneej Organic Villa",
+      address: "Al Khawaneej, Dubai",
+      description:
+        "A monumental villa design blending massive stone arches with fluid, modern organic geometry.",
+      longDescription:
+        "The Al Khawaneej Organic Villa is a masterpiece of modern luxury architecture. The design is anchored by a series of grand arches and curved glass walls that create a seamless dialogue between the natural stone exterior and the lush surrounding landscape. A signature solid wood arched door serves as the focal point of the entrance, while integrated LED lighting strips accentuate the villa's fluid lines during the night. Every element, from the textured stone cladding to the minimalist glass balustrades, is curated to offer a sense of timeless elegance and contemporary grandeur.",
+      price: "0",
+      beds: "7+ Bedrooms",
+      floor: "G+1",
+      sqft: "14,500",
+      status: "Completed",
+      keyFeatures: [
+        "Grand solid wood arched entrance door",
+        "Curved floor-to-ceiling glass facades",
+        "Natural stone wall cladding with seamless joints",
+        "Integrated architectural night lighting",
+        "Modern minimalist landscaping and pool integration",
+      ],
+      highlights: [
+        { label: "Project Type", value: "Full Architectural Design" },
+        { label: "Status", value: "Completed" },
+      ],
+    },
+    ar: {
+      tags: ["تصميم معماري", "فيلا فاخرة", "عمارة عضوية"],
+      title: "فيلا الخوانيج العضوية",
+      address: "الخوانيج، دبي",
+      description:
+        "تصميم فيلا ضخم يمزج بين الأقواس الحجرية الكبيرة والهندسة العضوية الحديثة والانسيابية.",
+      longDescription:
+        "تعد فيلا الخوانيج العضوية تحفة فنية في العمارة السكنية الفاخرة. يرتكز التصميم على مجموعة من الأقواس الكبيرة والجدران الزجاجية المنحنية التي تخلق حواراً مستمراً بين الواجهة الحجرية الطبيعية والمناظر الطبيعية الخضراء المحيطة. يعمل الباب الخشبي الصلب المقوس كقطعة مركزية للمدخل، بينما تبرز شرائط إضاءة LED المدمجة خطوط الفيلا الانسيابية خلال الليل. تم اختيار كل عنصر، من تكسية الحجر الطبيعي إلى الحواجز الزجاجية البسيطة، لتقديم إحساس بالأناقة الخالدة والعظمة المعاصرة.",
+      price: "٠",
+      beds: "+٧ غرف نوم",
+      floor: "أرضي + أول",
+      sqft: "١٤٬٥٠٠",
+      status: "مكتمل",
+      keyFeatures: [
+        "مدخل رئيسي بباب خشبي صلب مقوس",
+        "واجهات زجاجية منحنية من الأرض إلى السقف",
+        "تكسية جدران من الحجر الطبيعي",
+        "إضاءة ليلية معمارية مدمجة",
+        "تنسيق حدائق عصري وتكامل مع المسبح",
+      ],
+      highlights: [
+        { label: "نوع المشروع", value: "تصميم معماري كامل" },
+        { label: "الحالة", value: "مكتمل" },
+      ],
+    },
+  },
 ];
 
 export const findProjectBySlug = (slug) => {

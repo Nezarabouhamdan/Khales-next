@@ -2780,11 +2780,11 @@ export const dictionary = {
     ],
     reels: [
       {
-        title: "Don’t Receive Your Home Before Checking Smart Details", // English title as a fallback
-        artitle: "لا تستلم بيتك قبل ما تتأكد من هالتفاصيل المهمة",
-        category: "Construction",
-        thumbnailUrl: "https://i.ytimg.com/vi/rjAovsfJ9Oo/maxresdefault.jpg",
-        embedUrl: "https://www.youtube.com/embed/rjAovsfJ9Oo",
+        title: "Design without logic is just guessing with style", // English title as a fallback
+        artitle: "التصميم بلا منطق هو مجرد تخمين بأسلوب",
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/6UR3BwMoryE/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/6UR3BwMoryE",
       },
       {
         title: "Don’t Receive Your Home Before Checking Smart Details", // English title as a fallback
@@ -2793,6 +2793,7 @@ export const dictionary = {
         thumbnailUrl: "https://i.ytimg.com/vi/rjAovsfJ9Oo/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/rjAovsfJ9Oo",
       },
+
       {
         title: "Color Is Not a Choice. It’s a Decision", // English title as a fallback
         artitle: " اللون ليس خياراً… بل قراراً",
