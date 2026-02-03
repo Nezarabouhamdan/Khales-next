@@ -3,7 +3,9 @@ import { getDictionary } from "@/get-dictionary";
 import Script from "next/script"; // Keep Script for JSON-LD
 
 // --- METADATA ---
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const { calcPage } = dictionary;
 
@@ -15,7 +17,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // --- PAGE COMPONENT ---
-export default async function VillaCalculatorPage({ params: { lang } }) {
+export default async function VillaCalculatorPage(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
 
   return (

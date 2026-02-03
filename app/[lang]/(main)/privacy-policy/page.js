@@ -3,7 +3,9 @@ import { generatePageMetadata } from "@/lib/metadata";
 import PrivacyPolicyClientPage from "@/pages/PrivacyPolicyClientPage";
 
 // Generate dynamic metadata for the privacy policy page
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.privacyPolicyPage;
 
@@ -17,7 +19,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // Main server component for the page
-export default async function PrivacyPolicyPage({ params: { lang } }) {
+export default async function PrivacyPolicyPage(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
 
   return (

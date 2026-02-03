@@ -4,7 +4,9 @@ import { getDictionary } from "@/get-dictionary";
 import MediaCenterPageClient from "./MediaCenterPageClient"; // Import the client component
 
 // This is the main server component for the page
-export default async function MediaCenterPage({ params: { lang } }) {
+export default async function MediaCenterPage(props) {
+  const { params } = props;
+  const { lang } = params || {};
   // 1. Fetch the dictionary based on the language
   const dict = await getDictionary(lang);
   const content = dict.mediaCenterPage;

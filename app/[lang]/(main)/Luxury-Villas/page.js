@@ -81,7 +81,9 @@ const getLuxuryVillaPageSchema = (lang, pageData) => {
 };
 
 // --- METADATA (Enriched with Long-tail and Short-tail Keywords) ---
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.luxuryVillaPage;
 
@@ -127,7 +129,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // --- PAGE COMPONENT (Updated to include Schema) ---
-export default async function LuxuryVillaPage({ params: { lang } }) {
+export default async function LuxuryVillaPage(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.luxuryVillaPage;
   const ctaContent = dictionary.cta;

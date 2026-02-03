@@ -102,7 +102,9 @@ export async function generateStaticParams() {
 }
 
 // --- METADATA (Refined with article tags for Open Graph) ---
-export async function generateMetadata({ params: { lang, slug } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang, slug } = params || {};
   const dictionary = await getDictionary(lang);
   const post = dictionary.blogsPage?.posts.find((p) => p.slug === slug);
 
@@ -148,7 +150,9 @@ export async function generateMetadata({ params: { lang, slug } }) {
 }
 
 // --- PAGE COMPONENT (Updated to use the new single schema) ---
-export default async function SingleBlogPage({ params: { lang, slug } }) {
+export default async function SingleBlogPage(props) {
+  const { params } = props;
+  const { lang, slug } = params || {};
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.blogsPage;
   const post = pageData?.posts.find((p) => p.slug === slug);

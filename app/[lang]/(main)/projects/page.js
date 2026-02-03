@@ -37,7 +37,9 @@ const getProjectsPageSchema = (lang) => {
   };
 };
 
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.projectsPage;
   return {
@@ -127,7 +129,9 @@ const CTASection = ({ lang }) => (
   </div>
 );
 // --- Main Page Component ---
-export default async function ProjectsPage({ params: { lang }, searchParams }) {
+export default async function ProjectsPage(props) {
+  const { params, searchParams } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const pageContent = dictionary.projectsPage;
   const projectsSchema = getProjectsPageSchema(lang);

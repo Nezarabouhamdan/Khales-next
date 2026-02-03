@@ -55,7 +55,7 @@ const getCommercialPageSchema = (lang, pageData) => {
                 "@type": "Service",
                 name: solution.split("–")[0].trim(), // Extracts the service name from the text
               },
-            })
+            }),
           ),
         },
       },
@@ -82,7 +82,9 @@ const getCommercialPageSchema = (lang, pageData) => {
 };
 
 // --- METADATA (Now with Keywords) ---
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.commercialPage;
 
@@ -122,7 +124,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // --- PAGE COMPONENT (Updated) ---
-export default async function CommercialPage({ params: { lang } }) {
+export default async function CommercialPage(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.commercialPage;
   const ctaContent = dictionary.cta;

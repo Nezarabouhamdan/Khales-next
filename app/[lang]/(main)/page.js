@@ -176,7 +176,9 @@ const getHomePageSchema = (lang) => {
 };
 
 // --- METADATA ---
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const title =
     lang === "ar"
       ? "خالص | إدارة المشاريع والهندسة  " // Short & Powerful
@@ -254,7 +256,9 @@ export async function generateMetadata({ params: { lang } }) {
   };
 }
 // --- PAGE COMPONENT --- (Updated with Blog Section)
-export default async function Home({ params: { lang } }) {
+export default async function Home(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const homePageSchema = getHomePageSchema(lang);
 

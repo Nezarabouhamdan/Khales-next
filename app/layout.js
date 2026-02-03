@@ -13,7 +13,9 @@ export const metadata = {
 const META_PIXEL_ID = "3634194126882623"; // Replace with your actual pixel ID
 
 // This is a self-contained Root Layout for the landing page group.
-export default function LandingLayout({ children, params: { lang } }) {
+export default function LandingLayout(props) {
+  const { children, params } = props;
+  const { lang } = params || {};
   return (
     <html
       lang={lang}

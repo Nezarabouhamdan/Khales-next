@@ -3,7 +3,9 @@ import { generatePageMetadata } from "@/lib/metadata";
 import ThankYouClientPage from "@/components/ThankYouClientPage";
 
 // Generate dynamic metadata for the thank you page
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.thankYouPage;
 
@@ -25,7 +27,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // Main server component for the page
-export default async function ThankYouPage({ params: { lang } }) {
+export default async function ThankYouPage(props) {
+  const { params } = props;
+  const { lang } = params || {};
   const dictionary = await getDictionary(lang);
 
   return <ThankYouClientPage lang={lang} content={dictionary.thankYouPage} />;

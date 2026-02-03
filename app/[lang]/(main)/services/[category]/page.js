@@ -9,7 +9,7 @@ const getServiceCategoryPageSchema = (
   lang,
   category,
   categoryData,
-  subServices
+  subServices,
 ) => {
   const baseUrl = "https://www.khales.ae";
   const pageUrl = `${baseUrl}/${lang}/services/${category}`;
@@ -81,7 +81,9 @@ export async function generateStaticParams() {
 }
 
 // Generate dynamic metadata for each category page (Your existing code is great)
-export async function generateMetadata({ params: { lang, category } }) {
+export async function generateMetadata(props) {
+  const { params } = props;
+  const { lang, category } = params || {};
   const dictionary = await getDictionary(lang);
   const categoryData = dictionary.servicesPage[category];
 
@@ -97,9 +99,9 @@ export async function generateMetadata({ params: { lang, category } }) {
 }
 
 // --- PAGE COMPONENT (Updated with Schema injection) ---
-export default async function ServiceCategoryPage({
-  params: { lang, category },
-}) {
+export default async function ServiceCategoryPage(props) {
+  const { params } = props;
+  const { lang, category } = params || {};
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.servicesPage;
   const categoryData = pageData[category];
@@ -109,7 +111,7 @@ export default async function ServiceCategoryPage({
   }
 
   const subServicesForCategory = Object.values(pageData.subServices).filter(
-    (service) => service.categorySlug === category
+    (service) => service.categorySlug === category,
   );
 
   // Generate the rich schema for this specific category page
@@ -117,7 +119,7 @@ export default async function ServiceCategoryPage({
     lang,
     category,
     categoryData,
-    subServicesForCategory
+    subServicesForCategory,
   );
 
   return (
