@@ -52,7 +52,10 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // This is the main server component for the landing page route
-export default async function LandingPage({ params: { lang } }) {
+export default async function LandingPage(props) {
+  const { params } = props;
+  const { lang } = params || {};
+
   if (lang !== "en" && lang !== "ar") {
     notFound();
   }
