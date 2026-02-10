@@ -2013,7 +2013,7 @@ export const dictionary = {
         id: 10,
         slug: "renovation-vs-new-build-luxury-property",
         coverImage:
-          "https://i.ibb.co/KzWLjvKK/Whats-App-Image-2025-08-19-at-17-26-02-d2a9b715.jpg",
+          "https://i.ibb.co/HfyN3kPQ/Whats-App-Image-2026-02-10-at-11-09-37-AM.jpg",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Engineering Team",
         date: "February 10, 2026",
