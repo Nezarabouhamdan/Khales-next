@@ -10,7 +10,7 @@ export const blogCardsData = [
       title: "Modern Architectural Trends in Residential Design",
       authorImage: logo,
       authorName: "Jonin Garcia",
-      date: "June 28, 2023",
+      date: "June 28, 2024",
       description:
         "In the ever-evolving landscape of residential design, staying abreast of modern architectural trends is paramount...",
       buttonText: "View Post",
@@ -43,7 +43,7 @@ export const blogCardsData = [
       title: "الاتجاهات المعمارية الحديثة في التصميم السكني",
       authorImage: logo,
       authorName: "جونين جارسيا",
-      date: "٢٨ يونيو ٢٠٢٣",
+      date: "٢٨ يونيو ٢٠٢٤",
       description:
         "في مشهد التصميم السكني دائم التطور، تعد مواكبة الاتجاهات المعمارية الحديثة أمرًا بالغ الأهمية...",
       buttonText: "اكتشف المقال",
@@ -79,7 +79,7 @@ export const blogCardsData = [
       title: "Advancements in Structural Steel Design for Villas",
       authorImage: logo,
       authorName: "Nezar Saab",
-      date: "July 15, 2023",
+      date: "July 15, 2024",
       description:
         "In the realm of villa construction, the use of structural steel has evolved dramatically...",
       buttonText: "View Post",
@@ -112,7 +112,7 @@ export const blogCardsData = [
       title: "التطورات في التصميم الفولاذي الإنشائي للفلل",
       authorImage: logo,
       authorName: "نزار صعب",
-      date: "١٥ يوليو ٢٠٢٣",
+      date: "١٥ يوليو ٢٠٢٤",
       description:
         "في عالم بناء الفيلات، تطور استخدام الفولاذ الإنشائي بشكل كبير...",
       buttonText: "اكتشف المقال",
@@ -147,7 +147,7 @@ export const blogCardsData = [
       title: "Innovative Approaches to High-Rise Building Structures",
       authorImage: logo,
       authorName: "Alex Morgan",
-      date: "August 5, 2023",
+      date: "August 5, 2024",
       description:
         "In the dynamic landscape of construction, the demand for high-rise buildings continues to soar...",
       buttonText: "View Post",
@@ -180,7 +180,7 @@ export const blogCardsData = [
       title: "أساليب مبتكرة لهياكل المباني الشاهقة",
       authorImage: logo,
       authorName: "أليكس مورغان",
-      date: "٥ أغسطس ٢٠٢٣",
+      date: "٥ أغسطس ٢٠٢٤",
       description:
         "في المشهد الديناميكي للبناء، يستمر الطلب على المباني الشاهقة في الارتفاع...",
       buttonText: "اكتشف المقال",
@@ -216,7 +216,7 @@ export const blogCardsData = [
       title: "Eco-Friendly Materials in Modern Interior Design",
       authorImage: logo,
       authorName: "Sara Johnson",
-      date: "August 20, 2023",
+      date: "August 20, 2024",
       description:
         "As we strive to create spaces that marry aesthetics with ethical responsibility...",
       buttonText: "View Post",
@@ -249,7 +249,7 @@ export const blogCardsData = [
       title: "مواد صديقة للبيئة في التصميم الداخلي الحديث",
       authorImage: logo,
       authorName: "سارة جونسون",
-      date: "٢٠ أغسطس ٢٠٢٣",
+      date: "٢٠ أغسطس ٢٠٢٤",
       description:
         "وبينما نسعى جاهدين لإنشاء مساحات تجمع بين الجماليات والمسؤولية الأخلاقية...",
       buttonText: "اكتشف المقال",
@@ -285,7 +285,7 @@ export const blogCardsData = [
       title: "Effective Stakeholder Communication in Project Management",
       authorImage: logo,
       authorName: "Michael Brown",
-      date: "September 3, 2023",
+      date: "September 3, 2024",
       description:
         "In the intricate tapestry of project management, effective communication with stakeholders stands as a linchpin for success...",
       buttonText: "View Post",
@@ -318,7 +318,7 @@ export const blogCardsData = [
       title: "التواصل الفعال مع أصحاب المصلحة في إدارة المشاريع",
       authorImage: logo,
       authorName: "مايكل براون",
-      date: "٣ سبتمبر ٢٠٢٣",
+      date: "٣ سبتمبر ٢٠٢٤",
       description:
         "في النسيج المعقد لإدارة المشاريع، يعد التواصل الفعال مع أصحاب المصلحة بمثابة العمود الفقري للنجاح...",
       buttonText: "اكتشف المقال",
@@ -355,7 +355,7 @@ export const blogCardsData = [
         "Achieving Balance Between Aesthetics and Functionality in Interior Design",
       authorImage: logo,
       authorName: "Emily Davis",
-      date: "September 18, 2023",
+      date: "September 18, 2024",
       description:
         "In the realm of interior design, striking the delicate balance between aesthetics and functionality is an art form...",
       buttonText: "View Post",
@@ -388,7 +388,7 @@ export const blogCardsData = [
       title: "تحقيق التوازن بين الجماليات والوظيفة في التصميم الداخلي",
       authorImage: logo,
       authorName: "إيميلي ديفيس",
-      date: "١٨ سبتمبر ٢٠٢٣",
+      date: "١٨ سبتمبر ٢٠٢٤",
       description:
         "في عالم التصميم الداخلي، يعد تحقيق التوازن الدقيق بين الجماليات والوظائف شكلاً من أشكال الفن...",
       buttonText: "اكتشف المقال",
@@ -424,7 +424,7 @@ export const blogCardsData = [
       title: "Sustainable Architecture Practices",
       authorImage: logo,
       authorName: "David Wilson",
-      date: "October 2, 2023",
+      date: "October 2, 2024",
       description:
         "In the contemporary era, with increasing global focus on environmental sustainability...",
       buttonText: "View Post",
@@ -457,7 +457,7 @@ export const blogCardsData = [
       title: "ممارسات الهندسة المعمارية المستدامة",
       authorImage: logo,
       authorName: "ديفيد ويلسون",
-      date: "٢ أكتوبر ٢٠٢٣",
+      date: "٢ أكتوبر ٢٠٢٤",
       description:
         "في عصر يحتل فيه الوعي البيئي مركز الصدارة، ظهرت الهندسة المعمارية المستدامة كمبدأ توجيهي...",
       buttonText: "اكتشف المقال",
@@ -493,7 +493,7 @@ export const blogCardsData = [
       title: "The Importance of Agile Project Management",
       authorImage: logo,
       authorName: "Jessica Lee",
-      date: "October 17, 2023",
+      date: "October 17, 2024",
       description:
         "In the fast-paced world of construction, agility isn't just a desirable trait; it's a game-changer...",
       buttonText: "View Post",
@@ -526,7 +526,7 @@ export const blogCardsData = [
       title: "أهمية إدارة المشاريع الرشيقة",
       authorImage: logo,
       authorName: "جيسيكا لي",
-      date: "١٧ أكتوبر ٢٠٢٣",
+      date: "١٧ أكتوبر ٢٠٢٤",
       description:
         "في عالم البناء سريع الخطى، لا تعد خفة الحركة مجرد سمة مرغوبة؛ إنها تغير قواعد اللعبة...",
       buttonText: "اكتشف المقال",
@@ -564,7 +564,7 @@ export const blogCardsData = [
         "AI on the Job Site: How Predictive Tech Is Reducing Construction Risk",
       authorImage: logo,
       authorName: "Tech Team",
-      date: "November 5, 2023",
+      date: "November 5, 2024",
       description:
         "Smart cameras, digital twins and talking sensors are rewriting the site-safety rulebook.",
       buttonText: "View Post",
@@ -598,7 +598,7 @@ export const blogCardsData = [
         "الذكاء الاصطناعي في مواقع العمل: كيف تقلل التقنيات التنبؤية مخاطر البناء",
       authorImage: logo,
       authorName: "فريق التكنولوجيا",
-      date: "٥ نوفمبر ٢٠٢٣",
+      date: "٥ نوفمبر ٢٠٢٤",
       description:
         "كاميرات ذكية، توائم رقمية، ومستشعرات ناطقة تعيد صياغة قواعد السلامة في المواقع.",
       buttonText: "اكتشف المقال",
@@ -623,6 +623,76 @@ export const blogCardsData = [
         ],
         fourthParagraph:
           "أصبحت لوحات معلومات الموقع التي تعمل بالتحكم الصوتي، وعمليات مسح التقدم القائمة على الطائرات بدون طيار، وبيانات طرق العمل التي يتم إنشاؤها بواسطة الذكاء الاصطناعي، قيد الاستخدام التجريبي بالفعل في جميع أنحاء دول مجلس التعاون الخليجي. الرسالة واضحة: المواقع القائمة على البيانات لم تعد مجرد رؤى مستقبلية؛ بل أصبحت المعيار الأدنى للبناء المتميز. خالص لإدارة المشاريع تدمج رؤية الذكاء الاصطناعي، والتوائم الرقمية للجداول الزمنية، وتحليلات أجهزة الاستشعار في كل خطة مشروع - لمساعدتك على التسليم في الوقت المحدد، وفي حدود الميزانية، ودون مفاجآت.",
+      },
+    },
+  },
+  {
+    id: 10,
+    eng: {
+      coverImage: "/assets/blog10.png",
+      tags: ["Innovation", "Technology"],
+      title: "The Future of Smart Buildings in the Middle East",
+      authorImage: logo,
+      authorName: "Innovation Team",
+      date: "February 10, 2026",
+      description:
+        "Discover how smart building technologies are revolutionizing construction and property management across the Middle East...",
+      buttonText: "View Post",
+      fullContent: {
+        subtitle:
+          "Building intelligence into the region's future infrastructure",
+        paragraphs: [
+          "The Middle East is at the forefront of adopting cutting-edge smart building technologies. From energy management systems to integrated security solutions, intelligent buildings are reshaping how we construct and manage properties.",
+          "Smart buildings represent more than just technological advancement; they embody a commitment to sustainability, efficiency, and enhanced occupant experience. Khales Project Management is proud to be leading this transformation.",
+        ],
+        quote:
+          "Smart buildings are not the future—they are the present and the standard by which excellence is measured.",
+        paragraphAfterQuote:
+          "As we move forward, Khales continues to pioneer smart building solutions that combine innovation with practical, measurable benefits for developers and occupants alike.",
+        socialCounts: socialCounts,
+        sectionTitle: "Key Smart Building Technologies",
+        thirdParagraph:
+          "From IoT sensors to AI-driven systems, modern buildings are becoming increasingly intelligent and responsive to user needs.",
+        listItems: [
+          "Integrated energy management systems reducing consumption by up to 40%",
+          "Smart climate control optimizing comfort and efficiency",
+          "Advanced security and access control systems with real-time monitoring",
+        ],
+        fourthParagraph:
+          "The implementation of smart technologies leads to significant cost savings, improved operational efficiency, and enhanced safety. Khales integrates these innovations into every project, ensuring our developments are not just built for today, but optimized for tomorrow.",
+      },
+    },
+    ar: {
+      coverImage: "/assets/blog10.png",
+      tags: ["الابتكار", "التكنولوجيا"],
+      title: "مستقبل المباني الذكية في الشرق الأوسط",
+      authorImage: logo,
+      authorName: "فريق الابتكار",
+      date: "١٠ فبراير ٢٠٢٦",
+      description:
+        "اكتشف كيف تقوم تقنيات المباني الذكية بإحداث ثورة في البناء وإدارة الممتلكات في جميع أنحاء الشرق الأوسط...",
+      buttonText: "اكتشف المقال",
+      fullContent: {
+        subtitle: "بناء الذكاء في البنية التحتية المستقبلية للمنطقة",
+        paragraphs: [
+          "يقف الشرق الأوسط في طليعة اعتماد تقنيات المباني الذكية المتطورة. من أنظمة إدارة الطاقة إلى حلول الأمان المتكاملة، تعيد المباني الذكية تشكيل طريقة بنائنا وإدارتنا للممتلكات.",
+          "تمثل المباني الذكية أكثر من مجرد تقدم تكنولوجي؛ فهي تجسد التزاماً بالاستدامة والكفاءة وتحسين تجربة المستخدمين. يفخر خالص لإدارة المشاريع بقيادة هذا التحول.",
+        ],
+        quote:
+          "المباني الذكية ليست المستقبل - إنها الحاضر والمعيار الذي يقاس به التميز.",
+        paragraphAfterQuote:
+          "وبينما نتقدم للأمام، يستمر خالص في رائدة حلول المباني الذكية التي تجمع بين الابتكار والفوائد العملية القابلة للقياس للمطورين والمستخدمين على حد سواء.",
+        socialCounts: socialCounts,
+        sectionTitle: "تقنيات المباني الذكية الرئيسية",
+        thirdParagraph:
+          "من مستشعرات إنترنت الأشياء إلى الأنظمة المدعومة بالذكاء الاصطناعي، أصبحت المباني الحديثة أكثر ذكاءً واستجابة لاحتياجات المستخدمين.",
+        listItems: [
+          "أنظمة إدارة الطاقة المتكاملة التي تقلل الاستهلاك بنسبة تصل إلى 40٪",
+          "التحكم المناخي الذكي لتحسين الراحة والكفاءة",
+          "أنظمة الأمان والتحكم في الوصول المتقدمة مع المراقبة الفورية",
+        ],
+        fourthParagraph:
+          "يؤدي تطبيق التقنيات الذكية إلى توفيرات تكاليف كبيرة وتحسين الكفاءة التشغيلية وتعزيز السلامة. تدمج خالص هذه الابتكارات في كل مشروع، مما يضمن أن مشاريعنا لا تُبنى ليوم واحد، بل تُحسَّن للغد.",
       },
     },
   },

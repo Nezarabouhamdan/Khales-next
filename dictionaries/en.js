@@ -1492,7 +1492,7 @@ export const dictionary = {
           "https://i.ibb.co/nMq11458/Whats-App-Image-2025-08-19-at-17-26-05-cc5d2f30.jpg",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Architecture Department",
-        date: "June 28, 2023",
+        date: "June 28, 2024",
         tags: ["Design", "Architecture"],
         title: "Modern Architectural Trends in Residential Design",
         description:
@@ -1550,7 +1550,7 @@ export const dictionary = {
           "https://i.ibb.co/1Jjmw6BL/Whats-App-Image-2025-08-19-at-17-26-04-cb6b7148.jpg",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Engineering Department",
-        date: "July 15, 2023",
+        date: "July 15, 2024",
         tags: ["Construction", "Engineering"],
         title: "Advancements in Structural Steel Design for Villas",
         description:
@@ -1610,7 +1610,7 @@ export const dictionary = {
         title: "Innovative Approaches to High-Rise Building Structures",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Engineering Department",
-        date: "August 5, 2023",
+        date: "August 5, 2024",
         description:
           "In the dynamic landscape of construction, the demand for high-rise buildings continues to soar...",
         postMeta: {
@@ -1668,7 +1668,7 @@ export const dictionary = {
         title: "Eco-Friendly Materials in Modern Interior Design",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Interior Design Department",
-        date: "August 20, 2023",
+        date: "August 20, 2024",
         description:
           "As we strive to create spaces that marry aesthetics with ethical responsibility...",
         postMeta: {
@@ -1722,12 +1722,12 @@ export const dictionary = {
         id: 5,
         slug: "effective-stakeholder-communication-project-management",
         coverImage:
-          "https://i.ibb.co/7xjnS53y/Whats-App-Image-2025-08-19-at-17-26-03-e5f96ef0.jpg",
+          "https://i.ibb.co/gb4qY71y/Whats-App-Image-2026-02-10-at-11-17-46-AM.jpg",
         tags: ["Management", "Communication"],
         title: "Effective Stakeholder Communication in Project Management",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Project Management Department",
-        date: "September 3, 2023",
+        date: "September 3, 2024",
         description:
           "In the intricate tapestry of project management, effective communication with stakeholders stands as a linchpin for success...",
         postMeta: {
@@ -1786,7 +1786,7 @@ export const dictionary = {
           "Achieving Balance Between Aesthetics and Functionality in Interior Design",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Interior Design Department",
-        date: "September 18, 2023",
+        date: "September 18, 2024",
         description:
           "In the realm of interior design, striking the delicate balance between aesthetics and functionality is an art form...",
         postMeta: {
@@ -1844,7 +1844,7 @@ export const dictionary = {
         title: "Sustainable Architecture Practices",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Architecture Department",
-        date: "October 2, 2023",
+        date: "October 2, 2024",
         description:
           "In the contemporary era, with increasing global focus on environmental sustainability...",
         postMeta: {
@@ -1897,12 +1897,12 @@ export const dictionary = {
         id: 8,
         slug: "importance-of-agile-project-management",
         coverImage:
-          "https://i.ibb.co/1Gmvq9cD/Whats-App-Image-2025-08-19-at-17-26-02-f7fd0ec6.jpg",
+          "https://i.ibb.co/ym5FL1mz/Whats-App-Image-2026-02-10-at-11-18-31-AM.jpg",
         tags: ["Management", "Agile"],
         title: "The Importance of Agile Project Management",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Project Management Department",
-        date: "October 17, 2023",
+        date: "October 17, 2024",
         description:
           "In the fast-paced world of construction, agility isn't just a desirable trait; it's a game-changer...",
         postMeta: {
@@ -1961,7 +1961,7 @@ export const dictionary = {
           "AI on the Job Site: How Predictive Tech Is Reducing Construction Risk",
         authorImage: "/assets/Khales Logo K - favicon.png",
         authorName: "Khales Tech Division",
-        date: "November 5, 2023",
+        date: "November 5, 2024",
         description:
           "Smart cameras, digital twins and talking sensors are rewriting the site-safety rulebook.",
         postMeta: {
@@ -2007,6 +2007,60 @@ export const dictionary = {
           ],
           fourthParagraph:
             "Voice-controlled site dashboards, drone-based progress scans and AI-generated method statements are already in pilot use around the GCC. The message is clear: data-driven sites are no longer futuristic; they are becoming the minimum standard for premium construction. Khales Project Management embeds AI vision, schedule twins and sensor analytics into every project plan—helping you deliver on time, on budget and without surprises.",
+        },
+      },
+      {
+        id: 10,
+        slug: "renovation-vs-new-build-luxury-property",
+        coverImage:
+          "https://i.ibb.co/KzWLjvKK/Whats-App-Image-2025-08-19-at-17-26-02-d2a9b715.jpg",
+        authorImage: "/assets/Khales Logo K - favicon.png",
+        authorName: "Engineering Team",
+        date: "February 10, 2026",
+        tags: ["Renovation", "Construction"],
+        title:
+          "Renovation vs. New Build: Is Your Luxury Property Worth a Gut-Reno, or Should You Start Fresh?",
+        description:
+          "For discerning homeowners and astute investors, the allure of a new luxury property often comes with a critical question...",
+        postMeta: {
+          title: "Renovation vs. New Build: Luxury Property Guide | Khales",
+          description:
+            "Deciding between a luxury gut renovation and a new build? Explore the pros, cons, and strategic implications for your investment and lifestyle.",
+          keywords: [
+            "luxury renovation vs new build",
+            "gut renovation dubai",
+            "custom home build uae",
+            "luxury property investment",
+            "historic home renovation",
+            "construction cost benefit analysis",
+            "engineering consultancy dubai",
+            "sustainable building practices",
+            "smart home integration",
+            "property value appreciation",
+          ],
+        },
+        fullContent: {
+          subtitle: 'Understanding Your "Why": The Core of the Decision',
+          paragraphs: [
+            'For discerning homeowners and astute investors, the allure of a new luxury property often comes with a critical question: Should I embark on a comprehensive "gut renovation" of an existing high-end home, or is it more strategic to invest in a brand-new build? This isn\'t just a matter of taste; it’s a complex decision with significant implications for budget, timeline, and ultimately, the value and lifestyle your luxury property provides.',
+            "As expert engineering consultants, we guide clients through this pivotal choice, ensuring their vision aligns with structural realities, financial prudence, and long-term satisfaction.",
+          ],
+          quote:
+            "Before diving into blueprints and budgets, ask yourself: What is the ultimate goal for this luxury residence?",
+          paragraphAfterQuote:
+            "Whether preserving history, modernizing functionality, maximizing investment, or seeking a personalized lifestyle, the decision hinges on your specific goals. A historic renovation breathes new life into treasures, while a custom build offers unparalleled freedom.",
+          socialCounts: [1816, 37, 47000, 15000],
+          sectionTitle: 'The Case for a "Gut Renovation" vs. New Build',
+          thirdParagraph:
+            "A luxury gut renovation allows you to leverage an unbeatable address and preserve architectural character, though it comes with risks of hidden surprises and design limitations. On the other hand, a new build offers complete customization and the latest standards, but often with longer timelines and higher initial costs.",
+          listItems: [
+            "Gut Renovation Pros: Prime location retention, architectural character, potentially faster permitting.",
+            "Gut Renovation Cons: Hidden structural issues, design limitations within existing envelope.",
+            "New Build Pros: Complete customization, latest technology integration, optimized performance.",
+            "New Build Cons: Longer timelines, higher initial costs, scarcity of prime land.",
+          ],
+          fourthParagraph:
+            "The Role of Your Engineering Consultant: Whether you lean towards a luxury renovation or a new custom home, engaging a qualified engineering consultancy firm early is paramount. We provide feasibility studies, structural assessments, cost-benefit analysis, and project management expertise to ensure your vision becomes reality.",
         },
       },
     ],

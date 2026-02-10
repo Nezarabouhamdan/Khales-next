@@ -7,17 +7,20 @@ import CTASection from "@/components/Homecontact/CTASection";
 export default function BlogsPageClient({ lang, posts, ctaSectionContent }) {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Use the first blog post for the hero slider content
+  // Reverse the posts array
+  const reversedPosts = posts ? [...posts].reverse() : [];
+
+  // Use the first blog post from reversed array for the hero slider content
   const heroSlides =
-    posts?.length > 0
+    reversedPosts?.length > 0
       ? [
           {
-            id: posts[0].id,
-            image: posts[0].coverImage,
-            title: posts[0].title,
-            content: posts[0].description,
+            id: reversedPosts[0].id,
+            image: reversedPosts[0].coverImage,
+            title: reversedPosts[0].title,
+            content: reversedPosts[0].description,
             // Pass the correct button link
-            buttonLink: `/${lang}/blog/${posts[0].slug}`,
+            buttonLink: `/${lang}/blog/${reversedPosts[0].slug}`,
             buttonText: "Read More",
           },
         ]
@@ -36,7 +39,7 @@ export default function BlogsPageClient({ lang, posts, ctaSectionContent }) {
         isLoading={isLoading}
         rtl={lang === "ar"}
       />
-      <BlogGrid cardsData={posts} lang={lang} />
+      <BlogGrid cardsData={reversedPosts} lang={lang} />
       <CTASection lang={lang} content={ctaSectionContent} />
     </div>
   );
