@@ -1328,7 +1328,7 @@ export const projectsData = [
   {
     id: 19,
     slug: "modern-executive-workspace",
-    category: { eng: "Commercial", ar: "تجاري" },
+    category: { eng: "Interior_Design", ar: "تصميم داخلي" },
     mainImage: "https://i.ibb.co/PvSc6bfb/shoot1-jpg.jpg",
     galleryImages: [
       "https://i.ibb.co/PvSc6bfb/shoot1-jpg.jpg", // Main Office Perspective
@@ -1347,52 +1347,52 @@ export const projectsData = [
       "https://i.ibb.co/wFxXbmjb/shoot60-jpg.jpg", // Final Panorama
     ],
     en: {
-      tags: ["Interior Design", "Commercial Office", "Professional Workspace"],
-      title: "Modern Executive Workspace",
+      tags: ["Interior Design", "Luxury Villa", "Residential Design"],
+      title: "The Executive Villa Interior",
       address: "Dubai, UAE",
       description:
-        "A high-performance executive office environment blending dark wood aesthetics with integrated smart lighting.",
+        "A luxury villa interior blending dark wood aesthetics with integrated smart lighting and sophisticated design.",
       longDescription:
-        "The Modern Executive Workspace project redefines corporate luxury through a focus on focus and productivity. The design utilizes deep wood tones and slatted wall textures to create a sense of grounded authority. Custom-built executive desks and integrated shelving units maximize utility without sacrificing style. The workspace is unified by sophisticated linear lighting and recessed ceiling tracks that guide the eye through the professional suite, ensuring a seamless balance between modern corporate identity and artistic interior expression.",
+        "The Executive Villa Interior project redefines residential luxury through meticulous design and functionality. The design utilizes deep wood tones and slatted wall textures to create a sense of grounded elegance. Custom-built cabinetry and integrated shelving units maximize utility without sacrificing style. The villa is unified by sophisticated linear lighting and recessed ceiling details that guide the eye through each space, ensuring a seamless balance between modern interior design and artistic expression.",
       price: "0",
-      beds: "Executive Suite",
-      floor: "Corporate Level",
+      beds: "Villa",
+      floor: "Multi-Level",
       sqft: "4,500",
       status: "Completed",
       keyFeatures: [
-        "Custom dark wood executive joinery",
+        "Custom dark wood interior joinery",
         "Integrated linear architectural lighting",
-        "Slatted wood wall textures and acoustic panels",
+        "Slatted wood wall textures and design panels",
         "Bespoke shelving with accent LED strips",
-        "Modern minimalist executive furniture",
+        "Modern minimalist villa furnishings",
       ],
       highlights: [
-        { label: "Project Type", value: "Commercial Office Design" },
+        { label: "Project Type", value: "Villa Interior Design" },
         { label: "Status", value: "Completed" },
       ],
     },
     ar: {
-      tags: ["تصميم داخلي", "مكتب تجاري", "مساحة عمل احترافية"],
-      title: "مساحة العمل التنفيذية الحديثة",
+      tags: ["تصميم داخلي", "فيلا فاخرة", "تصميم سكني"],
+      title: "فيلا المدير التنفيذي الداخلية",
       address: "دبي، الإمارات العربية المتحدة",
       description:
-        "بيئة مكتبية تنفيذية عالية الأداء تمزج بين جماليات الخشب الداكن والإضاءة الذكية المدمجة.",
+        "فيلا فاخرة الداخلية تمزج بين جماليات الخشب الداكن والإضاءة الذكية المدمجة والتصميم الراقي.",
       longDescription:
-        "يعيد مشروع مساحة العمل التنفيذية الحديثة تعريف الفخامة المؤسسية من خلال التركيز على الهدوء والإنتاجية. يستخدم التصميم درجات الخشب العميقة وأنسجة الجدران المضلعة لخلق شعور بالثبات والسلطة. تعمل المكاتب التنفيذية المصممة حسب الطلب ووحدات الأرفف المدمجة على زيادة الكفاءة دون التضحية بالأناقة. توحد مساحة العمل إضاءة خطية متطورة ومسارات سقف غائرة توجه العين عبر الجناح الاحترافي، مما يضمن توازناً سلساً بين الهوية المؤسسية الحديثة والتعبير الفني الداخلي.",
+        "يعيد مشروع الفيلا الداخلية للمدير التنفيذي تعريف الفخامة السكنية من خلال التصميم الدقيق والوظيفة. يستخدم التصميم درجات الخشب العميقة وأنسجة الجدران المضلعة لخلق شعور بالأناقة المتينة. تعمل الخزائن المخصصة ووحدات الأرفف المدمجة على زيادة الكفاءة دون التضحية بالأناقة. توحد الفيلا إضاءة خطية متطورة وتفاصيل السقف الغائرة التي توجه العين عبر كل مساحة، مما يضمن توازناً سلساً بين التصميم الداخلي الحديث والتعبير الفني.",
       price: "٠",
-      beds: "جناح تنفيذي",
-      floor: "طابق الشركات",
+      beds: "فيلا",
+      floor: "متعدد الطوابق",
       sqft: "٤٬٥٠٠",
       status: "مكتمل",
       keyFeatures: [
-        "نجارة تنفيذية مخصصة من الخشب الداكن",
+        "نجارة داخلية مخصصة من الخشب الداكن",
         "إضاءة معمارية خطية مدمجة",
-        "أنسجة جدران خشبية مضلعة وألواح صوتية",
+        "أنسجة جدران خشبية مضلعة وألواح تصميم",
         "أرفف مخصصة مع شرائط LED مميزة",
-        "أثاث تنفيذي عصري وبسيط",
+        "أثاث فيلا عصري وبسيط",
       ],
       highlights: [
-        { label: "نوع المشروع", value: "تصميم مكاتب تجارية" },
+        { label: "نوع المشروع", value: "تصميم داخلي للفيلا" },
         { label: "الحالة", value: "مكتمل" },
       ],
     },
@@ -1468,7 +1468,7 @@ export const projectsData = [
   {
     id: 21,
     slug: "al-khawaneej-organic-villa",
-    category: { eng: "Luxury_Villas", ar: "فلل فاخرة" },
+    category: { eng: "Interior_Design", ar: "تصميم داخلي" },
     mainImage: "https://i.ibb.co/gMYrJkNY/67-jpg.jpg",
     galleryImages: [
       "https://i.ibb.co/gMYrJkNY/67-jpg.jpg", // Main Exterior Perspective
