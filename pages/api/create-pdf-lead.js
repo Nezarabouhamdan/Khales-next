@@ -4,7 +4,7 @@ import xmlrpc from "xmlrpc";
 const createSecureClient = (url) => {
   if (!url || !url.startsWith("https://")) {
     throw new Error(
-      `Invalid or insecure Odoo URL provided. URL must start with https://. Received: "${url}"`
+      `Invalid or insecure Odoo URL provided. URL must start with https://. Received: "${url}"`,
     );
   }
   return xmlrpc.createSecureClient({
@@ -15,10 +15,10 @@ const createSecureClient = (url) => {
 
 // Initialize clients from environment variables
 const commonClient = createSecureClient(
-  `${process.env.ODOO_URL}/xmlrpc/2/common`
+  `${process.env.ODOO_URL}/xmlrpc/2/common`,
 );
 const objectClient = createSecureClient(
-  `${process.env.ODOO_URL}/xmlrpc/2/object`
+  `${process.env.ODOO_URL}/xmlrpc/2/object`,
 );
 
 // Authenticate with Odoo and return the user ID (uid)
@@ -36,12 +36,12 @@ async function authenticate() {
         if (err || !uid) {
           console.error(
             "Odoo authentication error:",
-            err || "Invalid credentials"
+            err || "Invalid credentials",
           );
           return reject(new Error("Odoo authentication failed"));
         }
         resolve(uid);
-      }
+      },
     );
   });
 }
@@ -60,7 +60,7 @@ async function executeKw(uid, model, method, params = [], options = {}) {
         params,
         options,
       ],
-      (err, result) => (err ? reject(err) : resolve(result))
+      (err, result) => (err ? reject(err) : resolve(result)),
     );
   });
 }
@@ -113,14 +113,14 @@ export default async function handler(req, res) {
     const leadId = await executeKw(uid, "crm.lead", "create", [leadData]);
 
     // Subscribe default followers to the new lead
-    const DEFAULT_PARTNER_IDS = [9, 23, 1041]; // Your default follower IDs
+    const DEFAULT_PARTNER_IDS = [9, 23, 388]; // Your default follower IDs
     if (leadId && DEFAULT_PARTNER_IDS.length > 0) {
       await executeKw(
         uid,
         "crm.lead",
         "message_subscribe",
         [[leadId], DEFAULT_PARTNER_IDS],
-        { context: { mail_notify: false } }
+        { context: { mail_notify: false } },
       );
     }
 
