@@ -28,7 +28,7 @@ async function authenticate() {
         if (!uid)
           return reject(new Error("Authentication returned invalid UID"));
         resolve(uid);
-      }
+      },
     );
   });
 }
@@ -95,7 +95,7 @@ export default async function handler(req, res) {
               start: formatOdooDateTime(startDate),
               stop: formatOdooDateTime(endDate),
               description: `Client Details:\n- Name: ${name}\n- Phone: ${phone}\n- Branch: ${branch}\n- Service: ${service}`,
-              partner_ids: [9, 23, 1041],
+              partner_ids: [9, 23, 388],
               location: branch,
             },
           ],
@@ -112,7 +112,7 @@ export default async function handler(req, res) {
           }
           // --- END: CRITICAL FAILURE CHECK ---
           resolve(value); // Success
-        }
+        },
       );
     });
 

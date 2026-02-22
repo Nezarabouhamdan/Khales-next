@@ -22,7 +22,7 @@ async function authenticate() {
       (err, uid) => {
         if (err || !uid) return reject(new Error("Authentication failed"));
         resolve(uid);
-      }
+      },
     );
   });
 }
@@ -56,7 +56,7 @@ export default async function handler(req, res) {
           "search",
           [[["name", "=", "Website"]]],
         ],
-        (err, ids) => (err ? reject(err) : resolve(ids))
+        (err, ids) => (err ? reject(err) : resolve(ids)),
       );
     });
 
@@ -73,7 +73,7 @@ export default async function handler(req, res) {
             "create",
             [{ name: "Website" }],
           ],
-          (err, id) => (err ? reject(err) : resolve(id))
+          (err, id) => (err ? reject(err) : resolve(id)),
         );
       }));
 
@@ -107,11 +107,11 @@ export default async function handler(req, res) {
           "create",
           [leadData],
         ],
-        (err, id) => (err ? reject(err) : resolve(id))
+        (err, id) => (err ? reject(err) : resolve(id)),
       );
     });
 
-    const DEFAULT_PARTNER_IDS = [9, 23, 1041];
+    const DEFAULT_PARTNER_IDS = [9, 23, 388];
     await new Promise((resolve, reject) => {
       objectClient.methodCall(
         "execute_kw",
@@ -124,7 +124,7 @@ export default async function handler(req, res) {
           [[leadId], DEFAULT_PARTNER_IDS],
           { context: { mail_notify: false } },
         ],
-        (err) => (err ? reject(err) : resolve())
+        (err) => (err ? reject(err) : resolve()),
       );
     });
 
@@ -133,7 +133,7 @@ export default async function handler(req, res) {
     const emailResult = await sendConfirmationEmail(
       email,
       name,
-      inquiry || "General Inquiry"
+      inquiry || "General Inquiry",
     );
     console.log("📧 Email result:", emailResult);
 
@@ -162,7 +162,7 @@ export default async function handler(req, res) {
             }
             console.log("✅ Odoo lead updated successfully with refId:", refId);
             resolve(result);
-          }
+          },
         );
       });
     }
