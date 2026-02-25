@@ -2853,6 +2853,18 @@ export const dictionary = {
     ],
     reels: [
       {
+        title: "Glossy vs Matte: Design Beyond Trends", // English title as a fallback
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/dgZ4w-Dy16Y/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/dgZ4w-Dy16Y",
+      },
+      {
+        title: "Designed with intent. Built with excellence", // English title as a fallback
+        category: "Design",
+        thumbnailUrl: "https://i.ytimg.com/vi/ZdAvC0XyGb4/maxresdefault.jpg",
+        embedUrl: "https://www.youtube.com/embed/ZdAvC0XyGb4",
+      },
+      {
         title: "Design without logic is just guessing with style", // English title as a fallback
         category: "Design",
         thumbnailUrl: "https://i.ytimg.com/vi/6UR3BwMoryE/maxresdefault.jpg",
@@ -2870,12 +2882,7 @@ export const dictionary = {
         thumbnailUrl: "https://i.ytimg.com/vi/Nu9G5zHLhgc/maxresdefault.jpg",
         embedUrl: "https://www.youtube.com/embed/Nu9G5zHLhgc",
       },
-      {
-        title: "recap 2025", // English title as a fallback
-        category: "Development",
-        thumbnailUrl: "https://i.ytimg.com/vi/wjsdMIj9fCM/maxresdefault.jpg",
-        embedUrl: "https://www.youtube.com/embed/wjsdMIj9fCM",
-      },
+
       {
         title: "Crafting Meaningful Design Experiences", // English title as a fallback
         category: "Design",
