@@ -1530,7 +1530,7 @@ export const dictionary = {
             "In the pursuit of modern architectural excellence, Khales Project Management invites you to explore a world where innovation meets elegance.",
           paragraphAfterQuote:
             "Our commitment to staying at the forefront of residential design trends ensures that your home is not just a place to live but a testament to the artistry of contemporary living. Welcome to a new era of residential luxury.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: "Key Trends in Modern Residential Design",
           thirdParagraph:
             "Sustainable and Eco-Friendly Practices: Khales leads the way in integrating sustainable and eco-friendly practices into residential design. From energy-efficient appliances to eco-conscious building materials, our commitment to environmentally responsible design ensures homes that are both luxurious and sustainable.",
@@ -1588,7 +1588,7 @@ export const dictionary = {
             "Steel is not just a material, it's a design philosophy that enables architectural freedom.",
           paragraphAfterQuote:
             "The integration of steel structures in luxury villas has opened new possibilities for open floor plans and expansive glass facades. Architects can now create cantilevers and large spans previously impossible with traditional materials.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: "The Future of Villa Construction",
           thirdParagraph:
             "As urbanization increases and land becomes more valuable, steel structures allow for taller, more efficient villa designs. These designs maximize space while minimizing environmental impact through efficient material usage.",
@@ -1646,7 +1646,7 @@ export const dictionary = {
             "As Khales Project Management delves into the future of high-rise construction, innovative approaches pave the way for safer, more efficient structures.",
           paragraphAfterQuote:
             "We are committed to staying at the forefront of these advancements, ensuring our projects not only reach new heights but stand firmly on foundations engineered for excellence.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: "Cutting-Edge Foundation Technologies",
           thirdParagraph:
             "Soil-Structure Interaction Studies: Modern geotechnical engineering utilizes sophisticated studies to analyze soil-structure interaction, enabling optimized foundation design based on specific site conditions.",
@@ -1705,7 +1705,7 @@ export const dictionary = {
             "Embracing sustainable materials in interior design is not merely a trend; it's a commitment to a more harmonious relationship with our planet.",
           paragraphAfterQuote:
             "As designers and homeowners tread the path of sustainable living, each material choice becomes a step towards a greener, more beautiful future.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: "Sustainable Design Elements",
           thirdParagraph:
             "Low VOC, High Impact: Sustainable design prioritizes indoor air quality. Low Volatile Organic Compound paints ensure spaces are visually appealing while contributing to healthier environments.",
@@ -1763,7 +1763,7 @@ export const dictionary = {
             "Our team looks forward to creating a project management ecosystem where strategic communication is the driving force behind successful outcomes.",
           paragraphAfterQuote:
             "The next project will be with you, guided by clear, consistent communication that meets and exceeds expectations.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: "Key Communication Strategies",
           thirdParagraph:
             "At Khales, we implement proven strategies that ensure project success through effective stakeholder engagement:",
@@ -1822,7 +1822,7 @@ export const dictionary = {
             "Khales Project Management strives for a synthesis of aesthetics and functionality, creating spaces that resonate with beauty and purpose.",
           paragraphAfterQuote:
             "Join our pursuit of harmonious design where every element serves a purpose, and every purpose is infused with elegance.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: "Principles of Balanced Design",
           thirdParagraph:
             "Tailored Design Solutions: Rejecting one-size-fits-all approaches. Crafting solutions to unique needs ensures aesthetic choices complement required functionality.",
@@ -1880,7 +1880,7 @@ export const dictionary = {
             "As we look towards the future, Khales invites you to join our journey towards sustainable architecture.",
           paragraphAfterQuote:
             "Every project is not just a testament to architectural excellence but a declaration to build a greener, more sustainable tomorrow.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: "Core Sustainable Practices",
           thirdParagraph:
             "Green Building Materials: We meticulously select materials like recycled steel and reclaimed wood to minimize environmental impact.",
@@ -1938,7 +1938,7 @@ export const dictionary = {
             "As we navigate the construction landscape, Agile Project Management emerges as a cornerstone for success.",
           paragraphAfterQuote:
             "At Khales Project Management, we don't just build structures; we build with agility, adaptability, and excellence.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: "Agile Principles in Action",
           thirdParagraph:
             "Enhancing Collaboration: Regular team meetings and open communication ensure all stakeholders are aligned, fostering transparency and teamwork.",
@@ -1996,7 +1996,7 @@ export const dictionary = {
           quote: "Tech that protects workers also protects the bottom line.",
           paragraphAfterQuote:
             "Projects that roll out even one of these AI tools enjoy tighter budgets, smoother audits and friendlier insurance premiums. Lower incident rates also boost a contractor's pre-qualification score—pure gold when bidding on the next mega-development.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: "Three Predictive Tools Making the Difference",
           thirdParagraph:
             "These AI-powered solutions are transforming construction site management:",
@@ -2049,7 +2049,7 @@ export const dictionary = {
             "Before diving into blueprints and budgets, ask yourself: What is the ultimate goal for this luxury residence?",
           paragraphAfterQuote:
             "Whether preserving history, modernizing functionality, maximizing investment, or seeking a personalized lifestyle, the decision hinges on your specific goals. A historic renovation breathes new life into treasures, while a custom build offers unparalleled freedom.",
-          socialCounts: [1816, 37, 47000, 15000],
+          socialCounts: [5000, 37, 60000, 24000],
           sectionTitle: 'The Case for a "Gut Renovation" vs. New Build',
           thirdParagraph:
             "A luxury gut renovation allows you to leverage an unbeatable address and preserve architectural character, though it comes with risks of hidden surprises and design limitations. On the other hand, a new build offers complete customization and the latest standards, but often with longer timelines and higher initial costs.",
@@ -2061,6 +2061,62 @@ export const dictionary = {
           ],
           fourthParagraph:
             "The Role of Your Engineering Consultant: Whether you lean towards a luxury renovation or a new custom home, engaging a qualified engineering consultancy firm early is paramount. We provide feasibility studies, structural assessments, cost-benefit analysis, and project management expertise to ensure your vision becomes reality.",
+        },
+      },
+      {
+        id: 11,
+        slug: "timeless-elegance-classic-vs-neoclassic-interior-design",
+        coverImage:
+          "https://i.ibb.co/jPV0Kzjx/Whats-App-Image-2026-03-08-at-12-21-55-PM-1.jpg",
+        authorImage: "/assets/Khales Logo K - favicon.png",
+        authorName: "Interior Design Department",
+        date: "March 8, 2026",
+        tags: ["Interior", "Design"],
+        title:
+          "Timeless Elegance: Decoding Classic vs. Neoclassic Interior Design",
+        description:
+          "Explore the key differences between classic and neoclassic interior design — from ornate grandeur to balanced symmetry — and find the style that fits your vision.",
+        postMeta: {
+          title:
+            "Timeless Elegance: Decoding Classic vs. Neoclassic Interior Design | Khales Design",
+          description:
+            "Learn how to distinguish classic and neoclassic interior design by comparing their origins, colors, furniture, and defining motifs.",
+          keywords: [
+            "classic interior design",
+            "neoclassic interior design",
+            "traditional vs neoclassical",
+            "interior design styles",
+            "elegant interiors",
+            "timeless design",
+            "luxury interior trends",
+            "architecture history",
+            "ornate vs minimal",
+            "khales design",
+          ],
+        },
+        fullContent: {
+          subtitle:
+            "A guide to recognizing the graceful differences between two timeless interior styles",
+          paragraphs: [
+            "If you have ever flipped through an architectural digest or wandered through a historic home, you’ve likely admired both classic and neoclassic design. Because both styles are rooted in history and lean heavily on elegance, the terms are often used interchangeably. However, to a designer’s eye, they represent two distinct eras and completely different philosophies of space.",
+            "Whether you are looking to renovate your home or simply brush up on your design history, understanding the distinction between these two iconic styles comes down to a battle between ornate grandeur and symmetrical restraint.",
+          ],
+          quote:
+            "If a room makes you feel like you are in an opulent 17th-century palace, you are in Classic design; if it feels like a balanced tribute to an ancient temple, you are in Neoclassic design.",
+          paragraphAfterQuote:
+            "Below is a breakdown of what makes each style unique, from curves and colors to fabrics and motifs.",
+          socialCounts: [5000, 37, 60000, 24000],
+          sectionTitle: "Classic vs. Neoclassic: What Sets Them Apart",
+          thirdParagraph:
+            "Classic design revels in ornate detail, rich colors, and substantial furnishings. Neoclassic design seeks harmony through proportion, lighter palettes, and refined references to antiquity.",
+          listItems: [
+            "Classic: Heavy ornamentation, deep jewel tones, and carved wood furniture.",
+            "Neoclassic: Symmetry, muted palettes, and classical motifs like Greek keys and columns.",
+            "Classic: Rich fabrics like velvet and brocade create depth and warmth.",
+            "Neoclassic: Lighter linens and silks ensure an airy, balanced feel.",
+          ],
+          fourthParagraph:
+            "In the end, both styles offer timeless elegance — one through lavish layering and craftsmanship, the other through measured order and classical restraint. Choose the approach that resonates with your taste, or blend the best of both worlds for a personalized statement.",
         },
       },
     ],
