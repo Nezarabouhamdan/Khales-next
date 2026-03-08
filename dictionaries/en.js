@@ -2301,7 +2301,7 @@ export const dictionary = {
       placeholders: {
         name: "Full Name",
         email: "Email Address",
-        phone: "Mobile Number (05XXXXXXXX)",
+        phone: "Mobile Number (05XXXXXXXX) ",
         emirate: "In which emirate is your land plot?",
         budget: "Expected Construction Budget",
       },
