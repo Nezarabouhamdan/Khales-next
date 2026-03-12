@@ -127,7 +127,6 @@ export default async function handler(req, res) {
         { name: "Website" },
       ]);
     }
-
     const leadData = {
       name: title || `Website Lead - ${name}`,
       contact_name: name,
