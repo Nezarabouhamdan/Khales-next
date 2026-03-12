@@ -1,0 +1,250 @@
+/* CustomizePackageForm.module.css */
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap");
+
+.wrapper {
+  font-family: "Tajawal", sans-serif;
+  background-color: #f1f5f9; /* Light grey/blue bg from image */
+  padding: 60px 20px;
+  min-height: 100vh;
+}
+
+.card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.header {
+  background-color: #111827;
+  color: #ffffff;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-size: 0.95rem;
+  color: #9ca3af;
+}
+
+.formBody {
+  padding: 40px;
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 12px;
+  display: block;
+}
+
+/* Form Inputs Grid */
+.inputGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.input,
+.select {
+  padding: 12px 15px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: "Tajawal";
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #ffffff;
+  text-align: start;
+}
+
+.input::placeholder {
+  color: #cbd5e1;
+}
+
+.input:focus {
+  border-color: #10b981;
+}
+
+/* Package Selection Section */
+.packageGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.packageCard {
+  position: relative;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 30px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.selected {
+  border-color: #10b981;
+  background-color: #ecfdf5;
+}
+
+/* The Middle (Popular) Package style from image */
+.popular {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+}
+
+.packageCard h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.popular h3 {
+  color: #065f46;
+}
+
+.priceRange {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.popular .priceRange {
+  color: #065f46;
+}
+
+/* Elite Text Color */
+.eliteTitle {
+  color: #d97706;
+}
+
+/* Badges */
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.badgePopular {
+  background-color: #10b981;
+}
+.badgeElite {
+  background-color: #f59e0b;
+}
+
+/* Addons Section */
+.addonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.addonBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Important for RTL */
+  padding: 15px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.addonLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.checkMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background-color: #10b981;
+  color: white;
+  font-weight: 800;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #111827;
+}
+
+/* Submit Button */
+.btnContainer {
+  text-align: center;
+}
+
+.statusMessage {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background-color: #f0fdf4;
+  color: #065f46;
+  font-weight: 600;
+  text-align: center;
+}
+
+.submitBtn {
+  background-color: #111827;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 45px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submitBtn:hover {
+  transform: scale(1.03);
+}
+
+/* Hide Radio button */
+.hiddenRadio {
+  display: none;
+}

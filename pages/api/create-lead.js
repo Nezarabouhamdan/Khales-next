@@ -84,11 +84,35 @@ export default async function handler(req, res) {
 
   try {
     const uid = await authenticate();
-    const { name, phone, email, description, branch, inquiry } = req.body;
+
+    const {
+      name: rawName,
+      Name: rawNameAlt,
+      fullName,
+      title,
+      phone: rawPhone,
+      phoneNumber,
+      mobile,
+      email: rawEmail,
+      Email,
+      description,
+      branch,
+      emirate,
+      inquiry,
+      plan,
+    } = req.body;
+
+    const name = rawName || rawNameAlt || fullName;
+    const phone = rawPhone || phoneNumber || mobile;
+    const email = rawEmail || Email;
+    const selectedPlan = plan || inquiry;
+
     if (!name || !phone || !email) {
-      return res
-        .status(400)
-        .json({ success: false, error: "Missing required fields" });
+      return res.status(400).json({
+        success: false,
+        error: "Missing required fields",
+        payload: { name, phone, email, selectedPlan, branch, emirate },
+      });
     }
 
     let sourceIds = await executeKw(uid, "utm.source", "search", [
@@ -105,13 +129,13 @@ export default async function handler(req, res) {
     }
 
     const leadData = {
-      name: `Website Lead - ${name}`,
+      name: title || `Website Lead - ${name}`,
       contact_name: name,
       phone,
       email_from: email,
-      description: `Branch: ${branch || "N/A"}\nInquiry: ${inquiry || "N/A"}\n${
-        description || ""
-      }`,
+      description: `Branch: ${branch || emirate || "N/A"}\nInquiry: ${
+        selectedPlan || "N/A"
+      }\n${description || ""}`,
       source_id: sourceId,
     };
     const leadId = await executeKw(uid, "crm.lead", "create", [leadData]);

@@ -3060,4 +3060,207 @@ export const dictionary = {
       // },
     ],
   },
+  customizePackagePage: {
+    direction: "ltr",
+    metaTitle: "Customize Khales Package | Khales",
+    metaDescription:
+      "Design your package with Khales. Choose the service level that suits your project ambitions.",
+    title: "Design Your Package with Khales",
+    subtitle: "Choose the service level that suits your project ambitions",
+    sections: {
+      projectDetails: {
+        title: "Project Details",
+        fields: {
+          fullName: {
+            label: "Full Name *",
+            placeholder: "Enter your full name",
+          },
+          emirate: {
+            label: "Emirate *",
+            placeholder: "Select Emirate...",
+            options: [
+              { value: "Abu Dhabi", label: "Abu Dhabi" },
+              { value: "Dubai", label: "Dubai" },
+              { value: "Sharjah", label: "Sharjah" },
+              { value: "Ajman", label: "Ajman" },
+              { value: "Umm Al Quwain", label: "Umm Al Quwain" },
+              { value: "Ras Al Khaimah", label: "Ras Al Khaimah" },
+              { value: "Fujairah", label: "Fujairah" },
+            ],
+          },
+          area: {
+            label: "Residential Area",
+            placeholder: "e.g., Jumeirah, Al Khawaneej...",
+          },
+          plotNumber: {
+            label: "Plot Number",
+            placeholder: "Enter plot number",
+          },
+          phone: {
+            label: "Phone Number",
+            placeholder: "Enter your phone number",
+          },
+          email: {
+            label: "Email Address",
+            placeholder: "Enter your email",
+          },
+          budget: {
+            label: "Estimated Project Budget",
+            placeholder: "Select price range...",
+            options: [
+              { value: "< 1M", label: "Less than 1,000,000 AED" },
+              { value: "1M - 3M", label: "1,000,000 - 3,000,000 AED" },
+              { value: "3M - 5M", label: "3,000,000 - 5,000,000 AED" },
+              { value: "> 5M", label: "More than 5,000,000 AED" },
+              {
+                value: "Needs Consultation",
+                label: "Not specified yet (Need consultation)",
+              },
+            ],
+          },
+          timeline: {
+            label: "When do you plan to start construction?",
+            placeholder: "Select timeframe...",
+            options: [
+              {
+                value: "Immediately",
+                label: "Immediately (Less than a month)",
+              },
+              { value: "1-3 Months", label: "Within 1 to 3 months" },
+              { value: "3-6 Months", label: "Within 3 to 6 months" },
+              {
+                value: "Researching",
+                label: "Just gathering information currently",
+              },
+            ],
+          },
+        },
+      },
+      packages: {
+        title: "Main Package",
+        options: [
+          { id: "Basic", title: "Basic", price: "3.5% - 5%" },
+          {
+            id: "Medium",
+            title: "Premium",
+            price: "6% - 9%",
+            badge: "Most Popular ⭐",
+            isPopular: true,
+          },
+          {
+            id: "Elite",
+            title: "Khales Signature",
+            price: "12% - 18%",
+            badge: "VIP 👑",
+            isElite: true,
+          },
+        ],
+      },
+      addons: {
+        title: "Included Features",
+        allIncludedMessage:
+          "All premium features and services are included in the Signature package.",
+        options: [
+          /* Basic Tier Features */
+          {
+            id: "arch_design",
+            label: "Arch + Str + MEP + External 3D Design",
+            minPlan: "Basic",
+          },
+          {
+            id: "approvals",
+            label: "Government Approvals",
+            minPlan: "Basic",
+          },
+          {
+            id: "tender_docs",
+            label: "Tender Documents + Bill of Quantities",
+            minPlan: "Basic",
+          },
+          {
+            id: "monthly_supervision",
+            label: "Monthly Site Supervision",
+            minPlan: "Basic",
+          },
+
+          /* Medium Tier Features */
+          {
+            id: "weekly_supervision",
+            label: "Weekly Site Supervision",
+            minPlan: "Medium",
+          },
+          {
+            id: "schedule_milestones",
+            label: "Master Schedule & Milestones",
+            minPlan: "Medium",
+          },
+          {
+            id: "qa_qc",
+            label: "Quality Assurance (QA/QC)",
+            minPlan: "Medium",
+          },
+          {
+            id: "contractor_prequal",
+            label: "Contractor & Supplier Prequalification",
+            minPlan: "Medium",
+          },
+          {
+            id: "budget_mgmt",
+            label: "Budget & Cost Management",
+            minPlan: "Medium",
+          },
+          {
+            id: "material_selection",
+            label: "Material Selection & Moodboards",
+            minPlan: "Medium",
+          },
+
+          /* Elite Tier Features (Available as add-ons for Basic & Medium) */
+          {
+            id: "smart_home",
+            label: "Smart Home & Automation",
+            minPlan: "Elite",
+          },
+          {
+            id: "vip_concierge",
+            label: "VIP Lifestyle Concierge",
+            minPlan: "Elite",
+          },
+          {
+            id: "ff_e_sourcing",
+            label: "Bespoke FF&E Sourcing",
+            minPlan: "Elite",
+          },
+          {
+            id: "post_maintenance",
+            label: "Post-Handover Maintenance",
+            minPlan: "Elite",
+          },
+          {
+            id: "budget_alignment",
+            label: "Design-to-Budget Alignment",
+            minPlan: "Elite",
+          },
+          {
+            id: "resident_engineer",
+            label: "Resident Engineer",
+            minPlan: "Elite",
+          },
+          {
+            id: "landscape_synergy",
+            label: "Interior & Landscape Synergy",
+            minPlan: "Elite",
+          },
+          {
+            id: "live_monitoring",
+            label: "24/7 Live Site Monitoring",
+            minPlan: "Elite",
+          },
+        ],
+      },
+      submitButton: "Start Your Dream Home Journey with Khales Team 🚀",
+      successMessage:
+        "Thank you {name}!\nYour request for the ({plan}) package has been received successfully. We will contact you soon.",
+    },
+  },
 };

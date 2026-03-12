@@ -3051,4 +3051,197 @@ export const dictionary = {
       },
     ],
   },
+  customizePackagePage: {
+    direction: "rtl",
+    metaTitle: "تخصيص باقة خالص | خالص",
+    metaDescription:
+      "صمم باقتك مع خالص. هاي خطوتك الأولى تبدأ باختيار الخدمة المناسبة.",
+    title: "صمم باقتك مع خالص",
+    subtitle: "هاي خطوتك الأولى تبدأ باختيار الخدمة المناسبة",
+    sections: {
+      projectDetails: {
+        title: "تفاصيل المشروع",
+        fields: {
+          fullName: {
+            label: "الاسم الكامل *",
+            placeholder: "أدخل اسمك الكريم",
+          },
+          emirate: {
+            label: "الإمارة *",
+            placeholder: "اختر الإمارة...",
+            options: [
+              { value: "Abu Dhabi", label: "أبوظبي" },
+              { value: "Dubai", label: "دبي" },
+              { value: "Sharjah", label: "الشارقة" },
+              { value: "Ajman", label: "عجمان" },
+              { value: "Umm Al Quwain", label: "أم القيوين" },
+              { value: "Ras Al Khaimah", label: "رأس الخيمة" },
+              { value: "Fujairah", label: "الفجيرة" },
+            ],
+          },
+          area: {
+            label: "المنطقة السكنية",
+            placeholder: "مثال: جميرا، الخوانيج...",
+          },
+          plotNumber: {
+            label: "رقم الأرض (Plot Number)",
+            placeholder: "أدخل رقم الأرض",
+          },
+          phone: {
+            label: "رقم الجوال",
+            placeholder: "أدخل رقم الجوال",
+          },
+          email: {
+            label: "البريد الإلكتروني",
+            placeholder: "أدخل بريدك الإلكتروني",
+          },
+          budget: {
+            label: "الميزانية التقديرية للمشروع",
+            placeholder: "اختر النطاق السعري...",
+            options: [
+              { value: "< 1M", label: "أقل من 1,000,000 درهم" },
+              { value: "1M - 3M", label: "1,000,000 - 3,000,000 درهم" },
+              { value: "3M - 5M", label: "3,000,000 - 5,000,000 درهم" },
+              { value: "> 5M", label: "أكثر من 5,000,000 درهم" },
+              {
+                value: "Needs Consultation",
+                label: "غير محدد بعد (أحتاج استشارة)",
+              },
+            ],
+          },
+          timeline: {
+            label: "متى تخطط للبدء بالبناء؟",
+            placeholder: "حدد الإطار الزمني...",
+            options: [
+              { value: "Immediately", label: "فوراً (أقل من شهر)" },
+              { value: "1-3 Months", label: "خلال 1 إلى 3 أشهر" },
+              { value: "3-6 Months", label: "خلال 3 إلى 6 أشهر" },
+              { value: "Researching", label: "مجرد جمع معلومات حالياً" },
+            ],
+          },
+        },
+      },
+      packages: {
+        title: "الباقة الرئيسية",
+        options: [
+          { id: "Basic", title: "Basic", price: "3.5% - 5%" },
+          {
+            id: "Medium",
+            title: "Premium",
+            price: "6% - 9%",
+            badge: "الأكثر طلباً ⭐",
+            isPopular: true,
+          },
+          {
+            id: "Elite",
+            title: "Khales Signature",
+            price: "12% - 18%",
+            badge: "VIP 👑",
+            isElite: true,
+          },
+        ],
+      },
+      addons: {
+        title: "المميزات المشمولة",
+        allIncludedMessage:
+          "جميع الخدمات والمميزات متضمنة تلقائياً في باقة توقيع خالص.",
+        options: [
+          /* خدمات باقة Basic */
+          {
+            id: "arch_design",
+            label: "تصميم معماري + إنشائي + MEP + 3D خارجي",
+            minPlan: "Basic",
+          },
+          {
+            id: "approvals",
+            label: "اعتمادات الجهات الحكومية",
+            minPlan: "Basic",
+          },
+          {
+            id: "tender_docs",
+            label: "وثائق المناقصات وجدول الكميات",
+            minPlan: "Basic",
+          },
+          {
+            id: "monthly_supervision",
+            label: "إشراف شهري على الموقع",
+            minPlan: "Basic",
+          },
+
+          /* خدمات باقة Medium */
+          {
+            id: "weekly_supervision",
+            label: "إشراف أسبوعي على الموقع",
+            minPlan: "Medium",
+          },
+          {
+            id: "schedule_milestones",
+            label: "الجدول الزمني الرئيسي والمعالم",
+            minPlan: "Medium",
+          },
+          { id: "qa_qc", label: "ضمان الجودة (QA/QC)", minPlan: "Medium" },
+          {
+            id: "contractor_prequal",
+            label: "تأهيل المقاولين والموردين",
+            minPlan: "Medium",
+          },
+          {
+            id: "budget_mgmt",
+            label: "إدارة الميزانية والتكاليف",
+            minPlan: "Medium",
+          },
+          {
+            id: "material_selection",
+            label: "اختيار المواد ولوحات الأفكار (Moodboards)",
+            minPlan: "Medium",
+          },
+
+          /* خدمات تظهر كإضافات للباقة الأساسية والمتوسطة */
+          {
+            id: "smart_home",
+            label: "المنزل الذكي والأتمتة",
+            minPlan: "Elite",
+          },
+          {
+            id: "vip_concierge",
+            label: "خدمات الكونسيرج VIP",
+            minPlan: "Elite",
+          },
+          {
+            id: "ff_e_sourcing",
+            label: "تأمين الأثاث والتجهيزات المخصصة (FF&E)",
+            minPlan: "Elite",
+          },
+          {
+            id: "post_maintenance",
+            label: "صيانة ما بعد التسليم",
+            minPlan: "Elite",
+          },
+          {
+            id: "budget_alignment",
+            label: "توافق التصميم مع الميزانية",
+            minPlan: "Elite",
+          },
+          {
+            id: "resident_engineer",
+            label: "مهندس مقيم للمشروع",
+            minPlan: "Elite",
+          },
+          {
+            id: "landscape_synergy",
+            label: "تناغم التصميم الداخلي والحدائق",
+            minPlan: "Elite",
+          },
+          {
+            id: "live_monitoring",
+            label: "مراقبة الموقع مباشرًا 24/7",
+            minPlan: "Elite",
+          },
+        ],
+      },
+      submitButton: "ابدأ رحلة بناء بيت العمر مع فريق خالص 🚀",
+      successMessage:
+        "شكراً لك يا {name}!\nتم استلام طلبك لباقة ({plan}) بنجاح وسيتم التواصل معك قريباً.",
+    },
+  },
 };
