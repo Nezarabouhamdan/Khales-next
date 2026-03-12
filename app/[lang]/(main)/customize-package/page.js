@@ -4,7 +4,8 @@ import { dictionary as en } from "@/dictionaries/en";
 
 const dictionaries = { ar, en };
 
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
   const dict = dictionaries[lang] || dictionaries.en;
   return {
     title: dict.customizePackagePage.metaTitle,
@@ -12,7 +13,8 @@ export async function generateMetadata({ params: { lang } }) {
   };
 }
 
-export default function CustomizePackagePage({ params: { lang } }) {
+export default async function CustomizePackagePage({ params }) {
+  const { lang } = await params;
   const dict = dictionaries[lang] || dictionaries.en;
 
   return (
