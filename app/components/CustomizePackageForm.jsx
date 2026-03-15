@@ -21,8 +21,22 @@ const CustomizePackageForm = ({ dict }) => {
   const { projectDetails, packages, addons, submitButton, successMessage } =
     sections;
 
+  // الترتيب الأساسي للباقات
   const planOrder = ["Basic", "Medium", "Elite"];
   const currentPlanIndex = planOrder.indexOf(formData.plan);
+  const sortedPackageOptions = packages.options
+    ? [...packages.options].sort(
+        (a, b) => planOrder.indexOf(a.id) - planOrder.indexOf(b.id),
+      )
+    : [];
+
+  // التأكد من أن باقة Basic دائماً على اليمين
+  // في اللغة العربية (RTL) العنصر الأول يكون على اليمين
+  // في اللغة الإنجليزية (LTR) العنصر الأخير يكون على اليمين
+  const isRtl = direction === "rtl" || direction === "AR";
+  const displayPackages = isRtl
+    ? sortedPackageOptions
+    : [...sortedPackageOptions].reverse();
 
   const [submitting, setSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
@@ -98,7 +112,7 @@ const CustomizePackageForm = ({ dict }) => {
         <form className={styles.formBody} onSubmit={handleSubmit}>
           <h2 className={styles.sectionTitle}>{projectDetails.title}</h2>
           <div className={styles.inputGrid}>
-            {/* الاسم الكامل */}
+            {/* بقية حقول الإدخال كما هي تماماً */}
             <div className={styles.field}>
               <label>{projectDetails.fields.fullName.label}</label>
               <input
@@ -111,8 +125,6 @@ const CustomizePackageForm = ({ dict }) => {
                 required
               />
             </div>
-
-            {/* الإمارة */}
             <div className={styles.field}>
               <label>{projectDetails.fields.emirate.label}</label>
               <select
@@ -132,8 +144,6 @@ const CustomizePackageForm = ({ dict }) => {
                 ))}
               </select>
             </div>
-
-            {/* المنطقة السكنية */}
             <div className={styles.field}>
               <label>{projectDetails.fields.area.label}</label>
               <input
@@ -145,8 +155,6 @@ const CustomizePackageForm = ({ dict }) => {
                 value={formData.area}
               />
             </div>
-
-            {/* رقم الأرض */}
             <div className={styles.field}>
               <label>{projectDetails.fields.plotNumber.label}</label>
               <input
@@ -158,12 +166,13 @@ const CustomizePackageForm = ({ dict }) => {
                 value={formData.plotNumber}
               />
             </div>
-
-            {/* الجوال */}
             <div className={styles.field}>
-              <label>{projectDetails.fields.phone.label}</label>
+              <label className={styles.rtlLabel}>
+                {projectDetails.fields.phone.label}
+              </label>
               <input
                 type="tel"
+                dir="rtl"
                 name="phone"
                 className={styles.input}
                 placeholder={projectDetails.fields.phone.placeholder}
@@ -172,8 +181,6 @@ const CustomizePackageForm = ({ dict }) => {
                 required
               />
             </div>
-
-            {/* البريد الإلكتروني */}
             <div className={styles.field}>
               <label>{projectDetails.fields.email.label}</label>
               <input
@@ -186,8 +193,6 @@ const CustomizePackageForm = ({ dict }) => {
                 required
               />
             </div>
-
-            {/* الميزانية التقديرية */}
             <div className={styles.field}>
               <label>{projectDetails.fields.budget.label}</label>
               <select
@@ -206,8 +211,6 @@ const CustomizePackageForm = ({ dict }) => {
                 ))}
               </select>
             </div>
-
-            {/* الجدول الزمني */}
             <div className={styles.field}>
               <label>{projectDetails.fields.timeline.label}</label>
               <select
@@ -230,9 +233,14 @@ const CustomizePackageForm = ({ dict }) => {
 
           <h2 className={styles.sectionTitle}>{packages.title}</h2>
           <div className={styles.packageGrid}>
-            {[...packages.options].reverse().map((pkg) => {
+            {displayPackages.map((pkg) => {
               const isSelected = formData.plan === pkg.id;
-              let cardClass = `${styles.packageCard} ${isSelected ? (pkg.isElite ? styles.selectedElite : styles.selected) : ""} ${pkg.isPopular ? styles.popular : ""}`;
+              const cardClass = `${styles.packageCard} ${
+                isSelected ? styles.selected : ""
+              } ${pkg.isPopular ? styles.popular : ""} ${
+                pkg.isElite ? styles.eliteCard : ""
+              }`;
+
               return (
                 <label key={pkg.id} className={cardClass}>
                   <input
@@ -245,11 +253,14 @@ const CustomizePackageForm = ({ dict }) => {
                   />
                   {pkg.badge && (
                     <div
-                      className={`${styles.badge} ${pkg.isElite ? styles.badgeElite : styles.badgePopular}`}
+                      className={`${styles.badge} ${
+                        pkg.isElite ? styles.badgeElite : styles.badgePopular
+                      }`}
                     >
                       {pkg.badge}
                     </div>
                   )}
+
                   <h3 className={pkg.isElite ? styles.eliteTitle : ""}>
                     {pkg.title}
                   </h3>

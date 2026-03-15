@@ -69,6 +69,11 @@
   margin-bottom: 8px;
 }
 
+.rtlLabel {
+  direction: rtl;
+  text-align: right;
+}
+
 .input,
 .select {
   padding: 12px 15px;
@@ -90,7 +95,7 @@
   border-color: #10b981;
 }
 
-/* Package Selection Section */
+/* --- Package Selection Section --- */
 .packageGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -100,29 +105,42 @@
 
 .packageCard {
   position: relative;
-  border: 2px solid #e5e7eb;
+  background-color: #ffffff;
+  border: 1.5px solid #e5e7eb;
   border-radius: 12px;
   padding: 30px 15px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
-.selected {
-  border-color: #10b981;
-  background-color: #ecfdf5;
+.packageCard:hover {
+  border-color: #9ca3af;
 }
 
-/* The Middle (Popular) Package style from image */
-.popular {
+/* حالة التحديد للباقات العادية (Basic & Premium) -> أخضر */
+.packageCard.selected {
   border-color: #10b981;
   background-color: #f0fdf4;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+}
+
+/* حالة التحديد لباقة الـ VIP -> ذهبي/برتقالي */
+.packageCard.eliteCard.selected {
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
 }
 
 .packageCard h3 {
   font-size: 1rem;
   font-weight: 700;
+  color: #1f2937;
   margin-bottom: 10px;
+}
+
+.eliteTitle {
+  color: #d97706;
 }
 
 .popular h3 {
@@ -132,35 +150,27 @@
 .priceRange {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #1f2937;
+  color: #111827;
 }
 
-.popular .priceRange {
-  color: #065f46;
-}
-
-/* Elite Text Color */
-.eliteTitle {
-  color: #d97706;
-}
-
-/* Badges */
+/* --- Badges (الباجات الملونة نفس قبل) --- */
 .badge {
   position: absolute;
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.7rem;
-  font-weight: 800;
-  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 16px;
   border-radius: 20px;
   white-space: nowrap;
-  color: #fff;
+  color: #ffffff;
 }
 
 .badgePopular {
   background-color: #10b981;
 }
+
 .badgeElite {
   background-color: #f59e0b;
 }
@@ -247,4 +257,83 @@
 /* Hide Radio button */
 .hiddenRadio {
   display: none;
+}
+/* --- Package Selection Section --- */
+.packageGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.packageCard {
+  position: relative;
+  background-color: #ffffff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 30px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.packageCard:hover {
+  border-color: #9ca3af;
+}
+
+/* حالة التحديد للباقات العادية (Basic & Premium) -> أخضر */
+.packageCard.selected {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+}
+
+/* حالة التحديد لباقة الـ VIP -> ذهبي/برتقالي */
+.packageCard.eliteCard.selected {
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+}
+
+.packageCard h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.eliteTitle {
+  color: #d97706;
+}
+
+.popular h3 {
+  color: #065f46;
+}
+
+.priceRange {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+/* --- Badges (الباجات الملونة نفس قبل) --- */
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+.badgePopular {
+  background-color: #10b981;
+}
+
+.badgeElite {
+  background-color: #f59e0b;
 }
