@@ -34,11 +34,7 @@ const CustomizePackageForm = ({ dict }) => {
       )
       .map((opt) => opt.id || opt.label);
 
-    setSelectedAddons((prev = []) => {
-      const set = new Set(prev);
-      defaultFeatures.forEach((id) => set.add(id));
-      return [...set];
-    });
+    setSelectedAddons(defaultFeatures);
   }, [addons, formData.plan]);
   const currentPlanIndex = planOrder.indexOf(formData.plan);
   const sortedPackageOptions = packages.options
@@ -180,6 +176,7 @@ const CustomizePackageForm = ({ dict }) => {
                 placeholder={projectDetails.fields.area.placeholder}
                 onChange={handleChange}
                 value={formData.area}
+                required
               />
             </div>
             <div className={styles.field}>
@@ -191,6 +188,7 @@ const CustomizePackageForm = ({ dict }) => {
                 placeholder={projectDetails.fields.plotNumber.placeholder}
                 onChange={handleChange}
                 value={formData.plotNumber}
+                required
               />
             </div>
             <div className={styles.field}>
@@ -227,6 +225,7 @@ const CustomizePackageForm = ({ dict }) => {
                 className={styles.select}
                 onChange={handleChange}
                 value={formData.budget}
+                required
               >
                 <option value="">
                   {projectDetails.fields.budget.placeholder}
@@ -245,6 +244,7 @@ const CustomizePackageForm = ({ dict }) => {
                 className={styles.select}
                 onChange={handleChange}
                 value={formData.timeline}
+                required
               >
                 <option value="">
                   {projectDetails.fields.timeline.placeholder}
