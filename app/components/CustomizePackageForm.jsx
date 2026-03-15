@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./CustomizePackageForm.module.css";
 
 const CustomizePackageForm = ({ dict }) => {
@@ -14,6 +14,7 @@ const CustomizePackageForm = ({ dict }) => {
     timeline: "",
     plan: "Medium",
   });
+  const [selectedAddons, setSelectedAddons] = useState([]);
 
   if (!dict || !dict.customizePackagePage) return null;
 
@@ -23,6 +24,22 @@ const CustomizePackageForm = ({ dict }) => {
 
   // الترتيب الأساسي للباقات
   const planOrder = ["Basic", "Medium", "Elite"];
+
+  useEffect(() => {
+    if (!addons?.options) return;
+    const defaultFeatures = addons.options
+      .filter(
+        (opt) =>
+          planOrder.indexOf(formData.plan) >= planOrder.indexOf(opt.minPlan),
+      )
+      .map((opt) => opt.id || opt.label);
+
+    setSelectedAddons((prev = []) => {
+      const set = new Set(prev);
+      defaultFeatures.forEach((id) => set.add(id));
+      return [...set];
+    });
+  }, [addons, formData.plan]);
   const currentPlanIndex = planOrder.indexOf(formData.plan);
   const sortedPackageOptions = packages.options
     ? [...packages.options].sort(
@@ -46,6 +63,16 @@ const CustomizePackageForm = ({ dict }) => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleToggleAddon = (optId) => {
+    setSelectedAddons((prev) => {
+      const alreadySelected = prev.includes(optId);
+      if (alreadySelected) {
+        return prev.filter((id) => id !== optId);
+      }
+      return [...prev, optId];
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -53,7 +80,7 @@ const CustomizePackageForm = ({ dict }) => {
 
     try {
       const includedFeatures = addons.options
-        .filter((opt) => currentPlanIndex >= planOrder.indexOf(opt.minPlan))
+        .filter((opt) => selectedAddons.includes(opt.id || opt.label))
         .map((opt) => opt.label)
         .join("; ");
 
@@ -167,12 +194,12 @@ const CustomizePackageForm = ({ dict }) => {
               />
             </div>
             <div className={styles.field}>
-              <label className={styles.rtlLabel}>
+              <label className={isRtl ? styles.rtlLabel : ""}>
                 {projectDetails.fields.phone.label}
               </label>
               <input
                 type="tel"
-                dir="rtl"
+                dir={isRtl ? "rtl" : "ltr"}
                 name="phone"
                 className={styles.input}
                 placeholder={projectDetails.fields.phone.placeholder}
@@ -276,12 +303,24 @@ const CustomizePackageForm = ({ dict }) => {
               .filter(
                 (opt) => currentPlanIndex >= planOrder.indexOf(opt.minPlan),
               )
-              .map((opt) => (
-                <div key={opt.id} className={styles.addonBox}>
-                  <span className={styles.addonLabel}>{opt.label}</span>
-                  <div className={styles.checkMark}>✓</div>
-                </div>
-              ))}
+              .map((opt) => {
+                const id = opt.id || opt.label;
+                const isSelected = selectedAddons.includes(id);
+                return (
+                  <div
+                    key={id}
+                    className={`${styles.addonBox} ${
+                      isSelected ? styles.addonSelected : ""
+                    }`}
+                    onClick={() => handleToggleAddon(id)}
+                  >
+                    <span className={styles.addonLabel}>{opt.label}</span>
+                    <div className={styles.checkMark}>
+                      {isSelected ? "✓" : ""}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
 
           {statusMessage && (

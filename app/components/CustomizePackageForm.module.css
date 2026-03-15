@@ -191,6 +191,17 @@
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addonBox:hover {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+}
+
+.addonSelected {
+  border-color: #10b981;
+  background-color: #effaf3;
 }
 
 .addonLabel {
@@ -336,4 +347,37 @@
 
 .badgeElite {
   background-color: #f59e0b;
+}
+/* --- Responsive Design (للموبايل والشاشات الصغيرة) --- */
+@media (max-width: 768px) {
+  /* تحويل حقول الإدخال لعمود واحد */
+  .inputGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* تحويل الباقات لعمود واحد مع زيادة المسافة عشان الباجات (VIP/الأكثر طلباً) ما تغطي على بعض */
+  .packageGrid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    margin-top: 15px;
+  }
+
+  /* تحويل الإضافات لعمود واحد */
+  .addonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  /* تقليل المسافات الداخلية (Padding) عشان نعطي مساحة أكبر للمحتوى على الشاشات الصغيرة */
+  .wrapper {
+    padding: 30px 15px;
+  }
+
+  .formBody {
+    padding: 25px 15px;
+  }
+
+  .header {
+    padding: 100px 15px;
+  }
 }
