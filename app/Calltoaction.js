@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import "./globals.css";
 
 function Calltoaction() {
   const handleClick = (e) => {

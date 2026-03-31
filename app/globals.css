@@ -1,3 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  /* Changed from green to gold */
+  --color-gold: #d4af37;
+  --color-olive: #b5952f;
+  --color-background: #0a0a0a;
+  --color-foreground: #f8f6f0;
+  --font-arabic: "Tajawal", sans-serif;
+  --font-price: "DM Serif Display", serif;
+}
+
 /* app css */
 .App {
   font-family: "Playfair";
@@ -16,18 +28,20 @@
 }
 * {
   cursor: none !important;
-} /* --- New, Enhanced Project Card Styles --- */
+}
 
-/* The main container for the card link */
+/* --- New, Enhanced Project Card Styles --- */
 .project-card {
-  position: relative; /* Essential for overlay positioning */
+  position: relative;
   display: block;
-  aspect-ratio: 4 / 3; /* Defines a consistent shape for all cards */
+  aspect-ratio: 4 / 3;
   border-radius: 20px;
   overflow: hidden;
   color: #fff;
   text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -36,19 +50,16 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* The card's background image */
 .project-card .card-image > div {
-  /* Targets the inner div of ImageWithSkeleton */
   width: 100%;
   height: 100%;
   transition: transform 0.4s ease-out;
 }
 
 .project-card:hover .card-image > div {
-  transform: scale(1.05); /* Zoom effect on hover */
+  transform: scale(1.05);
 }
 
-/* The gradient overlay to ensure text is readable */
 .project-card .card-overlay {
   position: absolute;
   top: 0;
@@ -73,7 +84,6 @@
   );
 }
 
-/* The container for all text content */
 .project-card .card-content {
   position: absolute;
   bottom: 0;
@@ -86,7 +96,6 @@
   align-items: flex-start;
 }
 
-/* Container for the tag pills */
 .project-card .card-tags-container {
   display: flex;
   flex-wrap: wrap;
@@ -94,7 +103,6 @@
   margin-bottom: 0.75rem;
 }
 
-/* Individual tag "pill" with a modern glassmorphism effect */
 .project-card .card-tag {
   display: inline-block;
   padding: 0.25rem 0.75rem;
@@ -106,7 +114,6 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* The main project title */
 .project-card .card-title {
   font-family: "Georgia", "Times New Roman", serif;
   font-size: 1.75rem;
@@ -116,20 +123,20 @@
   color: #fff;
 }
 
-/* Container for the content that appears on hover */
 .project-card .card-hover-content {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out 0.1s;
+  transition:
+    max-height 0.4s ease-in-out,
+    opacity 0.3s ease-in-out 0.1s;
 }
 
 .project-card:hover .card-hover-content {
-  max-height: 200px; /* Allow space for content to appear */
+  max-height: 200px;
   opacity: 1;
 }
 
-/* The project description text */
 .project-card .card-description {
   color: #e0e0e0;
   font-size: 0.95rem;
@@ -137,11 +144,10 @@
   margin: 0.75rem 0 0 0;
 }
 
-/* The "View Project" call to action */
 .project-card .card-cta {
   display: flex;
   align-items: center;
-  color: #66a109;
+  color: var(--color-gold); /* Updated */
   font-weight: 600;
   margin-top: 1rem;
 }
@@ -152,60 +158,45 @@
 }
 
 .project-card:hover .card-cta-icon {
-  transform: translateX(5px); /* Arrow moves to the right */
+  transform: translateX(5px);
 }
 
-/* Existing CTA link style from before */
 .cta-link:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(102, 161, 9, 0.25);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25); /* Updated to gold */
 }
-/* @font-face {
-  font-family: "Red Thinker";
-  src: local("Red Thinker Regular"), local("Red-Thinker-Regular"),
-    url("RedThinker-Light.ttf") format("truetype");
 
-  font-weight: 1000;
-  font-style: normal;
-} */
-/* In: app/globals.css */
-
-/* ... (your existing .float and .float2 styles) ... */
-
-/* NEW: Styles for the Mobile-Only Floating Contact Button */
-/* ============================================== */
-/*  Styles for the Floating Contact Button        */
-/* ============================================== */
-
+/* Floating Contact Buttons */
 .float-contact {
   position: fixed;
-  padding: 0.75rem 1.25rem; /* Adjust padding for a nice pill shape */
-  bottom: 40px; /* Distance from the bottom */
-  left: 40px; /* Distance from the left */
-  background-color: rgb(102, 161, 9); /* Your brand's green color */
-  color: #fff; /* White text */
-  border-radius: 50px; /* Fully rounded corners */
+  padding: 0.75rem 1.25rem;
+  bottom: 40px;
+  left: 40px;
+  background-color: var(--color-gold); /* Updated to gold */
+  color: #0a0a0a; /* Changed to dark for contrast */
+  border-radius: 50px;
   text-align: center;
   font-size: 1rem;
-  font-weight: 600; /* Bold text */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* A nice, soft shadow */
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   z-index: 100;
-  text-decoration: none; /* Remove underline from link */
-  display: flex; /* To align icon and text */
+  text-decoration: none;
+  display: flex;
   align-items: center;
-  gap: 0.5rem; /* Space between icon and text */
-  transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth hover effect */
+  gap: 0.5rem;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
 }
 
-/* Add a hover effect to make it interactive */
 .float-contact:hover {
-  transform: translateY(-5px) scale(1.05); /* Lifts and slightly enlarges the button */
-  background-color: #5a8f08; /* A slightly darker green on hover */
+  transform: translateY(-5px) scale(1.05);
+  background-color: var(--color-olive); /* Updated to darker gold */
 }
+
 .increment {
   font-size: 35px;
   color: #ffffff;
-
   font-family: "Inter";
 }
 @media screen and (max-width: 968px) {
@@ -214,6 +205,7 @@
     font-size: 35px;
   }
 }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -224,14 +216,15 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 .float {
   position: fixed;
   width: 60px;
   height: 60px;
   bottom: 40px;
   right: 40px;
-  background-color: rgb(102, 161, 9);
-  color: #fff;
+  background-color: var(--color-gold); /* Updated to gold */
+  color: #0a0a0a;
   border-radius: 50px;
   text-align: center;
   font-size: 30px;
@@ -248,8 +241,8 @@
   height: 60px;
   bottom: 115px;
   right: 40px;
-  background-color: rgb(102, 161, 9);
-  color: #fff;
+  background-color: var(--color-gold); /* Updated to gold */
+  color: #0a0a0a;
   border-radius: 50px;
   text-align: center;
   font-size: 30px;
@@ -273,25 +266,20 @@
   }
 }
 
-/* index.css */
 @font-face {
   font-family: "Playfair";
-  src: local("Playfair Meduim"), local("Playfair-Meduim"),
+  src:
+    local("Playfair Meduim"),
+    local("Playfair-Meduim"),
     url("/src/fonts/Playfair_144pt-Medium.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-}
-
-body {
 }
 
 code {
   font-family: "Playfair";
 }
 
-/* Performance Optimizations */
-
-/* Font Display Optimization */
 @font-face {
   font-display: swap;
 }
@@ -305,7 +293,6 @@ img {
   contain: layout style paint;
 }
 
-/* Lazy Loading Placeholder */
 .lazy-placeholder {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
@@ -321,7 +308,6 @@ img {
   }
 }
 
-/* Optimize Animations */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -332,33 +318,15 @@ img {
   }
 }
 
-/* GPU Acceleration for Smooth Animations */
 .gpu-accelerated {
   transform: translateZ(0);
   will-change: transform;
 }
 
-/* Optimize Scrolling */
 .smooth-scroll {
   scroll-behavior: smooth;
 }
 
-/* Critical CSS for Above-the-Fold Content */
-.hero-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Preload Critical Resources */
-.preload-critical {
-  font-display: swap;
-}
-
-/* FCP and Performance Optimizations */
-
-/* Critical CSS for above-the-fold content */
 .hero-section {
   min-height: 100vh;
   display: flex;
@@ -367,95 +335,34 @@ img {
   contain: layout style paint;
 }
 
-/* Font Display Optimization */
-@font-face {
-  font-display: swap;
-}
-
-/* Reduce Layout Shift */
-img {
-  height: auto;
-  max-width: 100%;
-}
-
-/* Lazy Loading Placeholder */
-.lazy-placeholder {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/* Optimize Animations for Performance */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* GPU Acceleration for Smooth Animations */
-.gpu-accelerated {
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-/* Optimize Scrolling */
-.smooth-scroll {
-  scroll-behavior: smooth;
-}
-
-/* Preload Critical Resources */
 .preload-critical {
   font-display: swap;
 }
 
-/* Critical rendering path optimization */
-.above-fold {
-  contain: layout style paint;
-}
-
-/* Optimize video loading */
 video {
   object-fit: cover;
   will-change: transform;
 }
 
-/* Optimize image loading */
 .optimized-image {
   content-visibility: auto;
   contain-intrinsic-size: 300px 200px;
 }
 
-/* Reduce paint complexity */
 .complex-element {
   will-change: transform;
   transform: translateZ(0);
 }
 
-/* Optimize text rendering */
 .optimized-text {
   text-rendering: optimizeSpeed;
   font-display: swap;
 }
 
-/* Critical CSS for layout stability */
 .layout-stable {
   aspect-ratio: attr(width) / attr(height);
 }
 
-/* Optimize for Core Web Vitals */
 .web-vitals-optimized {
   content-visibility: auto;
   contain-intrinsic-size: 1px 500px;
@@ -464,5 +371,108 @@ video {
 @media print {
   .pdf-exclude {
     display: none !important;
+  }
+}
+
+@utility font-arabic {
+  font-family: "Tajawal", sans-serif;
+}
+
+@utility font-price {
+  font-family: "DM Serif Display", serif;
+}
+
+@utility gold-gradient {
+  /* Updated gradient to use gold tones */
+  background: linear-gradient(135deg, #e0bc68, #d4af37);
+}
+
+@utility glass-card {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.15); /* Updated to gold */
+}
+
+@utility glass-card-hover {
+  &:hover {
+    background: rgba(10, 10, 10, 0.7);
+    border-color: rgba(212, 175, 55, 0.35); /* Updated to gold */
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.4); /* Updated to gold */
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.6); /* Updated to gold */
+}
+/* --- إعدادات أزرار القسم الرئيسي (Hero Section) المضمونة --- */
+.hero-buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem; /* المسافة بين الزرين */
+  margin-top: 2.5rem;
+}
+
+.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 3rem; /* مساحة داخلية كبيرة لزر فخم */
+  background: linear-gradient(135deg, #d4af37, #b5952f);
+  color: #0a0a0a !important; /* لون النص داكن عشان يبرز مع الذهبي */
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 220px;
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+.hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 3rem;
+  background: transparent;
+  color: #f8f6f0 !important;
+  border: 1px solid rgba(212, 175, 55, 0.6); /* حدود ذهبية */
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 220px;
+}
+
+.hero-btn-secondary:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: #d4af37;
+  transform: translateY(-3px);
+}
+
+/* للموبايل: ترتيب الأزرار فوق بعض */
+@media (max-width: 768px) {
+  .hero-buttons-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero-btn-primary,
+  .hero-btn-secondary {
+    width: 100%;
   }
 }
