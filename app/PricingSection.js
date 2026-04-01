@@ -64,11 +64,11 @@ export default function PricingSection() {
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=DM+Serif+Display&display=swap');
 
         .pricing-section {
-          background-color: #f8f9fa;
+          background-color: #fafafa; /* رمادي فاتح جداً يبرز الكروت البيضاء */
           padding: 120px 0;
           direction: rtl;
           font-family: 'Tajawal', sans-serif;
-          color: #333;
+          color: #1a1a1a;
           position: relative;
         }
 
@@ -86,17 +86,18 @@ export default function PricingSection() {
 
         .pricing-header .tag {
           font-size: 13px;
-          color: rgba(102, 161, 9, 0.8);
+          font-weight: 700;
+          color: #66a109;
           letter-spacing: 0.1em;
           margin-bottom: 15px;
           display: block;
         }
 
         .pricing-header h2 {
-          font-size: clamp(32px, 5vw, 48px);
+          font-size: clamp(32px, 5vw, 44px);
           font-weight: 800;
           margin-bottom: 20px;
-          color: #1a1a1a;
+          color: #0a0a0a;
         }
 
         .pricing-header h2 span {
@@ -104,50 +105,66 @@ export default function PricingSection() {
         }
 
         .pricing-header p {
-          color: #555;
+          color: #666;
           font-size: 16px;
           max-width: 600px;
           margin: 0 auto;
+          line-height: 1.6;
         }
 
         /* Grid */
         .pricing-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-          align-items: stretch;
+          gap: 30px;
+          align-items: center; /* عشان الكرت اللي بالنص يكبر براحته بدون ما يخرب المحاذاة */
         }
 
         /* Cards */
         .price-card {
           background: #ffffff;
-          border: 1px solid #e9ecef;
-          border-radius: 20px;
-          padding: 50px 35px;
+          border-radius: 24px;
+          padding: 45px 35px;
           position: relative;
           display: flex;
           flex-direction: column;
-          transition: all 0.4s ease;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+          border: 1px solid transparent;
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+          min-height: 600px;
+        }
+
+        .price-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
 
         .price-card.featured {
-          border: 1px solid rgba(102, 161, 9, 0.4);
-          background: #ffffff;
-          transform: scale(1.03);
+          border: 1px solid rgba(102, 161, 9, 0.2);
+          box-shadow: 0 20px 50px rgba(102, 161, 9, 0.12);
+          transform: scale(1.05);
           z-index: 5;
+          padding: 55px 35px; /* أطول شوي من الباقي */
+          background: #ffffff;
+        }
+
+        .price-card.featured:hover {
+          transform: scale(1.05) translateY(-5px);
         }
 
         .card-badge {
           position: absolute;
-          top: -16px;
+          top: -15px;
           right: 50%;
           transform: translateX(50%);
           background: #66a109;
           color: #fff;
-          padding: 6px 24px;
-          border-radius: 50px;
-          font-size: 12px;
-          font-weight: 800;
+          padding: 8px 24px;
+          border-radius: 100px;
+          font-size: 13px;
+          font-weight: 700;
+          box-shadow: 0 4px 15px rgba(102, 161, 9, 0.3);
+          white-space: nowrap;
         }
 
         .card-top {
@@ -158,52 +175,57 @@ export default function PricingSection() {
         }
 
         .pkg-name h3 {
-          font-size: 30px;
+          font-size: 28px;
           font-weight: 800;
+          color: #0a0a0a;
           margin: 0;
         }
 
         .pkg-name .tier {
           font-size: 14px;
+          font-weight: 600;
           color: #66a109;
           display: block;
-          margin-top: 4px;
+          margin-top: 6px;
         }
 
         .pkg-icon {
-          width: 48px;
-          height: 48px;
-          background: rgba(102, 161, 9, 0.05);
-          border: 1px solid rgba(102, 161, 9, 0.1);
-          border-radius: 12px;
+          width: 52px;
+          height: 52px;
+          background: rgba(102, 161, 9, 0.08);
+          border-radius: 14px;
           display: flex;
           align-items: center;
           justify-content: center;
           color: #66a109;
         }
 
-        /* Pricing */
+        /* Pricing - الرقم بالأسود يعطي فخامة */
         .price-box {
-          margin-bottom: 30px;
+          margin-bottom: 24px;
           display: flex;
           align-items: baseline;
           gap: 8px;
+          padding-bottom: 24px;
+          border-bottom: 1px solid #f0f0f0;
         }
 
         .price-box .val {
           font-family: 'DM Serif Display', serif;
-          font-size: 48px;
-          color: #66a109;
+          font-size: 52px;
+          color: #0a0a0a; /* أسود بدل أخضر */
+          line-height: 1;
         }
 
         .price-box .currency {
           font-size: 16px;
-          color: #777;
+          font-weight: 600;
+          color: #66a109;
         }
 
         .pkg-desc {
           font-size: 14px;
-          color: #555;
+          color: #666;
           line-height: 1.7;
           margin-bottom: 35px;
           text-align: right;
@@ -221,15 +243,24 @@ export default function PricingSection() {
         .feature-row {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 14px;
           margin-bottom: 18px;
           font-size: 15px;
-          color: #333;
+          color: #444;
+          font-weight: 500;
         }
 
-        .feature-row svg {
+        /* تنسيق علامة الصح داخل دائرة مرتبة */
+        .check-circle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: rgba(102, 161, 9, 0.15);
           color: #66a109;
-          opacity: 0.6;
+          flex-shrink: 0;
         }
 
         /* Button */
@@ -243,30 +274,31 @@ export default function PricingSection() {
           cursor: pointer;
           transition: all 0.3s ease;
           text-align: center;
-          border: 1px solid #adb5bd;
-          background: transparent;
+          border: 1px solid #e0e0e0;
+          background: #fafafa;
           color: #333;
         }
 
         .action-btn.primary {
-          background: linear-gradient(135deg, #66a109 0%, #5a8f08 100%);
+          background: #66a109;
           border: none;
-          color: #000;
-          box-shadow: 0 10px 25px rgba(102, 161, 9, 0.2);
+          color: #ffffff;
+          box-shadow: 0 8px 20px rgba(102, 161, 9, 0.25);
         }
 
         .action-btn:hover {
           transform: translateY(-3px);
-          border-color: #66a109 !important;
-          background: #66a109;
+          background: #5a8f08;
           color: #fff;
+          border-color: #5a8f08;
+          box-shadow: 0 12px 25px rgba(102, 161, 9, 0.3);
         }
 
         .pricing-note {
           text-align: center;
-          margin-top: 50px;
-          font-size: 13px;
-          color: #868e96;
+          margin-top: 60px;
+          font-size: 14px;
+          color: #888;
         }
 
         @media (max-width: 1024px) {
@@ -276,7 +308,8 @@ export default function PricingSection() {
             margin: 0 auto;
             gap: 40px;
           }
-          .price-card.featured { transform: scale(1); }
+          .price-card.featured { transform: scale(1); padding: 45px 35px; }
+          .price-card.featured:hover { transform: translateY(-5px); }
         }
       `}</style>
 
@@ -292,7 +325,10 @@ export default function PricingSection() {
             <h2>
               اختر <span>باقتك</span> المثالية
             </h2>
-            <p>ثلاث فئات سعرية مصممة لتناسب جميع الاحتياجات والميزانيات</p>
+            <p>
+              ثلاث فئات سعرية مصممة بعناية لتناسب جميع الاحتياجات والميزانيات،
+              مع ضمان أعلى معايير الجودة.
+            </p>
           </motion.div>
 
           <div className="pricing-grid">
@@ -305,7 +341,7 @@ export default function PricingSection() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
+                  transition={{ delay: idx * 0.15 }}
                 >
                   {item.badge && <div className="card-badge">{item.badge}</div>}
 
@@ -315,12 +351,14 @@ export default function PricingSection() {
                       <span className="tier">{item.tier}</span>
                     </div>
                     <div className="pkg-icon">
-                      <IconComp size={24} />
+                      <IconComp size={24} strokeWidth={2.5} />
                     </div>
                   </div>
 
                   <div className="price-box">
-                    <span className="val">{item.price}</span>
+                    <span className="val" dir="ltr">
+                      {item.price}
+                    </span>
                     <span className="currency">درهم</span>
                   </div>
 
@@ -329,7 +367,9 @@ export default function PricingSection() {
                   <ul className="features-list">
                     {item.features.map((feat, fIdx) => (
                       <li key={fIdx} className="feature-row">
-                        <Check size={18} strokeWidth={3} />
+                        <span className="check-circle">
+                          <Check size={12} strokeWidth={4} />
+                        </span>
                         {feat}
                       </li>
                     ))}
@@ -338,7 +378,7 @@ export default function PricingSection() {
                   <button
                     className={`action-btn ${item.highlight ? "primary" : ""}`}
                   >
-                    استعرض التصاميم
+                    اختر الباقة
                   </button>
                 </motion.div>
               );
@@ -346,8 +386,8 @@ export default function PricingSection() {
           </div>
 
           <div className="pricing-note">
-            جميع الأسعار بالدرهم الإماراتي. يمكن تخصيص أي تصميم حسب طلبك بتكلفة
-            إضافية.
+            جميع الأسعار بالدرهم الإماراتي. يمكن تخصيص أي تصميم حسب متطلباتك
+            بتكلفة إضافية.
           </div>
         </div>
       </section>

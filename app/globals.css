@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  /* Changed from green to gold */
-  --color-gold: #d4af37;
-  --color-olive: #b5952f;
+  /* Brand color - green */
+  --color-gold: #66a109;
+  --color-olive: #558a07;
   --color-background: #0a0a0a;
   --color-foreground: #f8f6f0;
   --font-arabic: "Tajawal", sans-serif;
@@ -163,7 +163,7 @@
 
 .cta-link:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25); /* Updated to gold */
+  box-shadow: 0 8px 20px rgba(102, 161, 9, 0.25); /* Updated to green */
 }
 
 /* Floating Contact Buttons */
@@ -172,8 +172,8 @@
   padding: 0.75rem 1.25rem;
   bottom: 40px;
   left: 40px;
-  background-color: var(--color-gold); /* Updated to gold */
-  color: #0a0a0a; /* Changed to dark for contrast */
+  background-color: var(--color-gold); /* Updated to green */
+  color: #ffffff; /* Changed to white for contrast */
   border-radius: 50px;
   text-align: center;
   font-size: 1rem;
@@ -191,7 +191,7 @@
 
 .float-contact:hover {
   transform: translateY(-5px) scale(1.05);
-  background-color: var(--color-olive); /* Updated to darker gold */
+  background-color: var(--color-olive); /* Updated to darker green */
 }
 
 .increment {
@@ -223,8 +223,8 @@
   height: 60px;
   bottom: 40px;
   right: 40px;
-  background-color: var(--color-gold); /* Updated to gold */
-  color: #0a0a0a;
+  background-color: var(--color-gold); /* Updated to green */
+  color: #ffffff;
   border-radius: 50px;
   text-align: center;
   font-size: 30px;
@@ -241,8 +241,8 @@
   height: 60px;
   bottom: 115px;
   right: 40px;
-  background-color: var(--color-gold); /* Updated to gold */
-  color: #0a0a0a;
+  background-color: var(--color-gold); /* Updated to green */
+  color: #ffffff;
   border-radius: 50px;
   text-align: center;
   font-size: 30px;
@@ -383,20 +383,20 @@ video {
 }
 
 @utility gold-gradient {
-  /* Updated gradient to use gold tones */
-  background: linear-gradient(135deg, #e0bc68, #d4af37);
+  /* Updated gradient to use green tones */
+  background: linear-gradient(135deg, #7ab50f, #66a109);
 }
 
 @utility glass-card {
   background: rgba(10, 10, 10, 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(212, 175, 55, 0.15); /* Updated to gold */
+  border: 1px solid rgba(102, 161, 9, 0.15); /* Updated to green */
 }
 
 @utility glass-card-hover {
   &:hover {
     background: rgba(10, 10, 10, 0.7);
-    border-color: rgba(212, 175, 55, 0.35); /* Updated to gold */
+    border-color: rgba(102, 161, 9, 0.35); /* Updated to green */
   }
 }
 
@@ -407,11 +407,11 @@ video {
   background: #0a0a0a;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.4); /* Updated to gold */
+  background: rgba(102, 161, 9, 0.4); /* Updated to green */
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.6); /* Updated to gold */
+  background: rgba(102, 161, 9, 0.6); /* Updated to green */
 }
 /* --- إعدادات أزرار القسم الرئيسي (Hero Section) المضمونة --- */
 .hero-buttons-wrapper {
@@ -428,8 +428,8 @@ video {
   align-items: center;
   justify-content: center;
   padding: 1rem 3rem; /* مساحة داخلية كبيرة لزر فخم */
-  background: linear-gradient(135deg, #d4af37, #b5952f);
-  color: #0a0a0a !important; /* لون النص داكن عشان يبرز مع الذهبي */
+  background: linear-gradient(135deg, #66a109, #558a07);
+  color: #ffffff !important; /* لون النص أبيض عشان يبرز مع الأخضر */
   font-weight: 700;
   font-size: 1.1rem;
   border-radius: 8px;
@@ -440,7 +440,7 @@ video {
 
 .hero-btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 20px rgba(102, 161, 9, 0.3);
 }
 
 .hero-btn-secondary {
@@ -450,7 +450,7 @@ video {
   padding: 1rem 3rem;
   background: transparent;
   color: #f8f6f0 !important;
-  border: 1px solid rgba(212, 175, 55, 0.6); /* حدود ذهبية */
+  border: 1px solid rgba(102, 161, 9, 0.6); /* حدود خضراء */
   font-weight: 700;
   font-size: 1.1rem;
   border-radius: 8px;
@@ -460,8 +460,8 @@ video {
 }
 
 .hero-btn-secondary:hover {
-  background: rgba(212, 175, 55, 0.1);
-  border-color: #d4af37;
+  background: rgba(102, 161, 9, 0.1);
+  border-color: #66a109;
   transform: translateY(-3px);
 }
 

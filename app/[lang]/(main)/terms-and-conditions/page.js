@@ -3,7 +3,9 @@ import { generatePageMetadata } from "@/lib/metadata";
 import ComingSoon from "@/components/ComingSoon";
 
 // Generate dynamic metadata for the page
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.comingSoonPage;
 
@@ -16,7 +18,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // Main server component for the page
-export default async function CareersPage({ params: { lang } }) {
+export default async function CareersPage(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
 
   return <ComingSoon lang={lang} content={dictionary.comingSoonPage} />;

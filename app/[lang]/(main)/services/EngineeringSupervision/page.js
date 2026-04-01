@@ -6,7 +6,9 @@ import EngineeringSupervisionPage from "@/pages/EngineeringSupervisionPage";
 import FaqSchema from "@/components/FaqSchema/FaqSchema"; // <-- 1. IMPORT
 import { generatePageMetadata } from "@/lib/metadata";
 
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageContent = dictionary.engineeringSupervisionPage;
 
@@ -44,7 +46,9 @@ export async function generateMetadata({ params: { lang } }) {
   });
 }
 
-export default async function Page({ params: { lang } }) {
+export default async function Page(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageContent = dictionary.engineeringSupervisionPage;
   const ctaContent = dictionary.cta;

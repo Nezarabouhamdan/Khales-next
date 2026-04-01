@@ -6,7 +6,9 @@ import { generatePageMetadata } from "@/lib/metadata";
 import EngineeringDesignPage from "@/pages/EngineeringDesignPage";
 import FaqSchema from "@/components/FaqSchema/FaqSchema";
 
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageContent = dictionary.engineeringDesignPage;
 
@@ -44,7 +46,9 @@ export async function generateMetadata({ params: { lang } }) {
   });
 }
 
-export default async function Page({ params: { lang } }) {
+export default async function Page(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageContent = dictionary.engineeringDesignPage;
   const ctaContent = dictionary.cta;

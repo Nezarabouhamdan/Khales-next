@@ -57,16 +57,16 @@ export default function HeroSection() {
           text-align: center;
         }
 
-        /* Badge */
+        /* Badge - جعلناه أنيق وشفاف أكثر */
         .hero-badge {
           display: inline-flex;
           align-items: center;
           gap: 8px;
           padding: 8px 20px;
           margin-bottom: 28px;
-          border: 1px solid rgba(102, 161, 9, 0.35);
+          border: 1px solid rgba(255, 255, 255, 0.2);
           border-radius: 999px;
-          background: rgba(0, 0, 0, 0.45);
+          background: rgba(255, 255, 255, 0.05);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
         }
@@ -75,11 +75,11 @@ export default function HeroSection() {
           font-family: 'Tajawal', sans-serif;
           font-size: 14px;
           font-weight: 500;
-          color: #66a109;
+          color: #ffffff;
           letter-spacing: 0.03em;
         }
 
-        /* Heading */
+        /* Heading - توحيد اللون للأبيض يعطي فخامة */
         .hero-title {
           font-family: 'Tajawal', sans-serif;
           font-size: clamp(52px, 8vw, 88px);
@@ -94,8 +94,9 @@ export default function HeroSection() {
           display: block;
         }
 
+        /* غيرنا الكلاس بس احتفظنا فيه لو حبيت ترجع تعدل مستقبلاً */
         .hero-title .line-gold {
-          color: #66a109;
+          color: #ffffff; 
           display: block;
         }
 
@@ -106,7 +107,7 @@ export default function HeroSection() {
           font-family: 'Tajawal', sans-serif;
           font-size: clamp(15px, 2vw, 18px);
           line-height: 1.85;
-          color: rgba(248, 246, 240, 0.7);
+          color: rgba(248, 246, 240, 0.8);
           font-weight: 400;
           text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
@@ -121,13 +122,14 @@ export default function HeroSection() {
           margin-bottom: 80px;
         }
 
+        /* الزر الرئيسي هو الوحيد اللي بيحتفظ بلون البراند بقوة */
         .btn-primary {
           display: inline-flex;
           align-items: center;
           justify-content: center;
           padding: 16px 44px;
           background: #66a109;
-          color: #0a0a0a;
+          color: #ffffff; /* خليت النص أبيض بدل أسود ليكون متناسق أكثر، جربها */
           font-family: 'Tajawal', sans-serif;
           font-weight: 700;
           font-size: 17px;
@@ -144,17 +146,18 @@ export default function HeroSection() {
           background: #5a8f08;
         }
 
+        /* الزر الثانوي صار زجاجي أبيض أنيق */
         .btn-secondary {
           display: inline-flex;
           align-items: center;
           justify-content: center;
           padding: 16px 44px;
-          background: rgba(0,0,0,0.2);
-          color: #66a109;
+          background: rgba(255, 255, 255, 0.05);
+          color: #ffffff;
           font-family: 'Tajawal', sans-serif;
           font-weight: 700;
           font-size: 17px;
-          border: 1px solid rgba(102, 161, 9, 0.45);
+          border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 4px;
           text-decoration: none;
           min-width: 200px;
@@ -163,12 +166,12 @@ export default function HeroSection() {
         }
 
         .btn-secondary:hover {
-          background: rgba(102, 161, 9, 0.1);
-          border-color: #66a109;
+          background: rgba(255, 255, 255, 0.15);
+          border-color: #ffffff;
           transform: translateY(-3px);
         }
 
-        /* Stats */
+        /* Stats - الأرقام بالأبيض أفضل بكثير */
         .hero-stats {
           display: flex;
           align-items: center;
@@ -183,7 +186,7 @@ export default function HeroSection() {
         .stat-value {
           font-family: 'DM Serif Display', serif;
           font-size: clamp(32px, 4.5vw, 48px);
-          color: #66a109;
+          color: #ffffff; 
           margin-bottom: 6px;
           display: block;
           line-height: 1;
@@ -192,14 +195,14 @@ export default function HeroSection() {
         .stat-label {
           font-family: 'Tajawal', sans-serif;
           font-size: clamp(13px, 1.5vw, 16px);
-          color: rgba(255, 255, 255, 0.5);
+          color: rgba(255, 255, 255, 0.6);
           display: block;
         }
 
         .stat-divider {
           width: 1px;
           height: 60px;
-          background: rgba(102, 161, 9, 0.2);
+          background: rgba(255, 255, 255, 0.2);
         }
 
         /* Scroll indicator */
@@ -259,26 +262,23 @@ export default function HeroSection() {
       `}</style>
 
       <section className="hero-section-wrapper">
-        {/* Background */}
         <div className="hero-bg">
           <img src={HERO_IMAGE} alt="Luxury Villa Design" />
           <div className="hero-overlay" />
         </div>
 
-        {/* Content */}
         <div className="hero-content">
-          {/* Badge */}
           <motion.div
             className="hero-badge"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
+            {/* خلينا اللمسة الخضراء البسيطة جداً هنا كـ Accent خفيف */}
             <Sparkles size={15} color="#66a109" />
             <span>مجموعة حصرية من التصاميم الجاهزة</span>
           </motion.div>
 
-          {/* Title */}
           <motion.h1
             className="hero-title"
             initial={{ opacity: 0, y: 40 }}
@@ -289,7 +289,6 @@ export default function HeroSection() {
             <span className="line-gold">جاهزة للتنفيذ</span>
           </motion.h1>
 
-          {/* Description */}
           <motion.p
             className="hero-description"
             initial={{ opacity: 0, y: 30 }}
@@ -300,31 +299,26 @@ export default function HeroSection() {
             فائقة. وفّر الوقت والتكلفة مع تصاميم احترافية جاهزة للتنفيذ.
           </motion.p>
 
-          {/* Buttons */}
           <motion.div
             className="hero-buttons"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
-            {/* Outline Button rendered FIRST to appear on the RIGHT in RTL */}
             <a href="#packages" className="btn-secondary">
               تعرف على الباقات
             </a>
-            {/* Filled Gold Button rendered SECOND to appear on the LEFT in RTL */}
             <a href="#designs" className="btn-primary">
               استعرض التصاميم
             </a>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             className="hero-stats"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
           >
-            {/* Reordered to [3, 500+, 100+] to render correctly Right-to-Left */}
             {[
               { value: "3", label: "فئات سعرية" },
               { value: "500+", label: "عميل سعيد" },
@@ -333,7 +327,6 @@ export default function HeroSection() {
               <React.Fragment key={stat.label}>
                 {i > 0 && <div className="stat-divider" />}
                 <div className="stat-item">
-                  {/* dir="ltr" ensures the plus sign stays correctly positioned */}
                   <span className="stat-value" dir="ltr">
                     {stat.value}
                   </span>
@@ -344,7 +337,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
         <motion.div
           className="hero-scroll"
           initial={{ opacity: 0 }}
@@ -352,7 +344,12 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 1.5 }}
         >
           <span>اكتشف المزيد</span>
-          <ArrowDown size={15} color="#66a109" className="bounce-icon" />
+          {/* غيرنا لون السهم للأبيض المائل للشفافية */}
+          <ArrowDown
+            size={15}
+            color="rgba(255,255,255,0.7)"
+            className="bounce-icon"
+          />
         </motion.div>
       </section>
     </>

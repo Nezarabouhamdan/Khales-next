@@ -13,7 +13,7 @@ import {
   ShoppingCart,
 } from "lucide-react";
 
-// البيانات مطابقة تماماً للصورة اللي بعتها
+// تم تحديث الروابط بصور فخمة وشغالة 100%
 const GALLERY_DESIGNS = [
   {
     id: 1,
@@ -21,7 +21,7 @@ const GALLERY_DESIGNS = [
     desc: "تصميم داخلي فاخر للغاية يمزج بين جماليات الخشب الداكن والإضاءة الذكية المدمجة وعناصر التصميم المتطورة.",
     price: "5,000",
     image:
-      "https://images.unsplash.com/photo-1600607687940-472002695733?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600210491369-0708f33190cb?auto=format&fit=crop&w=800&q=80",
     category: "interior",
     area: "450 m²",
     rooms: "5 غرف",
@@ -35,7 +35,7 @@ const GALLERY_DESIGNS = [
     desc: "مساحة استقبال ضخمة تمزج بين أنسجة الحجر الحديثة وتخطيط الضيافة التقليدي. سقف مزدوج الارتفاع مع أنماط إسلامية.",
     price: "5,000",
     image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
     category: "interior",
     area: "85 m²",
     rooms: null,
@@ -49,7 +49,7 @@ const GALLERY_DESIGNS = [
     desc: "تصميم فيلا ضخمة تمزج بين الأقواس الحجرية الكبيرة والهندسة العضوية الحديثة المتدفقة. 6 غرف نوم مع إطلالات بانورامية.",
     price: "15,000",
     image:
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
     category: "villas",
     area: "1,200 m²",
     rooms: "6 غرف",
@@ -81,11 +81,11 @@ export default function DesignsGallery() {
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=DM+Serif+Display&display=swap');
 
         .gallery-section {
-          background-color: #f8f9fa;
+          background-color: #fcfcfc; /* لون أبيض مريح جداً */
           padding: 100px 0;
           direction: rtl;
           font-family: 'Tajawal', sans-serif;
-          color: #333;
+          color: #1a1a1a;
         }
 
         .gallery-container {
@@ -101,8 +101,9 @@ export default function DesignsGallery() {
         }
 
         .gallery-header .top-label {
-          font-size: 12px;
-          color: rgba(102, 161, 9, 0.8);
+          font-size: 13px;
+          font-weight: 700;
+          color: #66a109;
           letter-spacing: 0.1em;
           margin-bottom: 12px;
           display: block;
@@ -112,12 +113,12 @@ export default function DesignsGallery() {
           font-size: clamp(32px, 5vw, 44px);
           font-weight: 800;
           margin-bottom: 16px;
-          color: #1a1a1a;
+          color: #0a0a0a;
         }
 
         .gallery-header p {
-          color: #555;
-          font-size: 15px;
+          color: #666;
+          font-size: 16px;
           max-width: 600px;
           margin: 0 auto;
           line-height: 1.6;
@@ -128,34 +129,37 @@ export default function DesignsGallery() {
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
-          gap: 10px;
+          gap: 12px;
           margin-bottom: 30px;
         }
 
         .filter-tab {
-          padding: 10px 22px;
+          padding: 12px 24px;
           background: #ffffff;
-          border: 1px solid #dee2e6;
-          border-radius: 10px;
+          border: 1px solid #eaeaea;
+          border-radius: 100px; /* شكل كبسولة للفلاتر يخليها أنعم */
           cursor: pointer;
-          font-size: 14px;
+          font-size: 15px;
           font-weight: 600;
           color: #555;
           display: flex;
           align-items: center;
           gap: 8px;
           transition: all 0.3s ease;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
         .filter-tab:hover {
-          border-color: rgba(102, 161, 9, 0.3);
-          background: rgba(102, 161, 9, 0.05);
+          border-color: #66a109;
+          color: #66a109;
+          box-shadow: 0 4px 15px rgba(102, 161, 9, 0.1);
         }
 
         .filter-tab.active {
           background: #66a109;
-          color: #fff;
+          color: #ffffff;
           border-color: #66a109;
+          box-shadow: 0 6px 20px rgba(102, 161, 9, 0.25);
         }
 
         /* Stats Bar below filters */
@@ -164,9 +168,10 @@ export default function DesignsGallery() {
           justify-content: center;
           align-items: center;
           gap: 20px;
-          margin-bottom: 40px;
-          font-size: 13px;
+          margin-bottom: 50px;
+          font-size: 14px;
           color: #777;
+          font-weight: 500;
         }
 
         .filter-trigger {
@@ -176,33 +181,38 @@ export default function DesignsGallery() {
           cursor: pointer;
           transition: color 0.3s;
         }
-        .filter-trigger:hover { color: #66a109; }
+        
+        .filter-trigger:hover { 
+          color: #66a109; 
+        }
 
         /* Grid */
         .gallery-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 25px;
+          gap: 30px;
         }
 
         /* Card Styling */
         .design-card {
           background: #ffffff;
-          border-radius: 16px;
+          border-radius: 20px;
           overflow: hidden;
-          border: 1px solid #e9ecef;
+          border: none;
+          box-shadow: 0 10px 35px rgba(0,0,0,0.05); /* ظل ناعم وفخم */
           display: flex;
           flex-direction: column;
-          transition: border-color 0.3s ease;
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .design-card:hover {
-          border-color: rgba(102, 161, 9, 0.3);
+          transform: translateY(-8px);
+          box-shadow: 0 20px 45px rgba(102, 161, 9, 0.12);
         }
 
         .image-container {
           position: relative;
-          height: 260px;
+          height: 280px; /* طولنا الصورة شوي عشان تعطي هيبة للتصميم */
           overflow: hidden;
         }
 
@@ -210,117 +220,126 @@ export default function DesignsGallery() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.6s ease;
+          transition: transform 0.7s ease;
         }
 
         .design-card:hover .image-container img {
-          transform: scale(1.08);
+          transform: scale(1.06);
         }
 
-        /* Price Overlay */
+        /* Price Overlay - تصميم كبسولة فخم */
         .price-overlay {
           position: absolute;
-          bottom: 15px;
-          right: 15px;
-          background: rgba(0,0,0,0.85);
-          padding: 6px 14px;
-          border-radius: 6px;
-          border-left: 3px solid #66a109;
+          bottom: 16px;
+          left: 16px; /* نقلتها لليسار عشان التوازن البصري (RTL) */
+          background: #111111;
+          padding: 8px 18px;
+          border-radius: 100px;
           z-index: 5;
           display: flex;
           align-items: baseline;
-          gap: 4px;
+          gap: 6px;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .price-overlay .amount {
           font-family: 'DM Serif Display', serif;
-          color: #66a109;
-          font-size: 20px;
+          color: #ffffff; /* الرقم بالأبيض */
+          font-size: 22px;
+          line-height: 1;
         }
 
         .price-overlay .unit {
-          font-size: 10px;
-          color: rgba(255,255,255,0.5);
+          font-size: 12px;
+          color: #66a109; /* العملة بالأخضر */
+          font-weight: 700;
         }
 
         /* Badge Overlay */
         .badge-overlay {
           position: absolute;
-          top: 15px;
-          left: 15px;
-          font-size: 10px;
-          background: rgba(102, 161, 9, 0.15);
+          top: 16px;
+          right: 16px;
+          font-size: 12px;
+          font-weight: 700;
+          background: #ffffff;
           color: #66a109;
-          padding: 4px 10px;
-          border-radius: 4px;
-          border: 1px solid rgba(102, 161, 9, 0.3);
-          backdrop-filter: blur(4px);
+          padding: 6px 14px;
+          border-radius: 100px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          z-index: 5;
         }
 
         .card-body {
-          padding: 24px;
+          padding: 28px 24px;
           display: flex;
           flex-direction: column;
           flex-grow: 1;
         }
 
         .card-title {
-          font-size: 19px;
-          font-weight: 700;
-          color: #1a1a1a;
+          font-size: 20px;
+          font-weight: 800;
+          color: #0a0a0a;
           margin-bottom: 12px;
           line-height: 1.4;
         }
 
         .card-desc {
-          font-size: 13px;
-          color: #555;
+          font-size: 14px;
+          color: #666;
           line-height: 1.7;
-          margin-bottom: 20px;
+          margin-bottom: 24px;
         }
 
         .card-specs {
           display: flex;
-          gap: 15px;
-          margin-bottom: 20px;
-          padding-top: 15px;
-          border-top: 1px solid #e9ecef;
+          flex-wrap: wrap;
+          gap: 16px;
+          margin-bottom: 24px;
+          padding-top: 16px;
+          border-top: 1px solid #f0f0f0;
         }
 
         .spec-item {
           display: flex;
           align-items: center;
           gap: 6px;
-          font-size: 12px;
-          color: #777;
+          font-size: 13px;
+          font-weight: 500;
+          color: #555;
         }
 
-        .spec-item svg { color: #66a109; opacity: 0.6; }
+        .spec-item svg { 
+          color: #66a109; 
+        }
 
         .tags-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 6px;
-          margin-bottom: 25px;
+          gap: 8px;
+          margin-bottom: 28px;
         }
 
         .tag-pill {
-          font-size: 10px;
-          background: #f1f3f5;
-          padding: 3px 10px;
-          border-radius: 4px;
-          color: #868e96;
+          font-size: 11px;
+          font-weight: 600;
+          background: #f4f6f8;
+          padding: 4px 12px;
+          border-radius: 6px;
+          color: #777;
         }
 
+        /* Premium Order Button */
         .order-button {
           width: 100%;
-          padding: 12px;
-          background: transparent;
-          border: 1px solid rgba(102, 161, 9, 0.4);
-          border-radius: 8px;
-          color: #66a109;
+          padding: 14px;
+          background: rgba(102, 161, 9, 0.08); /* خلفية خضراء ناعمة جداً */
+          border: none;
+          border-radius: 10px;
+          color: #5a8f08;
           font-weight: 700;
-          font-size: 14px;
+          font-size: 15px;
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -332,7 +351,9 @@ export default function DesignsGallery() {
 
         .order-button:hover {
           background: #66a109;
-          color: #000;
+          color: #ffffff;
+          box-shadow: 0 8px 20px rgba(102, 161, 9, 0.2);
+          transform: translateY(-2px);
         }
 
         @media (max-width: 1024px) {
@@ -342,6 +363,8 @@ export default function DesignsGallery() {
         @media (max-width: 640px) {
           .gallery-grid { grid-template-columns: 1fr; }
           .gallery-container { padding: 0 16px; }
+          .filters-wrapper { gap: 8px; }
+          .filter-tab { padding: 10px 18px; font-size: 13px; }
         }
       `}</style>
 
@@ -360,7 +383,7 @@ export default function DesignsGallery() {
             </h2>
             <p>
               تصفح مجموعتنا المتنوعة من التصاميم المعمارية والداخلية الجاهزة
-              للتنفيذ.
+              للتنفيذ بأعلى معايير الجودة والفخامة.
             </p>
           </motion.div>
 
@@ -372,7 +395,7 @@ export default function DesignsGallery() {
                 className={`filter-tab ${activeFilter === cat.id ? "active" : ""}`}
                 onClick={() => setActiveFilter(cat.id)}
               >
-                <cat.icon size={15} />
+                <cat.icon size={16} />
                 {cat.label}
               </button>
             ))}
@@ -380,9 +403,9 @@ export default function DesignsGallery() {
 
           <div className="stats-bar">
             <div className="filter-trigger">
-              <Filter size={14} /> فلاتر متقدمة
+              <Filter size={16} /> فلاتر متقدمة
             </div>
-            <span>|</span>
+            <span style={{ color: "#ccc" }}>|</span>
             <div>عرض {filteredDesigns.length} تصميم</div>
           </div>
 
@@ -394,8 +417,8 @@ export default function DesignsGallery() {
                   key={design.id}
                   className="design-card"
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
                 >
@@ -405,7 +428,9 @@ export default function DesignsGallery() {
                       <div className="badge-overlay">{design.badge}</div>
                     )}
                     <div className="price-overlay">
-                      <span className="amount">{design.price}</span>
+                      <span className="amount" dir="ltr">
+                        {design.price}
+                      </span>
                       <span className="unit">درهم</span>
                     </div>
                   </div>
@@ -416,16 +441,16 @@ export default function DesignsGallery() {
 
                     <div className="card-specs">
                       <div className="spec-item">
-                        <Ruler size={14} /> {design.area}
+                        <Ruler size={16} /> <span dir="ltr">{design.area}</span>
                       </div>
                       {design.rooms && (
                         <div className="spec-item">
-                          <Bed size={14} /> {design.rooms}
+                          <Bed size={16} /> {design.rooms}
                         </div>
                       )}
                       {design.floors && (
                         <div className="spec-item">
-                          <Layers size={14} /> {design.floors}
+                          <Layers size={16} /> {design.floors}
                         </div>
                       )}
                     </div>
@@ -439,7 +464,7 @@ export default function DesignsGallery() {
                     </div>
 
                     <button className="order-button">
-                      <ShoppingCart size={16} /> اطلب الآن
+                      <ShoppingCart size={18} /> اطلب التصميم الآن
                     </button>
                   </div>
                 </motion.div>

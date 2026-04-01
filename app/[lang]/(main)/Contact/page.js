@@ -21,7 +21,9 @@ const getContactPageSchema = (lang) => {
   };
 };
 
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageContent = dictionary.contactPage;
   const title =
@@ -47,7 +49,9 @@ export async function generateMetadata({ params: { lang } }) {
   });
 }
 
-export default async function Page({ params: { lang } }) {
+export default async function Page(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageContent = dictionary.contactPage;
   const ctaContent = dictionary.cta;

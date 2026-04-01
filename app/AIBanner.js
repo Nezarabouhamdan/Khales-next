@@ -16,7 +16,7 @@ export default function AIBanner() {
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
 
         .ai-banner-section {
-          background-color: #f8f9fa;
+          background-color: #fafafa;
           padding: 80px 0;
           direction: rtl;
           font-family: 'Tajawal', sans-serif;
@@ -28,49 +28,67 @@ export default function AIBanner() {
           padding: 0 20px;
         }
 
+        /* الكرت الرئيسي */
         .ai-card {
           position: relative;
           background: #ffffff;
-          border: 1px solid #e9ecef;
-          border-radius: 24px;
+          border: 1px solid rgba(102, 161, 9, 0.1);
+          border-radius: 32px; /* زوايا أنعم */
           padding: 60px;
           overflow: hidden;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 40px;
+          box-shadow: 0 20px 50px rgba(0,0,0,0.03); /* ظل عميق وفخم */
         }
 
-        /* الجانب الأيمن: المحتوى الرئيسي (العنوان والزر) */
+        /* تأثير ضوئي ذكي وخفيف جداً في الزاوية */
+        .ai-card::before {
+          content: '';
+          position: absolute;
+          top: -100px;
+          right: -100px;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, rgba(102,161,9,0.05) 0%, rgba(255,255,255,0) 70%);
+          border-radius: 50%;
+          pointer-events: none;
+        }
+
+        /* الجانب الأيمن: المحتوى الرئيسي */
         .ai-main-content {
           flex: 1;
           text-align: right;
           z-index: 2;
         }
 
+        /* تصميم الـ Badge */
         .ai-badge {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: rgba(102, 161, 9, 0.15);
-          border: 1px solid rgba(102, 161, 9, 0.3);
-          padding: 6px 16px;
-          border-radius: 999px;
-          margin-bottom: 25px;
+          background: #ffffff;
+          border: 1px solid rgba(102, 161, 9, 0.2);
+          padding: 8px 18px;
+          border-radius: 100px;
+          margin-bottom: 24px;
+          box-shadow: 0 4px 15px rgba(102, 161, 9, 0.05);
         }
 
         .ai-badge span {
           color: #66a109;
           font-size: 13px;
           font-weight: 700;
+          letter-spacing: 0.05em;
         }
 
         .ai-main-content h2 {
           font-size: clamp(32px, 4vw, 42px);
           font-weight: 800;
-          color: #1a1a1a;
+          color: #0a0a0a;
           margin-bottom: 20px;
-          line-height: 1.2;
+          line-height: 1.3;
         }
 
         .ai-main-content h2 span {
@@ -78,87 +96,111 @@ export default function AIBanner() {
         }
 
         .ai-main-content p {
-          color: #555;
-          font-size: 17px;
+          color: #666;
+          font-size: 16px;
           line-height: 1.8;
-          max-width: 600px;
+          max-width: 550px;
           margin-bottom: 35px;
         }
 
+        /* زر Call to Action */
         .ai-cta-button {
           display: inline-flex;
           align-items: center;
-          gap: 12px;
-          background: linear-gradient(135deg, #66a109 0%, #5a8f08 100%);
-          color: #000;
-          padding: 14px 35px;
-          border-radius: 10px;
-          font-weight: 800;
+          gap: 10px;
+          background: #66a109; /* أخضر سادة أنظف من التدرج */
+          color: #ffffff; /* النص الأبيض يرفع مستوى الفخامة */
+          padding: 16px 36px;
+          border-radius: 12px;
+          font-weight: 700;
           font-size: 16px;
           text-decoration: none;
           transition: all 0.3s ease;
-          box-shadow: 0 10px 20px rgba(102, 161, 9, 0.2);
+          box-shadow: 0 8px 25px rgba(102, 161, 9, 0.25);
         }
 
-        /* الجانب الأيسر: القائمة والمزايا */
+        .ai-cta-button:hover {
+          background: #5a8f08;
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgba(102, 161, 9, 0.35);
+        }
+
+        /* الجانب الأيسر: القائمة والمزايا شكل كبسولات */
         .ai-features-list {
           display: flex;
           flex-direction: column;
-          gap: 25px;
+          gap: 20px;
           z-index: 2;
-          align-items: flex-end; /* لضمان محاذاة العناصر جهة اليسار في RTL */
         }
 
         .ai-feature-item {
           display: flex;
           align-items: center;
-          gap: 15px;
+          gap: 16px;
+          background: #ffffff;
+          border: 1px solid #f0f0f0;
+          padding: 12px 24px;
+          border-radius: 100px; /* شكل كبسولة فخم */
+          box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+          transition: all 0.3s ease;
+          cursor: default;
         }
 
-        .ai-feature-label {
-          color: #333;
-          font-size: 16px;
-          font-weight: 500;
+        .ai-feature-item:hover {
+          transform: translateX(-8px); /* حركة خفيفة لليسار عند التمرير */
+          border-color: rgba(102, 161, 9, 0.3);
+          box-shadow: 0 8px 25px rgba(102, 161, 9, 0.08);
         }
 
         .ai-feature-icon-box {
-          width: 50px;
-          height: 50px;
-          background: #f1f3f5;
-          border: 1px solid rgba(102, 161, 9, 0.2);
-          border-radius: 12px;
+          width: 44px;
+          height: 44px;
+          background: rgba(102, 161, 9, 0.06);
+          border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           color: #66a109;
         }
 
-        .ai-card-glow {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at 90% 10%, rgba(102, 161, 9, 0.08) 0%, transparent 50%),
-                      radial-gradient(circle at 10% 90%, rgba(102, 161, 9, 0.08) 0%, transparent 50%);
-          pointer-events: none;
+        .ai-feature-label {
+          color: #1a1a1a;
+          font-size: 15px;
+          font-weight: 700;
         }
 
+        /* نقاط ديكور في الزوايا */
         .corner-dot {
           position: absolute;
-          width: 4px;
-          height: 4px;
-          background: rgba(102, 161, 9, 0.3);
+          width: 6px;
+          height: 6px;
+          background: rgba(102, 161, 9, 0.2);
           border-radius: 50%;
         }
-        .dot-tr { top: 15px; right: 15px; }
-        .dot-bl { bottom: 15px; left: 15px; }
+        .dot-tr { top: 25px; right: 25px; }
+        .dot-bl { bottom: 25px; left: 25px; }
 
         @media (max-width: 1024px) {
           .ai-card {
             flex-direction: column;
-            padding: 40px;
+            padding: 40px 24px;
+            text-align: center;
           }
-          .ai-main-content { text-align: center; }
-          .ai-main-content p { margin: 0 auto 30px; }
-          .ai-features-list { align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+          .ai-main-content {
+            text-align: center;
+          }
+          .ai-main-content p {
+            margin: 0 auto 35px;
+          }
+          .ai-features-list {
+            width: 100%;
+          }
+          .ai-feature-item {
+            justify-content: flex-start;
+          }
+          .ai-feature-item:hover {
+            transform: translateY(-5px); /* تغيير الحركة في الجوال لتكون للأعلى */
+          }
         }
       `}</style>
 
@@ -171,40 +213,49 @@ export default function AIBanner() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="ai-card-glow" />
             <div className="corner-dot dot-tr" />
             <div className="corner-dot dot-bl" />
 
             {/* الجانب الأيمن: النص الأساسي */}
             <div className="ai-main-content">
               <div className="ai-badge">
-                <Sparkles size={14} color="#66a109" />
-                <span>تقنية جديدة</span>
+                <Sparkles size={16} color="#66a109" />
+                <span>مدعوم بالذكاء الاصطناعي</span>
               </div>
+
               <h2>
-                تخصيص بالذكاء{" "}
-                <span style={{ color: "#66a109" }}>الاصطناعي</span>
+                تخصيص التصاميم{" "}
+                <span style={{ color: "#66a109" }}>بلمسة سحرية</span>
               </h2>
+
               <p>
                 نستخدم أحدث تقنيات الذكاء الاصطناعي لتخصيص التصاميم الجاهزة حسب
                 ذوقك. اختر تصميماً أساسياً وسنقوم بتعديله ليناسب احتياجاتك بدقة
                 وسرعة فائقة.
               </p>
+
               <a href="#" className="ai-cta-button">
                 <Wand2 size={20} />
-                اكتشف المزيد
+                ابدأ التخصيص الآن
               </a>
             </div>
 
             {/* الجانب الأيسر: أيقونات المزايا */}
             <div className="ai-features-list">
               {AI_FEATURES.map((item, idx) => (
-                <div key={idx} className="ai-feature-item">
-                  <span className="ai-feature-label">{item.label}</span>
+                <motion.div
+                  key={idx}
+                  className="ai-feature-item"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + idx * 0.1 }}
+                >
                   <div className="ai-feature-icon-box">
-                    <item.icon size={22} strokeWidth={1.5} />
+                    <item.icon size={20} strokeWidth={2} />
                   </div>
-                </div>
+                  <span className="ai-feature-label">{item.label}</span>
+                </motion.div>
               ))}
             </div>
           </motion.div>

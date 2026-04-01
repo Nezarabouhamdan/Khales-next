@@ -11,16 +11,16 @@ export default function CTASection() {
 
         .cta-wrapper {
           position: relative;
-          background-color: #f8f9fa;
-          padding: 100px 0;
+          background-color: #ffffff; /* خلفية بيضاء لكسر اللون مع القسم السابق */
+          padding: 120px 0;
           direction: rtl;
           font-family: 'Tajawal', sans-serif;
-          color: #333;
+          color: #1a1a1a;
           overflow: hidden;
         }
 
         .cta-container {
-          max-width: 1200px;
+          max-width: 1000px; /* صغرنا العرض شوي عشان يكون الكرت ملموم وأنيق */
           margin: 0 auto;
           padding: 0 20px;
           display: flex;
@@ -31,38 +31,65 @@ export default function CTASection() {
         .cta-card {
           position: relative;
           width: 100%;
-          max-width: 900px;
           background: #ffffff;
-          border: 1px solid #e9ecef;
-          border-radius: 24px;
+          border: none;
+          border-radius: 32px;
           padding: 80px 40px;
           text-align: center;
           overflow: hidden;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04);
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
+        .cta-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 30px 70px rgba(102, 161, 9, 0.08);
+        }
+
+        /* إضاءة ناعمة في الزوايا */
         .cta-card::before {
           content: "";
           position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at center, rgba(102, 161, 9, 0.05) 0%, transparent 70%);
+          top: -150px;
+          right: -150px;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, rgba(102, 161, 9, 0.05) 0%, transparent 70%);
           pointer-events: none;
         }
 
-        /* Typography */
-        .cta-top-label {
-          font-size: 13px;
-          color: #777;
-          letter-spacing: 0.1em;
-          margin-bottom: 20px;
-          display: block;
+        .cta-card::after {
+          content: "";
+          position: absolute;
+          bottom: -150px;
+          left: -150px;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, rgba(102, 161, 9, 0.05) 0%, transparent 70%);
+          pointer-events: none;
+        }
+
+        /* Badge Typography */
+        .cta-badge {
+          display: inline-flex;
+          background: rgba(102, 161, 9, 0.08);
+          color: #66a109;
+          padding: 8px 24px;
+          border-radius: 100px;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+          margin-bottom: 24px;
         }
 
         .cta-title {
-          font-size: clamp(32px, 5vw, 52px);
+          font-size: clamp(36px, 5vw, 52px);
           font-weight: 800;
           line-height: 1.3;
           margin-bottom: 24px;
-          color: #1a1a1a;
+          color: #0a0a0a;
+          position: relative;
+          z-index: 2;
         }
 
         .cta-title .gold-text {
@@ -70,11 +97,13 @@ export default function CTASection() {
         }
 
         .cta-description {
-          font-size: 17px;
-          color: #555;
+          font-size: 18px;
+          color: #666;
           line-height: 1.8;
           max-width: 650px;
           margin: 0 auto 45px;
+          position: relative;
+          z-index: 2;
         }
 
         /* Buttons Container */
@@ -84,26 +113,29 @@ export default function CTASection() {
           justify-content: center;
           gap: 20px;
           margin-bottom: 50px;
+          position: relative;
+          z-index: 2;
         }
 
-        .btn-cta-gold {
+        .btn-cta-primary {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          background: linear-gradient(135deg, #66a109 0%, #5a8f08 100%);
-          color: #000;
+          background: #66a109;
+          color: #ffffff;
           padding: 16px 36px;
-          border-radius: 8px;
+          border-radius: 12px;
           font-weight: 700;
           font-size: 16px;
           text-decoration: none;
           transition: all 0.3s ease;
-          box-shadow: 0 10px 20px rgba(102, 161, 9, 0.15);
+          box-shadow: 0 10px 25px rgba(102, 161, 9, 0.25);
         }
 
-        .btn-cta-gold:hover {
+        .btn-cta-primary:hover {
+          background: #5a8f08;
           transform: translateY(-3px);
-          box-shadow: 0 15px 30px rgba(102, 161, 9, 0.25);
+          box-shadow: 0 15px 30px rgba(102, 161, 9, 0.35);
         }
 
         .btn-cta-outline {
@@ -111,44 +143,64 @@ export default function CTASection() {
           align-items: center;
           gap: 10px;
           background: transparent;
-          color: #66a109;
-          padding: 15px 36px;
-          border-radius: 8px;
+          color: #0a0a0a;
+          padding: 16px 36px;
+          border-radius: 12px;
           font-weight: 700;
           font-size: 16px;
           text-decoration: none;
-          border: 1px solid rgba(102, 161, 9, 0.4);
+          border: 1px solid #e0e0e0;
           transition: all 0.3s ease;
         }
 
         .btn-cta-outline:hover {
-          background: rgba(102, 161, 9, 0.05);
+          background: #fafafa;
           border-color: #66a109;
+          color: #66a109;
           transform: translateY(-3px);
         }
 
         /* Contact Info */
+        .cta-contact-divider {
+          width: 60px;
+          height: 2px;
+          background: rgba(102, 161, 9, 0.2);
+          margin: 0 auto 30px;
+        }
+
         .cta-contact-info {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 40px;
-          opacity: 0.5;
+          position: relative;
+          z-index: 2;
         }
 
         .contact-item {
           display: flex;
           align-items: center;
           gap: 10px;
-          color: #333;
+          color: #555;
           text-decoration: none;
-          font-size: 15px;
-          transition: opacity 0.3s;
+          font-size: 16px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+        }
+
+        .contact-item svg {
+          color: #66a109;
+          opacity: 0.7;
+          transition: all 0.3s ease;
         }
 
         .contact-item:hover {
-          opacity: 1;
           color: #66a109;
+        }
+
+        .contact-item:hover svg {
+          opacity: 1;
+          transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -156,8 +208,9 @@ export default function CTASection() {
             flex-direction: column;
             width: 100%;
           }
-          .btn-cta-gold, .btn-cta-outline {
+          .btn-cta-primary, .btn-cta-outline {
             width: 100%;
+            justify-content: center;
           }
           .cta-contact-info {
             flex-direction: column;
@@ -178,7 +231,7 @@ export default function CTASection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="cta-top-label">ابدأ مشروعك اليوم</span>
+            <span className="cta-badge">ابدأ مشروعك اليوم</span>
 
             <h2 className="cta-title">
               هل أنت مستعد لتحويل <span className="gold-text">رؤيتك</span> إلى
@@ -191,18 +244,20 @@ export default function CTASection() {
             </p>
 
             <div className="cta-buttons-group">
-              {/* Gold Button (Right) */}
-              <a href="https://wa.me/971551299880" className="btn-cta-gold">
+              {/* Primary Button */}
+              <a href="https://wa.me/971551299880" className="btn-cta-primary">
                 <MessageCircle size={20} />
                 تواصل عبر واتساب
               </a>
 
-              {/* Outline Button (Left) */}
+              {/* Outline Button */}
               <a href="#consultation" className="btn-cta-outline">
-                <ArrowLeft size={18} />
                 احجز استشارة مجانية
+                <ArrowLeft size={18} />
               </a>
             </div>
+
+            <div className="cta-contact-divider" />
 
             <div className="cta-contact-info">
               <a href="mailto:info@khales.ae" className="contact-item">

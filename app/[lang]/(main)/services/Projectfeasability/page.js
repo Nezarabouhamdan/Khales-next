@@ -6,7 +6,9 @@ import FeasibilityStudyPage from "@/pages/Projectstudy";
 
 // ======================= THE FIX IS HERE =======================
 // The metadata function now correctly uses the dictionary to get the title
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageContent = dictionary.feasibilityStudyPage;
 
@@ -25,7 +27,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 // ===============================================================
 
-export default async function Page({ params: { lang } }) {
+export default async function Page(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageContent = dictionary.feasibilityStudyPage;
   const ctaContent = dictionary.cta;

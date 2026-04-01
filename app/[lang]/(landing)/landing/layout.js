@@ -13,7 +13,10 @@ export const metadata = {
 };
 
 // This is a self-contained Root Layout for the landing page group.
-export default function LandingLayout({ children, params: { lang } }) {
+export default async function LandingLayout(props) {
+  const { children } = props;
+  const { lang } = await props.params;
+
   return (
     <html
       lang={lang}

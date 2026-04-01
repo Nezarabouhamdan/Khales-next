@@ -10,7 +10,9 @@ const JsonLdSchema = ({ data }) => (
   />
 );
 
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.blogsPage;
   return generatePageMetadata({
@@ -22,7 +24,9 @@ export async function generateMetadata({ params: { lang } }) {
   });
 }
 
-export default async function BlogsListPage({ params: { lang } }) {
+export default async function BlogsListPage(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.blogsPage;
   const ctaData = dictionary.cta;

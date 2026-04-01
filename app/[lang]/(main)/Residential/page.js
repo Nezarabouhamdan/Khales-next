@@ -78,7 +78,9 @@ const getResidentialPageSchema = (lang, pageData) => {
 };
 
 // --- METADATA (Enriched with targeted Keywords) ---
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.residentialPage;
 
@@ -124,7 +126,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // --- PAGE COMPONENT (Updated with Schema injection) ---
-export default async function ResidentialPage({ params: { lang } }) {
+export default async function ResidentialPage(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.residentialPage;
   const ctaContent = dictionary.cta;

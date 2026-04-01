@@ -11,7 +11,9 @@ const JsonLdSchema = ({ data }) => (
 );
 
 // 1. Generate dynamic, translated metadata for this page
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.bookingPage;
 
@@ -25,7 +27,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // 2. This is the main server component for the booking route
-export default async function BookingPage({ params: { lang } }) {
+export default async function BookingPage(props) {
+  const { lang } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.bookingPage;
   const baseUrl = "https://www.khales.ae";

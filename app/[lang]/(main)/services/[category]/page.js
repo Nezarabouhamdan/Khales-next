@@ -81,7 +81,9 @@ export async function generateStaticParams() {
 }
 
 // Generate dynamic metadata for each category page (Your existing code is great)
-export async function generateMetadata({ params: { lang, category } }) {
+export async function generateMetadata(props) {
+  const { lang, category } = await props.params;
+
   const dictionary = await getDictionary(lang);
   const categoryData = dictionary.servicesPage[category];
 
@@ -97,9 +99,8 @@ export async function generateMetadata({ params: { lang, category } }) {
 }
 
 // --- PAGE COMPONENT (Updated with Schema injection) ---
-export default async function ServiceCategoryPage({
-  params: { lang, category },
-}) {
+export default async function ServiceCategoryPage(props) {
+  const { lang, category } = await props.params;
   const dictionary = await getDictionary(lang);
   const pageData = dictionary.servicesPage;
   const categoryData = pageData[category];

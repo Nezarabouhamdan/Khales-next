@@ -8,7 +8,9 @@ export async function generateStaticParams() {
 }
 
 // This function generates the metadata for the page based on the language
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   if (lang !== "en" && lang !== "ar") {
     return { title: "Page Not Found" };
   }
@@ -52,7 +54,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // This is the main server component for the landing page route
-export default async function LandingPage({ params: { lang } }) {
+export default async function LandingPage(props) {
+  const { lang } = await props.params;
+
   if (lang !== "en" && lang !== "ar") {
     notFound();
   }

@@ -13,7 +13,9 @@ const JsonLdSchema = ({ data }) => (
 );
 
 // This function is correct
-export async function generateMetadata({ params: { lang } }) {
+export async function generateMetadata(props) {
+  const { lang } = await props.params;
+
   const dict = await getDictionary(lang);
   const pageData = dict.aboutUsPage;
 
@@ -27,7 +29,9 @@ export async function generateMetadata({ params: { lang } }) {
 }
 
 // ✅ MAIN FIX IS HERE
-export default async function AboutUsPage({ params: { lang } }) {
+export default async function AboutUsPage(props) {
+  const { lang } = await props.params;
+
   // ✅ YOU MUST FETCH THE DICTIONARY HERE
   const dict = await getDictionary(lang);
 
