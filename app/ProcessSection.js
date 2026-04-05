@@ -1,6 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
-import { Search, MousePointerClick, CreditCard, Download } from "lucide-react";
+import {
+  Search,
+  MousePointerClick,
+  ShoppingCart,
+  Download,
+} from "lucide-react";
 
 const steps = [
   {
@@ -18,10 +23,10 @@ const steps = [
       "اطلع على تفاصيل التصميم والمخططات والصور ثلاثية الأبعاد قبل اتخاذ قرارك.",
   },
   {
-    icon: CreditCard,
+    icon: ShoppingCart,
     num: "03",
     titleAr: "أتمم الشراء",
-    descAr: "تواصل معنا عبر واتساب لإتمام عملية الشراء بأمان وسهولة.",
+    descAr: "امتلك تصميمك الان بضغطة زر",
   },
   {
     icon: Download,
@@ -97,11 +102,12 @@ export default function ProcessSection() {
           <span
             style={{
               display: "block",
-              fontSize: "13px",
+              fontSize: "18px",
               fontFamily: "'Tajawal', sans-serif",
               color: "rgba(102, 161, 9, 0.60)",
               letterSpacing: "0.1em",
               marginBottom: "16px",
+              fontWeight: 600,
             }}
           >
             كيف يعمل
@@ -125,7 +131,7 @@ export default function ProcessSection() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "2rem",
+            gap: "4rem",
             maxWidth: "1000px",
             margin: "0 auto",
             position: "relative",

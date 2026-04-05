@@ -11,6 +11,7 @@ import {
   Briefcase,
   Palmtree,
   ShoppingCart,
+  Crown,
 } from "lucide-react";
 
 // تم تحديث الروابط بصور فخمة وشغالة 100%
@@ -18,24 +19,24 @@ const GALLERY_DESIGNS = [
   {
     id: 1,
     title: "التصميم الداخلي للفيلا التنفيذية",
-    desc: "تصميم داخلي فاخر للغاية يمزج بين جماليات الخشب الداكن والإضاءة الذكية المدمجة وعناصر التصميم المتطورة.",
+    desc: "تصميم داخلي فاخر للغاية يجمع بين الخشب الداكن، الإضاءة الذكية، والعناصر المعمارية المعاصرة.",
     price: "5,000",
     image:
-      "https://images.unsplash.com/photo-1600210491369-0708f33190cb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
     category: "interior",
     area: "450 m²",
     rooms: "5 غرف",
     floors: null,
-    tags: ["داخلي", "مودرن", "حديث"],
+    tags: ["داخلي", "فيلا", "فاخر"],
     badge: "متكامل",
   },
   {
     id: 2,
     title: "المجلس الكبير المعاصر",
-    desc: "مساحة استقبال ضخمة تمزج بين أنسجة الحجر الحديثة وتخطيط الضيافة التقليدي. سقف مزدوج الارتفاع مع أنماط إسلامية.",
-    price: "5,000",
+    desc: "مساحة استقبال ضخمة تمزج بين أنسجة الحجر الحديثة وتخطيط الضيافة التقليدي، مع تصميم مفتوح وسقف مزدوج الارتفاع.",
+    price: "7,500",
     image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
     category: "interior",
     area: "85 m²",
     rooms: null,
@@ -46,15 +47,15 @@ const GALLERY_DESIGNS = [
   {
     id: 3,
     title: "فيلا الخوانيج العضوية",
-    desc: "تصميم فيلا ضخمة تمزج بين الأقواس الحجرية الكبيرة والهندسة العضوية الحديثة المتدفقة. 6 غرف نوم مع إطلالات بانورامية.",
+    desc: "فيلا عضوية فاخرة تمزج بين الأقواس الحجرية والمساحات الداخلية المتدفقة، مع إطلالات بانورامية وطابع طبيعي أبوظبي.",
     price: "15,000",
     image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80",
     category: "villas",
     area: "1,200 m²",
     rooms: "6 غرف",
     floors: "2 طوابق",
-    tags: ["فيلا", "عضوي", "حديث"],
+    tags: ["فيلا", "عضوي", "فاخر"],
     badge: "فاخر",
   },
 ];
@@ -103,7 +104,7 @@ export default function DesignsGallery() {
         .gallery-header .top-label {
           font-size: 13px;
           font-weight: 700;
-          color: #66a109;
+          color: #0a0a0a;
           letter-spacing: 0.1em;
           margin-bottom: 12px;
           display: block;
@@ -195,165 +196,164 @@ export default function DesignsGallery() {
 
         /* Card Styling */
         .design-card {
-          background: #ffffff;
-          border-radius: 20px;
+          position: relative;
+          border-radius: 24px;
           overflow: hidden;
-          border: none;
-          box-shadow: 0 10px 35px rgba(0,0,0,0.05); /* ظل ناعم وفخم */
+          cursor: pointer;
+          background: #111;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+          min-height: 520px;
           display: flex;
           flex-direction: column;
-          transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .design-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 20px 45px rgba(102, 161, 9, 0.12);
+          box-shadow: 0 30px 60px rgba(102, 161, 9, 0.15);
         }
 
-        .image-container {
-          position: relative;
-          height: 280px; /* طولنا الصورة شوي عشان تعطي هيبة للتصميم */
-          overflow: hidden;
-        }
-
-        .image-container img {
+        .card-img {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.7s ease;
+          transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .design-card:hover .image-container img {
-          transform: scale(1.06);
+        .design-card:hover .card-img {
+          transform: scale(1.05);
         }
 
-        /* Price Overlay - تصميم كبسولة فخم */
-        .price-overlay {
+        /* Gradient Overlay */
+        .card-overlay {
           position: absolute;
-          bottom: 16px;
-          left: 16px; /* نقلتها لليسار عشان التوازن البصري (RTL) */
-          background: #111111;
-          padding: 8px 18px;
-          border-radius: 100px;
-          z-index: 5;
-          display: flex;
-          align-items: baseline;
-          gap: 6px;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+          z-index: 1;
         }
 
-        .price-overlay .amount {
-          font-family: 'DM Serif Display', serif;
-          color: #ffffff; /* الرقم بالأبيض */
-          font-size: 22px;
-          line-height: 1;
-        }
-
-        .price-overlay .unit {
-          font-size: 12px;
-          color: #66a109; /* العملة بالأخضر */
-          font-weight: 700;
-        }
-
-        /* Badge Overlay */
-        .badge-overlay {
+        .card-content {
           position: absolute;
-          top: 16px;
-          right: 16px;
-          font-size: 12px;
-          font-weight: 700;
-          background: #ffffff;
-          color: #66a109;
-          padding: 6px 14px;
-          border-radius: 100px;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-          z-index: 5;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 32px;
+          z-index: 2;
+          text-align: right;
+          color: #ffffff; 
         }
 
-        .card-body {
-          padding: 28px 24px;
-          display: flex;
-          flex-direction: column;
-          flex-grow: 1;
-        }
-
-        .card-title {
-          font-size: 20px;
-          font-weight: 800;
-          color: #0a0a0a;
-          margin-bottom: 12px;
-          line-height: 1.4;
-        }
-
-        .card-desc {
-          font-size: 14px;
-          color: #666;
-          line-height: 1.7;
-          margin-bottom: 24px;
-        }
-
-        .card-specs {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 16px;
-          margin-bottom: 24px;
-          padding-top: 16px;
-          border-top: 1px solid #f0f0f0;
-        }
-
-        .spec-item {
-          display: flex;
+        .badge-primary {
+          display: inline-flex;
           align-items: center;
           gap: 6px;
+          background: #66a109;
+          color: #ffffff;
+          padding: 6px 14px;
+          border-radius: 100px;
           font-size: 13px;
-          font-weight: 500;
-          color: #555;
+          font-weight: 700;
+          margin-bottom: 16px;
         }
 
-        .spec-item svg { 
-          color: #66a109; 
+        .design-card h3 {
+          font-size: 26px;
+          font-weight: 800;
+          margin: 0 0 16px 0;
+          color: #ffffff;
+          line-height: 1.2;
+        }
+
+        .design-card .card-desc {
+          font-size: 15px;
+          color: rgba(255, 255, 255, 0.8);
+          line-height: 1.6;
+          margin-bottom: 20px;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
 
         .tags-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 8px;
-          margin-bottom: 28px;
+          gap: 10px;
+          margin-bottom: 22px;
         }
 
         .tag-pill {
-          font-size: 11px;
+          background: rgba(255, 255, 255, 0.12);
+          color: rgba(255, 255, 255, 0.9);
+          padding: 6px 12px;
+          border-radius: 999px;
+          font-size: 12px;
           font-weight: 600;
-          background: #f4f6f8;
-          padding: 4px 12px;
-          border-radius: 6px;
-          color: #777;
+          border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
-        /* Premium Order Button */
-        .order-button {
-          width: 100%;
-          padding: 14px;
-          background: rgba(102, 161, 9, 0.08); /* خلفية خضراء ناعمة جداً */
-          border: none;
-          border-radius: 10px;
-          color: #5a8f08;
-          font-weight: 700;
-          font-size: 15px;
-          cursor: pointer;
+        /* Stats Bar */
+        .stats-bar {
+          display: flex;
+          gap: 20px;
+          margin-bottom: 28px;
+          flex-wrap: wrap;
+        }
+
+        .spec-item {
           display: flex;
           align-items: center;
-          justify-content: center;
           gap: 8px;
-          transition: all 0.3s ease;
-          margin-top: auto;
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 14px;
+          font-weight: 500;
         }
 
-        .order-button:hover {
+        /* Action Bar */
+        .action-bar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-top: 24px;
+          border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .price-tag {
+          display: flex;
+          align-items: baseline;
+          gap: 6px;
+        }
+
+        .price-value {
+          font-family: 'DM Serif Display', serif;
+          font-size: 32px;
+          color: #ffffff; 
+          line-height: 1;
+        }
+
+        .price-currency {
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.6);
+          font-weight: 500;
+        }
+
+        .order-btn {
           background: #66a109;
           color: #ffffff;
-          box-shadow: 0 8px 20px rgba(102, 161, 9, 0.2);
-          transform: translateY(-2px);
+          padding: 12px 28px;
+          border-radius: 8px;
+          font-weight: 700;
+          font-size: 14px;
+          border: none;
+          cursor: pointer;
+          transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .order-btn:hover {
+          background: #5a8f08;
+          transform: scale(1.02);
         }
 
         @media (max-width: 1024px) {
@@ -381,10 +381,6 @@ export default function DesignsGallery() {
             <h2>
               اكتشف <span style={{ color: "#66a109" }}>تصاميمنا</span> الحصرية
             </h2>
-            <p>
-              تصفح مجموعتنا المتنوعة من التصاميم المعمارية والداخلية الجاهزة
-              للتنفيذ بأعلى معايير الجودة والفخامة.
-            </p>
           </motion.div>
 
           {/* Filters Area */}
@@ -422,38 +418,22 @@ export default function DesignsGallery() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <div className="image-container">
-                    <img src={design.image} alt={design.title} />
+                  <img
+                    src={design.image}
+                    alt={design.title}
+                    className="card-img"
+                  />
+                  <div className="card-overlay" />
+
+                  <div className="card-content">
                     {design.badge && (
-                      <div className="badge-overlay">{design.badge}</div>
-                    )}
-                    <div className="price-overlay">
-                      <span className="amount" dir="ltr">
-                        {design.price}
-                      </span>
-                      <span className="unit">درهم</span>
-                    </div>
-                  </div>
-
-                  <div className="card-body">
-                    <h3 className="card-title">{design.title}</h3>
-                    <p className="card-desc">{design.desc}</p>
-
-                    <div className="card-specs">
-                      <div className="spec-item">
-                        <Ruler size={16} /> <span dir="ltr">{design.area}</span>
+                      <div className="badge-primary">
+                        {design.badge === "فاخر" && <Crown size={14} />}
+                        <span>{design.badge}</span>
                       </div>
-                      {design.rooms && (
-                        <div className="spec-item">
-                          <Bed size={16} /> {design.rooms}
-                        </div>
-                      )}
-                      {design.floors && (
-                        <div className="spec-item">
-                          <Layers size={16} /> {design.floors}
-                        </div>
-                      )}
-                    </div>
+                    )}
+                    <h3>{design.title}</h3>
+                    <p className="card-desc">{design.desc}</p>
 
                     <div className="tags-row">
                       {design.tags.map((tag) => (
@@ -463,9 +443,34 @@ export default function DesignsGallery() {
                       ))}
                     </div>
 
-                    <button className="order-button">
-                      <ShoppingCart size={18} /> اطلب التصميم الآن
-                    </button>
+                    <div className="stats-bar">
+                      <div className="spec-item">
+                        <Ruler size={16} color="#66a109" />
+                        <span dir="ltr">{design.area}</span>
+                      </div>
+                      {design.rooms && (
+                        <div className="spec-item">
+                          <Bed size={16} color="#66a109" />
+                          <span>{design.rooms}</span>
+                        </div>
+                      )}
+                      {design.floors && (
+                        <div className="spec-item">
+                          <Layers size={16} color="#66a109" />
+                          <span>{design.floors}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="action-bar">
+                      <div className="price-tag">
+                        <span className="price-value" dir="ltr">
+                          {design.price}
+                        </span>
+                        <span className="price-currency">درهم</span>
+                      </div>
+                      <button className="order-btn">اطلب التصميم</button>
+                    </div>
                   </div>
                 </motion.div>
               ))}

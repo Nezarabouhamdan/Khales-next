@@ -22,8 +22,6 @@ export default function DesignHubPage() {
       <SectionDivider />
       <ProcessSection />
       <SectionDivider />
-      <FeaturedShowcase />
-      <SectionDivider />
       <DesignsGallery />
       <SectionDivider />
       <PricingSection />

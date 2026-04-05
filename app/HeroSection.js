@@ -268,17 +268,6 @@ export default function HeroSection() {
         </div>
 
         <div className="hero-content">
-          <motion.div
-            className="hero-badge"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            {/* خلينا اللمسة الخضراء البسيطة جداً هنا كـ Accent خفيف */}
-            <Sparkles size={15} color="#66a109" />
-            <span>مجموعة حصرية من التصاميم الجاهزة</span>
-          </motion.div>
-
           <motion.h1
             className="hero-title"
             initial={{ opacity: 0, y: 40 }}
@@ -298,20 +287,6 @@ export default function HeroSection() {
             اكتشف مجموعة حصرية من التصاميم المعمارية والداخلية المصممة بعناية
             فائقة. وفّر الوقت والتكلفة مع تصاميم احترافية جاهزة للتنفيذ.
           </motion.p>
-
-          <motion.div
-            className="hero-buttons"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-          >
-            <a href="#packages" className="btn-secondary">
-              تعرف على الباقات
-            </a>
-            <a href="#designs" className="btn-primary">
-              استعرض التصاميم
-            </a>
-          </motion.div>
 
           <motion.div
             className="hero-stats"
