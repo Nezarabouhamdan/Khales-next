@@ -12,15 +12,16 @@ import {
   CreditCard,
   CheckCircle,
   Home,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
 
 export default function DesignDetailsClient({ design, content, lang }) {
   const isRtl = lang === "ar";
   // Use the images array if exists, otherwise fallback to repeating the main image
-  const galleryImages = design.images && design.images.length > 0 
-    ? design.images 
-    : [design.image, design.image, design.image];
+  const galleryImages =
+    design.images && design.images.length > 0
+      ? design.images
+      : [design.image, design.image, design.image];
 
   const [activeImageIdx, setActiveImageIdx] = useState(0);
 
@@ -32,7 +33,7 @@ export default function DesignDetailsClient({ design, content, lang }) {
         .details-page {
           background-color: #fafafa;
           min-height: 100vh;
-          padding: 60px 0 120px;
+          padding: 110px 0 120px;
           direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
           color: #1a1a1a;
@@ -374,18 +375,24 @@ export default function DesignDetailsClient({ design, content, lang }) {
             <Link href={`/${lang}`}>
               <Home size={16} /> {content?.breadcrumbHome}
             </Link>
-            <ChevronRight size={14} style={{ transform: isRtl ? 'rotate(180deg)' : 'none' }} />
+            <ChevronRight
+              size={14}
+              style={{ transform: isRtl ? "rotate(180deg)" : "none" }}
+            />
             <Link href={`/${lang}/ready-designs`}>
               {content?.breadcrumbGallery}
             </Link>
-            <ChevronRight size={14} style={{ transform: isRtl ? 'rotate(180deg)' : 'none' }} />
+            <ChevronRight
+              size={14}
+              style={{ transform: isRtl ? "rotate(180deg)" : "none" }}
+            />
             <span className="current">{design.title}</span>
           </nav>
 
           <div className="product-grid">
             {/* Image Gallery */}
             <div className="gallery-section">
-              <motion.div 
+              <motion.div
                 className="main-image-wrapper"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -407,19 +414,23 @@ export default function DesignDetailsClient({ design, content, lang }) {
 
               <div className="thumbnails-row">
                 {galleryImages.map((img, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`thumb-wrapper ${activeImageIdx === idx ? 'active' : ''}`}
+                  <div
+                    key={idx}
+                    className={`thumb-wrapper ${activeImageIdx === idx ? "active" : ""}`}
                     onClick={() => setActiveImageIdx(idx)}
                   >
-                    <img src={img} alt={`Thumbnail ${idx + 1}`} className="thumb-img" />
+                    <img
+                      src={img}
+                      alt={`Thumbnail ${idx + 1}`}
+                      className="thumb-img"
+                    />
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Info and Specs */}
-            <motion.div 
+            <motion.div
               className="info-section"
               initial={{ opacity: 0, x: isRtl ? -30 : 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -428,28 +439,36 @@ export default function DesignDetailsClient({ design, content, lang }) {
               {design.badge && (
                 <div className="category-badge">{design.badge}</div>
               )}
-              
+
               <h1 className="product-title">{design.title}</h1>
               <p className="product-desc">{design.desc}</p>
 
               <div className="price-wrap">
-                <span className="price-value" dir="ltr">{design.price}</span>
+                <span className="price-value" dir="ltr">
+                  {design.price}
+                </span>
                 <span className="price-currency">{design.currency}</span>
               </div>
 
               <h3 className="specs-title">{content?.specsTitle}</h3>
               <div className="specs-grid">
                 <div className="spec-box">
-                  <div className="spec-icon-wrap"><Ruler size={20} /></div>
+                  <div className="spec-icon-wrap">
+                    <Ruler size={20} />
+                  </div>
                   <div className="spec-text">
                     <span className="spec-label">{content?.areaLabel}</span>
-                    <div className="spec-val" dir="ltr">{design.area}</div>
+                    <div className="spec-val" dir="ltr">
+                      {design.area}
+                    </div>
                   </div>
                 </div>
-                
+
                 {design.rooms && (
                   <div className="spec-box">
-                    <div className="spec-icon-wrap"><Bed size={20} /></div>
+                    <div className="spec-icon-wrap">
+                      <Bed size={20} />
+                    </div>
                     <div className="spec-text">
                       <span className="spec-label">{content?.roomsLabel}</span>
                       <div className="spec-val">{design.rooms}</div>
@@ -459,7 +478,9 @@ export default function DesignDetailsClient({ design, content, lang }) {
 
                 {design.floors && (
                   <div className="spec-box">
-                    <div className="spec-icon-wrap"><Layers size={20} /></div>
+                    <div className="spec-icon-wrap">
+                      <Layers size={20} />
+                    </div>
                     <div className="spec-text">
                       <span className="spec-label">{content?.floorsLabel}</span>
                       <div className="spec-val">{design.floors}</div>
