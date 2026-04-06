@@ -2,8 +2,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Crown, Bed, Ruler, Layers } from "lucide-react";
+import Link from "next/link";
 
-export default function FeaturedShowcase() {
+export default function FeaturedShowcase({ content, lang }) {
+  const isRtl = lang === "ar";
   return (
     <>
       <style>{`
@@ -13,7 +15,7 @@ export default function FeaturedShowcase() {
           position: relative;
           background-color: #ffffff; /* خلفية بيضاء نظيفة */
           padding: 100px 20px;
-          direction: rtl;
+          direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
           color: #0a0a0a;
         }
@@ -288,14 +290,15 @@ export default function FeaturedShowcase() {
             viewport={{ once: true }}
           >
             <div className="header-text">
-              <span className="subtitle">تصاميم مميزة</span>
+              <span className="subtitle">{content?.subtitle}</span>
               <h2 className="process-title">
-                اختيارات <span className="gold-text">المحررين</span>
+                {content?.title1}{" "}
+                <span className="gold-text">{content?.title2}</span>
               </h2>
             </div>
 
             <a href="#all" className="view-all-link">
-              عرض الكل
+              {content?.viewAll}
               <ArrowLeft size={18} />
             </a>
           </motion.div>
@@ -305,7 +308,9 @@ export default function FeaturedShowcase() {
             {/* Left Column: Stack of 2 small cards */}
             <div className="side-stack">
               {/* Small Card 1 */}
-              <motion.div
+              <Link
+                href={`/${lang}/ready-designs/1`}
+                style={{ textDecoration: "none" }}
                 className="featured-card side-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -318,22 +323,26 @@ export default function FeaturedShowcase() {
                 />
                 <div className="card-overlay" />
                 <div className="card-content">
-                  <div className="badge-primary">سكني</div>
-                  <h3>الجناح الكلاسيكي الجديد الفخم</h3>
+                  <div className="badge-primary">{content?.card1?.badge}</div>
+                  <h3>{content?.card1?.title}</h3>
                   <div className="side-footer">
                     <div className="price-tag">
                       <span className="price-value" dir="ltr">
                         2,000
                       </span>
-                      <span className="price-currency">درهم</span>
+                      <span className="price-currency">
+                        {content?.currency}
+                      </span>
                     </div>
                     <div className="badge-glass">65 m²</div>
                   </div>
                 </div>
-              </motion.div>
+              </Link>
 
               {/* Small Card 2 */}
-              <motion.div
+              <Link
+                href={`/${lang}/ready-designs/2`}
+                style={{ textDecoration: "none" }}
                 className="featured-card side-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -347,23 +356,27 @@ export default function FeaturedShowcase() {
                 />
                 <div className="card-overlay" />
                 <div className="card-content">
-                  <div className="badge-primary">متكامل</div>
-                  <h3>المجلس الكبير المعاصر</h3>
+                  <div className="badge-primary">{content?.card2?.badge}</div>
+                  <h3>{content?.card2?.title}</h3>
                   <div className="side-footer">
                     <div className="price-tag">
                       <span className="price-value" dir="ltr">
                         5,000
                       </span>
-                      <span className="price-currency">درهم</span>
+                      <span className="price-currency">
+                        {content?.currency}
+                      </span>
                     </div>
                     <div className="badge-glass">85 m²</div>
                   </div>
                 </div>
-              </motion.div>
+              </Link>
             </div>
 
             {/* Right Column: Large Main Card */}
-            <motion.div
+            <Link
+              href={`/${lang}/ready-designs/3`}
+              style={{ textDecoration: "none" }}
               className="featured-card main-card"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -378,15 +391,11 @@ export default function FeaturedShowcase() {
               <div className="card-content">
                 <div className="badge-primary">
                   <Crown size={14} />
-                  <span>فاخر</span>
+                  <span>{content?.mainCard?.badge}</span>
                 </div>
 
-                <h3>فيلا الخوانيج العضوية</h3>
-                <p>
-                  تصميم فيلا ضخمة تمزج بين الأقواس الحجرية الكبيرة والهندسة
-                  العضوية الحديثة المتدفقة. 6 غرف نوم مع إطلالات بانورامية
-                  مذهلة.
-                </p>
+                <h3>{content?.mainCard?.title}</h3>
+                <p>{content?.mainCard?.desc}</p>
 
                 {/* Stats Bar */}
                 <div className="stats-bar">
@@ -410,12 +419,17 @@ export default function FeaturedShowcase() {
                     <span className="price-value" dir="ltr">
                       15,000
                     </span>
-                    <span className="price-currency">درهم / للتصميم</span>
+                    <span className="price-currency">{content?.currency}</span>
                   </div>
-                  <button className="order-btn">اطلب التصميم الآن</button>
+                  <div
+                    className="order-btn"
+                    style={{ display: "inline-block" }}
+                  >
+                    {content?.mainCard?.btn}
+                  </div>
                 </div>
               </div>
-            </motion.div>
+            </Link>
           </div>
         </div>
       </section>

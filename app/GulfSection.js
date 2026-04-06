@@ -3,40 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MapPin, TrendingUp, Users, Award } from "lucide-react";
 
-const COUNTRIES = [
-  {
-    code: "AE",
-    name: "الإمارات",
-    desc: "مقرنا الرئيسي في دبي مع خدمة جميع إمارات الدولة.",
-  },
-  {
-    code: "SA",
-    name: "السعودية",
-    desc: "طلب متزايد على تصاميم الفلل الفاخرة في الرياض وجدة.",
-  },
-  {
-    code: "QA",
-    name: "قطر",
-    desc: "سوق متنامي للتصاميم المعمارية الراقية في الدوحة.",
-  },
-  {
-    code: "OM",
-    name: "عُمان",
-    desc: "فرص واعدة في مسقط والمناطق السياحية المتميزة.",
-  },
-  {
-    code: "KW",
-    name: "الكويت",
-    desc: "تصاميم عصرية ومبتكرة تلبي الذوق الكويتي الرفيع.",
-  },
-  {
-    code: "BH",
-    name: "البحرين",
-    desc: "حلول معمارية ذكية تناسب الفخامة والمساحات في المنامة.",
-  },
-];
-
-export default function GulfReachSection() {
+export default function GulfReachSection({ content, lang }) {
+  const isRtl = lang === "ar";
   return (
     <>
       <style>{`
@@ -45,7 +13,7 @@ export default function GulfReachSection() {
         .gulf-section {
           background-color: #fafafa;
           padding: 120px 0;
-          direction: rtl;
+          direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
           position: relative;
           overflow: hidden;
@@ -299,13 +267,9 @@ export default function GulfReachSection() {
             transition={{ duration: 0.8 }}
           >
             <div className="gulf-glow" />
-            <span className="gulf-subtitle">أسواق الخليج</span>
-            <h2 className="gulf-title">نخدم جميع دول الخليج</h2>
-            <p className="gulf-desc">
-              تصاميمنا الجاهزة متاحة لجميع دول مجلس التعاون الخليجي. مع الطلب
-              المتزايد على الفلل الفاخرة في المنطقة، نقدم حلولاً تصميمية تناسب
-              الذوق الخليجي الرفيع.
-            </p>
+            <span className="gulf-subtitle">{content?.badge}</span>
+            <h2 className="gulf-title">{content?.title}</h2>
+            <p className="gulf-desc">{content?.desc}</p>
 
             <div className="stats-divider" />
 
@@ -314,29 +278,29 @@ export default function GulfReachSection() {
                 <div className="stat-icon">
                   <TrendingUp size={22} />
                 </div>
-                <div className="stat-val">85%</div>
-                <span className="stat-label">نمو الطلب سنوياً</span>
+                <div className="stat-val">{content?.stats?.[0]?.val}</div>
+                <span className="stat-label">{content?.stats?.[0]?.label}</span>
               </div>
               <div className="stat-item">
                 <div className="stat-icon">
                   <Users size={22} />
                 </div>
-                <div className="stat-val">+2,000</div>
-                <span className="stat-label">عميل محتمل شهرياً</span>
+                <div className="stat-val">{content?.stats?.[1]?.val}</div>
+                <span className="stat-label">{content?.stats?.[1]?.label}</span>
               </div>
               <div className="stat-item">
                 <div className="stat-icon">
                   <Award size={22} />
                 </div>
-                <div className="stat-val">+10</div>
-                <span className="stat-label">سنوات خبرة</span>
+                <div className="stat-val">{content?.stats?.[2]?.val}</div>
+                <span className="stat-label">{content?.stats?.[2]?.label}</span>
               </div>
             </div>
           </motion.div>
 
           {/* شبكة الدول (اليسار) */}
           <div className="gulf-grid">
-            {COUNTRIES.map((country, idx) => (
+            {content?.countries?.map((country, idx) => (
               <motion.div
                 key={country.code}
                 className="country-card"

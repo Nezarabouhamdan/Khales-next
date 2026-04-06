@@ -3,7 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, Phone, Mail, ArrowLeft } from "lucide-react";
 
-export default function CTASection() {
+export default function CTASection({ content, lang }) {
+  const isRtl = lang === "ar";
   return (
     <>
       <style>{`
@@ -13,7 +14,7 @@ export default function CTASection() {
           position: relative;
           background-color: #ffffff; /* خلفية بيضاء لكسر اللون مع القسم السابق */
           padding: 120px 0;
-          direction: rtl;
+          direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
           color: #1a1a1a;
           overflow: hidden;
@@ -231,28 +232,26 @@ export default function CTASection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="cta-badge">ابدأ مشروعك اليوم</span>
+            <span className="cta-badge">{content?.badge}</span>
 
             <h2 className="cta-title">
-              هل أنت مستعد لتحويل <span className="gold-text">رؤيتك</span> إلى
-              واقع؟
+              {content?.title1}{" "}
+              <span className="gold-text">{content?.title2}</span>{" "}
+              {content?.title3}
             </h2>
 
-            <p className="cta-description">
-              تواصل معنا الآن للحصول على استشارة مجانية أو لشراء أي تصميم من
-              مجموعتنا الحصرية. فريقنا جاهز لمساعدتك في اختيار التصميم المثالي.
-            </p>
+            <p className="cta-description">{content?.desc}</p>
 
             <div className="cta-buttons-group">
               {/* Primary Button */}
               <a href="https://wa.me/971551299880" className="btn-cta-primary">
                 <MessageCircle size={20} />
-                تواصل عبر واتساب
+                {content?.btnPrimary}
               </a>
 
               {/* Outline Button */}
               <a href="#consultation" className="btn-cta-outline">
-                احجز استشارة مجانية
+                {content?.btnSecondary}
                 <ArrowLeft size={18} />
               </a>
             </div>

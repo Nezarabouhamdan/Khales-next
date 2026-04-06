@@ -3,28 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
-const testimonials = [
-  {
-    name: "محمد الشامسي",
-    role: "صاحب فيلا - دبي",
-    text: "اشتريت تصميم فيلا جاهز من خالص ووفرت أكثر من 60% من تكلفة التصميم المخصص. الجودة ممتازة والفريق ساعدني في التعديلات البسيطة.",
-    rating: 5,
-  },
-  {
-    name: "فاطمة العلي",
-    role: "مصممة داخلية - أبوظبي",
-    text: "كمصممة داخلية، أستخدم تصاميم خالص الجاهزة كنقطة انطلاق لمشاريعي. التفاصيل والمواصفات دقيقة جداً وتوفر علي الكثير من الوقت.",
-    rating: 5,
-  },
-  {
-    name: "عبدالله القحطاني",
-    role: "مطور عقاري - الرياض",
-    text: "نستخدم تصاميم خالص الجاهزة لمشاريعنا السكنية في الرياض. الأسعار معقولة والتصاميم تناسب الذوق الخليجي بشكل مثالي.",
-    rating: 5,
-  },
-];
-
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ content, lang }) {
+  const isRtl = lang === "ar";
   return (
     <>
       <style>{`
@@ -34,7 +14,7 @@ export default function TestimonialsSection() {
           position: relative;
           background-color: #fafafa; /* لون فاتح جداً مريح للعين */
           padding: 120px 0 160px;
-          direction: rtl;
+          direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
           color: #1a1a1a;
           overflow: hidden;
@@ -203,14 +183,14 @@ export default function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <span className="badge">آراء عملائنا</span>
+            <span className="badge">{content?.badge}</span>
             <h2>
-              ماذا يقول <span>عملاؤنا</span>
+              {content?.title1} <span>{content?.title2}</span>
             </h2>
           </motion.div>
 
           <div className="testimonials-grid">
-            {testimonials.map((t, index) => (
+            {content?.reviews?.map((t, index) => (
               <motion.div
                 key={t.name}
                 className="testimonial-card"

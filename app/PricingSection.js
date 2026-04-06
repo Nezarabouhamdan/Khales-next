@@ -3,61 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Check, Crown, Diamond, Star } from "lucide-react";
 
-const PACKAGES = [
-  {
-    id: "basic",
-    name: "أساسي",
-    tier: "برونزي",
-    price: "2,000",
-    desc: "التصميم الأساسي مع المخططات المعمارية والتصور ثلاثي الأبعاد الأساسي.",
-    features: [
-      "المخططات المعمارية",
-      "عروض ثلاثية الأبعاد أساسية",
-      "لوحة المواد",
-      "ملخص التصميم",
-    ],
-    icon: Star,
-    highlight: false,
-  },
-  {
-    id: "pro",
-    name: "متكامل",
-    tier: "ذهبي",
-    price: "5,000",
-    desc: "تصميم كامل مع مخططات معمارية تفصيلية وعروض ثلاثية الأبعاد ومواصفات المواد.",
-    features: [
-      "مخططات معمارية تفصيلية",
-      "عروض ثلاثية الأبعاد كاملة",
-      "مواصفات المواد",
-      "تخطيط الأثاث",
-      "مخطط الإضاءة",
-      "نظام الألوان",
-    ],
-    icon: Crown,
-    highlight: true,
-    badge: "الأكثر طلباً",
-  },
-  {
-    id: "luxury",
-    name: "فاخر",
-    tier: "بلاتيني",
-    price: "15,000",
-    desc: "تصميم فاخر مخصص مع توثيق معماري كامل وجولة واقع افتراضي واستشارة.",
-    features: [
-      "توثيق معماري كامل",
-      "عروض ثلاثية الأبعاد فاخرة",
-      "جولة واقع افتراضي",
-      "دليل مصادر المواد",
-      "استشارة شخصية",
-      "ملاحظات إشراف البناء",
-      "خطة المنزل الذكي",
-    ],
-    icon: Diamond,
-    highlight: false,
-  },
-];
+const PACKAGE_ICONS = [Star, Crown, Diamond];
 
-export default function PricingSection() {
+export default function PricingSection({ content, lang }) {
+  const isRtl = lang === "ar";
   return (
     <>
       <style>{`
@@ -66,7 +15,7 @@ export default function PricingSection() {
         .pricing-section {
           background-color: #fafafa; /* رمادي فاتح جداً يبرز الكروت البيضاء */
           padding: 120px 0;
-          direction: rtl;
+          direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
           color: #1a1a1a;
           position: relative;
@@ -322,17 +271,14 @@ export default function PricingSection() {
             viewport={{ once: true }}
           >
             <h2>
-              اختر <span>باقتك</span> المثالية
+              {content?.title1} <span>{content?.title2}</span> {content?.title3}
             </h2>
-            <p>
-              ثلاث فئات سعرية مصممة بعناية لتناسب جميع الاحتياجات والميزانيات،
-              مع ضمان أعلى معايير الجودة.
-            </p>
+            <p>{content?.desc}</p>
           </motion.div>
 
           <div className="pricing-grid">
-            {PACKAGES.map((item, idx) => {
-              const IconComp = item.icon;
+            {content?.packages?.map((item, idx) => {
+              const IconComp = PACKAGE_ICONS[idx] || Star;
               return (
                 <motion.div
                   key={item.id}
@@ -358,7 +304,7 @@ export default function PricingSection() {
                     <span className="val" dir="ltr">
                       {item.price}
                     </span>
-                    <span className="currency">درهم</span>
+                    <span className="currency">{content?.currency}</span>
                   </div>
 
                   <p className="pkg-desc">{item.desc}</p>
@@ -377,17 +323,14 @@ export default function PricingSection() {
                   <button
                     className={`action-btn ${item.highlight ? "primary" : ""}`}
                   >
-                    اختر الباقة
+                    {content?.selectPlan}
                   </button>
                 </motion.div>
               );
             })}
           </div>
 
-          <div className="pricing-note">
-            جميع الأسعار بالدرهم الإماراتي. يمكن تخصيص أي تصميم حسب متطلباتك
-            بتكلفة إضافية.
-          </div>
+          <div className="pricing-note">{content?.note}</div>
         </div>
       </section>
     </>

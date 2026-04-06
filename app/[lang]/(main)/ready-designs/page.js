@@ -1,3 +1,4 @@
+import { getDictionary } from "@/get-dictionary";
 import AIBanner from "@/app/AIBanner";
 import CTASection from "@/app/CTASection";
 import DesignsGallery from "@/app/DesignsGallery";
@@ -10,31 +11,44 @@ import ProcessSection from "@/app/ProcessSection";
 import SectionDivider from "@/app/SectionDivider";
 import TestimonialsSection from "@/app/TestimonialsSection";
 
-export const metadata = {
-  title: "تصاميم معمارية جاهزة للتنفيذ | خالص",
-  description: "اكتشف مجموعة حصرية من التصاميم المعمارية والداخلية الجاهزة.",
-};
+export async function generateMetadata({ params }) {
+  const { lang } = params;
+  const dictionary = await getDictionary(lang);
+  return {
+    title:
+      dictionary.readyDesignsPage?.metaTitle ||
+      "تصاميم معمارية جاهزة للتنفيذ | خالص",
+    description:
+      dictionary.readyDesignsPage?.metaDescription ||
+      "اكتشف مجموعة حصرية من التصاميم المعمارية والداخلية الجاهزة.",
+  };
+}
 
-export default function DesignHubPage() {
+export default async function DesignHubPage({ params }) {
+  const { lang } = params;
+  const dictionary = await getDictionary(lang);
+  const content = dictionary.readyDesignsPage;
+  const dir = lang === "ar" ? "rtl" : "ltr";
+
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800" dir="rtl">
-      <HeroSection />
+    <div className="min-h-screen bg-gray-50 text-gray-800" dir={dir}>
+      <HeroSection content={content?.hero} lang={lang} />
       <SectionDivider />
-      <ProcessSection />
+      <ProcessSection content={content?.process} lang={lang} />
       <SectionDivider />
-      <DesignsGallery />
+      <DesignsGallery content={content?.gallery} lang={lang} />
       <SectionDivider />
-      <PricingSection />
+      <PricingSection content={content?.pricing} lang={lang} />
       <SectionDivider />
-      <AIBanner />
+      <AIBanner content={content?.aiBanner} lang={lang} />
       <SectionDivider />
-      <FeaturesSection />
+      <FeaturesSection content={content?.features} lang={lang} />
       <SectionDivider />
-      <TestimonialsSection />
+      <TestimonialsSection content={content?.testimonials} lang={lang} />
       <SectionDivider />
-      <GulfSection />
+      <GulfSection content={content?.gulf} lang={lang} />
       <SectionDivider />
-      <CTASection />
+      <CTASection content={content?.cta} lang={lang} />
     </div>
   );
 }

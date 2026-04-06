@@ -7,39 +7,13 @@ import {
   Download,
 } from "lucide-react";
 
-const steps = [
-  {
-    icon: Search,
-    num: "01",
-    titleAr: "تصفح المعرض",
-    descAr:
-      "استعرض مجموعتنا المتنوعة من التصاميم واستخدم الفلاتر للعثور على التصميم المثالي.",
-  },
-  {
-    icon: MousePointerClick,
-    num: "02",
-    titleAr: "اختر تصميمك",
-    descAr:
-      "اطلع على تفاصيل التصميم والمخططات والصور ثلاثية الأبعاد قبل اتخاذ قرارك.",
-  },
-  {
-    icon: ShoppingCart,
-    num: "03",
-    titleAr: "أتمم الشراء",
-    descAr: "امتلك تصميمك الان بضغطة زر",
-  },
-  {
-    icon: Download,
-    num: "04",
-    titleAr: "استلم ملفاتك",
-    descAr: "احصل على جميع ملفات التصميم الرقمية فوراً وابدأ التنفيذ.",
-  },
-];
+const ICONS = [Search, MousePointerClick, ShoppingCart, Download];
 
-export default function ProcessSection() {
+export default function ProcessSection({ content, lang }) {
+  const isRtl = lang === "ar";
   return (
     <section
-      dir="rtl"
+      dir={isRtl ? "rtl" : "ltr"}
       style={{
         position: "relative",
         padding: "96px 0 128px",
@@ -110,7 +84,7 @@ export default function ProcessSection() {
               fontWeight: 600,
             }}
           >
-            كيف يعمل
+            {content?.badge}
           </span>
           <h2
             style={{
@@ -122,7 +96,8 @@ export default function ProcessSection() {
               lineHeight: 1.3,
             }}
           >
-            أربع خطوات <span style={{ color: "#66a109" }}>بسيطة</span>
+            {content?.title1}{" "}
+            <span style={{ color: "#66a109" }}>{content?.title2}</span>
           </h2>
         </motion.div>
 
@@ -137,8 +112,8 @@ export default function ProcessSection() {
             position: "relative",
           }}
         >
-          {steps.map((step, index) => {
-            const Icon = step.icon;
+          {content?.steps?.map((step, index) => {
+            const Icon = ICONS[index];
             return (
               <motion.div
                 key={step.num}
@@ -156,7 +131,7 @@ export default function ProcessSection() {
                 className="process-step-group"
               >
                 {/* Connecting Line to next step (hidden on last) */}
-                {index < steps.length - 1 && (
+                {index < (content?.steps?.length || 0) - 1 && (
                   <div
                     style={{
                       position: "absolute",
@@ -264,7 +239,7 @@ export default function ProcessSection() {
                     margin: "0 0 14px 0",
                   }}
                 >
-                  {step.titleAr}
+                  {step.title}
                 </h3>
 
                 {/* Description */}
@@ -278,7 +253,7 @@ export default function ProcessSection() {
                     margin: "0 auto",
                   }}
                 >
-                  {step.descAr}
+                  {step.desc}
                 </p>
               </motion.div>
             );

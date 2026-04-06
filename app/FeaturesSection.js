@@ -10,40 +10,10 @@ import {
   Globe,
 } from "lucide-react";
 
-const FEATURES = [
-  {
-    icon: Clock,
-    title: "توفير الوقت",
-    desc: "تصاميم جاهزة للتنفيذ فوراً بدلاً من انتظار أشهر لتصميم مخصص. ابدأ مشروعك اليوم.",
-  },
-  {
-    icon: Wallet,
-    title: "توفير التكلفة",
-    desc: "وفّر حتى 70% مقارنة بالتصميم المخصص مع الحفاظ على أعلى معايير الجودة والاحترافية.",
-  },
-  {
-    icon: RefreshCw,
-    title: "قابلية التخصيص",
-    desc: "كل تصميم قابل للتعديل والتخصيص حسب احتياجاتك الخاصة بتكلفة إضافية بسيطة.",
-  },
-  {
-    icon: Shield,
-    title: "جودة مضمونة",
-    desc: "تصاميم من فريق خالص المحترف بخبرة تتجاوز عقداً من الزمن في التصميم المعماري والداخلي.",
-  },
-  {
-    icon: Headphones,
-    title: "دعم مستمر",
-    desc: "فريق دعم متخصص لمساعدتك في اختيار التصميم المناسب والإجابة على جميع استفساراتك.",
-  },
-  {
-    icon: Globe,
-    title: "توصيل فوري",
-    desc: "استلم ملفات التصميم الرقمية فور إتمام عملية الشراء. متاح لجميع دول الخليج.",
-  },
-];
+const FEATURE_ICONS = [Clock, Wallet, RefreshCw, Shield, Headphones, Globe];
 
-export default function FeaturesSection() {
+export default function FeaturesSection({ content, lang }) {
+  const isRtl = lang === "ar";
   return (
     <>
       <style>{`
@@ -53,7 +23,7 @@ export default function FeaturesSection() {
           position: relative;
           background-color: #f8f9fa;
           padding: 100px 0;
-          direction: rtl;
+          direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
           color: #333;
         }
@@ -187,19 +157,16 @@ export default function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <span className="badge">لماذا تصاميمنا الجاهزة</span>
+            <span className="badge">{content?.badge}</span>
             <h2>
-              مميزات <span>لا تُقاوم</span>
+              {content?.title1} <span>{content?.title2}</span>
             </h2>
-            <p>
-              تصاميمنا الجاهزة تجمع بين الجودة العالية والسعر المناسب مع سهولة
-              التنفيذ
-            </p>
+            <p>{content?.desc}</p>
           </motion.div>
 
           <div className="features-grid">
-            {FEATURES.map((feat, idx) => {
-              const IconComp = feat.icon;
+            {content?.items?.map((feat, idx) => {
+              const IconComp = FEATURE_ICONS[idx] || Clock;
               return (
                 <motion.div
                   key={idx}

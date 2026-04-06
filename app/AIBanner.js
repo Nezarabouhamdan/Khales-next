@@ -3,13 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Wand2, Cpu, Palette } from "lucide-react";
 
-const AI_FEATURES = [
-  { icon: Cpu, label: "تحليل ذكي للمساحات" },
-  { icon: Palette, label: "اقتراح ألوان ومواد" },
-  { icon: Wand2, label: "تعديلات فورية" },
-];
+const AI_ICONS = [Cpu, Palette, Wand2];
 
-export default function AIBanner() {
+export default function AIBanner({ content, lang }) {
+  const isRtl = lang === "ar";
   return (
     <>
       <style>{`
@@ -18,7 +15,7 @@ export default function AIBanner() {
         .ai-banner-section {
           background-color: #fafafa;
           padding: 80px 0;
-          direction: rtl;
+          direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
         }
 
@@ -220,43 +217,42 @@ export default function AIBanner() {
             <div className="ai-main-content">
               <div className="ai-badge">
                 <Sparkles size={16} color="#66a109" />
-                <span>مدعوم بالذكاء الاصطناعي</span>
+                <span>{content?.badge}</span>
               </div>
 
               <h2>
-                تخصيص التصاميم{" "}
-                <span style={{ color: "#66a109" }}>بلمسة سحرية</span>
+                {content?.title1}{" "}
+                <span style={{ color: "#66a109" }}>{content?.title2}</span>
               </h2>
 
-              <p>
-                نستخدم أحدث تقنيات الذكاء الاصطناعي لتخصيص التصاميم الجاهزة حسب
-                ذوقك. اختر تصميماً أساسياً وسنقوم بتعديله ليناسب احتياجاتك بدقة
-                وسرعة فائقة.
-              </p>
+              <p>{content?.desc}</p>
 
               <a href="#" className="ai-cta-button">
                 <Wand2 size={20} />
-                ابدأ التخصيص الآن
+                {content?.cta}
               </a>
             </div>
 
             {/* الجانب الأيسر: أيقونات المزايا */}
             <div className="ai-features-list">
-              {AI_FEATURES.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  className="ai-feature-item"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + idx * 0.1 }}
-                >
-                  <div className="ai-feature-icon-box">
-                    <item.icon size={20} strokeWidth={2} />
-                  </div>
-                  <span className="ai-feature-label">{item.label}</span>
-                </motion.div>
-              ))}
+              {content?.features?.map((item, idx) => {
+                const IconComp = AI_ICONS[idx] || Cpu;
+                return (
+                  <motion.div
+                    key={idx}
+                    className="ai-feature-item"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + idx * 0.1 }}
+                  >
+                    <div className="ai-feature-icon-box">
+                      <IconComp size={20} strokeWidth={2} />
+                    </div>
+                    <span className="ai-feature-label">{item.label}</span>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </div>

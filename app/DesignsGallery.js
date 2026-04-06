@@ -13,68 +13,25 @@ import {
   ShoppingCart,
   Crown,
 } from "lucide-react";
+import Link from "next/link";
 
-// تم تحديث الروابط بصور فخمة وشغالة 100%
-const GALLERY_DESIGNS = [
-  {
-    id: 1,
-    title: "التصميم الداخلي للفيلا التنفيذية",
-    desc: "تصميم داخلي فاخر للغاية يجمع بين الخشب الداكن، الإضاءة الذكية، والعناصر المعمارية المعاصرة.",
-    price: "5,000",
-    image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
-    category: "interior",
-    area: "450 m²",
-    rooms: "5 غرف",
-    floors: null,
-    tags: ["داخلي", "فيلا", "فاخر"],
-    badge: "متكامل",
-  },
-  {
-    id: 2,
-    title: "المجلس الكبير المعاصر",
-    desc: "مساحة استقبال ضخمة تمزج بين أنسجة الحجر الحديثة وتخطيط الضيافة التقليدي، مع تصميم مفتوح وسقف مزدوج الارتفاع.",
-    price: "7,500",
-    image:
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
-    category: "interior",
-    area: "85 m²",
-    rooms: null,
-    floors: null,
-    tags: ["داخلي", "مجلس", "إسلامي"],
-    badge: "متكامل",
-  },
-  {
-    id: 3,
-    title: "فيلا الخوانيج العضوية",
-    desc: "فيلا عضوية فاخرة تمزج بين الأقواس الحجرية والمساحات الداخلية المتدفقة، مع إطلالات بانورامية وطابع طبيعي أبوظبي.",
-    price: "15,000",
-    image:
-      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80",
-    category: "villas",
-    area: "1,200 m²",
-    rooms: "6 غرف",
-    floors: "2 طوابق",
-    tags: ["فيلا", "عضوي", "فاخر"],
-    badge: "فاخر",
-  },
-];
+const CATEGORIES_ICONS = {
+  all: Layout,
+  villas: Home,
+  interior: Layout,
+  commercial: Briefcase,
+  landscaping: Palmtree,
+};
 
-const CATEGORIES = [
-  { id: "all", label: "جميع التصاميم", icon: Layout },
-  { id: "villas", label: "فلل", icon: Home },
-  { id: "interior", label: "تصاميم داخلية", icon: Layout },
-  { id: "commercial", label: "تجاري", icon: Briefcase },
-  { id: "landscaping", label: "تنسيق حدائق", icon: Palmtree },
-];
-
-export default function DesignsGallery() {
+export default function DesignsGallery({ content, lang }) {
+  const isRtl = lang === "ar";
   const [activeFilter, setActiveFilter] = useState("all");
 
+  const galleryDesigns = content?.designs || [];
   const filteredDesigns =
     activeFilter === "all"
-      ? GALLERY_DESIGNS
-      : GALLERY_DESIGNS.filter((d) => d.category === activeFilter);
+      ? galleryDesigns
+      : galleryDesigns.filter((d) => d.category === activeFilter);
 
   return (
     <>
@@ -84,7 +41,7 @@ export default function DesignsGallery() {
         .gallery-section {
           background-color: #fcfcfc; /* لون أبيض مريح جداً */
           padding: 100px 0;
-          direction: rtl;
+          direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
           color: #1a1a1a;
         }
@@ -377,32 +334,39 @@ export default function DesignsGallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="top-label">معرض التصاميم</span>
+            <span className="top-label">{content?.topLabel}</span>
             <h2>
-              اكتشف <span style={{ color: "#66a109" }}>تصاميمنا</span> الحصرية
+              {content?.title1}{" "}
+              <span style={{ color: "#66a109" }}>{content?.title2}</span>{" "}
+              {content?.title3}
             </h2>
           </motion.div>
 
           {/* Filters Area */}
           <div className="filters-wrapper">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                className={`filter-tab ${activeFilter === cat.id ? "active" : ""}`}
-                onClick={() => setActiveFilter(cat.id)}
-              >
-                <cat.icon size={16} />
-                {cat.label}
-              </button>
-            ))}
+            {content?.filters?.map((cat) => {
+              const IconComp = CATEGORIES_ICONS[cat.id] || Layout;
+              return (
+                <button
+                  key={cat.id}
+                  className={`filter-tab ${activeFilter === cat.id ? "active" : ""}`}
+                  onClick={() => setActiveFilter(cat.id)}
+                >
+                  <IconComp size={16} />
+                  {cat.label}
+                </button>
+              );
+            })}
           </div>
 
           <div className="stats-bar">
             <div className="filter-trigger">
-              <Filter size={16} /> فلاتر متقدمة
+              <Filter size={16} /> {content?.advancedFilters}
             </div>
             <span style={{ color: "#ccc" }}>|</span>
-            <div>عرض {filteredDesigns.length} تصميم</div>
+            <div>
+              {content?.showing} {filteredDesigns.length} {content?.designWord}
+            </div>
           </div>
 
           {/* Grid Layout */}
@@ -467,9 +431,20 @@ export default function DesignsGallery() {
                         <span className="price-value" dir="ltr">
                           {design.price}
                         </span>
-                        <span className="price-currency">درهم</span>
+                        <span className="price-currency">
+                          {design.currency}
+                        </span>
                       </div>
-                      <button className="order-btn">اطلب التصميم</button>
+                      <Link
+                        href={`/${lang}/ready-designs/${design.id}`}
+                        className="order-btn"
+                        style={{
+                          textDecoration: "none",
+                          display: "inline-block",
+                        }}
+                      >
+                        {content?.orderBtn}
+                      </Link>
                     </div>
                   </div>
                 </motion.div>

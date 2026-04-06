@@ -6,7 +6,8 @@ import { ArrowDown, Sparkles } from "lucide-react";
 const HERO_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310419663030860046/giFYBDeFxbGe42Yyw8PTCg/hero-banner-dHKNucphgnCkPtvLjoZXtv.webp";
 
-export default function HeroSection() {
+export default function HeroSection({ content, lang }) {
+  const isRtl = lang === "ar";
   return (
     <>
       <style>{`
@@ -19,7 +20,7 @@ export default function HeroSection() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          direction: rtl;
+          direction: ${isRtl ? "rtl" : "ltr"};
           font-family: 'Tajawal', sans-serif;
         }
 
@@ -274,8 +275,8 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <span className="line-white">تصاميم معمارية</span>
-            <span className="line-gold">جاهزة للتنفيذ</span>
+            <span className="line-white">{content?.titleLine1}</span>
+            <span className="line-gold">{content?.titleLine2}</span>
           </motion.h1>
 
           <motion.p
@@ -284,8 +285,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            اكتشف مجموعة حصرية من التصاميم المعمارية والداخلية المصممة بعناية
-            فائقة. وفّر الوقت والتكلفة مع تصاميم احترافية جاهزة للتنفيذ.
+            {content?.description}
           </motion.p>
 
           <motion.div
@@ -294,11 +294,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
           >
-            {[
-              { value: "3", label: "فئات سعرية" },
-              { value: "500+", label: "عميل سعيد" },
-              { value: "100+", label: "تصميم جاهز" },
-            ].map((stat, i) => (
+            {content?.stats?.map((stat, i) => (
               <React.Fragment key={stat.label}>
                 {i > 0 && <div className="stat-divider" />}
                 <div className="stat-item">
@@ -318,7 +314,7 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
         >
-          <span>اكتشف المزيد</span>
+          <span>{content?.scrollText}</span>
           {/* غيرنا لون السهم للأبيض المائل للشفافية */}
           <ArrowDown
             size={15}
