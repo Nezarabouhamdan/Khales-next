@@ -23,6 +23,7 @@ export const dictionary = {
           { label: "Residential", path: "/Residential" },
           { label: "Commercial", path: "/Commercial" },
           { label: "Luxury Villas", path: "/Luxury-Villas" },
+          { label: "Explore Projects", path: "/projects" },
         ],
       },
       {
@@ -68,12 +69,12 @@ export const dictionary = {
         ],
       },
       {
-        label: "Projects",
-        path: "/projects",
+        label: "Ready Designs",
+        path: "/ready-designs",
         isDropdown: false,
       },
       {
-        label: "Estimate Your Villa Cost",
+        label: "Estimate Villa Cost",
         path: "/Calc",
         isDropdown: false,
       },
