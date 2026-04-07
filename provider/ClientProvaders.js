@@ -6,7 +6,7 @@ import Analytics from "@/utils/Analytics";
 import CookieConsent from "@/utils/CookieConsent";
 import { Globalstyle } from "@/utils/Globalstyles";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { CartProvider } from "@/context/CartContext";
+import { CartProvider } from "@/Context/CartContext";
 
 export default function ClientProviders({ children }) {
   return (

@@ -15,7 +15,7 @@ import {
   Home,
   ChevronRight,
 } from "lucide-react";
-import { useCart } from "@/context/CartContext";
+import { useCart } from "@/Context/CartContext";
 
 export default function DesignDetailsClient({ design, content, lang }) {
   const isRtl = lang === "ar";
