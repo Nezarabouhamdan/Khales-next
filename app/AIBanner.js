@@ -34,6 +34,7 @@ export default function AIBanner({ content, lang }) {
           padding: 60px;
           overflow: hidden;
           display: flex;
+          flex-direction: row;
           align-items: center;
           justify-content: space-between;
           gap: 40px;
@@ -45,7 +46,7 @@ export default function AIBanner({ content, lang }) {
           content: '';
           position: absolute;
           top: -100px;
-          right: -100px;
+          ${isRtl ? "right: -100px;" : "left: -100px;"}
           width: 300px;
           height: 300px;
           background: radial-gradient(circle, rgba(102,161,9,0.05) 0%, rgba(255,255,255,0) 70%);
@@ -56,7 +57,7 @@ export default function AIBanner({ content, lang }) {
         /* الجانب الأيمن: المحتوى الرئيسي */
         .ai-main-content {
           flex: 1;
-          text-align: right;
+          text-align: ${isRtl ? "right" : "left"};
           z-index: 2;
         }
 
@@ -144,7 +145,7 @@ export default function AIBanner({ content, lang }) {
         }
 
         .ai-feature-item:hover {
-          transform: translateX(-8px); /* حركة خفيفة لليسار عند التمرير */
+          transform: translateX(${isRtl ? "-8px" : "8px"});
           border-color: rgba(102, 161, 9, 0.3);
           box-shadow: 0 8px 25px rgba(102, 161, 9, 0.08);
         }

@@ -136,8 +136,7 @@ export default function ProcessSection({ content, lang }) {
                     style={{
                       position: "absolute",
                       top: "45px",
-                      /* In RTL, "left" means toward step n+1 */
-                      left: "0",
+                      [isRtl ? "left" : "right"]: "0",
                       width: "50%",
                       height: "1px",
                       background: "rgba(102, 161, 9, 0.12)",
@@ -151,7 +150,7 @@ export default function ProcessSection({ content, lang }) {
                     style={{
                       position: "absolute",
                       top: "45px",
-                      right: "0",
+                      [isRtl ? "right" : "left"]: "0",
                       width: "50%",
                       height: "1px",
                       background: "rgba(102, 161, 9, 0.12)",

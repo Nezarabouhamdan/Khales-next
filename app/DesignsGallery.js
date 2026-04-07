@@ -198,7 +198,7 @@ export default function DesignsGallery({ content, lang }) {
           right: 0;
           padding: 32px;
           z-index: 2;
-          text-align: right;
+          text-align: ${isRtl ? "right" : "left"};
           color: #ffffff; 
         }
 

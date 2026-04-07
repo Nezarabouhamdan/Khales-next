@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Crown, Bed, Ruler, Layers } from "lucide-react";
+import { ArrowLeft, ArrowRight, Crown, Bed, Ruler, Layers } from "lucide-react";
 import Link from "next/link";
 
 export default function FeaturedShowcase({ content, lang }) {
@@ -119,7 +119,7 @@ export default function FeaturedShowcase({ content, lang }) {
           right: 0;
           padding: 32px;
           z-index: 2;
-          text-align: right;
+          text-align: ${isRtl ? "right" : "left"};
           color: #ffffff; /* إجبار كل النصوص على الأبيض */
         }
 
@@ -299,7 +299,7 @@ export default function FeaturedShowcase({ content, lang }) {
 
             <a href="#all" className="view-all-link">
               {content?.viewAll}
-              <ArrowLeft size={18} />
+              {isRtl ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
             </a>
           </motion.div>
 

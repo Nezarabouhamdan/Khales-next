@@ -68,7 +68,7 @@ export default function TestimonialsSection({ content, lang }) {
           border: none;
           border-radius: 24px;
           padding: 45px 35px;
-          text-align: right;
+          text-align: ${isRtl ? "right" : "left"};
           display: flex;
           flex-direction: column;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);

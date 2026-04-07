@@ -82,7 +82,7 @@ export default function FeaturesSection({ content, lang }) {
           padding: 32px;
           transition: all 0.4s ease;
           position: relative;
-          text-align: right;
+          text-align: ${isRtl ? "right" : "left"};
         }
 
         .feature-card:hover {
@@ -103,8 +103,8 @@ export default function FeaturesSection({ content, lang }) {
           justify-content: center;
           color: #66a109;
           margin-bottom: 24px;
-          margin-right: auto; /* Aligns to top-right corner in RTL */
-          margin-left: 0;
+          margin-right: ${isRtl ? "0" : "auto"};
+          margin-left: ${isRtl ? "auto" : "0"};
           transition: all 0.3s ease;
         }
 

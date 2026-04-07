@@ -1,7 +1,13 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Phone, Mail, ArrowLeft } from "lucide-react";
+import {
+  MessageCircle,
+  Phone,
+  Mail,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
 
 export default function CTASection({ content, lang }) {
   const isRtl = lang === "ar";
@@ -252,7 +258,7 @@ export default function CTASection({ content, lang }) {
               {/* Outline Button */}
               <a href="#consultation" className="btn-cta-outline">
                 {content?.btnSecondary}
-                <ArrowLeft size={18} />
+                {isRtl ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
               </a>
             </div>
 
@@ -264,8 +270,8 @@ export default function CTASection({ content, lang }) {
                 <span>info@khales.ae</span>
               </a>
               <a href="tel:+971551299880" className="contact-item" dir="ltr">
-                <span>+971 55 129 9880</span>
                 <Phone size={18} />
+                <span>+971 55 129 9880</span>
               </a>
             </div>
           </motion.div>

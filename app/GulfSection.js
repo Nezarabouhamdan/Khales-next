@@ -40,7 +40,8 @@ export default function GulfReachSection({ content, lang }) {
         .gulf-glow {
           position: absolute;
           top: 0;
-          right: 20%;
+          right: ${isRtl ? "auto" : "20%"};
+          left: ${isRtl ? "20%" : "auto"};
           width: 150px;
           height: 150px;
           background: radial-gradient(circle, rgba(102, 161, 9, 0.15) 0%, transparent 70%);
@@ -82,7 +83,7 @@ export default function GulfReachSection({ content, lang }) {
         .stats-divider {
           width: 100%;
           height: 1px;
-          background: linear-gradient(to left, rgba(102, 161, 9, 0.2), transparent);
+          background: linear-gradient(to ${isRtl ? "right" : "left"}, rgba(102, 161, 9, 0.2), transparent);
           margin-bottom: 40px;
         }
 
@@ -94,7 +95,7 @@ export default function GulfReachSection({ content, lang }) {
         }
 
         .stat-item {
-          text-align: right;
+          text-align: ${isRtl ? "right" : "left"};
         }
 
         .stat-icon {

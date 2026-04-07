@@ -177,7 +177,7 @@ export default function PricingSection({ content, lang }) {
           color: #666;
           line-height: 1.7;
           margin-bottom: 35px;
-          text-align: right;
+          text-align: ${isRtl ? "right" : "left"};
         }
 
         /* Features List */
@@ -186,7 +186,7 @@ export default function PricingSection({ content, lang }) {
           padding: 0;
           margin: 0 0 45px 0;
           flex-grow: 1;
-          text-align: right;
+          text-align: ${isRtl ? "right" : "left"};
         }
 
         .feature-row {
