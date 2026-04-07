@@ -23,7 +23,6 @@ export const dictionary = {
           { label: "Residential", path: "/Residential" },
           { label: "Commercial", path: "/Commercial" },
           { label: "Luxury Villas", path: "/Luxury-Villas" },
-          { label: "Explore Projects", path: "/projects" },
         ],
       },
       {
@@ -69,8 +68,9 @@ export const dictionary = {
         ],
       },
       {
-        label: "Ready Designs",
-        path: "/ready-designs",
+        label: "Explore Projects",
+        path: "/projects",
+
         isDropdown: false,
       },
       {

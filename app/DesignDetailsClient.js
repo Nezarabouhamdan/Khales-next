@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -14,6 +15,7 @@ import {
   Home,
   ChevronRight,
 } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 export default function DesignDetailsClient({ design, content, lang }) {
   const isRtl = lang === "ar";
@@ -24,6 +26,25 @@ export default function DesignDetailsClient({ design, content, lang }) {
       : [design.image, design.image, design.image];
 
   const [activeImageIdx, setActiveImageIdx] = useState(0);
+
+  const { addToCart } = useCart();
+  const router = useRouter();
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: design.id,
+      title: design.title,
+      price: design.price,
+      currency: design.currency,
+      image: galleryImages[0],
+      category: design.category || "Ready Design",
+    });
+  };
+
+  const handleBuyNow = () => {
+    handleAddToCart();
+    router.push(`/${lang}/checkout`);
+  };
 
   return (
     <>
@@ -500,11 +521,11 @@ export default function DesignDetailsClient({ design, content, lang }) {
               </ul>
 
               <div className="actions-group">
-                <button className="btn-primary">
+                <button className="btn-primary" onClick={handleBuyNow}>
                   <CreditCard size={20} />
                   {content?.buyNowBtn}
                 </button>
-                <button className="btn-secondary">
+                <button className="btn-secondary" onClick={handleAddToCart}>
                   <ShoppingCart size={20} />
                   {content?.addToCartBtn}
                 </button>

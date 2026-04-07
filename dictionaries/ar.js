@@ -20,7 +20,6 @@ export const dictionary = {
           { label: "سكني", path: "/Residential" },
           { label: "تجاري", path: "/Commercial" },
           { label: "فلل فاخرة", path: "/Luxury-Villas" },
-          { label: "استكشاف المشاريع", path: "/projects" },
         ],
       },
       {
@@ -59,11 +58,8 @@ export const dictionary = {
           },
         ],
       },
-      {
-        label: "تصاميم جاهزة",
-        path: "/ready-designs",
-        isDropdown: false,
-      },
+      { label: "استكشاف المشاريع", path: "/projects", isDropdown: false },
+
       {
         label: "قدّر تكلفة منزلك",
         path: "/Calc",
