@@ -3598,4 +3598,21 @@ export const dictionary = {
       backBtn: "Back to Gallery",
     },
   },
+  cart: {
+    title: "Shopping Cart",
+    checkout: "Checkout",
+    quantity: "Quantity",
+    subtotal: "Subtotal",
+    total: "Total",
+    emptyCart: "Your cart is empty",
+    removeItem: "Remove",
+    confirmOrder: "Confirm Order",
+    continueShopping: "Continue Shopping",
+    name: "Full Name",
+    email: "Email Address",
+    phone: "Phone Number",
+    notes: "Additional Notes",
+    successMessage: "Your order has been received successfully! We will contact you soon.",
+    errorMessage: "An error occurred while submitting the order. Please try again."
+  },
 };

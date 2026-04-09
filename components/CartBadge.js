@@ -1,40 +1,46 @@
-// "use client";
-// import React from "react";
-// import Link from "next/link";
-// import { ShoppingCart } from "lucide-react";
-// import { useCart } from "@/context/CartContext";
+"use client";
+import React from "react";
+import Link from "next/link";
+import { ShoppingCart } from "lucide-react";
+import { useCart } from "@/Context/CartContext";
 
-// ("use client");
+export default function CartBadge({ lang }) {
+  const { cart, isHydrated } = useCart();
 
-// import { useState } from "react";
-// import { useCart } from "@/context/CartContext";
-// import { ShoppingCart } from "lucide-react";
-// import MiniCart from "./MiniCart";
+  if (!isHydrated) return null;
 
-// export default function CartIcon({ lang }) {
-//   const { cart, isHydrated } = useCart();
-//   const [open, setOpen] = useState(false);
+  const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
 
-//   if (!isHydrated) return null;
-
-//   const itemCount = cart.reduce((count, item) => count + item.quantity, 0);
-
-//   return (
-//     <div className="relative">
-//       <button
-//         onClick={() => setOpen(!open)}
-//         className="relative text-2xl p-4 hover:scale-110 transition-transform"
-//         style={{ color: "inherit" }}
-//       >
-//         🛒
-//         {itemCount > 0 && (
-//           <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full min-w-[20px] flex items-center justify-center">
-//             {itemCount}
-//           </span>
-//         )}
-//       </button>
-
-//       {open && <MiniCart close={() => setOpen(false)} />}
-//     </div>
-//   );
-// }
+  return (
+    <Link
+      href={`/${lang}/checkout`}
+      style={{
+        position: "relative",
+        display: "inline-flex",
+        alignItems: "center",
+        color: "inherit",
+        padding: "4px",
+        textDecoration: "none",
+      }}
+    >
+      <ShoppingCart size={24} />
+      {cartCount > 0 && (
+        <span
+          style={{
+            position: "absolute",
+            top: "-4px",
+            right: "-4px",
+            backgroundColor: "#66a109",
+            color: "white",
+            borderRadius: "50%",
+            padding: "2px 6px",
+            fontSize: "11px",
+            fontWeight: "bold",
+          }}
+        >
+          {cartCount}
+        </span>
+      )}
+    </Link>
+  );
+}

@@ -3571,4 +3571,21 @@ export const dictionary = {
       backBtn: "العودة للمعرض",
     },
   },
+  cart: {
+    title: "سلة المشتريات",
+    checkout: "إتمام الطلب",
+    quantity: "الكمية",
+    subtotal: "المجموع الفرعي",
+    total: "الإجمالي",
+    emptyCart: "سلة المشتريات فارغة",
+    removeItem: "إزالة",
+    confirmOrder: "تأكيد الطلب",
+    continueShopping: "متابعة التسوق",
+    name: "الاسم الكامل",
+    email: "البريد الإلكتروني",
+    phone: "رقم الهاتف",
+    notes: "ملاحظات إضافية",
+    successMessage: "تم استلام طلبك بنجاح! سنتواصل معك قريباً.",
+    errorMessage: "حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى."
+  },
 };
