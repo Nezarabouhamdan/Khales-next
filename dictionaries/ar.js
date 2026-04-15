@@ -3146,7 +3146,7 @@ export const dictionary = {
           /* خدمات باقة Basic */
           {
             id: "arch_design",
-            label: "تصميم معماري + إنشائي + MEP + 3D خارجي",
+            label: "تصميم معماري + إنشائي + 3D خارجي+MEP",
             minPlan: "Basic",
           },
           {
@@ -3161,19 +3161,19 @@ export const dictionary = {
           },
           {
             id: "monthly_supervision",
-            label: "إشراف شهري على الموقع",
+            label: "تقرير شهري على الموقع",
             minPlan: "Basic",
           },
 
           /* خدمات باقة Medium */
           {
             id: "weekly_supervision",
-            label: "إشراف أسبوعي على الموقع",
+            label: "تقرير أسبوعي على الموقع",
             minPlan: "Medium",
           },
           {
             id: "schedule_milestones",
-            label: "الجدول الزمني الرئيسي والمعالم",
+            label: "الجدول الزمني الرئيسي ",
             minPlan: "Medium",
           },
           { id: "qa_qc", label: "ضمان الجودة (QA/QC)", minPlan: "Medium" },
@@ -3189,29 +3189,29 @@ export const dictionary = {
           },
           {
             id: "material_selection",
-            label: "اختيار المواد ولوحات الأفكار (Moodboards)",
+            label: "اختيار المواد مع (Moodboards)",
             minPlan: "Medium",
           },
 
           /* خدمات تظهر كإضافات للباقة الأساسية والمتوسطة */
           {
             id: "smart_home",
-            label: "المنزل الذكي والأتمتة",
+            label: "المنزل الذكي",
             minPlan: "Elite",
           },
           {
             id: "vip_concierge",
-            label: "خدمات الكونسيرج VIP",
+            label: "خدمات  VIP",
             minPlan: "Elite",
           },
           {
             id: "ff_e_sourcing",
-            label: "تأمين الأثاث والتجهيزات المخصصة (FF&E)",
+            label: "تأمين الأثاث  ",
             minPlan: "Elite",
           },
           {
             id: "post_maintenance",
-            label: "صيانة ما بعد التسليم",
+            label: "خدمات ما بعد التسليم",
             minPlan: "Elite",
           },
           {
@@ -3226,7 +3226,7 @@ export const dictionary = {
           },
           {
             id: "landscape_synergy",
-            label: "تناغم التصميم الداخلي والحدائق",
+            label: " التصميم الداخلي والحدائق",
             minPlan: "Elite",
           },
           {
@@ -3236,7 +3236,7 @@ export const dictionary = {
           },
         ],
       },
-      submitButton: "ابدأ رحلة بناء بيت العمر مع فريق خالص 🚀",
+      submitButton: "ابدأ رحلة بناء بيت العمر مع فريق خالص ",
       successMessage:
         "شكراً لك يا {name}!\nتم استلام طلبك لباقة ({plan}) بنجاح وسيتم التواصل معك قريباً.",
     },
@@ -3586,6 +3586,6 @@ export const dictionary = {
     phone: "رقم الهاتف",
     notes: "ملاحظات إضافية",
     successMessage: "تم استلام طلبك بنجاح! سنتواصل معك قريباً.",
-    errorMessage: "حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى."
+    errorMessage: "حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.",
   },
 };

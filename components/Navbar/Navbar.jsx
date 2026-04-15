@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import styled, { css } from "styled-components";
 import { FaTimes, FaBars } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import CartBadge from "../CartBadge";
 
 // Custom hook to detect clicks outside of a component
 const useClickOutside = (ref, handler) => {
@@ -60,7 +61,9 @@ const NavbarContainer = styled.div`
   margin: 0 24px;
   padding: 0 20px;
   border-radius: 7px;
-  transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+  transition:
+    background 0.3s ease-in-out,
+    border 0.3s ease-in-out;
   background: rgba(255, 254, 254, 0.6);
   backdrop-filter: blur(15px);
   border: 1px solid
@@ -399,8 +402,8 @@ export default function Navbar({ lang, navigation }) {
         const isActive = hasChildren
           ? item.children.some((child) =>
               (child.links || [child]).some(
-                (link) => pathname === `/${lang}${link.path}`
-              )
+                (link) => pathname === `/${lang}${link.path}`,
+              ),
             )
           : pathname === `/${lang}${item.path}`;
 
@@ -470,8 +473,10 @@ export default function Navbar({ lang, navigation }) {
         <MobileIcon onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
         </MobileIcon>
+
         <NavMenu $isOpen={isMobileMenuOpen} ref={navRef}>
           <MainNavLinks />
+          <MenuItem className="mobile-cart"></MenuItem>
           <MenuItem className="mobile-only-lang">
             <MenuLink as="div" onClick={() => handleDropdownToggle("language")}>
               <LanguageButton>
@@ -511,6 +516,9 @@ export default function Navbar({ lang, navigation }) {
             </SubMenu>
           </MenuItem>
           <style jsx global>{`
+            .mobile-only-lang {
+              display: none;
+            }
             .mobile-only-lang {
               display: none;
             }

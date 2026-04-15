@@ -3219,12 +3219,12 @@ export const dictionary = {
           /* Elite Tier Features (Available as add-ons for Basic & Medium) */
           {
             id: "smart_home",
-            label: "Smart Home & Automation",
+            label: "Smart Home ",
             minPlan: "Elite",
           },
           {
             id: "vip_concierge",
-            label: "VIP Lifestyle Concierge",
+            label: "VIP Lifestyle ",
             minPlan: "Elite",
           },
           {
@@ -3234,7 +3234,7 @@ export const dictionary = {
           },
           {
             id: "post_maintenance",
-            label: "Post-Handover Maintenance",
+            label: "Post-Handover Service ",
             minPlan: "Elite",
           },
           {
@@ -3259,7 +3259,7 @@ export const dictionary = {
           },
         ],
       },
-      submitButton: "Start Your Dream Home Journey with Khales Team 🚀",
+      submitButton: "Start Your Dream Home Journey with Khales Team ",
       successMessage:
         "Thank you {name}!\nYour request for the ({plan}) package has been received successfully. We will contact you soon.",
     },
@@ -3335,10 +3335,9 @@ export const dictionary = {
           floors: null,
           tags: ["Interior", "Villa", "Luxury"],
           badge: "Complete",
-          image:
-            "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+          image: "https://i.ibb.co/nNZr0GkS/PHOTO-2025-08-19-11-42-23-JPG.jpg",
           images: [
-            "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+            "https://i.ibb.co/nNZr0GkS/PHOTO-2025-08-19-11-42-23-JPG.jpg",
             "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
           ],
@@ -3612,7 +3611,9 @@ export const dictionary = {
     email: "Email Address",
     phone: "Phone Number",
     notes: "Additional Notes",
-    successMessage: "Your order has been received successfully! We will contact you soon.",
-    errorMessage: "An error occurred while submitting the order. Please try again."
+    successMessage:
+      "Your order has been received successfully! We will contact you soon.",
+    errorMessage:
+      "An error occurred while submitting the order. Please try again.",
   },
 };

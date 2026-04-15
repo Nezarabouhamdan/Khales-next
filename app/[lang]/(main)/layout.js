@@ -18,6 +18,7 @@ import Calltoaction from "../../Calltoaction";
 import LocalBusinessSchema from "@/components/LocalBusiness/LocalBusiness";
 import CookieConsent from "@/utils/CookieConsent";
 import SiteProtection from "@/utils/SiteProtection";
+import CartFloat from "@/components/CartFloat";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -138,6 +139,7 @@ export default async function RootLayout(props) {
             </SiteProtection>
             <Footer lang={lang} content={dictionary.footer} />
             <ScrollToTop />
+            <CartFloat lang={lang} />
             <Link
               id="whatsapp"
               href="https://api.whatsapp.com/send?phone=971551299880"

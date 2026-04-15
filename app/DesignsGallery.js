@@ -26,7 +26,6 @@ const CATEGORIES_ICONS = {
 export default function DesignsGallery({ content, lang }) {
   const isRtl = lang === "ar";
   const [activeFilter, setActiveFilter] = useState("all");
-
   const galleryDesigns = content?.designs || [];
   const filteredDesigns =
     activeFilter === "all"
@@ -45,13 +44,11 @@ export default function DesignsGallery({ content, lang }) {
           font-family: 'Tajawal', sans-serif;
           color: #1a1a1a;
         }
-
         .gallery-container {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px;
         }
-
         /* Header */
         .gallery-header {
           text-align: center;

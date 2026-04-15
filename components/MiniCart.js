@@ -1,63 +1,181 @@
-// "use client";
+"use client";
+import React from "react";
+import { useCart } from "@/Context/CartContext";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-// import { useCart } from "@/context/CartContext";
-// import Link from "next/link";
-// import { useParams } from "next/navigation";
-// // Dictionary will be passed via context or global - simplified for now
-// // import getDictionary from '@/lib/get-dictionary' would require async/server component
+export default function MiniCart({ close, lang }) {
+  const { cart, removeFromCart } = useCart();
+  const isRtl = lang === "ar";
 
-// export default function MiniCart({ close }) {
-//   const { cart, removeFromCart, isHydrated } = useCart();
-//   const params = useParams();
-//   const lang = params?.lang || "en";
+  const content = {
+    title: isRtl ? "سلة المشتريات" : "Your Cart",
+    empty: isRtl ? "السلة فارغة حالياً" : "Your cart is empty",
+    remove: isRtl ? "حذف" : "Remove",
+    total: isRtl ? "الإجمالي" : "Total",
+    checkout: isRtl ? "إتمام الطلب" : "Checkout",
+  };
 
-//   const content = { title: lang === "ar" ? "سلة المشتريات" : "Cart" };
+  const total = cart.reduce((acc, item) => {
+    const priceNum =
+      typeof item.price === "string"
+        ? parseFloat(item.price.replace(/,/g, ""))
+        : item.price;
+    return acc + priceNum * item.quantity;
+  }, 0);
 
-//   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 20, scale: 0.9 }}
+      className="mini-cart-container"
+      style={{
+        direction: isRtl ? "rtl" : "ltr",
+        position: "absolute",
+        bottom: "80px",
+        right: "0px", // Forces the box to align with the button's right edge
+        width: "min(90vw, 340px)", // Responsive width
+        backgroundColor: "#ffffff",
+        borderRadius: "20px",
+        padding: "20px",
+        boxShadow: "0 10px 40px rgba(0,0,0,0.15)",
+        border: "1px solid #eee",
+        zIndex: 100000,
+      }}
+    >
+      <h3
+        style={{
+          color: "#111",
+          fontSize: "18px",
+          fontWeight: "700",
+          marginBottom: "15px",
+          textAlign: isRtl ? "right" : "left",
+        }}
+      >
+        {content.title}
+      </h3>
 
-//   if (!isHydrated) return null;
+      {cart.length === 0 ? (
+        <p
+          style={{
+            color: "#666",
+            fontSize: "14px",
+            textAlign: "center",
+            padding: "20px 0",
+          }}
+        >
+          {content.empty}
+        </p>
+      ) : (
+        <>
+          <div
+            style={{
+              maxHeight: "250px",
+              overflowY: "auto",
+              paddingRight: isRtl ? "0" : "5px",
+              paddingLeft: isRtl ? "5px" : "0",
+            }}
+          >
+            {cart.map((item) => (
+              <div
+                key={item.id}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "12px 0",
+                  borderBottom: "1px solid #f5f5f5",
+                }}
+              >
+                <div style={{ flex: 1, textAlign: isRtl ? "right" : "left" }}>
+                  <p
+                    style={{
+                      color: "#222",
+                      fontSize: "14px",
+                      fontWeight: "600",
+                      margin: 0,
+                    }}
+                  >
+                    {item.title}
+                  </p>
+                  <p
+                    style={{
+                      color: "#888",
+                      fontSize: "12px",
+                      margin: "4px 0 0 0",
+                    }}
+                  >
+                    {item.quantity} × {item.price} AED
+                  </p>
+                </div>
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  style={{
+                    color: "#ff4444",
+                    background: "#fff5f5",
+                    border: "none",
+                    padding: "6px 10px",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                    cursor: "pointer",
+                    fontWeight: "600",
+                    marginLeft: isRtl ? "0" : "10px",
+                    marginRight: isRtl ? "10px" : "0",
+                  }}
+                >
+                  {content.remove}
+                </button>
+              </div>
+            ))}
+          </div>
 
-//   return (
-//     <div className="absolute right-0 mt-3 w-80 bg-white shadow-xl rounded-2xl p-4 z-50 border">
-//       <h3 className="font-bold mb-3">{content.title}</h3>
+          <div
+            style={{
+              marginTop: "20px",
+              paddingTop: "15px",
+              borderTop: "2px solid #f5f5f5",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "15px",
+              }}
+            >
+              <span style={{ color: "#555", fontWeight: "600" }}>
+                {content.total}
+              </span>
+              <span
+                style={{ color: "#111", fontWeight: "800", fontSize: "18px" }}
+              >
+                {total.toLocaleString()} AED
+              </span>
+            </div>
 
-//       {cart.length === 0 ? (
-//         <p className="text-sm text-gray-500">Cart is empty</p>
-//       ) : (
-//         <>
-//           <div className="max-h-60 overflow-y-auto space-y-3">
-//             {cart.map((item) => (
-//               <div key={item.id} className="flex justify-between items-center">
-//                 <div>
-//                   <p className="text-sm font-medium">{item.title}</p>
-//                   <p className="text-xs text-gray-500">
-//                     {item.quantity} × {item.price}
-//                   </p>
-//                 </div>
-
-//                 <button
-//                   onClick={() => removeFromCart(item.id)}
-//                   className="text-red-500 text-xs hover:text-red-700"
-//                 >
-//                   Remove
-//                 </button>
-//               </div>
-//             ))}
-//           </div>
-
-//           <div className="mt-4 border-t pt-3">
-//             <p className="font-semibold">Total: {total.toLocaleString()}</p>
-
-//             <Link
-//               href={`/${lang}/checkout`}
-//               onClick={close}
-//               className="block mt-3 text-center bg-black text-white py-2 rounded-xl hover:bg-gray-800 transition-colors"
-//             >
-//               Checkout
-//             </Link>
-//           </div>
-//         </>
-//       )}
-//     </div>
-//   );
-// }
+            <Link
+              href={`/${lang}/checkout`}
+              onClick={close}
+              style={{
+                display: "block",
+                width: "100%",
+                backgroundColor: "#66a109",
+                color: "#fff",
+                textAlign: "center",
+                padding: "14px",
+                borderRadius: "12px",
+                textDecoration: "none",
+                fontWeight: "700",
+                fontSize: "16px",
+                boxShadow: "0 4px 12px rgba(102, 161, 9, 0.3)",
+              }}
+            >
+              {content.checkout}
+            </Link>
+          </div>
+        </>
+      )}
+    </motion.div>
+  );
+}

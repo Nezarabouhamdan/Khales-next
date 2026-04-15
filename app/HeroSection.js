@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
 
 const HERO_IMAGE =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310419663030860046/giFYBDeFxbGe42Yyw8PTCg/hero-banner-dHKNucphgnCkPtvLjoZXtv.webp";
+  "https://i.ibb.co/nNZr0GkS/PHOTO-2025-08-19-11-42-23-JPG.jpg";
 
 export default function HeroSection({ content, lang }) {
   const isRtl = lang === "ar";
@@ -42,9 +42,9 @@ export default function HeroSection({ content, lang }) {
           inset: 0;
           background: linear-gradient(
             to bottom,
-            rgba(10, 10, 10, 0.85) 0%,
-            rgba(10, 10, 10, 0.55) 40%,
-            rgba(10, 10, 10, 0.95) 100%
+            rgba(10, 10, 10, 0.80) 0%,
+            rgba(10, 10, 10, 0.5) 40%,
+            rgba(10, 10, 10, 0.80) 100%
           );
         }
 

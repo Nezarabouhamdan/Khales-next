@@ -1,16 +1,15 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/Context/CartContext";
 import MiniCart from "./MiniCart";
 import { AnimatePresence } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
 
-export default function CartBadge({ lang }) {
+export default function CartFloat({ lang }) {
   const { cart, isHydrated } = useCart();
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef(null);
 
-  // Close the Mini Cart when clicking outside of it
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -25,43 +24,55 @@ export default function CartBadge({ lang }) {
 
   const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
 
+  // Simplified return for CartFloat
   return (
     <div
-      className="relative"
       ref={wrapperRef}
-      style={{ display: "inline-flex", zIndex: 99999 }}
+      className="float3"
+      style={{
+        position: "fixed",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
       <button
         type="button"
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          setOpen((prev) => !prev);
-        }}
+        onClick={() => setOpen((prev) => !prev)}
         style={{
-          position: "relative",
-          display: "inline-flex",
+          width: "100%",
+          height: "100%",
+          display: "flex",
           alignItems: "center",
-          color: "inherit",
-          padding: "4px",
-          background: "transparent",
+          justifyContent: "center",
+          background: "none",
           border: "none",
+          color: "inherit",
           cursor: "pointer",
+          position: "relative", // For the badge
         }}
       >
-        <ShoppingCart size={24} />
+        <ShoppingCart size={28} />{" "}
+        {/* Lucide icon will now be centered by Flexbox */}
         {cartCount > 0 && (
           <span
+            className="cart-count-badge"
             style={{
               position: "absolute",
-              top: "-4px",
-              right: "-4px",
-              backgroundColor: "#66a109",
+              top: "-5px",
+              right: "-5px",
+              backgroundColor: "#ff4444",
               color: "white",
               borderRadius: "50%",
-              padding: "2px 6px",
-              fontSize: "11px",
+              width: "22px",
+              height: "22px",
+              fontSize: "12px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               fontWeight: "bold",
+              border: "2px solid #fff",
+              zIndex: 10,
             }}
           >
             {cartCount}

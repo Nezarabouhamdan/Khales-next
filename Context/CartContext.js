@@ -6,7 +6,6 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [isHydrated, setIsHydrated] = useState(false);
-
   // Load cart from sessionStorage on mount
   useEffect(() => {
     const savedCart = sessionStorage.getItem("khales_cart");

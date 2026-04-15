@@ -23,8 +23,7 @@ export const readyDesignsData = [
       en: "Complete",
       ar: "متكامل",
     },
-    image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+    image: "https://i.ibb.co/nNZr0GkS/PHOTO-2025-08-19-11-42-23-JPG.jpg",
     images: [
       "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",

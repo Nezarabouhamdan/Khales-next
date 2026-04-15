@@ -27,7 +27,9 @@
   overflow: hidden;
   color: #fff;
   text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -121,7 +123,9 @@
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out 0.1s;
+  transition:
+    max-height 0.4s ease-in-out,
+    opacity 0.3s ease-in-out 0.1s;
 }
 
 .project-card:hover .card-hover-content {
@@ -194,7 +198,9 @@
   display: flex; /* To align icon and text */
   align-items: center;
   gap: 0.5rem; /* Space between icon and text */
-  transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth hover effect */
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease; /* Smooth hover effect */
 }
 
 /* Add a hover effect to make it interactive */
@@ -224,41 +230,133 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.float {
+/* Base style for ALL floating buttons */
+.float,
+.float2,
+.float3 {
   position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 40px;
-  right: 40px;
+  right: 20px;
+  width: 50px; /* Mobile size */
+  height: 50px; /* Mobile size */
   background-color: rgb(102, 161, 9);
   color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 30px;
-  box-shadow: 2px 2px 3px #999;
-  z-index: 100;
+  border-radius: 50%;
+  display: flex !important; /* Center horizontal */
+  align-items: center !important; /* Center vertical */
+  justify-content: center !important; /* Center horizontal */
+  padding: 0 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Ensure the Lucide SVG doesn't have weird margins */
+.float3 svg {
+  display: block;
+}
+
+/* Icons inside the buttons */
+.float i,
+.float svg,
+.float2 i,
+.float3 svg {
+  font-size: 24px;
+}
+
+/* Vertical Positioning */
+.float {
+  bottom: 20px;
+} /* WhatsApp */
+.float2 {
+  bottom: 85px;
+} /* Call (adjust based on your component) */
+.float3 {
+  bottom: 150px;
+} /* Cart */
+
+/* Desktop Adjustments */
+@media (min-width: 768px) {
+  .float,
+  .float2,
+  .float3 {
+    width: 60px;
+    height: 60px;
+    right: 40px;
+  }
+  .float {
+    bottom: 40px;
+  }
+  .float2 {
+    bottom: 115px;
+  }
+  .float3 {
+    bottom: 190px;
+  }
+
+  .float i,
+  .float3 svg {
+    font-size: 30px;
+  }
+}
+
+.float:hover,
+.float2:hover,
+.float3:hover {
+  transform: scale(1.1);
+}
+
+/* Safety Styles for MiniCart */
+.absolute.w-80.bg-white {
+  background-color: #ffffff !important;
+}
+
+/* Ensure text inside cart is always dark */
+.absolute.w-80.bg-white h3,
+.absolute.w-80.bg-white p,
+.absolute.w-80.bg-white span:not(.cart-count-badge) {
+  color: #1a1a1a !important;
+}
+
+/* Scrollbar styling for the cart items */
+.max-h-60.overflow-y-auto::-webkit-scrollbar {
+  width: 5px;
+}
+.max-h-60.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.max-h-60.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Force the Cart UI to be professional and readable */
+.mini-cart-container,
+.mini-cart-container * {
+  color: #1a1a1a !important; /* Forces black text */
+  font-family: "Inter", sans-serif !important;
+}
+
+/* Fix the Link inside the cart specifically */
+.mini-cart-container a {
+  color: #ffffff !important; /* The button text must stay white */
+}
+
+/* Professional Scrollbar */
+.mini-cart-container div::-webkit-scrollbar {
+  width: 4px;
+}
+.mini-cart-container div::-webkit-scrollbar-thumb {
+  background: #e0e0e0;
+  border-radius: 10px;
 }
 
 .my-float {
-  margin-top: 16px;
-}
-.float2 {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 115px;
-  right: 40px;
-  background-color: rgb(102, 161, 9);
-  color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 30px;
-  box-shadow: 2px 2px 3px #999;
-  z-index: 100;
 }
 
 .my-float2 {
-  margin-top: 16px;
 }
 .App-link {
   color: #61dafb;
@@ -276,7 +374,9 @@
 /* index.css */
 @font-face {
   font-family: "Playfair";
-  src: local("Playfair Meduim"), local("Playfair-Meduim"),
+  src:
+    local("Playfair Meduim"),
+    local("Playfair-Meduim"),
     url("/src/fonts/Playfair_144pt-Medium.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
