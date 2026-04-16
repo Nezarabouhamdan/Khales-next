@@ -21,7 +21,8 @@
   background-color: #111827;
   color: #ffffff;
   text-align: center;
-  padding: 40px 20px;
+  margin-top: 10px;
+  padding: 20px 20px;
 }
 
 .header h1 {
@@ -92,7 +93,7 @@
 }
 
 .input:focus {
-  border-color: #10b981;
+  border-color: rgb(102, 161, 9); /* Your brand's green color */
 }
 
 /* --- Package Selection Section --- */
@@ -120,7 +121,7 @@
 
 /* حالة التحديد للباقات العادية (Basic & Premium) -> أخضر */
 .packageCard.selected {
-  border-color: #10b981;
+  border-color: rgb(102, 161, 9); /* Your brand's green color */
   background-color: #f0fdf4;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
 }
@@ -168,7 +169,7 @@
 }
 
 .badgePopular {
-  background-color: #10b981;
+  background-color: rgb(102, 161, 9); /* Your brand's green color */
 }
 
 .badgeElite {
@@ -195,12 +196,12 @@
 }
 
 .addonBox:hover {
-  border-color: #10b981;
+  border-color: rgb(102, 161, 9); /* Your brand's green color */
   background-color: #f0fdf4;
 }
 
 .addonSelected {
-  border-color: #10b981;
+  border-color: rgb(102, 161, 9); /* Your brand's green color */
   background-color: #effaf3;
 }
 
@@ -217,7 +218,7 @@
   width: 26px;
   height: 26px;
   border-radius: 999px;
-  background-color: #10b981;
+  background-color: rgb(102, 161, 9); /* Your brand's green color */
   color: white;
   font-weight: 800;
 }
@@ -294,7 +295,7 @@
 
 /* حالة التحديد للباقات العادية (Basic & Premium) -> أخضر */
 .packageCard.selected {
-  border-color: #10b981;
+  border-color: rgb(102, 161, 9); /* Your brand's green color */
   background-color: #f0fdf4;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
 }
@@ -342,7 +343,7 @@
 }
 
 .badgePopular {
-  background-color: #10b981;
+  background-color: rgb(102, 161, 9); /* Your brand's green color */
 }
 
 .badgeElite {

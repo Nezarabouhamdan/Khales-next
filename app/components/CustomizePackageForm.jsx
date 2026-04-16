@@ -44,12 +44,12 @@ const CustomizePackageForm = ({ dict }) => {
     : [];
 
   // التأكد من أن باقة Basic دائماً على اليمين
-  // في اللغة العربية (RTL) العنصر الأول يكون على اليمين
-  // في اللغة الإنجليزية (LTR) العنصر الأخير يكون على اليمين
+  // في اللغة العربية (RTL) العنصر الأخير يكون على اليمين (reverse)
+  // في اللغة الإنجليزية (LTR) العنصر الأول يكون على اليمين (forward)
   const isRtl = direction === "rtl" || direction === "AR";
   const displayPackages = isRtl
-    ? sortedPackageOptions
-    : [...sortedPackageOptions].reverse();
+    ? [...sortedPackageOptions].reverse()
+    : sortedPackageOptions;
 
   const [submitting, setSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
