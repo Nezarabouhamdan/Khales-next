@@ -1118,7 +1118,8 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/39sLhVqb/BANNER-STUDY.png",
+        image:
+          "https://i.ibb.co/LDFvBS0Q/Whats-App-Image-2026-04-29-at-1-50-04-PM.jpg",
         title: "اعرف إمكانيات مشروعك قبل أن تبدأ بالبناء",
         content: "تحليل جدوى المشروع ",
         button: "ابدأ مشروعك اليوم",

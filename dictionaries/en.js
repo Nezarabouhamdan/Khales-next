@@ -1197,7 +1197,8 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/FLZx466g/fotor-2026-04-29-13-02-41.jpg",
+        image:
+          "https://i.ibb.co/LDFvBS0Q/Whats-App-Image-2026-04-29-at-1-50-04-PM.jpg",
         title: "Know the Potential Before You Build",
         content: "Project Viability Analysis",
         button: "Start Your Project Today",
