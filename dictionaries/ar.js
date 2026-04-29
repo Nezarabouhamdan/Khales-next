@@ -438,10 +438,8 @@ export const dictionary = {
       description2:
         "ترشدك شركة خالص عبر قوانين تقسيم المناطق، وقيود استخدام الأراضي، وإجراءات الجهات الحكومية، وخيارات التطوير، لتحويل قطعة أرض خام إلى اتجاه مشروع قابل للتطبيق. تساعد هذه الخدمة على تجنب التأخير، والتكاليف المهدرة، وأخطاء التصميم من خلال التأكد من أن رؤيتك مجدية ومتوافقة منذ البداية.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
-        "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
+        "https://i.ibb.co/HTw0dm03/Whats-App-Image-2025-08-14-at-16-23-14-127b4151.jpg",
+        "https://i.ibb.co/Vpb0LnMG/Whats-App-Image-2025-08-14-at-16-23-44-66fcc5f6.jpg",
       ],
     },
     process: {
@@ -1133,8 +1131,8 @@ export const dictionary = {
       description2:
         "يراجع فريق خالص جميع العوامل الرئيسية: إمكانيات الأرض، ومتطلبات التصميم، وقيود الجهات الحكومية، والتكاليف التقديرية، والجداول الزمنية. بعد ذلك، نُعدّ ملخصًا واضحًا مدعومًا بالبيانات لمخاطر مشروعك ونقاط قوته وخطواته العملية التالية، حتى تتمكن من المضي قدمًا بوضوح وثقة.",
       images: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ee56b6848a5668fe4c1e75c526f9ae88908da749",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/83d057c657e643f783b5365240986c54a25d86a4",
+        "https://i.ibb.co/BX4wndc/Whats-App-Image-2025-08-14-at-16-25-30-15956dbe.jpg",
+        "https://i.ibb.co/BH2XX2hF/Whats-App-Image-2025-08-14-at-16-33-19-dd217380.jpg",
         "https://brabbu.com/blog/wp-content/uploads/2021/02/Aati-tayer-dubai.jpg",
         "https://mir-s3-cdn-cf.behance.net/project_modules/1400/2d1c74189930427.65b294ce482ca.jpg",
       ],
