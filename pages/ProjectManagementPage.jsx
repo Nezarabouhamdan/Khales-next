@@ -69,7 +69,9 @@ export default function ProjectManagementPage({ lang, content, ctaContent }) {
           <OurProcessWork panels={content.process.steps || []} />
           <img
             width={"300px"}
-            src={"https://i.ibb.co/nMNMRHDQ/PROCESS-360.png"}
+            src={
+              "https://i.ibb.co/k2TRZ6B2/Whats-App-Image-2026-04-27-at-4-50-35-PM.jpg"
+            }
             alt="Process Work"
           />
         </Row2>

@@ -383,14 +383,49 @@ export const dictionary = {
     title: "Clients & Partners",
     reviews: [
       {
-        text: "From the very first consultation, Khales impressed me...",
-        name: "IVAN K., RAS AL KHAIMAH",
-        service: "ARCHITECTURAL DESIGN",
+        text: "The landscape design completely transformed our property. Eng. Jannet understood my vision for a Tuscan-Spanish revival garden perfectly. It feels like a private oasis right in our backyard.",
+        name: "Fatima Al Ketbi",
+        service: "LANDSCAPE DESIGN",
       },
       {
-        text: "Working with Khales was a masterclass in professionalism...",
-        name: "James W. , Dubai",
-        service: "Landscaping",
+        text: "Highly professional team. Eng. Sarah was instrumental in translating our lifestyle needs into a stunning Modern Mediterranean minimalist concept. The spatial flow between the rooms is brilliant.",
+        name: "Saeed Al Darmaki",
+        service: "INTERIOR DESIGN",
+      },
+      {
+        text: "The interior design phase was incredibly smooth. They achieved that exact 'quiet luxury' aesthetic we wanted for our main majlis in Sharjah. Exceptional material selection.",
+        name: "Mousa Al Qassimi",
+        service: "INTERIOR DESIGN",
+      },
+      {
+        text: "Building a G+1 mansion can be stressful, but Eng. Maamoun is professional. He handled all the contractor coordination and site inspections seamlessly.",
+        name: "Abdullah Al Dhaheri",
+        service: "PROJECT MANAGEMENT",
+      },
+      {
+        text: "We wanted a clean, minimalist outdoor area. The team helped us select the perfect natural stones and drought-resistant plants. The landscape compliments the villa's modern architecture flawlessly.",
+        name: "Shamma Al Jaber",
+        service: "LANDSCAPE DESIGN",
+      },
+      {
+        text: "Eng. Samer oversaw the interior fit-out with an eagle eye. The precision in the ceiling details and the flooring alignment shows their total commitment to quality.",
+        name: "Zainab Al Hashimi",
+        service: "INTERIOR FIT-OUT",
+      },
+      {
+        text: "Eng. Sarah designed a beautiful, functional outdoor kitchen and seating area for us. The landscaping has become our family's favorite gathering spot during the winter months.",
+        name: "Reem Al Falasi",
+        service: "LANDSCAPE DESIGN",
+      },
+      {
+        text: "We had a challenging plot layout, but the team maximized every square foot. The landscaping now flows naturally from the indoor living areas.",
+        name: "Saif Al Zaabi",
+        service: "LANDSCAPE DESIGN",
+      },
+      {
+        text: "I highly recommend their architectural services. Eng. Sarah guided us through the entire conceptual phase, ensuring our Neo-classical villa met all local authority regulations effortlessly.",
+        name: "Ali Al Marri",
+        service: "ARCHITECTURAL DESIGN",
       },
     ],
   },
@@ -460,7 +495,8 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/ymhSpp0t/BAN-DEV.png",
+        image:
+          "https://i.ibb.co/SDGmCHXz/Whats-App-Image-2026-04-27-at-4-53-44-PM.jpg",
         title: "Turn Land into a Project — With a Clear Plan",
         content: "Early Project Strategy",
         button: "Book Appointment",
@@ -696,8 +732,8 @@ export const dictionary = {
       description2:
         "From structural details to mechanical and electrical systems, our engineers ensure that your project is progressing safely, accurately, and efficiently. We track the percentage of work completed, verify materials used, and support interim payment evaluations, protecting your investment and reinforcing long-term reliability.",
       images: [
-        "https://i.ibb.co/mrV6ZKQz/Whats-App-Image-2026-01-27-at-6-02-51-PM.jpg",
-        "https://i.ibb.co/SwsQPVFC/Whats-App-Image-2026-01-27-at-6-03-10-PM.jpg",
+        "https://i.ibb.co/HTYVrQ4g/Whats-App-Image-2026-04-27-at-5-00-52-PM.jpg",
+        "https://i.ibb.co/G4H0M1nT/Whats-App-Image-2026-04-27-at-5-02-16-PM.jpg",
       ],
     },
     process: {
@@ -784,8 +820,8 @@ export const dictionary = {
       description2:
         "We handle everything from spatial planning and mood concepts to material selection and technical drawings. Whether for a private villa, commercial space, or full development, we ensure the design reflects both the client’s taste and the project’s context, while staying practical, buildable, and regulation-ready.",
       images: [
-        "https://i.ibb.co/BH2Yztmp/Whats-App-Image-2026-01-27-at-6-04-15-PM.jpg",
-        "https://i.ibb.co/5W2pN64c/Whats-App-Image-2026-01-27-at-6-04-21-PM.jpg",
+        "https://i.ibb.co/6cQqbKZ6/Whats-App-Image-2026-04-27-at-5-04-57-PM.jpg",
+        "https://i.ibb.co/nN0QHSqY/Whats-App-Image-2026-04-27-at-5-05-01-PM.jpg",
       ],
     },
     process: {
@@ -981,7 +1017,7 @@ export const dictionary = {
         "This service is ideal for clients who want peace of mind, fewer headaches, and a professional team ensuring that the work is done right — on time, on budget, and to the standard you expect.",
       images: [
         "https://i.ibb.co/1frFMZZw/Screenshot-2025-08-14-165439.png",
-        "https://i.ibb.co/vCXdS2Zt/Screenshot-2025-08-14-165411.png",
+        "https://i.ibb.co/MyKMyJnL/Whats-App-Image-2026-04-27-at-4-49-20-PM.jpg",
       ],
     },
     process: {
@@ -1073,7 +1109,8 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/8JfxX3q/BAN-PM.png",
+        image:
+          "https://i.ibb.co/RkBTJ2G4/Whats-App-Image-2026-04-27-at-4-51-45-PM.jpg",
         title: "Professional Representation for Your Project",
         content: "Expert guidance from start to finish.",
         button: "Book Appointment",
@@ -1087,8 +1124,8 @@ export const dictionary = {
       description2:
         "We handle the complexities, site meetings, document reviews, progress tracking, and approvals, while keeping you informed and supported at every step. You make the final decisions. We make sure everything else moves forward smoothly, with clarity and accountability.",
       images: [
-        "https://i.ibb.co/fdgYgxYc/Whats-App-Image-2025-08-14-at-16-20-22-b6bc1ffa.jpg",
-        "https://i.ibb.co/hxXGS82B/Whats-App-Image-2025-08-14-at-16-21-14-49744c17.jpg",
+        " https://i.ibb.co/3wv9WLR/Whats-App-Image-2026-04-27-at-4-52-14-PM.jpg",
+        "https://i.ibb.co/KcsqCHtc/Whats-App-Image-2026-04-27-at-4-52-41-PM.jpg",
       ],
     },
     process: {
@@ -1160,7 +1197,7 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/39sLhVqb/BANNER-STUDY.png",
+        image: "https://i.ibb.co/FLZx466g/fotor-2026-04-29-13-02-41.jpg",
         title: "Know the Potential Before You Build",
         content: "Project Viability Analysis",
         button: "Start Your Project Today",
@@ -2127,6 +2164,64 @@ export const dictionary = {
           ],
           fourthParagraph:
             "The Takeaway: Understanding these differences helps you choose the approach that resonates with your taste, whether you prefer lavish craftsmanship or measured classical order.",
+        },
+      },
+      {
+        id: 12,
+        slug: "build-through-the-storm-why-development-cant-wait",
+        coverImage:
+          "https://i.ibb.co/cX1t1ncj/Whats-App-Image-2026-04-27-at-4-38-16-PM.jpg",
+        authorImage: "/assets/Khales Logo K - favicon.png",
+        authorName: "Khales Group",
+        date: "April 27, 2026",
+        tags: ["Investment", "Development"],
+        title: "Build Through the Storm: Why Development Can't Wait for Peace",
+        description:
+          "As geopolitical tensions rise in April 2026, the instinct to pause is natural — but in development and investment, waiting is often the most expensive mistake.",
+        postMeta: {
+          title:
+            "Build Through the Storm: Why Development Can't Wait for Peace | Khales",
+          description:
+            "Explore why continuing to build and invest during the US-Iran tensions of 2026 is the smartest strategic decision — and why waiting will cost you more.",
+          keywords: [
+            "building during conflict",
+            "investment during geopolitical tension",
+            "construction strategy 2026",
+            "middle east development",
+            "real estate resilience",
+            "building through uncertainty",
+            "khales group insights",
+            "construction investment uae",
+            "economic resilience building",
+          ],
+        },
+        fullContent: {
+          subtitle: "Building When the World Is on Edge",
+          paragraphs: [
+            'The world feels like it\'s standing on the edge of a knife. As of April 2026, the headlines are dominated by the ongoing conflict between the United States and Iran. With military strikes, a "dual blockade" in the Persian Gulf, and a fragile, indefinite ceasefire currently in place, the natural human instinct is to freeze.',
+            'When the ground shakes, our first impulse is to stop digging foundations. We want to wait for the "all clear." But in the world of development, investment, and personal growth, waiting for perfect silence is often the most expensive mistake you can make.',
+            "Here is why, even amidst the echoes of conflict, the best answer is to keep building.",
+            "1. Building is an Act of Defiance",
+            "War aims to disrupt the rhythm of normal life. It thrives on uncertainty, causing economies to stall and people to retreat into survival mode. When you choose to break ground on a new project — whether it's a physical structure, a business, or a community initiative — you are casting a vote for the future.",
+            "Architecture and construction have historically been the 'arsenal of peace.' By building, you are reclaiming the narrative from destruction and proving that your vision for tomorrow is stronger than the chaos of today.",
+            "2. The Cost of 'Waiting it Out'",
+            "Many people think pausing a project 'saves' money. In reality, the 'wait and see' tax is real and heavy: Inflation and supply chain shifts mean conflict in the Middle East has already sent oil and material prices into a spin. Historically, those who wait for the 'end' of a conflict find themselves building in a post-war economy where demand — and prices — skyrocket. While others are frozen in fear, those who continue to move forward find themselves at the front of the line when stability returns. By the time the world feels 'safe' again, your foundation will already be set.",
+          ],
+          quote:
+            "Infrastructure is the backbone of sustainable growth. Projects delayed are opportunities lost.",
+          paragraphAfterQuote:
+            "In times of geoeconomic confrontation, staying active prevents total economic stagnation. If everyone stops, the economy dies before the conflict even reaches the doorstep. By continuing to build, you are fueling the very resilience your community needs to weather the storm. Stability is built, not found — working on a long-term project provides purpose and future-orientation vital for navigating a crisis, while physical assets remain the most reliable stores of value in a world of fluctuating currencies.",
+          socialCounts: [5000, 37, 60000, 24000],
+          sectionTitle: "Move Forward with Wisdom",
+          thirdParagraph:
+            "Building doesn't mean being reckless. It means being adaptive. Review your contracts to ensure you have clauses that account for material price spikes or shipping delays. Diversify your sources — if the Strait of Hormuz is blocked, look for local or alternative supply routes. Focus on Essential Value: build things that solve problems, house people, and create energy.",
+          listItems: [
+            "Review your contracts: Ensure clauses account for material price spikes or shipping delays",
+            "Diversify your sources: Seek local or alternative supply routes if key shipping lanes are disrupted",
+            "Focus on Essential Value: Build things that solve problems, house people, and create energy",
+          ],
+          fourthParagraph:
+            "History doesn't remember those who sat in the shadows waiting for the sun to come out. It remembers the builders who worked through the night so that when the sun rose, there was something beautiful standing to meet it. Don't wait for the world to be perfect. Build the world you want to see.",
         },
       },
     ],

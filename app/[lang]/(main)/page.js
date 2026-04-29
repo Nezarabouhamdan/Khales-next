@@ -261,7 +261,6 @@ export default async function Home(props) {
   const { lang } = params || {};
   const dictionary = await getDictionary(lang);
   const homePageSchema = getHomePageSchema(lang);
-
   return (
     <>
       <Script
@@ -275,6 +274,7 @@ export default async function Home(props) {
         id="hero"
         aria-label="Full Project Management & Engineering for Villas & Commercial Projects"
       >
+        {" "}
         <Hero
           slides={dictionary.hero?.slides || []}
           lang={lang}

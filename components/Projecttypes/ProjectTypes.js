@@ -34,7 +34,7 @@ const projectTypesConfig = [
     showcase: {
       icon: <FaGem />, // Using the new luxury icon
       image:
-        "https://i.ibb.co/TD19YqTg/Whats-App-Image-2025-10-30-at-17-37-38-b2830fda.jpg", // A high-quality image of a luxury villa
+        "https://i.ibb.co/trQTX3N/Whats-App-Image-2026-04-27-at-4-45-20-PM.jpg", // A high-quality image of a luxury villa
     },
   },
 ];
@@ -101,7 +101,9 @@ const ShowcaseCard = styled.div`
   color: white;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   width: 100%;
 
   &::after {
