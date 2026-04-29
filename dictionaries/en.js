@@ -1124,7 +1124,7 @@ export const dictionary = {
       description2:
         "We handle the complexities, site meetings, document reviews, progress tracking, and approvals, while keeping you informed and supported at every step. You make the final decisions. We make sure everything else moves forward smoothly, with clarity and accountability.",
       images: [
-        " https://i.ibb.co/3wv9WLR/Whats-App-Image-2026-04-27-at-4-52-14-PM.jpg",
+        " https://i.ibb.co/jZ96Xfjt/Whats-App-Image-2026-04-27-at-4-52-14-PM.jpg",
         "https://i.ibb.co/KcsqCHtc/Whats-App-Image-2026-04-27-at-4-52-41-PM.jpg",
       ],
     },

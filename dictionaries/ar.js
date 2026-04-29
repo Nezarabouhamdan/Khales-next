@@ -1045,7 +1045,8 @@ export const dictionary = {
       description2:
         "نتولى التعقيدات، واجتماعات الموقع، ومراجعة المستندات، وتتبع التقدم، والموافقات، مع إبقائك على اطلاع ودعم في كل خطوة. أنت تتخذ القرارات النهائية، ونحن نضمن أن كل شيء آخر يسير بسلاسة ووضوح ومساءلة.",
       images: [
-        " https://i.ibb.co/3wv9WLR/Whats-App-Image-2026-04-27-at-4-52-14-PM.jpg",
+        " https://i.ibb.co/jZ96Xfjt/Whats-App-Image-2026-04-27-at-4-52-14-PM.jpg",
+
         "https://i.ibb.co/KcsqCHtc/Whats-App-Image-2026-04-27-at-4-52-41-PM.jpg",
       ],
     },
