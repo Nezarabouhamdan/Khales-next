@@ -86,6 +86,7 @@ export const dictionary = {
           { label: "Media Center", path: "/media-center" },
           { label: "Blogs", path: "/blog" },
           { label: "Contact us", path: "/Contact" },
+          { label: "Applications", path: "/applications" },
         ],
       },
     ],
@@ -3691,6 +3692,242 @@ export const dictionary = {
       addToCartBtn: "Add to Cart",
       notFound: "Sorry, the requested design was not found.",
       backBtn: "Back to Gallery",
+    },
+  },
+  applicationPage: {
+    metaTitle: "Job Application | Candidate Survey | Khales Group",
+    metaDescription:
+      "Apply for open positions at Khales Group. Fill out our quick candidate survey for the Executive Assistant and other positions.",
+    metaKeywords: [
+      "job application khales",
+      "executive assistant dubai",
+      "careers khales group",
+      "apply for job dubai",
+      "khales careers",
+    ],
+    schemaName: "Khales Group Job Application",
+    schemaDescription:
+      "Submit your job application to Khales Group. Fill out the candidate quick survey to apply for open positions.",
+    title: "Candidate Survey",
+    subtitle: "Candidate Quick Survey",
+    position: "Position Applied For",
+    positionPlaceholder: "e.g. Executive Assistant",
+    totalExperience: "Total Years of Experience",
+    totalExperiencePlaceholder: "e.g. 5 years",
+    availability: "When can you join?",
+    availabilityOptions: {
+      immediately: "Immediately",
+      lessThan15Days: "Less than 15 days",
+      oneMonth: "1 month",
+      moreThanOneMonth: "More than 1 month",
+    },
+    aiKnowledge: "AI Knowledge Level?",
+    aiKnowledgeOptions: {
+      expert: "Expert",
+      advanced: "Advanced",
+      intermediate: "Intermediate",
+      beginner: "Beginner",
+      none: "No experience",
+    },
+    expectedSalary: "Expected Monthly Salary (AED)",
+    expectedSalaryPlaceholder: "e.g. 10000",
+    maritalStatus: "Marital Status",
+    maritalStatusOptions: {
+      single: "Single",
+      married: "Married",
+      divorced: "Divorced",
+      widowed: "Widowed",
+    },
+    currentResidence: "Current Residence",
+    district: "Area / District",
+    districtPlaceholder: "e.g. Marina",
+    city: "City",
+    cityPlaceholder: "e.g. Dubai",
+    nationality: "Nationality",
+    nationalityPlaceholder: "e.g. Egyptian",
+    arabicLevel: "Do you speak Arabic?",
+    arabicLevelOptions: {
+      native: "Native",
+      fluent: "Very Fluent",
+      proficient: "Proficient",
+      basic: "Basic",
+      none: "No Arabic",
+    },
+    submitWhatsApp: "Send via WhatsApp",
+    clear: "Clear",
+    successMessage:
+      "Your application has been submitted successfully! We will contact you soon.",
+    errorMessage: "An error occurred. Please try again.",
+    submitting: "Submitting...",
+    requiredField: "This field is required",
+  },
+  examPage: {
+    metaTitle: "Knowledge Assessment | Khales Group",
+    metaDescription:
+      "Test your professional skills in financial auditing, AI usage, time management, document control, and personal assistance.",
+    exam: {
+      title: "Knowledge Assessment",
+      subtitle: "Answer all 12 questions to complete your application",
+      questionLabel: "Question",
+      of: "of",
+      next: "Next Question",
+      submit: "Submit & See Score",
+      resultTitle: "Assessment Complete",
+      resultSubtitle: "Thank you for completing the knowledge assessment.",
+      yourScore: "Your Score",
+      sendResults: "Send Results via WhatsApp",
+      messages: {
+        perfect: "Outstanding! A truly exceptional result.",
+        excellent: "Excellent! You demonstrated strong professional knowledge.",
+        good: "Good effort. Some areas could use further development.",
+        fair: "Keep learning. Review the key topics and look to improve.",
+      },
+      questions: [
+        {
+          id: 1,
+          category: "Financial Auditing",
+          question:
+            "While reviewing a Supplier Invoice before the CEO's approval, you notice that the total amount does not match the sum of the individual items by a small margin (100 AED). How do you act?",
+          options: {
+            A: "I approve the invoice as is because the difference is very small and not worth the delay.",
+            B: "I manually correct the final number with a pen and send it for approval.",
+            C: "I stop the approval immediately, contact the supplier to request a corrected invoice, and inform the accounting department.",
+            D: "I send it to the CEO and verbally inform him of the error so he can decide.",
+          },
+        },
+        {
+          id: 2,
+          category: "Financial Auditing",
+          question:
+            "The CEO asked you to review the monthly Petty Cash report. What are the essential steps you will take?",
+          options: {
+            A: "I only add up the numbers to ensure the final total is correct.",
+            B: "I match each expense with the original receipt, ensure necessary signatures are present, and categorize expenses by department.",
+            C: "I sign the report directly if it was prepared by the company's accountant.",
+            D: "I ask the accountant to review it again instead of me.",
+          },
+        },
+        {
+          id: 3,
+          category: "Financial Auditing",
+          question:
+            "You noticed a recurring monthly subscription payment for software the team hasn't used in 3 months. What do you do?",
+          options: {
+            A: "I ignore it because it's not my personal money.",
+            B: "I cancel the subscription immediately without consulting anyone.",
+            C: "I prepare a short report highlighting the financial waste and suggest to the CEO to cancel or replace it with a free alternative.",
+            D: "I send an angry email to the IT department.",
+          },
+        },
+        {
+          id: 4,
+          category: "AI Usage",
+          question:
+            "The CEO asked you to summarize a 50-page engineering report in 15 minutes before an important meeting. How do you use AI to accomplish this?",
+          options: {
+            A: "I read the report quickly and write down what I can remember.",
+            B: "I upload the report to a tool like ChatGPT or Claude, and ask it to extract the main points and recommendations in bullet points.",
+            C: "I tell the CEO there is not enough time and ask to postpone the meeting.",
+            D: "I copy the first and last page and present them as a summary.",
+          },
+        },
+        {
+          id: 5,
+          category: "AI Usage",
+          question:
+            "You need to draft a formal and firm email to a client who is late on payment, while maintaining a good relationship. How can AI help you?",
+          options: {
+            A: "I ask AI to write a legal threat email.",
+            B: "I write the email myself and do not trust AI for sensitive correspondence.",
+            C: "I give AI the details (amount, delay period) and ask for a \"Professional, Firm but Polite\" draft, then review and edit before sending.",
+            D: "I send a short WhatsApp message instead of an email.",
+          },
+        },
+        {
+          id: 6,
+          category: "AI Usage",
+          question:
+            "You want to organize an Excel spreadsheet containing hundreds of unorganized contacts. How do you speed up the process?",
+          options: {
+            A: "I organize them manually name by name.",
+            B: "I use built-in AI tools in Excel or ask ChatGPT to write a formula or macro to automatically clean and categorize the data.",
+            C: "I delete incomplete data to reduce the size of the table.",
+            D: "I ask an intern to do it.",
+          },
+        },
+        {
+          id: 7,
+          category: "Time Management",
+          question:
+            "You have 4 tasks today: 1. Book a flight for the CEO (flight is tomorrow). 2. Prepare a presentation for next week's meeting. 3. Reply to routine client emails. 4. Review an urgent contract to be signed today. What is the correct order?",
+          options: {
+            A: "Presentation → Emails → Flight booking → Contract.",
+            B: "Flight booking → Contract → Emails → Presentation.",
+            C: "Contract → Flight booking → Presentation → Emails.",
+            D: "I start with the easy tasks (Emails) to finish them quickly.",
+          },
+        },
+        {
+          id: 8,
+          category: "Time Management",
+          question:
+            "The CEO is in a closed meeting and asked not to be disturbed. A VIP client arrives at the office demanding to see him immediately. How do you act?",
+          options: {
+            A: "I interrupt the meeting immediately because it's a VIP client.",
+            B: "I tell the client the CEO is busy and ask him to leave.",
+            C: "I welcome the client warmly, offer hospitality, and send a quick text to the CEO informing him of the client's presence so he can decide when to step out.",
+            D: "I ignore the client until the CEO comes out.",
+          },
+        },
+        {
+          id: 9,
+          category: "Document Control",
+          question:
+            "A large engineering project has been completed. What is the best way to archive the project files (plans, contracts, invoices)?",
+          options: {
+            A: "I put all files in one folder on the desktop named after the project.",
+            B: "I print everything and put it in a physical file only.",
+            C: "I create an organized digital folder structure (Contracts, Plans, Financials) on the Cloud, name files with dates and versions, and keep a physical copy of original contracts.",
+            D: "I leave the files in employees' emails to refer back to when needed.",
+          },
+        },
+        {
+          id: 10,
+          category: "Document Control",
+          question:
+            "The design engineer sent you Version 3 of an architectural plan. How do you save it to ensure it doesn't get mixed up with previous versions?",
+          options: {
+            A: "I delete old versions and keep only the new one to save space.",
+            B: "I save it as \"Final Last Plan.\"",
+            C: "I save it with a standard name including project name, file type, version number, and date (e.g. ProjectX_ArchPlan_V3_20231025).",
+            D: "I save it in the \"Downloads\" folder.",
+          },
+        },
+        {
+          id: 11,
+          category: "Personal Assistance",
+          question:
+            "The CEO forgot to bring a gift for an important client he is meeting in two hours. How do you save the situation?",
+          options: {
+            A: "I tell him he made a mistake and should have remembered.",
+            B: "I suggest he cancels the meeting.",
+            C: "I immediately search for a nearby premium gift shop or order express delivery for a suitable gift (luxury chocolate or a branded pen) to arrive before the meeting.",
+            D: "I give him anything from the office as a gift.",
+          },
+        },
+        {
+          id: 12,
+          category: "Personal Assistance",
+          question:
+            "The CEO asked you to organize a business dinner for 5 people of different nationalities (Arabs, Europeans, Asians). What is the most important point when choosing the restaurant?",
+          options: {
+            A: "I choose my favorite restaurant.",
+            B: "I choose the most expensive restaurant in the city.",
+            C: "I ensure diverse food options (vegetarian, halal, gluten-free) to suit everyone, and choose a quiet place that allows comfortable discussion.",
+            D: "I choose a fast-food restaurant to save time.",
+          },
+        },
+      ],
     },
   },
   cart: {

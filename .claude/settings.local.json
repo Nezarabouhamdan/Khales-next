@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"c:/Users/Khales/Desktop/website/Khales-next/app/[lang]/\\(main\\)/applications\")",
+      "Bash(mkdir -p \"c:/Users/Khales/Desktop/website/Khales-next/app/[lang]/\\(main\\)/applications/exam\")",
+      "Bash(mkdir -p \"c:/Users/Khales/Desktop/website/Khales-next/app/[lang]/\\(main\\)/exam\")",
+      "Bash(rm -rf \"c:/Users/Khales/Desktop/website/Khales-next/app/[lang]/\\(main\\)/applications/exam\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Khales\\Desktop\\website\\Khales-next\\app\\[lang]\\(main)",
+      "c:\\Users\\Khales\\Desktop\\website\\Khales-next\\app\\[lang]\\(main)\\applications",
+      "c:\\Users\\Khales\\Desktop\\website\\Khales-next\\app\\[lang]\\(main)\\applications\\exam"
+    ]
+  }
+}
