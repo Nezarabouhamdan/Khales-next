@@ -283,6 +283,9 @@ function getResultMessage(score, messages) {
 export default function ExamSection({ lang, content }) {
   const isRtl = lang === "ar";
   const ec = content;
+
+  if (!ec || !ec.questions) return null;
+
   const questions = ec.questions;
   const total = questions.length;
 
