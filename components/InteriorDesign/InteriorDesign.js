@@ -47,9 +47,9 @@ const DecorativeShape = ({ initialX, initialY, size, stiffness, rtl }) => {
 };
 
 // --- Main Component ---
-const InteriorDesign = ({ data }) => {
+const InteriorDesign = ({ data, lang }) => {
   const { language } = useLanguage();
-  const rtl = language === "ar";
+  const rtl = language === "ar" || lang === "ar";
 
   if (!data || !data.length) return null;
   const content = data[0];

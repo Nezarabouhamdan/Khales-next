@@ -63,6 +63,10 @@ export const dictionary = {
               },
               { label: "Interior Designing", path: "/services/InteriorDesign" },
               { label: "Landscaping", path: "/services/LandscapingDesign" },
+              {
+                label: "Personal Shopping",
+                path: "/services/PersonalShopping",
+              },
             ],
           },
         ],
@@ -887,6 +891,142 @@ export const dictionary = {
           title: "What kinds of interiors do you specialize in?",
           content:
             "We design for private villas, apartments, offices, and select commercial spaces — always tailored to the project and client lifestyle.",
+        },
+      ],
+    },
+  },
+  personalShoppingPage: {
+    slides: [
+      {
+        id: 1,
+        image: "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
+        title: "Transforming Architectural Spaces into Curated Legacies",
+        content: "Personal Shopping – Interior Designer",
+        button: "Book Appointment",
+      },
+    ],
+    intro: {
+      title: "Personal Shopping – Interior Designer",
+      subtitle: "Bespoke Sourcing & Procurement for Luxury Villas",
+      description1:
+        "A luxury villa is only truly complete when its interiors match its architectural grandeur. Our Bespoke Sourcing & Procurement service is a white-glove, concierge experience designed for clients who demand exclusivity, flawless execution, and a seamless journey from blueprint to beautiful living.",
+      description2:
+        "We bridge the gap between architectural vision and curated comfort, managing the entire furnishing journey either alongside you or entirely on your behalf.",
+      images: [
+        "https://i.ibb.co/6cQqbKZ6/Whats-App-Image-2026-04-27-at-5-04-57-PM.jpg",
+        "https://i.ibb.co/nN0QHSqY/Whats-App-Image-2026-04-27-at-5-05-01-PM.jpg",
+      ],
+    },
+    sourcingApproaches: {
+      items: [
+        {
+          experience: "Collaborative & Immersive",
+          howItWorks:
+            "We accompany you to elite design districts, private showrooms, and artisan workshops. Together, we touch the luxury textiles, test the comfort of bespoke furniture, and select the exact pieces that speak to your personal taste, all under the expert guidance of our design team.",
+        },
+        {
+          experience: "Turnkey & Hands-Off",
+          howItWorks:
+            "We handle the entire process on your behalf. Based on your approved design concept, our team sources restricted trade-only items, manages international logistics, handles custom manufacturing, and oversees final white-glove installation.",
+        },
+      ],
+    },
+    whyTrust: {
+      items: [
+        {
+          title: "Access to the Inaccessible",
+          text:
+            "Gain exclusive entry to trade-only catalogs, international luxury brands, and elite custom craftsmen that are closed to the general public.",
+        },
+        {
+          title: "Time Optimization & Peace of Mind",
+          text:
+            "Your time is your most valuable asset. We eliminate the stress of endless showroom scrolling, vendor negotiations, shipping delays, and logistical tracking.",
+        },
+        {
+          title: "Design Integrity & ROI Protection",
+          text:
+            "Every item is meticulously checked against the villa's spatial layout, lighting conditions, and architectural proportions — preventing costly scale errors or mismatched aesthetics.",
+        },
+      ],
+    },
+    sourcingJourney: {
+      steps: [
+        {
+          number: "01",
+          title: "The Curation Brief",
+          description:
+            "We review your architectural layouts, design preferences, and investment scope to build a highly tailored sourcing strategy.",
+        },
+        {
+          number: "02",
+          title: "The Selection Phase",
+          description:
+            "Whether through accompanied showroom visits or a curated presentation, you approve the final mood boards, materials, and flagship furniture pieces.",
+        },
+        {
+          number: "03",
+          title: "Logistics & Procurement",
+          description:
+            "We manage the entire supply chain — placing orders, securing trade pricing, coordinating international shipping, and conducting strict quality control.",
+        },
+        {
+          number: "04",
+          title: "White-Glove Styling",
+          description:
+            "Our design team oversees the on-site placement, assembly, and final styling, ensuring your space is flawlessly presented and move-in ready.",
+        },
+      ],
+    },
+    process: {
+      title: "Our Personal Shopping Journey",
+      highlight: "Work",
+      steps: [
+        {
+          title: "The Curation Brief",
+          content:
+            "We review your architectural layouts, design preferences, and investment scope to build a highly tailored sourcing strategy.",
+        },
+        {
+          title: "The Selection Phase",
+          content:
+            "Whether through accompanied showroom visits or a curated presentation, you approve the final mood boards, materials, and flagship furniture pieces.",
+        },
+        {
+          title: "Logistics & Procurement",
+          content:
+            "We manage the entire supply chain — placing orders, securing trade pricing, coordinating international shipping, and conducting strict quality control.",
+        },
+        {
+          title: "White-Glove Styling",
+          content:
+            "Our design team oversees the on-site placement, assembly, and final styling, ensuring your space is flawlessly presented and move-in ready.",
+        },
+      ],
+    },
+    faq: {
+      title: "Personal Shopping ",
+      highlight: "FAQ",
+      questions: [
+        {
+          title: "Do you source trade-only or restricted-catalog items?",
+          content:
+            "Yes. We have direct access to trade-only catalogs and international luxury brand collections closed to the general public.",
+        },
+        {
+          title: "Can you source and install custom-made furniture?",
+          content:
+            "Absolutely. We manage custom manufacturing from concept to final installation, fully in line with your villa's design intent.",
+        },
+        {
+          title: "Do you offer full turnkey FF&E procurement?",
+          content:
+            "Yes — we handle every step from the approved design concept through sourcing, international logistics, quality control, and white-glove installation — no involvement required from you.",
+        },
+        {
+          title: "Do you accompany clients during selections?",
+          content:
+            "Yes. Our Guided Personal Shopping includes accompanied visits to elite design districts, private showrooms, and artisan workshops.",
         },
       ],
     },

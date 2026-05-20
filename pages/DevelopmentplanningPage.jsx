@@ -52,7 +52,7 @@ export default function DevelopmentplanningPage({ lang, content, ctaContent }) {
         />
       </section>
 
-      <InteriorDesign data={introData} />
+      <InteriorDesign data={introData} lang={lang} />
 
       <Column>
         <Title2>

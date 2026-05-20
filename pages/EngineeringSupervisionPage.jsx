@@ -54,7 +54,7 @@ export default function EngineeringSupervisionPage({
         />
       </section>
 
-      <InteriorDesign data={introData} />
+      <InteriorDesign data={introData} lang={lang} />
 
       <Column>
         <Title2>

@@ -17,6 +17,7 @@ const nextConfig = {
       "s3.us-west-2.amazonaws.com",
       "upload.wikimedia.org",
       "i.ytimg.com",
+      "placehold.co",
     ],
     remotePatterns: [
       {

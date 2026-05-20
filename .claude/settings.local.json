@@ -4,7 +4,9 @@
       "Bash(mkdir -p \"c:/Users/Khales/Desktop/website/Khales-next/app/[lang]/\\(main\\)/applications\")",
       "Bash(mkdir -p \"c:/Users/Khales/Desktop/website/Khales-next/app/[lang]/\\(main\\)/applications/exam\")",
       "Bash(mkdir -p \"c:/Users/Khales/Desktop/website/Khales-next/app/[lang]/\\(main\\)/exam\")",
-      "Bash(rm -rf \"c:/Users/Khales/Desktop/website/Khales-next/app/[lang]/\\(main\\)/applications/exam\")"
+      "Bash(rm -rf \"c:/Users/Khales/Desktop/website/Khales-next/app/[lang]/\\(main\\)/applications/exam\")",
+      "Bash(dir /s /b \"c:\\\\Users\\\\Khales\\\\Desktop\\\\website\\\\Khales-next\\\\app\")",
+      "Bash(findstr /i personal)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Khales\\Desktop\\website\\Khales-next\\app\\[lang]\\(main)",

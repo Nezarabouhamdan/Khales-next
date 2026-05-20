@@ -187,10 +187,7 @@ const ScoreCircle = styled.div`
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background: conic-gradient(
-    #66a109 ${({ $pct }) => $pct * 3.6}deg,
-    #f0f0f0 0deg
-  );
+  background: conic-gradient(#66a109 ${({ $pct }) => $pct}%, #f0f0f0 0%);
   display: flex;
   align-items: center;
   justify-content: center;
