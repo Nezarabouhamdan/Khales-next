@@ -412,7 +412,7 @@ export default function ApplicationPage({ lang, content }) {
     }
 
     window.open(
-      `https://api.whatsapp.com/send?phone=971551299880&text=${encodeURIComponent(buildMessage())}`,
+      `https://api.whatsapp.com/send?phone=971561880061&text=${encodeURIComponent(buildMessage())}`,
       "_blank",
     );
 
