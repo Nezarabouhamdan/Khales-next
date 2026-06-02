@@ -899,7 +899,8 @@ export const dictionary = {
     slides: [
       {
         id: 1,
-        image: "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
+        image:
+          "https://i.ibb.co/tpGPLc8s/Whats-App-Image-2026-06-02-at-1-35-56-PM-1.jpg",
         title: "Transforming Architectural Spaces into Curated Legacies",
         content: "Personal Shopping – Interior Designer",
         button: "Book Appointment",
@@ -913,8 +914,8 @@ export const dictionary = {
       description2:
         "We bridge the gap between architectural vision and curated comfort, managing the entire furnishing journey either alongside you or entirely on your behalf.",
       images: [
-        "https://i.ibb.co/6cQqbKZ6/Whats-App-Image-2026-04-27-at-5-04-57-PM.jpg",
-        "https://i.ibb.co/nN0QHSqY/Whats-App-Image-2026-04-27-at-5-05-01-PM.jpg",
+        "https://i.ibb.co/F4xD0jvt/Whats-App-Image-2026-06-02-at-1-35-56-PM.jpg",
+        "https://i.ibb.co/2Y14Gx5R/Whats-App-Image-2026-06-02-at-1-35-57-PM-1.jpg",
       ],
     },
     sourcingApproaches: {
@@ -935,18 +936,15 @@ export const dictionary = {
       items: [
         {
           title: "Access to the Inaccessible",
-          text:
-            "Gain exclusive entry to trade-only catalogs, international luxury brands, and elite custom craftsmen that are closed to the general public.",
+          text: "Gain exclusive entry to trade-only catalogs, international luxury brands, and elite custom craftsmen that are closed to the general public.",
         },
         {
           title: "Time Optimization & Peace of Mind",
-          text:
-            "Your time is your most valuable asset. We eliminate the stress of endless showroom scrolling, vendor negotiations, shipping delays, and logistical tracking.",
+          text: "Your time is your most valuable asset. We eliminate the stress of endless showroom scrolling, vendor negotiations, shipping delays, and logistical tracking.",
         },
         {
           title: "Design Integrity & ROI Protection",
-          text:
-            "Every item is meticulously checked against the villa's spatial layout, lighting conditions, and architectural proportions — preventing costly scale errors or mismatched aesthetics.",
+          text: "Every item is meticulously checked against the villa's spatial layout, lighting conditions, and architectural proportions — preventing costly scale errors or mismatched aesthetics.",
         },
       ],
     },
@@ -3979,7 +3977,7 @@ export const dictionary = {
           options: {
             A: "I ask AI to write a legal threat email.",
             B: "I write the email myself and do not trust AI for sensitive correspondence.",
-            C: "I give AI the details (amount, delay period) and ask for a \"Professional, Firm but Polite\" draft, then review and edit before sending.",
+            C: 'I give AI the details (amount, delay period) and ask for a "Professional, Firm but Polite" draft, then review and edit before sending.',
             D: "I send a short WhatsApp message instead of an email.",
           },
         },
@@ -4038,9 +4036,9 @@ export const dictionary = {
             "The design engineer sent you Version 3 of an architectural plan. How do you save it to ensure it doesn't get mixed up with previous versions?",
           options: {
             A: "I delete old versions and keep only the new one to save space.",
-            B: "I save it as \"Final Last Plan.\"",
+            B: 'I save it as "Final Last Plan."',
             C: "I save it with a standard name including project name, file type, version number, and date (e.g. ProjectX_ArchPlan_V3_20231025).",
-            D: "I save it in the \"Downloads\" folder.",
+            D: 'I save it in the "Downloads" folder.',
           },
         },
         {

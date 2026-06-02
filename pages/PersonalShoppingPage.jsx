@@ -124,8 +124,10 @@ const BulletItem = styled.div`
   background: #fafafa;
   padding: 1.5rem;
   border-radius: 12px;
-  border-left: ${({ $lang }) => ($lang === "ar" ? "none" : "4px solid #66a109")};
-  border-right: ${({ $lang }) => ($lang === "ar" ? "4px solid #66a109" : "none")};
+  border-left: ${({ $lang }) =>
+    $lang === "ar" ? "none" : "4px solid #66a109"};
+  border-right: ${({ $lang }) =>
+    $lang === "ar" ? "4px solid #66a109" : "none"};
 `;
 
 const BulletIcon = styled.div`
@@ -188,7 +190,7 @@ export default function PersonalShoppingPage({ lang, content, ctaContent }) {
   ];
 
   const processImage =
-    content.slides?.[0]?.image || "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png";
+    "https://i.ibb.co/jvTN1Ckb/Whats-App-Image-2026-06-02-at-1-35-57-PM.jpg";
 
   return (
     <>
