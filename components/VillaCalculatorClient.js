@@ -1009,6 +1009,116 @@ const S_ModalContent = styled.div`
   }
 `;
 
+// --- Styled Components for Feedback ---
+const S_FeedbackSection = styled.div`
+  margin-top: 48px;
+  padding: 32px 24px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  animation: ${fadeIn} 0.5s ease-out forwards;
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 8px 0;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin: 0 0 24px 0;
+  }
+`;
+
+const S_FeedbackOptions = styled.div`
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+`;
+
+const S_FeedbackOption = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 28px;
+  border-radius: 14px;
+  border: 2px solid
+    ${(props) => (props.active ? "var(--primary-color)" : "var(--border-color)")};
+  background: ${(props) =>
+    props.active ? "rgba(102, 161, 9, 0.07)" : "var(--bg-white)"};
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: ${(props) => (props.active ? "var(--primary-color)" : "var(--text-dark)")};
+  font-family: inherit;
+
+  span.emoji {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  &:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.08);
+  }
+`;
+
+const S_FeedbackComment = styled.textarea`
+  width: 100%;
+  max-width: 480px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-white);
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 90px;
+  color: var(--text-dark);
+  display: block;
+  margin: 0 auto 16px;
+  transition: border-color 0.2s ease;
+  direction: ${(props) => (props.isRTL ? "rtl" : "ltr")};
+  text-align: ${(props) => (props.isRTL ? "right" : "left")};
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 161, 9, 0.15);
+  }
+`;
+
+const S_FeedbackThankYou = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px;
+  animation: ${fadeIn} 0.5s ease-out;
+
+  .check {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin: 0;
+  }
+`;
+
 // --- Reusable Components & Initial State ---
 // ... (CostPieChart, getInitialState, initializeRoomsState functions remain here, unchanged)
 const CostPieChart = ({ breakdownDetails, isRTL }) => {
@@ -1095,6 +1205,13 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [leadInfo, setLeadInfo] = useState({ email: "", phone: "" });
   const [pdfLeadsCount, setPdfLeadsCount] = useState(null);
+
+  // Feedback state
+  const [currentLeadId, setCurrentLeadId] = useState(null);
+  const [feedbackRating, setFeedbackRating] = useState(null);
+  const [feedbackComment, setFeedbackComment] = useState("");
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+  const [feedbackSubmitting, setFeedbackSubmitting] = useState(false);
 
   // --- PERSISTENCE LOGIC ---
   const [isLoaded, setIsLoaded] = useState(false);
@@ -1247,6 +1364,31 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
     });
     setCalculationMode(null);
     setExtraArea(0);
+    setCurrentLeadId(null);
+    setFeedbackRating(null);
+    setFeedbackComment("");
+    setFeedbackSubmitted(false);
+  };
+
+  const handleFeedbackSubmit = async () => {
+    if (!feedbackRating) return;
+    setFeedbackSubmitting(true);
+    try {
+      await fetch("/api/submit-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          leadId: currentLeadId,
+          rating: feedbackRating,
+          comment: feedbackComment,
+          totalPrice: calculationResult.totalPrice,
+          totalBUA: calculationResult.totalBUA,
+          lang,
+        }),
+      });
+    } catch (_) {}
+    setFeedbackSubmitting(false);
+    setFeedbackSubmitted(true);
   };
 
   const handleShowResult = () => setIsModalOpen(true);
@@ -1276,27 +1418,25 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
 
     setIsSubmitting(true);
 
-    fetch("/api/create-pdf-lead", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: leadInfo.email,
-        phone: leadInfo.phone,
-        description: `Lead from PDF Download.\nTotal BUA: ${calculationResult.totalBUA.toFixed(
-          2,
-        )} m²\nEstimated Cost: ${Math.round(
-          calculationResult.totalPrice,
-        ).toLocaleString()} AED`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data.success) throw new Error(data.error);
-        console.log("Lead creation initiated:", data.message || "Success");
-      })
-      .catch((error) => {
-        console.error("Error sending lead data:", error);
+    try {
+      const res = await fetch("/api/create-pdf-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: leadInfo.email,
+          phone: leadInfo.phone,
+          description: `Lead from PDF Download.\nTotal BUA: ${calculationResult.totalBUA.toFixed(
+            2,
+          )} m²\nEstimated Cost: ${Math.round(
+            calculationResult.totalPrice,
+          ).toLocaleString()} AED`,
+        }),
       });
+      const data = await res.json();
+      if (data.leadId) setCurrentLeadId(data.leadId);
+    } catch (error) {
+      console.error("Error sending lead data:", error);
+    }
 
     setIsSubmitting(false);
     setIsModalOpen(false);
@@ -1935,6 +2075,65 @@ export default function VillaCalculatorClient({ lang, dictionary }) {
               {dictionary.downloadFreePdf || "Download Free PDF"}
             </S_Button>
           </S_ActionButtonsContainer>
+
+          {/* Feedback Section */}
+          <S_FeedbackSection className="pdf-exclude">
+            {feedbackSubmitted ? (
+              <S_FeedbackThankYou>
+                <span className="check">✅</span>
+                <h3>{dictionary.feedbackThankYou || "Thank you for your feedback!"}</h3>
+                <p>{dictionary.feedbackThankYouSub || "Your input helps us serve you better."}</p>
+              </S_FeedbackThankYou>
+            ) : (
+              <>
+                <h3>{dictionary.feedbackTitle || "How does this estimate feel to you?"}</h3>
+                <p>{dictionary.feedbackSubtitle || "Your input helps us improve our calculator accuracy."}</p>
+                <S_FeedbackOptions>
+                  <S_FeedbackOption
+                    active={feedbackRating === "too_low"}
+                    onClick={() => setFeedbackRating("too_low")}
+                  >
+                    <span className="emoji">💸</span>
+                    {dictionary.feedbackTooLow || "Too Low"}
+                  </S_FeedbackOption>
+                  <S_FeedbackOption
+                    active={feedbackRating === "just_right"}
+                    onClick={() => setFeedbackRating("just_right")}
+                  >
+                    <span className="emoji">✅</span>
+                    {dictionary.feedbackJustRight || "Looks Right"}
+                  </S_FeedbackOption>
+                  <S_FeedbackOption
+                    active={feedbackRating === "too_high"}
+                    onClick={() => setFeedbackRating("too_high")}
+                  >
+                    <span className="emoji">💰</span>
+                    {dictionary.feedbackTooHigh || "Too High"}
+                  </S_FeedbackOption>
+                </S_FeedbackOptions>
+                {feedbackRating && (
+                  <>
+                    <S_FeedbackComment
+                      isRTL={isRTL}
+                      value={feedbackComment}
+                      onChange={(e) => setFeedbackComment(e.target.value)}
+                      placeholder={dictionary.feedbackCommentPlaceholder || "Tell us more (optional)..."}
+                    />
+                    <S_Button
+                      className="next"
+                      onClick={handleFeedbackSubmit}
+                      disabled={feedbackSubmitting}
+                      style={{ width: "auto", minWidth: "180px", margin: "0 auto" }}
+                    >
+                      {feedbackSubmitting
+                        ? (dictionary.feedbackSubmitting || "Sending...")
+                        : (dictionary.feedbackSubmit || "Send Feedback")}
+                    </S_Button>
+                  </>
+                )}
+              </>
+            )}
+          </S_FeedbackSection>
         </S_ResultsPageWrapper>
 
         {/* Hidden PDF layout (unchanged) */}

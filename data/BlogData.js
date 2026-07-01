@@ -696,4 +696,77 @@ export const blogCardsData = [
       },
     },
   },
+  {
+    id: 11,
+    eng: {
+      coverImage: "https://i.ibb.co/4ZwPf83y/Screenshot-2026-06-10-172422.png",
+      tags: ["Architecture", "History"],
+      title: "The Pillars of History: A Guide to the Classic Architectural Orders",
+      authorImage: logo,
+      authorName: "Khales Team",
+      date: "June 11, 2026",
+      description:
+        "Discover the five classic architectural orders — Doric, Ionic, Corinthian, Tuscan, and Composite — and learn how to identify these timeless columns in buildings around the world.",
+      buttonText: "Read More",
+      fullContent: {
+        subtitle: "The Pillars of History",
+        paragraphs: [
+          "When we admire the grand columns of a courthouse, a museum, or a centuries-old temple, we are often gazing at one of humanity's most enduring design legacies — classical architecture. Rooted in ancient Greece and refined by Rome, this tradition gave us the five architectural orders: Doric, Ionic, Corinthian, Tuscan, and Composite.",
+          "But these are not just decorative styles. Each order is a complete system of proportions, from the base of the column to the decorated entablature above. Understanding them is a key to reading the language of classical buildings.",
+        ],
+        quote:
+          "Architecture is frozen music — and the classical orders are its most enduring melody.",
+        paragraphAfterQuote:
+          "Do you have a favorite building in your city that uses these classical styles? Look closely next time you pass a government building, a museum, or even an old bank — you might be surprised by what you find.",
+        socialCounts: socialCounts,
+        sectionTitle: "The Five Classical Orders",
+        thirdParagraph:
+          "The ancient Greeks developed three fundamental orders, each with its own distinct character and proportional rules. The Romans later added two more, rounding out the classical vocabulary that architects have drawn on for over two thousand years.",
+        listItems: [
+          "Doric — The oldest and simplest order, recognized by its sturdy columns with no base and a plain, cushion-like capital. It projects strength and solemnity. Famous example: the Parthenon in Athens.",
+          "Ionic — More elegant and slender than Doric, the Ionic order features a distinctive scroll-shaped capital called a volute. Famous example: the Temple of Athena Nike.",
+          "Corinthian — The most elaborate Greek order, adorned with intricate acanthus leaf carvings on the capital and a slender, fluted shaft. Famous example: the Choragic Monument of Lysicrates.",
+          "Tuscan — A Roman invention, essentially a simplified Doric with a smooth shaft and minimal decoration. It conveys rustic simplicity.",
+          "Composite — Also Roman, this order combines the volute scrolls of the Ionic with the acanthus leaves of the Corinthian, creating the most ornate capital of all.",
+        ],
+        fourthParagraph:
+          "A quick guide to identifying the orders at a glance: a flat, undecorated top means Doric or Tuscan; scrolls on the capital point to Ionic; leafy carvings suggest Corinthian; and a combination of scrolls and leaves means Composite. Once you know these cues, you will find yourself spotting classical orders everywhere — from grand public buildings to the columns on a neighborhood front porch.",
+      },
+    },
+    ar: {
+      coverImage: "https://i.ibb.co/4ZwPf83y/Screenshot-2026-06-10-172422.png",
+      tags: ["العمارة", "التاريخ"],
+      title: "أعمدة التاريخ: دليل إلى الطرازات المعمارية الكلاسيكية",
+      authorImage: logo,
+      authorName: "فريق خالص",
+      date: "يونيو 11، 2026",
+      description:
+        "اكتشف الطرازات المعمارية الكلاسيكية الخمسة — الدوري، والأيوني، والكورنثي، والتوسكاني، والمركب — وتعلّم كيف تتعرف على هذه الأعمدة الخالدة في المباني حول العالم.",
+      buttonText: "اقرأ المزيد",
+      fullContent: {
+        subtitle: "أعمدة التاريخ",
+        paragraphs: [
+          "عندما نُعجب بالأعمدة الشامخة في مبنى حكومي أو متحف أو معبد عريق، فإننا غالباً ما نتأمل أحد أعرق إرث التصميم الإنساني — العمارة الكلاسيكية. هذا التراث الذي ولد في اليونان القديمة واكتمل على يد الرومان، أعطانا الطرازات المعمارية الخمسة: الدوري، والأيوني، والكورنثي، والتوسكاني، والمركب.",
+          "لكن هذه الطرازات ليست مجرد أساليب زخرفية؛ بل كل طراز منها نظام متكامل من النسب، يمتد من قاعدة العمود إلى الزخارف المرتفعة فوقه. إن فهم هذه الطرازات هو مفتاح قراءة لغة المباني الكلاسيكية.",
+        ],
+        quote:
+          "العمارة موسيقى متجمدة — والطرازات الكلاسيكية هي أعذب ألحانها على مر العصور.",
+        paragraphAfterQuote:
+          "هل يوجد مبنى مفضل لديك في مدينتك يستخدم هذه الأساليب الكلاسيكية؟ ألقِ نظرة فاحصة في المرة القادمة التي تمر فيها بمبنى حكومي أو متحف أو حتى مصرف قديم — قد تُفاجأ بما ستجده.",
+        socialCounts: socialCounts,
+        sectionTitle: "الطرازات الكلاسيكية الخمسة",
+        thirdParagraph:
+          "طوّر الإغريق القدماء ثلاثة طرازات أساسية، لكل منها طابعه المميز وقواعده النسبية الخاصة. وقد أضاف الرومان لاحقاً طرازين آخرين، مكتملين بذلك المفردات الكلاسيكية التي استلهم منها المعماريون إبداعاتهم لأكثر من ألفي عام.",
+        listItems: [
+          "الدوري — أقدم الطرازات وأبسطها، يتميز بأعمدة متينة بلا قاعدة وتاج بسيط على شكل وسادة. يعكس القوة والرصانة. مثال شهير: البارثينون في أثينا.",
+          "الأيوني — أكثر أناقة ورشاقة من الدوري، يتميز بتاج مزين بلفائف حلزونية تُسمى الفولوت. مثال شهير: معبد أثينا نيكي.",
+          "الكورنثي — أكثر الطرازات الإغريقية تفصيلاً، يتزين بنقوش أوراق الأكانثوس المعقدة على التاج، مع عمود رفيع مجدول. مثال شهير: نصب ليسيكراتيس الخطابي.",
+          "التوسكاني — طراز روماني في جوهره، وهو شكل مبسط من الدوري بعمود أملس وحد أدنى من الزخارف. يوحي بالبساطة الريفية.",
+          "المركب — روماني أيضاً، يجمع بين لفائف الأيوني وأوراق الكورنثي، ليُنتج أكثر التيجان زخرفة وتعقيداً.",
+        ],
+        fourthParagraph:
+          "دليل سريع لتمييز الطرازات للوهلة الأولى: القمة المستوية غير المزخرفة تعني الدوري أو التوسكاني؛ اللفائف على التاج تشير إلى الأيوني؛ النقوش الورقية تقترح الكورنثي؛ أما الجمع بين اللفائف والأوراق فيعني المركب. حالما تعرف هذه الإشارات، ستجد نفسك تكتشف الطرازات الكلاسيكية في كل مكان — من المباني العامة الكبرى إلى الأعمدة المزينة لبيت في حي قريب.",
+      },
+    },
+  },
 ];

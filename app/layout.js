@@ -1,21 +1,20 @@
 import { Inter } from "next/font/google";
-import StyledComponentsRegistry from "@/utils/registry";
 import Script from "next/script";
+import { headers } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// We can define a minimal metadata object here as a fallback,
-// but the page.js metadata will take priority.
 export const metadata = {
   title: "Khales Not found Page",
   description: "Special offer from Khales Group.",
 };
-const META_PIXEL_ID = "3634194126882623"; // Replace with your actual pixel ID
 
-// This is a self-contained Root Layout for the landing page group.
-export default function LandingLayout(props) {
-  const { children, params } = props;
-  const { lang } = params || {};
+const META_PIXEL_ID = "3634194126882623";
+
+export default async function RootLayout({ children }) {
+  const headersList = await headers();
+  const lang = headersList.get("x-lang") || "en";
+
   return (
     <html
       lang={lang}
@@ -23,6 +22,10 @@ export default function LandingLayout(props) {
       suppressHydrationWarning
     >
       <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
         <meta property="fb:app_id" content="1160662655535691" />
         <Script
           id="facebook-meta-pixel"
@@ -41,7 +44,7 @@ export default function LandingLayout(props) {
         fbq(\'track\', \'PageView\');
       `,
           }}
-        />{" "}
+        />
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-FYYEQCM8Z7"
@@ -53,7 +56,7 @@ export default function LandingLayout(props) {
         gtag('js', new Date());
         gtag('config', 'G-FYYEQCM8Z7');
       `}
-        </Script>{" "}
+        </Script>
         <Script id="google-tag-manager-head" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -63,7 +66,6 @@ export default function LandingLayout(props) {
             })(window,document,'script','dataLayer','GTM-TNHGBH7J');
           `}
         </Script>
-        {/* Google Tag Manager */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=AW-10827937555"
@@ -77,13 +79,7 @@ export default function LandingLayout(props) {
           `}
         </Script>
       </head>
-      <body className={inter.className}>
-        <StyledComponentsRegistry>
-          {/* We do NOT include the Navbar or Footer here. */}
-          {/* We only render the page content. */}
-          {children}
-        </StyledComponentsRegistry>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

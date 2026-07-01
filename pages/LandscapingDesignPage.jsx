@@ -1,22 +1,16 @@
-// components/ServicePages/LandscapingDesignPage.js
 "use client";
-
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-
 // Import your existing styled-components and UI components
 import InteriorDesign from "@/components/InteriorDesign/InteriorDesign";
 import OurProcessWork from "@/components/OurProcessWork/OurProcessWork";
 import CTASection from "@/components/Homecontact/CTASection";
 import { Row2, Column } from "@/utils/Globalstyles";
 import { GreenText, Title as Title2 } from "@/components/Whoweare/TextContent";
-
 const HeroSlider = dynamic(() => import("@/components/Slider/Slider"));
-
 // The component now receives all its text and language via props
 export default function LandscapingDesignPage({ lang, content, ctaContent }) {
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -27,7 +21,6 @@ export default function LandscapingDesignPage({ lang, content, ctaContent }) {
   if (!content || !content.intro || !content.process || !content.faq) {
     return null; // Or a loading skeleton
   }
-
   // Restructure the intro data to match what the InteriorDesign component expects
   const introData = [
     {
@@ -38,12 +31,10 @@ export default function LandscapingDesignPage({ lang, content, ctaContent }) {
       images: content.intro.images,
     },
   ];
-
   // Restructure the project highlight data similarly
   const projectHighlightData = content.projectHighlight
     ? [content.projectHighlight]
     : [];
-
   return (
     <>
       <section id="hero" aria-label="hero">
@@ -56,7 +47,6 @@ export default function LandscapingDesignPage({ lang, content, ctaContent }) {
       </section>
 
       <InteriorDesign data={introData} lang={lang} />
-
       <Column>
         <Title2>
           {content.process.title}
@@ -69,18 +59,14 @@ export default function LandscapingDesignPage({ lang, content, ctaContent }) {
           <OurProcessWork panels={content.process.steps || []} />
           <img width={"300px"} src={"/assets/4.png"} alt="Process Work" />
         </Row2>
-
         {/* The project highlight section was commented out in your original code, but is now functional */}
         {/* <ProjectHighlight data={projectHighlightData} /> */}
-
         <Title2>
           {content.faq.title}
           <GreenText>{content.faq.highlight}</GreenText>
         </Title2>
-
         <OurProcessWork panels={content.faq.questions || []} />
       </Column>
-
       <CTASection lang={lang} content={ctaContent} />
     </>
   );

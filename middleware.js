@@ -46,6 +46,17 @@ export function middleware(request) {
       )
     );
   }
+
+  // Pass the detected lang to server components via request headers
+  const lang =
+    i18n.locales.find(
+      (locale) =>
+        pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+    ) || i18n.defaultLocale;
+
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-lang", lang);
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 // --- THE ONLY CHANGE IS HERE ---

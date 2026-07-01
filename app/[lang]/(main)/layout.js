@@ -1,8 +1,6 @@
 import "../../globals.css";
 import "../../../fonts/style.css";
-import { Inter } from "next/font/google";
 import Link from "next/link";
-import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { getDictionary } from "@/get-dictionary";
@@ -20,12 +18,6 @@ import CookieConsent from "@/utils/CookieConsent";
 import SiteProtection from "@/utils/SiteProtection";
 import CartFloat from "@/components/CartFloat";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-  fallback: ["system-ui", "arial"],
-});
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
@@ -94,67 +86,46 @@ export default async function RootLayout(props) {
   const dictionary = await getDictionary(lang);
   const cookieContent = dictionary?.cookieConsent;
 
-  // في حال فشل تحميل القاموس
   if (!dictionary) {
-    return (
-      <html lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
-        <body>
-          <div>Error: Dictionary could not be loaded.</div>
-        </body>
-      </html>
-    );
+    return <div>Error: Dictionary could not be loaded.</div>;
   }
 
   return (
-    <html
-      lang={lang}
-      dir={lang === "ar" ? "rtl" : "ltr"}
-      suppressHydrationWarning
-      className={inter.className}
-    >
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
-        <LocalBusinessSchema />
-        <meta property="fb:app_id" content="1160662655535691" />
-      </head>
-      <body>
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TNHGBH7J"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
-        </noscript>
-        <SpeedInsights />
-        <Analytics />
-        <StyledComponentsRegistry>
-          <ClientProviders>
-            <Navbar lang={lang} navigation={dictionary.navigation} />
-            <SiteProtection>
-              <main>{children}</main>
-            </SiteProtection>
-            <Footer lang={lang} content={dictionary.footer} />
-            <ScrollToTop />
-            <CartFloat lang={lang} />
-            <Link
-              id="whatsapp"
-              href="https://api.whatsapp.com/send?phone=971551299880"
-              className="float"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i id="whatsapp" className="fa fa-whatsapp my-float"></i>
-            </Link>
-            <Calltoaction id="call" />
-          </ClientProviders>
-        </StyledComponentsRegistry>
-        <CustomCursor />
-        <CookieConsent lang={lang} content={cookieContent} />
-      </body>
-    </html>
+    <>
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-TNHGBH7J"
+          height="0"
+          width="0"
+          style={{ display: "none", visibility: "hidden" }}
+        ></iframe>
+      </noscript>
+      <SpeedInsights />
+      <Analytics />
+      <LocalBusinessSchema />
+      <StyledComponentsRegistry>
+        <ClientProviders>
+          <Navbar lang={lang} navigation={dictionary.navigation} />
+          <SiteProtection>
+            <main>{children}</main>
+          </SiteProtection>
+          <Footer lang={lang} content={dictionary.footer} />
+          <ScrollToTop />
+          <CartFloat lang={lang} />
+          <Link
+            id="whatsapp"
+            href="https://api.whatsapp.com/send?phone=971551299880"
+            className="float"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i id="whatsapp" className="fa fa-whatsapp my-float"></i>
+          </Link>
+          <Calltoaction id="call" />
+        </ClientProviders>
+      </StyledComponentsRegistry>
+      <CustomCursor />
+      <CookieConsent lang={lang} content={cookieContent} />
+    </>
   );
 }

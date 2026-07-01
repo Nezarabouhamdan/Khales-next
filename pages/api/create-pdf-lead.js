@@ -110,24 +110,50 @@ export default async function handler(req, res) {
       // e.g., 'tag_ids': [[6, 0, [TAG_ID_FOR_PDF_DOWNLOADS]]]
     };
 
-    const leadId = await executeKw(uid, "crm.lead", "create", [leadData]);
+    // Check if a lead already exists for this email
+    const existingIds = await executeKw(uid, "crm.lead", "search", [
+      [["email_from", "=", email], ["active", "=", true]],
+    ]);
 
-    // Subscribe default followers to the new lead
-    const DEFAULT_PARTNER_IDS = [9, 23, 388]; // Your default follower IDs
-    if (leadId && DEFAULT_PARTNER_IDS.length > 0) {
-      await executeKw(
-        uid,
-        "crm.lead",
-        "message_subscribe",
-        [[leadId], DEFAULT_PARTNER_IDS],
-        { context: { mail_notify: false } },
-      );
+    let leadId;
+    let isExisting = false;
+
+    if (existingIds.length > 0) {
+      // Reuse the existing lead — post a note with the new calculation
+      leadId = existingIds[0];
+      isExisting = true;
+      await executeKw(uid, "crm.lead", "message_post", [[leadId]], {
+        kwargs: {
+          body:
+            `<p><strong>🔄 User Recalculated</strong></p>` +
+            `<p>${description || "User ran the cost calculator again."}</p>`,
+          message_type: "comment",
+          subtype_xmlid: "mail.mt_note",
+        },
+      });
+    } else {
+      leadId = await executeKw(uid, "crm.lead", "create", [leadData]);
+
+      // Subscribe default followers to the new lead
+      const DEFAULT_PARTNER_IDS = [9, 23, 388];
+      if (leadId && DEFAULT_PARTNER_IDS.length > 0) {
+        await executeKw(
+          uid,
+          "crm.lead",
+          "message_subscribe",
+          [[leadId], DEFAULT_PARTNER_IDS],
+          { context: { mail_notify: false } },
+        );
+      }
     }
 
     res.status(200).json({
       success: true,
       leadId,
-      message: "CRM lead from PDF download created successfully.",
+      isExisting,
+      message: isExisting
+        ? "Existing CRM lead updated with new calculation."
+        : "CRM lead from PDF download created successfully.",
     });
   } catch (error) {
     console.error("Error in /api/create-pdf-lead:", error);

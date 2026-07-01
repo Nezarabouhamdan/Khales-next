@@ -182,6 +182,17 @@ export const dictionary = {
     submitting: "Processing...",
     fillAllFields: "Please fill in all fields.",
     invalidEmail: "Please enter a valid email address.",
+    // Feedback
+    feedbackTitle: "How does this estimate feel to you?",
+    feedbackSubtitle: "Your input helps us improve our calculator accuracy.",
+    feedbackTooLow: "Too Low",
+    feedbackJustRight: "Looks Right",
+    feedbackTooHigh: "Too High",
+    feedbackCommentPlaceholder: "Tell us more (optional)...",
+    feedbackSubmit: "Send Feedback",
+    feedbackThankYou: "Thank you for your feedback!",
+    feedbackThankYouSub: "Your input helps us serve you better.",
+    feedbackSubmitting: "Sending...",
     // Options
     locations: {
       abu_dhabi: "Abu Dhabi",
@@ -2362,6 +2373,67 @@ export const dictionary = {
           ],
           fourthParagraph:
             "History doesn't remember those who sat in the shadows waiting for the sun to come out. It remembers the builders who worked through the night so that when the sun rose, there was something beautiful standing to meet it. Don't wait for the world to be perfect. Build the world you want to see.",
+        },
+      },
+      {
+        id: 13,
+        slug: "pillars-of-history-guide-classic-architectural-orders",
+        coverImage:
+          "https://i.ibb.co/4ZwPf83y/Screenshot-2026-06-10-172422.png",
+        authorImage: "/assets/Khales Logo K - favicon.png",
+        authorName: "Architecture Department",
+        date: "June 11, 2026",
+        tags: ["Architecture", "History"],
+        title:
+          "The Pillars of History: A Guide to the Classic Architectural Orders",
+        description:
+          "Discover the five classic architectural orders — Doric, Ionic, Corinthian, Tuscan, and Composite — and learn how to identify these timeless columns in buildings around the world.",
+        postMeta: {
+          title:
+            "The Pillars of History: A Guide to Classic Architectural Orders | Khales Blog",
+          description:
+            "Explore the five classical architectural orders — Doric, Ionic, Corinthian, Tuscan, and Composite — and learn to identify them in buildings across the world.",
+          keywords: [
+            "classical architecture",
+            "architectural orders",
+            "doric column",
+            "ionic column",
+            "corinthian column",
+            "tuscan order",
+            "composite order",
+            "greek architecture",
+            "roman architecture",
+            "architecture history",
+            "column styles",
+            "classical columns",
+            "architecture guide",
+            "khales architecture",
+            "uae architecture",
+          ],
+        },
+        fullContent: {
+          subtitle: "The Pillars of History",
+          paragraphs: [
+            "When we admire the grand columns of a courthouse, a museum, or a centuries-old temple, we are often gazing at one of humanity's most enduring design legacies — classical architecture. Rooted in ancient Greece and refined by Rome, this tradition gave us the five architectural orders: Doric, Ionic, Corinthian, Tuscan, and Composite.",
+            "But these are not just decorative styles. Each order is a complete system of proportions, from the base of the column to the decorated entablature above. Understanding them is a key to reading the language of classical buildings.",
+          ],
+          quote:
+            "Architecture is frozen music — and the classical orders are its most enduring melody.",
+          paragraphAfterQuote:
+            "Do you have a favorite building in your city that uses these classical styles? Look closely next time you pass a government building, a museum, or even an old bank — you might be surprised by what you find.",
+          socialCounts: [5000, 37, 60000, 24000],
+          sectionTitle: "The Five Classical Orders",
+          thirdParagraph:
+            "The ancient Greeks developed three fundamental orders, each with its own distinct character and proportional rules. The Romans later added two more, rounding out the classical vocabulary that architects have drawn on for over two thousand years.",
+          listItems: [
+            "Doric — The oldest and simplest order, recognized by its sturdy columns with no base and a plain, cushion-like capital. It projects strength and solemnity. Famous example: the Parthenon in Athens.",
+            "Ionic — More elegant and slender than Doric, the Ionic order features a distinctive scroll-shaped capital called a volute. Famous example: the Temple of Athena Nike.",
+            "Corinthian — The most elaborate Greek order, adorned with intricate acanthus leaf carvings on the capital and a slender, fluted shaft. Famous example: the Choragic Monument of Lysicrates.",
+            "Tuscan — A Roman invention, essentially a simplified Doric with a smooth shaft and minimal decoration. It conveys rustic simplicity.",
+            "Composite — Also Roman, this order combines the volute scrolls of the Ionic with the acanthus leaves of the Corinthian, creating the most ornate capital of all.",
+          ],
+          fourthParagraph:
+            "A quick guide to identifying the orders at a glance: a flat, undecorated top means Doric or Tuscan; scrolls on the capital point to Ionic; leafy carvings suggest Corinthian; and a combination of scrolls and leaves means Composite. Once you know these cues, you will find yourself spotting classical orders everywhere — from grand public buildings to the columns on a neighborhood front porch.",
         },
       },
     ],
