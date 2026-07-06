@@ -1435,7 +1435,7 @@ export const dictionary = {
           titlePart1: "فرع",
           titlePart2: "الفجيرة",
           description:
-            "مكتب 202، برج كرييتيف، شارع حمد بن عبدالله، الفجيرة، الإمارات\n\n+971 9 606 0826",
+            "مكتب 5، برج نما (المعروف أيضاً بـ du Building)، شارع حمد بن عبدالله، الفجيرة، الإمارات\n\n+971 9 606 0826",
           link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
         },
         {

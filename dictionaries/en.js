@@ -1518,7 +1518,7 @@ export const dictionary = {
           titlePart1: "Fujairah",
           titlePart2: "Branch",
           description:
-            "Office 202, Creative Tower, Hamad Bin Abdulla St., Fujairah, UAE\n\n+971 9 501 0762",
+            "Office 5, Nama Tower (also known as du Building), Hamad Bin Abdulla St., Fujairah, UAE\n\n+971 9 501 0762",
           link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
         },
         {

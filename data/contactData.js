@@ -18,7 +18,7 @@ export const contactData = {
       titlePart1: "Fujairah ",
       titlePart2: "Branch",
       description:
-        "Office 202, Creative Tower,Hamad Bin Abdulla St., Fujairah, UAE\n\n +971 9 501 0762",
+        "Office 5, Nama Tower (also known as du Building), Hamad Bin Abdulla St., Fujairah, UAE\n\n +971 9 501 0762",
       link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
     },
     {
@@ -73,7 +73,7 @@ export const contactData = {
       titlePart1: "فرع",
       titlePart2: "الفجيرة",
       description:
-        "مكتب 202، برج كرييتيف، شارع حمد بن عبدالله، الفجيرة، الإمارات\n\n +971 9 606 0826",
+        "مكتب 5، برج نما (المعروف أيضاً بـ du Building)، شارع حمد بن عبدالله، الفجيرة، الإمارات\n\n +971 9 606 0826",
       link: "https://maps.app.goo.gl/xELTzMrDSxsC7o1x6",
     },
     {

@@ -11,7 +11,7 @@ const officeImageUrls = [
   "https://i.ibb.co/QFzCT24m/dubai-design-district3-1920x0-c-default-66ebde2dbf149.webp",
   "https://www.becarabia.com/source/uploads/2025/07/sittower00_20250720_9977f.jpg",
   "https://i.ibb.co/gbvzqDKx/Screenshot-2025-10-05-161615.png",
-  "https://i.ibb.co/gLF1v5fv/1.webp",
+  "https://i.ibb.co/f5kRwzp/Screenshot-2026-07-06-171243.png",
   "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1920",
   "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1920",
 ];
