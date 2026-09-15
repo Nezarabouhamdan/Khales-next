@@ -7,12 +7,6 @@ import { usePathname } from "next/navigation";
 import type { Locale } from "@/i18n-config";
 import type { NavigationDict } from "@/dictionaries/types";
 
-const footerLinks = [
-  { label: "FAQ", href: "/contact" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms of Use", href: "/terms-and-conditions" },
-];
-
 type SiteHeaderProps = {
   lang?: Locale;
   navigation?: NavigationDict;
@@ -27,6 +21,9 @@ const defaultNavigation: NavigationDict = {
     { label: "Contact", href: "/contact" },
   ],
   ctaButton: "Get in touch",
+  faqLabel: "FAQ",
+  privacyLabel: "Privacy Policy",
+  termsLabel: "Terms of Use",
 };
 
 export default function SiteHeader({ lang = "en", navigation = defaultNavigation }: SiteHeaderProps) {
@@ -114,10 +111,14 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
             })}
           </nav>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-6 border-t border-neutral-200 text-xs uppercase tracking-widest text-neutral-400">
-            {footerLinks.map((link) => (
+            {[
+              { label: navigation.faqLabel, href: "/faq" },
+              { label: navigation.privacyLabel, href: "/privacy-policy" },
+              { label: navigation.termsLabel, href: "/terms-and-conditions" },
+            ].map((link) => (
               <Link
-                key={link.label}
-                href={link.href === "#" ? "#" : `/${lang}${link.href}`}
+                key={link.href}
+                href={`/${lang}${link.href}`}
                 className="underline underline-offset-2 hover:text-neutral-900"
               >
                 {link.label}

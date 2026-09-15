@@ -6,6 +6,9 @@ export type NavLink = { label: string; href: string };
 export type NavigationDict = {
   items: NavLink[];
   ctaButton: string;
+  faqLabel: string;
+  privacyLabel: string;
+  termsLabel: string;
 };
 
 export type FooterLinkDict = { text: string; href: string };
@@ -578,6 +581,45 @@ export type ExamPageDict = {
   questions: ExamQuestion[];
 };
 
+export type LegalSection = {
+  heading: string;
+  content: string;
+  list?: string[];
+  extra?: string;
+  contactDetails?: string[];
+};
+
+export type LegalPageDict = {
+  metaTitle: string;
+  metaDescription: string;
+  metaKeywords: string[];
+  schemaName: string;
+  schemaDescription: string;
+  breadcrumbLabel: string;
+  eyebrow: string;
+  title: string;
+  lastUpdated: string;
+  sections: LegalSection[];
+};
+
+export type FaqGroup = {
+  heading: string;
+  items: ContactFAQItem[];
+};
+
+export type FaqPageDict = {
+  metaTitle: string;
+  metaDescription: string;
+  metaKeywords: string[];
+  schemaName: string;
+  schemaDescription: string;
+  breadcrumbLabel: string;
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  groups: FaqGroup[];
+};
+
 export type Dictionary = {
   navigation: NavigationDict;
   footer: FooterDict;
@@ -593,4 +635,7 @@ export type Dictionary = {
   mediaCenterPage: MediaCenterPageDict;
   examPage: ExamPageDict;
   applicationsPage: ApplicationsPageDict;
+  privacyPolicyPage: LegalPageDict;
+  termsPage: LegalPageDict;
+  faqPage: FaqPageDict;
 };

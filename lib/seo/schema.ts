@@ -72,6 +72,21 @@ export function getWebPageSchema(lang: Locale, path: string, name: string, descr
   };
 }
 
+export function getFaqPageSchema(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+}
+
 export function getWebApplicationSchema(name: string, description: string) {
   return {
     "@context": "https://schema.org",
