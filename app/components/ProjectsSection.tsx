@@ -288,11 +288,16 @@ export default function ProjectsSection({
   // trackpad/touch swipe, shift+wheel, and a visible scrollbar all just
   // work. These buttons are the only custom affordance needed on top of
   // that, and can't ever misfire as a click.
-  const scrollByCard = (direction: 1 | -1) => {
+  // Screen-relative, not reading-direction-relative: modern browsers keep
+  // scrollLeft counting up as content moves right and down as it moves
+  // left regardless of dir (RTL just starts that count at 0 instead of
+  // the end), so a fixed physical direction here already lands on the
+  // right cards under RTL without any sign-flipping - flipping the sign
+  // here was what made the left/right buttons scroll backwards in Arabic.
+  const scrollByScreen = (screenDirection: 1 | -1) => {
     const slider = sliderRef.current;
     if (!slider) return;
-    const amount = slider.clientWidth * 0.85 * direction * (dir === "rtl" ? -1 : 1);
-    slider.scrollBy({ left: amount, behavior: "smooth" });
+    slider.scrollBy({ left: slider.clientWidth * 0.85 * screenDirection, behavior: "smooth" });
   };
 
   // Drifts a card's image a few px toward the cursor position within the
@@ -440,19 +445,19 @@ export default function ProjectsSection({
               would just be invisible, and unusable, on touch devices. */}
           <button
             type="button"
-            onClick={() => scrollByCard(-1)}
-            aria-label="Previous"
+            onClick={() => scrollByScreen(-1)}
+            aria-label="Scroll left"
             className="absolute top-1/2 -translate-y-1/2 left-2 md:left-4 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 text-white backdrop-blur-sm hover:bg-black/60 transition-colors duration-300 cursor-pointer"
           >
-            <span className="text-xl">{dir === "rtl" ? "→" : "←"}</span>
+            <span className="text-xl">←</span>
           </button>
           <button
             type="button"
-            onClick={() => scrollByCard(1)}
-            aria-label="Next"
+            onClick={() => scrollByScreen(1)}
+            aria-label="Scroll right"
             className="absolute top-1/2 -translate-y-1/2 right-2 md:right-4 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 text-white backdrop-blur-sm hover:bg-black/60 transition-colors duration-300 cursor-pointer"
           >
-            <span className="text-xl">{dir === "rtl" ? "←" : "→"}</span>
+            <span className="text-xl">→</span>
           </button>
         </div>
 
