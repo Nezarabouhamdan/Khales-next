@@ -101,11 +101,14 @@ export const projects: Project[] = [
     id: 2,
     slug: "TheCrownCentral",
     category: "Commercial",
-    cover: "https://i.ibb.co/1Gn1hMNV/Landscape-Saudi-Arabia.png",
+    // Self-hosted: the i.ibb.co originals were 2.2-7MB unoptimized PNGs,
+    // which routinely made Next's image optimizer time out (500s, 7-9s
+    // each) trying to fetch them. Re-encoded as ~0.5MB JPEGs in /public.
+    cover: "/projects/saudi-arabia-landscape/landscape-saudi-arabia.jpg",
     gallery: [
-      "https://i.ibb.co/1Gn1hMNV/Landscape-Saudi-Arabia.png",
-      "https://i.ibb.co/Z6jRc9zm/Riyadh-1-sq.png",
-      "https://i.ibb.co/Xxp72yFD/Riyadh-2-sq.png",
+      "/projects/saudi-arabia-landscape/landscape-saudi-arabia.jpg",
+      "/projects/saudi-arabia-landscape/riyadh-1.jpg",
+      "/projects/saudi-arabia-landscape/riyadh-2.jpg",
     ],
     tags: ["Architectural Design", "Site Supervision"],
     tagsAr: ["تصميم معماري", "إشراف على الموقع"],

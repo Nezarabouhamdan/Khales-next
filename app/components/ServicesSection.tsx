@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { services, ServiceCategory } from "@/data/services";
+import { services, ServiceCategory, localizeService } from "@/data/services";
 import type { Locale } from "@/i18n-config";
 import type { ServicesSectionDict } from "@/dictionaries/types";
 
@@ -25,15 +25,6 @@ const CATEGORY_TABS: CategoryType[] = ["ProjectManagement", "EngineeringConsulta
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-const editorialServices = services.map((s) => ({
-  id: s.id,
-  slug: s.slug,
-  title: s.title,
-  description: s.description,
-  image: s.cover,
-  category: s.category,
-}));
-
 type ServicesSectionProps = {
   lang?: Locale;
   content?: ServicesSectionDict;
@@ -51,9 +42,24 @@ export default function ServicesSection({
 
   const [activeTab, setActiveTab] = useState<CategoryType>("ProjectManagement");
 
+  const editorialServices = useMemo(
+    () =>
+      services
+        .map((s) => localizeService(s, lang))
+        .map((s) => ({
+          id: s.id,
+          slug: s.slug,
+          title: s.title,
+          description: s.description,
+          image: s.cover,
+          category: s.category,
+        })),
+    [lang],
+  );
+
   const filteredServices = useMemo(() => {
     return editorialServices.filter((s) => s.category === activeTab);
-  }, [activeTab]);
+  }, [editorialServices, activeTab]);
 
   // Rows fade/rise in whenever the active category changes.
   useEffect(() => {

@@ -61,3 +61,13 @@ html {
     transform: rotate(-360deg);
   }
 }
+
+/* Arabic script needs its letters to stay visually connected - Tailwind's
+   tracking-wide/-widest/-wider utilities (used all over the site for
+   uppercase English labels) add letter-spacing that breaks those
+   connections, so a word like "فلل" can render looking like a letter is
+   missing. Force normal tracking under RTL regardless of which tracking-*
+   class a component applied. */
+[dir="rtl"] * {
+  letter-spacing: normal !important;
+}

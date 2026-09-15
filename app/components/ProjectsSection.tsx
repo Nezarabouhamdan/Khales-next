@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects, ProjectCategory } from "@/data/projects";
+import { projects, ProjectCategory, localizeProject } from "@/data/projects";
 import type { Locale } from "@/i18n-config";
 import type { ProjectsSectionDict } from "@/dictionaries/types";
 
@@ -61,20 +61,6 @@ const layoutById: Record<
   },
 };
 
-const horizontalProjects = projects
-  .filter((p) => layoutById[p.id])
-  .map((p) => ({
-    id: p.id,
-    slug: p.slug,
-    location: p.location,
-    status: p.status,
-    title: p.title,
-    size: p.size,
-    image: p.cover,
-    category: p.category,
-    ...layoutById[p.id],
-  }));
-
 type ProjectsSectionProps = {
   lang?: Locale;
   content?: ProjectsSectionDict;
@@ -110,9 +96,28 @@ export default function ProjectsSection({
   const xTo = useRef<((value: number) => void) | null>(null);
   const yTo = useRef<((value: number) => void) | null>(null);
 
+  const horizontalProjects = useMemo(
+    () =>
+      projects
+        .filter((p) => layoutById[p.id])
+        .map((p) => localizeProject(p, lang))
+        .map((p) => ({
+          id: p.id,
+          slug: p.slug,
+          location: p.location,
+          status: p.status,
+          title: p.title,
+          size: p.size,
+          image: p.cover,
+          category: p.category,
+          ...layoutById[p.id],
+        })),
+    [lang],
+  );
+
   const filteredProjects = useMemo(() => {
     return horizontalProjects.filter((p) => p.category === activeTab);
-  }, [activeTab]);
+  }, [horizontalProjects, activeTab]);
 
   // Stagger the filtered cards in whenever the active tab changes.
   useEffect(() => {
