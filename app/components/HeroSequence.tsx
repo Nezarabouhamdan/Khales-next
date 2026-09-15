@@ -7,8 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SiteHeader from "./SiteHeader";
 import WorldwideSection from "./WorldwideSection";
 import InteriorShowcaseSection from "./InteriorShowcaseSection";
-import AboutTeamSection from "./AboutTeamSection";
-import TeamGridSection from "./TeamGridSection";
 import ProjectsSection from "./ProjectsSection";
 import ServicesSection from "./ServicesSection";
 import type { Locale } from "@/i18n-config";
@@ -31,7 +29,12 @@ import type {
 const heroProjectsMeta = [
   {
     id: 1,
-    image: "https://i.ibb.co/7tRKMzYQ/Whats-App-Image-2026-06-01-at-11-30-23-AM-1.jpg",
+    // The previous image (Mirbah Prime) was a WhatsApp-compressed social
+    // post export with "Khales" branding, a phone number, and an arrow
+    // icon baked directly into the photo - not something to show full-
+    // bleed as the hero background. Swapped for a clean, high-res,
+    // unbranded interior shot (The Pearl Residence).
+    image: "https://i.ibb.co/jZ6JLf2p/21-jpg.jpg",
   },
   {
     id: 2,
@@ -465,14 +468,14 @@ export default function HeroSequence({
       </div>
 
       {/* Additional Sub-sections - Services, then Projects gallery, then
-          Globe, then a plain full-bleed photo, then the About/Team teaser,
-          in that order */}
+          Globe, then a plain full-bleed photo. The About/Team teaser
+          (AboutTeamSection, TeamGridSection) is pulled off the homepage
+          for now, per request - components are untouched, just not
+          rendered here, so re-adding them later is a two-line change. */}
       <ServicesSection lang={lang} content={servicesSectionContent} />
       <ProjectsSection lang={lang} content={projectsSectionContent} />
       <WorldwideSection lang={lang} content={worldwideContent} />
       <InteriorShowcaseSection lang={lang} content={interiorShowcaseContent} />
-      <AboutTeamSection lang={lang} content={aboutTeamContent} />
-      <TeamGridSection lang={lang} content={teamGridContent} />
     </div>
   );
 }

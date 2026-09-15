@@ -332,7 +332,7 @@ export const dictionary: Dictionary = {
   homePage: {
     hero: {
       projects: [
-        { location: "Mirbah, UAE", status: "Newly Completed", title: "Mirbah Prime", size: "~18,000 sqft" },
+        { location: "Sharjah, UAE", status: "Completed", title: "The Pearl Residence", size: "8,500 sqft" },
         {
           location: "Al Khawaneej, Dubai",
           status: "Completed",

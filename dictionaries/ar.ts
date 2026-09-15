@@ -326,7 +326,7 @@ export const dictionary: Dictionary = {
   homePage: {
     hero: {
       projects: [
-        { location: "مرباح، الإمارات العربية المتحدة", status: "مكتمل حديثاً", title: "مرباح برايم", size: "~١٨٬٠٠٠ قدم مربع" },
+        { location: "الشارقة، الإمارات العربية المتحدة", status: "مكتمل", title: "ذا بيرل ريزيدنس", size: "٨٬٥٠٠ قدم مربع" },
         {
           location: "الخوانيج، دبي",
           status: "مكتمل",

@@ -49,7 +49,12 @@ const layoutById: Record<
     imgHeight: "h-[420px] md:h-[490px]",
     alignSelf: "self-start",
   },
-  27: {
+  // Was id 27 (Mirbah Prime) - its whole gallery is WhatsApp-exported
+  // "Before & After" social posts with a title card, phone number, and
+  // arrow icon baked into the image itself (one still mid-construction).
+  // Swapped to id 10, a clean, high-res, minimally-branded shot already
+  // used elsewhere on the site (HeroSequence's flip-card back face).
+  10: {
     width: "w-[400px] md:w-[480px]",
     imgHeight: "h-[280px] md:h-[330px]",
     alignSelf: "self-end mb-4",
