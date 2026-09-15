@@ -15,12 +15,11 @@ export default function StyledComponentsRegistry({ children }) {
     return <>{styles}</>;
   });
 
-  // During client-side, just render children normally
-  if (typeof window !== "undefined") {
-    return <>{children}</>;
-  }
-
-  // On server, wrap in StyleSheetManager to collect styles
+  // Always render the same tree on server and client - branching on
+  // `typeof window` here (the previous version of this file did) makes the
+  // server-rendered HTML and the first client render structurally
+  // different, which is exactly what triggers a hydration mismatch.
+  // StyleSheetManager is a harmless no-op pass-through once hydrated.
   return (
     <StyleSheetManager sheet={sheet.instance}>{children}</StyleSheetManager>
   );

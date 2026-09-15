@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: http://www.khales.ae/
-
-# Sitemaps
-Sitemap: http://www.khales.ae/sitemap.xml

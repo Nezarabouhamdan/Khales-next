@@ -1,9 +1,18 @@
 {
   "functions": {
-    "pages/api/Contact-us.js": {
+    "app/api/contact/route.ts": {
       "maxDuration": 60
     },
-    "pages/api/create-lead.js": {
+    "app/api/applications/submit/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/leads/create/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/feedback/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/tender/route.js": {
       "maxDuration": 60
     }
   }

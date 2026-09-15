@@ -1,0 +1,568 @@
+/* app css */
+.App {
+  font-family: "Playfair";
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+* {
+  cursor: none !important;
+} /* --- New, Enhanced Project Card Styles --- */
+
+/* The main container for the card link */
+.project-card {
+  position: relative; /* Essential for overlay positioning */
+  display: block;
+  aspect-ratio: 4 / 3; /* Defines a consistent shape for all cards */
+  border-radius: 20px;
+  overflow: hidden;
+  color: #fff;
+  text-decoration: none;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* The card's background image */
+.project-card .card-image > div {
+  /* Targets the inner div of ImageWithSkeleton */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease-out;
+}
+
+.project-card:hover .card-image > div {
+  transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* The gradient overlay to ensure text is readable */
+.project-card .card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 40%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  transition: background 0.3s ease;
+}
+
+.project-card:hover .card-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+/* The container for all text content */
+.project-card .card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+/* Container for the tag pills */
+.project-card .card-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Individual tag "pill" with a modern glassmorphism effect */
+.project-card .card-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 99px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* The main project title */
+.project-card .card-title {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  color: #fff;
+}
+
+/* Container for the content that appears on hover */
+.project-card .card-hover-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.4s ease-in-out,
+    opacity 0.3s ease-in-out 0.1s;
+}
+
+.project-card:hover .card-hover-content {
+  max-height: 200px; /* Allow space for content to appear */
+  opacity: 1;
+}
+
+/* The project description text */
+.project-card .card-description {
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0.75rem 0 0 0;
+}
+
+/* The "View Project" call to action */
+.project-card .card-cta {
+  display: flex;
+  align-items: center;
+  color: #66a109;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.project-card .card-cta-icon {
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .card-cta-icon {
+  transform: translateX(5px); /* Arrow moves to the right */
+}
+
+/* Existing CTA link style from before */
+.cta-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(102, 161, 9, 0.25);
+}
+/* @font-face {
+  font-family: "Red Thinker";
+  src: local("Red Thinker Regular"), local("Red-Thinker-Regular"),
+    url("RedThinker-Light.ttf") format("truetype");
+
+  font-weight: 1000;
+  font-style: normal;
+} */
+/* In: app/globals.css */
+
+/* ... (your existing .float and .float2 styles) ... */
+
+/* NEW: Styles for the Mobile-Only Floating Contact Button */
+/* ============================================== */
+/*  Styles for the Floating Contact Button        */
+/* ============================================== */
+
+.float-contact {
+  position: fixed;
+  padding: 0.75rem 1.25rem; /* Adjust padding for a nice pill shape */
+  bottom: 40px; /* Distance from the bottom */
+  left: 40px; /* Distance from the left */
+  background-color: rgb(102, 161, 9); /* Your brand's green color */
+  color: #fff; /* White text */
+  border-radius: 50px; /* Fully rounded corners */
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600; /* Bold text */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* A nice, soft shadow */
+  z-index: 100;
+  text-decoration: none; /* Remove underline from link */
+  display: flex; /* To align icon and text */
+  align-items: center;
+  gap: 0.5rem; /* Space between icon and text */
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Add a hover effect to make it interactive */
+.float-contact:hover {
+  transform: translateY(-5px) scale(1.05); /* Lifts and slightly enlarges the button */
+  background-color: #5a8f08; /* A slightly darker green on hover */
+}
+.increment {
+  font-size: 35px;
+  color: #ffffff;
+
+  font-family: "Inter";
+}
+@media screen and (max-width: 968px) {
+  .increment {
+    font-family: "Inter";
+    font-size: 35px;
+  }
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+/* Base style for ALL floating buttons */
+.float,
+.float2,
+.float3 {
+  position: fixed;
+  right: 20px;
+  width: 50px; /* Mobile size */
+  height: 50px; /* Mobile size */
+  background-color: rgb(102, 161, 9);
+  color: #fff;
+  border-radius: 50%;
+  display: flex !important; /* Center horizontal */
+  align-items: center !important; /* Center vertical */
+  justify-content: center !important; /* Center horizontal */
+  padding: 0 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Ensure the Lucide SVG doesn't have weird margins */
+.float3 svg {
+  display: block;
+}
+
+/* Icons inside the buttons */
+.float i,
+.float svg,
+.float2 i,
+.float3 svg {
+  font-size: 24px;
+}
+
+/* Vertical Positioning */
+.float {
+  bottom: 20px;
+} /* WhatsApp */
+.float2 {
+  bottom: 85px;
+} /* Call (adjust based on your component) */
+.float3 {
+  bottom: 150px;
+} /* Cart */
+
+/* Desktop Adjustments */
+@media (min-width: 768px) {
+  .float,
+  .float2,
+  .float3 {
+    width: 60px;
+    height: 60px;
+    right: 40px;
+  }
+  .float {
+    bottom: 40px;
+  }
+  .float2 {
+    bottom: 115px;
+  }
+  .float3 {
+    bottom: 190px;
+  }
+
+  .float i,
+  .float3 svg {
+    font-size: 30px;
+  }
+}
+
+.float:hover,
+.float2:hover,
+.float3:hover {
+  transform: scale(1.1);
+}
+
+/* Safety Styles for MiniCart */
+.absolute.w-80.bg-white {
+  background-color: #ffffff !important;
+}
+
+/* Ensure text inside cart is always dark */
+.absolute.w-80.bg-white h3,
+.absolute.w-80.bg-white p,
+.absolute.w-80.bg-white span:not(.cart-count-badge) {
+  color: #1a1a1a !important;
+}
+
+/* Scrollbar styling for the cart items */
+.max-h-60.overflow-y-auto::-webkit-scrollbar {
+  width: 5px;
+}
+.max-h-60.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.max-h-60.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Force the Cart UI to be professional and readable */
+.mini-cart-container,
+.mini-cart-container * {
+  color: #1a1a1a !important; /* Forces black text */
+  font-family: "Inter", sans-serif !important;
+}
+
+/* Fix the Link inside the cart specifically */
+.mini-cart-container a {
+  color: #ffffff !important; /* The button text must stay white */
+}
+
+/* Professional Scrollbar */
+.mini-cart-container div::-webkit-scrollbar {
+  width: 4px;
+}
+.mini-cart-container div::-webkit-scrollbar-thumb {
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+
+.my-float {
+}
+
+.my-float2 {
+}
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* index.css */
+@font-face {
+  font-family: "Playfair";
+  src:
+    local("Playfair Meduim"),
+    local("Playfair-Meduim"),
+    url("/src/fonts/Playfair_144pt-Medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+}
+
+code {
+  font-family: "Playfair";
+}
+
+/* Performance Optimizations */
+
+/* Font Display Optimization */
+@font-face {
+  font-display: swap;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+.above-fold {
+  contain: layout style paint;
+}
+
+/* Lazy Loading Placeholder */
+.lazy-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optimize Animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GPU Acceleration for Smooth Animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize Scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Critical CSS for Above-the-Fold Content */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Preload Critical Resources */
+.preload-critical {
+  font-display: swap;
+}
+
+/* FCP and Performance Optimizations */
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  contain: layout style paint;
+}
+
+/* Font Display Optimization */
+@font-face {
+  font-display: swap;
+}
+
+/* Reduce Layout Shift */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Lazy Loading Placeholder */
+.lazy-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optimize Animations for Performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GPU Acceleration for Smooth Animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize Scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Preload Critical Resources */
+.preload-critical {
+  font-display: swap;
+}
+
+/* Critical rendering path optimization */
+.above-fold {
+  contain: layout style paint;
+}
+
+/* Optimize video loading */
+video {
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* Optimize image loading */
+.optimized-image {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 200px;
+}
+
+/* Reduce paint complexity */
+.complex-element {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize text rendering */
+.optimized-text {
+  text-rendering: optimizeSpeed;
+  font-display: swap;
+}
+
+/* Critical CSS for layout stability */
+.layout-stable {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Optimize for Core Web Vitals */
+.web-vitals-optimized {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
+
+@media print {
+  .pdf-exclude {
+    display: none !important;
+  }
+}

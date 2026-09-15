@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import xmlrpc from "xmlrpc";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 // --- Clients ---
 const commonClient = xmlrpc.createClient({
