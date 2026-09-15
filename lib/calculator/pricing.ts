@@ -36,6 +36,11 @@ export type QuickSelections = {
 
 export type CalculationMode = "detailed" | "quick";
 
+// Applied on top of the raw per-sqm/addon rates in data/villaCalculator.ts
+// so every estimate (detailed and quick, every breakdown line) comes out
+// 10% higher than the underlying cost data, without touching that data.
+const PRICE_MARKUP = 1.1;
+
 export function initializeRoomsState(): Record<RoomId, RoomSelection> {
   const state = {} as Record<RoomId, RoomSelection>;
   ROOM_CONFIG.forEach((room) => {
@@ -120,7 +125,7 @@ export function calculateCost(args: {
     FIXED_COST_ADDONS_CONFIG.forEach((addon) => {
       if (selections.fixedAddons[addon.id]) {
         totalCoreArea += addon.area;
-        totalFixedAddonCost += addon.cost;
+        totalFixedAddonCost += addon.cost * PRICE_MARKUP;
       }
     });
 
@@ -138,7 +143,7 @@ export function calculateCost(args: {
 
   const adjustedBreakdownDetails: BreakdownItem[] = (Object.keys(costs) as CostItemKey[]).map((key) => ({
     name: itemTranslations[key],
-    cost: costs[key] * finalTotalBUA * locationMultiplier,
+    cost: costs[key] * finalTotalBUA * locationMultiplier * PRICE_MARKUP,
   }));
 
   const adjustedConstructionCost = adjustedBreakdownDetails.reduce((sum, item) => sum + item.cost, 0);
