@@ -58,11 +58,11 @@ export default function AboutMessageSection({ lang, content }: AboutMessageSecti
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-16 items-center">
         <div ref={photoRef} className="relative w-full h-[360px] md:h-[480px] overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80"
+            src="/team/ceo-majed-alkindi.png"
             alt={content.authorName}
             fill
             sizes="(max-width: 768px) 100vw, 45vw"
-            className="object-cover grayscale contrast-125"
+            className="object-contain grayscale contrast-125"
           />
           <div className="absolute inset-0 border border-white/10" />
         </div>
