@@ -27,9 +27,10 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 // Presentation-only layout knobs for the homepage drag slider, keyed by the
 // shared project id - keeps the staggered card sizing without duplicating
-// the underlying project data. Ids chosen to represent all 4 real project
-// categories: 3 (Residential), 13 (Commercial), 17 (Interior_Design), 8 and
-// 27 (Luxury_Villas).
+// the underlying project data. Ids chosen to represent all real project
+// categories with enough depth that filtering to any one tab doesn't land
+// on a single lonely card: 3 (Residential), 2 & 9 & 13 (Commercial), 17
+// (Interior_Design), 8 & 10 (Luxury_Villas).
 const layoutById: Record<
   number,
   { width: string; imgHeight: string; alignSelf?: string }
@@ -63,6 +64,19 @@ const layoutById: Record<
     width: "w-[450px] md:w-[520px]",
     imgHeight: "h-[340px] md:h-[400px]",
     alignSelf: "self-center",
+  },
+  // Commercial only had one entry (13) even though 3 real projects exist
+  // in that category - a single card reads as broken/empty once a visitor
+  // filters to it. Added the other two.
+  2: {
+    width: "w-[420px] md:w-[500px]",
+    imgHeight: "h-[300px] md:h-[350px]",
+    alignSelf: "self-center mt-4",
+  },
+  9: {
+    width: "w-[380px] md:w-[460px]",
+    imgHeight: "h-[440px] md:h-[510px]",
+    alignSelf: "self-end",
   },
 };
 
