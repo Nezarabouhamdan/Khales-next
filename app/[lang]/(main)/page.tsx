@@ -21,19 +21,19 @@ export default function Home() {
 
   // Initial loader simulation - purely cosmetic (not tied to any real
   // asset/data readiness), so its total on-screen time is just these two
-  // numbers: 10 steps * 40ms to count up, then a 100ms hold at 100%, for
-  // ~500ms before the reveal fade starts.
+  // numbers: 10 steps * 15ms to count up, then a 50ms hold at 100%, for
+  // ~200ms before the reveal fade starts.
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => setLoading(false), 100);
+          setTimeout(() => setLoading(false), 50);
           return 100;
         }
         return prev + 10;
       });
-    }, 40);
+    }, 15);
     return () => clearInterval(interval);
   }, []);
 
@@ -43,7 +43,7 @@ export default function Home() {
         {loading && (
           <motion.div
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.15 }}
             className="fixed inset-0 z-50 bg-[#f7f7f7] flex flex-col justify-between p-8 md:p-16 select-none"
           >
             <div className="flex justify-between items-center text-xs tracking-widest text-neutral-400">
