@@ -336,7 +336,7 @@ export const dictionary: Dictionary = {
     hero: {
       projects: [
         { location: "Al Wasl, Dubai", status: "Under Construction", title: "The Organic Villa", size: "10,800 sqft" },
-        { location: "Al Wasl, Dubai", status: "Under Construction", title: "The Organic Villa", size: "10,800 sqft" },
+        { location: "Muscat, Oman", status: "Under Construction", title: "The Royal Villa", size: "12,600 sqft" },
         {
           location: "Al Khawaneej, Dubai",
           status: "Completed",

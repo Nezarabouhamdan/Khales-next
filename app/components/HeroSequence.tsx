@@ -31,13 +31,16 @@ import type {
 // but crops in tight and loses most of the shot. Most of this dataset's
 // photography is Instagram-portrait/square social exports; these are the
 // ones actually confirmed landscape (checked real pixel dimensions, not
-// just filenames) across 3 different real projects.
+// just filenames), one per distinct real project - an earlier version
+// used 2 angles of the same villa to fill a 4th slot, but with identical
+// caption text (same title/location/size) it just read as a stuck/
+// duplicated slide rather than "variety".
 const heroProjectsMeta = [
   // The Organic Villa - evening exterior elevation.
   { id: 1, image: "https://i.ibb.co/hFHH248S/IMG-20250811-WA0020.jpg" },
-  // The Organic Villa - aerial pool/garden view (different angle, same
-  // project - its gallery had the only wide *and* varied landscape set).
-  { id: 2, image: "https://i.ibb.co/S44GR5MS/IMG-20250811-WA0018.jpg" },
+  // The Royal Villa - frontal elevation render, self-hosted (source PNG
+  // screenshot export, re-encoded to keep the image optimizer fast).
+  { id: 2, image: "/projects/royal-villa/hero-01.jpg" },
   // Al Khawaneej Organic Villa - was 67-jpg.jpg (a perfect 1:1 square);
   // swapped to a landscape shot from the same gallery.
   { id: 3, image: "https://i.ibb.co/ymrMTmBM/72-jpg.jpg" },

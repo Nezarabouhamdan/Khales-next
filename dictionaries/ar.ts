@@ -330,7 +330,7 @@ export const dictionary: Dictionary = {
     hero: {
       projects: [
         { location: "الوصل، دبي", status: "تحت الإنشاء", title: "الفيلا الطبيعية", size: "١٠٬٨٠٠ قدم مربع" },
-        { location: "الوصل، دبي", status: "تحت الإنشاء", title: "الفيلا الطبيعية", size: "١٠٬٨٠٠ قدم مربع" },
+        { location: "مسقط، عمان", status: "تحت الإنشاء", title: "الفيلا الملكية", size: "١٢٬٦٠٠ قدم مربع" },
         {
           location: "الخوانيج، دبي",
           status: "مكتمل",
