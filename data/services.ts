@@ -13,13 +13,12 @@ import type { Locale } from "@/i18n-config";
 // Cover/gallery images: the numbered local files that `servicesdata.js`
 // imports (7.png, 5.png, 6.png, 3.png, 8.png, 9.png, 11.png, 12.png) do not
 // actually exist in Khales-next's `public/assets` (only 4.png does), so
-// there is nothing real to copy locally for most services. Instead, each
-// service's real, currently-live banner/detail images are hosted on
-// i.ibb.co (referenced directly in the dictionaries' `subServices`,
-// `slides`, and `intro.images` fields) - the same hosting already
-// whitelisted in next.config.ts for the Projects feature. Those hosted
-// URLs are used here, exactly like data/projects.ts already does for
-// project photography.
+// there is nothing real to copy locally for most services. The original
+// source images (referenced in the old dictionaries' `subServices`,
+// `slides`, and `intro.images` fields) were hosted on i.ibb.co, a free
+// host rather than a real CDN - those routinely made Next's image
+// optimizer time out (2-7s per cold fetch) on the larger ones, so they're
+// self-hosted here as re-encoded JPEGs under /public/services instead.
 
 export type ServiceCategory = "ProjectManagement" | "EngineeringConsultancy";
 
@@ -60,11 +59,11 @@ export const services: Service[] = [
     id: 2,
     slug: "project-manager-service",
     category: "ProjectManagement",
-    cover: "https://i.ibb.co/RkBTJ2G4/Whats-App-Image-2026-04-27-at-4-51-45-PM.jpg",
+    cover: "/services/project-manager-service/01.jpg",
     gallery: [
-      "https://i.ibb.co/RkBTJ2G4/Whats-App-Image-2026-04-27-at-4-51-45-PM.jpg",
-      "https://i.ibb.co/jZ96Xfjt/Whats-App-Image-2026-04-27-at-4-52-14-PM.jpg",
-      "https://i.ibb.co/KcsqCHtc/Whats-App-Image-2026-04-27-at-4-52-41-PM.jpg",
+      "/services/project-manager-service/01.jpg",
+      "/services/project-manager-service/02.jpg",
+      "/services/project-manager-service/03.jpg",
     ],
     title: "Project Manager Service",
     titleAr: "خدمة مدير المشروع",
@@ -211,11 +210,11 @@ export const services: Service[] = [
     id: 3,
     slug: "feasibility-study",
     category: "ProjectManagement",
-    cover: "https://i.ibb.co/LDFvBS0Q/Whats-App-Image-2026-04-29-at-1-50-04-PM.jpg",
+    cover: "/services/feasibility-study/01.jpg",
     gallery: [
-      "https://i.ibb.co/LDFvBS0Q/Whats-App-Image-2026-04-29-at-1-50-04-PM.jpg",
-      "https://i.ibb.co/BX4wndc/Whats-App-Image-2025-08-14-at-16-25-30-15956dbe.jpg",
-      "https://i.ibb.co/BH2XX2hF/Whats-App-Image-2025-08-14-at-16-33-19-dd217380.jpg",
+      "/services/feasibility-study/01.jpg",
+      "/services/feasibility-study/02.jpg",
+      "/services/feasibility-study/03.jpg",
     ],
     title: "Feasibility Study",
     titleAr: "دراسة الجدوى",
@@ -362,11 +361,11 @@ export const services: Service[] = [
     id: 4,
     slug: "development-planning",
     category: "ProjectManagement",
-    cover: "https://i.ibb.co/SDGmCHXz/Whats-App-Image-2026-04-27-at-4-53-44-PM.jpg",
+    cover: "/services/development-planning/01.jpg",
     gallery: [
-      "https://i.ibb.co/SDGmCHXz/Whats-App-Image-2026-04-27-at-4-53-44-PM.jpg",
-      "https://i.ibb.co/HTw0dm03/Whats-App-Image-2025-08-14-at-16-23-14-127b4151.jpg",
-      "https://i.ibb.co/Vpb0LnMG/Whats-App-Image-2025-08-14-at-16-23-44-66fcc5f6.jpg",
+      "/services/development-planning/01.jpg",
+      "/services/development-planning/02.jpg",
+      "/services/development-planning/03.jpg",
     ],
     title: "Development Planning",
     titleAr: "التخطيط التطويري",
@@ -513,11 +512,11 @@ export const services: Service[] = [
     id: 5,
     slug: "engineering-design",
     category: "EngineeringConsultancy",
-    cover: "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
+    cover: "/services/engineering-design/01.jpg",
     gallery: [
-      "https://i.ibb.co/rGFt2Dk3/ban-eng-des.png",
-      "https://i.ibb.co/r2XkwpnD/Whats-App-Image-2026-01-27-at-5-57-31-PM.jpg",
-      "https://i.ibb.co/zh5jNrZs/Whats-App-Image-2026-01-27-at-5-58-23-PM.jpg",
+      "/services/engineering-design/01.jpg",
+      "/services/engineering-design/02.jpg",
+      "/services/engineering-design/03.jpg",
     ],
     title: "Engineering Design",
     titleAr: "التصميم الهندسي",
@@ -652,11 +651,11 @@ export const services: Service[] = [
     id: 6,
     slug: "engineering-supervision",
     category: "EngineeringConsultancy",
-    cover: "https://i.ibb.co/MkyXq4d1/ban-engsupre.png",
+    cover: "/services/engineering-supervision/01.jpg",
     gallery: [
-      "https://i.ibb.co/MkyXq4d1/ban-engsupre.png",
-      "https://i.ibb.co/HTYVrQ4g/Whats-App-Image-2026-04-27-at-5-00-52-PM.jpg",
-      "https://i.ibb.co/G4H0M1nT/Whats-App-Image-2026-04-27-at-5-02-16-PM.jpg",
+      "/services/engineering-supervision/01.jpg",
+      "/services/engineering-supervision/02.jpg",
+      "/services/engineering-supervision/03.jpg",
     ],
     title: "Engineering Supervision",
     titleAr: "الإشراف الهندسي",
@@ -803,11 +802,11 @@ export const services: Service[] = [
     id: 7,
     slug: "interior-design",
     category: "EngineeringConsultancy",
-    cover: "https://i.ibb.co/wrzKMJRz/interior.png",
+    cover: "/services/interior-design/01.jpg",
     gallery: [
-      "https://i.ibb.co/wrzKMJRz/interior.png",
-      "https://i.ibb.co/6cQqbKZ6/Whats-App-Image-2026-04-27-at-5-04-57-PM.jpg",
-      "https://i.ibb.co/nN0QHSqY/Whats-App-Image-2026-04-27-at-5-05-01-PM.jpg",
+      "/services/interior-design/01.jpg",
+      "/services/interior-design/02.jpg",
+      "/services/interior-design/03.jpg",
     ],
     title: "Interior Design",
     titleAr: "التصميم الداخلي",
@@ -954,11 +953,11 @@ export const services: Service[] = [
     id: 8,
     slug: "landscape-design",
     category: "EngineeringConsultancy",
-    cover: "https://i.ibb.co/qLpSLzr9/7-Landscape.jpg",
+    cover: "/services/landscape-design/01.jpg",
     gallery: [
-      "https://i.ibb.co/qLpSLzr9/7-Landscape.jpg",
-      "https://i.ibb.co/gbXHLBDn/Whats-App-Image-2026-01-27-at-6-05-05-PM.jpg",
-      "https://i.ibb.co/ycYDCSv9/Whats-App-Image-2026-01-27-at-6-05-55-PM.jpg",
+      "/services/landscape-design/01.jpg",
+      "/services/landscape-design/02.jpg",
+      "/services/landscape-design/03.jpg",
     ],
     title: "Landscape Design",
     titleAr: "تصميم المناظر الطبيعية",
@@ -1105,11 +1104,11 @@ export const services: Service[] = [
     id: 9,
     slug: "personal-shopping",
     category: "EngineeringConsultancy",
-    cover: "https://i.ibb.co/tpGPLc8s/Whats-App-Image-2026-06-02-at-1-35-56-PM-1.jpg",
+    cover: "/services/personal-shopping/01.jpg",
     gallery: [
-      "https://i.ibb.co/tpGPLc8s/Whats-App-Image-2026-06-02-at-1-35-56-PM-1.jpg",
-      "https://i.ibb.co/F4xD0jvt/Whats-App-Image-2026-06-02-at-1-35-56-PM.jpg",
-      "https://i.ibb.co/2Y14Gx5R/Whats-App-Image-2026-06-02-at-1-35-57-PM-1.jpg",
+      "/services/personal-shopping/01.jpg",
+      "/services/personal-shopping/02.jpg",
+      "/services/personal-shopping/03.jpg",
     ],
     title: "Personal Shopping – Interior Designer",
     titleAr: "التسوق الشخصي – مصمم داخلي",
