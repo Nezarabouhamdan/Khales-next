@@ -56,13 +56,13 @@ export default function AboutMessageSection({ lang, content }: AboutMessageSecti
       className="relative w-full bg-[#171717] text-white px-6 md:px-16 py-24 md:py-32 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-16 items-center">
-        <div ref={photoRef} className="relative w-full h-[360px] md:h-[480px] overflow-hidden">
+        <div ref={photoRef} className="relative w-full h-[280px] md:h-[360px] overflow-hidden">
           <Image
             src="/team/ceo-majed-alkindi.png"
             alt={content.authorName}
             fill
-            sizes="(max-width: 768px) 100vw, 45vw"
-            className="object-contain grayscale contrast-125"
+            sizes="(max-width: 768px) 60vw, 30vw"
+            className="object-contain"
           />
           <div className="absolute inset-0 border border-white/10" />
         </div>
