@@ -25,35 +25,98 @@ const CATEGORY_TABS: CategoryType[] = ["Residential", "Commercial", "Luxury_Vill
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-// Presentation-only layout knobs for the homepage drag slider, keyed by the
-// shared project id - keeps the staggered card sizing without duplicating
-// the underlying project data. Ids chosen to represent all real project
-// categories with enough depth that filtering to any one tab doesn't land
-// on a single lonely card: 3 (Residential), 2 & 9 & 13 (Commercial), 17
-// (Interior_Design), 8 & 10 (Luxury_Villas).
+// Presentation-only layout knobs for the homepage project slider, keyed by
+// the shared project id - keeps the staggered card sizing without
+// duplicating the underlying project data.
+//
+// Every category is represented with either ~6 projects or its full real
+// count, whichever is smaller, so filtering to any one tab shows a proper
+// gallery instead of one lonely card. Each candidate's actual image was
+// checked first - a lot of this dataset's photography is WhatsApp-exported
+// social carousel slides with a title card, phone number, and arrow icon
+// baked into the image itself (some mid-construction), which were skipped
+// in favor of clean, unbranded (or only-small-logo) shots:
+//   Residential (3, 4, 5, 11) - all 4 that exist.
+//   Commercial (2, 9, 13) - all 3 that exist.
+//   Interior_Design (12, 16, 17, 19, 20, 21) - 6 of 8; skipped 18 (the
+//     source file at i.ibb.co is corrupted/truncated) and 25 (branded).
+//   Luxury_Villas (6, 7, 8, 10, 14) - only 5 clean ones found among 14;
+//     the rest were all branded and/or construction-site shots.
 const layoutById: Record<
   number,
   { width: string; imgHeight: string; alignSelf?: string }
 > = {
+  // --- Residential ---
   3: {
     width: "w-[380px] md:w-[460px]",
     imgHeight: "h-[250px] md:h-[290px]",
     alignSelf: "self-start",
   },
-  17: {
-    width: "w-[440px] md:w-[540px]",
+  4: {
+    width: "w-[400px] md:w-[480px]",
     imgHeight: "h-[320px] md:h-[380px]",
-    alignSelf: "self-center mt-6",
+    alignSelf: "self-start mt-4",
   },
+  5: {
+    width: "w-[440px] md:w-[520px]",
+    imgHeight: "h-[290px] md:h-[340px]",
+    alignSelf: "self-center",
+  },
+  11: {
+    width: "w-[380px] md:w-[460px]",
+    imgHeight: "h-[400px] md:h-[470px]",
+    alignSelf: "self-end mb-4",
+  },
+  // --- Commercial ---
   13: {
     width: "w-[360px] md:w-[440px]",
     imgHeight: "h-[420px] md:h-[490px]",
     alignSelf: "self-start",
   },
-  // Was id 27 (Mirbah Prime) - its whole gallery is WhatsApp-exported
-  // "Before & After" social posts with a title card, phone number, and
-  // arrow icon baked into the image itself (one still mid-construction).
-  // Swapped to id 10, a clean, high-res, minimally-branded shot already
+  2: {
+    width: "w-[420px] md:w-[500px]",
+    imgHeight: "h-[300px] md:h-[350px]",
+    alignSelf: "self-center mt-4",
+  },
+  9: {
+    width: "w-[380px] md:w-[460px]",
+    imgHeight: "h-[440px] md:h-[510px]",
+    alignSelf: "self-end",
+  },
+  // --- Interior Design ---
+  17: {
+    width: "w-[440px] md:w-[540px]",
+    imgHeight: "h-[320px] md:h-[380px]",
+    alignSelf: "self-center mt-6",
+  },
+  12: {
+    width: "w-[400px] md:w-[480px]",
+    imgHeight: "h-[280px] md:h-[330px]",
+    alignSelf: "self-start",
+  },
+  16: {
+    width: "w-[380px] md:w-[450px]",
+    imgHeight: "h-[440px] md:h-[510px]",
+    alignSelf: "self-end mb-4",
+  },
+  19: {
+    width: "w-[420px] md:w-[500px]",
+    imgHeight: "h-[300px] md:h-[350px]",
+    alignSelf: "self-center mt-4",
+  },
+  20: {
+    width: "w-[360px] md:w-[440px]",
+    imgHeight: "h-[420px] md:h-[480px]",
+    alignSelf: "self-start mt-8",
+  },
+  21: {
+    width: "w-[400px] md:w-[480px]",
+    imgHeight: "h-[300px] md:h-[350px]",
+    alignSelf: "self-center",
+  },
+  // --- Luxury Villas ---
+  // Was id 27 (Mirbah Prime) - its whole gallery is the same branded/
+  // construction-site pattern described above. Swapped to id 10, already
   // used elsewhere on the site (HeroSequence's flip-card back face).
   10: {
     width: "w-[400px] md:w-[480px]",
@@ -65,18 +128,20 @@ const layoutById: Record<
     imgHeight: "h-[340px] md:h-[400px]",
     alignSelf: "self-center",
   },
-  // Commercial only had one entry (13) even though 3 real projects exist
-  // in that category - a single card reads as broken/empty once a visitor
-  // filters to it. Added the other two.
-  2: {
+  6: {
     width: "w-[420px] md:w-[500px]",
     imgHeight: "h-[300px] md:h-[350px]",
-    alignSelf: "self-center mt-4",
+    alignSelf: "self-start",
   },
-  9: {
-    width: "w-[380px] md:w-[460px]",
-    imgHeight: "h-[440px] md:h-[510px]",
-    alignSelf: "self-end",
+  7: {
+    width: "w-[380px] md:w-[450px]",
+    imgHeight: "h-[420px] md:h-[490px]",
+    alignSelf: "self-end mb-4",
+  },
+  14: {
+    width: "w-[440px] md:w-[520px]",
+    imgHeight: "h-[310px] md:h-[360px]",
+    alignSelf: "self-center mt-6",
   },
 };
 
@@ -94,13 +159,8 @@ export default function ProjectsSection({
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Map<CategoryType, HTMLButtonElement>>(new Map());
-  const isDraggingRef = useRef(false);
-  const startXRef = useRef(0);
-  const scrollLeftRef = useRef(0);
-  const draggedDistanceRef = useRef(0);
 
   // Per-card image refs + gsap quickTo setters, keyed by project id, so each
   // card's image can drift toward the cursor independently on hover.
@@ -110,10 +170,6 @@ export default function ProjectsSection({
   >(new Map());
 
   const [activeTab, setActiveTab] = useState<CategoryType>("Luxury_Villas");
-  const [showDragCursor, setShowDragCursor] = useState(false);
-
-  const xTo = useRef<((value: number) => void) | null>(null);
-  const yTo = useRef<((value: number) => void) | null>(null);
 
   const horizontalProjects = useMemo(
     () =>
@@ -223,65 +279,20 @@ export default function ProjectsSection({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (xTo.current && yTo.current) {
-      xTo.current(e.clientX);
-      yTo.current(e.clientY);
-    }
-  };
-
-  useEffect(() => {
-    if (!cursorRef.current) return;
-    xTo.current = gsap.quickTo(cursorRef.current, "x", {
-      duration: 0.2,
-      ease: "power3.out",
-    });
-    yTo.current = gsap.quickTo(cursorRef.current, "y", {
-      duration: 0.2,
-      ease: "power3.out",
-    });
-  }, []);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!sliderRef.current) return;
-    isDraggingRef.current = true;
-    draggedDistanceRef.current = 0;
-    startXRef.current = e.pageX - sliderRef.current.offsetLeft;
-    scrollLeftRef.current = sliderRef.current.scrollLeft;
-    sliderRef.current.style.scrollBehavior = "auto";
-  };
-
-  useEffect(() => {
-    const handleMouseMoveWindow = (e: MouseEvent) => {
-      if (!isDraggingRef.current || !sliderRef.current) return;
-      e.preventDefault();
-      const x = e.pageX - sliderRef.current.offsetLeft;
-      const walk = (x - startXRef.current) * 1.5;
-      draggedDistanceRef.current = Math.abs(walk);
-      sliderRef.current.scrollLeft = scrollLeftRef.current - walk;
-    };
-
-    const handleMouseUpWindow = () => {
-      if (!isDraggingRef.current || !sliderRef.current) return;
-      isDraggingRef.current = false;
-      sliderRef.current.style.scrollBehavior = "smooth";
-    };
-
-    window.addEventListener("mousemove", handleMouseMoveWindow);
-    window.addEventListener("mouseup", handleMouseUpWindow);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMoveWindow);
-      window.removeEventListener("mouseup", handleMouseUpWindow);
-    };
-  }, []);
-
-  const handleCardClick = (e: React.MouseEvent) => {
-    if (draggedDistanceRef.current > 10) {
-      e.preventDefault();
-      e.stopPropagation();
-      return;
-    }
+  // Replaces a hand-rolled mousedown/mousemove/mouseup drag simulation
+  // that fought the browser's own scrolling: it never reliably told a
+  // real drag apart from a click (a drag that scrolled back near its
+  // start, or ended over a different card once content had moved, could
+  // still fire that card's navigation), and duplicated something the
+  // <div>'s native overflow-x-auto already provides for free -
+  // trackpad/touch swipe, shift+wheel, and a visible scrollbar all just
+  // work. These buttons are the only custom affordance needed on top of
+  // that, and can't ever misfire as a click.
+  const scrollByCard = (direction: 1 | -1) => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+    const amount = slider.clientWidth * 0.85 * direction * (dir === "rtl" ? -1 : 1);
+    slider.scrollBy({ left: amount, behavior: "smooth" });
   };
 
   // Drifts a card's image a few px toward the cursor position within the
@@ -309,23 +320,8 @@ export default function ProjectsSection({
     <section
       ref={sectionRef}
       dir={dir}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setShowDragCursor(true)}
-      onMouseLeave={() => setShowDragCursor(false)}
       className="relative w-full min-h-screen bg-[#525151] overflow-hidden flex flex-col pt-16 pb-10 px-4 md:px-12"
     >
-      {/* Custom Drag Cursor */}
-      <div
-        ref={cursorRef}
-        className={`fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full bg-white text-black flex items-center justify-between px-7 font-medium text-xs shadow-2xl pointer-events-none z-[100] transition-opacity duration-300 ${
-          showDragCursor ? "opacity-100 scale-100" : "opacity-0 scale-50"
-        }`}
-      >
-        <span className="text-lg text-neutral-400 font-bold">&lt;</span>
-        <span className="tracking-widest text-lg font-semibold">DRAG</span>
-        <span className="text-lg text-neutral-400 font-bold">&gt;</span>
-      </div>
-
       <div className="absolute inset-0 pointer-events-none z-0">
         <svg
           className="w-full h-full stroke-[#383838] fill-none opacity-80"
@@ -373,20 +369,21 @@ export default function ProjectsSection({
           </div>
         </div>
 
-        {/* Horizontal Drag Slider */}
-        <div
-          ref={sliderRef}
-          onMouseDown={handleMouseDown}
-          className="relative z-10 flex items-end gap-8 md:gap-12 overflow-x-auto scrollbar-none pt-4 pb-4 px-4 md:px-8 cursor-grab active:cursor-grabbing select-none flex-1"
-        >
-          {filteredProjects.map((p, i) => (
-            <Link
-              key={p.id}
-              href={`/${lang}/projects/${p.slug}`}
-              onClick={handleCardClick}
-              onMouseMove={(e) => handleCardMouseMove(p.id, e)}
-              onMouseLeave={() => handleCardMouseLeave(p.id)}
-              className={`group flex-shrink-0 flex flex-col cursor-pointer ${p.width} ${
+        {/* Horizontal scroller - native overflow-x-auto handles trackpad/
+            touch/shift+wheel scrolling on its own; the prev/next buttons
+            below are the only custom affordance layered on top. */}
+        <div className="relative flex-1">
+          <div
+            ref={sliderRef}
+            className="relative z-10 flex items-end gap-8 md:gap-12 overflow-x-auto scrollbar-none pt-4 pb-4 px-4 md:px-8 h-full"
+          >
+            {filteredProjects.map((p, i) => (
+              <Link
+                key={p.id}
+                href={`/${lang}/projects/${p.slug}`}
+                onMouseMove={(e) => handleCardMouseMove(p.id, e)}
+                onMouseLeave={() => handleCardMouseLeave(p.id)}
+                className={`group flex-shrink-0 flex flex-col cursor-pointer ${p.width} ${
                 p.alignSelf || ""
               }`}
             >
@@ -437,6 +434,26 @@ export default function ProjectsSection({
               </div>
             </Link>
           ))}
+          </div>
+
+          {/* Always visible (not hover-gated) - a hover-only affordance
+              would just be invisible, and unusable, on touch devices. */}
+          <button
+            type="button"
+            onClick={() => scrollByCard(-1)}
+            aria-label="Previous"
+            className="absolute top-1/2 -translate-y-1/2 left-2 md:left-4 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 text-white backdrop-blur-sm hover:bg-black/60 transition-colors duration-300 cursor-pointer"
+          >
+            <span className="text-xl">{dir === "rtl" ? "→" : "←"}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollByCard(1)}
+            aria-label="Next"
+            className="absolute top-1/2 -translate-y-1/2 right-2 md:right-4 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 text-white backdrop-blur-sm hover:bg-black/60 transition-colors duration-300 cursor-pointer"
+          >
+            <span className="text-xl">{dir === "rtl" ? "←" : "→"}</span>
+          </button>
         </div>
 
         <div className="w-full flex justify-center pt-8 z-50 pointer-events-auto">

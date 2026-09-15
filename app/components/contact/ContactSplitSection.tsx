@@ -142,6 +142,7 @@ export default function ContactSplitSection({ lang, content }: ContactSplitSecti
             </a>
             <a
               href={`tel:${content.phoneHref}`}
+              dir="ltr"
               className="text-xl md:text-2xl font-medium underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors w-fit"
             >
               {content.phone}

@@ -147,7 +147,7 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
           <span className="block text-white/60">
             {content.phoneLabel} <span className="opacity-70">[{content.phoneWhatsappNote}]</span>
           </span>
-          <span className="underline underline-offset-4">
+          <span dir="ltr" className="underline underline-offset-4 inline-block">
             {content.phone}
           </span>
         </a>

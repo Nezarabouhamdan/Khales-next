@@ -26,20 +26,23 @@ import type {
 // index. Real Khales project photography (Mirbah Prime, Al Khawaneej
 // Organic Villa) - no real project videos exist to use here, so this is a
 // still image rather than the original template's stock video loop.
+// A full-bleed 100vw banner needs genuinely landscape-oriented source
+// photography - a portrait/square source still "works" via object-cover,
+// but crops in tight and loses most of the shot. Most of this dataset's
+// photography is Instagram-portrait/square social exports; these are the
+// ones actually confirmed landscape (checked real pixel dimensions, not
+// just filenames) across 3 different real projects.
 const heroProjectsMeta = [
-  {
-    id: 1,
-    // The previous image (Mirbah Prime) was a WhatsApp-compressed social
-    // post export with "Khales" branding, a phone number, and an arrow
-    // icon baked directly into the photo - not something to show full-
-    // bleed as the hero background. Swapped for a clean, high-res,
-    // unbranded interior shot (The Pearl Residence).
-    image: "https://i.ibb.co/jZ6JLf2p/21-jpg.jpg",
-  },
-  {
-    id: 2,
-    image: "https://i.ibb.co/gMYrJkNY/67-jpg.jpg",
-  },
+  // The Organic Villa - evening exterior elevation.
+  { id: 1, image: "https://i.ibb.co/hFHH248S/IMG-20250811-WA0020.jpg" },
+  // The Organic Villa - aerial pool/garden view (different angle, same
+  // project - its gallery had the only wide *and* varied landscape set).
+  { id: 2, image: "https://i.ibb.co/S44GR5MS/IMG-20250811-WA0018.jpg" },
+  // Al Khawaneej Organic Villa - was 67-jpg.jpg (a perfect 1:1 square);
+  // swapped to a landscape shot from the same gallery.
+  { id: 3, image: "https://i.ibb.co/ymrMTmBM/72-jpg.jpg" },
+  // The Executive Villa Interior.
+  { id: 4, image: "https://i.ibb.co/PvSc6bfb/shoot1-jpg.jpg" },
 ];
 
 // Non-text metadata for the 3D flip-card faces - translatable copy comes
@@ -108,6 +111,17 @@ export default function HeroSequence({
   }));
 
   const project = heroProjects[activeIndex];
+
+  // Auto-advances the hero background every 2.5s; manual arrow clicks
+  // just call the same setActiveIndex and the interval keeps ticking on
+  // its own schedule rather than resetting - simplest behavior, and the
+  // crossfade below means an overlapping manual click never looks abrupt.
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveIndex((i) => (i + 1) % heroProjects.length);
+    }, 2500);
+    return () => clearInterval(id);
+  }, [heroProjects.length]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -262,14 +276,22 @@ export default function HeroSequence({
         </div>
 
         <div ref={videoWrapRef} className="absolute inset-0 z-10 origin-center">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
+          {/* Stacked + opacity-crossfaded rather than swapping a single
+              Image's src, which would just pop instantly between photos
+              on every auto-rotation tick or arrow click. */}
+          {heroProjects.map((p, i) => (
+            <Image
+              key={p.id}
+              src={p.image}
+              alt={p.title}
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              className={`object-cover transition-opacity duration-1000 ease-in-out ${
+                i === activeIndex ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
           <div className="absolute inset-0 bg-black/30 pointer-events-none" />
         </div>
 

@@ -53,7 +53,12 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
               alt="Khales"
               width={210}
               height={50}
-              className="h-7 w-auto"
+              // The parent is a flex column with no items-start, so flex's
+              // default align-items:stretch was forcing this image to fill
+              // the column's full width (up to max-w-sm, ~384px) instead
+              // of respecting w-auto's aspect-ratio-based sizing -
+              // stretching the logo's actual pixels to fill that box.
+              className="h-7 w-auto self-start"
             />
             <p className="text-sm leading-relaxed text-neutral-500">
               {content.description}
@@ -124,7 +129,8 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
               </a>
               <a
                 href={`tel:${content.phone.replace(/\s+/g, "")}`}
-                className="text-sm hover:text-white transition-colors"
+                dir="ltr"
+                className="text-sm hover:text-white transition-colors inline-block"
               >
                 {content.phone}
               </a>
