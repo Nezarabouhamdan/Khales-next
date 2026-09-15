@@ -5,7 +5,6 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Marquee from "../Marquee";
-import TiltCard from "../TiltCard";
 import type { Locale } from "@/i18n-config";
 import type { AboutHeroDict } from "@/dictionaries/types";
 
@@ -19,7 +18,6 @@ export default function AboutHeroSection({ lang, content }: AboutHeroSectionProp
   const bgRef = useRef<HTMLDivElement>(null);
   const lineRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const introRef = useRef<HTMLDivElement>(null);
-  const photoRef = useRef<HTMLDivElement>(null);
   const dir = lang === "ar" ? "rtl" : "ltr";
 
   useEffect(() => {
@@ -60,19 +58,6 @@ export default function AboutHeroSection({ lang, content }: AboutHeroSectionProp
         introRef.current,
         { autoAlpha: 0, y: 30 },
         { autoAlpha: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.9 },
-      );
-
-      gsap.fromTo(
-        photoRef.current,
-        { autoAlpha: 0, y: 40, rotate: -6 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          rotate: -4,
-          duration: 1.2,
-          ease: "power3.out",
-          delay: 0.6,
-        },
       );
     }, sectionRef);
 
@@ -133,24 +118,6 @@ export default function AboutHeroSection({ lang, content }: AboutHeroSectionProp
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Floating tilting portrait - a real, touchable 3D element */}
-      <div
-        ref={photoRef}
-        className="hidden lg:block absolute top-[14%] right-[8%] z-20 w-56 xl:w-64"
-      >
-        <TiltCard className="shadow-2xl">
-          <div className="relative w-full aspect-[3/4] overflow-hidden border-4 border-white/90">
-            <Image
-              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
-              alt={content.detailImageAlt}
-              fill
-              sizes="256px"
-              className="object-cover"
-            />
-          </div>
-        </TiltCard>
       </div>
 
       <div className="relative z-10 border-t border-white/10 py-4">

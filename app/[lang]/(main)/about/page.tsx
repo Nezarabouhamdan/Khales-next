@@ -11,7 +11,6 @@ import AboutProcessSection from "@/app/components/about/AboutProcessSection";
 import AboutSpotlightSection from "@/app/components/about/AboutSpotlightSection";
 import AboutPhilosophySection from "@/app/components/about/AboutPhilosophySection";
 import AboutStatsFlipSection from "@/app/components/about/AboutStatsFlipSection";
-import AboutTeamGridSection from "@/app/components/about/AboutTeamGridSection";
 import { getDictionary } from "@/lib/get-dictionary";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { getAboutPageSchema, getBreadcrumbSchema } from "@/lib/seo/schema";
@@ -71,7 +70,6 @@ export default async function AboutPage({
       <AboutSpotlightSection lang={lang} content={aboutUsPage.spotlight} />
       <AboutPhilosophySection lang={lang} content={aboutUsPage.philosophy} />
       <AboutStatsFlipSection lang={lang} content={aboutUsPage.statsFlip} />
-      <AboutTeamGridSection lang={lang} content={aboutUsPage.teamGrid} />
       <CTAHeroSection lang={lang} content={dictionary.shared.cta} />
       <SiteFooter lang={lang} content={dictionary.footer} />
     </main>
