@@ -68,6 +68,8 @@ export default function ContactOrbitSection({ lang, content }: ContactOrbitSecti
                 >
                   <a
                     href={m.href}
+                    target={m.href.startsWith("http") ? "_blank" : undefined}
+                    rel={m.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     onMouseEnter={() => setPaused(true)}
                     onMouseLeave={() => setPaused(false)}
                     aria-label={m.label}

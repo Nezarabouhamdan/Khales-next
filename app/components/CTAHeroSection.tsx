@@ -154,7 +154,9 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
 
         <div className="flex items-center gap-4">
           <a
-            href="#"
+            href="https://www.instagram.com/khales.ae/"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Instagram"
             className="hover:opacity-70 transition-opacity"
           >
@@ -163,7 +165,9 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
             </svg>
           </a>
           <a
-            href="#"
+            href="https://www.pinterest.com/khalesae/"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Pinterest"
             className="hover:opacity-70 transition-opacity"
           >

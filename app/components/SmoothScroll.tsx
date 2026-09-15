@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,6 +14,15 @@ export function useLenis() {
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
+
+  // This wrapper sits once in the root layout, so it never remounts on
+  // App Router client-side navigation - without this, Lenis keeps
+  // whatever virtual scroll offset it had on the previous page instead of
+  // landing new pages at the top.
+  useEffect(() => {
+    lenisRef.current?.scrollTo(0, { immediate: true });
+  }, [pathname]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);

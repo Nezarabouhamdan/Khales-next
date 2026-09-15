@@ -38,8 +38,8 @@ export const dictionary: Dictionary = {
     copyright: "حقوق النشر © {year} خالص",
     legal: {
       rights: "جميع الحقوق محفوظة",
-      terms: { text: "الشروط والأحكام", href: "#" },
-      privacy: { text: "سياسة الخصوصية", href: "#" },
+      terms: { text: "الشروط والأحكام", href: "/terms-and-conditions" },
+      privacy: { text: "سياسة الخصوصية", href: "/privacy-policy" },
     },
   },
 
@@ -495,8 +495,8 @@ export const dictionary: Dictionary = {
       methods: [
         { label: "البريد الإلكتروني", href: "mailto:info@khales.ae", icon: "✉" },
         { label: "الهاتف", href: "tel:+971551299880", icon: "☎" },
-        { label: "إنستغرام", href: "#", icon: "◎" },
-        { label: "بينتيريست", href: "#", icon: "◈" },
+        { label: "إنستغرام", href: "https://www.instagram.com/khales.ae/", icon: "◎" },
+        { label: "بينتيريست", href: "https://www.pinterest.com/khalesae/", icon: "◈" },
       ],
     },
     faq: {

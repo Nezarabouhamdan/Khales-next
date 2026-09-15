@@ -9,8 +9,8 @@ import type { NavigationDict } from "@/dictionaries/types";
 
 const footerLinks = [
   { label: "FAQ", href: "/contact" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Use", href: "#" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Use", href: "/terms-and-conditions" },
 ];
 
 type SiteHeaderProps = {

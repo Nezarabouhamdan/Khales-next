@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
     styledComponents: true,
   },
   images: {
+    // Most of the site's photography is hosted on i.ibb.co, a free image
+    // host rather than a real CDN - the *first* optimized fetch of any
+    // given image+size combination routinely takes 2-4s (measured), since
+    // Next has to pull the original from there before it can cache the
+    // resized/re-encoded result. A long TTL means that slow fetch happens
+    // once per size variant instead of repeatedly.
+    minimumCacheTTL: 2678400, // 31 days
     domains: [
       "imgpanda.com",
       "upload.wikimedia.org",

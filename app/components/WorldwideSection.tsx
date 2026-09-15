@@ -75,7 +75,14 @@ export default function WorldwideSection({
       0.1,
       1000
     );
-    camera.position.z = 295;
+    // A fixed z=295 only looks right at desktop's ~landscape aspect - a
+    // fixed vertical FOV means a narrow/portrait mobile container gets a
+    // much narrower horizontal FOV too, so the globe (fixed world-space
+    // radius) crops in tight and overflows the frame. Pulling the camera
+    // back as the aspect ratio narrows keeps the whole globe in view.
+    const getCameraDistance = (aspect: number) =>
+      aspect < 1 ? 295 / Math.max(aspect, 0.45) : 295;
+    camera.position.z = getCameraDistance(container.clientWidth / container.clientHeight);
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -190,7 +197,9 @@ export default function WorldwideSection({
 
     const handleResize = () => {
       if (!container) return;
-      camera.aspect = container.clientWidth / container.clientHeight;
+      const aspect = container.clientWidth / container.clientHeight;
+      camera.aspect = aspect;
+      camera.position.z = getCameraDistance(aspect);
       camera.updateProjectionMatrix();
       renderer.setSize(container.clientWidth, container.clientHeight);
     };

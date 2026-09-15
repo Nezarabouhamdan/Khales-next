@@ -367,10 +367,12 @@ export default function HeroSequence({
                 WebkitBackfaceVisibility: "hidden",
               }}
             >
-              <img
+              <Image
                 src={faceProjects[0].image}
                 alt={faceProjects[0].title}
-                className="w-full h-full object-cover"
+                fill
+                sizes="100vw"
+                className="object-cover"
               />
             </div>
 
@@ -384,10 +386,12 @@ export default function HeroSequence({
                 transform: "rotateY(180deg)",
               }}
             >
-              <img
+              <Image
                 src={faceProjects[1].image}
                 alt={faceProjects[1].title}
-                className="w-full h-full object-cover"
+                fill
+                sizes="100vw"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-black/40 pointer-events-none" />
             </div>

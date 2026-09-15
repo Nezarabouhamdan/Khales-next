@@ -24,8 +24,8 @@ const defaultFooter: FooterDict = {
   copyright: "Copyright © {year} KHALES",
   legal: {
     rights: "All Rights Reserved",
-    terms: { text: "Terms of Use", href: "#" },
-    privacy: { text: "Privacy Policy", href: "#" },
+    terms: { text: "Terms of Use", href: "/terms-and-conditions" },
+    privacy: { text: "Privacy Policy", href: "/privacy-policy" },
   },
 };
 

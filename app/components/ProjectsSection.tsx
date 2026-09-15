@@ -379,7 +379,11 @@ export default function ProjectsSection({
                     src={p.image}
                     alt={p.title}
                     fill
-                    sizes="(max-width: 1200px) 100vw, 50vw"
+                    // Cards are fixed-pixel-width (w-[360px] to w-[540px])
+                    // regardless of viewport, not a viewport fraction - the
+                    // previous "50vw" requested ~2x the actual rendered
+                    // size on wide screens.
+                    sizes="540px"
                     className="object-cover scale-110 group-hover:scale-[1.16] transition-transform duration-700 ease-out pointer-events-none"
                   />
                 </div>
