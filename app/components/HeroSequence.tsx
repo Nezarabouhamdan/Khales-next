@@ -274,7 +274,15 @@ export default function HeroSequence({
           ref={captionWrapRef}
           className="absolute inset-0 z-20 pointer-events-none px-6 md:px-16"
         >
-          <div className="absolute left-6 md:left-[54%] top-[55%] md:top-[58%] text-white">
+          {/* Mirrored under RTL: the crafting-text headline's own flex row
+              already auto-reverses so its two-line block moves to this
+              same side under Arabic - without mirroring these too, the
+              caption/controls collide with it instead of sitting opposite. */}
+          <div
+            className={`absolute top-[55%] md:top-[58%] text-white ${
+              dir === "rtl" ? "right-6 md:right-[54%] text-right" : "left-6 md:left-[54%]"
+            }`}
+          >
             <p className="text-sm md:text-base font-medium leading-snug">
               {project.location}{" "}
               <span className="text-[10px] md:text-xs font-normal align-top opacity-80">
@@ -292,8 +300,17 @@ export default function HeroSequence({
             </p>
           </div>
 
-          <div className="absolute top-[55%] md:top-[58%] right-6 md:right-16 flex flex-col items-end justify-between h-[85px] md:h-[95px] text-white pointer-events-auto">
+          <div
+            className={`absolute top-[55%] md:top-[58%] flex flex-col items-end justify-between h-[85px] md:h-[95px] text-white pointer-events-auto ${
+              dir === "rtl" ? "left-6 md:left-16" : "right-6 md:right-16"
+            }`}
+          >
             <div className="flex items-center gap-4">
+              {/* This row's DOM order (prev, next) stays fixed and flex's
+                  own RTL auto-reversal puts prev on the right / next on
+                  the left under Arabic - but the glyphs themselves need to
+                  flip too, or the arrow a button shows ends up pointing
+                  away from its own side instead of matching it. */}
               <button
                 type="button"
                 onClick={() =>
@@ -303,7 +320,7 @@ export default function HeroSequence({
                 }
                 className="text-2xl md:text-3xl hover:opacity-60 transition cursor-pointer p-1"
               >
-                &larr;
+                {dir === "rtl" ? "→" : "←"}
               </button>
               <button
                 type="button"
@@ -312,7 +329,7 @@ export default function HeroSequence({
                 }
                 className="text-2xl md:text-3xl hover:opacity-60 transition cursor-pointer p-1"
               >
-                &rarr;
+                {dir === "rtl" ? "←" : "→"}
               </button>
             </div>
             <span className="text-xs md:text-sm font-light tracking-widest">
@@ -325,11 +342,11 @@ export default function HeroSequence({
           ref={craftingTextRef}
           className="absolute inset-0 z-[35] flex flex-col md:flex-row items-center md:justify-between justify-center gap-2 md:gap-0 px-6 md:px-16 pointer-events-none select-none text-center md:text-left"
         >
-          <div className="text-[#9E9D9C] font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,11vw,9.5rem)]">
+          <div className="text-[#9E9D9C] font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,8.5vw,7.5rem)]">
             <p>{content.craftingLine1}</p>
             <p className="md:ml-[100px]">{content.craftingLine2}</p>
           </div>
-          <div className="text-[#9E9D9C] font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,11vw,9.5rem)]">
+          <div className="text-[#9E9D9C] font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,8.5vw,7.5rem)]">
             <p>{content.craftingLine3}</p>
           </div>
 
@@ -337,11 +354,11 @@ export default function HeroSequence({
             ref={whiteTextRef}
             className="absolute inset-0 flex flex-col md:flex-row items-center md:justify-between justify-center gap-2 md:gap-0 px-6 md:px-16 text-center md:text-left"
           >
-            <div className="text-white font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,11vw,9.5rem)]">
+            <div className="text-white font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,8.5vw,7.5rem)]">
               <p>{content.craftingLine1}</p>
               <p className="md:ml-[100px]">{content.craftingLine2}</p>
             </div>
-            <div className="text-white font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,11vw,9.5rem)]">
+            <div className="text-white font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,8.5vw,7.5rem)]">
               <p>{content.craftingLine3}</p>
             </div>
           </div>

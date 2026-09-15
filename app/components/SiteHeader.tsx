@@ -78,7 +78,7 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
               menuOpen ? "text-neutral-900" : "text-white"
             }`}
           >
-            {menuOpen ? "Close" : "Menu"}
+            {menuOpen ? (isRTL ? "إغلاق" : "Close") : isRTL ? "القائمة" : "Menu"}
           </span>
         </button>
 
