@@ -30,14 +30,7 @@ export function proxy(request: NextRequest) {
     );
   }
 
-  const lang =
-    i18n.locales.find(
-      (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
-    ) || i18n.defaultLocale;
-
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-lang", lang);
-  return NextResponse.next({ request: { headers: requestHeaders } });
+  return NextResponse.next();
 }
 
 export const config = {

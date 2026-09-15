@@ -49,9 +49,15 @@ export default async function LangLayout({
   params,
 }: LayoutProps<"/[lang]">) {
   const { lang } = (await params) as { lang: Locale };
+  const dir = lang === "ar" ? "rtl" : "ltr";
 
   return (
-    <>
+    // `display: contents` so this carries lang/dir (for `[dir="rtl"] *` in
+    // globals.css, and for the Arabic font) without adding a box to the
+    // flex layout <body> expects from its direct children - see
+    // app/layout.tsx for why lang/dir live here (params.lang) rather than
+    // on <html> (which would need headers(), forcing dynamic rendering).
+    <div lang={lang} dir={dir} className={`contents ${lang === "ar" ? "font-[var(--font-tajawal)]" : ""}`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getOrganizationSchema()) }}
@@ -61,6 +67,6 @@ export default async function LangLayout({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebsiteSchema(lang)) }}
       />
       {children}
-    </>
+    </div>
   );
 }
