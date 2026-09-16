@@ -54,28 +54,30 @@ const WorldwideSection = dynamic(() => import("./WorldwideSection"), {
 // used 2 angles of the same villa to fill a 4th slot, but with identical
 // caption text (same title/location/size) it just read as a stuck/
 // duplicated slide rather than "variety".
+// All 4 self-hosted under /public/hero - slide 0 in particular is the
+// priority/LCP candidate, and having it on a third-party origin
+// (i.ibb.co) meant paying for a whole extra DNS+TLS handshake before
+// the single most important image on the page could even start
+// downloading. The i.ibb.co originals were also 1-4.4MB raw uploads;
+// re-encoded down to 115-342KB in the process.
 const heroProjectsMeta = [
   // The Organic Villa - evening exterior elevation.
-  { id: 1, image: "https://i.ibb.co/hFHH248S/IMG-20250811-WA0020.jpg" },
+  { id: 1, image: "/hero/the-organic-villa-hero.jpg" },
   // The Royal Villa - frontal elevation render, self-hosted (source PNG
   // screenshot export, re-encoded to keep the image optimizer fast).
   { id: 2, image: "/projects/royal-villa/hero-01.jpg" },
   // Al Khawaneej Organic Villa - was 67-jpg.jpg (a perfect 1:1 square);
   // swapped to a landscape shot from the same gallery.
-  { id: 3, image: "https://i.ibb.co/ymrMTmBM/72-jpg.jpg" },
+  { id: 3, image: "/hero/al-khawaneej-hero.jpg" },
   // The Executive Villa Interior.
-  { id: 4, image: "https://i.ibb.co/PvSc6bfb/shoot1-jpg.jpg" },
+  { id: 4, image: "/hero/executive-villa-interior-hero.jpg" },
 ];
 
 // Non-text metadata for the 3D flip-card faces - translatable copy comes
 // from content.faceProjects, matched by index.
 const faceProjectsMeta = [
-  {
-    image: "https://i.ibb.co/1GPhqTPD/Whats-App-Image-2025-09-04-at-10-32-13-743b2078.jpg",
-  },
-  {
-    image: "https://i.ibb.co/BHV2W6vf/Whats-App-Image-2025-11-18-at-12-29-22-142b2921.jpg",
-  },
+  { image: "/hero/flip-card-front.jpg" },
+  { image: "/hero/flip-card-back.jpg" },
 ];
 
 const pad = (n: number) => String(n).padStart(2, "0");
