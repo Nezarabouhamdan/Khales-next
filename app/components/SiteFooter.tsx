@@ -60,7 +60,7 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
               // stretching the logo's actual pixels to fill that box.
               className="h-7 w-auto self-start"
             />
-            <p className="text-sm leading-relaxed text-neutral-500">
+            <p className="text-sm leading-relaxed text-neutral-400">
               {content.description}
             </p>
             <div className="flex items-center gap-4 pt-1">
@@ -69,7 +69,7 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-neutral-500 hover:text-white transition-colors"
+                className="text-neutral-400 hover:text-white transition-colors"
               >
                 <svg
                   width="18"
@@ -85,7 +85,7 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Pinterest"
-                className="text-neutral-500 hover:text-white transition-colors"
+                className="text-neutral-400 hover:text-white transition-colors"
               >
                 <svg
                   width="18"
@@ -102,7 +102,7 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
           <div className="flex flex-wrap gap-12 md:gap-20">
             {columns.map((col) => (
               <div key={col.heading} className="flex flex-col gap-3">
-                <p className="text-xs uppercase tracking-widest text-neutral-600 mb-1">
+                <p className="text-xs uppercase tracking-widest text-neutral-400 mb-1">
                   {col.heading}
                 </p>
                 {col.links.map((link) => (
@@ -118,7 +118,7 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
             ))}
 
             <div className="flex flex-col gap-3">
-              <p className="text-xs uppercase tracking-widest text-neutral-600 mb-1">
+              <p className="text-xs uppercase tracking-widest text-neutral-400 mb-1">
                 {content.contactTitle}
               </p>
               <a
@@ -138,7 +138,7 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-6 text-xs text-neutral-500 gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center pt-6 text-xs text-neutral-400 gap-4">
           <p>{content.copyright.replace("{year}", String(year))} — {content.legal.rights}.</p>
           <div className="flex items-center gap-6">
             <Link href={localize(content.legal.terms.href)} className="hover:text-white transition-colors">
