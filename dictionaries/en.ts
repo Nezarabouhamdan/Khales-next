@@ -216,6 +216,7 @@ export const dictionary: Dictionary = {
     introTitle: "Unlock Your Dream Home",
     introDescription:
       "Use our interactive cost calculator to get an instant estimate for your villa. Choose the method that suits you and start planning today.",
+    usageStatLabel: "{n}+ homeowners have used this calculator",
     detailedModeTitle: "Detailed Cost Calculation",
     detailedModeDescription:
       "Enter all the details yourself, from the number and dimensions of rooms to additional facilities, for an accurate estimate.",
@@ -353,6 +354,7 @@ export const dictionary: Dictionary = {
       craftingLine2: "Iconic",
       craftingLine3: "Spaces",
       finalHeadline: "We design unique modern places",
+      usageStatLabel: "{n}+ homeowners have used our cost calculator",
     },
     worldwide: {
       topParagraph:

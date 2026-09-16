@@ -141,6 +141,7 @@ export type CalcPageDict = {
 export type CalculatorDict = {
   introTitle: string;
   introDescription: string;
+  usageStatLabel: string; // contains "{n}"
   detailedModeTitle: string;
   detailedModeDescription: string;
   quickModeTitle: string;
@@ -387,6 +388,7 @@ export type HeroSequenceDict = {
   craftingLine2: string;
   craftingLine3: string;
   finalHeadline: string;
+  usageStatLabel: string; // contains "{n}"
 };
 
 export type WorldwidePinDict = { name: string };

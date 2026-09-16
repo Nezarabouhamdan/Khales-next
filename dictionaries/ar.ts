@@ -212,6 +212,7 @@ export const dictionary: Dictionary = {
     introTitle: "أطلق العنان لمنزل أحلامك",
     introDescription:
       "استخدم حاسبة التكاليف التفاعلية الخاصة بنا للحصول على تقدير فوري لتكلفة بناء فيلتك. اختر الطريقة التي تناسبك وابدأ التخطيط اليوم.",
+    usageStatLabel: "أكثر من {n} من أصحاب المنازل استخدموا هذه الحاسبة",
     detailedModeTitle: "حساب التكلفة بالتفصيل",
     detailedModeDescription:
       "أدخل كل التفاصيل بنفسك، من عدد الغرف وأبعادها إلى المرافق الإضافية، للحصول على تقدير دقيق.",
@@ -347,6 +348,7 @@ export const dictionary: Dictionary = {
       craftingLine2: "مساحات",
       craftingLine3: "استثنائية",
       finalHeadline: "نصمم أماكن عصرية فريدة",
+      usageStatLabel: "أكثر من {n} من أصحاب المنازل استخدموا حاسبة التكلفة لدينا",
     },
     worldwide: {
       topParagraph:

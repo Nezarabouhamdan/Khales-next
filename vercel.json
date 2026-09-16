@@ -9,6 +9,9 @@
     "app/api/leads/create/route.ts": {
       "maxDuration": 60
     },
+    "app/api/leads/count/route.ts": {
+      "maxDuration": 60
+    },
     "app/api/feedback/route.ts": {
       "maxDuration": 60
     },
