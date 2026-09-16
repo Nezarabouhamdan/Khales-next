@@ -1,7 +1,22 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import * as THREE from "three";
+// Named imports (not `import * as THREE`) so the bundler can tree-shake
+// the rest of three.js's surface - this file only ever touches these ten
+// exports, but a namespace import pulls in enough of the package that it
+// showed up as ~170KiB of "unused JavaScript" in Lighthouse.
+import {
+  AdditiveBlending,
+  Group,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  Scene,
+  SphereGeometry,
+  TextureLoader,
+  Vector3,
+  WebGLRenderer,
+} from "three";
 import type { Locale } from "@/i18n-config";
 import type { WorldwideSectionDict } from "@/dictionaries/types";
 
@@ -68,8 +83,8 @@ export default function WorldwideSection({
     const canvas = canvasRef.current;
 
     // --- Scene & Camera ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
+    const scene = new Scene();
+    const camera = new PerspectiveCamera(
       38,
       container.clientWidth / container.clientHeight,
       0.1,
@@ -84,7 +99,7 @@ export default function WorldwideSection({
       aspect < 1 ? 295 / Math.max(aspect, 0.45) : 295;
     camera.position.z = getCameraDistance(container.clientWidth / container.clientHeight);
 
-    const renderer = new THREE.WebGLRenderer({
+    const renderer = new WebGLRenderer({
       canvas,
       alpha: true,
       antialias: true,
@@ -93,7 +108,7 @@ export default function WorldwideSection({
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     // --- Globe Group ---
-    const globeGroup = new THREE.Group();
+    const globeGroup = new Group();
     globeGroup.rotation.x = 0.25;
     globeGroup.rotation.y = 2.2;
     scene.add(globeGroup);
@@ -101,24 +116,24 @@ export default function WorldwideSection({
     const radius = 86;
 
     // Matte Globe Sphere
-    const sphereGeo = new THREE.SphereGeometry(radius, 64, 64);
-    const sphereMat = new THREE.MeshBasicMaterial({
+    const sphereGeo = new SphereGeometry(radius, 64, 64);
+    const sphereMat = new MeshBasicMaterial({
       color: 0x222222,
       transparent: true,
       opacity: 0.98,
     });
-    const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+    const sphere = new Mesh(sphereGeo, sphereMat);
     globeGroup.add(sphere);
 
     // Grid Mesh
-    const gridGeo = new THREE.SphereGeometry(radius + 0.1, 28, 28);
-    const gridMat = new THREE.MeshBasicMaterial({
+    const gridGeo = new SphereGeometry(radius + 0.1, 28, 28);
+    const gridMat = new MeshBasicMaterial({
       color: 0x555555,
       wireframe: true,
       transparent: true,
       opacity: 0.25,
     });
-    const grid = new THREE.Mesh(gridGeo, gridMat);
+    const grid = new Mesh(gridGeo, gridMat);
     globeGroup.add(grid);
 
     // Coordinates Conversion
@@ -128,36 +143,36 @@ export default function WorldwideSection({
       const x = -(r * Math.sin(phi) * Math.cos(theta));
       const z = r * Math.sin(phi) * Math.sin(theta);
       const y = r * Math.cos(phi);
-      return new THREE.Vector3(x, y, z);
+      return new Vector3(x, y, z);
     };
 
     // World Map Texture
-    const textureLoader = new THREE.TextureLoader();
+    const textureLoader = new TextureLoader();
     textureLoader.load(
       "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg",
       (texture) => {
-        const landGeo = new THREE.SphereGeometry(radius + 0.3, 64, 64);
-        const landMat = new THREE.MeshBasicMaterial({
+        const landGeo = new SphereGeometry(radius + 0.3, 64, 64);
+        const landMat = new MeshBasicMaterial({
           map: texture,
           color: 0x888888,
           transparent: true,
           opacity: 0.4,
-          blending: THREE.AdditiveBlending,
+          blending: AdditiveBlending,
         });
-        const landMesh = new THREE.Mesh(landGeo, landMat);
+        const landMesh = new Mesh(landGeo, landMat);
         globeGroup.add(landMesh);
       }
     );
 
     // 3D Pins
-    const pin3DPositions: { name: string; lat: number; lng: number; pos: THREE.Vector3 }[] = [];
+    const pin3DPositions: { name: string; lat: number; lng: number; pos: Vector3 }[] = [];
     LOCATIONS.forEach((loc) => {
       const pos = latLngToVector3(loc.lat, loc.lng, radius + 0.5);
       pin3DPositions.push({ name: loc.name, lat: loc.lat, lng: loc.lng, pos });
 
-      const dotGeo = new THREE.SphereGeometry(1.1, 16, 16);
-      const dotMat = new THREE.MeshBasicMaterial({ color: 0xeeeeee });
-      const dotMesh = new THREE.Mesh(dotGeo, dotMat);
+      const dotGeo = new SphereGeometry(1.1, 16, 16);
+      const dotMat = new MeshBasicMaterial({ color: 0xeeeeee });
+      const dotMesh = new Mesh(dotGeo, dotMat);
       dotMesh.position.copy(pos);
       globeGroup.add(dotMesh);
     });

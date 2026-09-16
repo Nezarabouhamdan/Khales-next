@@ -79,6 +79,23 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Everything self-hosted under /public - logo, favicons, and every
+      // /projects, /services, /team image - was falling back to Vercel's
+      // default static-file caching (not the year-long, revalidation-free
+      // policy /assets/* gets), which Lighthouse flags as wasted bytes on
+      // repeat views. These paths aren't content-hashed, so if an image at
+      // an existing path is ever swapped out, visitors with a warm cache
+      // won't see the change until it expires - acceptable here since
+      // these are recompressed-once-and-committed, not swapped ad hoc.
+      {
+        source: "/:path*.(jpg|jpeg|png|webp|avif|svg|ico)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
 };

@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SiteHeader from "./SiteHeader";
-import WorldwideSection from "./WorldwideSection";
 import InteriorShowcaseSection from "./InteriorShowcaseSection";
 import ProjectsSection from "./ProjectsSection";
 import ServicesSection from "./ServicesSection";
@@ -20,6 +20,17 @@ import type {
   ProjectsSectionDict,
   ServicesSectionDict,
 } from "@/dictionaries/types";
+
+// Three.js (the globe) is a large chunk of this page's JS but renders a
+// single below-the-fold section - code-splitting it out via next/dynamic
+// keeps it out of the initial bundle Lighthouse scores instead of eagerly
+// loading and executing it for every visitor before they ever scroll
+// there. ssr:false since WebGLRenderer needs a real <canvas>/GL context
+// anyway, so there's nothing useful to server-render here.
+const WorldwideSection = dynamic(() => import("./WorldwideSection"), {
+  ssr: false,
+  loading: () => <div className="w-full h-screen bg-[#525151]" />,
+});
 
 // Non-text metadata for the hero image captions - the translatable copy
 // (location/status/title/size) comes from content.projects, matched by
@@ -103,6 +114,25 @@ export default function HeroSequence({
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [, setRevealed] = useState(false);
+  // All 4 hero backgrounds are stacked for the crossfade, but a viewport-
+  // filling image loads regardless of its opacity (native lazy-loading is
+  // intersection-based, not visibility-based) - mounting only the first
+  // slide up front, then the rest once the browser is idle, keeps slides
+  // 2-4 from competing with the actual LCP candidate for bandwidth during
+  // the critical load window. Idle fires well before the first 2.5s
+  // rotation needs slide 2.
+  const [mountedHeroCount, setMountedHeroCount] = useState(1);
+  useEffect(() => {
+    const ric =
+      typeof window.requestIdleCallback === "function"
+        ? window.requestIdleCallback
+        : (cb: () => void) => setTimeout(cb, 300);
+    const handle = ric(() => setMountedHeroCount(heroProjectsMeta.length));
+    return () => {
+      if (typeof window.cancelIdleCallback === "function") window.cancelIdleCallback(handle as number);
+      else clearTimeout(handle as unknown as number);
+    };
+  }, []);
 
   const heroProjects = heroProjectsMeta.map((meta, i) => ({
     ...meta,
@@ -282,7 +312,7 @@ export default function HeroSequence({
           {/* Stacked + opacity-crossfaded rather than swapping a single
               Image's src, which would just pop instantly between photos
               on every auto-rotation tick or arrow click. */}
-          {heroProjects.map((p, i) => (
+          {heroProjects.slice(0, mountedHeroCount).map((p, i) => (
             <Image
               key={p.id}
               src={p.image}
