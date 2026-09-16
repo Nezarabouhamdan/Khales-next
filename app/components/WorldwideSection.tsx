@@ -149,7 +149,10 @@ export default function WorldwideSection({
     // World Map Texture
     const textureLoader = new TextureLoader();
     textureLoader.load(
-      "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg",
+      // Self-hosted (was raw.githubusercontent.com, 219KiB with only a
+      // 5-minute cache TTL) and halved to 1024x512 - plenty for a low-
+      // opacity (0.4) additive-blended overlay on a modest-sized sphere.
+      "/globe/earth-specular.jpg",
       (texture) => {
         const landGeo = new SphereGeometry(radius + 0.3, 64, 64);
         const landMat = new MeshBasicMaterial({

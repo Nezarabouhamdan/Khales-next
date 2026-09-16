@@ -56,6 +56,11 @@ export default function Home() {
                 alt="Khales"
                 width={280}
                 height={150}
+                // Without `sizes`, next/image sizes off the `width` prop
+                // (280) rather than the actual w-40/w-56 (160-224px)
+                // rendered size - flagged by Lighthouse as a 640px-wide
+                // fetch for a ~280px display.
+                sizes="(max-width: 768px) 160px, 224px"
                 className="w-40 md:w-56 h-auto invert"
               />
             </div>

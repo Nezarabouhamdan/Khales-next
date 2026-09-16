@@ -135,6 +135,11 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
             alt="Khales"
             width={210}
             height={50}
+            // Without `sizes`, next/image sizes its srcset off the
+            // `width` prop (210) rather than the ~67-101px it's actually
+            // rendered at (h-4/h-6, w-auto) - flagged by Lighthouse as a
+            // 640px-wide fetch for a ~100px display.
+            sizes="(max-width: 768px) 70px, 105px"
             className="h-4 md:h-6 w-auto"
           />
         </Link>
