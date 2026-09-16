@@ -13,7 +13,7 @@ export const dictionary: Dictionary = {
       { label: "Careers", href: "/applications" },
       { label: "Contact us", href: "/contact" },
     ],
-    ctaButton: "Book Consultation",
+    ctaButton: "Estimate Your Cost",
     faqLabel: "FAQ",
     privacyLabel: "Privacy Policy",
     termsLabel: "Terms of Use",
@@ -354,7 +354,6 @@ export const dictionary: Dictionary = {
       craftingLine2: "Iconic",
       craftingLine3: "Spaces",
       finalHeadline: "We design unique modern places",
-      usageStatLabel: "{n}+ homeowners have used our cost calculator",
     },
     worldwide: {
       topParagraph:

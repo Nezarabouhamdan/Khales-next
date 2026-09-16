@@ -62,6 +62,23 @@ html {
   }
 }
 
+/* A light diagonal band sweeping across a button - used on the header's
+   calculator CTA so it reads as "alive"/worth a second look rather than
+   static chrome, without changing its actual white/black color scheme. */
+@keyframes cta-shimmer {
+  0%,
+  45% {
+    transform: translateX(-130%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(230%) skewX(-20deg);
+  }
+}
+
+.animate-cta-shimmer {
+  animation: cta-shimmer 3s ease-in-out infinite;
+}
+
 /* Arabic script needs its letters to stay visually connected - Tailwind's
    tracking-wide/-widest/-wider utilities (used all over the site for
    uppercase English labels) add letter-spacing that breaks those

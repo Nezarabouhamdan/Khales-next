@@ -13,7 +13,7 @@ export const dictionary: Dictionary = {
       { label: "الوظائف", href: "/applications" },
       { label: "تواصل معنا", href: "/contact" },
     ],
-    ctaButton: "احجز موعدك الآن",
+    ctaButton: "احسب تكلفتك",
     faqLabel: "الأسئلة الشائعة",
     privacyLabel: "سياسة الخصوصية",
     termsLabel: "الشروط والأحكام",
@@ -348,7 +348,6 @@ export const dictionary: Dictionary = {
       craftingLine2: "مساحات",
       craftingLine3: "استثنائية",
       finalHeadline: "نصمم أماكن عصرية فريدة",
-      usageStatLabel: "أكثر من {n} من أصحاب المنازل استخدموا حاسبة التكلفة لدينا",
     },
     worldwide: {
       topParagraph:

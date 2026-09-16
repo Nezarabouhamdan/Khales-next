@@ -388,7 +388,6 @@ export type HeroSequenceDict = {
   craftingLine2: string;
   craftingLine3: string;
   finalHeadline: string;
-  usageStatLabel: string; // contains "{n}"
 };
 
 export type WorldwidePinDict = { name: string };

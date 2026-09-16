@@ -2,13 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SiteHeader from "./SiteHeader";
 import LazyMount from "./LazyMount";
-import CountUp from "./CountUp";
 import InteriorShowcaseSection from "./InteriorShowcaseSection";
 import ProjectsSection from "./ProjectsSection";
 import ServicesSection from "./ServicesSection";
@@ -144,27 +142,6 @@ export default function HeroSequence({
     window.addEventListener("load", onLoad, { once: true });
     return () => window.removeEventListener("load", onLoad);
   }, []);
-  // Real usage count from Odoo, same source as the calculator page's own
-  // stat - fetched only once the page has actually finished loading
-  // (same `pageLoaded` gate as the extra hero slides below) so this
-  // doesn't compete with anything on the critical path either.
-  // /api/leads/count caches its own response for an hour.
-  const [usageCount, setUsageCount] = useState<number | null>(null);
-  useEffect(() => {
-    if (!pageLoaded) return;
-    let cancelled = false;
-    fetch("/api/leads/count")
-      .then((res) => res.json())
-      .then((data) => {
-        if (!cancelled && data?.success && typeof data.count === "number") {
-          setUsageCount(data.count);
-        }
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, [pageLoaded]);
   // All 4 hero backgrounds are stacked for the crossfade, but a viewport-
   // filling image loads regardless of its opacity (native lazy-loading is
   // intersection-based, not visibility-based) - mounting only the first
@@ -448,31 +425,6 @@ export default function HeroSequence({
             </span>
           </div>
         </div>
-
-        {/* Social-proof stat, linking straight to the calculator - sits in
-            the same top-24/28 band the (currently invisible) reveal-phase
-            counter uses on the opposite side, well clear of the crafting
-            text's own vertically-centered block, so it's safe on top of
-            the pinned scroll choreography without touching any of it. */}
-        {usageCount !== null && usageCount > 0 && (
-          <Link
-            href={`/${lang}/calculator`}
-            className={`absolute top-24 md:top-28 z-40 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-white text-xs sm:text-sm backdrop-blur-sm hover:bg-white/10 transition-colors pointer-events-auto ${
-              dir === "rtl" ? "right-6 md:right-16" : "left-6 md:left-16"
-            }`}
-          >
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            {content.usageStatLabel.split("{n}").map((part, i, arr) => (
-              <span key={i}>
-                {part}
-                {i < arr.length - 1 && <CountUp to={usageCount} className="font-semibold" />}
-              </span>
-            ))}
-          </Link>
-        )}
 
         <div
           ref={craftingTextRef}

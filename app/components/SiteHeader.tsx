@@ -159,11 +159,21 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
         >
           {otherLang}
         </a>
+        {/* Points at the cost calculator rather than /contact - it's the
+            higher-intent, lead-generating action, and the shimmer sweep
+            (a light band crossing the button every 3s, CSS-only via
+            .animate-cta-shimmer in globals.css) is there so this specific
+            CTA reads as worth a second look instead of blending into the
+            rest of the header's static chrome. */}
         <Link
-          href={`/${lang}/contact`}
-          className="text-xs uppercase tracking-widest font-medium px-5 py-2.5 rounded-md bg-white text-black hover:bg-neutral-200 transition-colors"
+          href={`/${lang}/calculator`}
+          className="relative overflow-hidden inline-flex items-center text-xs uppercase tracking-widest font-medium px-5 py-2.5 rounded-md bg-white text-black hover:bg-neutral-200 transition-colors"
         >
-          {navigation.ctaButton}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-transparent via-black/10 to-transparent animate-cta-shimmer"
+          />
+          <span className="relative">{navigation.ctaButton}</span>
         </Link>
       </div>
     </header>
