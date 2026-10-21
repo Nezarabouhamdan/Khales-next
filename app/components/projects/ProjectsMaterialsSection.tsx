@@ -5,12 +5,14 @@ import Image from "next/image";
 import type { Locale } from "@/i18n-config";
 import type { ProjectsMaterialsDict } from "@/dictionaries/types";
 
+// Matched by index to content.materials (names live in the dictionaries).
 const materialImages = [
-  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80",
+  "/materials/architectural-glass.jpg",
+  "/materials/bespoke-woodwork.jpg",
+  "/materials/bronze-and-champagne-finishes.jpg",
+  "/materials/calacatta-marble.jpg",
+  "/materials/microcement-finishes.jpg",
+  "/materials/natural-stone-and-travertine.jpg",
 ];
 
 type ProjectsMaterialsSectionProps = {
@@ -59,6 +61,11 @@ export default function ProjectsMaterialsSection({
                 alt={m.name}
                 fill
                 sizes="(max-width: 768px) 60vw, 30vw"
+                // Already pre-sized (1376px) and compressed (~200KB) JPEGs,
+                // so they're served as-is: the on-demand optimizer added a
+                // round-trip per panel and intermittently stalled under
+                // load, leaving panels blank.
+                unoptimized
                 className="object-cover"
               />
               <div
@@ -73,6 +80,9 @@ export default function ProjectsMaterialsSection({
                     : "text-[10px] md:text-xs uppercase tracking-widest [writing-mode:vertical-rl] whitespace-nowrap opacity-80"
                 }`}
               >
+                {isActive && (
+                  <span aria-hidden className="inline-block me-2 h-2 w-2 rounded-full bg-brand align-middle" />
+                )}
                 {m.name}
               </span>
             </button>

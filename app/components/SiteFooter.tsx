@@ -69,7 +69,7 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-neutral-400 hover:text-white transition-colors"
+                className="text-neutral-400 hover:text-brand transition-colors"
               >
                 <svg
                   width="18"
@@ -85,7 +85,7 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Pinterest"
-                className="text-neutral-400 hover:text-white transition-colors"
+                className="text-neutral-400 hover:text-brand transition-colors"
               >
                 <svg
                   width="18"
@@ -109,7 +109,7 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
                   <Link
                     key={link.text}
                     href={localize(link.href)}
-                    className="text-sm hover:text-white transition-colors"
+                    className="text-sm hover:text-brand transition-colors"
                   >
                     {link.text}
                   </Link>
@@ -123,14 +123,14 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
               </p>
               <a
                 href={`mailto:${content.email}`}
-                className="text-sm hover:text-white transition-colors"
+                className="text-sm hover:text-brand transition-colors"
               >
                 {content.email}
               </a>
               <a
                 href={`tel:${content.phone.replace(/\s+/g, "")}`}
                 dir="ltr"
-                className="text-sm hover:text-white transition-colors inline-block"
+                className="text-sm hover:text-brand transition-colors inline-block"
               >
                 {content.phone}
               </a>
@@ -141,10 +141,10 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
         <div className="flex flex-col md:flex-row justify-between items-center pt-6 text-xs text-neutral-400 gap-4">
           <p>{content.copyright.replace("{year}", String(year))} — {content.legal.rights}.</p>
           <div className="flex items-center gap-6">
-            <Link href={localize(content.legal.terms.href)} className="hover:text-white transition-colors">
+            <Link href={localize(content.legal.terms.href)} className="hover:text-brand transition-colors">
               {content.legal.terms.text}
             </Link>
-            <Link href={localize(content.legal.privacy.href)} className="hover:text-white transition-colors">
+            <Link href={localize(content.legal.privacy.href)} className="hover:text-brand transition-colors">
               {content.legal.privacy.text}
             </Link>
           </div>

@@ -6,6 +6,10 @@ import gsap from "gsap";
 import type { Locale } from "@/i18n-config";
 import type { AboutSpotlightDict } from "@/dictionaries/types";
 
+// Same image twice: full color underneath, a dark grayscale copy on top
+// with a hole masked out around the cursor.
+const SPOTLIGHT_IMAGE = "/about/about-spotlight.jpg";
+
 const MASK =
   "radial-gradient(260px circle at var(--x) var(--y), transparent 0%, transparent 35%, black 100%)";
 
@@ -41,7 +45,7 @@ export default function AboutSpotlightSection({ lang, content }: AboutSpotlightS
       className="relative w-full h-[70vh] md:h-screen bg-black overflow-hidden select-none"
     >
       <Image
-        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80"
+        src={SPOTLIGHT_IMAGE}
         alt={content.imageAlt}
         fill
         sizes="100vw"
@@ -61,7 +65,7 @@ export default function AboutSpotlightSection({ lang, content }: AboutSpotlightS
         }
       >
         <Image
-          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80"
+          src={SPOTLIGHT_IMAGE}
           alt=""
           fill
           sizes="100vw"

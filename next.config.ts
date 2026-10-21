@@ -59,6 +59,24 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Service pages renamed or merged when the lineup moved to Design /
+  // Interior Design / Landscape / Supervision / Tendering / Owner's
+  // Representative / Contracts Review / Cost Calculation / Planning.
+  async redirects() {
+    const renamed: Record<string, string> = {
+      "project-manager-service": "owners-representative",
+      "engineering-supervision": "supervision",
+      "development-planning": "planning",
+      "feasibility-study": "planning",
+      "engineering-design": "design",
+      "personal-shopping": "interior-design",
+    };
+    return Object.entries(renamed).map(([from, to]) => ({
+      source: `/:lang(en|ar)/services/${from}`,
+      destination: `/:lang/services/${to}`,
+      permanent: true,
+    }));
+  },
   async headers() {
     return [
       {

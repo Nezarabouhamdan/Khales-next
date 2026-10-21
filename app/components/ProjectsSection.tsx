@@ -17,11 +17,21 @@ const defaultContent: ProjectsSectionDict = {
     Commercial: "Commercial",
     Luxury_Villas: "Luxury Villas",
     Interior_Design: "Interior Design",
+    Warehouse: "Warehouse",
   },
   viewAllProjectsLabel: "View All Projects",
 };
 
-const CATEGORY_TABS: CategoryType[] = ["Residential", "Commercial", "Luxury_Villas", "Interior_Design"];
+const CATEGORY_TABS: CategoryType[] = ["Residential", "Commercial", "Luxury_Villas", "Interior_Design", "Warehouse"];
+
+// Categories with no hand-tuned entries in layoutById below show all their
+// projects with this card size, so new projects appear without extra setup.
+const UNCURATED_CATEGORIES: CategoryType[] = ["Warehouse"];
+const DEFAULT_LAYOUT = {
+  width: "w-[400px] md:w-[480px]",
+  imgHeight: "h-[280px] md:h-[340px]",
+  alignSelf: "self-start",
+};
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -174,7 +184,7 @@ export default function ProjectsSection({
   const horizontalProjects = useMemo(
     () =>
       projects
-        .filter((p) => layoutById[p.id])
+        .filter((p) => layoutById[p.id] || UNCURATED_CATEGORIES.includes(p.category))
         .map((p) => localizeProject(p, lang))
         .map((p) => ({
           id: p.id,
@@ -185,9 +195,15 @@ export default function ProjectsSection({
           size: p.size,
           image: p.cover,
           category: p.category,
-          ...layoutById[p.id],
+          ...(layoutById[p.id] ?? DEFAULT_LAYOUT),
         })),
     [lang],
+  );
+
+  // Hide tabs that have nothing to show yet (e.g. a newly added category).
+  const visibleTabs = useMemo(
+    () => CATEGORY_TABS.filter((tab) => horizontalProjects.some((p) => p.category === tab)),
+    [horizontalProjects],
   );
 
   const filteredProjects = useMemo(() => {
@@ -350,10 +366,10 @@ export default function ProjectsSection({
           <div className="relative flex items-center gap-1 p-1 rounded-full bg-black/20 backdrop-blur-sm shrink-0">
             <div
               ref={pillRef}
-              className="absolute top-1 bottom-1 left-0 rounded-full bg-white shadow-lg"
+              className="absolute top-1 bottom-1 left-0 rounded-full bg-brand shadow-lg"
               style={{ width: 0 }}
             />
-            {CATEGORY_TABS.map((tab) => {
+            {visibleTabs.map((tab) => {
               const isActive = activeTab === tab;
               return (
                 <button
@@ -364,7 +380,7 @@ export default function ProjectsSection({
                   }}
                   onClick={() => setActiveTab(tab)}
                   className={`relative z-10 px-3 md:px-6 h-8 md:h-10 rounded-full text-[9px] md:text-[11px] uppercase tracking-widest font-semibold whitespace-nowrap transition-colors duration-300 cursor-pointer ${
-                    isActive ? "text-black" : "text-neutral-300 hover:text-white"
+                    isActive ? "text-white" : "text-neutral-300 hover:text-white"
                   }`}
                 >
                   {tabLabels[tab]}

@@ -71,11 +71,6 @@ export default function ServiceDetailView({
       {/* Text-only intro, no full-bleed hero photo */}
       <div className="px-6 md:px-16 pt-32 md:pt-40 pb-12 md:pb-16 border-b border-neutral-200">
         <div ref={introRef} className="max-w-4xl mx-auto md:mx-0">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-xs uppercase tracking-widest font-medium px-3 py-1.5 rounded-full border border-neutral-300 text-neutral-600">
-              {service.categoryLabel}
-            </span>
-          </div>
           <h1 className="font-semibold tracking-tight text-4xl md:text-6xl leading-[1.02] max-w-3xl">
             {service.title}
           </h1>
@@ -129,7 +124,7 @@ export default function ServiceDetailView({
                 href={`#${s.key}`}
                 className={`text-sm py-2 border-s-2 ps-4 transition-colors ${
                   activeSection === s.key
-                    ? "border-neutral-900 text-neutral-900 font-medium"
+                    ? "border-brand text-neutral-900 font-medium"
                     : "border-neutral-200 text-neutral-400 hover:text-neutral-600"
                 }`}
               >
@@ -185,7 +180,7 @@ export default function ServiceDetailView({
                       key={feature}
                       className="flex items-start gap-4 p-5 rounded-sm border border-neutral-200"
                     >
-                      <span className="text-xs font-mono text-neutral-400 mt-0.5">
+                      <span className="text-xs font-mono text-brand mt-0.5">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       <span className="text-neutral-800 leading-relaxed">{feature}</span>
@@ -206,7 +201,7 @@ export default function ServiceDetailView({
                   <div className="flex flex-col gap-10">
                     {service.process.map((step, index) => (
                       <div key={step.title} className="relative">
-                        <span className="absolute -start-8 top-0.5 w-4 h-4 rounded-full bg-white border-2 border-neutral-900" />
+                        <span className="absolute -start-8 top-0.5 w-4 h-4 rounded-full bg-white border-2 border-brand" />
                         <p className="text-xs font-mono text-neutral-400 mb-1">
                           {String(index + 1).padStart(2, "0")}
                         </p>
@@ -256,7 +251,7 @@ export default function ServiceDetailView({
                       <div
                         key={faq.question}
                         className={`rounded-sm border transition-colors ${
-                          isOpen ? "border-neutral-900" : "border-neutral-200"
+                          isOpen ? "border-brand" : "border-neutral-200"
                         }`}
                       >
                         <button
@@ -267,7 +262,7 @@ export default function ServiceDetailView({
                           <span className="font-medium tracking-tight">{faq.question}</span>
                           <span
                             className={`shrink-0 text-xl leading-none text-neutral-400 transition-transform duration-300 ${
-                              isOpen ? "rotate-45" : ""
+                              isOpen ? "rotate-45 text-brand" : ""
                             }`}
                           >
                             +

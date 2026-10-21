@@ -96,7 +96,7 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
       {/* Custom "Let's Talk" cursor, follows the pointer while hovering the hero link */}
       <div
         ref={cursorRef}
-        className={`fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-36 md:h-36 rounded-full bg-white text-neutral-900 flex items-center justify-center text-xs md:text-sm uppercase tracking-widest font-medium shadow-2xl pointer-events-none z-[100] transition-opacity duration-300 ${
+        className={`fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-36 md:h-36 rounded-full bg-brand text-white flex items-center justify-center text-xs md:text-sm uppercase tracking-widest font-medium shadow-2xl pointer-events-none z-[100] transition-opacity duration-300 ${
           showCursor ? "opacity-100 scale-100" : "opacity-0 scale-50"
         }`}
       >

@@ -72,7 +72,7 @@ export default function AboutHeroSection({ lang, content }: AboutHeroSectionProp
     >
       <div ref={bgRef} className="absolute inset-x-0 -top-[10%] h-[130%] z-0">
         <Image
-          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80"
+          src="/about/about-hero.jpg"
           alt={content.heroImageAlt}
           fill
           priority

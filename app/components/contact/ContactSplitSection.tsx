@@ -32,6 +32,13 @@ export default function ContactSplitSection({ lang, content }: ContactSplitSecti
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
   const [projectType, setProjectType] = useState(content.form.projectTypes[0]);
+  // When the form became usable - sent with the submission so the API can
+  // drop instant (bot) submits. Reset whenever the form is shown again.
+  const formShownAt = useRef(0);
+
+  useEffect(() => {
+    if (!submitted) formShownAt.current = Date.now();
+  }, [submitted]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -81,6 +88,8 @@ export default function ContactSplitSection({ lang, content }: ContactSplitSecti
           email: formData.get("email"),
           message: formData.get("message"),
           projectType,
+          website: formData.get("website"),
+          elapsedMs: Date.now() - formShownAt.current,
         }),
       });
       const data = await res.json();
@@ -209,6 +218,15 @@ export default function ContactSplitSection({ lang, content }: ContactSplitSecti
               onSubmit={handleSubmit}
               className="flex flex-col gap-8"
             >
+              {/* Honeypot: off-screen and skipped by keyboard/screen
+                  readers, so only bots that fill every input touch it. */}
+              <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+                <label>
+                  Website
+                  <input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+                </label>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <label className="flex flex-col gap-2">
                   <span className="text-xs uppercase tracking-widest text-neutral-400">

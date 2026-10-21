@@ -3,20 +3,20 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Logo green. Brand accent only - keep it to small details (dots,
+     hover arrows, markers, active states) so the site stays black and
+     white overall. */
+  --brand: #66a109;
+  --brand-soft: rgb(102 161 9 / 0.12);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -27,6 +27,11 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--brand);
+  color: #ffffff;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -48,6 +53,21 @@ html {
 
 .animate-marquee {
   animation: marquee-scroll linear infinite;
+}
+
+/* One animated angle shared by an orbit's position and its counter-rotation
+   (see ContactOrbitSection), so the icons can never drift out of sync and
+   end up tilted or upside down. */
+@property --orbit-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@keyframes orbit-angle {
+  to {
+    --orbit-angle: 360deg;
+  }
 }
 
 @keyframes spin-orbit {

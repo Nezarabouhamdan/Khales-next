@@ -1,5 +1,4 @@
 import type { ProjectCategory } from "@/data/projects";
-import type { ServiceCategory } from "@/data/services";
 
 export type NavLink = { label: string; href: string };
 
@@ -360,6 +359,7 @@ export type ProjectsNetworkDict = {
   statsTemplate: string;
   projectSingular: string;
   projectPlural: string;
+  locations: Array<{ name: string; count: number }>;
 };
 
 export type ProjectDetailDict = {
@@ -378,15 +378,17 @@ export type ProjectsPageDict = {
   detail: ProjectDetailDict;
 };
 
-export type HeroProjectDict = { location: string; status: string; title: string; size: string };
+export type HeroProjectDict = { location: string; status: string; title: string };
 export type HeroFaceProjectDict = { title: string; location: string; status: string; size: string };
 
 export type HeroSequenceDict = {
   projects: HeroProjectDict[];
+  exploreProjectsLabel: string;
   faceProjects: HeroFaceProjectDict[];
   craftingLine1: string;
   craftingLine2: string;
   craftingLine3: string;
+  craftingLine4: string;
   finalHeadline: string;
 };
 
@@ -432,7 +434,6 @@ export type ProjectsSectionDict = {
 export type ServicesSectionDict = {
   eyebrow: string;
   title: string;
-  tabs: Record<ServiceCategory, string>;
   viewAllServicesLabel: string;
 };
 
@@ -440,7 +441,6 @@ export type ServicesIndexDict = {
   eyebrow: string;
   title: string;
   intro: string;
-  tabLabels: Record<ServiceCategory | "ALL", string>;
   learnMoreLabel: string;
 };
 
