@@ -56,13 +56,14 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
         },
       });
 
-      // The photo is much taller than the viewport; pan it upward across
-      // the whole pin so the full image walks past underneath the heading,
-      // instead of just zooming a static crop.
+      // Gentle upward pan across the pin. The photo is a landscape
+      // (1376x768) render, so the box is only a little taller than the
+      // viewport - a much taller box would force object-cover to blow it
+      // up ~3x and crop it to a thin vertical strip.
       tl.fromTo(
         imageRef.current,
         { y: "0vh" },
-        { y: "-180vh", ease: "none", duration: 1 },
+        { y: "-25vh", ease: "none", duration: 1 },
         0,
       )
         .fromTo(
@@ -113,11 +114,11 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
       >
         <div
           ref={imageRef}
-          className="absolute inset-x-0 top-0 h-[280vh] will-change-transform"
+          className="absolute inset-x-0 top-0 h-[125vh] will-change-transform"
         >
           <Image
-            src="https://api.ab-sl.com/uploads/003_86ed95f6ba.jpg"
-            alt="Building Background"
+            src="/hero/cta-palace.jpg"
+            alt="Khales palace design"
             fill
             sizes="100vw"
             className="object-cover opacity-85"
