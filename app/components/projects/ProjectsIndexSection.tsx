@@ -14,6 +14,7 @@ const tabs: Array<ProjectCategory | "ALL"> = [
   "Residential",
   "Commercial",
   "Interior_Design",
+  "Warehouse",
 ];
 
 type ProjectsIndexSectionProps = {
@@ -59,7 +60,9 @@ export default function ProjectsIndexSection({ lang, content }: ProjectsIndexSec
             </h1>
           </div>
           <div className="flex flex-wrap gap-3">
-            {tabs.map((tab) => {
+            {tabs
+              .filter((tab) => tab === "ALL" || projects.some((p) => p.category === tab))
+              .map((tab) => {
               const isActive = activeTab === tab;
               return (
                 <button
@@ -68,8 +71,8 @@ export default function ProjectsIndexSection({ lang, content }: ProjectsIndexSec
                   onClick={() => setActiveTab(tab)}
                   className={`text-xs uppercase tracking-widest font-medium px-4 py-2 rounded-full border transition-colors ${
                     isActive
-                      ? "bg-neutral-900 text-white border-neutral-900"
-                      : "border-neutral-300 text-neutral-500 hover:border-neutral-900 hover:text-neutral-900"
+                      ? "bg-brand text-white border-brand"
+                      : "border-neutral-300 text-neutral-500 hover:border-brand hover:text-neutral-900"
                   }`}
                 >
                   {content.tabLabels[tab]}
@@ -126,6 +129,9 @@ export default function ProjectsIndexSection({ lang, content }: ProjectsIndexSec
                   alt={active.title}
                   fill
                   sizes="50vw"
+                  // Always in the first viewport on desktop - it's the
+                  // page's LCP element, so it must not be lazy-loaded.
+                  loading="eager"
                   className="object-cover"
                 />
               </motion.div>
@@ -139,7 +145,7 @@ export default function ProjectsIndexSection({ lang, content }: ProjectsIndexSec
 
           {/* Mobile: stacked cards (no hover available) */}
           <div className="md:hidden flex flex-col gap-12">
-            {filtered.map((project) => (
+            {filtered.map((project, i) => (
               <Link
                 key={project.slug}
                 href={`/${lang}/projects/${project.slug}`}
@@ -151,6 +157,8 @@ export default function ProjectsIndexSection({ lang, content }: ProjectsIndexSec
                     alt={project.title}
                     fill
                     sizes="calc(100vw - 48px)"
+                    // Only the first card can be above the fold on mobile.
+                    loading={i === 0 ? "eager" : "lazy"}
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                 </div>

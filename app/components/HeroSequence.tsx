@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -40,44 +41,25 @@ const WorldwideSection = dynamic(() => import("./WorldwideSection"), {
   loading: () => <div className="w-full h-screen bg-[#525151]" />,
 });
 
-// Non-text metadata for the hero image captions - the translatable copy
-// (location/status/title/size) comes from content.projects, matched by
-// index. Real Khales project photography (Mirbah Prime, Al Khawaneej
-// Organic Villa) - no real project videos exist to use here, so this is a
-// still image rather than the original template's stock video loop.
-// A full-bleed 100vw banner needs genuinely landscape-oriented source
-// photography - a portrait/square source still "works" via object-cover,
-// but crops in tight and loses most of the shot. Most of this dataset's
-// photography is Instagram-portrait/square social exports; these are the
-// ones actually confirmed landscape (checked real pixel dimensions, not
-// just filenames), one per distinct real project - an earlier version
-// used 2 angles of the same villa to fill a 4th slot, but with identical
-// caption text (same title/location/size) it just read as a stuck/
-// duplicated slide rather than "variety".
-// All 4 self-hosted under /public/hero - slide 0 in particular is the
-// priority/LCP candidate, and having it on a third-party origin
-// (i.ibb.co) meant paying for a whole extra DNS+TLS handshake before
-// the single most important image on the page could even start
-// downloading. The i.ibb.co originals were also 1-4.4MB raw uploads;
-// re-encoded down to 115-342KB in the process.
+// Non-text metadata for the hero slides - the translatable caption copy
+// (location/status/title) comes from content.projects, matched by index.
+// These are showcase villa renders rather than individual case studies,
+// so the whole slide links to the projects index instead of one project.
+// A full-bleed 100vw banner needs landscape source photography (these
+// are 1376x768). All self-hosted under /public/hero and re-encoded to
+// ~160-200KB JPEGs - slide 0 is the priority/LCP candidate.
 const heroProjectsMeta = [
-  // The Organic Villa - evening exterior elevation.
-  { id: 1, image: "/hero/the-organic-villa-hero.jpg" },
-  // The Royal Villa - frontal elevation render, self-hosted (source PNG
-  // screenshot export, re-encoded to keep the image optimizer fast).
-  { id: 2, image: "/projects/royal-villa/hero-01.jpg" },
-  // Al Khawaneej Organic Villa - was 67-jpg.jpg (a perfect 1:1 square);
-  // swapped to a landscape shot from the same gallery.
-  { id: 3, image: "/hero/al-khawaneej-hero.jpg" },
-  // The Executive Villa Interior.
-  { id: 4, image: "/hero/executive-villa-interior-hero.jpg" },
+  { id: 1, image: "/hero/andalusian-palace-hero.jpg" },
+  { id: 2, image: "/hero/pavilion-villa-hero.jpg" },
+  { id: 3, image: "/hero/jumeirah-sculpted-villa-hero.jpg" },
+  { id: 4, image: "/hero/travertine-courtyard-villa-hero.jpg" },
 ];
 
 // Non-text metadata for the 3D flip-card faces - translatable copy comes
 // from content.faceProjects, matched by index.
 const faceProjectsMeta = [
   { image: "/hero/flip-card-front.jpg" },
-  { image: "/hero/flip-card-back.jpg" },
+  { image: "/hero/white-palace.jpg" },
 ];
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -356,6 +338,14 @@ export default function HeroSequence({
             />
           ))}
           <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+          {/* Whole slide is a link to the projects index. Sits under the
+              caption/crafting layers, which are pointer-events-none, so
+              clicks fall through to it everywhere except the arrows. */}
+          <Link
+            href={`/${lang ?? "en"}/projects`}
+            aria-label={content.exploreProjectsLabel}
+            className="absolute inset-0 cursor-pointer"
+          />
         </div>
 
         <div
@@ -367,7 +357,7 @@ export default function HeroSequence({
               same side under Arabic - without mirroring these too, the
               caption/controls collide with it instead of sitting opposite. */}
           <div
-            className={`absolute top-[55%] md:top-[58%] text-white ${
+            className={`absolute top-[55%] md:top-[47%] text-white ${
               dir === "rtl" ? "right-6 md:right-[54%] text-right" : "left-6 md:left-[54%]"
             }`}
           >
@@ -383,13 +373,20 @@ export default function HeroSequence({
               </span>
               ,
             </p>
-            <p className="text-sm md:text-base font-medium mt-3 md:mt-4">
-              {project.size}
-            </p>
+            <Link
+              href={`/${lang ?? "en"}/projects`}
+              className="pointer-events-auto group inline-flex items-center gap-2 text-sm md:text-base font-medium mt-3 md:mt-4 hover:text-brand transition-colors"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+              {content.exploreProjectsLabel}
+              <span className="transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
+                {dir === "rtl" ? "←" : "→"}
+              </span>
+            </Link>
           </div>
 
           <div
-            className={`absolute top-[55%] md:top-[58%] flex flex-col items-end justify-between h-[85px] md:h-[95px] text-white pointer-events-auto ${
+            className={`absolute top-[55%] md:top-[47%] flex flex-col items-end justify-between h-[85px] md:h-[95px] text-white pointer-events-auto ${
               dir === "rtl" ? "left-6 md:left-16" : "right-6 md:right-16"
             }`}
           >
@@ -430,24 +427,26 @@ export default function HeroSequence({
           ref={craftingTextRef}
           className="absolute inset-0 z-[35] flex flex-col md:flex-row items-center md:justify-between justify-center gap-2 md:gap-0 px-6 md:px-16 pointer-events-none select-none text-center md:text-left"
         >
-          <div className="text-[#9E9D9C] font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,8.5vw,7.5rem)]">
+          <div className="text-[#9E9D9C] font-semibold tracking-tighter leading-[0.9] text-[clamp(2.25rem,6.2vw,6rem)]">
             <p>{content.craftingLine1}</p>
             <p className="md:ml-[100px]">{content.craftingLine2}</p>
           </div>
-          <div className="text-[#9E9D9C] font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,8.5vw,7.5rem)]">
+          <div className="text-[#9E9D9C] font-semibold tracking-tighter leading-[0.9] text-[clamp(2.25rem,6.2vw,6rem)] md:text-right rtl:md:text-left">
             <p>{content.craftingLine3}</p>
+            <p className="md:mr-[60px] rtl:md:mr-0 rtl:md:ml-[60px]">{content.craftingLine4}</p>
           </div>
 
           <div
             ref={whiteTextRef}
             className="absolute inset-0 flex flex-col md:flex-row items-center md:justify-between justify-center gap-2 md:gap-0 px-6 md:px-16 text-center md:text-left"
           >
-            <div className="text-white font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,8.5vw,7.5rem)]">
+            <div className="text-white font-semibold tracking-tighter leading-[0.9] text-[clamp(2.25rem,6.2vw,6rem)]">
               <p>{content.craftingLine1}</p>
               <p className="md:ml-[100px]">{content.craftingLine2}</p>
             </div>
-            <div className="text-white font-semibold tracking-tighter leading-[0.85] text-[clamp(2.75rem,8.5vw,7.5rem)]">
+            <div className="text-white font-semibold tracking-tighter leading-[0.9] text-[clamp(2.25rem,6.2vw,6rem)] md:text-right rtl:md:text-left">
               <p>{content.craftingLine3}</p>
+              <p className="md:mr-[60px] rtl:md:mr-0 rtl:md:ml-[60px]">{content.craftingLine4}</p>
             </div>
           </div>
         </div>

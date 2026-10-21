@@ -61,6 +61,8 @@ export default function Home() {
                 // rendered size - flagged by Lighthouse as a 640px-wide
                 // fetch for a ~280px display.
                 sizes="(max-width: 768px) 160px, 224px"
+                // The loader is the first paint, so this is the LCP image.
+                loading="eager"
                 className="w-40 md:w-56 h-auto invert"
               />
             </div>

@@ -20,11 +20,15 @@ export const dictionary: Dictionary = {
   },
 
   footer: {
-    description: "مجموعة خالص، شريككم الموثوق في إدارة المشاريع والاستشارات الهندسية في جميع أنحاء الإمارات.",
+    description: "مجموعة خالص - نهج متكامل يجمع الهندسة المعمارية والهندسة وإدارة المشاريع في الخليج وخارجه.",
     servicesTitle: "خدماتنا",
     servicesLinks: [
-      { text: "إدارة المشاريع", href: "/contact" },
-      { text: "الاستشارات الهندسية", href: "/contact" },
+      { text: "التصميم", href: "/services/design" },
+      { text: "التصميم الداخلي", href: "/services/interior-design" },
+      { text: "تنسيق المواقع", href: "/services/landscape-design" },
+      { text: "الإشراف", href: "/services/supervision" },
+      { text: "ممثل المالك", href: "/services/owners-representative" },
+      { text: "جميع الخدمات", href: "/services" },
     ],
     companyTitle: "الشركة",
     companyLinks: [
@@ -84,24 +88,24 @@ export const dictionary: Dictionary = {
 
     hero: {
       eyebrow: "عن خالص",
-      headingLines: ["نصمم مساحات", "يشعر فيها الناس", "بالانتماء إليها"],
+      headingLines: ["أكثر من مجرد مساحات.", "أسلوب حياة."],
       intro:
-        "استوديو دولي متخصص في الهندسة المعمارية والتصميم الداخلي، نصمم منازل فاخرة ومساحات داخلية أيقونية في الخليج وأوروبا وخارجهما.",
-      stats: ["تأسست عام 2010", "+240 مشروعًا", "12 دولة"],
-      marqueeItems: ["الهندسة المعمارية", "التصميم الداخلي", "تصميم مخصص", "تأسست عام 2010"],
+        "نهج متكامل يجمع الهندسة المعمارية والهندسة وإدارة المشاريع، لنصنع مساحات استثنائية في الخليج وخارجه.",
+      stats: ["تأسست عام 2020", "174 مشروعًا", "7 دول"],
+      marqueeItems: ["الهندسة المعمارية", "التصميم الداخلي", "تنسيق المواقع", "الإشراف", "تأسست عام 2020"],
       heroImageAlt: "منزل من تصميم خالص",
       detailImageAlt: "تفصيل من أحد مشاريع خالص",
     },
     milestones: {
       eyebrow: "تاريخنا",
-      title: "ستة عشر عامًا، استوديو واحد",
+      title: "ست سنوات، استوديو واحد",
       items: [
-        { year: "2010", text: "تأسس الاستوديو في موسكو بمشروع سكني واحد." },
-        { year: "2014", text: "إنجاز أول مشروع دولي، مع افتتاح استوديو دبي." },
-        { year: "2018", text: "إنشاء ورشة داخلية للنجارة والأثاث المخصص." },
-        { year: "2021", text: "استقلال قسم التصميم الداخلي رسميًا ليعمل جنبًا إلى جنب مع قسم الهندسة المعمارية." },
-        { year: "2023", text: "تجاوز أعمالنا 200 مشروع منجز في خمس دول." },
-        { year: "2026", text: "افتتاح استوديو لندن، ليمتد نشاطنا إلى أوروبا." },
+        { year: "2020", text: "تأسيس خالص في الإمارات، مع أولى الفلل الخاصة في الفجيرة والشارقة." },
+        { year: "2021", text: "افتتاح المقر الرئيسي في دبي، ليجمع التصميم والإشراف على المواقع تحت سقف واحد." },
+        { year: "2022", text: "تأسيس فريقي التصميم الداخلي وتنسيق المواقع كفرق داخلية مستقلة." },
+        { year: "2023", text: "أولى مشاريعنا خارج الإمارات، في السعودية وعُمان." },
+        { year: "2024", text: "إضافة خدمات ممثل المالك والمناقصات وحساب التكاليف، وامتداد أعمالنا إلى قطر والكويت." },
+        { year: "2026", text: "174 مشروعًا في سبع دول، وصولًا إلى لندن والولايات المتحدة." },
       ],
       scrollHint: "مرر للتنقل عبر الزمن ←",
     },
@@ -330,23 +334,20 @@ export const dictionary: Dictionary = {
   homePage: {
     hero: {
       projects: [
-        { location: "الوصل، دبي", status: "تحت الإنشاء", title: "الفيلا الطبيعية", size: "١٠٬٨٠٠ قدم مربع" },
-        { location: "مسقط، عمان", status: "تحت الإنشاء", title: "الفيلا الملكية", size: "١٢٬٦٠٠ قدم مربع" },
-        {
-          location: "الخوانيج، دبي",
-          status: "مكتمل",
-          title: "فيلا الخوانيج العضوية",
-          size: "١٤٬٥٠٠ قدم مربع",
-        },
-        { location: "دبي، الإمارات العربية المتحدة", status: "مكتمل", title: "فيلا المدير التنفيذي الداخلية", size: "٤٬٥٠٠ قدم مربع" },
+        { location: "دبي، الإمارات", status: "فيلا فاخرة", title: "القصر الأندلسي" },
+        { location: "دبي، الإمارات", status: "فيلا فاخرة", title: "فيلا الجناح" },
+        { location: "جميرا، دبي", status: "فيلا فاخرة", title: "الفيلا المنحوتة" },
+        { location: "دبي، الإمارات", status: "فيلا فاخرة", title: "فيلا الترافرتين" },
       ],
+      exploreProjectsLabel: "اكتشف مشاريعنا",
       faceProjects: [
         { title: "فيلا تلال جبل علي", location: "تلال جبل علي، دبي", status: "مكتمل حديثاً", size: "٧٬٢٠٠ قدم مربع" },
         { title: "قصر أبوظبي الكبير", location: "أبوظبي، الإمارات العربية المتحدة", status: "مكتمل", size: "٥٥٬٠٠٠ قدم مربع" },
       ],
-      craftingLine1: "نبدع",
-      craftingLine2: "مساحات",
-      craftingLine3: "استثنائية",
+      craftingLine1: "أبعد من",
+      craftingLine2: "التصميم.",
+      craftingLine3: "أبعد من",
+      craftingLine4: "التوقعات.",
       finalHeadline: "نصمم أماكن عصرية فريدة",
     },
     worldwide: {
@@ -354,7 +355,7 @@ export const dictionary: Dictionary = {
         "تُثبت الممارسة اليومية أن التطور المستمر لمختلف أشكال العمل يتطلب تحديد وتوضيح مسارات وتوجهات الممارسة المتنوعة.",
       brandName: "خالص",
       headline: "حول العالم",
-      statNumber: "240",
+      statNumber: "174",
       statDescription: "مشروعاً تم تنفيذها حول العالم.",
       latLabel: "خط العرض",
       lonLabel: "خط الطول",
@@ -390,16 +391,13 @@ export const dictionary: Dictionary = {
         Commercial: "تجاري",
         Luxury_Villas: "فلل فاخرة",
         Interior_Design: "تصميم داخلي",
+        Warehouse: "مستودعات",
       },
       viewAllProjectsLabel: "عرض جميع المشاريع",
     },
     servicesSection: {
       eyebrow: "ما نقدمه",
       title: "خدماتنا",
-      tabs: {
-        ProjectManagement: "إدارة المشاريع",
-        EngineeringConsultancy: "الاستشارات الهندسية",
-      },
       viewAllServicesLabel: "عرض جميع الخدمات",
     },
   },
@@ -407,8 +405,8 @@ export const dictionary: Dictionary = {
   shared: {
     cta: {
       talkLabel: "لنتحدث",
-      headingLine1: "أينما كنتم، نحقق",
-      headingLine2: "أحلامكم على أرض الواقع",
+      headingLine1: "أينما تحلمون،",
+      headingLine2: "نجعل الحلم حقيقة",
       phoneLabel: "الهاتف",
       phoneWhatsappNote: "واتساب",
       phone: "+971 55 129 9880",
@@ -479,8 +477,8 @@ export const dictionary: Dictionary = {
     beforeAfter: {
       eyebrow: "من الفكرة إلى الواقع",
       heading: "اسحب للمقارنة",
-      beforeLabel: "قبل",
-      afterLabel: "بعد",
+      beforeLabel: "التصميم",
+      afterLabel: "في الموقع",
     },
     locations: {
       heading: "استوديوهاتنا",
@@ -503,6 +501,9 @@ export const dictionary: Dictionary = {
         { label: "الهاتف", href: "tel:+971551299880", icon: "☎" },
         { label: "إنستغرام", href: "https://www.instagram.com/khales.ae/", icon: "◎" },
         { label: "بينتيريست", href: "https://www.pinterest.com/khalesae/", icon: "◈" },
+        { label: "لينكدإن", href: "https://www.linkedin.com/company/khales-ae", icon: "in" },
+        { label: "فيسبوك", href: "https://www.facebook.com/Khales.ae/", icon: "f" },
+        { label: "واتساب", href: "https://wa.me/971551299880", icon: "✆" },
       ],
     },
     faq: {
@@ -543,6 +544,7 @@ export const dictionary: Dictionary = {
         Residential: "سكني",
         Commercial: "تجاري",
         Interior_Design: "تصميم داخلي",
+        Warehouse: "مستودعات",
       },
     },
     cinematicReel: {
@@ -569,27 +571,37 @@ export const dictionary: Dictionary = {
         },
       ],
       stats: [
-        { value: "+8", label: "مشروع تم تسليمه" },
-        { value: "5", label: "دول" },
-        { value: "14", label: "سنوات من الممارسة المهنية" },
+        { value: "174", label: "مشروعًا تم تسليمه" },
+        { value: "7", label: "دول" },
+        { value: "6", label: "سنوات من الممارسة المهنية" },
       ],
     },
     materials: {
       eyebrow: "لوحة المواد",
       title: "المواد التي نبني بها",
       materials: [
-        { name: "رخام ستاتواريو" },
-        { name: "خشب البلوط الأبيض" },
-        { name: "النحاس المصقول" },
-        { name: "الحجر الجيري المصقول" },
-        { name: "الزجاج المدخن" },
+        { name: "الزجاج المعماري" },
+        { name: "أعمال خشبية مخصصة" },
+        { name: "تشطيبات البرونز والشامبين" },
+        { name: "رخام كالاكاتا" },
+        { name: "تشطيبات المايكروسمنت" },
+        { name: "الحجر الطبيعي والترافرتين" },
       ],
     },
     network: {
       eyebrow: "شبكة عالمية",
-      statsTemplate: "{count} مشروعًا في {cities} مدن",
+      statsTemplate: "{count} مشروعًا في {cities} دول",
       projectSingular: "مشروع",
       projectPlural: "مشاريع",
+      locations: [
+        { name: "الإمارات", count: 135 },
+        { name: "السعودية", count: 14 },
+        { name: "قطر", count: 8 },
+        { name: "الكويت", count: 6 },
+        { name: "عُمان", count: 5 },
+        { name: "لندن", count: 4 },
+        { name: "أمريكا", count: 2 },
+      ],
     },
     detail: {
       projectBriefLabel: "نبذة عن المشروع",
@@ -604,12 +616,7 @@ export const dictionary: Dictionary = {
       eyebrow: "ما نقدمه",
       title: "خدماتنا",
       intro:
-        "من دراسة الجدوى الأولى إلى آخر لمسة تشطيب، تدير خالص كل التخصصات التي يحتاجها مشروعك تحت سقف واحد - إدارة المشاريع، والهندسة، والحرفية الداخلية.",
-      tabLabels: {
-        ALL: "الكل",
-        ProjectManagement: "إدارة المشاريع",
-        EngineeringConsultancy: "الاستشارات الهندسية",
-      },
+        "من التخطيط الأول حتى التسليم النهائي، تغطي خالص كل التخصصات التي يحتاجها مشروعك تحت سقف واحد - التصميم، والتصميم الداخلي، وتنسيق المواقع، والإشراف، والأعمال التعاقدية والمالية التي تُبقيه ضمن الميزانية.",
       learnMoreLabel: "اعرف المزيد",
     },
     detail: {

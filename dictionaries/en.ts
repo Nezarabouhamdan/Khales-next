@@ -21,11 +21,15 @@ export const dictionary: Dictionary = {
 
   footer: {
     description:
-      "Khales Group, your trusted partner in project management and engineering consultancy across the UAE.",
+      "Khales Group - an integrated approach to architecture, engineering and project management across the Gulf and beyond.",
     servicesTitle: "Our Services",
     servicesLinks: [
-      { text: "Project Management", href: "/contact" },
-      { text: "Engineering Consultancy", href: "/contact" },
+      { text: "Design", href: "/services/design" },
+      { text: "Interior Design", href: "/services/interior-design" },
+      { text: "Landscape", href: "/services/landscape-design" },
+      { text: "Supervision", href: "/services/supervision" },
+      { text: "Owner's Representative", href: "/services/owners-representative" },
+      { text: "All services", href: "/services" },
     ],
     companyTitle: "Company",
     companyLinks: [
@@ -87,24 +91,24 @@ export const dictionary: Dictionary = {
 
     hero: {
       eyebrow: "About Khales",
-      headingLines: ["We shape spaces", "people feel", "at home in."],
+      headingLines: ["More than spaces.", "A way of life."],
       intro:
-        "An international architecture and interior design boutique, crafting iconic residences and landmark interiors across the Gulf, Europe and beyond.",
-      stats: ["Est. 2010", "240+ Projects", "12 Countries"],
-      marqueeItems: ["ARCHITECTURE", "INTERIORS", "BESPOKE DESIGN", "EST. 2010"],
+        "An integrated approach to architecture, engineering and project management, creating exceptional spaces across the Gulf and beyond.",
+      stats: ["Est. 2020", "174 Projects", "7 Countries"],
+      marqueeItems: ["ARCHITECTURE", "INTERIORS", "LANDSCAPE", "SUPERVISION", "EST. 2020"],
       heroImageAlt: "A Khales-designed residence",
       detailImageAlt: "Detail from a Khales project",
     },
     milestones: {
       eyebrow: "Our history",
-      title: "Sixteen years, one studio",
+      title: "Six years, one studio",
       items: [
-        { year: "2010", text: "Studio founded in Moscow with a single residential commission." },
-        { year: "2014", text: "First international project completed, opening the Dubai studio." },
-        { year: "2018", text: "In-house joinery and bespoke furniture workshop established." },
-        { year: "2021", text: "Interiors formalised as its own department, run alongside architecture." },
-        { year: "2023", text: "Portfolio passes 200 delivered projects across five countries." },
-        { year: "2026", text: "A London studio opens, extending the practice into Europe." },
+        { year: "2020", text: "Khales founded in the UAE, with its first private villas in Fujairah and Sharjah." },
+        { year: "2021", text: "Main hub opens in Dubai, bringing design and site supervision under one roof." },
+        { year: "2022", text: "Interior design and landscape formalised as dedicated in-house teams." },
+        { year: "2023", text: "First projects outside the UAE, in Saudi Arabia and Oman." },
+        { year: "2024", text: "Owner's representation, tendering and cost services added; work extends to Qatar and Kuwait." },
+        { year: "2026", text: "174 projects across seven countries, now reaching London and the USA." },
       ],
       scrollHint: "Scroll to travel through time →",
     },
@@ -336,23 +340,20 @@ export const dictionary: Dictionary = {
   homePage: {
     hero: {
       projects: [
-        { location: "Al Wasl, Dubai", status: "Under Construction", title: "The Organic Villa", size: "10,800 sqft" },
-        { location: "Muscat, Oman", status: "Under Construction", title: "The Royal Villa", size: "12,600 sqft" },
-        {
-          location: "Al Khawaneej, Dubai",
-          status: "Completed",
-          title: "The Al Khawaneej Organic Villa",
-          size: "14,500 sqft",
-        },
-        { location: "Dubai, UAE", status: "Completed", title: "The Executive Villa Interior", size: "4,500 sqft" },
+        { location: "Dubai, UAE", status: "Luxury Villa", title: "The Andalusian Palace" },
+        { location: "Dubai, UAE", status: "Luxury Villa", title: "The Pavilion Villa" },
+        { location: "Jumeirah, Dubai", status: "Luxury Villa", title: "The Sculpted Villa" },
+        { location: "Dubai, UAE", status: "Luxury Villa", title: "The Travertine Villa" },
       ],
+      exploreProjectsLabel: "Explore our projects",
       faceProjects: [
         { title: "Jebel Ali Hills Villa", location: "Jebel Ali Hills, Dubai", status: "Newly Completed", size: "7,200 sqft" },
         { title: "The Abu Dhabi Grand Palace", location: "Abu Dhabi, UAE", status: "Completed", size: "55,000 sqft" },
       ],
-      craftingLine1: "Crafting",
-      craftingLine2: "Iconic",
-      craftingLine3: "Spaces",
+      craftingLine1: "Beyond",
+      craftingLine2: "Design.",
+      craftingLine3: "Beyond",
+      craftingLine4: "Expectations.",
       finalHeadline: "We design unique modern places",
     },
     worldwide: {
@@ -360,7 +361,7 @@ export const dictionary: Dictionary = {
         "Everyday practice shows that further development of various forms of activity requires the definition and clarification of further practice various development various directions.",
       brandName: "Khales",
       headline: "Worldwide",
-      statNumber: "240",
+      statNumber: "174",
       statDescription: "Projects were implemented all around the world.",
       latLabel: "LAT",
       lonLabel: "LON",
@@ -390,16 +391,13 @@ export const dictionary: Dictionary = {
         Commercial: "Commercial",
         Luxury_Villas: "Luxury Villas",
         Interior_Design: "Interior Design",
+        Warehouse: "Warehouse",
       },
       viewAllProjectsLabel: "View All Projects",
     },
     servicesSection: {
       eyebrow: "What We Do",
       title: "Our Services",
-      tabs: {
-        ProjectManagement: "Project Management",
-        EngineeringConsultancy: "Engineering Consultancy",
-      },
       viewAllServicesLabel: "View All Services",
     },
   },
@@ -407,8 +405,8 @@ export const dictionary: Dictionary = {
   shared: {
     cta: {
       talkLabel: "Let's Talk",
-      headingLine1: "Wherever you are, we make",
-      headingLine2: "your dreams come true",
+      headingLine1: "Wherever you dream,",
+      headingLine2: "we make it real",
       phoneLabel: "Phone",
       phoneWhatsappNote: "whatsapp",
       phone: "+971 55 129 9880",
@@ -481,8 +479,8 @@ export const dictionary: Dictionary = {
     beforeAfter: {
       eyebrow: "From idea to reality",
       heading: "Drag to compare",
-      beforeLabel: "Before",
-      afterLabel: "After",
+      beforeLabel: "Design",
+      afterLabel: "On site",
     },
     locations: {
       heading: "Our studios",
@@ -505,6 +503,9 @@ export const dictionary: Dictionary = {
         { label: "Phone", href: "tel:+971551299880", icon: "☎" },
         { label: "Instagram", href: "https://www.instagram.com/khales.ae/", icon: "◎" },
         { label: "Pinterest", href: "https://www.pinterest.com/khalesae/", icon: "◈" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/company/khales-ae", icon: "in" },
+        { label: "Facebook", href: "https://www.facebook.com/Khales.ae/", icon: "f" },
+        { label: "WhatsApp", href: "https://wa.me/971551299880", icon: "✆" },
       ],
     },
     faq: {
@@ -545,6 +546,7 @@ export const dictionary: Dictionary = {
         Residential: "Residential",
         Commercial: "Commercial",
         Interior_Design: "Interior Design",
+        Warehouse: "Warehouse",
       },
     },
     cinematicReel: {
@@ -571,27 +573,38 @@ export const dictionary: Dictionary = {
         },
       ],
       stats: [
-        { value: "8+", label: "Projects delivered" },
-        { value: "5", label: "Countries" },
-        { value: "14", label: "Years of practice" },
+        { value: "174", label: "Projects delivered" },
+        { value: "7", label: "Countries" },
+        { value: "6", label: "Years of practice" },
       ],
     },
     materials: {
       eyebrow: "Palette",
       title: "Materials we build with",
       materials: [
-        { name: "Statuario Marble" },
-        { name: "White Oak" },
-        { name: "Brushed Brass" },
-        { name: "Honed Limestone" },
-        { name: "Smoked Glass" },
+        { name: "Architectural Glass" },
+        { name: "Bespoke Woodwork" },
+        { name: "Bronze & Champagne Finishes" },
+        { name: "Calacatta Marble" },
+        { name: "Microcement Finishes" },
+        { name: "Natural Stone & Travertine" },
       ],
     },
     network: {
       eyebrow: "Global network",
-      statsTemplate: "{count} projects, {cities} cities",
+      statsTemplate: "{count} projects, {cities} countries",
       projectSingular: "project",
       projectPlural: "projects",
+      // Edit these counts to change the network section; the heading total is their sum.
+      locations: [
+        { name: "UAE", count: 135 },
+        { name: "Saudi Arabia", count: 14 },
+        { name: "Qatar", count: 8 },
+        { name: "Kuwait", count: 6 },
+        { name: "Oman", count: 5 },
+        { name: "London", count: 4 },
+        { name: "USA", count: 2 },
+      ],
     },
     detail: {
       projectBriefLabel: "Project brief",
@@ -606,12 +619,7 @@ export const dictionary: Dictionary = {
       eyebrow: "What We Do",
       title: "Services",
       intro:
-        "From the first feasibility study to the final coat of paint, Khales manages every discipline a project needs under one roof - project management, engineering and interior craft.",
-      tabLabels: {
-        ALL: "All",
-        ProjectManagement: "Project Management",
-        EngineeringConsultancy: "Engineering Consultancy",
-      },
+        "From the first plan to the final handover, Khales covers every discipline a project needs under one roof - design, interiors, landscape, supervision and the commercial work that keeps it on budget.",
       learnMoreLabel: "Learn more",
     },
     detail: {

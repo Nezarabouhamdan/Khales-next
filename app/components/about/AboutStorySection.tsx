@@ -6,9 +6,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const stats = [
-  { value: "14+", label: "Years of practice" },
-  { value: "240+", label: "Projects delivered" },
-  { value: "12", label: "Countries worldwide" },
+  { value: "6", label: "Years of practice" },
+  { value: "174", label: "Projects delivered" },
+  { value: "7", label: "Countries worldwide" },
 ];
 
 const values = [

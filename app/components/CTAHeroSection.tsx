@@ -56,13 +56,14 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
         },
       });
 
-      // The photo is much taller than the viewport; pan it upward across
-      // the whole pin so the full image walks past underneath the heading,
-      // instead of just zooming a static crop.
+      // Gentle upward pan across the pin. The photo is a landscape
+      // (1376x768) render, so the box is only a little taller than the
+      // viewport - a much taller box would force object-cover to blow it
+      // up ~3x and crop it to a thin vertical strip.
       tl.fromTo(
         imageRef.current,
         { y: "0vh" },
-        { y: "-180vh", ease: "none", duration: 1 },
+        { y: "-25vh", ease: "none", duration: 1 },
         0,
       )
         .fromTo(
@@ -96,7 +97,7 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
       {/* Custom "Let's Talk" cursor, follows the pointer while hovering the hero link */}
       <div
         ref={cursorRef}
-        className={`fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-36 md:h-36 rounded-full bg-white text-neutral-900 flex items-center justify-center text-xs md:text-sm uppercase tracking-widest font-medium shadow-2xl pointer-events-none z-[100] transition-opacity duration-300 ${
+        className={`fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-36 md:h-36 rounded-full bg-brand text-white flex items-center justify-center text-xs md:text-sm uppercase tracking-widest font-medium shadow-2xl pointer-events-none z-[100] transition-opacity duration-300 ${
           showCursor ? "opacity-100 scale-100" : "opacity-0 scale-50"
         }`}
       >
@@ -113,11 +114,11 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
       >
         <div
           ref={imageRef}
-          className="absolute inset-x-0 top-0 h-[280vh] will-change-transform"
+          className="absolute inset-x-0 top-0 h-[125vh] will-change-transform"
         >
           <Image
-            src="https://api.ab-sl.com/uploads/003_86ed95f6ba.jpg"
-            alt="Building Background"
+            src="/hero/cta-palace.jpg"
+            alt="Khales palace design"
             fill
             sizes="100vw"
             className="object-cover opacity-85"

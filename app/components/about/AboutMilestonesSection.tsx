@@ -66,7 +66,7 @@ export default function AboutMilestonesSection({ lang, content }: AboutMilestone
         {content.items.map((m) => (
           <div
             key={m.year}
-            className="flex-shrink-0 w-[260px] md:w-[360px] border-t-2 border-neutral-900 pt-6"
+            className="flex-shrink-0 w-[260px] md:w-[360px] border-t-2 border-brand pt-6"
           >
             <span className="text-4xl md:text-6xl font-semibold tracking-tighter">
               {m.year}

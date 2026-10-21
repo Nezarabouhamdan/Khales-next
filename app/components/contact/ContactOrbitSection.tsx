@@ -42,10 +42,13 @@ export default function ContactOrbitSection({ lang, content }: ContactOrbitSecti
           </div>
         </div>
 
+        {/* A single animated --orbit-angle drives both the position around
+            the ring and the counter-rotation that keeps each icon upright,
+            so the two can't drift apart (e.g. after a tab switch). */}
         <div
           className="absolute inset-0"
           style={{
-            animation: `spin-orbit ${DURATION}s linear infinite`,
+            animation: `orbit-angle ${DURATION}s linear infinite`,
             animationPlayState: paused ? "paused" : "running",
           }}
         >
@@ -56,16 +59,10 @@ export default function ContactOrbitSection({ lang, content }: ContactOrbitSecti
                 key={m.label}
                 className="absolute top-1/2 left-1/2"
                 style={{
-                  transform: `rotate(${angle}deg) translateX(${RADIUS}px) rotate(-${angle}deg)`,
+                  transform: `rotate(calc(var(--orbit-angle) + ${angle}deg)) translateX(${RADIUS}px) rotate(calc(-1 * (var(--orbit-angle) + ${angle}deg)))`,
                 }}
               >
-                <div
-                  className="-translate-x-1/2 -translate-y-1/2"
-                  style={{
-                    animation: `spin-orbit-reverse ${DURATION}s linear infinite`,
-                    animationPlayState: paused ? "paused" : "running",
-                  }}
-                >
+                <div className="-translate-x-1/2 -translate-y-1/2">
                   <a
                     href={m.href}
                     target={m.href.startsWith("http") ? "_blank" : undefined}

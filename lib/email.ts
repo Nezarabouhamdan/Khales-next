@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { escapeHtml } from "@/lib/spam";
 
 // Ported from Khales-next's lib/sendEmail.js - same Resend-based
 // confirmation email, same branding, adapted to this project's own
@@ -34,6 +35,12 @@ export async function sendConfirmationEmail(
       month: "long",
       day: "numeric",
     });
+
+    // Visitor-supplied text is escaped before going into the HTML, so a
+    // submitted name can't inject links or markup into an email sent from
+    // our domain.
+    const safeName = escapeHtml(userName);
+    const safeInquiryType = escapeHtml(inquiryType);
 
     const refId = `#REF-${Math.floor(100000 + Math.random() * 900000)}`;
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://khales.ae";
@@ -83,8 +90,8 @@ export async function sendConfirmationEmail(
             <div class="content">
               <div class="accent-message">
                 <p style="margin:0; font-weight: 500;">
-                  Dear <strong>${userName}</strong>,<br><br>
-                  We have successfully received your message regarding <strong>${inquiryType}</strong>.
+                  Dear <strong>${safeName}</strong>,<br><br>
+                  We have successfully received your message regarding <strong>${safeInquiryType}</strong>.
                 </p>
               </div>
 

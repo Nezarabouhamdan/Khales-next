@@ -7,7 +7,12 @@ import type { Locale } from "@/i18n-config";
 // that repo (data/LatestImage.js, data/Portfoliodata.js, ReadyDesignsData,
 // case-study components), which were never wired up to anything real.
 
-export type ProjectCategory = "Luxury_Villas" | "Commercial" | "Residential" | "Interior_Design";
+export type ProjectCategory =
+  | "Luxury_Villas"
+  | "Commercial"
+  | "Residential"
+  | "Interior_Design"
+  | "Warehouse";
 
 export type ProjectHighlight = { label: string; value: string };
 
@@ -46,6 +51,7 @@ const CATEGORY_LABELS: Record<ProjectCategory, { en: string; ar: string }> = {
   Commercial: { en: "Commercial", ar: "تجاري" },
   Residential: { en: "Residential", ar: "سكني" },
   Interior_Design: { en: "Interior Design", ar: "تصميم داخلي" },
+  Warehouse: { en: "Warehouse", ar: "مستودعات" },
 };
 
 export const projects: Project[] = [
@@ -1772,6 +1778,57 @@ export const projects: Project[] = [
       { label: "نوع المشروع", value: "فيلا فاخرة" },
       { label: "الحالة", value: "قيد الإنشاء" },
       { label: "الطوابق", value: "أرضي + أول" },
+    ],
+  },
+  {
+    id: 30,
+    slug: "fujairah-port-logistics-warehouse",
+    category: "Warehouse",
+    cover: "/projects/fujairah-port-warehouse/01.jpg",
+    gallery: ["/projects/fujairah-port-warehouse/01.jpg"],
+    tags: ["Design", "Supervision", "Tendering"],
+    tagsAr: ["التصميم", "الإشراف", "المناقصات"],
+    title: "Fujairah Port Logistics Warehouse",
+    titleAr: "مستودع ميناء الفجيرة اللوجستي",
+    location: "Fujairah Port, UAE",
+    locationAr: "ميناء الفجيرة، الإمارات",
+    description: "A large-scale logistics warehouse serving the Port of Fujairah.",
+    descriptionAr: "مستودع لوجستي واسع يخدم ميناء الفجيرة.",
+    longDescription:
+      "Set between the Hajar Mountains and the Gulf of Oman, minutes from the Port of Fujairah, this logistics warehouse was designed to keep cargo moving between the quayside and the region's road network. The steel-framed building combines a large clear-span storage hall with a two-storey glazed office block at its front, giving the operator a single facility for storage, handling and administration.\n\nThe layout is planned around truck flow: a long run of loading docks with dock levellers lines the main façade, served by a generous yard that separates heavy vehicles from staff and visitor parking. The insulated metal roof carries solar panels and roof ventilation to manage heat in Fujairah's climate. Khales delivered the design, managed the tender, and supervised construction through to handover.",
+    longDescriptionAr:
+      "بين جبال الحجر وخليج عُمان، وعلى بُعد دقائق من ميناء الفجيرة، صُمم هذا المستودع اللوجستي ليحافظ على حركة البضائع بين رصيف الميناء وشبكة الطرق في المنطقة. يجمع المبنى ذو الهيكل الفولاذي بين قاعة تخزين واسعة بلا أعمدة داخلية ومبنى مكاتب زجاجي من طابقين في واجهته، ليحصل المشغّل على منشأة واحدة للتخزين والمناولة والإدارة.\n\nخُطط الموقع حول حركة الشاحنات: صف طويل من أرصفة التحميل المزودة بمعادلات الأرصفة يمتد على الواجهة الرئيسية، تخدمه ساحة واسعة تفصل المركبات الثقيلة عن مواقف الموظفين والزوار. ويحمل السقف المعدني المعزول ألواحًا شمسية وفتحات تهوية للتعامل مع حرارة مناخ الفجيرة. قدّمت خالص التصميم، وأدارت المناقصة، وأشرفت على التنفيذ حتى التسليم.",
+    status: "Completed",
+    statusAr: "مكتمل",
+    size: "215,000 sqft",
+    sizeAr: "٢١٥٬٠٠٠ قدم مربع",
+    floor: "Ground + Mezzanine",
+    floorAr: "أرضي + ميزانين",
+    keyFeatures: [
+      "Clear-span steel storage hall",
+      "20+ loading docks with dock levellers",
+      "Two-storey glazed office block",
+      "Rooftop solar panels",
+      "Separated truck yard and staff parking",
+      "Direct road access to Fujairah Port",
+    ],
+    keyFeaturesAr: [
+      "قاعة تخزين فولاذية بلا أعمدة داخلية",
+      "أكثر من 20 رصيف تحميل مزودة بمعادلات الأرصفة",
+      "مبنى مكاتب زجاجي من طابقين",
+      "ألواح شمسية على السطح",
+      "فصل ساحة الشاحنات عن مواقف الموظفين",
+      "وصول مباشر بالطريق إلى ميناء الفجيرة",
+    ],
+    highlights: [
+      { label: "Project Type", value: "Logistics Warehouse" },
+      { label: "Status", value: "Completed" },
+      { label: "Loading Docks", value: "20+" },
+    ],
+    highlightsAr: [
+      { label: "نوع المشروع", value: "مستودع لوجستي" },
+      { label: "الحالة", value: "مكتمل" },
+      { label: "أرصفة التحميل", value: "+20" },
     ],
   },
 ];

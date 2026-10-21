@@ -13,9 +13,11 @@ type AboutOverviewSectionProps = {
   content: AboutOverviewDict;
 };
 
+// Khales project renders (portrait 1080x1350); the project names are part
+// of the artwork itself.
 const galleryImages = [
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&q=80",
+  { src: "/about/meridian-rest.jpg", alt: "Meridian Rest - bedroom" },
+  { src: "/about/external-front-view.jpg", alt: "External front view" },
 ];
 
 export default function AboutOverviewSection({ lang, content }: AboutOverviewSectionProps) {
@@ -95,20 +97,20 @@ export default function AboutOverviewSection({ lang, content }: AboutOverviewSec
         <div ref={galleryRef} className="grid grid-cols-2 gap-4 h-[420px] md:h-[560px]">
           <div className="relative w-full h-full overflow-hidden mt-10">
             <Image
-              src={galleryImages[0]}
-              alt={content.title}
+              src={galleryImages[0].src}
+              alt={galleryImages[0].alt}
               fill
               sizes="(max-width: 768px) 50vw, 25vw"
-              className="object-cover grayscale contrast-125"
+              className="object-cover grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-[filter] duration-700"
             />
           </div>
           <div className="relative w-full h-full overflow-hidden">
             <Image
-              src={galleryImages[1]}
-              alt={content.subtitle}
+              src={galleryImages[1].src}
+              alt={galleryImages[1].alt}
               fill
               sizes="(max-width: 768px) 50vw, 25vw"
-              className="object-cover grayscale contrast-125"
+              className="object-cover grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-[filter] duration-700"
             />
           </div>
         </div>

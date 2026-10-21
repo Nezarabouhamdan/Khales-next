@@ -1,27 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { services, ServiceCategory, localizeService } from "@/data/services";
+import { services, localizeService } from "@/data/services";
 import type { Locale } from "@/i18n-config";
 import type { ServicesSectionDict } from "@/dictionaries/types";
-
-type CategoryType = ServiceCategory;
 
 const defaultContent: ServicesSectionDict = {
   eyebrow: "What We Do",
   title: "Our Services",
-  tabs: {
-    ProjectManagement: "Project Management",
-    EngineeringConsultancy: "Engineering Consultancy",
-  },
   viewAllServicesLabel: "View All Services",
 };
-
-const CATEGORY_TABS: CategoryType[] = ["ProjectManagement", "EngineeringConsultancy"];
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -35,12 +27,9 @@ export default function ServicesSection({
   content = defaultContent,
 }: ServicesSectionProps = {}) {
   const dir = lang === "ar" ? "rtl" : "ltr";
-  const tabLabels = content.tabs;
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
-
-  const [activeTab, setActiveTab] = useState<CategoryType>("ProjectManagement");
 
   const editorialServices = useMemo(
     () =>
@@ -52,24 +41,9 @@ export default function ServicesSection({
           title: s.title,
           description: s.description,
           image: s.cover,
-          category: s.category,
         })),
     [lang],
   );
-
-  const filteredServices = useMemo(() => {
-    return editorialServices.filter((s) => s.category === activeTab);
-  }, [editorialServices, activeTab]);
-
-  // Rows fade/rise in whenever the active category changes.
-  useEffect(() => {
-    if (!listRef.current) return;
-    gsap.fromTo(
-      listRef.current.children,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: "power2.out" },
-    );
-  }, [activeTab]);
 
   // Section rises smoothly into place as it scrolls into view, matching the
   // reveal used by the other sub-sections.
@@ -92,6 +66,22 @@ export default function ServicesSection({
           },
         },
       );
+
+      // Rows fade/rise in one after another as the list reaches view.
+      if (listRef.current) {
+        gsap.fromTo(
+          listRef.current.children,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.06,
+            ease: "power2.out",
+            scrollTrigger: { trigger: listRef.current, start: "top 85%" },
+          },
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -113,31 +103,6 @@ export default function ServicesSection({
               {content.title}
             </h2>
           </div>
-
-          {/* Minimal underline tabs, deliberately understated next to the
-              curved-tab gallery layout used by Projects */}
-          <div className="flex items-center gap-6 md:gap-10">
-            {CATEGORY_TABS.map((tab) => {
-              const isActive = activeTab === tab;
-              return (
-                <button
-                  type="button"
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`relative pb-2 text-xs md:text-sm uppercase tracking-widest font-medium transition-colors duration-300 cursor-pointer ${
-                    isActive ? "text-white" : "text-neutral-500 hover:text-neutral-300"
-                  }`}
-                >
-                  {tabLabels[tab]}
-                  <span
-                    className={`absolute left-0 -bottom-px h-px bg-white transition-all duration-500 ease-out ${
-                      isActive ? "w-full" : "w-0"
-                    }`}
-                  />
-                </button>
-              );
-            })}
-          </div>
         </div>
 
         {/* Editorial rows - a small always-visible thumbnail sits in every
@@ -145,7 +110,7 @@ export default function ServicesSection({
             with the title/arrow brightening on hover as the only
             interactive flourish. */}
         <div ref={listRef} className="flex flex-col">
-          {filteredServices.map((s, i) => (
+          {editorialServices.map((s, i) => (
             <Link
               key={s.id}
               href={`/${lang}/services/${s.slug}`}
@@ -175,7 +140,7 @@ export default function ServicesSection({
                 <p className="hidden lg:block max-w-xs text-sm leading-relaxed text-neutral-600 group-hover:text-neutral-400 transition-colors duration-500">
                   {s.description}
                 </p>
-                <span className="text-xl md:text-2xl text-neutral-600 group-hover:text-white group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-all duration-500">
+                <span className="text-xl md:text-2xl text-neutral-600 group-hover:text-brand group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-all duration-500">
                   {dir === "rtl" ? "←" : "→"}
                 </span>
               </div>

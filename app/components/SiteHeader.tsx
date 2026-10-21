@@ -99,13 +99,14 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
                   key={link.label}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className={`text-4xl font-medium leading-snug transition-colors ${
+                  className={`inline-flex items-center gap-3 text-4xl font-medium leading-snug transition-colors ${
                     isActive
                       ? "text-neutral-900"
                       : "text-neutral-400 hover:text-neutral-900"
                   }`}
                 >
                   {link.label}
+                  {isActive && <span aria-hidden className="h-2 w-2 rounded-full bg-brand" />}
                 </Link>
               );
             })}
@@ -173,6 +174,7 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
             aria-hidden
             className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-transparent via-black/10 to-transparent animate-cta-shimmer"
           />
+          <span aria-hidden className="relative me-2 h-1.5 w-1.5 rounded-full bg-brand" />
           <span className="relative">{navigation.ctaButton}</span>
         </Link>
       </div>

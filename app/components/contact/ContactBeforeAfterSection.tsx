@@ -72,16 +72,25 @@ export default function ContactBeforeAfterSection({
           {content.heading}
         </h2>
 
+        {/* Pinned LTR: the handle's x offset and the clip-path are both
+            measured from the left edge, so under the page's RTL the
+            handle would start off-screen and dragging wouldn't work. */}
         <div
           ref={containerRef}
+          dir="ltr"
           className="relative w-full aspect-[16/10] md:aspect-[16/8] overflow-hidden select-none"
         >
+          {/* Base layer = the "after" (the build on site), visible to the
+              right of the handle. The clipped layer on top shows the
+              "before" (the design render) to the left of it. Both are
+              pre-sized 1376px JPEGs, served as-is. */}
           <Image
-            src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=80"
-            alt={content.beforeLabel}
+            src="/compare/villa-on-site.jpg"
+            alt={content.afterLabel}
             fill
             sizes="(max-width: 1200px) 100vw, 1000px"
-            className="object-cover grayscale"
+            unoptimized
+            className="object-cover"
           />
           <div
             ref={afterRef}
@@ -89,10 +98,11 @@ export default function ContactBeforeAfterSection({
             style={{ clipPath: "inset(0 50% 0 0)" }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
-              alt={content.afterLabel}
+              src="/compare/villa-design-render.jpg"
+              alt={content.beforeLabel}
               fill
               sizes="(max-width: 1200px) 100vw, 1000px"
+              unoptimized
               className="object-cover"
             />
           </div>
@@ -109,9 +119,15 @@ export default function ContactBeforeAfterSection({
           </div>
         </div>
 
-        <div className="flex justify-between mt-4 text-xs uppercase tracking-widest text-neutral-500">
-          <span className={pct < 50 ? "text-white" : ""}>{content.beforeLabel}</span>
-          <span className={pct >= 50 ? "text-white" : ""}>{content.afterLabel}</span>
+        {/* Pinned LTR so each label stays under its own side of the slider
+            (the images don't mirror in Arabic). The side currently taking
+            up more of the frame is highlighted. */}
+        <div
+          dir="ltr"
+          className="flex justify-between mt-4 text-xs uppercase tracking-widest text-neutral-500"
+        >
+          <span className={pct >= 50 ? "text-white" : ""}>{content.beforeLabel}</span>
+          <span className={pct < 50 ? "text-white" : ""}>{content.afterLabel}</span>
         </div>
       </div>
     </section>

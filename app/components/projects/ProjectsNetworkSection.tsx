@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DrawnLine from "../DrawnLine";
-import { projects, localizeProject } from "@/data/projects";
 import type { Locale } from "@/i18n-config";
 import type { ProjectsNetworkDict } from "@/dictionaries/types";
 
@@ -21,13 +20,13 @@ export default function ProjectsNetworkSection({
   const stationsRef = useRef<HTMLDivElement>(null);
   const dir = lang === "ar" ? "rtl" : "ltr";
 
-  const cities = useMemo(() => {
-    const map = new Map<string, number>();
-    projects
-      .map((p) => localizeProject(p, lang))
-      .forEach((p) => map.set(p.location, (map.get(p.location) ?? 0) + 1));
-    return Array.from(map.entries()).map(([city, count]) => ({ city, count }));
-  }, [lang]);
+  // Portfolio-wide totals come from the dictionary, since the case studies
+  // in data/projects only cover a fraction of the delivered work.
+  const locations = content.locations;
+  const totalProjects = useMemo(
+    () => locations.reduce((sum, l) => sum + l.count, 0),
+    [locations],
+  );
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -63,8 +62,8 @@ export default function ProjectsNetworkSection({
       </p>
       <h2 className="font-semibold tracking-tight text-2xl md:text-4xl mb-20 md:mb-28">
         {content.statsTemplate
-          .replace("{count}", String(projects.length))
-          .replace("{cities}", String(cities.length))}
+          .replace("{count}", String(totalProjects))
+          .replace("{cities}", String(locations.length))}
       </h2>
 
       <div className="relative max-w-5xl mx-auto h-24 px-10 md:px-0">
@@ -77,22 +76,22 @@ export default function ProjectsNetworkSection({
         />
 
         <div ref={stationsRef} className="absolute inset-0">
-          {cities.map((c, i) => (
+          {locations.map((c, i) => (
             <div
-              key={c.city}
+              key={c.name}
               className="absolute flex flex-col items-center"
               style={{
-                left: `${(i / (cities.length - 1)) * 100}%`,
+                left: `${(i / (locations.length - 1)) * 100}%`,
                 top: "50%",
                 transform: "translate(-50%, -50%)",
               }}
             >
               <span className="relative flex h-3 w-3 mb-4">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-40" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-brand" />
               </span>
               <p className="text-xs md:text-sm font-medium whitespace-nowrap">
-                {c.city}
+                {c.name}
               </p>
               <p className="text-[10px] md:text-xs text-neutral-500 whitespace-nowrap">
                 {c.count} {c.count > 1 ? content.projectPlural : content.projectSingular}

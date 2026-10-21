@@ -66,7 +66,7 @@ export default function AboutProcessSection({ lang, content }: AboutProcessSecti
               key={step.index}
               className="relative grid grid-cols-[auto_1fr] md:grid-cols-[auto_140px_1fr] gap-x-6 md:gap-x-10 py-8 border-b border-white/10 last:border-b-0"
             >
-              <span className="relative z-10 w-4 h-4 mt-1 rounded-full bg-white shrink-0" />
+              <span className="relative z-10 w-4 h-4 mt-1 rounded-full bg-brand shrink-0" />
               <span className="text-sm font-mono text-neutral-500 md:pt-0.5">
                 {step.index}
               </span>
