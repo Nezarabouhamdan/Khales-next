@@ -30,7 +30,7 @@ type EstimateFormProps = {
 
 const AREA_UNITS: readonly AreaUnit[] = ["m2", "sqft"];
 
-const labelText = "text-xs uppercase tracking-widest text-neutral-400";
+const labelText = "text-sm font-semibold text-neutral-800";
 const section = "py-10 first:pt-0 last:pb-0";
 const controlBase = "h-14 w-full rounded-lg border bg-white px-4 text-lg focus:border-[#66a109] focus:outline-none";
 
@@ -158,7 +158,7 @@ export default function EstimateForm({ dictionary, mode, value, onChange, onBack
         <h2 className="font-semibold tracking-tight text-2xl md:text-3xl mb-2">
           {mode === "area" ? dictionary.areaFormTitle : dictionary.budgetFormTitle}
         </h2>
-        <p className="text-neutral-500 max-w-xl">
+        <p className="text-neutral-600 max-w-xl">
           {mode === "area" ? dictionary.areaFormDescription : dictionary.budgetFormDescription}
         </p>
       </div>
@@ -224,7 +224,7 @@ export default function EstimateForm({ dictionary, mode, value, onChange, onBack
                     </select>
                   </div>
                 </div>
-                <p id={hintId} className="text-sm text-neutral-500">
+                <p id={hintId} className="text-sm text-neutral-600">
                   {dictionary.areaHint}
                 </p>
               </div>
@@ -256,7 +256,7 @@ export default function EstimateForm({ dictionary, mode, value, onChange, onBack
                     {dictionary.inputErrors.budget}
                   </p>
                 )}
-                <p id={hintId} className="text-sm text-neutral-500">
+                <p id={hintId} className="text-sm text-neutral-600">
                   {dictionary.budgetHint}
                 </p>
               </div>
@@ -269,7 +269,7 @@ export default function EstimateForm({ dictionary, mode, value, onChange, onBack
 
           <div className={`${section} flex flex-col gap-8`}>
             {/* Family villa is the only house type in v1 - shown, not chosen. */}
-            <p className="text-sm text-neutral-500">
+            <p className="text-sm text-neutral-600">
               {dictionary.houseTypeLabel}:{" "}
               <span className="font-semibold text-neutral-800">{dictionary.houseTypeFamilyVilla}</span>
             </p>
@@ -315,14 +315,14 @@ export default function EstimateForm({ dictionary, mode, value, onChange, onBack
         <div className="flex flex-col md:flex-row-reverse gap-4 mt-8 pt-8 border-t border-neutral-200">
           <button
             type="submit"
-            className="w-full md:w-auto px-8 py-3.5 rounded-xl bg-[#66a109] text-white text-sm font-semibold uppercase tracking-widest hover:bg-[#5a8f08] transition-colors shadow-[0_10px_25px_-8px_rgba(102,161,9,0.5)]"
+            className="w-full md:w-auto px-8 py-3.5 rounded-xl bg-[#66a109] text-white text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:bg-[#5a8f08] transition-colors shadow-[0_10px_25px_-8px_rgba(102,161,9,0.5)]"
           >
             {dictionary.showResult}
           </button>
           <button
             type="button"
             onClick={onBack}
-            className="w-full md:w-auto px-8 py-3.5 rounded-xl text-neutral-500 text-sm font-semibold uppercase tracking-widest hover:bg-neutral-100 transition-colors"
+            className="w-full md:w-auto px-8 py-3.5 rounded-xl text-neutral-600 text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:bg-neutral-100 transition-colors"
           >
             {dictionary.back}
           </button>

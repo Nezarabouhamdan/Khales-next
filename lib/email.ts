@@ -44,7 +44,7 @@ export async function sendConfirmationEmail(
 
     const refId = `#REF-${Math.floor(100000 + Math.random() * 900000)}`;
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://khales.ae";
-    const logoUrl = `${baseUrl}/logo-mark.png`;
+    const logoUrl = `${baseUrl}/logo-color.png`;
 
     const emailHtml = `
       <!DOCTYPE html>
@@ -81,7 +81,7 @@ export async function sendConfirmationEmail(
           <div class="email-card">
             <div class="header">
               <div class="brand-container">
-                 <img src="${logoUrl}" alt="Khales Logo" width="40" height="40" style="display: block; border-radius: 4px;" />
+                 <img src="${logoUrl}" alt="Khales" width="104" height="48" style="display: block;" />
                  <span style="font-size: 22px; font-weight: 700; color: #1a1a1a; margin-left: 10px;">Khales Group</span>
               </div>
               <div class="department-text">Inquiry Received &bull; ${currentDate}</div>

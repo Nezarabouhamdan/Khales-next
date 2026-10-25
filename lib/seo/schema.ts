@@ -7,7 +7,7 @@ export function getOrganizationSchema() {
     "@type": "Organization",
     name: "Khales Group",
     url: SITE_URL,
-    logo: `${SITE_URL}/logo-mark.png`,
+    logo: `${SITE_URL}/logo-color.png`,
     description: "Premier architecture, interior design, and project management company in Dubai, UAE",
     address: {
       "@type": "PostalAddress",

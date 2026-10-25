@@ -8,9 +8,9 @@ const LocalBusinessSchema = () => {
     name: "Khales",
     alternateName: "Khales Architecture & Interior Design",
     url: "https://www.khales.ae/",
-    logo: "https://www.khales.ae/assets/Khales-Logo.png",
+    logo: "https://www.khales.ae/logo-color.png",
     image: [
-      "https://www.khales.ae/assets/Khales-Logo.png",
+      "https://www.khales.ae/logo-color.png",
       "https://www.khales.ae/assets/aboutus1.jpg",
       "https://www.khales.ae/assets/Services.jpg",
     ],

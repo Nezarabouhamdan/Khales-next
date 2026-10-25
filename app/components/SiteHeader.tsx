@@ -10,7 +10,15 @@ import type { NavigationDict } from "@/dictionaries/types";
 type SiteHeaderProps = {
   lang?: Locale;
   navigation?: NavigationDict;
+  // "dark" (default): white chrome over the dark hero most pages open with.
+  // "light": dark ink and the black + green logo, for pages whose top is
+  // light (e.g. the calculator), where the white chrome disappears.
+  tone?: "dark" | "light";
 };
+
+// The switch names the other language in that language - clearer than a
+// bare "ar" / "en".
+const LANGUAGE_NAMES: Record<Locale, string> = { en: "English", ar: "العربية" };
 
 const defaultNavigation: NavigationDict = {
   items: [
@@ -26,10 +34,12 @@ const defaultNavigation: NavigationDict = {
   termsLabel: "Terms of Use",
 };
 
-export default function SiteHeader({ lang = "en", navigation = defaultNavigation }: SiteHeaderProps) {
+export default function SiteHeader({ lang = "en", navigation = defaultNavigation, tone = "dark" }: SiteHeaderProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const isRTL = lang === "ar";
+  const light = tone === "light";
+  const barColor = menuOpen || light ? "bg-neutral-900" : "bg-white";
 
   const otherLang: Locale = lang === "ar" ? "en" : "ar";
   const pathWithoutLang = pathname?.replace(new RegExp(`^/(en|ar)`), "") || "";
@@ -41,7 +51,11 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
   }));
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-6 md:px-10 py-5 flex justify-between items-center backdrop-blur-md bg-black/10 border-b border-white/5 text-[#9e9d9c] font-normal text-[1.1111vw]">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 px-6 md:px-10 py-5 flex justify-between items-center backdrop-blur-md font-normal text-[1.1111vw] ${
+        light ? "bg-white/85 border-b border-neutral-200 text-neutral-900" : "bg-black/10 border-b border-white/5 text-[#9e9d9c]"
+      }`}
+    >
       <div
         className="relative"
         onMouseEnter={() => setMenuOpen(true)}
@@ -57,22 +71,22 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
             <span
               className={`w-5 h-0.5 transition-transform ${
                 menuOpen ? "rotate-45 translate-y-1.5" : ""
-              } ${menuOpen ? "bg-neutral-900" : "bg-white"}`}
+              } ${barColor}`}
             />
             <span
               className={`w-5 h-0.5 transition-opacity ${
                 menuOpen ? "opacity-0" : "opacity-100"
-              } ${menuOpen ? "bg-neutral-900" : "bg-white"}`}
+              } ${barColor}`}
             />
             <span
               className={`w-5 h-0.5 transition-transform ${
                 menuOpen ? "-rotate-45 -translate-y-1.5" : ""
-              } ${menuOpen ? "bg-neutral-900" : "bg-white"}`}
+              } ${barColor}`}
             />
           </span>
           <span
             className={`text-xs uppercase tracking-widest font-medium transition-colors ${
-              menuOpen ? "text-neutral-900" : "text-white"
+              menuOpen || light ? "text-neutral-900" : "text-white"
             }`}
           >
             {menuOpen ? (isRTL ? "إغلاق" : "Close") : isRTL ? "القائمة" : "Menu"}
@@ -125,23 +139,31 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
                 {link.label}
               </Link>
             ))}
+            {/* Phones don't get the header's language switch - it lives here. */}
+            <a
+              href={switchHref}
+              className="md:hidden normal-case tracking-normal text-sm font-semibold text-neutral-900 underline underline-offset-2"
+            >
+              {LANGUAGE_NAMES[otherLang]}
+            </a>
           </div>
         </div>
       </div>
 
       <div className="relative flex items-center justify-center">
         <Link href={`/${lang}`}>
+          {/* The main bilingual logo with its brand-green accents: black on
+              light pages, white over the dark heroes. `sizes` matches the
+              rendered ~80-104px width so next/image doesn't fetch a
+              full-size file. */}
           <Image
-            src="/logo-mark.png"
+            src={light ? "/logo-color.png" : "/logo-color-white.png"}
             alt="Khales"
-            width={210}
-            height={50}
-            // Without `sizes`, next/image sizes its srcset off the
-            // `width` prop (210) rather than the ~67-101px it's actually
-            // rendered at (h-4/h-6, w-auto) - flagged by Lighthouse as a
-            // 640px-wide fetch for a ~100px display.
-            sizes="(max-width: 768px) 70px, 105px"
-            className="h-4 md:h-6 w-auto"
+            width={2536}
+            height={1174}
+            sizes="(max-width: 768px) 80px, 104px"
+            className="h-9 md:h-12 w-auto"
+            priority
           />
         </Link>
       </div>
@@ -156,9 +178,14 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
             reload. A real navigation forces that reload. */}
         <a
           href={switchHref}
-          className="text-xs tracking-widest hidden md:block underline underline-offset-4 opacity-90 hover:opacity-100 uppercase"
+          lang={otherLang}
+          className={`hidden md:inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+            light
+              ? "border-neutral-300 text-neutral-900 hover:border-neutral-900"
+              : "border-white/50 text-white hover:bg-white/10"
+          }`}
         >
-          {otherLang}
+          {LANGUAGE_NAMES[otherLang]}
         </a>
         {/* Points at the cost calculator rather than /contact - it's the
             higher-intent, lead-generating action, and the shimmer sweep
@@ -168,11 +195,15 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
             rest of the header's static chrome. */}
         <Link
           href={`/${lang}/calculator`}
-          className="relative overflow-hidden inline-flex items-center text-xs uppercase tracking-widest font-medium px-5 py-2.5 rounded-md bg-white text-black hover:bg-neutral-200 transition-colors"
+          className={`relative overflow-hidden inline-flex items-center text-xs uppercase tracking-widest font-medium px-5 py-2.5 rounded-md transition-colors ${
+            light ? "bg-neutral-900 text-white hover:bg-neutral-700" : "bg-white text-black hover:bg-neutral-200"
+          }`}
         >
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-transparent via-black/10 to-transparent animate-cta-shimmer"
+            className={`pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-transparent to-transparent animate-cta-shimmer ${
+              light ? "via-white/20" : "via-black/10"
+            }`}
           />
           <span aria-hidden className="relative me-2 h-1.5 w-1.5 rounded-full bg-brand" />
           <span className="relative">{navigation.ctaButton}</span>

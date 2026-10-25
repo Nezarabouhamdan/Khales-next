@@ -33,22 +33,26 @@ const CONTENT_WIDTH = WIDTH - PAD * 2;
 // instead of running into the small print.
 const MIN_SCALE = 0.72;
 const SCALE_STEP = 0.04;
-const LOGO_SRC = "/logo-light.png";
+// The main logo: black with the brand-green accents.
+const LOGO_SRC = "/logo-color.png";
 const ASSET_TIMEOUT_MS = 2000;
 
+// A light card - dark text stays sharp on any phone and in chat previews,
+// and the main logo is only legible on white.
 const COLORS = {
-  backgroundFrom: "#2f3d13",
-  backgroundTo: "#171717",
+  background: "#ffffff",
+  brand: "#66a109",
   glow: "102, 161, 9",
-  accent: "#a8d65e",
-  text: "#ffffff",
-  muted: "rgba(255, 255, 255, 0.62)",
-  faint: "rgba(255, 255, 255, 0.5)",
-  rule: "rgba(255, 255, 255, 0.14)",
-  panel: "rgba(255, 255, 255, 0.06)",
-  note: "#f3d58c",
-  noteBackground: "rgba(243, 213, 140, 0.12)",
+  accent: "#3f6606",
+  text: "#111111",
+  muted: "#404040",
+  faint: "#525252",
+  rule: "rgba(0, 0, 0, 0.1)",
+  panel: "#f3f7ec",
+  note: "#7a4a00",
+  noteBackground: "#fff4d6",
 };
+const BRAND_BAR = 16;
 
 type TextStyle = { weight: number; size: number; color: string; tracking?: number };
 type Paint = (ctx: CanvasRenderingContext2D) => void;
@@ -154,7 +158,7 @@ function planCard(
   let y = PAD;
 
   // Brand (white logo, or the brand name) with the card title opposite it.
-  const brandHeight = s(76);
+  const brandHeight = s(104);
   let brandWidth: number;
   if (logo && logo.naturalHeight > 0) {
     const width = Math.round((logo.naturalWidth / logo.naturalHeight) * brandHeight);
@@ -167,7 +171,7 @@ function planCard(
     brandWidth = measure(data.brand, style);
     writeLines([data.brand], style, brandHeight, startX, y, "start");
   }
-  const titleStyle: TextStyle = { weight: 600, size: s(21), color: COLORS.muted, tracking: tracking(3) };
+  const titleStyle: TextStyle = { weight: 700, size: s(24), color: COLORS.accent, tracking: tracking(3) };
   const titleLineHeight = s(30);
   const titleLines = wrap(caps(data.title), titleStyle, CONTENT_WIDTH - brandWidth - s(48));
   const titleHeight = titleLines.length * titleLineHeight;
@@ -176,7 +180,7 @@ function planCard(
 
   // Headline: the cost range, or the area range a budget may cover. Shrunk
   // to stay on one line where possible.
-  const labelStyle: TextStyle = { weight: 600, size: s(23), color: COLORS.muted, tracking: tracking(3) };
+  const labelStyle: TextStyle = { weight: 700, size: s(25), color: COLORS.accent, tracking: tracking(3) };
   const labelLineHeight = s(32);
   y += writeLines(wrap(caps(data.headline.label), labelStyle, CONTENT_WIDTH), labelStyle, labelLineHeight, startX, y, "start");
   y += s(10);
@@ -189,7 +193,7 @@ function planCard(
 
   if (data.subline) {
     y += s(30);
-    const sublabelStyle: TextStyle = { weight: 600, size: s(21), color: COLORS.muted, tracking: tracking(3) };
+    const sublabelStyle: TextStyle = { weight: 700, size: s(23), color: COLORS.muted, tracking: tracking(3) };
     y += writeLines(wrap(caps(data.subline.label), sublabelStyle, CONTENT_WIDTH), sublabelStyle, s(30), startX, y, "start");
     y += s(6);
     const valueStyle: TextStyle = { weight: 600, size: s(42), color: COLORS.text };
@@ -198,7 +202,7 @@ function planCard(
 
   if (data.note) {
     y += s(36);
-    const noteStyle: TextStyle = { weight: 500, size: s(24), color: COLORS.note };
+    const noteStyle: TextStyle = { weight: 600, size: s(24), color: COLORS.note };
     const padX = s(28);
     const padY = s(20);
     const lineHeight = s(34);
@@ -220,8 +224,8 @@ function planCard(
     const padX = s(32);
     const padY = s(8);
     const innerWidth = CONTENT_WIDTH - padX * 2;
-    const rowLabelStyle: TextStyle = { weight: 600, size: s(20), color: COLORS.muted, tracking: tracking(2) };
-    const rowValueStyle: TextStyle = { weight: 600, size: s(27), color: COLORS.text };
+    const rowLabelStyle: TextStyle = { weight: 600, size: s(22), color: COLORS.muted, tracking: tracking(2) };
+    const rowValueStyle: TextStyle = { weight: 700, size: s(28), color: COLORS.text };
     const lineHeight = s(36);
     const rowPadY = s(14);
     const top = y;
@@ -252,13 +256,13 @@ function planCard(
   }
 
   // Bottom edge: footer, then the small print (scope + disclaimer) above it.
-  const footerStyle: TextStyle = { weight: 500, size: s(22), color: COLORS.muted };
+  const footerStyle: TextStyle = { weight: 600, size: s(22), color: COLORS.muted };
   const footerLineHeight = s(30);
   const footerLines = wrap(data.footer, footerStyle, CONTENT_WIDTH);
   const footerTop = HEIGHT - PAD - footerLines.length * footerLineHeight;
   writeLines(footerLines, footerStyle, footerLineHeight, WIDTH / 2, footerTop, "center");
 
-  const fineStyle: TextStyle = { weight: 400, size: s(20), color: COLORS.faint };
+  const fineStyle: TextStyle = { weight: 500, size: s(21), color: COLORS.faint };
   const fineLineHeight = s(29);
   const fineLines = wrap(data.disclaimer, fineStyle, CONTENT_WIDTH);
   const fineTop = footerTop - s(28) - fineLines.length * fineLineHeight;
@@ -274,19 +278,18 @@ function planCard(
 }
 
 function paintBackground(ctx: CanvasRenderingContext2D, rtl: boolean) {
-  // Same dark green-to-black as the result's range card.
-  const base = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
-  base.addColorStop(0, COLORS.backgroundFrom);
-  base.addColorStop(1, COLORS.backgroundTo);
-  ctx.fillStyle = base;
+  ctx.fillStyle = COLORS.background;
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
-  // A soft brand-green light in the corner opposite the logo.
+  // A faint brand-green light in the corner opposite the logo.
   const x = rtl ? 0 : WIDTH;
-  const glow = ctx.createRadialGradient(x, 0, 0, x, 0, WIDTH * 0.75);
-  glow.addColorStop(0, `rgba(${COLORS.glow}, 0.3)`);
+  const glow = ctx.createRadialGradient(x, 0, 0, x, 0, WIDTH * 0.8);
+  glow.addColorStop(0, `rgba(${COLORS.glow}, 0.12)`);
   glow.addColorStop(1, `rgba(${COLORS.glow}, 0)`);
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
+  // Brand-green edge along the top.
+  ctx.fillStyle = COLORS.brand;
+  ctx.fillRect(0, 0, WIDTH, BRAND_BAR);
 }
 
 /** Splits text into lines no wider than maxWidth; "\n" forces a break. */

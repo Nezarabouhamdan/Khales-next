@@ -14,7 +14,7 @@ type TierPickerProps = {
 export default function TierPicker({ dictionary, value, onChange }: TierPickerProps) {
   return (
     <div>
-      <h3 className="text-xs uppercase tracking-widest text-neutral-400 mb-4">{dictionary.tierLabel}</h3>
+      <h3 className="text-sm font-semibold text-neutral-800 mb-4">{dictionary.tierLabel}</h3>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {FINISH_TIERS.map((tier) => (
           <ChoiceCard

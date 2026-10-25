@@ -52,10 +52,11 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center">
               <Image
-                src="/logo-light.png"
+                // The main logo (black + brand green) on the light loader.
+                src="/logo-color.png"
                 alt="Khales"
-                width={280}
-                height={150}
+                width={2536}
+                height={1174}
                 // Without `sizes`, next/image sizes off the `width` prop
                 // (280) rather than the actual w-40/w-56 (160-224px)
                 // rendered size - flagged by Lighthouse as a 640px-wide
@@ -63,7 +64,7 @@ export default function Home() {
                 sizes="(max-width: 768px) 160px, 224px"
                 // The loader is the first paint, so this is the LCP image.
                 loading="eager"
-                className="w-40 md:w-56 h-auto invert"
+                className="w-40 md:w-56 h-auto"
               />
             </div>
             <div className="flex justify-between items-end text-xs tracking-widest text-neutral-400">

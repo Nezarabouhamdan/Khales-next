@@ -120,7 +120,7 @@ const BrandSection = styled.div`
   align-items: flex-start;
 `;
 const LogoImg = styled.img`
-  width: 80px;
+  width: 130px;
   height: auto;
   object-fit: contain;
 `;
@@ -266,7 +266,7 @@ export default function Footer({ lang, content }) {
         <MainGrid>
           <BrandSection>
             <LogoImg
-              src="https://i.ibb.co/jZxqpqmM/Khales-Logo-K-favicon.png"
+              src="/logo-color.png"
               alt="Khales Group Logo"
             />
             <Description>{content.description}</Description>

@@ -50,9 +50,9 @@ export default async function CalculatorPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
 
-      <SiteHeader lang={lang} navigation={dictionary.navigation} />
+      <SiteHeader lang={lang} navigation={dictionary.navigation} tone="light" />
 
-      <div className="px-6 md:px-16 pt-36 pb-24 md:pt-44 md:pb-32">
+      <div className="px-4 sm:px-6 md:px-16 pt-32 pb-24 md:pt-40 md:pb-32">
         {/* Not shown - the calculator's own screens carry the visible
             headings - but kept for search engines and screen readers. */}
         <h1 className="sr-only">{calcPage.title}</h1>

@@ -35,16 +35,16 @@ export default function ChoiceCard({ active, onClick, label, icon, note }: Choic
       {icon && (
         <span
           className={`flex h-11 w-11 items-center justify-center rounded-full text-xl transition-colors ${
-            active ? "bg-[#66a109] text-white" : "bg-neutral-100 text-neutral-500 group-hover:bg-neutral-200"
+            active ? "bg-[#66a109] text-white" : "bg-neutral-100 text-neutral-600 group-hover:bg-neutral-200"
           }`}
         >
           {icon}
         </span>
       )}
-      <span className={`text-xs md:text-sm font-semibold ${active ? "text-neutral-900" : "text-neutral-600"}`}>
+      <span className={`text-sm font-semibold ${active ? "text-neutral-900" : "text-neutral-800"}`}>
         {label}
       </span>
-      {note && <span className="-mt-2 text-[11px] leading-tight text-neutral-400">{note}</span>}
+      {note && <span className="-mt-2 text-xs leading-snug text-neutral-600">{note}</span>}
     </motion.button>
   );
 }

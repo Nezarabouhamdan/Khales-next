@@ -91,7 +91,7 @@ export default function ShareActions({ dictionary, reference, pdfTargetRef, card
 
   // Labels can be long ("Share my home budget card"), so they wrap.
   const buttonClass =
-    "flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-neutral-300 px-4 py-3 text-center text-xs font-semibold uppercase leading-snug tracking-widest transition-colors hover:border-neutral-900 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-neutral-300";
+    "flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-neutral-300 px-4 py-3 text-center text-sm font-semibold leading-snug transition-colors hover:border-neutral-900 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-neutral-300";
 
   return (
     <div className="flex flex-col gap-2" aria-busy={busy !== null}>

@@ -49,16 +49,18 @@ export default function SiteFooter({ lang = "en", content = defaultFooter }: Sit
         <div className="flex flex-col md:flex-row justify-between gap-12 md:gap-6 pb-12 border-b border-white/10">
           <div className="flex flex-col gap-6 max-w-sm">
             <Image
-              src="/logo-mark.png"
+              // The main logo in its white + brand-green form (dark footer).
+              src="/logo-color-white.png"
               alt="Khales"
-              width={210}
-              height={50}
+              width={2536}
+              height={1174}
+              sizes="130px"
               // The parent is a flex column with no items-start, so flex's
               // default align-items:stretch was forcing this image to fill
               // the column's full width (up to max-w-sm, ~384px) instead
               // of respecting w-auto's aspect-ratio-based sizing -
               // stretching the logo's actual pixels to fill that box.
-              className="h-7 w-auto self-start"
+              className="h-14 w-auto self-start"
             />
             <p className="text-sm leading-relaxed text-neutral-400">
               {content.description}

@@ -49,7 +49,7 @@ const STEP_ICONS: Record<StepId, IconType> = {
 // heading clear of the fixed site header.
 const HEADER_OFFSET = 96;
 
-const sectionLabel = "text-xs uppercase tracking-widest text-neutral-400";
+const sectionLabel = "text-sm font-semibold text-neutral-800";
 
 function defaultDetail(room: RoomConfigEntry): RoomDetail {
   return { w: room.w, l: room.l, bath: false, dressing: false };
@@ -126,7 +126,7 @@ function NumberDial({
           className={`${size} rounded-full text-sm font-semibold transition-colors ${
             value === count
               ? "bg-[#66a109] text-white shadow-[0_6px_16px_-4px_rgba(102,161,9,0.5)]"
-              : "bg-neutral-100 text-neutral-500 hover:bg-neutral-200"
+              : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
           }`}
         >
           {count}
@@ -155,7 +155,7 @@ function DimensionField({
 
   return (
     <label className="flex min-w-0 flex-col gap-1">
-      <span className="text-xs text-neutral-500">{label}</span>
+      <span className="text-xs text-neutral-600">{label}</span>
       <input
         type="number"
         inputMode="decimal"
@@ -189,7 +189,7 @@ function ToggleChip({ active, onClick, label }: { active: boolean; onClick: () =
       className={`inline-flex min-h-10 items-center gap-1.5 rounded-full border px-4 text-xs font-medium transition-colors ${
         active
           ? "border-[#66a109] bg-[#66a109] text-white"
-          : "border-neutral-300 bg-white text-neutral-500 hover:border-neutral-400"
+          : "border-neutral-300 bg-white text-neutral-600 hover:border-neutral-400"
       }`}
     >
       {active ? <FaCheck size={10} aria-hidden /> : <FaPlus size={10} aria-hidden />}
@@ -274,7 +274,7 @@ export default function FamilyPlanWizard({ dictionary, value, onChange, onBack, 
     >
       <div className="mb-10 text-start">
         <h2 className="font-semibold tracking-tight text-2xl md:text-3xl mb-2">{dictionary.familyPlanTitle}</h2>
-        <p className="text-neutral-500 max-w-xl">{dictionary.familyPlanDescription}</p>
+        <p className="text-neutral-600 max-w-xl">{dictionary.familyPlanDescription}</p>
       </div>
 
       <ol className="flex items-start gap-1 sm:gap-3 mb-10">
@@ -308,8 +308,8 @@ export default function FamilyPlanWizard({ dictionary, value, onChange, onBack, 
                 />
               </div>
               <p
-                className={`mt-2 text-center text-[10px] sm:text-xs uppercase tracking-widest ${
-                  isActive ? "text-neutral-900 font-semibold" : "text-neutral-400"
+                className={`mt-2 text-center text-xs sm:text-sm ${
+                  isActive ? "text-neutral-900 font-semibold" : "text-neutral-600 font-medium"
                 }`}
               >
                 {dictionary.familySteps[id]}
@@ -398,7 +398,7 @@ export default function FamilyPlanWizard({ dictionary, value, onChange, onBack, 
                                 {selection.count > 1 && (
                                   <span
                                     aria-hidden
-                                    className="mb-3 flex h-6 w-6 items-center justify-center rounded-full border border-neutral-200 bg-white text-[11px] font-semibold text-neutral-500"
+                                    className="mb-3 flex h-6 w-6 items-center justify-center rounded-full border border-neutral-200 bg-white text-[11px] font-semibold text-neutral-600"
                                   >
                                     {i + 1}
                                   </span>
@@ -468,7 +468,7 @@ export default function FamilyPlanWizard({ dictionary, value, onChange, onBack, 
 
                 <div>
                   <h3 className={`${sectionLabel} mb-2`}>{dictionary.extraRoomsLabel}</h3>
-                  <p className="text-sm text-neutral-500 mb-4 max-w-xl">{dictionary.extraRoomsHint}</p>
+                  <p className="text-sm text-neutral-600 mb-4 max-w-xl">{dictionary.extraRoomsHint}</p>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {EXTRA_ROOMS_CONFIG.map((room) => {
                       const active = value.extraRooms[room.id] === true;
@@ -554,14 +554,14 @@ export default function FamilyPlanWizard({ dictionary, value, onChange, onBack, 
           <button
             type="button"
             onClick={handleNext}
-            className="w-full md:w-auto px-8 py-3.5 rounded-xl bg-[#66a109] text-white text-sm font-semibold uppercase tracking-widest hover:bg-[#5a8f08] transition-colors shadow-[0_10px_25px_-8px_rgba(102,161,9,0.5)]"
+            className="w-full md:w-auto px-8 py-3.5 rounded-xl bg-[#66a109] text-white text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:bg-[#5a8f08] transition-colors shadow-[0_10px_25px_-8px_rgba(102,161,9,0.5)]"
           >
             {isLastStep ? dictionary.showResult : dictionary.next}
           </button>
           <button
             type="button"
             onClick={handleBack}
-            className="w-full md:w-auto px-8 py-3.5 rounded-xl text-neutral-500 text-sm font-semibold uppercase tracking-widest hover:bg-neutral-100 transition-colors"
+            className="w-full md:w-auto px-8 py-3.5 rounded-xl text-neutral-600 text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:bg-neutral-100 transition-colors"
           >
             {dictionary.back}
           </button>

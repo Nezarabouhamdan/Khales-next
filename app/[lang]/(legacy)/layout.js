@@ -65,7 +65,7 @@ export async function generateMetadata(props) {
       siteName: lang === "ar" ? "مجموعة خالص" : "Khales Group",
       images: [
         {
-          url: "https://www.khales.ae/assets/Khales-Logo.png",
+          url: "https://www.khales.ae/og-image.png",
           width: 1200,
           height: 630,
         },

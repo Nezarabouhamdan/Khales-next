@@ -38,7 +38,7 @@ export default function ReadinessChecklist({ dictionary, items, answers, onChang
       <h2 id={titleId} className="font-semibold tracking-tight text-xl md:text-2xl mb-2">
         {dictionary.readinessTitle}
       </h2>
-      <p className="text-neutral-500 leading-relaxed max-w-2xl mb-6 md:mb-8">{dictionary.readinessSubtitle}</p>
+      <p className="text-neutral-600 leading-relaxed max-w-2xl mb-6 md:mb-8">{dictionary.readinessSubtitle}</p>
 
       <ul className="flex flex-col divide-y divide-neutral-100">
         {items.map((item) => {

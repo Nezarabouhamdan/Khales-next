@@ -21,7 +21,7 @@ export function generatePageMetadata({
   keywords = [],
   lang,
   path,
-  imageUrl = `${SITE_URL}/logo-mark.png`,
+  imageUrl = `${SITE_URL}/og-image.png`,
 }: GeneratePageMetadataArgs): Metadata {
   const pageUrl = `${SITE_URL}/${lang}${path}`;
 

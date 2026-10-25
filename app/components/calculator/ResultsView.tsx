@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useRef, type ReactNode, type RefObject } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   FaArrowRight,
@@ -63,7 +64,7 @@ const CARD =
 // Letter-spacing stays LTR-only inside the estimate sheet: the PDF
 // (html2canvas) draws letter-spaced text one character at a time, which
 // pulls Arabic letters apart.
-const LABEL = "text-xs uppercase tracking-widest rtl:tracking-normal text-neutral-400";
+const LABEL = "text-sm font-semibold text-neutral-800";
 const DARK_PANEL = "bg-[linear-gradient(135deg,#2f3d13,#171717)] text-white";
 const OTHER_UNIT: Record<AreaUnit, AreaUnit> = { m2: "sqft", sqft: "m2" };
 
@@ -151,7 +152,7 @@ export default function ResultsView({
         <button
           type="button"
           onClick={onEdit}
-          className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border border-neutral-300 text-sm font-semibold uppercase tracking-widest hover:border-neutral-900 transition-colors"
+          className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border border-neutral-300 text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:border-neutral-900 transition-colors"
         >
           <FaPenToSquare aria-hidden="true" size={13} />
           {dictionary.editInputs}
@@ -159,7 +160,7 @@ export default function ResultsView({
         <button
           type="button"
           onClick={onStartOver}
-          className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-neutral-500 text-sm font-semibold uppercase tracking-widest hover:bg-neutral-100 transition-colors"
+          className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-neutral-600 text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:bg-neutral-100 transition-colors"
         >
           <FaRotateLeft aria-hidden="true" size={13} />
           {dictionary.startOver}
@@ -206,14 +207,14 @@ function EstimateSheet({
         titleId={titleId}
         title={outcome.kind === "area" ? dictionary.resultAreaTitle : dictionary.resultBudgetTitle}
       >
-        <p className="leading-relaxed text-neutral-500">
+        <p className="leading-relaxed text-neutral-600">
           {outcome.kind === "area" && (
             <>
               <span className="font-semibold text-neutral-900">
                 {enteredAreaText(dictionary, inputs) ??
                   formatArea(outcome.areaSqm, inputs.unit, dictionary.unitSymbols[inputs.unit])}
               </span>{" "}
-              <span className="text-neutral-400">
+              <span className="text-neutral-500">
                 ({formatArea(outcome.areaSqm, otherUnit, dictionary.unitSymbols[otherUnit])})
               </span>
               <Dot />
@@ -237,7 +238,7 @@ function EstimateSheet({
         data-pdf-keep
         className="mt-4 flex items-start gap-3 rounded-2xl border border-neutral-200 p-4 text-sm leading-relaxed text-neutral-600"
       >
-        <FaCircleInfo aria-hidden="true" className="mt-0.5 shrink-0 text-neutral-400" size={14} />
+        <FaCircleInfo aria-hidden="true" className="mt-0.5 shrink-0 text-neutral-500" size={14} />
         <span>{dictionary.disclaimer}</span>
       </p>
 
@@ -283,11 +284,16 @@ function SheetHeader({
   return (
     <header className="mb-8">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-neutral-100 pb-5">
-        <span className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900">
-          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-[#66a109]" />
-          {dictionary.shareCard.brand}
-        </span>
-        <p className="text-xs text-neutral-500">
+        {/* Unoptimized: a same-origin file the PDF capture can redraw as is. */}
+        <Image
+          src="/logo-color.png"
+          alt={dictionary.shareCard.brand}
+          width={2536}
+          height={1174}
+          unoptimized
+          className="h-10 w-auto md:h-12"
+        />
+        <p className="text-sm text-neutral-600">
           {dictionary.referenceLabel}{" "}
           <span aria-live="polite" className="font-semibold text-neutral-900">
             {reference ?? dictionary.referencePending}
@@ -314,7 +320,7 @@ function AreaFigures({ dictionary, outcome }: { dictionary: CalculatorDict; outc
   return (
     <div className="grid grid-cols-1 gap-4">
       <div data-pdf-keep className={`rounded-2xl p-6 md:p-8 ${DARK_PANEL}`}>
-        <p className="mb-3 text-xs uppercase tracking-widest rtl:tracking-normal text-white/60">
+        <p className="mb-3 text-sm font-semibold text-white/85">
           {dictionary.rangeLabel}
         </p>
         <p className="font-semibold leading-tight text-[#a8d65e] text-[1.75rem] sm:text-4xl md:text-5xl">
@@ -331,7 +337,7 @@ function AreaFigures({ dictionary, outcome }: { dictionary: CalculatorDict; outc
             {formatMoney(outcome.expected, currency)}
           </p>
         </div>
-        <p className="mt-3 max-w-md text-sm leading-relaxed text-neutral-500 md:mt-0">
+        <p className="mt-3 max-w-md text-sm leading-relaxed text-neutral-600 md:mt-0">
           {dictionary.planningFigureNote}
         </p>
       </div>
@@ -383,8 +389,8 @@ function BudgetFigures({
               }`}
             >
               <p
-                className={`mb-3 text-xs uppercase tracking-widest rtl:tracking-normal ${
-                  highlighted ? "text-white/60" : "text-neutral-400"
+                className={`mb-3 text-sm font-semibold ${
+                  highlighted ? "text-white/80" : "text-neutral-800"
                 }`}
               >
                 {copy.label}
@@ -396,10 +402,10 @@ function BudgetFigures({
               >
                 {formatArea(areas[key], unit, dictionary.unitSymbols[unit])}
               </p>
-              <p className={`mt-1 text-sm ${highlighted ? "text-white/60" : "text-neutral-400"}`}>
+              <p className={`mt-1 text-sm ${highlighted ? "text-white/80" : "text-neutral-800"}`}>
                 {formatArea(areas[key], otherUnit, dictionary.unitSymbols[otherUnit])}
               </p>
-              <p className={`mt-3 text-sm leading-relaxed ${highlighted ? "text-white/80" : "text-neutral-500"}`}>
+              <p className={`mt-3 text-sm leading-relaxed ${highlighted ? "text-white/80" : "text-neutral-600"}`}>
                 {copy.hint}
               </p>
             </li>
@@ -407,7 +413,7 @@ function BudgetFigures({
         })}
       </ul>
       <p data-pdf-keep className="mt-4 flex items-start gap-3 text-sm leading-relaxed text-neutral-600">
-        <FaRulerCombined aria-hidden="true" className="mt-0.5 shrink-0 text-neutral-400" size={14} />
+        <FaRulerCombined aria-hidden="true" className="mt-0.5 shrink-0 text-neutral-500" size={14} />
         <span>{dictionary.budgetAreaNote}</span>
       </p>
     </div>
@@ -421,7 +427,7 @@ function MarketNote({ dictionary, pricing }: { dictionary: CalculatorDict; prici
   const text = marketNoteText(dictionary, pricing);
   if (pricing.marketMode === "direct_city") {
     return (
-      <p className="mt-3 flex items-start gap-2 text-sm leading-relaxed text-neutral-500">
+      <p className="mt-3 flex items-start gap-2 text-sm leading-relaxed text-neutral-600">
         <FaLocationDot aria-hidden="true" className="mt-0.5 shrink-0 text-[#66a109]" size={13} />
         <span>{text}</span>
       </p>
@@ -457,12 +463,12 @@ function TagStrip({ dictionary, lang, pricing }: { dictionary: CalculatorDict; l
             key={index}
             className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-xs text-neutral-600"
           >
-            <span className="text-neutral-400">{tag.label}:</span>{" "}
+            <span className="text-neutral-600">{tag.label}:</span>{" "}
             <span className="font-semibold text-neutral-900">{tag.value}</span>
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-xs font-semibold uppercase tracking-widest rtl:tracking-normal text-neutral-500">
+      <p className="mt-3 text-sm font-semibold text-neutral-700">
         {dictionary.scopeTag}
       </p>
     </div>
@@ -472,7 +478,7 @@ function TagStrip({ dictionary, lang, pricing }: { dictionary: CalculatorDict; l
 function VatLine({ dictionary, pricing }: { dictionary: CalculatorDict; pricing: PricingContext }) {
   return (
     <p data-pdf-keep className="mt-6 flex items-start gap-3 text-sm leading-relaxed text-neutral-600">
-      <FaReceipt aria-hidden="true" className="mt-0.5 shrink-0 text-neutral-400" size={14} />
+      <FaReceipt aria-hidden="true" className="mt-0.5 shrink-0 text-neutral-500" size={14} />
       <span>
         <span className="font-semibold text-neutral-900">{dictionary.vatLabel}:</span>{" "}
         {dictionary.vatModes[pricing.vatMode]}
@@ -487,7 +493,7 @@ function Notice({ icon, children }: { icon: ReactNode; children: ReactNode }) {
       data-pdf-keep
       className="flex items-start gap-3 rounded-2xl bg-neutral-50 p-4 text-sm leading-relaxed text-neutral-600"
     >
-      <span aria-hidden="true" className="mt-0.5 shrink-0 text-neutral-400">
+      <span aria-hidden="true" className="mt-0.5 shrink-0 text-neutral-500">
         {icon}
       </span>
       <span>{children}</span>
@@ -639,7 +645,7 @@ function ActionCard({ icon, copy, onClick }: { icon: ReactNode; copy: CtaCopy; o
       <CtaIntro icon={icon} copy={copy} />
       <span
         aria-hidden="true"
-        className="mt-auto flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 text-neutral-500 transition-colors group-hover:border-[#66a109] group-hover:bg-[#66a109] group-hover:text-white"
+        className="mt-auto flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 text-neutral-600 transition-colors group-hover:border-[#66a109] group-hover:bg-[#66a109] group-hover:text-white"
       >
         <FaArrowRight className="rtl:rotate-180" size={12} />
       </span>
@@ -657,7 +663,7 @@ function CtaIntro({ icon, copy }: { icon: ReactNode; copy: CtaCopy }) {
         {icon}
       </span>
       <span className="mb-2 block font-semibold tracking-tight text-lg text-neutral-900">{copy.title}</span>
-      <span className="mb-6 block text-sm leading-relaxed text-neutral-500">{copy.description}</span>
+      <span className="mb-6 block text-sm leading-relaxed text-neutral-600">{copy.description}</span>
     </>
   );
 }

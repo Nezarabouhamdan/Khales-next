@@ -20,10 +20,10 @@ export default function SpecialItemsPicker({ dictionary, value, onChange }: Spec
 
   return (
     <div>
-      <h3 className="text-xs uppercase tracking-widest text-neutral-400 mb-2">
+      <h3 className="text-sm font-semibold text-neutral-800 mb-2">
         {dictionary.specialItemsLabel} <span className="normal-case tracking-normal">{dictionary.optional}</span>
       </h3>
-      <p className="text-sm text-neutral-500 mb-4 max-w-xl">{dictionary.specialItemsHint}</p>
+      <p className="text-sm text-neutral-600 mb-4 max-w-xl">{dictionary.specialItemsHint}</p>
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
         {SPECIAL_ITEMS.map((item) => (
           <ChoiceCard

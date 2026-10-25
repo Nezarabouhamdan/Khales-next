@@ -23,7 +23,7 @@ type FamilyPlanSummaryProps = {
   onStartOver: () => void;
 };
 
-const sectionLabel = "text-xs uppercase tracking-widest text-neutral-400";
+const sectionLabel = "text-sm font-semibold text-neutral-800";
 const EMPTY = "—";
 
 function isSpecialItem(id: SpecialItemId | ExtraRoomId): id is SpecialItemId {
@@ -42,14 +42,14 @@ function ProgramGroup({ title, children }: { title: string; children: ReactNode 
 function ProgramRow({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5 border-b border-neutral-100 py-2.5 last:border-b-0">
-      <dt className="text-sm text-neutral-500">{label}</dt>
+      <dt className="text-sm text-neutral-600">{label}</dt>
       <dd className="ms-auto text-end text-sm font-semibold text-neutral-900">{children}</dd>
     </div>
   );
 }
 
 function Chips({ items }: { items: string[] }) {
-  if (items.length === 0) return <span className="font-normal text-neutral-400">{EMPTY}</span>;
+  if (items.length === 0) return <span className="font-normal text-neutral-500">{EMPTY}</span>;
   return (
     <span className="flex flex-wrap justify-end gap-1.5">
       {items.map((item) => (
@@ -117,20 +117,20 @@ export default function FamilyPlanSummary({
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
       <div className="mb-10 text-start">
         <h2 className="font-semibold tracking-tight text-2xl md:text-3xl mb-2">{dictionary.familySummaryTitle}</h2>
-        <p className="text-neutral-500 max-w-xl">{dictionary.familySummaryDescription}</p>
+        <p className="text-neutral-600 max-w-xl">{dictionary.familySummaryDescription}</p>
       </div>
 
       <div className="rounded-3xl border border-neutral-200 bg-white p-6 md:p-10 shadow-[0_25px_60px_-25px_rgba(0,0,0,0.15)]">
         <div className="flex flex-col gap-6">
           {hasArea && (
             <div className="rounded-2xl bg-neutral-50 border border-neutral-200 p-6 text-center">
-              <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white border border-neutral-200 text-neutral-500 text-lg">
+              <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white border border-neutral-200 text-neutral-600 text-lg">
                 <FaRulerCombined aria-hidden />
               </span>
               <p className={`${sectionLabel} mb-2`}>{dictionary.indicativeAreaLabel}</p>
               <p className="font-semibold text-3xl md:text-4xl">{areaM2}</p>
-              <p className="text-neutral-400 text-sm mt-1">{areaSqft}</p>
-              <p className="text-sm text-neutral-500 leading-relaxed mt-4 max-w-md mx-auto">
+              <p className="text-neutral-500 text-sm mt-1">{areaSqft}</p>
+              <p className="text-sm text-neutral-600 leading-relaxed mt-4 max-w-md mx-auto">
                 {dictionary.indicativeAreaNote}
               </p>
             </div>
@@ -169,7 +169,7 @@ export default function FamilyPlanSummary({
                   </dt>
                   <dd className="text-sm font-semibold text-neutral-900">{count}</dd>
                   {extras.length > 0 && (
-                    <dd className="col-span-2 mt-1 ps-6 text-xs text-neutral-500">{extras.join(" · ")}</dd>
+                    <dd className="col-span-2 mt-1 ps-6 text-xs text-neutral-600">{extras.join(" · ")}</dd>
                   )}
                 </div>
               ))}
@@ -197,7 +197,7 @@ export default function FamilyPlanSummary({
 
           {specialPricing.length > 0 && (
             <p className="mt-4 flex items-start gap-3 rounded-2xl border border-neutral-200 bg-neutral-50 p-4 text-sm leading-relaxed text-neutral-700">
-              <FaTag aria-hidden size={14} className="mt-1 shrink-0 text-neutral-400" />
+              <FaTag aria-hidden size={14} className="mt-1 shrink-0 text-neutral-500" />
               <span>{fillTemplate(dictionary.specialItemsSelectedNote, { items: listFormat.format(specialPricing) })}</span>
             </p>
           )}
@@ -238,7 +238,7 @@ export default function FamilyPlanSummary({
         <button
           type="button"
           onClick={onEdit}
-          className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-neutral-300 text-sm font-semibold uppercase tracking-widest hover:border-neutral-900 transition-colors"
+          className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-neutral-300 text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:border-neutral-900 transition-colors"
         >
           <FaPenToSquare aria-hidden size={14} />
           {dictionary.editInputs}
@@ -246,7 +246,7 @@ export default function FamilyPlanSummary({
         <button
           type="button"
           onClick={onStartOver}
-          className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-neutral-500 text-sm font-semibold uppercase tracking-widest hover:bg-neutral-100 transition-colors"
+          className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-neutral-600 text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:bg-neutral-100 transition-colors"
         >
           <FaRotateLeft aria-hidden size={14} />
           {dictionary.startOver}

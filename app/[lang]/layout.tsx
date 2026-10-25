@@ -38,7 +38,7 @@ export async function generateMetadata({
       siteName: lang === "ar" ? "مجموعة خالص" : "Khales Group",
       locale: lang === "ar" ? "ar_AE" : "en_US",
       type: "website",
-      images: [{ url: `${SITE_URL}/logo-mark.png`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
     },
     twitter: { card: "summary_large_image", title, description },
   };
@@ -57,7 +57,10 @@ export default async function LangLayout({
     // flex layout <body> expects from its direct children - see
     // app/layout.tsx for why lang/dir live here (params.lang) rather than
     // on <html> (which would need headers(), forcing dynamic rendering).
-    <div lang={lang} dir={dir} className={`contents ${lang === "ar" ? "font-[var(--font-tajawal)]" : ""}`}>
+    // `family-name:` is required: Tailwind v4 reads a bare
+    // `font-[var(--font-tajawal)]` as a font-weight, which silently left
+    // every Arabic page in the Latin-only Geist (Arabic falling back to Arial).
+    <div lang={lang} dir={dir} className={`contents ${lang === "ar" ? "font-[family-name:var(--font-tajawal)]" : ""}`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getOrganizationSchema()) }}

@@ -19,7 +19,7 @@ type LocationFieldsProps = {
   showCurrency?: boolean;
 };
 
-const labelText = "text-xs uppercase tracking-widest text-neutral-400";
+const labelText = "text-sm font-semibold text-neutral-800";
 const sectionTitle = `${labelText} mb-4`;
 
 // Country -> city/emirate/governorate -> land status. Shared by the area,

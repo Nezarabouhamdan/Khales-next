@@ -468,7 +468,7 @@ export default function Navbar({ lang, navigation }) {
     <NavWrapper $isScrolled={isScrolled}>
       <NavbarContainer $isScrolled={isScrolled}>
         <NavLogoLink href={`/${lang}`}>
-          <NavIcon src="/assets/Khales-Logo.png" alt="Khales Logo" />
+          <NavIcon src="/logo-color.png" alt="Khales Logo" />
         </NavLogoLink>
         <MobileIcon onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}

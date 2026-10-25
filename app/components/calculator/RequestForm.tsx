@@ -57,15 +57,15 @@ type FieldError = Extract<RequestValidationError, "timing" | "review_goal" | "na
 type SubmitError = RequestValidationError | "generic";
 type Status = "editing" | "submitting" | "error" | "success";
 
-const labelText = "text-xs uppercase tracking-widest text-neutral-400";
+const labelText = "text-sm font-semibold text-neutral-800";
 const card =
   "rounded-3xl border border-neutral-200 bg-white p-6 md:p-10 shadow-[0_25px_60px_-25px_rgba(0,0,0,0.15)]";
 const primaryButton =
-  "inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#66a109] text-white text-sm font-semibold uppercase tracking-widest hover:bg-[#5a8f08] transition-colors shadow-[0_10px_25px_-8px_rgba(102,161,9,0.5)] disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#66a109] text-white text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:bg-[#5a8f08] transition-colors shadow-[0_10px_25px_-8px_rgba(102,161,9,0.5)] disabled:opacity-60";
 const secondaryButton =
-  "inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-neutral-300 bg-white text-sm font-semibold uppercase tracking-widest hover:border-neutral-900 transition-colors";
+  "inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-neutral-300 bg-white text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:border-neutral-900 transition-colors";
 const ghostButton =
-  "inline-flex items-center justify-center gap-2 min-h-10 px-4 rounded-xl text-neutral-500 text-sm font-semibold hover:bg-neutral-100 transition-colors";
+  "inline-flex items-center justify-center gap-2 min-h-10 px-4 rounded-xl text-neutral-600 text-sm font-semibold hover:bg-neutral-100 transition-colors";
 const inputBase = "w-full rounded-lg border bg-white px-4 py-3 text-base focus:border-[#66a109] focus:outline-none";
 
 function validate(form: FormState, requestType: RequestType, country: CountryCode): FieldError[] {
@@ -177,7 +177,7 @@ function ChipGroup({
     <fieldset data-field={field} aria-describedby={error ? errorId : undefined}>
       <legend className={labelText}>{legend}</legend>
       <div className="mt-3 flex flex-wrap gap-2">{children}</div>
-      {note && <p className="mt-3 text-sm text-neutral-500 max-w-xl">{note}</p>}
+      {note && <p className="mt-3 text-sm text-neutral-600 max-w-xl">{note}</p>}
       {error && (
         <p id={errorId} className="mt-2 text-sm text-red-500">
           {error}
@@ -344,7 +344,7 @@ export default function RequestForm({ dictionary, lang, requestType, context, re
         >
           {fillTemplate(dictionary.requestSuccessTitle, { reference: context.reference })}
         </h2>
-        <p className="text-neutral-500 leading-relaxed max-w-xl">
+        <p className="text-neutral-600 leading-relaxed max-w-xl">
           {fillTemplate(sentVia === "whatsapp" ? dictionary.requestSuccessWhatsapp : dictionary.requestSuccessEmail, {
             reference: context.reference,
           })}
@@ -370,7 +370,7 @@ export default function RequestForm({ dictionary, lang, requestType, context, re
             {dictionary.backToEstimate}
           </button>
         </div>
-        {sentVia === "whatsapp" && <p className="mt-3 text-xs text-neutral-500 max-w-xl">{dictionary.whatsappNotSentNote}</p>}
+        {sentVia === "whatsapp" && <p className="mt-3 text-xs text-neutral-600 max-w-xl">{dictionary.whatsappNotSentNote}</p>}
       </motion.div>
     );
   }
@@ -387,7 +387,7 @@ export default function RequestForm({ dictionary, lang, requestType, context, re
         <h2 className="font-semibold tracking-tight text-2xl md:text-3xl mb-2">
           {isReview ? dictionary.requestReviewTitle : dictionary.requestDesignTitle}
         </h2>
-        <p className="text-neutral-500 max-w-xl leading-relaxed">
+        <p className="text-neutral-600 max-w-xl leading-relaxed">
           {isReview ? dictionary.requestReviewIntro : dictionary.requestDesignIntro}
         </p>
       </div>
@@ -551,7 +551,7 @@ export default function RequestForm({ dictionary, lang, requestType, context, re
                 aria-describedby={describedBy(phoneHintId, !!phoneError && errorId("phone"))}
                 className={`${inputBase} rtl:text-right ${phoneError ? "border-red-400" : "border-neutral-300"}`}
               />
-              <p id={phoneHintId} className="text-sm text-neutral-500">
+              <p id={phoneHintId} className="text-sm text-neutral-600">
                 {dictionary.phoneHint}
               </p>
               {phoneError && (
@@ -589,7 +589,7 @@ export default function RequestForm({ dictionary, lang, requestType, context, re
                 onChange={(e) => update("marketingConsent", e.target.checked)}
                 className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer accent-[#66a109]"
               />
-              <span className="text-sm text-neutral-500 leading-relaxed">{dictionary.marketingConsentLabel}</span>
+              <span className="text-sm text-neutral-600 leading-relaxed">{dictionary.marketingConsentLabel}</span>
             </label>
           </div>
         </div>
@@ -603,7 +603,7 @@ export default function RequestForm({ dictionary, lang, requestType, context, re
               <FaWhatsapp size={16} />
               {dictionary.openWhatsapp}
             </a>
-            <p className="mt-2 text-xs text-neutral-500">{dictionary.whatsappNotSentNote}</p>
+            <p className="mt-2 text-xs text-neutral-600">{dictionary.whatsappNotSentNote}</p>
           </div>
         )}
 
@@ -614,7 +614,7 @@ export default function RequestForm({ dictionary, lang, requestType, context, re
           <button
             type="button"
             onClick={onBack}
-            className="w-full md:w-auto px-8 py-3.5 rounded-xl text-neutral-500 text-sm font-semibold uppercase tracking-widest hover:bg-neutral-100 transition-colors"
+            className="w-full md:w-auto px-8 py-3.5 rounded-xl text-neutral-600 text-sm font-semibold uppercase tracking-widest rtl:tracking-normal hover:bg-neutral-100 transition-colors"
           >
             {dictionary.backToEstimate}
           </button>
