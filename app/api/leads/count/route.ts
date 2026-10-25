@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { odooAuthenticate, odooExecuteKw } from "@/lib/odoo";
+import { CALCULATOR_LEAD_NAME_PREFIX } from "@/lib/calculator/odooLead";
 
 export const maxDuration = 60;
 // A social-proof counter doesn't need to be live - caching this for an
@@ -8,10 +9,15 @@ export const maxDuration = 60;
 // regardless of site traffic.
 export const revalidate = 3600;
 
-// Every calculator run creates (or, on a repeat run, notes on) a
-// crm.lead named "PDF Download Lead - <name>" - see /api/leads/create.
-// That name prefix is the only thing that reliably identifies a
-// calculator-originated lead among all of Odoo's crm.lead records.
+// "{n}+ homeowners have used this calculator" adds up two kinds of crm.lead,
+// identified by name prefix - the only reliable marker among all of Odoo's
+// leads:
+//   - "PDF Download Lead - <name>": one per run of the legacy calculator,
+//     which asked for an email + phone before the PDF (that route is gone,
+//     its historical leads still count);
+//   - "Calculator v2 - <type> - <city> - <reference>": design / budget
+//     review requests from calculator v2 (see lib/calculator/odooLead.ts).
+//     v2 results are free and create no lead, so only real requests add up.
 // `active in [true, false]` includes leads later archived/lost in the
 // pipeline - this counts historical usage, not current pipeline health.
 export async function GET() {
@@ -19,7 +25,9 @@ export async function GET() {
     const uid = await odooAuthenticate();
     const count = await odooExecuteKw<number>(uid, "crm.lead", "search_count", [
       [
+        "|",
         ["name", "like", "PDF Download Lead -"],
+        ["name", "like", CALCULATOR_LEAD_NAME_PREFIX],
         ["active", "in", [true, false]],
       ],
     ]);

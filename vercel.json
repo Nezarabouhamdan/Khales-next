@@ -6,13 +6,10 @@
     "app/api/applications/submit/route.ts": {
       "maxDuration": 60
     },
-    "app/api/leads/create/route.ts": {
+    "app/api/calculator/request/route.ts": {
       "maxDuration": 60
     },
     "app/api/leads/count/route.ts": {
-      "maxDuration": 60
-    },
-    "app/api/feedback/route.ts": {
       "maxDuration": 60
     },
     "app/api/tender/route.js": {

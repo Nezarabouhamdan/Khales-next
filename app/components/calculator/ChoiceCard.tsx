@@ -9,13 +9,16 @@ type ChoiceCardProps = {
   onClick: () => void;
   label: string;
   icon?: ReactNode;
+  // Small secondary line under the label (e.g. "Local partner estimate").
+  note?: string;
 };
 
-export default function ChoiceCard({ active, onClick, label, icon }: ChoiceCardProps) {
+export default function ChoiceCard({ active, onClick, label, icon, note }: ChoiceCardProps) {
   return (
     <motion.button
       type="button"
       onClick={onClick}
+      aria-pressed={active}
       whileHover={{ y: -3 }}
       whileTap={{ scale: 0.97 }}
       className={`group relative flex flex-col items-center justify-center gap-3 rounded-2xl border-2 p-5 text-center transition-colors duration-200 ${
@@ -25,7 +28,7 @@ export default function ChoiceCard({ active, onClick, label, icon }: ChoiceCardP
       }`}
     >
       {active && (
-        <span className="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#66a109] text-white">
+        <span className="absolute top-2 end-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#66a109] text-white">
           <FaCheck size={9} />
         </span>
       )}
@@ -41,6 +44,7 @@ export default function ChoiceCard({ active, onClick, label, icon }: ChoiceCardP
       <span className={`text-xs md:text-sm font-semibold ${active ? "text-neutral-900" : "text-neutral-600"}`}>
         {label}
       </span>
+      {note && <span className="-mt-2 text-[11px] leading-tight text-neutral-400">{note}</span>}
     </motion.button>
   );
 }

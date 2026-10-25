@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "version": "v1",
+    "name_ar": "مرجع نطاقات بناء الفلل — خالص",
+    "name_en": "Khales villa building rate reference",
+    "as_of": "2026-10-23",
+    "unit": "local_currency_per_built_sqm",
+    "scope": "building_only",
+    "purpose_ar": "تقدير أولي للمبنى فقط، وليس عرض مقاول أو تكلفة مشروع كاملة",
+    "purpose_en": "Preliminary building-only estimate, not a contractor quote or a full project cost",
+    "default_region_factor": 1.0,
+    "region_factor_policy_ar": "لا يغيّر السعر حتى تُوثّق معايرة الشريك المحلي بعروض قابلة للمقارنة",
+    "region_factor_policy_en": "Does not change the price until a local partner calibration is documented with comparable quotes",
+    "source": "market_rates_candidate_v1.json (management, 2026-10-23)"
+  },
+  "markets": [
+    {
+      "country": "AE",
+      "market": "Dubai",
+      "currency": "AED",
+      "active": "pilot",
+      "coverage": "city",
+      "reference_city": "ae_dubai",
+      "confidence": "medium_low",
+      "rates": {
+        "practical": { "low": 3000, "expected": 3600, "high": 4200 },
+        "family": { "low": 4200, "expected": 5350, "high": 6500 },
+        "premium": { "low": 6500, "expected": 8750, "high": 11000 }
+      },
+      "anchor_date": "2025-Q2",
+      "vat_mode": "not_included_or_unconfirmed",
+      "note_ar": "المعايرة المباشرة المنشورة تخص دبي. بقية الإمارات تعرض مرجع الإمارات مع تنبيه وجوب مراجعة شريك محلي.",
+      "note_en": "The published direct calibration covers Dubai. Other emirates show the UAE reference with a note that a local partner review is required.",
+      "region_factor_note_ar": "لا توجد أدلة مقارنة موحّدة لبقية الإمارات؛ لا يُطبّق رفع أو خصم آلي.",
+      "region_factor_note_en": "No comparable evidence for the other emirates; no automatic uplift or discount is applied.",
+      "material_signals": [
+        {
+          "type": "construction_cost_index",
+          "label_en": "Abu Dhabi construction cost index",
+          "label_ar": "مؤشر تكلفة الإنشاءات في أبوظبي",
+          "period": "2025-Q4"
+        },
+        {
+          "type": "tender_price_forecast",
+          "label_en": "UAE tender price forecast",
+          "label_ar": "توقعات أسعار العطاءات في الإمارات",
+          "period": "2026"
+        }
+      ]
+    },
+    {
+      "country": "SA",
+      "market": "National benchmark",
+      "currency": "SAR",
+      "active": "pilot",
+      "coverage": "national",
+      "reference_city": null,
+      "confidence": "medium",
+      "tier_confidence": { "practical": "low" },
+      "rates": {
+        "practical": { "low": 1500, "expected": 1750, "high": 2000 },
+        "family": { "low": 4100, "expected": 4450, "high": 4800 },
+        "premium": { "low": 6000, "expected": 7350, "high": 8700 }
+      },
+      "anchor_date": "2026-10-05",
+      "tier_anchor_date": { "practical": "2025" },
+      "vat_mode": "verify_on_contractor_invoice",
+      "note_ar": "مرجع وطني، لا يعبر عن سعر مدينة محددة.",
+      "note_en": "A national benchmark; it does not represent the price of a specific city.",
+      "region_factor_note_ar": "النطاق الوطني ليس دليلاً على فرق الرياض أو جدة أو الشرقية؛ لا فروق مدن آلية.",
+      "region_factor_note_en": "The national range is not evidence of a Riyadh, Jeddah or Eastern Province difference; no automatic city differences.",
+      "material_signals": [
+        {
+          "type": "construction_cost_index",
+          "label_en": "Saudi construction cost index",
+          "label_ar": "مؤشر تكاليف البناء في السعودية",
+          "period": "2026-07"
+        }
+      ]
+    },
+    {
+      "country": "QA",
+      "market": "Doha benchmark",
+      "currency": "QAR",
+      "active": "pilot",
+      "coverage": "city",
+      "reference_city": "qa_doha",
+      "confidence": "medium_low",
+      "rates": {
+        "practical": { "low": 4700, "expected": 5350, "high": 6000 },
+        "family": { "low": 6000, "expected": 7000, "high": 8000 },
+        "premium": { "low": 8000, "expected": 8550, "high": 9100 }
+      },
+      "anchor_date": "2023-Q3",
+      "vat_mode": "not_assumed",
+      "note_ar": "المرجع المنشور للدوحة ويحتاج معايرة شريك محلي قبل الاعتماد.",
+      "note_en": "The published reference is for Doha and needs local partner calibration before it is relied on.",
+      "region_factor_note_ar": "مرجع قطر العددي المباشر يقف عند الدوحة؛ خارج الدوحة يلزم مراجعة محلية.",
+      "region_factor_note_en": "Qatar's direct numeric reference stops at Doha; outside Doha a local review is required.",
+      "material_signals": [
+        {
+          "type": "producer_price_index",
+          "label_en": "Qatar producer price index",
+          "label_ar": "مؤشر أسعار المنتجين في قطر",
+          "period": "2026-05"
+        }
+      ]
+    },
+    {
+      "country": "OM",
+      "market": "National",
+      "currency": "OMR",
+      "active": "partner_review_only",
+      "coverage": "national",
+      "reference_city": null,
+      "confidence": "very_low",
+      "rates": null,
+      "anchor_date": null,
+      "vat_mode": "5_percent_verify",
+      "note_ar": "لا يظهر رقم للمستخدم؛ يفتح مسار تقدير مخصص مع شريك محلي بسبب فجوة بيانات حديثة.",
+      "note_en": "No number is shown; a custom estimate with a local partner is opened because of a gap in recent data.",
+      "region_factor_note_ar": "لا يوجد نطاق مدعوم حديث؛ التقدير حسب المحافظة مع شريك محلي.",
+      "region_factor_note_en": "No recent supported range; estimates are prepared per governorate with a local partner.",
+      "material_signals": [
+        {
+          "type": "consumer_price_index",
+          "label_en": "Oman inflation bulletin",
+          "label_ar": "نشرة التضخم في عُمان",
+          "period": "2026-08"
+        }
+      ]
+    },
+    {
+      "country": "KW",
+      "market": "National",
+      "currency": "KWD",
+      "active": "partner_review_only",
+      "coverage": "national",
+      "reference_city": null,
+      "confidence": "very_low",
+      "rates": null,
+      "anchor_date": null,
+      "vat_mode": "no_vat_currently_reported_verify",
+      "note_ar": "لا يظهر رقم للمستخدم؛ يفتح مسار تقدير مخصص مع شريك محلي بسبب فجوة بيانات حديثة.",
+      "note_en": "No number is shown; a custom estimate with a local partner is opened because of a gap in recent data.",
+      "region_factor_note_ar": "لا يوجد نطاق مدعوم حديث؛ التقدير حسب المنطقة مع شريك محلي.",
+      "region_factor_note_en": "No recent supported range; estimates are prepared per area with a local partner.",
+      "material_signals": [
+        {
+          "type": "wholesale_price_index",
+          "label_en": "Kuwait wholesale price index",
+          "label_ar": "مؤشر أسعار الجملة في الكويت",
+          "period": "2026-Q1"
+        }
+      ]
+    },
+    {
+      "country": "BH",
+      "market": "National",
+      "currency": "BHD",
+      "active": "partner_review_only",
+      "coverage": "national",
+      "reference_city": null,
+      "confidence": "very_low",
+      "rates": null,
+      "anchor_date": null,
+      "vat_mode": "10_percent_verify",
+      "note_ar": "لا يظهر رقم للمستخدم؛ يفتح مسار تقدير مخصص مع شريك محلي بسبب فجوة بيانات حديثة.",
+      "note_en": "No number is shown; a custom estimate with a local partner is opened because of a gap in recent data.",
+      "region_factor_note_ar": "لا يوجد نطاق مدعوم حديث؛ لا معامل مناطقي.",
+      "region_factor_note_en": "No recent supported range; no regional factor.",
+      "material_signals": [
+        {
+          "type": "producer_price_index",
+          "label_en": "Bahrain producer price index",
+          "label_ar": "مؤشر أسعار المنتجين في البحرين",
+          "period": "2026-Q2"
+        }
+      ]
+    }
+  ]
+}

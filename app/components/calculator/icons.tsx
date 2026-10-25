@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import {
   FaBed,
   FaUsers,
@@ -14,27 +15,25 @@ import {
   FaDumbbell,
   FaCarSide,
   FaLayerGroup,
-  FaMapMarkerAlt,
   FaCity,
   FaLandmark,
   FaHome,
   FaStar,
+  FaTree,
+  FaHouseUser,
+  FaMapMarkedAlt,
+  FaFileSignature,
+  FaSearchLocation,
 } from "react-icons/fa";
 import { FaStairs } from "react-icons/fa6";
 import { GiElevator } from "react-icons/gi";
-import type {
-  RoomId,
-  OtherRoomId,
-  FixedAddonId,
-  LocationId,
-  ArchitecturalStyle,
-  FinishingLevel,
-} from "@/data/villaCalculator";
+import type { RoomId, OtherRoomId, ExtraRoomId, ArchitecturalStyle } from "@/data/villaCalculator";
+import type { FinishTier, LandStatus, SpecialItemId } from "@/lib/calculator/types";
 
-const FINISHING_STAR_COUNT: Record<FinishingLevel, number> = { standard: 1, medium: 2, high: 3 };
+const TIER_STAR_COUNT: Record<FinishTier, number> = { practical: 1, family: 2, premium: 3 };
 
-export function FinishingStars({ level }: { level: FinishingLevel }) {
-  const count = FINISHING_STAR_COUNT[level];
+export function FinishingStars({ tier }: { tier: FinishTier }) {
+  const count = TIER_STAR_COUNT[tier];
   return (
     <span className="flex gap-0.5">
       {Array.from({ length: 3 }).map((_, i) => (
@@ -44,7 +43,7 @@ export function FinishingStars({ level }: { level: FinishingLevel }) {
   );
 }
 
-export const ROOM_ICONS: Record<RoomId, React.ReactNode> = {
+export const ROOM_ICONS: Record<RoomId, ReactNode> = {
   bedroom: <FaBed />,
   majlis: <FaUsers />,
   living: <FaCouch />,
@@ -53,7 +52,7 @@ export const ROOM_ICONS: Record<RoomId, React.ReactNode> = {
   guest_bedroom: <FaUserFriends />,
 };
 
-export const OTHER_ROOM_ICONS: Record<OtherRoomId, React.ReactNode> = {
+export const OTHER_ROOM_ICONS: Record<OtherRoomId, ReactNode> = {
   maid_room: <FaPlus />,
   staircase_room: <FaStairs />,
   storage_room: <FaWarehouse />,
@@ -61,35 +60,30 @@ export const OTHER_ROOM_ICONS: Record<OtherRoomId, React.ReactNode> = {
   driver_room: <FaCar />,
 };
 
-export const FIXED_ADDON_ICONS: Record<FixedAddonId, React.ReactNode> = {
-  pool: <FaSwimmingPool />,
+export const EXTRA_ROOM_ICONS: Record<ExtraRoomId, ReactNode> = {
   office: <FaBuilding />,
-  elevator: <GiElevator />,
   cinema: <FaVideo />,
   gym: <FaDumbbell />,
 };
 
-export const ParkingIcon = FaCarSide;
-export const BasementIcon = FaLayerGroup;
+export const SPECIAL_ITEM_ICONS: Record<SpecialItemId, ReactNode> = {
+  basement: <FaLayerGroup />,
+  pool: <FaSwimmingPool />,
+  elevator: <GiElevator />,
+  annex: <FaHouseUser />,
+  external_works: <FaTree />,
+};
 
-export const LocationIcon = FaMapMarkerAlt;
+export const LAND_STATUS_ICONS: Record<LandStatus, ReactNode> = {
+  owned: <FaMapMarkedAlt />,
+  grant_or_allocation: <FaFileSignature />,
+  no_land_yet: <FaSearchLocation />,
+};
 
-export const STYLE_ICONS: Record<ArchitecturalStyle, React.ReactNode> = {
+export const STYLE_ICONS: Record<ArchitecturalStyle, ReactNode> = {
   modern: <FaCity />,
   neoclassic: <FaLandmark />,
   heritage: <FaHome />,
 };
 
-// A single consistent pin works fine for every emirate - kept as a lookup
-// (rather than one shared constant) in case locations ever want distinct
-// icons later.
-export const LOCATION_ICONS: Record<LocationId, React.ReactNode> = {
-  dubai: <FaMapMarkerAlt />,
-  abu_dhabi: <FaMapMarkerAlt />,
-  sharjah: <FaMapMarkerAlt />,
-  ajman: <FaMapMarkerAlt />,
-  umm_al_quwain: <FaMapMarkerAlt />,
-  ras_al_khaimah: <FaMapMarkerAlt />,
-  fujairah: <FaMapMarkerAlt />,
-  al_ain: <FaMapMarkerAlt />,
-};
+export const ParkingIcon = FaCarSide;

@@ -1,266 +1,316 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { Locale } from "@/i18n-config";
 import type { CalculatorDict } from "@/dictionaries/types";
+import { useLenis } from "@/app/components/SmoothScroll";
+import { CALCULATOR_RATES } from "@/lib/calculator/rates";
 import {
-  calculateCost,
-  getInitialDetailedSelections,
-  getInitialQuickSelections,
-  type CalculationMode,
-  type DetailedSelections,
-  type QuickSelections,
-} from "@/lib/calculator/pricing";
+  computeEstimate,
+  estimateFamilyPlanAreaSqm,
+  getInitialEstimateInputs,
+  getInitialFamilyPlan,
+  INITIAL_READINESS,
+  validateEstimateInputs,
+  type EstimateInputs,
+  type FamilyPlanSelections,
+  type ReadinessAnswers,
+} from "@/lib/calculator/engine";
+import { generateReference, isValidReference } from "@/lib/calculator/reference";
+import type { RequestContext } from "@/lib/calculator/request";
+import {
+  LEGACY_SESSION_KEY,
+  SESSION_KEY,
+  restoreSession,
+  type CalculatorScreen,
+  type CalculatorSession,
+} from "@/lib/calculator/session";
+import type { InputMode, RequestType } from "@/lib/calculator/types";
 import IntroScreen from "./IntroScreen";
-import DetailedWizard from "./DetailedWizard";
-import QuickForm from "./QuickForm";
+import EstimateForm from "./EstimateForm";
 import ResultsView from "./ResultsView";
-import LeadGateModal from "./LeadGateModal";
-
-type FeedbackRating = "too_low" | "just_right" | "too_high";
+import FamilyPlanWizard from "./FamilyPlanWizard";
+import FamilyPlanSummary from "./FamilyPlanSummary";
+import RequestForm from "./RequestForm";
 
 type CalculatorClientProps = {
   lang: Locale;
   dictionary: CalculatorDict;
 };
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+type Screen = CalculatorScreen | "request";
+type OpenRequest = { type: RequestType; returnTo: "result" | "family_summary" };
 
+// Clears the fixed site header when bringing the calculator's top into view.
+const HEADER_OFFSET = 96;
+
+// Calculator v2 flow: intro -> area/budget form -> result, or intro ->
+// family plan -> plan summary. The result is free and shown straight away;
+// the only thing that ever reaches Odoo is a design / budget-review request
+// the visitor sends from RequestForm.
 export default function CalculatorClient({ lang, dictionary }: CalculatorClientProps) {
   const isRTL = lang === "ar";
 
-  const [mode, setMode] = useState<CalculationMode | null>(null);
-  const [showResults, setShowResults] = useState(false);
-  const [selections, setSelections] = useState<DetailedSelections>(getInitialDetailedSelections());
-  const [quickSelections, setQuickSelections] = useState<QuickSelections>(getInitialQuickSelections());
-  const [extraArea, setExtraArea] = useState(0);
+  const [screen, setScreen] = useState<Screen>("intro");
+  const [inputMode, setInputMode] = useState<InputMode | null>(null);
+  const [estimate, setEstimate] = useState<EstimateInputs>(getInitialEstimateInputs);
+  const [familyPlan, setFamilyPlan] = useState<FamilyPlanSelections>(getInitialFamilyPlan);
+  const [reference, setReference] = useState<string | null>(null);
+  const [estimateDate, setEstimateDate] = useState<string | null>(null);
+  const [readiness, setReadiness] = useState<ReadinessAnswers>(INITIAL_READINESS);
+  const [openRequest, setOpenRequest] = useState<OpenRequest | null>(null);
+  const [restored, setRestored] = useState(false);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [leadInfo, setLeadInfo] = useState({ name: "", email: "", phone: "" });
-  const [currentLeadId, setCurrentLeadId] = useState<string | null>(null);
-  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  // Bumped whenever a new estimate starts, so a slow reference response for
+  // an older estimate can't overwrite the current one.
+  const referenceTicket = useRef(0);
+  const lenis = useLenis();
 
-  const [feedbackRating, setFeedbackRating] = useState<FeedbackRating | null>(null);
-  const [feedbackComment, setFeedbackComment] = useState("");
-  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
-  const [feedbackSubmitting, setFeedbackSubmitting] = useState(false);
-
-  const resultsRef = useRef<HTMLDivElement>(null);
-
-  const result = useMemo(
+  const estimateMode = inputMode === "area" || inputMode === "budget" ? inputMode : null;
+  const outcome = useMemo(
     () =>
-      calculateCost({
-        mode: mode ?? "detailed",
-        selections,
-        quickSelections,
-        extraArea,
-        itemTranslations: dictionary.itemTranslations,
-      }),
-    [mode, selections, quickSelections, extraArea, dictionary],
+      estimateMode && validateEstimateInputs(estimateMode, estimate) === null
+        ? computeEstimate(CALCULATOR_RATES, estimateMode, estimate)
+        : null,
+    [estimateMode, estimate],
   );
+  // From the current plan at render time - the wizard may adjust the plan
+  // (clamping room sizes) in the same tick it finishes.
+  const indicativeAreaSqm = useMemo(() => estimateFamilyPlanAreaSqm(familyPlan), [familyPlan]);
 
-  const handleReset = () => {
-    setShowResults(false);
-    setSelections(getInitialDetailedSelections());
-    setQuickSelections(getInitialQuickSelections());
-    setMode(null);
-    setExtraArea(0);
-    setCurrentLeadId(null);
-    setFeedbackRating(null);
-    setFeedbackComment("");
-    setFeedbackSubmitted(false);
+  const requestContext: RequestContext | null = useMemo(() => {
+    if (!openRequest || !reference) return null;
+    if (openRequest.returnTo === "family_summary") {
+      return { inputMode: "family_plan", familyPlan, indicativeAreaSqm, reference };
+    }
+    return estimateMode && outcome ? { inputMode: estimateMode, estimate, outcome, reference } : null;
+  }, [openRequest, reference, familyPlan, indicativeAreaSqm, estimateMode, estimate, outcome]);
+
+  const scrollToTop = () => {
+    const node = rootRef.current;
+    if (!node || node.getBoundingClientRect().top >= HEADER_OFFSET) return;
+    const instance = lenis?.current;
+    if (instance) instance.scrollTo(node, { offset: -HEADER_OFFSET });
+    else node.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handleShowResult = () => {
-    setShowResults(true);
-    setIsModalOpen(true);
+  const goTo = (next: Screen) => {
+    setScreen(next);
+    scrollToTop();
   };
 
-  const handleDownloadPdf = async () => {
-    if (!resultsRef.current) return;
-    setIsGeneratingPdf(true);
-    try {
-      const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
-        import("html2canvas"),
-        import("jspdf"),
-      ]);
-
-      const canvas = await html2canvas(resultsRef.current, { scale: 2, backgroundColor: "#ffffff" });
-      const imgData = canvas.toDataURL("image/png");
-
-      const pdf = new jsPDF({ orientation: "portrait", unit: "pt", format: "a4" });
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = pageWidth;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      let heightLeft = imgHeight;
-      let position = 0;
-
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft > 0) {
-        position -= pageHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save("khales-villa-cost-estimate.pdf");
-    } catch (error) {
-      console.error("Failed to generate PDF", error);
-    } finally {
-      setIsGeneratingPdf(false);
-    }
-  };
-
-  const handleSubmitAndDownload = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!leadInfo.email || !leadInfo.phone) {
-      window.alert(dictionary.fillAllFields);
-      return;
-    }
-    if (!emailRegex.test(leadInfo.email)) {
-      window.alert(dictionary.invalidEmail);
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      const res = await fetch("/api/leads/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: leadInfo.name,
-          email: leadInfo.email,
-          phone: leadInfo.phone,
-          description: `Villa cost estimate: ${Math.round(result.totalPrice).toLocaleString()} AED / ${Math.round(
-            result.totalBUA,
-          ).toLocaleString()} m²`,
-        }),
+  // The server issues the random reference; if that fails the browser makes
+  // one itself, so the result is never held up by the network.
+  const fetchReference = (ticket: number) => {
+    fetch("/api/calculator/reference", { method: "POST" })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { reference?: unknown } | null) =>
+        isValidReference(data?.reference) ? data.reference : generateReference(),
+      )
+      .catch(() => generateReference())
+      .then((value) => {
+        if (ticket === referenceTicket.current) setReference(value);
       });
-      const data = await res.json();
-      if (data?.leadId) setCurrentLeadId(data.leadId);
-    } catch (error) {
-      console.error("Failed to submit lead", error);
-    } finally {
-      setIsSubmitting(false);
-      setIsModalOpen(false);
-      handleDownloadPdf();
-    }
   };
 
-  const handleFeedbackSubmit = async () => {
-    if (!feedbackRating) return;
-    setFeedbackSubmitting(true);
-    try {
-      await fetch("/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          leadId: currentLeadId,
-          rating: feedbackRating,
-          comment: feedbackComment,
-          totalPrice: result.totalPrice,
-          totalBUA: result.totalBUA,
-          lang,
-        }),
-      });
-    } catch {
-      // stub endpoint - safe to ignore
-    }
-    setFeedbackSubmitting(false);
-    setFeedbackSubmitted(true);
+  const startEstimate = (next: "result" | "family_summary") => {
+    const ticket = ++referenceTicket.current;
+    setReference(null);
+    setEstimateDate(new Date().toISOString());
+    fetchReference(ticket);
+    goTo(next);
   };
 
-  // Restore in-progress calculator state after mount, same as Khales-next.
-  // sessionStorage isn't available during SSR, so this can only run as a
-  // one-time sync from that external store once the component is on the
-  // client - not a cascading-render loop despite the lint rule below.
+  const handleSelectMode = (mode: InputMode) => {
+    setInputMode(mode);
+    goTo(mode === "family_plan" ? "family" : "form");
+  };
+
+  const handleOpenRequest = (type: RequestType, returnTo: OpenRequest["returnTo"]) => {
+    if (!reference) {
+      // Don't let the in-flight reference replace this one mid-form.
+      referenceTicket.current++;
+      setReference(generateReference());
+    }
+    setOpenRequest({ type, returnTo });
+    goTo("request");
+  };
+
+  const handleCloseRequest = () => {
+    const returnTo = openRequest?.returnTo ?? "result";
+    setOpenRequest(null);
+    goTo(returnTo);
+  };
+
+  // "See the building range for ~X m²": the area path, prefilled from the
+  // plan, so the visitor confirms the inputs before any number is shown.
+  const handleCheckCost = () => {
+    setEstimate((current) => ({
+      ...current,
+      country: familyPlan.country,
+      city: familyPlan.city,
+      landStatus: familyPlan.landStatus,
+      tier: familyPlan.tier,
+      floors: familyPlan.floors,
+      specialItems: familyPlan.specialItems,
+      unit: "m2",
+      area: Math.floor(indicativeAreaSqm),
+    }));
+    setInputMode("area");
+    goTo("form");
+  };
+
+  const handleStartOver = () => {
+    referenceTicket.current++;
+    setInputMode(null);
+    setEstimate(getInitialEstimateInputs());
+    setFamilyPlan(getInitialFamilyPlan());
+    setReference(null);
+    setEstimateDate(null);
+    setReadiness(INITIAL_READINESS);
+    setOpenRequest(null);
+    goTo("intro");
+  };
+
+  // Restore the visitor's place after mount (sessionStorage doesn't exist
+  // during SSR) - a one-time sync from an external store, not a cascading
+  // render loop despite the lint rule below.
   useEffect(() => {
+    let session: CalculatorSession | null = null;
     try {
-      const saved = sessionStorage.getItem("khalesVillaCalc");
-      if (!saved) return;
-      const parsed = JSON.parse(saved);
-      /* eslint-disable react-hooks/set-state-in-effect */
-      if (parsed.mode) setMode(parsed.mode);
-      if (parsed.selections) setSelections(parsed.selections);
-      if (parsed.quickSelections) setQuickSelections(parsed.quickSelections);
-      if (typeof parsed.extraArea === "number") setExtraArea(parsed.extraArea);
-      if (typeof parsed.showResults === "boolean") setShowResults(parsed.showResults);
-      /* eslint-enable react-hooks/set-state-in-effect */
+      sessionStorage.removeItem(LEGACY_SESSION_KEY);
+      session = restoreSession(sessionStorage.getItem(SESSION_KEY));
     } catch {
-      // ignore corrupt session storage
+      // storage blocked (private mode) - start fresh
     }
+    /* eslint-disable react-hooks/set-state-in-effect */
+    if (session) {
+      setScreen(session.screen);
+      setInputMode(session.inputMode);
+      setEstimate(session.estimate);
+      setFamilyPlan(session.familyPlan);
+      setReference(session.reference);
+      setEstimateDate(session.estimateDate);
+      setReadiness(session.readiness);
+      // Reloaded while the reference was still being issued.
+      if (!session.reference && (session.screen === "result" || session.screen === "family_summary")) {
+        fetchReference(++referenceTicket.current);
+      }
+    }
+    setRestored(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   useEffect(() => {
-    sessionStorage.setItem(
-      "khalesVillaCalc",
-      JSON.stringify({ mode, selections, quickSelections, extraArea, showResults }),
-    );
-  }, [mode, selections, quickSelections, extraArea, showResults]);
+    if (!restored) return;
+    const stored: CalculatorSession = {
+      screen: screen === "request" ? (openRequest?.returnTo ?? "intro") : screen,
+      inputMode,
+      estimate,
+      familyPlan,
+      reference,
+      estimateDate,
+      readiness,
+    };
+    try {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify(stored));
+    } catch {
+      // storage full or blocked - the calculator still works without it
+    }
+  }, [restored, screen, openRequest, inputMode, estimate, familyPlan, reference, estimateDate, readiness]);
+
+  // A screen whose state isn't there (e.g. a restored "result" whose inputs
+  // no longer validate) falls back to the step before it.
+  const resolveView = (): Screen => {
+    if (screen === "request" && requestContext) return "request";
+    const base = screen === "request" ? (openRequest?.returnTo ?? "intro") : screen;
+    if (estimateMode && (base === "form" || base === "result")) {
+      return base === "result" && outcome && estimateDate ? "result" : "form";
+    }
+    if (inputMode === "family_plan" && (base === "family" || base === "family_summary")) {
+      return base === "family_summary" && estimateDate ? "family_summary" : "family";
+    }
+    return "intro";
+  };
+
+  let content: ReactNode;
+  switch (resolveView()) {
+    case "request":
+      content = openRequest && requestContext && (
+        <RequestForm
+          key={`${openRequest.type}-${requestContext.reference}`}
+          dictionary={dictionary}
+          lang={lang}
+          requestType={openRequest.type}
+          context={requestContext}
+          readiness={readiness}
+          onBack={handleCloseRequest}
+        />
+      );
+      break;
+    case "result":
+      content = outcome && estimateDate && (
+        <ResultsView
+          dictionary={dictionary}
+          lang={lang}
+          inputs={estimate}
+          outcome={outcome}
+          reference={reference}
+          estimateDate={estimateDate}
+          readiness={readiness}
+          onReadinessChange={setReadiness}
+          onRequest={(type) => handleOpenRequest(type, "result")}
+          onEdit={() => goTo("form")}
+          onStartOver={handleStartOver}
+        />
+      );
+      break;
+    case "form":
+      content = estimateMode && (
+        <EstimateForm
+          key={estimateMode}
+          dictionary={dictionary}
+          mode={estimateMode}
+          value={estimate}
+          onChange={setEstimate}
+          onBack={() => goTo("intro")}
+          onSubmit={() => startEstimate("result")}
+        />
+      );
+      break;
+    case "family_summary":
+      content = (
+        <FamilyPlanSummary
+          dictionary={dictionary}
+          lang={lang}
+          plan={familyPlan}
+          indicativeAreaSqm={indicativeAreaSqm}
+          onRequestDesign={() => handleOpenRequest("design", "family_summary")}
+          onCheckCost={handleCheckCost}
+          onEdit={() => goTo("family")}
+          onStartOver={handleStartOver}
+        />
+      );
+      break;
+    case "family":
+      content = (
+        <FamilyPlanWizard
+          dictionary={dictionary}
+          value={familyPlan}
+          onChange={setFamilyPlan}
+          onBack={() => goTo("intro")}
+          onFinish={() => startEstimate("family_summary")}
+        />
+      );
+      break;
+    default:
+      content = <IntroScreen dictionary={dictionary} onSelect={handleSelectMode} />;
+  }
 
   return (
-    <div dir={isRTL ? "rtl" : "ltr"} className="max-w-4xl mx-auto px-6 md:px-0">
-      {!mode && <IntroScreen dictionary={dictionary} onSelect={setMode} />}
-
-      {mode === "detailed" && !showResults && (
-        <DetailedWizard
-          dictionary={dictionary}
-          selections={selections}
-          onChange={setSelections}
-          onBack={() => setMode(null)}
-          onShowResult={handleShowResult}
-        />
-      )}
-
-      {mode === "quick" && !showResults && (
-        <QuickForm
-          dictionary={dictionary}
-          selections={quickSelections}
-          onChange={setQuickSelections}
-          onBack={() => setMode(null)}
-          onShowResult={handleShowResult}
-        />
-      )}
-
-      {showResults && (
-        <>
-          <ResultsView
-            dictionary={dictionary}
-            isRTL={isRTL}
-            result={result}
-            unlocked={!isModalOpen}
-            extraArea={extraArea}
-            onExtraAreaChange={setExtraArea}
-            onDownloadPdf={handleDownloadPdf}
-            onStartOver={handleReset}
-            isGeneratingPdf={isGeneratingPdf}
-            bookConsultationHref={`/${lang}/contact`}
-            resultsRef={resultsRef}
-            feedback={{
-              rating: feedbackRating,
-              comment: feedbackComment,
-              submitted: feedbackSubmitted,
-              submitting: feedbackSubmitting,
-              onRatingChange: setFeedbackRating,
-              onCommentChange: setFeedbackComment,
-              onSubmit: handleFeedbackSubmit,
-            }}
-          />
-          <LeadGateModal
-            open={isModalOpen}
-            dictionary={dictionary}
-            leadInfo={leadInfo}
-            isSubmitting={isSubmitting}
-            onChange={setLeadInfo}
-            onSubmit={handleSubmitAndDownload}
-          />
-        </>
-      )}
+    <div ref={rootRef} dir={isRTL ? "rtl" : "ltr"} className="max-w-4xl mx-auto scroll-mt-24">
+      {content}
     </div>
   );
 }

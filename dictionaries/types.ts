@@ -1,4 +1,24 @@
 import type { ProjectCategory } from "@/data/projects";
+import type { CityId } from "@/data/calculatorMarkets";
+import type { ArchitecturalStyle, ExtraRoomId, OtherRoomId, RoomId } from "@/data/villaCalculator";
+import type { EstimateInputError, ReadinessItemId } from "@/lib/calculator/engine";
+import type { HandoffTemplates, RequestValidationError } from "@/lib/calculator/request";
+import type {
+  AreaUnit,
+  Confidence,
+  CountryCode,
+  CurrencyCode,
+  FinishTier,
+  FloorsOption,
+  InputMode,
+  LandStatus,
+  MarketMode,
+  PreferredContact,
+  ReviewGoal,
+  SpecialItemId,
+  StartTiming,
+  VatMode,
+} from "@/lib/calculator/types";
 
 export type NavLink = { label: string; href: string };
 
@@ -137,109 +157,191 @@ export type CalcPageDict = {
   subtitle: string;
 };
 
+// Calculator v2 copy. Placeholders in {braces} are filled with
+// fillTemplate() from lib/calculator/format.ts.
 export type CalculatorDict = {
-  introTitle: string;
+  // ---- Start screen ----
+  introTitle: string; // spec headline: "A home that brings you together, and a budget you know from the start."
   introDescription: string;
   usageStatLabel: string; // contains "{n}"
-  detailedModeTitle: string;
-  detailedModeDescription: string;
-  quickModeTitle: string;
-  quickModeDescription: string;
-  detailedTitle: string;
-  detailedDescription: string;
-  basicProperties: string;
-  location: string;
-  architecturalStyle: string;
-  finishingLevel: string;
-  roomsAndSpaces: string;
-  addonsAndFacilities: string;
-  luxuryAddons: string;
-  parking: string;
-  quickTitle: string;
-  quickDescription: string;
-  projectDetails: string;
-  totalBUA: string;
-  areaUnit: string;
-  units: { m2: string; sqft: string };
-  resultsTitle: string;
-  resultsDescription: string;
-  totalBUAResult: string;
-  totalBUAResultSqft: string;
-  totalCostResult: string;
-  extraAreaSectionTitle: string;
-  extraAreaLabel: string;
-  costBreakdownTitle: string;
+  paths: Record<InputMode, { title: string; description: string }>;
+  start: string; // call to action on each path card
+
+  // ---- Shared navigation / small words ----
   back: string;
   next: string;
   showResult: string;
   startOver: string;
-  bookConsultation: string;
-  downloadPdf: string;
-  downloadFreePdf: string;
+  editInputs: string;
+  optional: string; // "(optional)"
+  yes: string;
+  no: string;
+
+  // ---- Shared inputs ----
+  countryLabel: string;
+  countryPartnerBadge: string; // under Oman / Kuwait / Bahrain: no published number, partner estimate
+  cityLabel: string;
+  cityPlaceholder: string; // empty option of the city <select>
+  countries: Record<CountryCode, string>;
+  cities: Record<CityId, string>;
+  currencies: Record<CurrencyCode, string>; // short label shown next to amounts
+  landStatusLabel: string;
+  landStatuses: Record<LandStatus, string>;
+  areaLabel: string;
+  areaHint: string;
+  unitLabel: string;
+  units: Record<AreaUnit, string>; // long names for the unit picker
+  unitSymbols: Record<AreaUnit, string>; // "m²" / "sqft"
+  budgetLabel: string; // contains "{currency}"
+  budgetHint: string;
+  tierLabel: string;
+  tiers: Record<FinishTier, { name: string; description: string }>;
+  houseTypeLabel: string;
+  houseTypeFamilyVilla: string; // the only house type in v1
+  floorsLabel: string;
+  floors: Record<FloorsOption, string>;
+  specialItemsLabel: string;
+  specialItemsHint: string;
+  specialItems: Record<SpecialItemId, string>;
+  inputErrors: Record<EstimateInputError, string>;
+  areaFormTitle: string;
+  areaFormDescription: string;
+  budgetFormTitle: string;
+  budgetFormDescription: string;
+
+  // ---- Result ----
+  resultAreaTitle: string;
+  resultBudgetTitle: string;
+  disclaimer: string; // mandatory on every result, PDF and card page
+  scopeTag: string; // "Building only · VAT per country · not a contractor quote"
+  rangeLabel: string;
+  planningFigureLabel: string;
+  planningFigureNote: string;
+  areaUsedLabel: string;
+  budgetUsedLabel: string;
+  budgetAreas: Record<"conservative" | "reference" | "maximum", { label: string; hint: string }>;
+  budgetAreaNote: string;
+  tagLabels: { country: string; currency: string; tier: string; anchorDate: string; confidence: string };
+  confidenceLevels: Record<Confidence, string>;
+  // {city} = selected city, {reference} = city the numbers come from
+  marketModeNotes: Record<Exclude<MarketMode, "partner_review">, string>;
+  unusualSizeNote: string;
+  specialItemsSelectedNote: string; // contains "{items}"
+  vatLabel: string;
+  vatModes: Record<VatMode, string>;
+  exclusionsTitle: string;
+  exclusions: string[];
+  driversTitle: string;
+  drivers: string[];
+  referenceLabel: string;
+  referencePending: string;
+  estimateDateLabel: string;
+
+  // ---- Markets without a published number (Oman, Kuwait, Bahrain) ----
+  partnerReviewTitle: string;
+  partnerReviewBody: string;
+  partnerReviewWhy: string;
+
+  // ---- Planning checklist (never a verdict like "not ready") ----
+  readinessTitle: string;
+  readinessSubtitle: string;
+  readiness: Record<ReadinessItemId, { question: string; tip: string }>;
+  readinessAllSet: string;
+
+  // ---- Next steps ----
+  nextStepsTitle: string;
+  ctaDesign: { title: string; description: string };
+  ctaReview: { title: string; description: string };
+  ctaShare: { title: string; description: string };
+  shareCardButton: string;
+  downloadCardButton: string;
+  downloadPdfButton: string;
   generating: string;
-  modalTitle: string;
-  modalDescription: string;
+  shareText: string; // contains "{reference}"
+  shareCard: {
+    brand: string;
+    title: string;
+    locationLabel: string;
+    areaLabel: string;
+    budgetLabel: string;
+    tierLabel: string;
+    rangeLabel: string;
+    planningLabel: string;
+    areaRangeLabel: string;
+    dateLabel: string;
+    referenceLabel: string;
+    footer: string;
+  };
+
+  // ---- Service requests ----
+  requestDesignTitle: string;
+  requestDesignIntro: string;
+  requestReviewTitle: string;
+  requestReviewIntro: string;
+  requestSummaryTitle: string;
+  startTimingLabel: string;
+  startTimings: Record<StartTiming, string>;
+  hasPlanOrQuoteLabel: string;
+  reviewGoalLabel: string;
+  reviewGoals: Record<ReviewGoal, string>;
+  quoteViaWhatsappNote: string;
+  preferredContactLabel: string;
+  preferredContacts: Record<PreferredContact, string>;
+  firstNameLabel: string;
   emailLabel: string;
   phoneLabel: string;
-  proceedAndDownload: string;
+  phoneHint: string;
+  contactConsentLabel: string;
+  marketingConsentLabel: string;
+  submitRequest: string;
   submitting: string;
-  fillAllFields: string;
-  invalidEmail: string;
-  feedbackTitle: string;
-  feedbackSubtitle: string;
-  feedbackTooLow: string;
-  feedbackJustRight: string;
-  feedbackTooHigh: string;
-  feedbackCommentPlaceholder: string;
-  feedbackSubmit: string;
-  feedbackThankYou: string;
-  feedbackThankYouSub: string;
-  feedbackSubmitting: string;
-  locations: Record<
-    | "abu_dhabi"
-    | "dubai"
-    | "sharjah"
-    | "ajman"
-    | "umm_al_quwain"
-    | "ras_al_khaimah"
-    | "fujairah"
-    | "al_ain",
-    string
-  >;
-  styles: Record<"modern" | "neoclassic" | "heritage", string>;
-  finishings: Record<"standard" | "medium" | "high", string>;
-  roomNames: Record<
-    "bedroom" | "majlis" | "living" | "kitchen" | "dining" | "guest_bedroom",
-    string
-  >;
-  otherRoomNames: Record<
-    "maid_room" | "staircase_room" | "storage_room" | "prep_kitchen" | "driver_room",
-    string
-  >;
-  fixedAddonNames: Record<"pool" | "office" | "elevator" | "cinema" | "gym", string>;
+  requestErrors: Record<RequestValidationError | "generic", string>;
+  requestSuccessTitle: string;
+  requestSuccessWhatsapp: string;
+  requestSuccessEmail: string;
+  openWhatsapp: string;
+  openEmail: string;
+  whatsappNotSentNote: string;
+  backToEstimate: string;
+  handoff: HandoffTemplates & { emailSubject: string }; // emailSubject contains "{reference}"
+
+  // ---- Family home plan ----
+  familyPlanTitle: string;
+  familyPlanDescription: string;
+  familySteps: { basics: string; rooms: string; spaces: string; special: string };
+  architecturalStyle: string;
+  styles: Record<ArchitecturalStyle, string>;
+  roomNames: Record<RoomId, string>;
+  otherRoomNames: Record<OtherRoomId, string>;
+  extraRoomNames: Record<ExtraRoomId, string>;
+  servicesLabel: string;
+  extraRoomsLabel: string;
+  extraRoomsHint: string;
   addBathroom: string;
   addDressingRoom: string;
+  familyRoomsWithBath: string; // family summary, contains "{n}"
+  familyRoomsWithDressing: string; // family summary, contains "{n}"
   widthLabel: string;
   lengthLabel: string;
-  basement: string;
-  itemTranslations: Record<
-    | "preparatory"
-    | "excavation_substructure"
-    | "superstructure"
-    | "blockwork"
-    | "waterproofing"
-    | "main_finishing"
-    | "carpentry"
-    | "aluminum_glass"
-    | "electrical"
-    | "hvac"
-    | "plumbing"
-    | "external_works"
-    | "contingencies"
-    | "consultant_fees"
-    | "fixed_addons_cost",
-    string
-  >;
+  parking: string;
+  familySummaryTitle: string;
+  familySummaryDescription: string;
+  programTitle: string;
+  indicativeAreaLabel: string;
+  indicativeAreaNote: string;
+  noCostNote: string;
+  checkCostForArea: string; // contains "{area}"
+
+  // ---- No-JavaScript fallback ----
+  noscript: {
+    title: string;
+    body: string;
+    tableCaption: string; // contains "{date}"
+    perSqm: string;
+    market: string;
+    partnerReview: string;
+    contact: string;
+  };
 };
 
 export type ContactSplitSectionDict = {

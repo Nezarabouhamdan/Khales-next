@@ -3,7 +3,8 @@ import xmlrpc from "xmlrpc";
 // Shared Odoo XML-RPC client, ported from Khales-next's per-route
 // duplicated authenticate()/execute_kw boilerplate (see e.g.
 // Khales-next/pages/api/create-pdf-lead.js) into one helper so every
-// route here (contact, applications, leads, feedback) shares it.
+// route here (contact, applications, calculator requests, lead count)
+// shares it.
 
 function requireEnv(name: string): string {
   const value = process.env[name];
