@@ -368,7 +368,7 @@ export const dictionary: Dictionary = {
     resultAreaTitle: "Your preliminary building cost range",
     resultBudgetTitle: "The built-up area your budget may cover",
     disclaimer:
-      "This is a preliminary range for the building construction cost based on the inputs shown. It is not a contractor quote or the full project cost. The final cost is confirmed by local contractor quotes on the same drawings and bill of quantities.",
+      "This is a preliminary range for the building construction cost based on your inputs. It is not the property's sale price or a final contractor quote. It excludes land, design, approvals, supervision, fees and external works.",
     scopeTag: "Building only · VAT per country · Not valid as a contractor quote",
     rangeLabel: "Building cost range",
     planningFigureLabel: "Planning figure",
@@ -397,6 +397,8 @@ export const dictionary: Dictionary = {
       national_benchmark:
         "A national benchmark, not the price of a specific city: prices in {city} need local calibration.",
     },
+    cityFactorNote:
+      "Based on the {reference} reference, adjusted by {percent} for {city}: the adjustment is indicative and needs local partner calibration before you rely on it.",
     unusualSizeNote: "This size is outside the usual range for a family villa, so a local review matters more.",
     specialItemsSelectedNote: "Selected: {items}. These are priced separately and are not included in this estimate.",
     vatLabel: "VAT",

@@ -3,7 +3,7 @@
     "version": "v1",
     "name_ar": "مرجع نطاقات بناء الفلل — خالص",
     "name_en": "Khales villa building rate reference",
-    "as_of": "2026-10-23",
+    "as_of": "2026-10-26",
     "unit": "local_currency_per_built_sqm",
     "scope": "building_only",
     "purpose_ar": "تقدير أولي للمبنى فقط، وليس عرض مقاول أو تكلفة مشروع كاملة",
@@ -11,7 +11,7 @@
     "default_region_factor": 1.0,
     "region_factor_policy_ar": "لا يغيّر السعر حتى تُوثّق معايرة الشريك المحلي بعروض قابلة للمقارنة",
     "region_factor_policy_en": "Does not change the price until a local partner calibration is documented with comparable quotes",
-    "source": "market_rates_candidate_v1.json (management, 2026-10-23)"
+    "source": "market_rates_candidate_v1.json (management, 2026-10-23); SA and QA updated by management, 2026-10-26"
   },
   "markets": [
     {
@@ -27,12 +27,22 @@
         "family": { "low": 4200, "expected": 5350, "high": 6500 },
         "premium": { "low": 6500, "expected": 8750, "high": 11000 }
       },
+      "city_factors": {
+        "ae_dubai": 1.0,
+        "ae_abu_dhabi": 1.1,
+        "ae_al_ain": 1.0,
+        "ae_sharjah": 0.95,
+        "ae_ajman": 0.88,
+        "ae_umm_al_quwain": 0.85,
+        "ae_fujairah": 0.8,
+        "ae_ras_al_khaimah": 0.8
+      },
       "anchor_date": "2025-Q2",
       "vat_mode": "not_included_or_unconfirmed",
-      "note_ar": "المعايرة المباشرة المنشورة تخص دبي. بقية الإمارات تعرض مرجع الإمارات مع تنبيه وجوب مراجعة شريك محلي.",
-      "note_en": "The published direct calibration covers Dubai. Other emirates show the UAE reference with a note that a local partner review is required.",
-      "region_factor_note_ar": "لا توجد أدلة مقارنة موحّدة لبقية الإمارات؛ لا يُطبّق رفع أو خصم آلي.",
-      "region_factor_note_en": "No comparable evidence for the other emirates; no automatic uplift or discount is applied.",
+      "note_ar": "المعايرة المباشرة المنشورة تخص دبي. بقية الإمارات تعرض مرجع دبي معدّلاً بنسبة الإمارة، مع تنبيه وجوب مراجعة شريك محلي.",
+      "note_en": "The published direct calibration covers Dubai. Other emirates show the Dubai reference adjusted by the emirate's factor, with a note that a local partner review is required.",
+      "region_factor_note_ar": "نسب الإمارات مأخوذة من الحاسبة السابقة (أبوظبي +10%، الشارقة −5%، عجمان −12%، أم القيوين −15%، الفجيرة ورأس الخيمة −20%)، وتحتاج تأكيداً بعروض محلية. \"أخرى\" بلا تعديل.",
+      "region_factor_note_en": "Emirate factors carried over from the previous calculator (Abu Dhabi +10%, Sharjah −5%, Ajman −12%, Umm Al Quwain −15%, Fujairah and Ras Al Khaimah −20%); they need confirming with local quotes. \"Other\" is not adjusted.",
       "material_signals": [
         {
           "type": "construction_cost_index",
@@ -55,18 +65,16 @@
       "active": "pilot",
       "coverage": "national",
       "reference_city": null,
-      "confidence": "medium",
-      "tier_confidence": { "practical": "low" },
+      "confidence": "medium_low",
       "rates": {
         "practical": { "low": 1500, "expected": 1750, "high": 2000 },
-        "family": { "low": 4100, "expected": 4450, "high": 4800 },
-        "premium": { "low": 6000, "expected": 7350, "high": 8700 }
+        "family": { "low": 2100, "expected": 2450, "high": 2800 },
+        "premium": { "low": 3000, "expected": 3500, "high": 4200 }
       },
-      "anchor_date": "2026-10-05",
-      "tier_anchor_date": { "practical": "2025" },
+      "anchor_date": "2026-10-26",
       "vat_mode": "verify_on_contractor_invoice",
-      "note_ar": "مرجع وطني، لا يعبر عن سعر مدينة محددة.",
-      "note_en": "A national benchmark; it does not represent the price of a specific city.",
+      "note_ar": "النطاق خاص بتكلفة إنشاء المبنى والتشطيب فقط، ولا يشمل الأرض أو التصميم أو الاعتمادات أو الإشراف أو الأعمال الخارجية أو الرسوم أو الضريبة إلا إذا نص عرض المقاول على ذلك.",
+      "note_en": "The range covers building construction and finishing only. It excludes land, design, approvals, supervision, external works, fees and VAT unless the contractor's quote states otherwise.",
       "region_factor_note_ar": "النطاق الوطني ليس دليلاً على فرق الرياض أو جدة أو الشرقية؛ لا فروق مدن آلية.",
       "region_factor_note_en": "The national range is not evidence of a Riyadh, Jeddah or Eastern Province difference; no automatic city differences.",
       "material_signals": [
@@ -85,16 +93,16 @@
       "active": "pilot",
       "coverage": "city",
       "reference_city": "qa_doha",
-      "confidence": "medium_low",
+      "confidence": "low",
       "rates": {
-        "practical": { "low": 4700, "expected": 5350, "high": 6000 },
-        "family": { "low": 6000, "expected": 7000, "high": 8000 },
-        "premium": { "low": 8000, "expected": 8550, "high": 9100 }
+        "practical": { "low": 3000, "expected": 3500, "high": 4000 },
+        "family": { "low": 4000, "expected": 4500, "high": 5000 },
+        "premium": { "low": 5000, "expected": 5750, "high": 6500 }
       },
-      "anchor_date": "2023-Q3",
+      "anchor_date": "2026-10-26",
       "vat_mode": "not_assumed",
-      "note_ar": "المرجع المنشور للدوحة ويحتاج معايرة شريك محلي قبل الاعتماد.",
-      "note_en": "The published reference is for Doha and needs local partner calibration before it is relied on.",
+      "note_ar": "النطاق خاص بتكلفة إنشاء المبنى فقط، ولا يشمل قيمة الأرض أو سعر بيع العقار أو التصميم أو الاعتمادات أو الإشراف أو الأعمال الخارجية أو الرسوم أو الضريبة. الحالات ذات السرداب أو المسبح أو التشطيبات الخاصة تُحوّل لمراجعة خاصة.",
+      "note_en": "The range covers building construction only. It excludes land value, the property's sale price, design, approvals, supervision, external works, fees and VAT. Cases with a basement, pool or special finishes go to a separate review.",
       "region_factor_note_ar": "مرجع قطر العددي المباشر يقف عند الدوحة؛ خارج الدوحة يلزم مراجعة محلية.",
       "region_factor_note_en": "Qatar's direct numeric reference stops at Doha; outside Doha a local review is required.",
       "material_signals": [

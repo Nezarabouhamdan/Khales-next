@@ -3,7 +3,8 @@
 A preliminary, **building-only** cost range for a family villa in six Gulf countries. The result is free and
 shown at once: no name, email or phone is needed to see it, download the card or PDF, or share it. An Odoo lead
 is created **only** when the visitor chooses "I want to design my home" or "Review my home budget" and
-submits that form.
+submits that form. Sharing the card or downloading the PDF saves an anonymous estimate (no contact details)
+that the team can look up by its reference.
 
 Page: `/[lang]/calculator` (`en`, `ar`, RTL). Client: `app/components/calculator/`. Logic: `lib/calculator/`.
 
@@ -11,7 +12,7 @@ Page: `/[lang]/calculator` (`en`, `ar`, RTL). Client: `app/components/calculator
 
 | v1 (removed) | v2 |
 | --- | --- |
-| UAE only, AED, emirate discounts and uplifts (−5 / −12 / −20 %, +10 %) | 6 countries, each in its own currency. No regional factors. |
+| UAE only, AED, emirate discounts and uplifts (−5 / −12 / −20 %, +10 %) | 6 countries, each in its own currency. The same emirate factors are kept for the UAE (`city_factors`); no other country has city factors. |
 | Prices hard-coded in the code | All market numbers in one JSON file, checked at build |
 | One cost figure, with a room-by-room breakdown | A range (low to high) plus a "planning figure", with exclusions, confidence and price date |
 | Result blurred until email and phone were given (`/api/leads/create` made a lead, or added a note, on every run) | No form before the result, card or PDF. A lead comes only from a design or review request (`/api/calculator/request`). |
@@ -34,6 +35,7 @@ edit the UI.
 | Confidence | `markets[].confidence` (`medium`, `medium_low`, `low`, `very_low`); per tier: `tier_confidence` |
 | Pricing source date (date the file was issued) | `meta.as_of` (`YYYY-MM-DD`) |
 | VAT status shown | `markets[].vat_mode` (wording in the dictionaries under `vatModes`) |
+| City factors (multiplier on the rates; a city that isn't listed uses 1) | `markets[].city_factors` → `{ "<city id>": 0.95, … }` |
 | Material indexes (shown as context only, never applied) | `markets[].material_signals` |
 | Open a market for numbers | `active: "pilot"`, plus `rates` and `anchor_date`. For `coverage: "city"`, also `reference_city` (a city id from `data/calculatorMarkets.ts`). |
 | Close a market (no number shown) | `active: "partner_review_only"` and `rates: null` |
@@ -46,6 +48,8 @@ edit the UI.
 - a currency, confidence level, `vat_mode` or `coverage` (`city` / `national`) is unknown;
 - `coverage: "city"` has a `reference_city` that is not one of that country's cities;
 - a `tier_confidence` / `tier_anchor_date` key is not a tier, or a date or period is malformed;
+- a `city_factors` key is not one of that country's cities, a factor is outside 0.5–1.5, or the reference
+  city's factor is not 1;
 - a `material_signals` entry has an unknown type, or a period that is not `YYYY`, `YYYY-Qn` or `YYYY-MM`;
 - a `partner_review_only` market has rates (it must be `rates: null`);
 - a `pilot` market is missing `anchor_date` or any tier, has a rate that is not a positive number, or breaks
@@ -55,19 +59,18 @@ City lists are in `data/calculatorMarkets.ts`. All visitor-facing text is in `di
 `dictionaries/ar.ts` (`calculator`). This includes the required disclaimer (`disclaimer`) and the
 "building only · VAT per country · not a contractor quote" tag (`scopeTag`).
 
-## Market policy (rates v1, 2026-10-23)
+## Market policy (rates v1, 2026-10-26)
 
 | Country | Shown as | Currency | Anchor date / confidence |
 | --- | --- | --- | --- |
-| UAE | Dubai: direct reference. Other emirates: **the same Dubai numbers**, labelled "UAE reference — needs local partner calibration" | AED | 2025-Q2 / medium-low |
-| Saudi Arabia | One national benchmark for every city, with a "city needs calibration" message | SAR | 2026-10-05 (practical: 2025) / medium (practical: low) |
-| Qatar | Doha: direct reference. Elsewhere: the Doha numbers with a calibration label | QAR | 2023-Q3 / medium-low |
+| UAE | Dubai: direct reference. Other emirates: the Dubai numbers × the emirate factor (Abu Dhabi +10 %, Al Ain 0, Sharjah −5 %, Ajman −12 %, Umm Al Quwain −15 %, Fujairah and Ras Al Khaimah −20 %, Other 0), labelled with the adjustment and "needs local partner calibration" | AED | 2025-Q2 / medium-low |
+| Saudi Arabia | One national benchmark for every city, with a "city needs calibration" message | SAR | 2026-10-26 / medium-low |
+| Qatar | Doha: direct reference. Elsewhere: the Doha numbers with a calibration label | QAR | 2026-10-26 / low |
 | Oman, Kuwait, Bahrain | **No number.** "We prepare a preliminary estimate with a local partner", plus the design and review requests | OMR / KWD / BHD | — / very low |
 
-- The city is for display and routing only. It never changes the rate unless the file documents that exact
-  city as the reference.
-- The region factor is always 1.00 and shown as "difference not established". It is never applied and never
-  presented as "cities are equal".
+- The city changes the rate only through `city_factors`, which only the UAE has. In Saudi Arabia and Qatar
+  the city is for display and routing only: every city gets the national / Doha numbers.
+- `meta.default_region_factor` stays 1.00 for every city without a factor.
 - VAT is never assumed to be included. It is shown on its own line with each country's status. There is no
   currency conversion: every amount is in the selected country's currency.
 
@@ -76,12 +79,13 @@ City lists are in `data/calculatorMarkets.ts`. All visitor-facing text is in `di
 The visitor's screen and the saved lead use the same code. The request API recomputes everything from the
 submitted inputs and never trusts numbers sent by the client.
 
+- **Rates**: each of `low` / `expected` / `high` is the market rate × the city factor (1 when none).
 - **Area path**: range = area × `low` … area × `high`. Planning figure = area × `expected` ("not a contract
   price; don't use it alone to buy or sign"). Internal maths is in m², and sqft = m² × 10.7639.
 - **Budget path**: conservative area = budget ÷ `high`, reference = budget ÷ `expected`, maximum = budget ÷
   `low`. Areas are rounded down. These are building-only areas before excluded items; land is not deducted.
-- **Nothing else is added**: no markup, hidden contingency, consultant percentage, external works or region
-  factor. Special items (basement, pool, elevator, annex, external works) add **no amount and no area
+- **Nothing else is added**: no markup, hidden contingency, consultant percentage or external works.
+  Special items (basement, pool, elevator, annex, external works) add **no amount and no area
   multiplier**. They are flagged as "special pricing / local partner review" and saved with any request.
 - **Rounding**: money to the nearest 1,000 (nearest 10 below 10,000). Areas are always rounded down.
 - **Bounds**: area 20–50,000 m², budget 1–10,000,000,000. Outside 150–2,000 m² the result carries an
@@ -99,10 +103,26 @@ submitted inputs and never trusts numbers sent by the client.
 | --- | --- | --- | --- |
 | `POST /api/calculator/reference` → `{ reference }` (`Cache-Control: no-store`) | A result is shown | none | none. Random code, nothing stored or logged. |
 | `POST /api/calculator/request` | The visitor submits the design or budget-review form | Creates (or returns) **one** `crm.lead` | First name, email and phone, only if given |
+| `POST /api/calculator/snapshot` → `{ success, estimateId }` | The visitor shares the card or downloads the PDF (once per reference and action) | Creates or updates **one** `kh.calculator.estimate` per reference | none |
 | `GET /api/leads/count` → `{ success, count }` | Start-screen counter | One `search_count`, cached 1 h | none |
 
-Viewing a result, changing inputs, downloading the card or PDF and sharing do **not** call a lead API.
-`/api/leads/create` and `/api/feedback` are deleted.
+Viewing a result and changing inputs call no Odoo API. Sharing the card or downloading the PDF saves an
+anonymous estimate (see below) but never a lead. `/api/leads/create` and `/api/feedback` are deleted.
+
+### Estimate snapshots (`kh.calculator.estimate`)
+
+A visitor may share the card on WhatsApp without ever sending a request, then quote the reference later. So
+the share and PDF buttons also send the inputs to `/api/calculator/snapshot`, in the background: the card
+or PDF never waits for it, and a failure changes nothing for the visitor. The API recomputes the numbers
+from the inputs (as for requests) and writes one `kh.calculator.estimate` record per reference, with the
+same values as the lead's `x_calc_*` fields minus the prefix (`city`, `result_expected`, …) plus a
+plain-text `summary`. Sharing again only sets `shared_card` / `downloaded_pdf`, increments `share_count`
+and updates `last_shared_at`. There is no name, email or phone: the visitor hasn't given any.
+
+The model comes from the `kh_crm_calculator` Odoo module. If it isn't installed, the API saves nothing and
+still answers `success: true, estimateId: null`. Only fields that exist on the model are written (`fields_get`,
+cached for 10 minutes). Partner-review markets show no number and have no card, so they are never saved.
+`CALCULATOR_ODOO_DRY_RUN=true` logs the values instead of writing them.
 
 `/api/calculator/request` takes a `CalculatorRequestPayload` (`lib/calculator/request.ts`) and returns:
 
@@ -216,12 +236,14 @@ Run them on `npm run dev` or a Vercel preview, with `CALCULATOR_ODOO_DRY_RUN=tru
 Odoo itself. Keep DevTools → Network open, filtered on `/api/`.
 
 1. **Dubai, 500 m², balanced family**: range 2,100,000 – 3,250,000 AED, planning figure 2,675,000 AED. Only
-   `/api/calculator/reference` is called (plus `/api/leads/count` on the start screen). Downloading the card
-   or PDF adds no request.
+   `/api/calculator/reference` is called (plus `/api/leads/count` on the start screen). Sharing the card
+   or downloading the PDF adds one `/api/calculator/snapshot` request each (none on a second click), and no
+   lead.
 2. **Budget 2,000,000 AED, Dubai, family**: 307 / 373 / 476 m² (conservative / reference / maximum), with the
    "building only, before excluded items, land not deducted" note.
-3. **Sharjah or Fujairah**, same inputs as test 1: the same numbers as Dubai, labelled "UAE reference — needs
-   local partner calibration".
+3. **Sharjah / Fujairah**, same inputs as test 1: 1,995,000 – 3,088,000 AED, planning figure 2,541,000 AED
+   (Sharjah, −5 %) / 1,680,000 – 2,600,000 AED, planning figure 2,140,000 AED (Fujairah, −20 %), labelled with
+   the adjustment and "needs local partner calibration". Al Ain and "Other" show the Dubai numbers.
 4. **Saudi Arabia / Qatar**: amounts in SAR / QAR, with the confidence tag. **Oman / Kuwait / Bahrain**: no
    number anywhere (result, card, PDF), the partner-estimate message, and the request buttons.
 5. **Pool or basement** ticked: the range and area are unchanged. The item is flagged on the result. After
@@ -260,6 +282,7 @@ The code checks are `npx tsc --noEmit -p .` and `npx eslint`, and `next build` r
 - **Currency conversion**: every amount is in the selected country's currency
 - **Uploads**: contractor quotes are sent later on WhatsApp, and there is no free-text upload
 - **Investment / ROI path**: family villa only
-- **Region factors**: always 1.00, "not established", never applied. Material indexes are context only.
+- **City factors outside the UAE**: Saudi cities and Qatari municipalities all get one number. Material
+  indexes are context only.
 - **A fallback store when Odoo is down**: the visitor sees the error and the WhatsApp link
 - **A weekly cap on budget reviews in code**: the team handles it

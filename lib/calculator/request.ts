@@ -1,6 +1,7 @@
 // Shape and validation of a calculator service request ("I want to design
 // my home" / "Review my home budget") - the only thing that ever creates an
-// Odoo lead. Viewing a result, downloading the card or the PDF never does.
+// Odoo lead - and of the estimate snapshot saved when the card is shared or
+// the PDF downloaded. Viewing a result never sends either.
 // Parsing lives here (not in the route) so it stays unit-testable.
 
 import { COUNTRY_PHONE, cityBelongsTo, isCityId } from "@/data/calculatorMarkets";
@@ -283,6 +284,42 @@ export function parseCalculatorRequest(
       website: typeof b.website === "string" ? b.website : "",
       elapsedMs: isFiniteNumber(b.elapsedMs) ? b.elapsedMs : -1,
     },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Estimate snapshot (share card / PDF)
+// ---------------------------------------------------------------------------
+
+export const SNAPSHOT_ACTIONS = ["card", "pdf"] as const;
+export type SnapshotAction = (typeof SNAPSHOT_ACTIONS)[number];
+
+// Sent when the visitor shares the card or downloads the PDF, so the team can
+// look the estimate up by its reference if the visitor later quotes it. No
+// personal data: the visitor hasn't given any at this point.
+export type CalculatorSnapshotPayload = {
+  reference: string;
+  lang: "en" | "ar";
+  inputMode: EstimateMode;
+  estimate: EstimateInputs;
+  action: SnapshotAction;
+};
+
+/** Validates an untrusted snapshot body. As with requests, the numbers are recomputed by the API. */
+export function parseCalculatorSnapshot(body: unknown): CalculatorSnapshotPayload | null {
+  if (!body || typeof body !== "object") return null;
+  const b = body as Record<string, unknown>;
+  if (!isValidReference(b.reference)) return null;
+  if (b.inputMode !== "area" && b.inputMode !== "budget") return null;
+  if (!oneOf(SNAPSHOT_ACTIONS, b.action)) return null;
+  const estimate = parseEstimate(b.estimate, b.inputMode);
+  if (!estimate) return null;
+  return {
+    reference: b.reference,
+    lang: b.lang === "ar" ? "ar" : "en",
+    inputMode: b.inputMode,
+    estimate,
+    action: b.action,
   };
 }
 

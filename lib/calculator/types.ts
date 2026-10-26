@@ -93,6 +93,9 @@ export type MarketRecord = {
   confidence: Confidence;
   tier_confidence?: Partial<Record<FinishTier, Confidence>>;
   rates: Record<FinishTier, RateBand> | null;
+  // Multiplier on `rates` per city id of this country (the reference city
+  // stays 1). A city that isn't listed uses meta.default_region_factor.
+  city_factors?: Partial<Record<string, number>>;
   // "YYYY", "YYYY-Qn" or "YYYY-MM-DD"
   anchor_date: string | null;
   tier_anchor_date?: Partial<Record<FinishTier, string>>;

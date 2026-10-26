@@ -41,6 +41,7 @@ import {
 } from "@/lib/calculator/format";
 import type { ShareCardData } from "@/lib/calculator/shareCard";
 import { isUndecidedCity } from "@/data/calculatorMarkets";
+import type { CalculatorSnapshotPayload, SnapshotAction } from "@/lib/calculator/request";
 import { SPECIAL_ITEMS, type AreaUnit, type RequestType } from "@/lib/calculator/types";
 import ReadinessChecklist from "./ReadinessChecklist";
 import ShareActions from "./ShareActions";
@@ -70,7 +71,8 @@ const OTHER_UNIT: Record<AreaUnit, AreaUnit> = { m2: "sqft", sqft: "m2" };
 
 // The free result: shown in full straight away - no gate, no blur, no
 // network call. Only the two service requests (design / budget review)
-// ever lead to a lead, and only once the visitor sends that form.
+// ever lead to a lead, and only once the visitor sends that form. Sharing
+// the card or downloading the PDF saves an anonymous copy of the estimate.
 export default function ResultsView({
   dictionary,
   lang,
@@ -85,6 +87,8 @@ export default function ResultsView({
   onStartOver,
 }: ResultsViewProps) {
   const sheetRef = useRef<HTMLElement>(null);
+  // "K-XXXXXX:card" / ":pdf" already saved, so sharing twice sends once.
+  const savedExports = useRef(new Set<string>());
   const date = new Date(estimateDate);
   const dateText = Number.isNaN(date.getTime()) ? "" : formatEstimateDate(date, lang);
   const checklist = readinessItems({
@@ -109,6 +113,20 @@ export default function ResultsView({
       />
     );
   } else {
+    // Fire and forget: the card or PDF never waits on Odoo, and a failed
+    // save changes nothing for the visitor.
+    const saveExport = (action: SnapshotAction) => {
+      const key = `${reference}:${action}`;
+      if (!reference || savedExports.current.has(key)) return;
+      savedExports.current.add(key);
+      const payload: CalculatorSnapshotPayload = { reference, lang, inputMode: outcome.kind, estimate: inputs, action };
+      fetch("/api/calculator/snapshot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      }).catch(() => {});
+    };
     sheet = (
       <EstimateSheet
         sheetRef={sheetRef}
@@ -126,6 +144,7 @@ export default function ResultsView({
         reference={reference}
         pdfTargetRef={sheetRef}
         card={reference ? buildShareCard(dictionary, lang, inputs, outcome, reference, dateText) : null}
+        onExport={saveExport}
       />
     );
   }
@@ -708,10 +727,10 @@ function referencePlace(dictionary: CalculatorDict, pricing: PricedContext): str
 }
 
 function marketNoteText(dictionary: CalculatorDict, pricing: PricedContext): string {
-  return fillTemplate(dictionary.marketModeNotes[pricing.marketMode], {
-    city: cityName(dictionary, pricing),
-    reference: referencePlace(dictionary, pricing),
-  });
+  const vars = { city: cityName(dictionary, pricing), reference: referencePlace(dictionary, pricing) };
+  if (pricing.regionFactor === 1) return fillTemplate(dictionary.marketModeNotes[pricing.marketMode], vars);
+  const percent = Math.round((pricing.regionFactor - 1) * 100);
+  return fillTemplate(dictionary.cityFactorNote, { ...vars, percent: `${percent > 0 ? "+" : "−"}${Math.abs(percent)}%` });
 }
 
 function specialItemsText(dictionary: CalculatorDict, lang: Locale, inputs: EstimateInputs): string {

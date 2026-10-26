@@ -225,6 +225,9 @@ export type CalculatorDict = {
   confidenceLevels: Record<Confidence, string>;
   // {city} = selected city, {reference} = city the numbers come from
   marketModeNotes: Record<Exclude<MarketMode, "partner_review">, string>;
+  // Replaces the market note when the city has its own factor;
+  // {percent} = "+10%" / "−5%"
+  cityFactorNote: string;
   unusualSizeNote: string;
   specialItemsSelectedNote: string; // contains "{items}"
   vatLabel: string;

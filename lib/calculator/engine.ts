@@ -5,9 +5,11 @@
 // Area path:    range = built area x [low, high]; planning figure = area x expected
 // Budget path:  conservative area = budget / high, reference = budget / expected,
 //               maximum = budget / low
-// Nothing else is added: no markup, no hidden contingency, no consultant
-// percentage, no external works, no region factor, no fixed price for a
-// pool / basement / elevator. Those are listed as exclusions instead.
+// The band is the market's rate x the city's factor from the rates file
+// (UAE emirates only; every other city is 1). Nothing else is added: no
+// markup, no hidden contingency, no consultant percentage, no external
+// works, no fixed price for a pool / basement / elevator. Those are listed
+// as exclusions instead.
 
 import {
   ROOM_CONFIG,
@@ -74,8 +76,8 @@ type PricingBase = {
   vatMode: VatMode;
   // Date of the rates file itself (meta.as_of) - the "pricing source date".
   pricingSourceDate: string;
-  // Always meta.default_region_factor (1.00): shown as "not established",
-  // never multiplied into the price.
+  // The city's factor from market.city_factors, else
+  // meta.default_region_factor (1.00). Already multiplied into `band`.
   regionFactor: number;
   materialSignals: MaterialSignal[];
   market: MarketRecord;
@@ -110,7 +112,7 @@ export function resolvePricing(rates: RatesFile, country: CountryCode, city: Cit
     currency: market.currency,
     vatMode: market.vat_mode,
     pricingSourceDate: rates.meta.as_of,
-    regionFactor: rates.meta.default_region_factor,
+    regionFactor: market.city_factors?.[city] ?? rates.meta.default_region_factor,
     materialSignals: market.material_signals ?? [],
     market,
   };
@@ -123,11 +125,13 @@ export function resolvePricing(rates: RatesFile, country: CountryCode, city: Cit
   const marketMode: PricedContext["marketMode"] =
     market.coverage === "national" ? "national_benchmark" : city === referenceCity ? "direct_city" : "country_reference";
 
+  const rate = market.rates[tier];
+  const factor = base.regionFactor;
   return {
     ...base,
     kind: "priced",
     tier,
-    band: market.rates[tier],
+    band: { low: rate.low * factor, expected: rate.expected * factor, high: rate.high * factor },
     confidence: market.tier_confidence?.[tier] ?? market.confidence,
     anchorDate: market.tier_anchor_date?.[tier] ?? market.anchor_date,
     marketMode,

@@ -17,6 +17,8 @@ import { escapeHtml } from "@/lib/spam";
 import {
   familyPlanSpecialPricingItems,
   resolvePricing,
+  type AreaEstimate,
+  type BudgetEstimate,
   type EstimateInputs,
   type EstimateOutcome,
   type FamilyPlanSelections,
@@ -260,7 +262,7 @@ export function buildCalculatorLead({ payload, context, leadScore, createdAt }: 
     `Language: ${payload.lang === "ar" ? "Arabic" : "English"} (${payload.lang})`,
     "",
     `Country / city: ${t.countries[country]} / ${t.cities[city]} (${country} / ${city})`,
-    `Market mode: ${pricing.marketMode}, confidence ${pricing.confidence}`,
+    `Market mode: ${pricing.marketMode}, confidence ${pricing.confidence}, region factor ${pricing.regionFactor}`,
     `Input mode: ${coded(t.paths[context.inputMode].title, context.inputMode)}`,
     ...result.lines,
     `Finish level: ${coded(t.tiers[tier].name, tier)}`,
@@ -322,6 +324,75 @@ export function buildCalculatorLead({ payload, context, leadScore, createdAt }: 
 }
 
 // ---------------------------------------------------------------------------
+// Estimate snapshot (share card / PDF)
+// ---------------------------------------------------------------------------
+
+/** Anonymous estimates the team can look up by reference - defined by the kh_crm_calculator Odoo module. */
+export const CALCULATOR_ESTIMATE_MODEL = "kh.calculator.estimate";
+
+export type EstimateSnapshotInput = {
+  reference: string;
+  lang: "en" | "ar";
+  estimate: EstimateInputs;
+  // Recomputed by the API; only priced results have a card or PDF to share.
+  outcome: AreaEstimate | BudgetEstimate;
+};
+
+/**
+ * The kh.calculator.estimate values for a shared estimate. Field names are
+ * the lead's x_calc_* names without the prefix (x_calc_city -> city), plus a
+ * plain-text summary; the route adds the share flags and dates.
+ */
+export function buildEstimateSnapshot({ reference, lang, estimate, outcome }: EstimateSnapshotInput) {
+  const { pricing } = outcome;
+  const result = estimateResult(estimate, outcome);
+  const { country, city, tier, landStatus, floors, specialItems } = estimate;
+  const cityId = city ?? pricing.city;
+
+  const summary = [
+    `Reference: ${reference}`,
+    `Calculator: ${CALCULATOR_VERSION} (${CALCULATOR_SOURCE})`,
+    `Language: ${lang === "ar" ? "Arabic" : "English"} (${lang})`,
+    "",
+    `Country / city: ${t.countries[country]} / ${t.cities[cityId]} (${country} / ${cityId})`,
+    `Market mode: ${pricing.marketMode}, confidence ${pricing.confidence}, region factor ${pricing.regionFactor}`,
+    `Input mode: ${coded(t.paths[outcome.kind].title, outcome.kind)}`,
+    ...result.lines,
+    `Finish level: ${coded(t.tiers[tier].name, tier)}`,
+    `Price anchor date: ${pricing.anchorDate}; pricing source date: ${pricing.pricingSourceDate}`,
+    `Floors: ${floors ? t.floors[floors] : "not specified"}`,
+    `Special items (need special pricing / local partner review): ${listOrNone(specialItems.map(itemName))}`,
+    `Land status: ${landStatus ? coded(t.landStatuses[landStatus], landStatus) : "not given"}`,
+  ].join("\n");
+
+  const fields = withoutEmpty({
+    x_calc_reference: reference,
+    x_calc_version: CALCULATOR_VERSION,
+    x_calc_source: CALCULATOR_SOURCE,
+    x_calc_input_mode: outcome.kind,
+    x_calc_country: country,
+    x_calc_city: cityId,
+    x_calc_market_mode: pricing.marketMode,
+    x_calc_market_confidence: pricing.confidence,
+    x_calc_pricing_source_date: pricing.pricingSourceDate,
+    x_calc_anchor_date: pricing.anchorDate,
+    x_calc_currency: pricing.currency,
+    x_calc_finish_level: tier,
+    x_calc_special_items: specialItems.length > 0 ? specialItems.join(", ") : undefined,
+    x_calc_land_status: landStatus ?? undefined,
+    x_calc_floors: floors ?? undefined,
+    x_calc_lang: lang,
+    ...result.fields,
+  });
+
+  const values: Record<string, string | number | boolean> = { summary };
+  for (const [name, value] of Object.entries(fields)) {
+    if (value !== undefined) values[name.slice("x_calc_".length)] = value;
+  }
+  return values;
+}
+
+// ---------------------------------------------------------------------------
 // Writing to Odoo
 // ---------------------------------------------------------------------------
 
@@ -333,7 +404,7 @@ export function buildCalculatorLead({ payload, context, leadScore, createdAt }: 
  * failing the lead - the description has everything anyway.
  */
 export function pickExistingCustomFields(
-  fields: CalculatorCustomFields,
+  fields: CalculatorCustomFields | Record<string, string | number | boolean>,
   odooTypes: ReadonlyMap<string, string>,
 ): Record<string, string | number | boolean> {
   const values: Record<string, string | number | boolean> = {};

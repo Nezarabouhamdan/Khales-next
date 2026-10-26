@@ -58,6 +58,14 @@ export function validateRatesFile(input: unknown): RatesFile {
       if (!(FINISH_TIERS as readonly string[]).includes(tier)) fail(`${where}: tier_confidence has unknown tier ${tier}`);
       if (!(CONFIDENCE_LEVELS as readonly string[]).includes(level)) fail(`${where}: unknown confidence for ${tier}`);
     }
+    for (const [city, factor] of Object.entries(market.city_factors ?? {})) {
+      const cities = MARKET_CITIES[market.country] as readonly string[];
+      if (!cities.includes(city)) fail(`${where}: city_factors has unknown city ${city}`);
+      if (!isPositiveNumber(factor) || factor < 0.5 || factor > 1.5) {
+        fail(`${where}: city_factors.${city} must be between 0.5 and 1.5`);
+      }
+      if (city === market.reference_city && factor !== 1) fail(`${where}: the reference city's factor must be 1`);
+    }
     for (const signal of market.material_signals ?? []) {
       if (!(MATERIAL_SIGNAL_TYPES as readonly string[]).includes(signal.type)) fail(`${where}: unknown signal type`);
       if (!SIGNAL_PERIOD.test(signal.period)) fail(`${where}: signal period "${signal.period}" is not YYYY, YYYY-Qn or YYYY-MM`);

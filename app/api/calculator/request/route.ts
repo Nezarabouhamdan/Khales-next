@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
+  describeOdooError as describeError,
   odooAuthenticate,
   odooExecuteKw,
   odooFindOrCreateSource,
@@ -199,20 +200,4 @@ async function getLeadFieldTypes(uid: number): Promise<Map<string, string>> {
     console.error("Calculator lead: fields_get failed:", describeError(error));
     return new Map();
   }
-}
-
-// Odoo faults can echo submitted values (names, emails, phones) back in
-// their traceback, so only the kind of error is logged - never its text.
-function describeError(error: unknown): string {
-  if (!error || typeof error !== "object") return "Unknown error";
-  const { faultCode, faultString, code } = error as { faultCode?: unknown; faultString?: unknown; code?: unknown };
-  if (faultCode !== undefined) {
-    const lastLine = typeof faultString === "string" ? (faultString.trim().split("\n").pop() ?? "") : "";
-    const kind = /^[\w.]+(?=:)/.exec(lastLine)?.[0];
-    return `Odoo fault ${typeof faultCode === "number" ? faultCode : "?"}${kind ? ` (${kind})` : ""}`;
-  }
-  // Network errors (ECONNRESET, ETIMEDOUT...) and our own (missing env var,
-  // authentication failed) carry no visitor data.
-  if (typeof code === "string") return `Network error ${code}`;
-  return error instanceof Error ? error.message : "Unknown error";
 }

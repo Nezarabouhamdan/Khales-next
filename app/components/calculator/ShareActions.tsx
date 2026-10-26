@@ -5,6 +5,7 @@ import { FaDownload, FaFilePdf, FaShareNodes } from "react-icons/fa6";
 import type { jsPDF } from "jspdf";
 import type { CalculatorDict } from "@/dictionaries/types";
 import { fillTemplate } from "@/lib/calculator/format";
+import type { SnapshotAction } from "@/lib/calculator/request";
 import { renderShareCard, type ShareCardData } from "@/lib/calculator/shareCard";
 
 type ShareActionsProps = {
@@ -15,13 +16,17 @@ type ShareActionsProps = {
   pdfTargetRef: RefObject<HTMLElement | null>;
   // Card content (never personal data); null until there is a reference.
   card: ShareCardData | null;
+  // Called as the visitor shares the card or downloads the PDF.
+  onExport?: (action: SnapshotAction) => void;
 };
 
-type Busy = "card" | "pdf" | null;
+type Busy = SnapshotAction | null;
 
 // "Keep the estimate & share the card": both files are made in the
-// browser from what is already on screen - no form, no lead, no request.
-export default function ShareActions({ dictionary, reference, pdfTargetRef, card }: ShareActionsProps) {
+// browser from what is already on screen - no form, no lead. The parent
+// saves an anonymous copy of the estimate (onExport) so its reference can
+// be looked up later.
+export default function ShareActions({ dictionary, reference, pdfTargetRef, card, onExport }: ShareActionsProps) {
   const [busy, setBusy] = useState<Busy>(null);
   const canShareFiles = useSyncExternalStore(subscribeToNothing, supportsFileShare, () => false);
   const disabled = !reference || !card || busy !== null;
@@ -29,6 +34,7 @@ export default function ShareActions({ dictionary, reference, pdfTargetRef, card
   const handleCard = async () => {
     if (!reference || !card || busy) return;
     setBusy("card");
+    onExport?.("card");
     try {
       const target = pdfTargetRef.current;
       const blob = await renderShareCard(card, {
@@ -58,6 +64,7 @@ export default function ShareActions({ dictionary, reference, pdfTargetRef, card
     const target = pdfTargetRef.current;
     if (!reference || !target || busy) return;
     setBusy("pdf");
+    onExport?.("pdf");
     try {
       const [{ default: html2canvas }, { jsPDF }] = await Promise.all([import("html2canvas"), import("jspdf")]);
       let layout: CaptureLayout = { boxes: [], height: 0 };
