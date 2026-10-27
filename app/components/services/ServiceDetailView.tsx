@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+import { FaWhatsapp } from "react-icons/fa6";
+import { whatsappHref } from "@/lib/whatsapp";
 import type { LocalizedService } from "@/data/services";
 import type { Locale } from "@/i18n-config";
 import type { ServiceDetailDict } from "@/dictionaries/types";
@@ -285,6 +287,38 @@ export default function ServiceDetailView({
                 </div>
               </section>
             )}
+
+            {/* WhatsApp CTA: the prefilled message names this service */}
+            <section>
+              <p className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
+                {content.ctaEyebrow}
+              </p>
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 p-8 md:p-10 rounded-sm border border-neutral-200 border-s-2 border-s-brand">
+                <div className="max-w-xl">
+                  <h2 className="font-semibold tracking-tight text-2xl md:text-3xl">
+                    {content.ctaTitle.replace("{service}", service.title)}
+                  </h2>
+                  <p className="mt-3 text-neutral-600 leading-relaxed">{content.ctaText}</p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                  <a
+                    href={whatsappHref(content.whatsappMessage.replace("{service}", service.title))}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 text-xs uppercase tracking-widest font-medium px-6 py-3 rounded-md bg-neutral-900 text-white hover:bg-neutral-700 transition-colors"
+                  >
+                    <FaWhatsapp aria-hidden="true" size={15} />
+                    {content.ctaWhatsappButton}
+                  </a>
+                  <Link
+                    href={`/${lang}/contact`}
+                    className="inline-flex items-center justify-center text-xs uppercase tracking-widest font-medium px-6 py-3 rounded-md border border-neutral-200 hover:border-neutral-900 transition-colors"
+                  >
+                    {content.ctaContactButton}
+                  </Link>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </div>

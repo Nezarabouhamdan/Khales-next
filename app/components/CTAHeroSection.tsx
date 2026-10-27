@@ -16,7 +16,7 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
   const dir = lang === "ar" ? "rtl" : "ltr";
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
@@ -126,13 +126,19 @@ export default function CTAHeroSection({ lang, content }: CTAHeroSectionProps) {
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/40 pointer-events-none" />
 
-        <h2
-          ref={headingRef}
-          className="relative z-10 text-[clamp(2.2rem,5.5vw,6rem)] font-normal leading-[1.05] tracking-tight text-white/95 text-center max-w-5xl px-6"
-        >
-          {content.headingLine1} <br className="hidden md:block" />
-          {content.headingLine2}
-        </h2>
+        <div ref={headingRef} className="relative z-10 flex flex-col items-center px-6">
+          <h2 className="text-[clamp(2.2rem,5.5vw,6rem)] font-normal leading-[1.05] tracking-tight text-white/95 text-center max-w-5xl">
+            {content.headingLine1} <br className="hidden md:block" />
+            {content.headingLine2}
+          </h2>
+          {/* Visible button for touch screens, where the "Let's Talk"
+              cursor never shows - the whole section is already the link. */}
+          <span className="mt-8 md:mt-10 inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 text-sm md:text-base font-medium text-neutral-900 shadow-lg">
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand" />
+            {content.contactButton}
+            <span aria-hidden>{dir === "rtl" ? "←" : "→"}</span>
+          </span>
+        </div>
       </a>
 
       {/* Contact row. Sits above the hero link in z-index so it stays

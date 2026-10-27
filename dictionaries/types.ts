@@ -556,6 +556,13 @@ export type ServiceDetailDict = {
   faqLabel: string;
   galleryViewLabel: string;
   nextServiceLabel: string;
+  // WhatsApp CTA at the end of each service page; {service} = its title
+  ctaEyebrow: string;
+  ctaTitle: string;
+  ctaText: string;
+  ctaWhatsappButton: string;
+  ctaContactButton: string;
+  whatsappMessage: string;
 };
 
 export type ServicesPageDict = {
@@ -583,10 +590,18 @@ export type SharedCtaDict = {
   phoneHref: string;
   emailLabel: string;
   email: string;
+  contactButton: string;
+};
+
+// Site-wide floating WhatsApp button
+export type WhatsAppDict = {
+  buttonLabel: string;
+  message: string;
 };
 
 export type SharedDict = {
   cta: SharedCtaDict;
+  whatsapp: WhatsAppDict;
 };
 
 export type BlogsPageDict = {

@@ -10,9 +10,9 @@ import type { NavigationDict } from "@/dictionaries/types";
 type SiteHeaderProps = {
   lang?: Locale;
   navigation?: NavigationDict;
-  // "dark" (default): white chrome over the dark hero most pages open with.
-  // "light": dark ink and the black + green logo, for pages whose top is
-  // light (e.g. the calculator), where the white chrome disappears.
+  // "light" (default): a near-opaque white bar with dark ink and the black +
+  // green logo, readable over any page top, light or dark.
+  // "dark": white chrome on a faint tint, only legible over a dark hero.
   tone?: "dark" | "light";
 };
 
@@ -34,7 +34,7 @@ const defaultNavigation: NavigationDict = {
   termsLabel: "Terms of Use",
 };
 
-export default function SiteHeader({ lang = "en", navigation = defaultNavigation, tone = "dark" }: SiteHeaderProps) {
+export default function SiteHeader({ lang = "en", navigation = defaultNavigation, tone = "light" }: SiteHeaderProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const isRTL = lang === "ar";
@@ -52,12 +52,14 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 px-6 md:px-10 py-5 flex justify-between items-center backdrop-blur-md font-normal text-[1.1111vw] ${
+      // Three columns with equal outer tracks, so the logo sits at the true
+      // centre however wide the menu and CTA sides are.
+      className={`fixed top-0 left-0 w-full z-50 px-6 md:px-10 py-5 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-3 items-center backdrop-blur-md font-normal text-[1.1111vw] ${
         light ? "bg-white/85 border-b border-neutral-200 text-neutral-900" : "bg-black/10 border-b border-white/5 text-[#9e9d9c]"
       }`}
     >
       <div
-        className="relative"
+        className="relative justify-self-start"
         onMouseEnter={() => setMenuOpen(true)}
         onMouseLeave={() => setMenuOpen(false)}
       >
@@ -168,7 +170,7 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
         </Link>
       </div>
 
-      <div className="relative flex items-center gap-6">
+      <div className="relative flex items-center justify-self-end gap-6">
         {/* Plain <a>, not next/link: switching locale must be a full page
             load. The root layout reads the request's x-lang header (set by
             proxy.ts) to pick <html lang/dir> - it's a Server Component
@@ -195,7 +197,9 @@ export default function SiteHeader({ lang = "en", navigation = defaultNavigation
             rest of the header's static chrome. */}
         <Link
           href={`/${lang}/calculator`}
-          className={`relative overflow-hidden inline-flex items-center text-xs uppercase tracking-widest font-medium px-5 py-2.5 rounded-md transition-colors ${
+          // Narrower on phones (the label may wrap to two lines) so it
+          // fits its half of the header and the logo stays centred.
+          className={`relative overflow-hidden inline-flex items-center max-w-[7.5rem] md:max-w-none text-[10px] md:text-xs leading-tight uppercase tracking-normal md:tracking-widest font-medium px-3 md:px-5 py-2 md:py-2.5 rounded-md transition-colors ${
             light ? "bg-neutral-900 text-white hover:bg-neutral-700" : "bg-white text-black hover:bg-neutral-200"
           }`}
         >

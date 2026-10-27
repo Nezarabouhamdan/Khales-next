@@ -687,6 +687,11 @@ export const dictionary: Dictionary = {
       phoneHref: "+971551299880",
       emailLabel: "البريد الإلكتروني",
       email: "info@khales.ae",
+      contactButton: "تواصل معنا",
+    },
+    whatsapp: {
+      buttonLabel: "تواصل معنا عبر واتساب",
+      message: "مرحباً خالص، أود معرفة المزيد عن خدماتكم.",
     },
   },
 
@@ -900,6 +905,12 @@ export const dictionary: Dictionary = {
       faqLabel: "الأسئلة الشائعة",
       galleryViewLabel: "منظر",
       nextServiceLabel: "الخدمة التالية",
+      ctaEyebrow: "ابدأ مشروعك",
+      ctaTitle: "جاهز للحديث عن {service}؟",
+      ctaText: "أرسل لنا رسالة على واتساب وسيتواصل معك فريقنا بخصوص مشروعك.",
+      ctaWhatsappButton: "تواصل عبر واتساب",
+      ctaContactButton: "تواصل معنا",
+      whatsappMessage: "مرحباً خالص، أنا مهتم بخدمة {service} وأود مناقشة مشروعي معكم.",
     },
   },
 

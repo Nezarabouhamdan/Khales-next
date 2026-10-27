@@ -41,7 +41,7 @@ import {
 } from "./types";
 
 // Khales' official contact channels (same as the site footer / CTA).
-export const KHALES_WHATSAPP_NUMBER = "971551299880";
+export { KHALES_WHATSAPP_NUMBER } from "@/lib/whatsapp";
 export const KHALES_EMAIL = "info@khales.ae";
 
 export const CALCULATOR_SOURCE = "website_calculator_v2";
@@ -359,9 +359,7 @@ export function composeHandoffMessage(
   return lines.join("\n");
 }
 
-export function whatsappUrl(message: string): string {
-  return `https://wa.me/${KHALES_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-}
+export { whatsappHref as whatsappUrl } from "@/lib/whatsapp";
 
 export function mailtoUrl(subject: string, message: string): string {
   return `mailto:${KHALES_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;

@@ -42,7 +42,7 @@ export default async function ServiceDetailPage({
 
   return (
     <main className="flex-1">
-      <SiteHeader lang={lang} navigation={dictionary.navigation} />
+      <SiteHeader lang={lang} navigation={dictionary.navigation} tone="light" />
       <ServiceDetailView
         lang={lang}
         content={dictionary.servicesPage.detail}

@@ -701,6 +701,11 @@ export const dictionary: Dictionary = {
       phoneHref: "+971551299880",
       emailLabel: "Email",
       email: "info@khales.ae",
+      contactButton: "Contact us",
+    },
+    whatsapp: {
+      buttonLabel: "Chat with us on WhatsApp",
+      message: "Hello Khales, I'd like to know more about your services.",
     },
   },
 
@@ -917,6 +922,12 @@ export const dictionary: Dictionary = {
       faqLabel: "Frequently asked questions",
       galleryViewLabel: "view",
       nextServiceLabel: "Next service",
+      ctaEyebrow: "Start your project",
+      ctaTitle: "Ready to talk about {service}?",
+      ctaText: "Send us a message on WhatsApp and our team will get back to you about your project.",
+      ctaWhatsappButton: "Chat on WhatsApp",
+      ctaContactButton: "Contact us",
+      whatsappMessage: "Hello Khales, I'm interested in your {service} service and would like to discuss my project.",
     },
   },
 

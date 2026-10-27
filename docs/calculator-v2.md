@@ -63,7 +63,7 @@ City lists are in `data/calculatorMarkets.ts`. All visitor-facing text is in `di
 
 | Country | Shown as | Currency | Anchor date / confidence |
 | --- | --- | --- | --- |
-| UAE | Dubai: direct reference. Other emirates: the Dubai numbers × the emirate factor (Abu Dhabi +10 %, Al Ain 0, Sharjah −5 %, Ajman −12 %, Umm Al Quwain −15 %, Fujairah and Ras Al Khaimah −20 %, Other 0), labelled with the adjustment and "needs local partner calibration" | AED | 2025-Q2 / medium-low |
+| UAE | Dubai: direct reference. Other emirates: the Dubai numbers × the emirate factor (Abu Dhabi +10 %, Al Ain 0, Sharjah −5 %, Ajman −12 %, Umm Al Quwain −15 %, Ras Al Khaimah −20 %, Fujairah −25 %, Other 0), labelled with the adjustment and "needs local partner calibration" | AED | 2025-Q2 / medium-low |
 | Saudi Arabia | One national benchmark for every city, with a "city needs calibration" message | SAR | 2026-10-26 / medium-low |
 | Qatar | Doha: direct reference. Elsewhere: the Doha numbers with a calibration label | QAR | 2026-10-26 / low |
 | Oman, Kuwait, Bahrain | **No number.** "We prepare a preliminary estimate with a local partner", plus the design and review requests | OMR / KWD / BHD | — / very low |
@@ -242,7 +242,7 @@ Odoo itself. Keep DevTools → Network open, filtered on `/api/`.
 2. **Budget 2,000,000 AED, Dubai, family**: 307 / 373 / 476 m² (conservative / reference / maximum), with the
    "building only, before excluded items, land not deducted" note.
 3. **Sharjah / Fujairah**, same inputs as test 1: 1,995,000 – 3,088,000 AED, planning figure 2,541,000 AED
-   (Sharjah, −5 %) / 1,680,000 – 2,600,000 AED, planning figure 2,140,000 AED (Fujairah, −20 %), labelled with
+   (Sharjah, −5 %) / 1,575,000 – 2,438,000 AED, planning figure 2,006,000 AED (Fujairah, −25 %), labelled with
    the adjustment and "needs local partner calibration". Al Ain and "Other" show the Dubai numbers.
 4. **Saudi Arabia / Qatar**: amounts in SAR / QAR, with the confidence tag. **Oman / Kuwait / Bahrain**: no
    number anywhere (result, card, PDF), the partner-estimate message, and the request buttons.

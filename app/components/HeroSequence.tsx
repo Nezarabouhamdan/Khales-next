@@ -357,7 +357,7 @@ export default function HeroSequence({
               same side under Arabic - without mirroring these too, the
               caption/controls collide with it instead of sitting opposite. */}
           <div
-            className={`absolute top-[55%] md:top-[47%] text-white ${
+            className={`absolute top-[55%] md:top-[47%] text-white opacity-75 ${
               dir === "rtl" ? "right-6 md:right-[54%] text-right" : "left-6 md:left-[54%]"
             }`}
           >
@@ -386,7 +386,7 @@ export default function HeroSequence({
           </div>
 
           <div
-            className={`absolute top-[55%] md:top-[47%] flex flex-col items-end justify-between h-[85px] md:h-[95px] text-white pointer-events-auto ${
+            className={`absolute top-[55%] md:top-[47%] flex flex-col items-end justify-between h-[85px] md:h-[95px] text-white opacity-75 pointer-events-auto ${
               dir === "rtl" ? "left-6 md:left-16" : "right-6 md:right-16"
             }`}
           >

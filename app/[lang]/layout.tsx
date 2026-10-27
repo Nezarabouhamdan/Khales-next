@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { i18n, type Locale } from "@/i18n-config";
 import { getOrganizationSchema, getWebsiteSchema } from "@/lib/seo/schema";
 import { SITE_URL } from "@/lib/seo/metadata";
+import { getDictionary } from "@/lib/get-dictionary";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
@@ -50,6 +52,7 @@ export default async function LangLayout({
 }: LayoutProps<"/[lang]">) {
   const { lang } = (await params) as { lang: Locale };
   const dir = lang === "ar" ? "rtl" : "ltr";
+  const dictionary = await getDictionary(lang);
 
   return (
     // `display: contents` so this carries lang/dir (for `[dir="rtl"] *` in
@@ -70,6 +73,7 @@ export default async function LangLayout({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebsiteSchema(lang)) }}
       />
       {children}
+      <WhatsAppButton content={dictionary.shared.whatsapp} />
     </div>
   );
 }

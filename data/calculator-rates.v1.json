@@ -34,15 +34,15 @@
         "ae_sharjah": 0.95,
         "ae_ajman": 0.88,
         "ae_umm_al_quwain": 0.85,
-        "ae_fujairah": 0.8,
+        "ae_fujairah": 0.75,
         "ae_ras_al_khaimah": 0.8
       },
       "anchor_date": "2025-Q2",
       "vat_mode": "not_included_or_unconfirmed",
       "note_ar": "المعايرة المباشرة المنشورة تخص دبي. بقية الإمارات تعرض مرجع دبي معدّلاً بنسبة الإمارة، مع تنبيه وجوب مراجعة شريك محلي.",
       "note_en": "The published direct calibration covers Dubai. Other emirates show the Dubai reference adjusted by the emirate's factor, with a note that a local partner review is required.",
-      "region_factor_note_ar": "نسب الإمارات مأخوذة من الحاسبة السابقة (أبوظبي +10%، الشارقة −5%، عجمان −12%، أم القيوين −15%، الفجيرة ورأس الخيمة −20%)، وتحتاج تأكيداً بعروض محلية. \"أخرى\" بلا تعديل.",
-      "region_factor_note_en": "Emirate factors carried over from the previous calculator (Abu Dhabi +10%, Sharjah −5%, Ajman −12%, Umm Al Quwain −15%, Fujairah and Ras Al Khaimah −20%); they need confirming with local quotes. \"Other\" is not adjusted.",
+      "region_factor_note_ar": "نسب الإمارات مأخوذة من الحاسبة السابقة (أبوظبي +10%، الشارقة −5%، عجمان −12%، أم القيوين −15%، رأس الخيمة −20%، الفجيرة −25%)، وتحتاج تأكيداً بعروض محلية. \"أخرى\" بلا تعديل.",
+      "region_factor_note_en": "Emirate factors carried over from the previous calculator (Abu Dhabi +10%, Sharjah −5%, Ajman −12%, Umm Al Quwain −15%, Ras Al Khaimah −20%, Fujairah −25%); they need confirming with local quotes. \"Other\" is not adjusted.",
       "material_signals": [
         {
           "type": "construction_cost_index",
