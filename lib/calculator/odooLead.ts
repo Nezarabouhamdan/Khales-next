@@ -1,7 +1,8 @@
 // Maps a calculator v2 service request ("I want to design my home" /
-// "Review my home budget") onto the crm.lead the team works from. Pure - no
-// Odoo calls - so the whole mapping reads in one place;
-// app/api/calculator/request/route.ts does the round-trips.
+// "Review my home budget"), and the anonymous estimate saved for every
+// result seen, onto the crm.lead the team works from. Pure - no Odoo calls -
+// so the whole mapping reads in one place; lib/calculator/odooLeadStore.ts
+// does the round-trips.
 //
 // The plain-text description always carries everything. The x_calc_*
 // custom fields are a structured copy for filters and reports: the route
@@ -17,8 +18,6 @@ import { escapeHtml } from "@/lib/spam";
 import {
   familyPlanSpecialPricingItems,
   resolvePricing,
-  type AreaEstimate,
-  type BudgetEstimate,
   type EstimateInputs,
   type EstimateOutcome,
   type FamilyPlanSelections,
@@ -324,72 +323,93 @@ export function buildCalculatorLead({ payload, context, leadScore, createdAt }: 
 }
 
 // ---------------------------------------------------------------------------
-// Estimate snapshot (share card / PDF)
+// Estimate lead (result viewed / card shared / PDF downloaded)
 // ---------------------------------------------------------------------------
 
-/** Anonymous estimates the team can look up by reference - defined by the kh_crm_calculator Odoo module. */
-export const CALCULATOR_ESTIMATE_MODEL = "kh.calculator.estimate";
+// Deliberately not CALCULATOR_LEAD_NAME_PREFIX: /api/leads/count counts
+// requests only, and every recalculation is a new estimate.
+export const CALCULATOR_ESTIMATE_NAME_PREFIX = "Calculator estimate -";
+export const CALCULATOR_ESTIMATE_TAG = "Calculator estimate";
+/** x_calc_request_type of an estimate lead, so "group by request type" sets them apart from requests. */
+export const CALCULATOR_ESTIMATE_REQUEST_TYPE = "estimate";
 
-export type EstimateSnapshotInput = {
+/** Added to the estimate's lead when the visitor shares the card or downloads the PDF. */
+export const ESTIMATE_ACTION_TAGS = { card: "Shared card", pdf: "Downloaded PDF" } as const;
+
+export type EstimateLeadInput = {
   reference: string;
   lang: "en" | "ar";
   estimate: EstimateInputs;
-  // Recomputed by the API; only priced results have a card or PDF to share.
-  outcome: AreaEstimate | BudgetEstimate;
+  // Recomputed by the API from the inputs - never the client's numbers.
+  outcome: EstimateOutcome;
+  createdAt: Date;
 };
 
 /**
- * The kh.calculator.estimate values for a shared estimate. Field names are
- * the lead's x_calc_* names without the prefix (x_calc_city -> city), plus a
- * plain-text summary; the route adds the share flags and dates.
+ * The anonymous crm.lead saved for every result a visitor sees, one per
+ * reference: no name, email or phone (the visitor hasn't given any), so the
+ * team can see what people price and find an estimate by the reference
+ * quoted later on WhatsApp. A design / budget review request is still its
+ * own lead (buildCalculatorLead), with the visitor's contact details.
  */
-export function buildEstimateSnapshot({ reference, lang, estimate, outcome }: EstimateSnapshotInput) {
+export function buildEstimateLead({ reference, lang, estimate, outcome, createdAt }: EstimateLeadInput): CalculatorLead {
   const { pricing } = outcome;
   const result = estimateResult(estimate, outcome);
-  const { country, city, tier, landStatus, floors, specialItems } = estimate;
-  const cityId = city ?? pricing.city;
+  const { country, tier, landStatus, floors, specialItems } = estimate;
+  const city = estimate.city ?? pricing.city;
+  const anchorDate = pricing.kind === "priced" ? pricing.anchorDate : undefined;
+  const mode = outcome.kind === "partner_review" ? outcome.mode : outcome.kind;
+  const createdAtIso = createdAt.toISOString();
 
-  const summary = [
+  const description = [
+    "Estimate only: the visitor saw this result on the website and sent no request - no contact details.",
     `Reference: ${reference}`,
     `Calculator: ${CALCULATOR_VERSION} (${CALCULATOR_SOURCE})`,
+    `Created at: ${createdAtIso}`,
     `Language: ${lang === "ar" ? "Arabic" : "English"} (${lang})`,
     "",
-    `Country / city: ${t.countries[country]} / ${t.cities[cityId]} (${country} / ${cityId})`,
+    `Country / city: ${t.countries[country]} / ${t.cities[city]} (${country} / ${city})`,
     `Market mode: ${pricing.marketMode}, confidence ${pricing.confidence}, region factor ${pricing.regionFactor}`,
-    `Input mode: ${coded(t.paths[outcome.kind].title, outcome.kind)}`,
+    `Input mode: ${coded(t.paths[mode].title, mode)}`,
     ...result.lines,
     `Finish level: ${coded(t.tiers[tier].name, tier)}`,
-    `Price anchor date: ${pricing.anchorDate}; pricing source date: ${pricing.pricingSourceDate}`,
+    anchorDate
+      ? `Price anchor date: ${anchorDate}; pricing source date: ${pricing.pricingSourceDate}`
+      : `Pricing source date: ${pricing.pricingSourceDate}`,
     `Floors: ${floors ? t.floors[floors] : "not specified"}`,
     `Special items (need special pricing / local partner review): ${listOrNone(specialItems.map(itemName))}`,
     `Land status: ${landStatus ? coded(t.landStatuses[landStatus], landStatus) : "not given"}`,
   ].join("\n");
 
-  const fields = withoutEmpty({
+  const customFields = withoutEmpty({
     x_calc_reference: reference,
     x_calc_version: CALCULATOR_VERSION,
     x_calc_source: CALCULATOR_SOURCE,
-    x_calc_input_mode: outcome.kind,
+    x_calc_request_type: CALCULATOR_ESTIMATE_REQUEST_TYPE,
     x_calc_country: country,
-    x_calc_city: cityId,
+    x_calc_city: city,
     x_calc_market_mode: pricing.marketMode,
     x_calc_market_confidence: pricing.confidence,
     x_calc_pricing_source_date: pricing.pricingSourceDate,
-    x_calc_anchor_date: pricing.anchorDate,
+    x_calc_anchor_date: anchorDate,
+    x_calc_input_mode: mode,
     x_calc_currency: pricing.currency,
     x_calc_finish_level: tier,
     x_calc_special_items: specialItems.length > 0 ? specialItems.join(", ") : undefined,
     x_calc_land_status: landStatus ?? undefined,
     x_calc_floors: floors ?? undefined,
     x_calc_lang: lang,
+    x_calc_created_at: createdAtIso,
     ...result.fields,
   });
 
-  const values: Record<string, string | number | boolean> = { summary };
-  for (const [name, value] of Object.entries(fields)) {
-    if (value !== undefined) values[name.slice("x_calc_".length)] = value;
-  }
-  return values;
+  return {
+    name: `${CALCULATOR_ESTIMATE_NAME_PREFIX} ${t.cities[city]} - ${reference}`,
+    standard: { description, priority: "0" },
+    sourceName: CALCULATOR_LEAD_SOURCE,
+    tagNames: [CALCULATOR_ESTIMATE_TAG],
+    customFields,
+  };
 }
 
 // ---------------------------------------------------------------------------

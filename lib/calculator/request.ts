@@ -288,15 +288,16 @@ export function parseCalculatorRequest(
 }
 
 // ---------------------------------------------------------------------------
-// Estimate snapshot (share card / PDF)
+// Estimate snapshot (result viewed / share card / PDF)
 // ---------------------------------------------------------------------------
 
-export const SNAPSHOT_ACTIONS = ["card", "pdf"] as const;
+export const SNAPSHOT_ACTIONS = ["view", "card", "pdf"] as const;
 export type SnapshotAction = (typeof SNAPSHOT_ACTIONS)[number];
 
-// Sent when the visitor shares the card or downloads the PDF, so the team can
-// look the estimate up by its reference if the visitor later quotes it. No
-// personal data: the visitor hasn't given any at this point.
+// Sent when a result is shown, and again when the visitor shares the card or
+// downloads the PDF, so the team sees every estimate and can look one up by
+// its reference if the visitor later quotes it. No personal data: the
+// visitor hasn't given any at this point.
 export type CalculatorSnapshotPayload = {
   reference: string;
   lang: "en" | "ar";

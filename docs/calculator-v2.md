@@ -1,10 +1,10 @@
 # Khales calculator v2
 
 A preliminary, **building-only** cost range for a family villa in six Gulf countries. The result is free and
-shown at once: no name, email or phone is needed to see it, download the card or PDF, or share it. An Odoo lead
-is created **only** when the visitor chooses "I want to design my home" or "Review my home budget" and
-submits that form. Sharing the card or downloading the PDF saves an anonymous estimate (no contact details)
-that the team can look up by its reference.
+shown at once: no name, email or phone is needed to see it, download the card or PDF, or share it. Every
+result seen is saved in Odoo as an anonymous **estimate lead** (no contact details), which the team can look
+up by its reference. A lead with the visitor's contact details is created only when they choose "I want to
+design my home" or "Review my home budget" and submit that form.
 
 Page: `/[lang]/calculator` (`en`, `ar`, RTL). Client: `app/components/calculator/`. Logic: `lib/calculator/`.
 
@@ -103,26 +103,35 @@ submitted inputs and never trusts numbers sent by the client.
 | --- | --- | --- | --- |
 | `POST /api/calculator/reference` → `{ reference }` (`Cache-Control: no-store`) | A result is shown | none | none. Random code, nothing stored or logged. |
 | `POST /api/calculator/request` | The visitor submits the design or budget-review form | Creates (or returns) **one** `crm.lead` | First name, email and phone, only if given |
-| `POST /api/calculator/snapshot` → `{ success, estimateId }` | The visitor shares the card or downloads the PDF (once per reference and action) | Creates or updates **one** `kh.calculator.estimate` per reference | none |
+| `POST /api/calculator/snapshot` → `{ success, leadId }` | A result is shown (`view`), and when the visitor shares the card (`card`) or downloads the PDF (`pdf`); once per reference and action | Creates (or returns) **one** anonymous estimate `crm.lead` per reference; `card` / `pdf` add a tag | none |
 | `GET /api/leads/count` → `{ success, count }` | Start-screen counter | One `search_count`, cached 1 h | none |
 
-Viewing a result and changing inputs call no Odoo API. Sharing the card or downloading the PDF saves an
-anonymous estimate (see below) but never a lead. `/api/leads/create` and `/api/feedback` are deleted.
+Changing inputs calls no Odoo API until the new result is shown. `/api/leads/create` and `/api/feedback`
+are deleted.
 
-### Estimate snapshots (`kh.calculator.estimate`)
+### Estimate leads (every result seen)
 
-A visitor may share the card on WhatsApp without ever sending a request, then quote the reference later. So
-the share and PDF buttons also send the inputs to `/api/calculator/snapshot`, in the background: the card
-or PDF never waits for it, and a failure changes nothing for the visitor. The API recomputes the numbers
-from the inputs (as for requests) and writes one `kh.calculator.estimate` record per reference, with the
-same values as the lead's `x_calc_*` fields minus the prefix (`city`, `result_expected`, …) plus a
-plain-text `summary`. Sharing again only sets `shared_card` / `downloaded_pdf`, increments `share_count`
-and updates `last_shared_at`. There is no name, email or phone: the visitor hasn't given any.
+So the team sees what visitors price, and can find an estimate when a visitor quotes its reference on
+WhatsApp without ever sending a request, every result shown is sent to `/api/calculator/snapshot` in the
+background (`view`), and again when the visitor shares the card (`card`) or downloads the PDF (`pdf`).
+The result, card or PDF never waits for it, and a failure changes nothing for the visitor. The API
+recomputes the numbers from the inputs (as for requests) and writes **one** `crm.lead` per reference
+(`lib/calculator/odooLead.ts` → `buildEstimateLead`, written by `lib/calculator/odooLeadStore.ts`):
 
-The model comes from the `kh_crm_calculator` Odoo module. If it isn't installed, the API saves nothing and
-still answers `success: true, estimateId: null`. Only fields that exist on the model are written (`fields_get`,
-cached for 10 minutes). Partner-review markets show no number and have no card, so they are never saved.
-`CALCULATOR_ODOO_DRY_RUN=true` logs the values instead of writing them.
+- Name `Calculator estimate - <city> - <reference>`. This deliberately doesn't start with
+  `Calculator v2 -`, so the start-screen counter still counts requests only.
+- Tag `Calculator estimate`, plus `Shared card` / `Downloaded PDF` when the visitor does that. Source
+  `Website Calculator v2`, priority 0, and no followers notified.
+- The same `x_calc_*` fields as a request, with `x_calc_request_type = estimate`, so in Odoo "Calculator
+  leads" lists both, and grouping by request type sets estimates apart from design / budget-review requests.
+  The description says it is an estimate only.
+- No name, email or phone: the visitor hasn't given any. If they later send a request, that is its own lead,
+  with the same reference.
+
+Partner-review markets (no number shown) are saved on `view` too. They have no card or PDF. Each
+recalculation is a new reference, and so a new estimate lead. Only `x_calc_*` fields that exist on
+`crm.lead` are written (`fields_get`, cached for 10 minutes). `CALCULATOR_ODOO_DRY_RUN=true` logs the
+values instead of writing them.
 
 `/api/calculator/request` takes a `CalculatorRequestPayload` (`lib/calculator/request.ts`) and returns:
 
@@ -235,10 +244,10 @@ If the integration user cannot create tags or UTM sources, create "Calculator v2
 Run them on `npm run dev` or a Vercel preview, with `CALCULATOR_ODOO_DRY_RUN=true` unless you are checking
 Odoo itself. Keep DevTools → Network open, filtered on `/api/`.
 
-1. **Dubai, 500 m², balanced family**: range 2,100,000 – 3,250,000 AED, planning figure 2,675,000 AED. Only
-   `/api/calculator/reference` is called (plus `/api/leads/count` on the start screen). Sharing the card
-   or downloading the PDF adds one `/api/calculator/snapshot` request each (none on a second click), and no
-   lead.
+1. **Dubai, 500 m², balanced family**: range 2,100,000 – 3,250,000 AED, planning figure 2,675,000 AED.
+   `/api/calculator/reference` is called, then one `/api/calculator/snapshot` with `action: "view"` (plus
+   `/api/leads/count` on the start screen). Sharing the card or downloading the PDF adds one more snapshot
+   request each (none on a second click), and these only tag the same estimate lead.
 2. **Budget 2,000,000 AED, Dubai, family**: 307 / 373 / 476 m² (conservative / reference / maximum), with the
    "building only, before excluded items, land not deducted" note.
 3. **Sharjah / Fujairah**, same inputs as test 1: 1,995,000 – 3,088,000 AED, planning figure 2,541,000 AED

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, type ReactNode, type RefObject } from "react";
+import { useEffect, useId, useRef, type ReactNode, type RefObject } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -69,10 +69,11 @@ const LABEL = "text-sm font-semibold text-neutral-800";
 const DARK_PANEL = "bg-[linear-gradient(135deg,#2f3d13,#171717)] text-white";
 const OTHER_UNIT: Record<AreaUnit, AreaUnit> = { m2: "sqft", sqft: "m2" };
 
-// The free result: shown in full straight away - no gate, no blur, no
-// network call. Only the two service requests (design / budget review)
-// ever lead to a lead, and only once the visitor sends that form. Sharing
-// the card or downloading the PDF saves an anonymous copy of the estimate.
+// The free result: shown in full straight away - no gate, no blur. Every
+// result seen is saved in the background as an anonymous estimate lead (no
+// contact details), tagged again if the visitor shares the card or
+// downloads the PDF. The two service requests (design / budget review) are
+// separate leads, sent only with that form.
 export default function ResultsView({
   dictionary,
   lang,
@@ -87,8 +88,8 @@ export default function ResultsView({
   onStartOver,
 }: ResultsViewProps) {
   const sheetRef = useRef<HTMLElement>(null);
-  // "K-XXXXXX:card" / ":pdf" already saved, so sharing twice sends once.
-  const savedExports = useRef(new Set<string>());
+  // "K-XXXXXX:view" / ":card" / ":pdf" already sent, so each goes once.
+  const savedActions = useRef(new Set<string>());
   const date = new Date(estimateDate);
   const dateText = Number.isNaN(date.getTime()) ? "" : formatEstimateDate(date, lang);
   const checklist = readinessItems({
@@ -97,6 +98,29 @@ export default function ResultsView({
     hasTarget: true,
     answers: readiness,
   });
+
+  // Fire and forget: the result, card or PDF never waits on Odoo, and a
+  // failed save changes nothing for the visitor.
+  const saveEstimate = (action: SnapshotAction) => {
+    const key = `${reference}:${action}`;
+    if (!reference || savedActions.current.has(key)) return;
+    savedActions.current.add(key);
+    const inputMode = outcome.kind === "partner_review" ? outcome.mode : outcome.kind;
+    const payload: CalculatorSnapshotPayload = { reference, lang, inputMode, estimate: inputs, action };
+    fetch("/api/calculator/snapshot", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    }).catch(() => {});
+  };
+
+  // Saved as soon as the reference arrives. A new estimate always remounts
+  // this view with a new reference, so the reference is the only trigger.
+  useEffect(() => {
+    saveEstimate("view");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reference]);
 
   let sheet: ReactNode;
   let share: ReactNode = null;
@@ -113,20 +137,6 @@ export default function ResultsView({
       />
     );
   } else {
-    // Fire and forget: the card or PDF never waits on Odoo, and a failed
-    // save changes nothing for the visitor.
-    const saveExport = (action: SnapshotAction) => {
-      const key = `${reference}:${action}`;
-      if (!reference || savedExports.current.has(key)) return;
-      savedExports.current.add(key);
-      const payload: CalculatorSnapshotPayload = { reference, lang, inputMode: outcome.kind, estimate: inputs, action };
-      fetch("/api/calculator/snapshot", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        keepalive: true,
-      }).catch(() => {});
-    };
     sheet = (
       <EstimateSheet
         sheetRef={sheetRef}
@@ -144,7 +154,7 @@ export default function ResultsView({
         reference={reference}
         pdfTargetRef={sheetRef}
         card={reference ? buildShareCard(dictionary, lang, inputs, outcome, reference, dateText) : null}
-        onExport={saveExport}
+        onExport={saveEstimate}
       />
     );
   }
